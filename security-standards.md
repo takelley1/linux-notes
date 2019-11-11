@@ -7,7 +7,7 @@
   3. If the Receiver's own hash and the Receiver's decrypted hash from the Sender match, the signature is valid. 
   - Provides Integrity, Non-Repudiation, and Authentication. 
 
-![digital-signatures](/linux/images/digital-signatures.png)
+![digital-signatures](/images/digital-signatures.png)
 
 
 ## SYMMETRIC ENCRYPTION
@@ -64,7 +64,7 @@
   `kinit username@REALM` = request TGT from KDC \
   `klist` = list all tickets
 
-![kerberos](/linux/images/kerberos.jpg)    
+![kerberos](/images/kerberos.jpg)    
     
     
 ## KDF (Key Derivation functions)
@@ -107,7 +107,7 @@
 - **Non-Repudiation**: Has this entity provided proof that this message actually came from them?
   - Non-Repudiation also provides Authentication as a byproduct.
   
-<img src="/linux/images/HMAC.png" width="600"/>
+<img src="/images/HMAC.png" width="600"/>
   
   
 ## HASHING
@@ -132,7 +132,7 @@
 | Reused between messages            | No                       | Yes                  |
 | Relative speed                     | Slow                     | Fast                 |
 
-<img src="/linux/images/hashwsalt.png" width="600"/>
+<img src="/images/hashwsalt.png" width="600"/>
 
 
 ## MFA (Multi-Factor Authentication)
@@ -165,7 +165,7 @@ Bob's web browser when he downloaded it, along with the Public Key of every othe
   Bob trusts the Root CA because it has established its reputation through the Web of Trust, along with the fact that the Root CA's
 Public Key came with his browser [1].
  
-<img src="/linux/images/session-keys.jpg" width="400"/> 
+<img src="/images/session-keys.jpg" width="400"/> 
 
 
 ## MUTUAL SSL AUTHENTICATION (2-way SSL Authentication)
@@ -178,7 +178,7 @@ Public Key came with his browser [1].
   5. The Server verifies the Client’s credentials using the Client's Certificate issuer's Public Key. 
   6. If successful, the Server grants access to the protected resource requested by the Client [2]. 
 
-![mutual-ssl-authentication](/linux/images/mutualssl.png)
+![mutual-ssl-authentication](/images/mutualssl.png)
 
 
 ## KEY EXCHANGE
@@ -192,7 +192,7 @@ Public Key came with his browser [1].
     - Alice verifies Bob's signature using his RSA Public Key to ensure the DH Public Key is actually from Bob and there is no Man in 
       the Middle. 
 
-<img src="/linux/images/dh-exchange.png" width="600"/> 
+<img src="/images/dh-exchange.png" width="600"/> 
 
 
 ## ATTACKS
@@ -217,19 +217,19 @@ Public Key came with his browser [1].
   
   - **Replay attack** = Attacker repeats or delays a valid message, fooling a party into believing the attacker is legitimate.
 
-<img src="/linux/images/replay-attack.png" width="300"/>
+<img src="/images/replay-attack.png" width="300"/>
 
 
 ### Breaking encryption 
   "Big O" time complexity 
   
-![time-complexity](/linux/images/time-complexity.jpg)
+![time-complexity](/images/time-complexity.jpg)
 
   #### Symmetric keys 
   - classical brute-force time complexity of AES = O 2n (AES128 = O 2128) 
   - quantum brute-force time complexity of AES = O 2n/2 using Grover's algorithm (AES128 = O 264) 
   
-![shors-algorithm](/linux/images/time-complexity-shors-algorithm.jpg)
+![shors-algorithm](/images/time-complexity-shors-algorithm.jpg)
 
 - [1] https://strongarm.io/blog/how-https-works/ 
 - [2] https://www.codeproject.com/Articles/326574/An-Introduction-to-Mutual-SSL-Authentication 

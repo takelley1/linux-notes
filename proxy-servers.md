@@ -16,9 +16,7 @@ the request, generates the content and then sends this content back to httpd, wh
 actual HTTP response back to the client. [4]
 ```
 
-
-![reverse-proxy](/linux/images/reverse-proxy-02-1.jpg) [2]
-
+![reverse-proxy](/images/reverse-proxy-02-1.jpg) [2]
 
 ```xml
 apache config (httpd.conf) [4]
@@ -45,23 +43,7 @@ apache config (httpd.conf) [4]
 
 ## FORWARD PROXY
 
-
-![reverse-proxy](/linux/images/reverse-proxy-01-1.jpg) [2]
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+![reverse-proxy](/images/reverse-proxy-01-1.jpg) [2]
 
 ### sources
 - [1] https://en.wikipedia.org/wiki/Reverse_proxy

@@ -1,5 +1,5 @@
 
-![performance-observation-tools](/linux/images/performance-observation-tools.png)
+![performance-observation-tools](/images/performance-observation-tools.png)
 
 ## processes
 

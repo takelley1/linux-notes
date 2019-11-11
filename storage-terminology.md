@@ -46,7 +46,7 @@ to the original data, not the data itself
     - 3D XPoint / Optane / QuantX - Balances performance/density of DRAM and flash, uses resistance rather than charge to store bits
     - FeRAM (Ferroelectric RAM)
     
-![nand-vs-nor-flash](/linux/images/nand-vs-nor-flash.jpg) [1]
+![nand-vs-nor-flash](/images/nand-vs-nor-flash.jpg) [1]
     
 - Volatile - memory that loses its data after power loss - used as a working cache to store frequently-accessed data
   - RAM (Random Access Memory) - fast memory to store programs while powered on
