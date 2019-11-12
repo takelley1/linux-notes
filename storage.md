@@ -23,7 +23,7 @@
 
 ## FILES & FILESYSTEMS
 
-`mkfs.ext4 /dev/mapper/LV1` or `mkfs -t ext4 /dev/mapper/LV1` = create ext4 filesystem on LV1 logical volume \
+`mkfs.ext4 /dev/mapper/LV1` or `mkfs -t ext4 /dev/mapper/LV1` = create ext4 filesystem on LV1 logical volume
 
 `e2fsck -f /dev/mapper/LV1 && resize2fs /dev/mapper/LV1` = expand filesystem to fit size of LV1 (must be unmounted) \
 `xfs_growfs /dev/centos/var` = expand mounted xfs filesystem (must be mounted)
@@ -43,7 +43,7 @@
   `-h` make output human-readable \
   `-T` show filesystem type
 
-`blkid` = show partition UUIDs \
+`blkid` = show partition UUIDs
 
 `fdisk -l` = show drives and their partition tables \
 `fdisk /dev/sdb` = edit the partition table of sdb
