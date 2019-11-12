@@ -1,24 +1,27 @@
 
 ## PACKAGES
 
-#### yum/dnf & rpm
+| action                               | yum/dnf                        | apt                         | pacman             |
+| ------------------------------------ | ------------------------------ | --------------------------- | ------------------ |
+| update packages                      | `yum update`                   | `apt update && apt upgrade` | `pacman -Syu`      |
+| show installed packages              | `rpm -qa`                      | `dpkg --list`               | `pacman -Q`        |
+| show package that provides file x    | `yum whatprovides x`           | `dpkg -S x`                 | `pacman -Ql x`     |
+| get package x info                   | `yum info x`                   | `apt-cache show x`          | `pacman -Qi x`     |
+| remove duplicate packages            | `package-cleanup --cleandupes` | -                           | -                  |
+| remove orphaned packages             | -                              | `apt autoremove`            | `pacman -Ru`       |
 
-`package-cleanup --cleandupes` = remove packages that have duplicate older versions
+#### rpm
 
 `rpm -ivh file.rpm` or `yum install ./file.rpm` = install .rpm file as package \
 `-i` install .rpm \
 `-v` verbose \
 `-h` use hash marks to display progress
 
-`rpm –qa` = show all installed rpm packages \
-`-q` query \
-`-a` all
-
 #### tarballs
 
 `tar xzvf file.tar.gz` = extract archive into current path (*xtract ze v'ing files*) \
 `x` extract tar archive \
-`z` use `gzip` (only works with `tar.gz` or `.tgz` archives) \
+`z` use `gzip` (only works with `tar.gz` or `.tgz` tarballs) \
 `v` verbose \
 `f` extract files
 
@@ -43,6 +46,10 @@
 ---
 ### apt & deb
 
+#### edit repos
+`add-apt-repository universe` = enable the universe repo
+
+---
 #### add iso repo to centos
 1. go to centos.org
 1. click 'get centos now'
