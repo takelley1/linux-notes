@@ -107,8 +107,8 @@ ex: `10.0.0.10:/data  /mnt/data  nfs  defaults  0 0`
 2. use `gparted` to copy the source drive's root partition to an empty partition on the target drive
 3. physically disconnect the source drive
 4. open a terminal and generate a new UUID for the new partition on the target drive
-  - use `blkid` to list partition UUIDs
-  - use `tune2fs -U random /dev/sdx1` (if ext4) or `xfs_admin -U generate /dev/sdx1` (if xfs) to generate a new UUID for the copied partition on the target drive
+   - use `blkid` to list partition UUIDs
+   - use `tune2fs -U random /dev/sdx1` (if ext4) or `xfs_admin -U generate /dev/sdx1` (if xfs) to generate a new UUID for the copied partition on the target drive
 5. mount the target drive and bind mount `/dev`, `/run`, `/proc`, and `/sys` from the currently booted drive to the target drive
 6. chroot into the target drive
 7. update `fstab` with the copied partition's new UUID
