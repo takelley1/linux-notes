@@ -23,35 +23,32 @@
 
 ## FILES & FILESYSTEMS
 
-`mkfs.ext4 /dev/mapper/LV1` = create ext4 filesystem on LV1 logical volume \
-`mkfs -t ext4 /dev/mapper/LV1` = create ext4 filesystem that fits size of logical volume LV1 
+`mkfs.ext4 /dev/mapper/LV1` or `mkfs -t ext4 /dev/mapper/LV1` = create ext4 filesystem on LV1 logical volume \
 
-`e2fsck -f /dev/mapper/LV1` = expand filesystem to fit size of LV1 \
-`xfs_growfs /dev/centos/tmp` = expand mounted xfs filesystem
+`e2fsck -f /dev/mapper/LV1 && resize2fs /dev/mapper/LV1` = expand filesystem to fit size of LV1 (must be unmounted) \
+`xfs_growfs /dev/centos/var` = expand mounted xfs filesystem (must be mounted)
 
-`resize2fs /dev/mapper/LV1` = shrink or grow mounted ext4 filesystem of LV1 down to the size of currently used space (first use e2fsck)
-
-`e4degrag /` = defragment all partitions 
-
+`e4degrag /` = defragment all partitions \
 `fsck /dev/sda2` = check sda2 partition for errors (ext4 only)
 
-> NOTE: xfs filesystems cannot be shrunk; use ext4 instead 
+> NOTE: xfs filesystems cannot be shrunk; use ext4 instead
 
 
 ## DISKS & MOUNTS
 
-`lsblk` = show disk tree layout, including logical volumes 
-`-f` = show filysystem type
-
-`fdisk -l` = show drives and their partition tables 
-
-`fdisk /dev/sdb` = edit the partition table of sdb 
-
-df -Th = show space used by mounted drives \
+`lsblk -f` = show disk tree layout, including logical volumes \
+  `-f` = show filysystem type
+  
+`df -Th` = show space used by mounted drives \
   `-h` make output human-readable \
   `-T` show filesystem type
 
-`mount` = show mounted volumes and their mount locations (the command reads the /etc/fstab file) \
+`blkid` = show partition UUIDs \
+
+`fdisk -l` = show drives and their partition tables \
+`fdisk /dev/sdb` = edit the partition table of sdb
+
+`mount` = show mounted volumes and their mount locations \
 `mount –o remount,rw /dev/sda1 /mountpoint` = remount drive with read-write permissions 
  
  
