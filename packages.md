@@ -7,6 +7,8 @@
 | show installed packages              | `rpm -qa`                      | `dpkg --list`               | `pacman -Q`        |
 | show package that provides file x    | `yum whatprovides x`           | `dpkg -S x`                 | `pacman -Ql x`     |
 | get package x info                   | `yum info x`                   | `apt-cache show x`          | `pacman -Qi x`     |
+| install package group x              | `yum groupinstall x`           | -                           | `pacman -S x`      |
+| show package groups                  | `yum group list`               | -                           | `pacman -Qg`       |
 | remove duplicate packages            | `package-cleanup --cleandupes` | -                           | -                  |
 | remove orphaned packages             | -                              | `apt autoremove`            | `pacman -Ru`       |
 
@@ -26,28 +28,18 @@
 `f` extract files
 
 
-## REPOS
+## REPOSITORIES
+
+| action                  | yum/dnf               | apt                                      | pacman                    |
+| ----------------------- | --------------------- | ---------------------------------------- | ------------------------- |
+| show installed repos    | `yum repolist`        | [view `/etc/apt.sources.list`]           | [view `/etc/pacman.conf`] |
+| show available repos    | `yum repolist all`    | [view `/etc/apt.sources.list`]           | -                         |
+| add repo x              | `yum --enablerepo=x`  | `add-apt-repository x`                   | [edit `/etc/pacman.conf`] |
+| add third-party repo    | -                     | `add-apt-repository ppa:libreoffice/ppa` | -                         |
 
 ### yum/dnf & rpm
 
-#### show repos
-`yum repolist` = view installed yum repositories \
-`yum repolist all` = view all possible yum repositories, including disabled ones 
-
-#### edit repos
-`yum-config-manager --enable "[repository name]"` = enable a yum repository \
-`yum --enablerepo=extras` = install extras repo \
 `yum install epel-release` = install EPEL repo
-
-#### groups
-`yum group list` = list package group \
-`yum groupinstall 'GNOME Desktop'` = install GNOME Desktop package group 
-
----
-### apt & deb
-
-#### edit repos
-`add-apt-repository universe` = enable the universe repo
 
 ---
 #### add iso repo to centos
