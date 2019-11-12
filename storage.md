@@ -101,14 +101,16 @@ ex: `10.0.0.10:/data  /mnt/data  nfs  defaults  0 0`
 > symbolic links can be made for directories as well as files and work across partitions (unlike hard links), but break if the location they're pointing to is deleted. Similar to Windows shortcuts
 
 ---
-#### transfer installation to another drive
+#### transfer root linux installation to another drive
 
-1. install the `update-grub` package on source drive
-2. use gparted to copy source partition to target drive
+1. install the `update-grub` package on the source drive (optional)
+2. use `gparted` to copy the source drive's root partition to an empty partition on the target drive
 3. physically disconnect the source drive
-4. open terminal while still booted into gparted and generate a new UUID for the new partition on the target drive
-5. mount the target drive and bind mount `/dev`, `/run`, `/proc`, and `/sys`
-6. chroot into target drive
-7. update fstab with new drive UUID
-8. run `grub-mkconfig -o /boot/grub/grub.cfg` or `update-grub`
-9. reboot. If you're dropped into an emergency shell, try regenerating grub 
+4. open a terminal and generate a new UUID for the new partition on the target drive
+  - use `blkid` to list partition UUIDs
+  - use `tune2fs -U random /dev/sdx1` (if ext4) or `xfs_admin -U generate /dev/sdx1` (if xfs) to generate a new UUID for the copied partition on the target drive
+5. mount the target drive and bind mount `/dev`, `/run`, `/proc`, and `/sys` from the currently booted drive to the target drive
+6. chroot into the target drive
+7. update `fstab` with the copied partition's new UUID
+8. run `grub-mkconfig -o /boot/grub/grub.cfg` or `update-grub` (if `update-grub` was installed)
+9. reboot. If you're dropped into an emergency shell, try regenerating grub
