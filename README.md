@@ -1,2 +1,2 @@
 ## linux-notes
-my personal documentation and notes for Linux and various other technologies
+Personal documentation and notes for Linux and a few other technologies.
