@@ -23,6 +23,14 @@
 
 ## FILES & FILESYSTEMS
 
+`du -sh /home/alice` = display disk space used by specified directory or file \
+`-s` (*summarize*) = list total storage used by entire directory and all subdirectories \
+`-h` = use human-readable format for filesizes (ex. `8.7M` instead of `8808`)
+
+`du -d 1 -h /` = list the sizes of each directory one level beneath the specified directory \
+`-d 1` (*depth*) = recurse at a depth of 1
+
+---
 `mkfs.ext4 /dev/mapper/LV1` or `mkfs -t ext4 /dev/mapper/LV1` = create ext4 filesystem on LV1 logical volume
 
 `e2fsck -f /dev/mapper/LV1 && resize2fs /dev/mapper/LV1` = expand filesystem to fit size of LV1 (must be unmounted) \
@@ -40,8 +48,8 @@
   `-f` = show filysystem type
   
 `df -Th` = show space used by mounted drives \
-  `-h` make output human-readable \
-  `-T` show filesystem type
+  `-h` = make output human-readable \
+  `-T` = show filesystem type
 
 `blkid` = show partition UUIDs
 
@@ -76,15 +84,8 @@ ex: `10.0.0.10:/data  /mnt/data  nfs  defaults  0 0`
 
  
 ## MISC
- 
-`du -sh /home/alice` display disk space used by specified directory or file \
--list total storage used by entire directory and all subdirectories, "summarize" (`-s`) \
--list human-readable format (`-h`)
 
-`du -d 1 -h /` list total sizes of each directory one level beneath the specified directory (`-d 1`)
-
---- 
- > `inode` = a special data structure containing a file's metadata. Contains the file's physical address on the storage medium, size,
+ `inode` = a special data structure containing a file's metadata. Contains the file's physical address on the storage medium, size,
  permissions, and modification timestamps. The file that the user interacts with is only a pointer to its corresponding inode.
  http://www.linfo.org/inode.html 
 
@@ -107,7 +108,7 @@ ex: `10.0.0.10:/data  /mnt/data  nfs  defaults  0 0`
    - use `blkid` to list partition UUIDs
    - use `tune2fs -U random /dev/sdx1` (if ext4) or `xfs_admin -U generate /dev/sdx1` (if xfs) to generate a new UUID for the copied partition on the target drive
 5. mount the target drive and bind mount `/dev`, `/run`, `/proc`, and `/sys` from the currently booted drive to the target drive
-6. chroot into the target drive
+6. `chroot` into the target drive
 7. update `fstab` with the copied partition's new UUID
 8. run `grub-mkconfig -o /boot/grub/grub.cfg` or `update-grub` (if `update-grub` was installed)
 9. reboot. If you're dropped into an emergency shell, try regenerating grub
