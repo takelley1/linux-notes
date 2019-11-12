@@ -35,7 +35,7 @@
      1. Their TGT along with a request to access service X.
      2. An Authenticator, which has been encrypted with the Session Key.
   2. The KDC decrypts the requests:
-     1. The KDC decrypts the TGT using it's own Secret Key.
+     1. The KDC decrypts the TGT using its own Secret Key.
      2. The KDC decrypts the Authenticator using the Session Key and compares the user info in the Authenticator with the user info
         in the TGT.
   3. The KDC responds to the user:
@@ -93,14 +93,14 @@
   - HMACs are a type of Keyed Cryptographic hash functions, which are used to dervice MACs.
   - Example: HMAC-MD5(key = "key", message = "The quick brown fox jumps over the lazy dog") = `80070713463e7749b90c2dc24911e275`
   
-|Data integrity methods  | Hash |   HMAC    | Digital Signature|
+| Data integrity method  | Hash | HMAC      | Digital Signature|
 |------------------------|:----:|:---------:|:----------------:|
-|Integrity               |  Yes |    Yes    |   Yes            |
-|Authentication          |  No  |    Yes    |   Yes            |
-|Non-repudiation         |  No  |    No     |   Yes            |
-|Relative Speed          | Fast |   Fast    |   Slow           |
-|Kind of keys            | None | Symmetric | Asymmetric       |
-|Able to be truncated    | Yes  |   Yes     |   No             |
+| Integrity              | Yes  | Yes       | Yes              |
+| Authentication         | No   | Yes       | Yes              |
+| Non-repudiation        | No   | No        | Yes              |
+| Relative Speed         | Fast | Fast      | Slow             |
+| Kind of keys           | None | Symmetric | Asymmetric       |
+| Able to be truncated   | Yes  | Yes       | No               |
 
 - **Integrity**: Has the message been altered?
 - **Authentication**: Is this entity who they say they are?
@@ -204,9 +204,8 @@ Public Key came with his browser [1].
                            keys stored in RAM from the previous boot. Exploits the fact that RAM is unencrypted and remains readable 
                            seconds to minutes after losing power. Used to circumvent full-disk encryption.
                            
-  - **Cache side-channel attack** = (*Meltdown* & *Spectre*) Attacker takes advantage of the way speculative execution is performed on
+  - **Cache side-channel attack** = (*ex. Meltdown & Spectre*) Attacker takes advantage of the way speculative execution is performed on
                                     certain CPUs to gain access to protected areas of memory.
-
 
 - **Man-in-the-middle attack (MITM)** = Attacker relays or alters messages between two parties who believe they're communicating with 
                                         each other.
@@ -224,13 +223,16 @@ Public Key came with his browser [1].
   "Big O" time complexity 
   
 ![time-complexity](/images/time-complexity.jpg)
-
-  #### Symmetric keys 
-  - classical brute-force time complexity of AES = O 2n (AES128 = O 2128) 
-  - quantum brute-force time complexity of AES = O 2n/2 using Grover's algorithm (AES128 = O 264) 
+ 
+  - classical brute-force time complexity of breaking a cryptographic hash = **O(2<sup>N</sup>)**
+    - A SHA256 hash has a search space of **2<sup>256</sup>** [3]
+  
+  - quantum brute-force time complexity of factoring an RSA key using Shor's algorithm = **O(72(logN)<sup>3</sup>)** [4]
   
 ![shors-algorithm](/images/time-complexity-shors-algorithm.jpg)
 
-- [1] https://strongarm.io/blog/how-https-works/ 
-- [2] https://www.codeproject.com/Articles/326574/An-Introduction-to-Mutual-SSL-Authentication 
+- [1] https://strongarm.io/blog/how-https-works/
+- [2] https://www.codeproject.com/Articles/326574/An-Introduction-to-Mutual-SSL-Authentication
+- [3] https://www.youtube.com/watch?v=S9JGmA5_unY&t=1s
+- [4] https://cs.stackexchange.com/questions/16684/shors-algorithm-speed
 
