@@ -17,6 +17,8 @@
 
 `authconfig --disablesssdauth --update` = remove pam sssd module
 
+#### /etc/pam.d/ syntax
+
 
 ## SELINUX 
 
