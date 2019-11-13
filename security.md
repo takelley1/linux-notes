@@ -26,17 +26,19 @@
 
 selinux context syntax: `user:role:type:level`
 
-`ls -Z` = view selinux contexts \
+`ls -Z` = view selinux contexts
+
 `chcon -R [context] file.txt` = change selinux context \
 `-R` = recursive
 
 `sestatus -v` = display general selinux config \
-`-v` = verbose \
-`setenforce 1` = enable selinux enforcement (`1` for on, `0` for off)
+`-v` = verbose
+
+`setenforce 1` = enable selinux enforcement (`1` for on, `0` for off) \
+`fixfiles` = check security context database
 
 `restorecon -F ./file.txt` = restore selinux context to specified file or directory \
-`-F` = force \
-`fixfiles` = check security context database
+`-F` = force
 
 `getsebool` = get selinux boolean values \
 `setsebool` = toggle selinux boolean values \
