@@ -22,20 +22,22 @@
 
 ## SELINUX 
 
-`semanage port –a –t ssh_port_t tcp 9999` = set ssh context to allow use of port 9999 \
-`ls -Z` = view selinux contexts
+`semanage port –a –t ssh_port_t tcp 9999` = set ssh context to allow use of port 9999
 
-`chcon -R [context] file.txt` = change selinux context 
+selinux context syntax: `user:role:type:level`
 
-selinux contexts syntax: SELinux `user:role:type:level`
+`ls -Z` = view selinux contexts \
+`chcon -R [context] file.txt` = change selinux context \
+`-R` = recursive
 
-`sestatus -v` = display general selinux config, verbose (`-v`) \
+`sestatus -v` = display general selinux config \
+`-v` = verbose \
 `setenforce 1` = enable selinux enforcement (`1` for on, `0` for off)
 
-`restorecon -F /file.txt` = forcibly (`-F`) restore selinux content to specified file or directory \
+`restorecon -F ./file.txt` = restore selinux context to specified file or directory \
+`-F` = force \
 `fixfiles` = check security context database
 
 `getsebool` = get selinux boolean values \
-`setsebool` = toggle selinux boolean values
-
+`setsebool` = toggle selinux boolean values \
 `setsebool httpd_can_network_connect on` = allow outside directory access to httpd 
