@@ -1,3 +1,10 @@
+## CERTIFICATES
+
+```
+certtool --generate-privkey --outfile key.pem
+certtool --generate-self-signed --load-privkey key.pem --outfile cert.pem
+```
+
 ## FIPS
 
 `cat /proc/sys/crypto/fips_enabled` = check if FIPS is enabled 
