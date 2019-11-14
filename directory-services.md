@@ -6,8 +6,8 @@
 
 #### ssh key authentication
 
-run script in /etc/ssh/sshd_config under line "AuthorizedKeysCommand" to authenticate users using their domain
-account's public key, stored in the 'comment' field within their domain account's account properties.
+the below script is referenced in `/etc/ssh/sshd_config` at the line `AuthorizedKeysCommand` \
+the script attempts to authenticate users using a public key stored in the `comment` field of their ldap user account attributes
 
 ```bash
 #!/bin/bash
@@ -20,7 +20,7 @@ ldapsearch -u -LLL -x -w $PASS \
 '(sAMAccountName='"$USER"')' 'comment' \
 | sed -n '/^ /{H;d};/comment:/x;$g;s/\n *//g;s/comment: //gp'
 ```
-
+---
 ### integration
 
 https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/7/html-single/windows_integration_guide/#sssd-ad-proc 
@@ -32,11 +32,10 @@ https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/7/html-si
 
 `kinit`
 
----
-integrate Linux with Active Directory using realmd \
+**integrate Linux with Active Directory using `realmd`** \
 run all commands as root 
 
-```
+```bash
 #!/bin/bash
 
 # make sure server isn't joined already
