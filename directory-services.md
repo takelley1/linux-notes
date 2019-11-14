@@ -1,23 +1,27 @@
-## active directory
+## ACTIVE DIRECTORY
 
 ### `ldapsearch` command
 
 `ldapsearch -LLL -x -w [password] -H ldaps://[servername].[domain] -D "[authenticating-user].[domain]" "mail=[user-email]"`
 
-#### ssh keys in Active Directory 
+#### ssh key authentication
 
 run script in /etc/ssh/sshd_config under line "AuthorizedKeysCommand" to authenticate users using their domain
 account's public key, stored in the 'comment' field within their domain account's account properties.
-```
+
+```bash
 #!/bin/bash
-#echo "$1"
 USER=$(echo "$1" | cut -f 1 -d "@")
-PASS=$(cat /passwordfile)
+PASS=$(cat ./passwordfile)
 
-ldapsearch -u -LLL -x -w $PASS -D "ldapsearch.svc@[DOMAIN]" -H "ldaps://[DOMAIN-CONTROLLER-NAME].[DOMAIN]" '(sAMAccountName='"$USER"')' 'comment' | sed -n '/^ /{H;d};/comment:/x;$g;s/\n *//g;s/comment: //gp'
+ldapsearch -u -LLL -x -w $PASS \
+-D "ldapsearch.svc@[DOMAIN]" \
+-H "ldaps://[DOMAIN-CONTROLLER-NAME].[DOMAIN]" \
+'(sAMAccountName='"$USER"')' 'comment' \
+| sed -n '/^ /{H;d};/comment:/x;$g;s/\n *//g;s/comment: //gp'
 ```
 
-### basic Active Directory tools
+### integration
 
 https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/7/html-single/windows_integration_guide/#sssd-ad-proc 
 
@@ -28,7 +32,8 @@ https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/7/html-si
 
 `kinit`
 
-integrate Linux with Active Directory using sssd 
+---
+integrate Linux with Active Directory using realmd \
 run all commands as root 
 
 ```
