@@ -1,6 +1,3 @@
-HIGHEST LEVEL \
-^^^^^^^^^^^^^
-
 ### Desktop Environment
 implements the desktop metaphor and bundles together a variety of components, provides its own custom window manager [1]
 - KDE Plasma (default in Kubuntu)
@@ -23,7 +20,7 @@ manages the login screen [2]
   - XDM (X Display Manager)
 
 ### Window Manager
-controls the placement of windows within the desktop environment, typically X server clients [3]
+controls the placement of windows within the desktop environment, typically an X server client [3]
 - Tiling: windows don't overlap
   - i3
   - Bspwm
@@ -47,9 +44,6 @@ system-level interface between desktop GUI and hardware
   - Enlightenment (also a Window Manager)
 - Mir implementations
   - libmir-server / libmir-client
-
-vvvvvvvvvvvvv \
-LOWEST LEVEL
 
 [1] https://wiki.archlinux.org/index.php/Desktop_environment \
 [2] https://wiki.archlinux.org/index.php/Display_manager \
