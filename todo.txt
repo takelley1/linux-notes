@@ -1,0 +1,2 @@
+- fix /image filenames
+- move content to bash
