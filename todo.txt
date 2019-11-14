@@ -1,2 +1,2 @@
 - fix /image filenames
-- move content to bash
+- add content to displays.md
