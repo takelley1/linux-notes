@@ -1,3 +1,8 @@
+## CONSOLE
+
+`dpkg-reconfigure console-setup` = change console font size (debian-based distros) \
+[edit `/etc/default/console-setup`] = change console font size
+
 ## SHELL
 
 `while true; do [COMMAND] ; sleep 10; done` = loop command indefinitely
@@ -16,8 +21,7 @@
 `cat /file.log 2>&1 | grep -i error` = pass both stdout and stderr to grep through pipe, by default pipe only passes stdout \
 `stat /home/file.txt` = show last modified date, creation date, and other metadata about given file
 
-
-## BASH HOTKEYS
+### hotkeys
 
 `CTRL-r` = search command history \
 `CTRL-l` = clear screen \
