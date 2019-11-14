@@ -5,7 +5,7 @@
 #### psql shell
 
 `\l` = list all databases \
-`\c [dbname]`	= connect to new database \
+`\c [dbname]` = connect to new database \
 `\dt` =	view list of relations/tables \
 `\d [tablename]` = show details of table \
 `\h` = get help \

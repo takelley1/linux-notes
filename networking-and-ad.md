@@ -1,5 +1,4 @@
-
-## firewalld
+## FIREWALLD
 
 - allow https traffic
   ```
@@ -14,17 +13,18 @@
   ```
 
 #### `firewall-cmd` command
-- `--list-ports` or `--list-services` = show allowed ports/services
-- `--list-all-zones` = show firewalld rules for both public and private zones
-- `--state` = check if firewalld is running
-- `--zone=private --add-interface=ens32` = attach zone to network interface
+`--list-ports` or `--list-services` = show allowed ports/services \
+`--list-all-zones` = show firewalld rules for both public and private zones
+
+`--state` = check if firewalld is running \
+`--zone=private --add-interface=ens32` = attach zone to network interface
 
 
-## iptables
+## IPTABLES
 
-- `iptables -L` = show firewall ruleset
+`iptables -L` = show firewall ruleset
 
-- add new rule to allow port 80 traffic both to and from host
+add new rule to allow port 80 traffic both to and from host
   ```
   iptables -A INPUT -i eth0 –p tcp --dport 80 –m state --state NEW,ESTABLISHED –j ACCEPT
   iptables –A OUTPUT -o eth0 –p tcp --dport 80 –m state --state NEW,ESTABLISHED –j ACCEPT
@@ -48,7 +48,7 @@
 - `/etc/sysconfig/network-scripts/ifcfg-[interface]` = networking device interface options (Fedora-based systems)
 
 
-## ports 
+## PORTS 
 
 #### remote ports
 - `nmap -p [port#] [ip]` or `telnet [ip] [port#]` = ping specific port on remote host
@@ -70,7 +70,8 @@
 - `nmap -p 22 192.168.1.1-254` = scan ip range for every box with port 22 open
 - `nmap 192.168.1.20-40` = scan all ports on hosts within range
 
-## routes
+
+## ROUTES
 
 - `route add default gw 192.168.1.1 eth0` = add default gateway
 - `ip r` or `routel` = view routing table
@@ -78,7 +79,7 @@
 - `traceroute domain.com` = print the route packets take to a given destination 
 
 
-## ntp
+## NTP
 
 - `ntpq -p` and `ntpstat` = show NTP status
 - `date +%T –s "16:45:00"` = manually set time in HH:mm:ss format
@@ -95,7 +96,7 @@
 - `chronyc activity` 
 
 
-## email 
+## EMAIL 
 
 - `mail -s "Test Subject" example@mail.com < /dev/null` = send test email (using the current host has the smtp relay)
 
