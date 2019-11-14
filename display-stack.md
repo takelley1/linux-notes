@@ -7,6 +7,7 @@ implements the desktop metaphor and bundles together a variety of components, pr
 - Cinnamon (used by Mint)
 - Pantheon (used by ElementaryOS)
 
+---
 ### Display Manager
 manages the login screen [2]
 - Console
@@ -19,12 +20,13 @@ manages the login screen [2]
   - SDDM (used by Plasma)
   - XDM (X Display Manager)
 
+---
 ### Window Manager
 controls the placement of windows within the desktop environment, typically an X server client [3]
-- Tiling: windows don't overlap
+- Tiling: windows can't overlap
   - i3
   - Bspwm
-- Stacking: windows can overlap
+- Stacking: windows *can* overlap
   - lwm
   - Wind
   - Openbox
@@ -33,6 +35,7 @@ controls the placement of windows within the desktop environment, typically an X
   - awesome
   - dwm
 
+---
 ### Display server / Window System
 system-level interface between desktop GUI and hardware
 - X / X11 Window System implementations
@@ -45,6 +48,7 @@ system-level interface between desktop GUI and hardware
 - Mir implementations
   - libmir-server / libmir-client
 
+---
 [1] https://wiki.archlinux.org/index.php/Desktop_environment \
 [2] https://wiki.archlinux.org/index.php/Display_manager \
 [3] https://wiki.archlinux.org/index.php/Window_manager \
