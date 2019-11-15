@@ -12,7 +12,7 @@
 `[COMMAND1] || [COMMAND2]` = run command2 only if command1 is NOT successful \
 `[COMMAND1] ; [COMMAND2]` = run command2 immediately after command1, even if command1 is not successful (ex: `cd /home ; ls`)
 
-`sudo !!` = execute last command (`!!`) with sudo privileges
+`sudo !!` = execute last command with `sudo` privileges
 
 `1>` or `>` = stdout \
 `2>` = stderr \
@@ -24,8 +24,12 @@
 ### hotkeys
 
 `CTRL-r` = search command history \
-`CTRL-l` = clear screen \
-`CTRL-z` = suspend command
+`CTRL-l` = clear screen
+
+`CTRL-c` = send `SIGINT` to foreground process \
+`CTRL-z` = suspend foreground process
+
+`CTRL-d` = exit current shell
 
 `ALT-f` = jump forward one word (when editing a command) \
 `ALT-b` = jump backward one word (when editing a command)
