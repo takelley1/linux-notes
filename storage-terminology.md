@@ -17,31 +17,31 @@
 ### MEMORY
 
 - Non-volatile - memory that retains its data after power loss
-  - ROM (Read Only Memory) – data not rewritable after manufacture - used in BIOS chips and embedded devices
-    - PROM (Programmable Read Only Memory) - programmed only by blowing internal fuses permanently
-    - EPROM (Eletrically Programmable Read Only Memory) - can be programed and erased using ultraviolet light
-    - EEPROM (Electrically Eraseable Programmable Read Only Memory) – can be erased using a supply rail more times than EPROM
+  - ROM (Read Only Memory) - data not rewritable after manufacture, used in BIOS chips and embedded devices
+    - PROM (Programmable Read Only Memory) - programmed by blowing internal fuses permanently
+    - EPROM (Eletrically Programmable Read Only Memory) - programmed and erased using ultraviolet light
+    - EEPROM (Electrically Eraseable Programmable Read Only Memory) - can be erased more times than EPROM
       - FRAM (Ferroelectric Random Access Memory) - type of EEPROM with unlimited writes 
-  - Flash – easy to rewrite (like RAM), but nonvolatile (like ROM) - used as a fast replacement to hard drives
-    - NOR - Flash based on NOR gates - used for code execution due to its execute-in-place (XIP) feature
-    - NAND - Based on NAND gates, cheaper and denser than NOR flash - used for data storage
+  - Flash - easy to rewrite (like RAM), but nonvolatile (like ROM), used as a fast replacement for hard drives
+    - NOR - flash based on NOR gates, used for code execution due to its execute-in-place (XIP) feature
+    - NAND - based on NAND gates, cheaper and denser than NOR flash, used for data storage
       - V-NAND (Vertical NAND) / 3D NAND - stacks memory cells to increase density
-      - SLC (Single-Level Cell) - NAND that stores only one bit per memory cell - usually a single MOSFET
-      - MLC (Multi-Level Cell), TLC (Triple), QLC (Quad) - NAND that stores multiple bits per cell, slower but denser than SLC
-  - NVRAM (non-volatile RAM) - memory that acts like RAM but retains its data after losing power
-    - 3D XPoint / Optane / QuantX - Balances performance/density of DRAM and flash, uses resistance rather than charge to store bits
+      - SLC (Single-Level Cell) - NAND that stores only one bit per MOSFET memory cell
+      - MLC (Multi-Level Cell), TLC (Triple), QLC (Quad) - NAND that stores multiple bits per cell, slower but cheaper than SLC
+  - NVRAM (non-volatile RAM) - memory that acts like RAM but retains its data after losing power like Flash
+    - 3D XPoint / Optane / QuantX - balances the performance and density of DRAM and flash, uses resistance rather than charge to store bits
     - FeRAM (Ferroelectric RAM)
     
 ![nand-vs-nor-flash](/images/nand-vs-nor-flash.jpg) [1]
     
-- Volatile - memory that loses its data after power loss - used as a working cache to store frequently-accessed data
-  - RAM (Random Access Memory) - fast memory to store programs while powered on
-    - DRAM (Dynamic RAM) - cheaper than SRAM, but slower, used as main PC memory
+- Volatile - memory that loses its data after power loss, used as a working cache to store frequently-accessed data
+  - RAM (Random Access Memory) - fast memory for storing running programs
+    - SRAM (Static RAM) - expensive but fast, built into CPU dies to be used as L1-L3 caches
+    - DRAM (Dynamic RAM) - cheaper than SRAM, but slower, used as main system memory
       - SDRAM (Synchronous DRAM) - RAM that synchronizes its clock with the CPU, most modern RAM is SDRAM
-        - DDR (Double Data Rate) - Doubles transfer rate of RAM without increasing the clock
+        - DDR (Double Data Rate) - double the transfer rate of RAM without increasing the clock
         - GDDR (Graphics DDR) - SDRAM designed for use with GPUs
         - HBM (High Bandwidth Memory) - 3D-stacked SDRAM for graphics and network devices
-    - SRAM (Static RAM) - expensive but fast, used as caches in CPUs
     
 #### How SSD storage over-provisioning works 
 
