@@ -1,2 +1,3 @@
 - fix /image filenames
 - add content to displays.md
+- fix ssd-over-provisioning section in storage-terminology.md

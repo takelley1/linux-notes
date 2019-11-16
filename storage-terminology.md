@@ -1,34 +1,20 @@
-
-#### How VMWare snapshots work: 
-
-In VMware VMs, the virtual disk is a .vmdk file residing on a data store (LUN). When a snapshot is created in Snapshot Manager,
-the original disk becomes read-only, and all the new data changes are written into a temporary .vmdk delta disk, pointing to the 
-original one. The delta disk is the difference between the current state of the virtual disk and the state at the moment the snapshot 
-was taken. After a snapshot is deleted (committed), the .vmdk delta disk is merged with the original .vmdk file, and it returns to read-
-write mode. 
-
-- if the VM is reverted to the snapshot, the temporary .vmdk delta disk is simply deleted and the VM begins writing to its original disk 
-
-- snapshots are not backups because if the original disk's data is lost, the delta .vmdk becomes useless as it only contains the changes 
-to the original data, not the data itself 
-
- 
 ### Storage protocols
 
-| Storage Spec | Data Bus | Connector(s) |
-|--------------|----------|--------------|
-| NVMe         | PCIe     | M.2, mPCIe, U.2, or PCIe |
-| AHCI         |SATA, PATA, SAS, or IDE | M.2, mPCIe, U.2, SATA, mSATA, SAS, or IDE |
+| Storage Spec | Data Bus             | Connector / Form Factor                          |
+|--------------|----------------------|--------------------------------------------------|
+| NVMe         | PCIe                 | M.2, mPCIe, U.2, PCIe                            |
+| AHCI         | SATA, PATA, SAS, IDE | M.2, mPCIe, U.2, mSATA, 2.5in/3.5in SATA/SAS/IDE |
+
+### Data storage terminology
+
+| Name           | Mathematical Equivalent | # of Bytes                 |
+|:---------------|:-----------------------:|:---------------------------|
+| Gigabyte (GB)  | 10<sup>9</sup> bytes    | 1,000,000,000              |
+| Gibibyte (GiB) | 2<sup>30</sup> bytes    | 1,073,741,824 (1 GB * 1.07)|
+| Gigabit  (Gb)  | 10<sup>9</sup> bits     | 125,000,000 (1 GB / 8)     |
 
 
-| Name           | Mathematical Equivalent | # of Bytes     |
-|:---------------|:-----------------------:|----------------|
-| Gigabyte (GB)  | 10<sup>9</sup> bytes              | 1,000,000,000              |
-| Gibibyte (GiB) | 2<sup>30</sup> bytes              | 1,073,741,824 (1 GB * 1.07)|
-| Gigabit  (Gb)  | 10<sup>9</sup> bits               | 125,000,000 (1 GB / 8)     |
-
-
-### Memory
+### MEMORY
 
 - Non-volatile - memory that retains its data after power loss
   - ROM (Read Only Memory) – data not rewritable after manufacture - used in BIOS chips and embedded devices
@@ -57,16 +43,24 @@ to the original data, not the data itself
         - HBM (High Bandwidth Memory) - 3D-stacked SDRAM for graphics and network devices
     - SRAM (Static RAM) - expensive but fast, used as caches in CPUs
     
+#### How SSD storage over-provisioning works 
 
-How SSD storage over-provisioning works 
+- The 7.37% Inherent OP (Over-Provisioning) is due to the fact that a GiB is 7.37% larger than a GB 
+- The OS measures SSD size in GB, but NAND internally is measured in GiB, so the drive is actually 7.37% larger than what the OS sees 
+- Factory-set OP is free space set by the manufacturer that cannot be partitioned by the OS 
+- Dynamic OP is partitioned space that has not yet been used by the filesystem 
 
-The 7.37% Inherent OP (Over-Provisioning) is due to the fact that a GiB is 7.37% larger than a GB 
+#### How VMWare snapshots work: 
 
-The OS measures SSD size in GB, but NAND internally is measured in GiB, so the drive is actually 7.37% larger than what the OS sees 
+In VMware VMs, the virtual disk is a .vmdk file residing on a data store (LUN). When a snapshot is created in Snapshot Manager,
+the original disk becomes read-only, and all the new data changes are written into a temporary .vmdk delta disk, pointing to the 
+original one. The delta disk is the difference between the current state of the virtual disk and the state at the moment the snapshot 
+was taken. After a snapshot is deleted (committed), the .vmdk delta disk is merged with the original .vmdk file, and it returns to read-
+write mode. 
 
-Factory-set OP is free space set by the manufacturer that cannot be partitioned by the OS 
+- if the VM is reverted to the snapshot, the temporary .vmdk delta disk is simply deleted and the VM begins writing to its original disk 
 
-Dynamic OP is partitioned space that has not yet been used by the filesystem 
+- snapshots are not backups because if the original disk's data is lost, the delta .vmdk becomes useless as it only contains the changes 
+to the original data, not the data itself 
 
-
-- [1] https://www.embedded.com/flash-101-nand-flash-vs-nor-flash/
+[1] https://www.embedded.com/flash-101-nand-flash-vs-nor-flash/
