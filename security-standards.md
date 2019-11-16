@@ -107,7 +107,7 @@
 - **Non-Repudiation**: Has this entity provided proof that this message actually came from them?
   - Non-Repudiation also provides Authentication as a byproduct.
   
-<img src="/images/HMAC.png" width="600"/>
+<img src="/images/hmac.png" width="600"/>
   
   
 ## HASHING
@@ -132,7 +132,7 @@
 | Reused between messages            | No                       | Yes                  |
 | Relative speed                     | Slow                     | Fast                 |
 
-<img src="/images/hashwsalt.png" width="600"/>
+<img src="/images/salted-hash.png" width="600"/>
 
 
 ## MFA (Multi-Factor Authentication)
@@ -178,7 +178,7 @@ Public Key came with his browser [1].
   5. The Server verifies the Client’s credentials using the Client's Certificate issuer's Public Key. 
   6. If successful, the Server grants access to the protected resource requested by the Client [2]. 
 
-![mutual-ssl-authentication](/images/mutualssl.png)
+![mutual-ssl-authentication](/images/mutual-ssl-auth.png)
 
 
 ## KEY EXCHANGE
