@@ -5,7 +5,7 @@
 | ------------------------------------ | ----------------------------------- | ----------------------------- | -------------------- |
 | update packages                      | `yum update`                        | `apt update && apt upgrade`   | `pacman -Syu`        |
 | show installed packages              | `rpm -qa`                           | `dpkg --list`                 | `pacman -Q`          |
-| show package that provides file x    | `yum whatprovides x`                | `dpkg -S x`                   | `pacman -Ql x`       |
+| show package that provides file x    | `yum whatprovides x`                | `dpkg -S x`                   | `pacman -F x`        |
 | get package x info                   | `yum info x`                        | `apt-cache show x`            | `pacman -Qi x`       |
 | install package group x              | `yum groupinstall x`                | -                             | `pacman -S x`        |
 | show package groups                  | `yum group list`                    | -                             | `pacman -Qg`         |
