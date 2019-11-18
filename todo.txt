@@ -1,2 +1,3 @@
 - add content to displays.md
 - fix ssd-over-provisioning section in storage-terminology.md
+- add content to 'awk' section in searching-and-filtering.md
