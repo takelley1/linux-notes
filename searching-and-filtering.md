@@ -2,6 +2,7 @@
 
 ### `awk` command
 
+---
 ### `sed` command
 - command syntax: `sed -[parameter] '[restriction] [flag1]/[pattern1]/[pattern2]/[flag2]'`
 
@@ -54,7 +55,7 @@
   -then translate all spaces into colons (`tr –s " " ":"`) to provide a common delimiter \
   -then filter out the third field using cut and specifying the colon delimiter (`cut –f 3 –d ":"`)
 
-
+---
 ## WILDCARDS
 
 ### globbing
@@ -72,7 +73,7 @@
 `*` zero or more of previous (ex. `grep -E ‘a*’ file`) \
 `+` one or more of previous
 
-
+---
 ## `grep` command
 
 ### `grep` options
@@ -82,7 +83,7 @@
 `v` show everything NOT in match (negation) \
 `n` show line number \
 `l` show filenames of matches only \
-`w` match complete words \
+`w` match complete words
 
 `C #` (*context*) show `#` lines after and before match \
 `A #` (*after*) show `#` lines after match \
@@ -95,9 +96,10 @@
 `|` logical OR (ex. `grep -E ‘i|a’ file`) \
 `*` zero or more of previous (`grep -E ‘a*’ file`) \
 `+` one or more of previous \
-`{1,3}` match the previous 1-3 times (requires `-E` option) \
-`[0-9]` match any digit \
-`[A-Za-z]` match any character \
+`{1,3}` match the previous 1-3 times \
+`[0-9]` any digit \
+`[A-Za-z]` any letter \
+`.` any character \
 `\` escape next character
 
 ### `grep` examples
@@ -115,26 +117,26 @@ search in all `.txt` files starting with `f` in or beneath (`-r`) the current di
 
 `grep -l ‘^alice’ /etc/*` = show only the filenames containing matches (`-l`) instead of the matches themselves
 
-`grep -wv ‘[a-d]’ /*.txt` = grep for words (`-w`) that DON’T contain the letters a through d (`-v`)
+`grep -wv ‘[a-d]’ /*.txt` = grep for words (`-w`) that DON’T contain the letters 'a' through 'd' (`-v`)
 
 `grep -C 5 '192\.168'` = show five lines of context (`-C 5`) surrounding matched results, escape (`\`) the `.` in string to search for it literally and not interpret it as part of a globbing expression
 
-
+---
 ## `find` command
 
-### `find` options 
+#### options 
 
 `-type f` match is of type `f` (`f`=file, `d`=dir, `l`=link, `p`=pipe, `b`=block, `c`=character) \
 `-iname` match by file name, ignoring case \
 `-regex` match by file name using regex
 
-`-uid 1000` = match's owner's UID is 1000 (`-gid N` for file's group's GID) \
+`-uid 1000` = match is owned by UID 1000 (`-gid N` for file's group's GID) \
 `-user alice` = match is owned by user alice \
 `-group wheel` = match is owned by group wheel 
 
 `-mmin -19` match was last modified less than 19 minutes ago \
 `-mmin +5` match was last modified more than 5 minutes ago \
-`-mtime 3` same as `mmin` but in days, not minutes (file modified 3 days ago) \
+`-mtime 3` same as `mmin` but in days, not minutes (match modified 3 days ago) \
 `-newer file.txt` match is newer than file.txt
 
 `-size +5G` match is more than 5 gigabytes (`c`=bytes, `w`=two-byte words, `k`=kilobytes), (`-`=less than, `+`=more than) \
@@ -143,7 +145,7 @@ search in all `.txt` files starting with `f` in or beneath (`-r`) the current di
 `-delete` delete matches \
 `-L` follow symbolic links
 
-### `find` examples
+#### examples
 
 ex. `find -name "file[0-9].txt" -exec ls -l {} \;` = perform `ls –l` command on files that are found with find 
 
@@ -176,7 +178,7 @@ ex. `find -name "file[0-9].txt" | xargs ls -l` = converts stdout of find into in
 
 > Note: locate is much faster than find, but locate searches a tabulated database instead of actively scrubbing your disk for a match. This means the data locate uses may be a few hours old 
 
-
+---
 ## LOGS
 
 `logger test123` = send a test log to `/var/log/mesages` \
@@ -217,7 +219,7 @@ rotate the `/var/log/syslog` file daily and keep 7 copies of the rotated file, l
 `/var/log/dmesg` kernel ring buffer logs for hardware drivers \
 `/var/log/httpd` apache server logs
 
-  
+---  
 ## MISC
 
 `man -k string` search man pages for given string 
