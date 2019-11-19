@@ -1,4 +1,4 @@
-## LCD
+## LCD (Liquid Crystal Display)
 
 - panel type [1]
   - TN (Twisted Nematic) - oldest LCD display technology
@@ -15,7 +15,10 @@
   - LED
 
 
-## OLED
+## OLED (Organic Light-Emitting Diode)
+
+- Pros: "perfect" contrast, thinner than LCD
+- Cons: possible image retention
 
 ## MICRO LED
 
