@@ -3,7 +3,8 @@
 `dpkg-reconfigure console-setup` = change console font size (debian-based distros) \
 [edit `/etc/default/console-setup`] = change console font size
 
-## SHELL
+
+## BASH
 
 `while true; do [COMMAND] ; sleep 10; done` = loop command indefinitely
 
