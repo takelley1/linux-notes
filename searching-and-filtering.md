@@ -31,7 +31,6 @@
 - the opposite of `g`, perform operations only on the listed lines of file
 `sed '3,5d` = delete lines 3 through 5
 
-
 #### examples
 
 `sed 's/string1/string2/3' file.txt` = replace the third occurrence of string1 with string2 in file.txt

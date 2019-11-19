@@ -20,11 +20,11 @@ ldapsearch -u -LLL -x -w $PASS \
 '(sAMAccountName='"$USER"')' 'comment' \
 | sed -n '/^ /{H;d};/comment:/x;$g;s/\n *//g;s/comment: //gp'
 ```
+
 ---
 ### integration
 
 https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/7/html-single/windows_integration_guide/#sssd-ad-proc 
-
 
 `net ads testjoin` 
 `net ads info`

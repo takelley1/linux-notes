@@ -1,4 +1,4 @@
- ## ANSIBLE 
+## ANSIBLE 
 
 - `ansible-playbook /path/to/playbook -kK –f 100` = run playbook
 

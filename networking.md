@@ -13,6 +13,7 @@
   ```
 
 #### `firewall-cmd` command
+
 `--list-ports` or `--list-services` = show allowed ports/services \
 `--list-all-zones` = show firewalld rules for both public and private zones
 

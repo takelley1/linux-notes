@@ -43,7 +43,7 @@ apache config (httpd.conf) [4]
 
 ## FORWARD PROXY
 
-![forward-proxy](/images/forward.jpg) [2]
+![forward-proxy](/images/forward-proxy.jpg) [2]
 
 [1] https://en.wikipedia.org/wiki/Reverse_proxy \
 [2] https://www.imperva.com/learn/performance/reverse-proxy/ \
