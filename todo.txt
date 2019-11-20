@@ -4,3 +4,5 @@
 - create table for init/systemd runlevel differences
 - add pam syntax
 - add list of characters in filenames that require escaping in bash syntax
+- add image for 'top' command
+- link bookmarked article describing htop 
