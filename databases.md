@@ -15,6 +15,7 @@
 
 #### pg_hba.conf
 manages client authentication to the db host
+
 ```
 # Allow any user on the local system to connect to any database with
 # any database user name using Unix-domain sockets (the default for local

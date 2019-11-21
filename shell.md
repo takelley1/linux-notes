@@ -3,7 +3,7 @@
 `dpkg-reconfigure console-setup` = change console font size (debian-based distros) \
 [edit `/etc/default/console-setup`] = change console font size
 
-
+---
 ## BASH
 
 `while true; do [COMMAND] ; sleep 10; done` = loop command indefinitely
@@ -35,7 +35,7 @@
 `ALT-f` = jump forward one word (when editing a command) \
 `ALT-b` = jump backward one word (when editing a command)
 
-
+---
 ## ENVIRONMENT VARIABLES
 
 `echo $VARIABLE-NAME` = get value of VARIABLE-NAME \

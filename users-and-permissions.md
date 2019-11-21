@@ -8,7 +8,7 @@
 
 `getfacl /file.txt` = view ACL for given file  
 
-
+---
 ## UMASK 
 
 > umask modifies the default permissions of created files and directories to make them more restrictive 
@@ -28,7 +28,7 @@ new default permissions for files: `644`
 
 > umask is permanently set in `/etc/profile` or `/etc/login.defs`
 
-
+---
 ## USERS 
 
 `usermod -U alice` = unlock user account alice (due to kernel locking user) \
@@ -43,10 +43,10 @@ new default permissions for files: `644`
 `last` = view all users' last logins \
 `passwd -e alice` = expire password for user alice, prompting her for a password reset upon next login 
 
-- `/etc/passwd` syntax = `uname:x:uid:gid:comments:homedir:shell`
-- `/etc/group` syntax = `groupname:x:groupid:userlist(user1,user2)`
+- `/etc/passwd` syntax = `uname:'x':uid:gid:comments:homedir:shell`
+- `/etc/group` syntax = `groupname:'x':groupid:userlist(user1,user2)`
 
- 
+---
 ## PERMISSIONS
 
 `chown -R alice:admins /home/Documents` = change ownership of Documents directory recursively (`-R`) to alice and the admins group \

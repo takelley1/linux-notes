@@ -5,11 +5,12 @@ certtool --generate-privkey --outfile key.pem
 certtool --generate-self-signed --load-privkey key.pem --outfile cert.pem
 ```
 
+---
 ## FIPS
 
 `cat /proc/sys/crypto/fips_enabled` = check if FIPS is enabled 
 
-
+---
 ## GPG
 
 #### key pair signing
@@ -19,14 +20,14 @@ certtool --generate-self-signed --load-privkey key.pem --outfile cert.pem
 4. sign file with private key on server `gpg -detatch-sign file.txt`
 5. verify file on client with public key `gpg -verify signed-file.txt file.txt`
 
-
+---
 ## PAM
 
 `authconfig --disablesssdauth --update` = remove pam sssd module
 
 #### /etc/pam.d/ syntax
 
-
+---
 ## SELINUX 
 
 `semanage port –a –t ssh_port_t tcp 9999` = set ssh context to allow use of port 9999

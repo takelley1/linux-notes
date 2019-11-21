@@ -20,13 +20,14 @@
 `--state` = check if firewalld is running \
 `--zone=private --add-interface=ens32` = attach zone to network interface
 
-
+---
 ## IPTABLES
 
 `iptables -L` = show firewall ruleset
 
 add new rule to allow port 80 traffic both to and from host
-  ```
+
+  ```bash
   iptables -A INPUT -i eth0 –p tcp --dport 80 –m state --state NEW,ESTABLISHED –j ACCEPT
   iptables –A OUTPUT -o eth0 –p tcp --dport 80 –m state --state NEW,ESTABLISHED –j ACCEPT
 
@@ -34,7 +35,7 @@ add new rule to allow port 80 traffic both to and from host
   iptables –A OUTPUT -o eth0 –p tcp --sport 80 –m state --state NEW,ESTABLISHED –j ACCEPT
   ```
 
-
+---
 ## `ip` command  
 
 #### interfaces
@@ -48,7 +49,7 @@ add new rule to allow port 80 traffic both to and from host
 - `/etc/sysconfig/network` = see default gateway
 - `/etc/sysconfig/network-scripts/ifcfg-[interface]` = networking device interface options (Fedora-based systems)
 
-
+---
 ## PORTS 
 
 #### remote ports
@@ -71,7 +72,7 @@ add new rule to allow port 80 traffic both to and from host
 - `nmap -p 22 192.168.1.1-254` = scan ip range for every box with port 22 open
 - `nmap 192.168.1.20-40` = scan all ports on hosts within range
 
-
+---
 ## ROUTES
 
 - `route add default gw 192.168.1.1 eth0` = add default gateway
@@ -79,7 +80,7 @@ add new rule to allow port 80 traffic both to and from host
 - `dig domain.com` or `nslookup domain.com` = perform dns lookup on domain
 - `traceroute domain.com` = print the route packets take to a given destination 
 
-
+---
 ## NTP
 
 - `ntpq -p` and `ntpstat` = show NTP status
@@ -96,7 +97,7 @@ add new rule to allow port 80 traffic both to and from host
 - `systemctl status chronyd` 
 - `chronyc activity` 
 
-
+---
 ## EMAIL 
 
 - `mail -s "Test Subject" example@mail.com < /dev/null` = send test email (using the current host has the smtp relay)
@@ -127,7 +128,7 @@ add new rule to allow port 80 traffic both to and from host
 3. Run `postmap /postfix-whitelist && systemctl restart postfix`
 4. Now only the IPs in `/postfix-whitelist` will be permitted to use the postfix server as an smtp relay
 
-
+---
 ## spacewalk / red hat satellite
 
 ```
