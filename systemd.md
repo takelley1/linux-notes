@@ -9,16 +9,11 @@
 | `5`             | `graphical.target` / `runlevel5.target`  | multi-user mode w/ GUI          |
 | `6`             | `reboot.target` / `runlevel6.target`     | reboot                          |
 
-#### get default runlevel
-systemd - `systemctl get-default`
-
-#### change default runlevel
-- init - edit `/etc/init/rc-sysinit.conf`
-- systemd - `systemd set-default [TARGET]`
-
-#### change current runlevel
-- init - `init #`
-- systemd - `systemd isolate [TARGET]`
+| action                  | init | systemd |
+|-------------------------|------|---------|
+|change default runlevel|edit`/etc/init/rc- sysinit.conf`|`systemd set-default [TARGET]`|
+|change current runlevel|`init #`|`systemd isolate [TARGET]`|
+|get default runlevel|`systemctl get-default`||
 
 #### runlevel scripts
 - init - place script in `/etc/rc#.d/`, in which `#` corresponds to the desired runlevel in which you'd like the script to run
