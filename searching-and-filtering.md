@@ -41,7 +41,7 @@
 
 ### other commands and examples
 
-`tr ‘a-z’ ‘A-Z’` = (`tr`anslate) find first parameter (`‘a-z’`) and replace matches with second parameter (`‘A-Z’`) 
+`tr ‘a-z’ ‘A-Z’` = (*translate*) find first parameter (`‘a-z’`) and replace matches with second parameter (`‘A-Z’`) 
 
 `cat file.txt | awk {'print $12}` = print the 12th column, space delimited, of every line in file.txt 
 

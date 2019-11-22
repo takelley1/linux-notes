@@ -14,6 +14,7 @@
 | 7	                    | miscellaneous                                         |
 | 8	                    | system administration commands and daemons            |
 
+
 ## MISC
 
 #### `shutdown` command
@@ -27,7 +28,6 @@ crontab syntax
 if `/sys/firmware/efi exists`, system is UEFI 
 
 `CTRL-SHIFT-j` or `CTRL-j` to get shell prompt back after `CTRL-c` has resulted in an unresponsive program 
-
 
 #### commands I need to learn 
 

@@ -1,5 +1,5 @@
+## SSL SIGNATURES
 
-## SSL SIGNATURES 
   - 2 keys are used, Private Key is used for signing, Public Key is used for verifying signatures. 
   1. Sender hashes document, encrypts hash with Sender's Private Key, then attaches encrypted hash to document. This encrypted hash is 
      the Digital Signature. 
@@ -11,17 +11,19 @@
 
 
 ## SYMMETRIC ENCRYPTION
+
 > AES, Blowfish, Twofish, RC4, 3DES, One Time Pad, TLS/SSL/HTTPS (data transfer only) 
   - A single Secret Key (called a Private Key, Shared Secret, or Session Key in HTTPS) is used for both encryption and decryption of 
     messages after it has been exchanged using Public Key encryption. 
   - Much faster than Asymmetric Encryption since it uses less overhead and its key sizes are smaller.
     - AES (symmetric) keys are 256-bits, RSA (asymmetric) keys are usually 2048-bits.
     
-  ### Kerberos
+### Kerberos
+
   - Used to authenticate users to services over an untrusted network, without sending credentials in plaintext. This is done by 
     converting user passwords into symmetric Secret Keys, which are used to encrypt sensitive traffic.
     
-  #### Part 1: TGT Authentication
+#### Part 1: TGT Authentication
   1. User requests a **Ticket-Granting Ticket (TGT)** from the **Key Distribution Center (KDC)**. This request is encrypted with the 
      user's Secret Key, which was derived from the user's password.
   2. The KDC decrypts the request using the user's Secret Key it has stored in its database.
@@ -30,7 +32,7 @@
      2. A Session Key that's been encrypted with the user's Secret Key.
   4. The user stores the TGT and decrypts the Session Key.
   
-  #### Part 2: Ticket Authentication
+#### Part 2: Ticket Authentication
   1. When the user needs access to a service, they send the KDC two things:
      1. Their TGT along with a request to access service X.
      2. An Authenticator, which has been encrypted with the Session Key.
@@ -43,7 +45,7 @@
      2. The KDC sends another copy of the new Session Key, encrypted with the old Session Key.
   4. The user stores the Ticket and decrypts the new Session Key.
      
-  #### Part 3: Service Authentication
+#### Part 3: Service Authentication
   1. User requests access to service X:
      1. The user sends the Ticket and new Session Key, both encrypted with service X's Secret Key, to service X.
      2. The user sends a new Authenticator, encrypted with the new Session Key, to service X.
@@ -55,7 +57,7 @@
   4. User decrypts the confirmation message and compares its timestamp with the timestamp in the new Authenticator. If they match, the 
      user can now begin communicating with service X.
   
-  #### Terminology
+#### Terminology
   - **principal** = A unique identity that uses Kerberos, usually a username formatted as `username@REALM.NAME`.
   - **realm** = The Kerberos-equivalent to a Windows Domain. Realm names are always in all-caps.
   - **SPN (Service Principal Name)** = The formal name of the resource or service a user is requesting access to.
@@ -68,6 +70,7 @@
     
     
 ## KDF (Key Derivation functions)
+
 > PBKDF2, scrypt
   - Used to derive a cryptographically-secure symmetric Secret Key from a less secure password or other input (like a Shared Secret 
     created via a Diffie-Hellman exchange).
@@ -77,7 +80,8 @@
     the difficulty of Brute Force Attacks. This is called a Work Factor.
 
 
-## MAC (Message Authentication Code) 
+## MAC (Message Authentication Code)
+
 > HMAC, PMAC, OMAC 
   - Used to ensure data integrity in messages. Similar to Digital Signatures, except much smaller (only a few bytes) and faster. 
   1. The Sender uses a MAC algorithm with a Shared Secret on a message's hash to create a cryptographic checksum, called a MAC.
@@ -111,6 +115,7 @@
   
   
 ## HASHING
+
 > - *Unkeyed Cryptographic*: MD5 (deprecated), SHA1 (deprecated), SHA2 (SHA256 & SHA512), SHA3, bcrypt
 > - *Keyed Cryptographic*: HMACs, KMACs, MD6, UMACs, VMACs, BLAKE2
 > - *Non-Cryptographic*: Buzhash, xxHash, Pearson hashing, MurmurHash 
@@ -145,7 +150,6 @@
   - Based on HMAC-based One-Time Passwords (HOTP)
 
 ### FIDO U2F
-
 
 ## SSL CERTIFICATES (1-way SSL Authentication) 
 
@@ -182,6 +186,7 @@ Public Key came with his browser [1].
 
 
 ## KEY EXCHANGE
+
   - #### Diffie-Hellman 
     - Used to securely create a Shared Secret for a symmetrically-encrypted interaction. A Key-Derivation Function (KDF) can then be 
       used with the Shared Secret in order to create a cryptographically-secure Secret Key for use with AES.
@@ -235,4 +240,3 @@ Public Key came with his browser [1].
 - [2] https://www.codeproject.com/Articles/326574/An-Introduction-to-Mutual-SSL-Authentication
 - [3] https://www.youtube.com/watch?v=S9JGmA5_unY&t=1s
 - [4] https://cs.stackexchange.com/questions/16684/shors-algorithm-speed
-

@@ -14,7 +14,7 @@
 | Gigabit  (Gb)  | 10<sup>9</sup> bits     | 125,000,000 (1 GB / 8)     |
 
 
-### MEMORY
+## MEMORY
 
 - Non-volatile - memory that retains its data after power loss
   - ROM (Read Only Memory) - data not rewritable after manufacture, used in BIOS chips and embedded devices
