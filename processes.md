@@ -14,10 +14,10 @@
 | name      | ID | hotkey | description                                       |
 |-----------|----|--------|---------------------------------------------------|
 | `SIGHUP`  | 1  |        | process' controlling terminal has been closed     |
-| `SIGINT`  | 2  | Ctrl-c | interrupt the process                             |
+| `SIGINT`  | 2  | Ctrl-c | nicely ask process to cleanup and terminate       |
 | `SIGQUIT` | 3  | Ctrl-\ | ask the process to perform a core dump            |
 | `SIGKILL` | 9  |        | forcefully terminate process, cannot be ignored   |
-| `SIGTERM` | 15 |        | nicely ask process to terminate, same as `SIGINT` |
+| `SIGTERM` | 15 |        | identical to `SIGINT`                             |
 | `SIGSTP`  | 20 | Ctrl-z | ask the process to stop temporarily               |
 
 #### status codes
