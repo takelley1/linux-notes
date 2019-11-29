@@ -1,8 +1,7 @@
-- add content to displays.md
+- add kernel control signals e.g. "kill -s #"
 - fix ssd-over-provisioning section in storage-terminology.md
 - add content to 'awk' section in searching-and-filtering.md
 - create table for init/systemd runlevel differences
 - add pam syntax
-- add list of characters in filenames that require escaping in bash syntax
 - add image for 'top' command
 - link bookmarked article describing htop 
