@@ -1,6 +1,6 @@
 ## processes
 
-`ctrl-z` = suspend current foreground job
+`ctrl-z` = suspend current foreground job \
 `bg` = push most recently suspended job into background \
 `fg` = pull most recent background job into foreground
 
@@ -32,7 +32,7 @@
 `top -u alice` = show user alice’s currently running processes, use O to sort by column \
 `kill -s 9 7423` or `kill -9 7423` = end process with PID 7423 by sending it a `SIGKILL` signal \
 
-`exec bash` = restart bash shell
+`exec bash` = restart bash shell \
 `strace [command]` = trace system call
 
 ![performance-observation-tools](/images/performance-observation-tools.png)
@@ -43,11 +43,12 @@
 `15:39:37` = system time \
 `up 90 days, 15:26` = uptime in x days, hours:minutes
 
-`load average: 0.00, 0.00, 0.00` = average total system load over 1min, 5min, 15min
+`load average: 0.00, 0.00, 0.00` = average total system load over 1min, 5min, 15min \
 (a value of 1 indicates one cpu core is fully occupied) (cat /proc/cpuinfo to find # of cores)
 
 ex. for a single-core system -- `0.4` = cpu at 40% capacity, `1.12` = cpu 'overloaded' by 12% capacity \
-ex. For a quad-core system – `1.0` = 3 cores idle, 1 core at full capacity, or all cores at 33% load (on average), `5.35` = system overloaded at 135% capacity, `1.35` processes were waiting for cpu time during the specified interval (1min, 5min or 15min) 
+ex. For a quad-core system – `1.0` = 3 cores idle, 1 core at full capacity, or all cores at 33% load (on average)
+ex. `5.35` = system overloaded at 135% capacity, `1.35` processes were waiting for cpu time during the specified interval (1min, 5min or 15min) 
 
  
 `%cpu(s):` = cpu time usage statistics, in % of total cpu time available \
