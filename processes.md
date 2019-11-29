@@ -1,28 +1,41 @@
-
-![performance-observation-tools](/images/performance-observation-tools.png)
-
 ## processes
 
-- `ctrl-z` = suspend current foreground job
-- `bg` = push most recently suspended job into background
-- `fg` = pull most recent background job into foreground 
-- `ps -efH | less` = view current running process
-  - `H` for hierarchy in tree structure
-  - `e` everything
-  - `f` full-format
+`ctrl-z` = suspend current foreground job
+`bg` = push most recently suspended job into background \
+`fg` = pull most recent background job into foreground
 
-#### process codes 
-- `D` uninterruptible sleep (CPU waiting for I/O to complete)
-- `S` interruptible sleep (waiting for event)
-- `T` stopped by job control signal
-- `R` running or in run queue 
+`ps -efH | less` = view current running process \
+  `-H` = hierarchy in tree structure \
+  `-e` = everything \
+  `-f` = full-format
+
+#### process signals [1]
+
+| name      | ID | hotkey | description                                       |
+|-----------|----|--------|---------------------------------------------------|
+| `SIGHUP`  | 1  |        | process' controlling terminal has been closed     |
+| `SIGINT`  | 2  | Ctrl-c | interrupt the process                             |
+| `SIGQUIT` | 3  | Ctrl-\ | ask the process to perform a core dump            |
+| `SIGKILL` | 9  |        | forcefully terminate process, cannot be ignored   |
+| `SIGTERM` | 15 |        | nicely ask process to terminate, same as `SIGINT` |
+| `SIGSTP`  | 20 | Ctrl-z | ask the process to stop temporarily               |
+
+#### status codes
+
+`D` = uninterruptible sleep (CPU waiting for I/O to complete) \
+`S` = interruptible sleep (waiting for event) \
+`T` = stopped by job control signal \
+`R` = running or in run queue
 
 #### process commands
-- `top -u alice` = show user alice’s currently running processes, use O to sort by column
-- `kill -9 7423` = end process with PID 7423
-- `exec bash` = restart bash shell
-- `strace [command]` = trace system call 
- 
+
+`top -u alice` = show user alice’s currently running processes, use O to sort by column \
+`kill -s 9 7423` or `kill -9 7423` = end process with PID 7423 by sending it a `SIGKILL` signal \
+
+`exec bash` = restart bash shell
+`strace [command]` = trace system call
+
+![performance-observation-tools](/images/performance-observation-tools.png)
  
 ## `top` command
 
@@ -84,4 +97,6 @@ Filters can be stacked via multiple searches, use = to clear all filters
 
 `lsmod` = show status of kernel modules \
 `lspci` = list pci devices \
-`lsblk` = list bock devices 
+`lsblk` = list bock devices
+
+[1] https://www.computerhope.com/unix/signals.htm
