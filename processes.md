@@ -70,7 +70,7 @@ ex. `5.35` = system overloaded at 135% capacity, `1.35` processes were waiting f
 `SHR` = memory shared with other processes \
 `S` = process state
 
-`%CPU` = % of non-idle cpu time spent on process \  
+`%CPU` = % of non-idle cpu time spent on process \
 `%MEM` = % of physical memory consumed \
 `TIME+` = total cpu time used on process in format minutes:seconds:0.01 seconds \
 `COMMAND` = process name 
