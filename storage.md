@@ -5,7 +5,7 @@
 `pvcreate /dev/sdb` = create a physical volume (PV) from sdb \
 `pvremove /dev/sdb1 /dev/sdc1` = remove physical volumes on partitions sdb1 and sdc1 \
 `pvmove /dev/sdb1 /dev/sdb2` = copy all data from sdb1 to sdb2 \
-`pvdisplay` or `pvscan` = show physical volumes 
+`pvdisplay` or `pvscan` = show physical volumes
 
 #### logical volumes (LV)
 
@@ -19,6 +19,17 @@
 `vgcreate VG1 /dev/sdb /dev/sdc` = create a volume group containing PVs sdb and sdc called VG1 \
 `vgdisplay` or `vgscan` = show volume groups \
 `vgextend vgroup /dev/sdb1` = add PV sdb1 to “vgroup” volume group 
+
+---
+#### extend volume with LVM
+```bash
+1. fdisk /dev/sdb # create partition from new disk
+2. pvcreate /dev/sdb1 # create a physical volume from the new partition
+3. vgextend vgname /dev/sdb1 # add the new physical volume to the relevant volume group
+4. pvdisplay # show the number of new extents available
+5. lvextend -l +127999 /dev/centos/var # extend the relevant logical volume by adding free extents
+6. xfs_growfs /var # grow the filesystem on the extended logical volume
+```
 
 ---
 ## FILES & FILESYSTEMS
