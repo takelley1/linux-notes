@@ -4,13 +4,13 @@
 
 #### psql shell
 
-`\l` = list all databases \
-`\c [dbname]` = connect to new database \
-`\dt` =	view list of relations/tables \
-`\d [tablename]` = show details of table \
-`\h` = get help \
-`\?` = list all psql slash commands \
-`\set` = system variables \
+`\l` = list all databases  
+`\c [dbname]` = connect to new database  
+`\dt` =	view list of relations/tables  
+`\d [tablename]` = show details of table  
+`\h` = get help  
+`\?` = list all psql slash commands  
+`\set` = system variables  
 `\q` = quit
 
 #### pg_hba.conf
