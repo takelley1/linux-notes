@@ -1,6 +1,6 @@
 ## MANPAGES
 
-`man 1 crontab` = view the `crontab` entry in `manpage` section 1 \
+`man 1 crontab` = view the `crontab` entry in `manpage` section 1  
 `man 5 crontab` = view the `crontab` entry in `manpage` section 5
 
 | `manpage` section [1] | category                                              |
@@ -18,8 +18,8 @@
 ## MISC
 
 #### `shutdown` command
-`shutdown -r now` or `reboot` = immediately reboot system \
-`shutdown 2 this machine is shutting down in 2 minutes!` = power off system in 2 minutes and send the provided message to all logged-in users \
+`shutdown -r now` or `reboot` = immediately reboot system  
+`shutdown 2 this machine is shutting down in 2 minutes!` = power off system in 2 minutes and send the provided message to all logged-in users  
 `shutdown -r 0:00` = reboot at midnight tonight
 
 crontab syntax 
