@@ -1,4 +1,3 @@
-
 ## PACKAGES
 
 | action                               | yum/dnf                             | apt                           | pacman               |
@@ -16,17 +15,17 @@
 
 #### rpm
 
-`rpm -ivh file.rpm` or `yum install ./file.rpm` = install .rpm file as package \
-`-i` install .rpm \
-`-v` verbose \
+`rpm -ivh file.rpm` or `yum install ./file.rpm` = install .rpm file as package  
+`-i` install .rpm  
+`-v` verbose  
 `-h` use hash marks to display progress
 
 #### tarballs
 
-`tar xzvf file.tar.gz` = extract archive into current path (*xtract ze v'ing files*) \
-`x` extract tar archive \
-`z` use `gzip` (only works with `tar.gz` or `.tgz` tarballs) \
-`v` verbose \
+`tar xzvf file.tar.gz` = extract archive into current path (*xtract ze v'ing files*)  
+`x` extract tar archive  
+`z` use `gzip` (only works with `tar.gz` or `.tgz` tarballs)  
+`v` verbose  
 `f` extract files
 
 
