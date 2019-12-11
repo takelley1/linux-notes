@@ -16,14 +16,14 @@
 #### directories 
 
 example:
-default permissions for directories: `777` \
-umask of user that created directory: `002` (example) \
+default permissions for directories: `777`  
+umask of user that created directory: `002` (example)  
 new default permissions of directories: `775`
 
 #### files 
 
-default permissions for files: `666` \
-umask of user that created file: `022` (example) \
+default permissions for files: `666`  
+umask of user that created file: `022` (example)  
 new default permissions for files: `644`
 
 > umask is permanently set in `/etc/profile` or `/etc/login.defs`
@@ -31,16 +31,16 @@ new default permissions for files: `644`
 ---
 ## USERS 
 
-`usermod -U alice` = unlock user account alice (due to kernel locking user) \
+`usermod -U alice` = unlock user account alice (due to kernel locking user)  
 `faillock --user alice --reset` = unlock user account alice (due to pam_faillock.so locking user)
 
-`id alice` = show what groups user alice is in, and show uid and gids \
-`id -G wheel` = show gid of wheel group \
-`usermod -a -G wheel,group1 alice` = add alice to wheel and group1 groups \
+`id alice` = show what groups user alice is in, and show uid and gids  
+`id -G wheel` = show gid of wheel group  
+`usermod -a -G wheel,group1 alice` = add alice to wheel and group1 groups  
 `gpasswd -d alice wheel` = delete alice from group wheel
 
-`w` = print recently logged-on user data \
-`last` = view all users' last logins \
+`w` = print recently logged-on user data  
+`last` = view all users' last logins  
 `passwd -e alice` = expire password for user alice, prompting her for a password reset upon next login 
 
 - `/etc/passwd` syntax = `uname:'x':uid:gid:comments:homedir:shell`
@@ -49,32 +49,32 @@ new default permissions for files: `644`
 ---
 ## PERMISSIONS
 
-`chown -R alice:admins /home/Documents` = change ownership of Documents directory recursively (`-R`) to alice and the admins group \
+`chown -R alice:admins /home/Documents` = change ownership of Documents directory recursively (`-R`) to alice and the admins group  
 `chgrp wheel /home/alice` = change group owner of the /home/alice directory to wheel 
 
 ### octal 
 
 chmod octal permissions order --> | special | user (`u`) | group (`g`) | everyone else (`o`) |
 
-regular permissions: \
-`4` = read (`r`) \
-`2` = write (`w`) \
-`1` = execute (`x`) \
+regular permissions:  
+`4` = read (`r`)  
+`2` = write (`w`)  
+`1` = execute (`x`)  
 `0` = none (`-`)
 
-special permissions only: \
-`4` = setuid = appears as an `s` instead of `x` for the file owner (ex. `rwsrwxrwx`) \
-`2` = setgid = appears as an `s` instead of `x` for the group owner (ex. `rwxrwsrwx`) \
-`1` = sticky bit = appears as a `t` instead of `x` for 'other' (ex. `rwxrwxrwt`) \
+special permissions only:  
+`4` = setuid = appears as an `s` instead of `x` for the file owner (ex. `rwsrwxrwx`)  
+`2` = setgid = appears as an `s` instead of `x` for the group owner (ex. `rwxrwsrwx`)  
+`1` = sticky bit = appears as a `t` instead of `x` for 'other' (ex. `rwxrwxrwt`)  
 `0` = none (`-`)
 
-examples: \
-`0755` = `rwxr-xr-x` \
-`400` = `r--------` \
-`1777` = `rwxrwxrwt` \
+examples:  
+`0755` = `rwxr-xr-x`  
+`400` = `r--------`  
+`1777` = `rwxrwxrwt`  
 `4655` = `rwsr-xr-x`
 
-> If 3 digits are given, 1st is owner, 2nd is group, 3rd is other (ex. `chmod 755`) \
+> If 3 digits are given, 1st is owner, 2nd is group, 3rd is other (ex. `chmod 755`)  
 > If 4 digits are given, 1st is the special bit, 2nd is owner, 3rd is group, 4th is other (ex. chmod `0755`)
 
 
@@ -87,7 +87,7 @@ examples: \
 *\*The sticky bit is useful for negating deletion abilities in a directory, as normally a user who has execute and write permissions to a directory can also delete files within that directory, even if the user doesn't own the files.*
 
 
-example: \
+example:  
 `chmod -R 6754 /var/log` = 
 - run executables with permissions of the owning user and group (4+2=6, special bit)
 - give read, write, and execute (`rwx`) (4+2+1=7) permissions to owner
@@ -102,7 +102,7 @@ example: \
 - `chmod u+r file.txt` = add read permissions to user on file.txt
 - `chmod a-rw file.txt` = remove read/write permissions for all on file.txt 
 
-`u` = owning user \
-`g` = owning group \
-`o` (*other*) = users not in the file's owning group \
+`u` = owning user  
+`g` = owning group  
+`o` (*other*) = users not in the file's owning group  
 `a` (*all*) = everyone, including the owning user and group
