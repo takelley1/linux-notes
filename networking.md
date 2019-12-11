@@ -91,23 +91,23 @@ add new rule to allow port 80 traffic both to and from host
 `date` = view current time
 
 #### chrony
-show timekeeping stats
+show timekeeping stats [1]
 ```
 [user@test]#: chronyc tracking
 
-Reference ID    : 9B1D9843 (APGRW4FHAAD3N13.sec.c3sys.army.mil)
-Stratum         : 4
-Ref time (UTC)  : Wed Dec 11 20:42:51 2019
-System time     : 0.000126482 seconds slow of NTP time
-Last offset     : -0.000039551 seconds
-RMS offset      : 0.001020088 seconds
-Frequency       : 2.941 ppm fast
-Residual freq   : -0.001 ppm
-Skew            : 0.135 ppm
-Root delay      : 0.014488510 seconds
+Reference ID    : 9B1D9843 (hostname.domain)           # source ntp server
+Stratum         : 4                                    # number of ntp server hops to a root ntp server
+Ref time (UTC)  : Wed Dec 11 20:42:51 2019             # utc time of ntp server
+System time     : 0.000126482 seconds slow of NTP time # difference between host time and ntp server time
+Last offset     : -0.000039551 seconds                 # changes made during chrony's last modification
+RMS offset      : 0.001020088 seconds                  # long-term average offset
+Frequency       : 2.941 ppm fast                       # how much faster/slower the default system clock is from ntp server
+Residual freq   : -0.001 ppm                           # difference between reference frequency and current frequency
+Skew            : 0.135 ppm                            # margin of error on frequency
+Root delay      : 0.014488510 seconds                  # network delay for packets to reach ntp server
 Root dispersion : 0.079814211 seconds
-Update interval : 64.3 seconds
-Leap status     : Normal
+Update interval : 64.3 seconds                         # how frequently chrony modifies the system clock
+Leap status     : Normal                               # whether a leap second is pending to be added/removed
 ```
 
 `chronyc sources -v`   
