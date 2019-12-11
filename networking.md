@@ -1,12 +1,12 @@
 ## FIREWALLD
 
-- allow https traffic
+allow https traffic
   ```
   firewall-cmd --zone=public –-permanent --add-service=https
   firewall-cmd --reload
   ```
 
-- disallow port 123 tdp traffic
+disallow port 123 tdp traffic
   ```
   firewall-cmd --zone=public –-permanent --remove-port 123/tcp
   firewall-cmd --reload
@@ -108,6 +108,7 @@ Root delay      : 0.014488510 seconds                  # network delay for packe
 Root dispersion : 0.079814211 seconds
 Update interval : 64.3 seconds                         # how frequently chrony modifies the system clock
 Leap status     : Normal                               # whether a leap second is pending to be added/removed
+                                                       # 1 ppm = 1.000001
 ```
 
 `chronyc sources -v`   
