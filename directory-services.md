@@ -6,7 +6,7 @@
 
 #### ssh key authentication
 
-the below script is referenced in `/etc/ssh/sshd_config` at the line `AuthorizedKeysCommand` \
+the below script is referenced in `/etc/ssh/sshd_config` at the line `AuthorizedKeysCommand`  
 the script attempts to authenticate users using a public key stored in the `comment` field of their ldap user account attributes
 
 ```bash
@@ -32,7 +32,7 @@ https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/7/html-si
 
 `kinit`
 
-**integrate Linux with Active Directory using `realmd`** \
+**integrate Linux with Active Directory using `realmd`**  
 run all commands as root 
 
 ```bash
@@ -123,4 +123,4 @@ echo "sshing in as domain user"
 ssh -l [DOMAIN]\\[DOMAIN-USERNAME] localhost
 
 exit 0
-```    
+```
