@@ -1,5 +1,6 @@
 ## POSTGRES
 
+`psql -h [hostname-or-ip] -p [port] -U [username] [database-name]` = remotely connect to database  
 `sudo -u postgres psql` = launch sql shell as user postgres
 
 #### psql shell
