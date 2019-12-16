@@ -57,6 +57,8 @@ selinux context syntax: `user:role:type:level`
 `audit2allow -w -a` or `audit2why -a` = generate a list of policies triggering selinux denials  
 `audit2allow -a -M [policy]` = create an selinux module that would fix the current policy denial (see below)
 
+`semodule -l` = list all current selinux modules
+
 ``` [1]
 ~]# audit2allow -w -a
 
@@ -77,6 +79,13 @@ tcontext=system_u:object_r:var_t:s0 tclass=dir
 To make this policy package active, execute:
 
 semodule -i mycertwatch.pp
+```
+
+selinux denial log example in `/var/log/messages`:
+```
+Dec 16 16:28:22 [hostname] kernel: type=1400 audit(1576531702.010:97659712): avc:  denied  { getattr }
+for pid=28583 comm="pidof" path="/usr/bin/su" dev="dm-0" ino=50444389
+scontext=system_u:system_r:keepalived_t:s0 tcontext=system_u:object_r:su_exec_t:s0 tclass=file permissive=0
 ```
 
 [1] https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/6/html/security-enhanced_linux/sect-security-enhanced_linux-fixing_problems-allowing_access_audit2allow
