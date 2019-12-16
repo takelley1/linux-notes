@@ -14,11 +14,16 @@ certtool --generate-self-signed --load-privkey key.pem --outfile cert.pem
 ## GPG
 
 #### key pair signing
-1. Create key pair on server `gpg -gen-key`
-2. Export public key `gpg -export -a "pubkey.pub" > public.key` = export the binary key `pubkey.pub` to the ascii string called `public.key`
-3. Import public key on client `gpg -import public.key`
-4. sign file with private key on server `gpg -detatch-sign file.txt`
-5. verify file on client with public key `gpg -verify signed-file.txt file.txt`
+1. Create key pair on server  
+`gpg -gen-key`
+2. Export binary public key to an ascii scring  
+`gpg -export -a "pubkey.pub" > public.key`
+3. Import public key on client  
+`gpg -import public.key`
+4. sign file with private key on server  
+`gpg -detatch-sign file.txt`
+5. verify file on client with public key  
+`gpg -verify signed-file.txt file.txt`
 
 ---
 ## PAM
