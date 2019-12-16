@@ -28,12 +28,11 @@ certtool --generate-self-signed --load-privkey key.pem --outfile cert.pem
 #### /etc/pam.d/ syntax
 
 ---
-## SELINUX 
+## SELINUX
 
 `semanage port –a –t ssh_port_t tcp 9999` = set ssh context to allow use of port 9999
 
-selinux context syntax: `user:role:type:level`
-
+selinux context syntax: `user:role:type:level`  
 `ls -Z` = view selinux contexts
 
 `chcon -R [context] file.txt` = change selinux context  
@@ -50,4 +49,34 @@ selinux context syntax: `user:role:type:level`
 
 `getsebool` = get selinux boolean values  
 `setsebool` = toggle selinux boolean values  
-`setsebool httpd_can_network_connect on` = allow outside directory access to httpd 
+`setsebool httpd_can_network_connect on` = allow outside directory access to httpd
+
+---
+#### `audit2allow` command [1]
+
+`audit2allow -w -a` or `audit2why -a` = generate a list of policies triggering selinux denials  
+`audit2allow -a -M [policy]` = create an selinux module that would fix the current policy denial (see below)
+
+``` [1]
+~]# audit2allow -w -a
+
+type=AVC msg=audit(1226270358.848:238): avc:  denied  { write }
+for pid=13349 comm="certwatch" name="cache" dev=dm-0 ino=218171
+scontext=system_u:system_r:certwatch_t:s0
+tcontext=system_u:object_r:var_t:s0 tclass=dir
+	Was caused by:
+		Missing type enforcement (TE) allow rule.
+
+	You can use audit2allow to generate a loadable module to
+  allow this access.
+```  
+```
+~]# audit2allow -a -M mycertwatch
+
+******************** IMPORTANT ***********************
+To make this policy package active, execute:
+
+semodule -i mycertwatch.pp
+```
+
+[1] https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/6/html/security-enhanced_linux/sect-security-enhanced_linux-fixing_problems-allowing_access_audit2allow
