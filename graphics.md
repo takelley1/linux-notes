@@ -1,9 +1,11 @@
 ### Anisotropic Filtering
 A method of enhancing the image quality of textures on surfaces of computer graphics that are at oblique viewing angles with respect to the camera where the projection of the texture (not the polygon or other primitive on which it is rendered) appears to be non-orthogonal.
 
+---
 ### Ambient Occlusion
 Allows simulation of the soft shadows that occur in the cracks and crevices of 3D objects when indirect lighting is cast out onto a scene. The soft shadows that are created from ambient occlusion can help to define the separation between objects in a scene and add another level of realism to a render. It’s a subtle effect that makes objects and scenes look less flat, more three dimensional and more realistic.
 
+---
 ### Bilinear Filtering
 A texture filtering method used to smooth textures when displayed larger or smaller than they actually are.  
 Most of the time, when drawing a textured shape on the screen, the texture is not displayed exactly as it is stored. Because of this, most pixels will end up needing to use a point on the texture that is "between" texels – assuming the texels are points (as opposed to, say, squares) – in the middle (or on the upper left corner, or anywhere else; it does not matter, as long as it is consistent) of their respective "cells." Bilinear filtering uses these points to perform bilinear interpolation between the four texels nearest to the point that the pixel represents (in the middle or upper left of the pixel, usually).  
@@ -12,18 +14,23 @@ Most of the time, when drawing a textured shape on the screen, the texture is no
 
 Bilinear filtering has several weaknesses that make it an unattractive choice in many cases: using it on a full-detail texture when scaling to a very small size causes accuracy problems from missed texels, and compensating for this by using multiple mipmaps throughout the polygon leads to abrupt changes in blurriness, which is most pronounced in polygons that are steeply angled relative to the camera.  
 
+---
 ### Bloom
 Bloom is an effect that mimics the inability of cameras to capture bright lights in a scene. It adds light feathers or a haze of light around bright objects. When used well, bloom can provide subtle enhancements that make bright lights, light beams or reflective surfaces appear to pop off the screen. Overuse can wash out images and make them look unnatural.
 
+---
 ### Checkerboard rendering
 Checkerboard rendering or checkerboarding is a technique that helps low-power processors render high resolution images. It generally involves rendering half of the pixels in each frame in a checkerboard pattern, and inferring the missing pixels from the pixels that were rendered, information from the previous frame, or both. It produces less detailed or fuzzier images than native rendering.
 
+---
 ### Chromatic aberration
 Bands of false color that appear along edges that separate high contrast light and dark areas of an image. It's a lens flaw that photographers and film makers usually try to eliminate using expensive lenses or digital post-processing. Some developers use it to give their games a film-like quality.
 
+---
 ### Downsampling / Supersampling
 Downsampling, also known as supersampling, is an anti-aliasing technique. It involves rendering an image at a resolution that is higher than the screen will display. The image is then reduced to the screen’s resolution and the extra pixels are used to smooth curved and diagonal lines. Downsampling also makes textures look sharper and clearer.
 
+---
 ### EQAA (Enhanced Quality AA) & CSAA (Coverage Sample AA)
 Tries to increase the quality of MSAA. The actual way it does it (increasing the number of coverage-samples while the number of color/depth/stencil-samples remain the same) is complicated. 
 

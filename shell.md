@@ -3,7 +3,8 @@
 `dpkg-reconfigure console-setup` = change console font size (debian-based distros) \
 [edit `/etc/default/console-setup`] = change console font size
 
-## SHELL
+
+## BASH
 
 `while true; do [COMMAND] ; sleep 10; done` = loop command indefinitely
 
@@ -21,6 +22,19 @@
 `cat /file.log 2>&1 | grep -i error` = pass both stdout and stderr to grep through pipe, by default pipe only passes stdout \
 `stat /home/file.txt` = show last modified date, creation date, and other metadata about given file
 
+---
+### escape characters
+
+`'single quotes'`
+- when in doubt, put the whole string in single quotes [1]
+  - **single quotes preserve the literal value of every character enclosed within the quotes** [3]
+  - a single quote *cannot* occur between single quotes, even when escaped by a backslash [3]
+
+`"double quotes"`
+- double quotes preserve literal value of every character except the dollar sign, backtick, and backslash [3]
+- characters that need to be escaped: `"`, `$`, `\`, `[space]` [2]
+
+---
 ### hotkeys
 
 `CTRL-r` = search command history \
@@ -34,7 +48,7 @@
 `ALT-f` = jump forward one word (when editing a command) \
 `ALT-b` = jump backward one word (when editing a command)
 
-
+---
 ## ENVIRONMENT VARIABLES
 
 `echo $VARIABLE-NAME` = get value of VARIABLE-NAME \
@@ -52,3 +66,7 @@
 `SHELL` = path of the shell's binary \
 `TERM` = type of terminal being used \
 `USER` = current username
+
+[1] https://stackoverflow.com/questions/15783701/which-characters-need-to-be-escaped-when-using-bash#20053121 \
+[2] https://www.shellscript.sh/escape.html \
+[3] http://tldp.org/LDP/Bash-Beginners-Guide/html/sect_03_03.html

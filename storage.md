@@ -5,7 +5,7 @@
 `pvcreate /dev/sdb` = create a physical volume (PV) from sdb \
 `pvremove /dev/sdb1 /dev/sdc1` = remove physical volumes on partitions sdb1 and sdc1 \
 `pvmove /dev/sdb1 /dev/sdb2` = copy all data from sdb1 to sdb2 \
-`pvdisplay` or `pvscan` = show physical volumes 
+`pvdisplay` or `pvscan` = show physical volumes
 
 #### logical volumes (LV)
 
@@ -20,7 +20,18 @@
 `vgdisplay` or `vgscan` = show volume groups \
 `vgextend vgroup /dev/sdb1` = add PV sdb1 to “vgroup” volume group 
 
+---
+#### extend volume with LVM
+```bash
+1. fdisk /dev/sdb # create partition from new disk
+2. pvcreate /dev/sdb1 # create a physical volume from the new partition
+3. vgextend vgname /dev/sdb1 # add the new physical volume to the relevant volume group
+4. pvdisplay # show the number of new extents available
+5. lvextend -l +127999 /dev/centos/var # extend the relevant logical volume by adding free extents
+6. xfs_growfs /var # grow the filesystem on the extended logical volume
+```
 
+---
 ## FILES & FILESYSTEMS
 
 `du -sh /home/alice` = display disk space used by specified directory or file \
@@ -41,7 +52,7 @@
 
 > NOTE: xfs filesystems cannot be shrunk; use ext4 instead
 
-
+---
 ## DISKS & MOUNTS
 
 `lsblk -f` = show disk tree layout, including logical volumes \
@@ -59,7 +70,7 @@
 `mount` = show mounted volumes and their mount locations \
 `mount –o remount,rw /dev/sda1 /mountpoint` = remount drive with read-write permissions 
  
- 
+---
 ## NFS
 > Note: assumes fedora-based system
 
@@ -82,7 +93,7 @@ ex: `/mirror 192.168.1.1/24(rw)`
 `[server ip or fqdn]:/[directory being shared] /[local mount location] nfs defaults 0 0` \
 ex: `10.0.0.10:/data  /mnt/data  nfs  defaults  0 0`
 
- 
+---
 ## MISC
 
  `inode` = a special data structure containing a file's metadata. Contains the file's physical address on the storage medium, size,

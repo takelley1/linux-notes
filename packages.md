@@ -1,4 +1,3 @@
-
 ## PACKAGES
 
 | action                               | yum/dnf                             | apt                           | pacman               |
@@ -11,22 +10,22 @@
 | show package groups                  | `yum group list`                    | -                             | `pacman -Qg`         |
 | remove duplicate packages            | `package-cleanup --cleandupes`      | -                             | -                    |
 | remove orphaned packages             | -                                   | `apt autoremove`              | `pacman -Ru`         |
-| show update history                  | `yum history list all`  | [view `/var/log/apt/history.log`] | [view `/var/log/pacman.log`] |
+| show update history                  | `yum history list all`  | `/var/log/apt/history.log` | `/var/log/pacman.log` |
 | rollback update|`yum history undo [transaction-id]`|`apt-history rollback`|`pacman -U /var/cache/pacman/pkg/[old-package-version]`|
 
 #### rpm
 
-`rpm -ivh file.rpm` or `yum install ./file.rpm` = install .rpm file as package \
-`-i` install .rpm \
-`-v` verbose \
+`rpm -ivh file.rpm` or `yum install ./file.rpm` = install .rpm file as package  
+`-i` install .rpm  
+`-v` verbose  
 `-h` use hash marks to display progress
 
 #### tarballs
 
-`tar xzvf file.tar.gz` = extract archive into current path (*xtract ze v'ing files*) \
-`x` extract tar archive \
-`z` use `gzip` (only works with `tar.gz` or `.tgz` tarballs) \
-`v` verbose \
+`tar xzvf file.tar.gz` = extract archive into current path (*xtract ze v'ing files*)  
+`x` extract tar archive  
+`z` use `gzip` (only works with `tar.gz` or `.tgz` tarballs)  
+`v` verbose  
 `f` extract files
 
 
@@ -34,9 +33,9 @@
 
 | action                  | yum/dnf               | apt                                      | pacman                    |
 | ----------------------- | --------------------- | ---------------------------------------- | ------------------------- |
-| show installed repos    | `yum repolist`        | [view `/etc/apt.sources.list`]           | [view `/etc/pacman.conf`] |
-| show available repos    | `yum repolist all`    | [view `/etc/apt.sources.list`]           | -                         |
-| add repo x              | `yum --enablerepo=x`  | `add-apt-repository x`                   | [edit `/etc/pacman.conf`] |
+| show installed repos    | `yum repolist`        | `/etc/apt.sources.list`           | `/etc/pacman.conf` |
+| show available repos    | `yum repolist all`    | `/etc/apt.sources.list`           | -                         |
+| add repo x              | `yum --enablerepo=x`  | `add-apt-repository x`                   | `/etc/pacman.conf` |
 | add third-party repo    | -                     | `add-apt-repository ppa:libreoffice/ppa` | -                         |
 
 ### yum/dnf & rpm
