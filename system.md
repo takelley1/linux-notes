@@ -29,12 +29,11 @@ if `/sys/firmware/efi exists`, system is UEFI
 
 `CTRL-SHIFT-j` or `CTRL-j` to get shell prompt back after `CTRL-c` has resulted in an unresponsive program 
 
-#### commands I need to learn 
+#### interestimg lesser-known commands
 
 - `set` 
 - `type`
-- `info` 
-- `uniq` 
+- `info`  
 - `watch` 
 - `finger`
 - `sar` 
