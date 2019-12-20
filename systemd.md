@@ -9,17 +9,14 @@
 | `5`             | `graphical.target` / `runlevel5.target`  | multi-user mode w/ GUI          |
 | `6`             | `reboot.target` / `runlevel6.target`     | reboot                          |
 
-| action                  | init | systemd |
-|-------------------------|------|---------|
-|change default runlevel|edit`/etc/init/rc- sysinit.conf`|`systemd set-default [TARGET]`|
-|change current runlevel|`init #`|`systemd isolate [TARGET]`|
-|get default runlevel|`systemctl get-default`||
+| action                  | init                      | systemd                 |
+|-------------------------|---------------------------|-------------------------|
+|change default runlevel  |`/etc/init/rc-sysinit.conf`|`systemd set-default [TARGET]`|
+|change current runlevel  |`init #`                   |`systemd isolate [TARGET]`|
+|get default runlevel     |                           |`systemctl get-default`|
+|enter system rescue mode |`init 1`                   |`systemctl rescue` or `systemctl emergency`|
+
 
 #### runlevel scripts
 - init - place script in `/etc/rc#.d/`, in which `#` corresponds to the desired runlevel in which you'd like the script to run
-- systemd - place script in `/etc/systemd/system/[TARGET].wants/`
-
-#### system recovery
-- init - drop to runlevel 1 `init 1`
-- systemd - enter rescue mode `systemctl rescue`
-  - systemd - if rescue mode is not possible, enter emergency mode `systemctl emergency`
+- systemd - place script in `/etc/systemd/system/[TARGET].wants
