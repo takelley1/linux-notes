@@ -34,17 +34,22 @@ new default permissions for files: `644`
 `usermod -U alice` = unlock user account alice (due to kernel locking user)  
 `faillock --user alice --reset` = unlock user account alice (due to pam_faillock.so locking user)
 
-`id alice` = show what groups user alice is in, and show uid and gids  
-`id -G wheel` = show gid of wheel group  
-`usermod -a -G wheel,group1 alice` = add alice to wheel and group1 groups  
-`gpasswd -d alice wheel` = delete alice from group wheel
-
 `w` = print recently logged-on user data  
 `last` = view all users' last logins  
 `passwd -e alice` = expire password for user alice, prompting her for a password reset upon next login 
 
-- `/etc/passwd` syntax = `uname:'x':uid:gid:comments:homedir:shell`
-- `/etc/group` syntax = `groupname:'x':groupid:userlist(user1,user2)`
+`/etc/passwd` syntax = `uname:'x':uid:gid:comments:homedir:shell`  
+`/etc/group` syntax = `groupname:'x':groupid:userlist(user1,user2)`
+
+---
+## GROUPS
+
+`usermod -a -G wheel,group1 alice` = add alice to wheel and group1 groups   
+`usermod -G group1 alice` = remove alice from all groups except group 1  
+`gpasswd -d alice wheel` = delete alice from group wheel
+
+`id alice` = show what groups user alice is in, and show uid and gids  
+`id -G wheel` = show gid of wheel group
 
 ---
 ## PERMISSIONS
