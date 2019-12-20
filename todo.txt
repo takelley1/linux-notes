@@ -3,3 +3,4 @@
 - add pam syntax
 - add image for 'top' command
 - link bookmarked article describing htop 
+- add BSD pkg commands in the table with yum and apt and pacman
