@@ -5,14 +5,14 @@
 
 #### psql shell
 
-`\l` = list all databases  
-`\c [dbname]` = connect to new database  
-`\dt` =	view list of relations/tables  
+`\l`             = list all databases  
+`\c [dbname]`    = connect to new database  
+`\dt`            = view list of relations/tables  
 `\d [tablename]` = show details of table  
-`\h` = get help  
-`\?` = list all psql slash commands  
-`\set` = system variables  
-`\q` = quit
+`\h`             = get help  
+`\?`             = list all psql slash commands  
+`\set`           = system variables  
+`\q`             = quit
 
 #### pg_hba.conf
 manages client authentication to the db host
