@@ -1,17 +1,17 @@
 ## PACKAGES
 
-| action                               | yum/dnf                             | apt                           | pacman               |
-| ------------------------------------ | ----------------------------------- | ----------------------------- | -------------------- |
-| update packages                      | `yum update`                        | `apt update && apt upgrade`   | `pacman -Syu`        |
-| show installed packages              | `rpm -qa`                           | `dpkg --list`                 | `pacman -Q`          |
-| show package that provides file x    | `yum whatprovides x`                | `dpkg -S x`                   | `pacman -F x`        |
-| get package x info                   | `yum info x`                        | `apt-cache show x`            | `pacman -Qi x`       |
-| install package group x              | `yum groupinstall x`                | -                             | `pacman -S x`        |
-| show package groups                  | `yum group list`                    | -                             | `pacman -Qg`         |
-| remove duplicate packages            | `package-cleanup --cleandupes`      | -                             | -                    |
-| remove orphaned packages             | -                                   | `apt autoremove`              | `pacman -Ru`         |
-| show update history                  | `yum history list all`  | `/var/log/apt/history.log` | `/var/log/pacman.log` |
-| rollback update|`yum history undo [transaction-id]`|`apt-history rollback`|`pacman -U /var/cache/pacman/pkg/[old-package-version]`|
+| action                               | yum/dnf                             | apt                           | pacman               | pkg |
+|--------------------------------------|-------------------------------------|-------------------------------|----------------------|-----|
+| update packages                      | `yum update`                        | `apt update && apt upgrade`   | `pacman -Syu`        |     |
+| show installed packages              | `rpm -qa`                           | `dpkg --list`                 | `pacman -Q`          |     |
+| show package that provides file x    | `yum whatprovides x`                | `dpkg -S x`                   | `pacman -F x`        |     |
+| get package x info                   | `yum info x`                        | `apt-cache show x`            | `pacman -Qi x`       |     |
+| install package group x              | `yum groupinstall x`                | -                             | `pacman -S x`        |     |
+| show package groups                  | `yum group list`                    | -                             | `pacman -Qg`         |     |
+| remove duplicate packages            | `package-cleanup --cleandupes`      | -                             | -                    |     |
+| remove orphaned packages             | -                                   | `apt autoremove`              | `pacman -Ru`         |     |
+| show update history                  | `yum history list all`              | `/var/log/apt/history.log`    | `/var/log/pacman.log`|     |
+| rollback update|`yum history undo [transaction-id]`|`apt-history rollback`|`pacman -U /var/cache/pacman/pkg/[old-package-version]`|     |
 
 #### rpm
 
@@ -31,12 +31,12 @@
 
 ## REPOSITORIES
 
-| action                  | yum/dnf               | apt                                      | pacman                    |
-| ----------------------- | --------------------- | ---------------------------------------- | ------------------------- |
-| show installed repos    | `yum repolist`        | `/etc/apt.sources.list`           | `/etc/pacman.conf` |
-| show available repos    | `yum repolist all`    | `/etc/apt.sources.list`           | -                         |
-| add repo x              | `yum --enablerepo=x`  | `add-apt-repository x`                   | `/etc/pacman.conf` |
-| add third-party repo    | -                     | `add-apt-repository ppa:libreoffice/ppa` | -                         |
+| action                  | yum/dnf               | apt                        | pacman                    | pkg |
+|-------------------------|-----------------------|----------------------------|---------------------------|-----|
+| show installed repos    | `yum repolist`        | `/etc/apt.sources.list`    | `/etc/pacman.conf`        |     |
+| show available repos    | `yum repolist all`    | `/etc/apt.sources.list`    | -                         |     |
+| add repo x              | `yum --enablerepo=x`  | `add-apt-repository x`     | `/etc/pacman.conf`        |     |
+| add third-party repo x  | -                     | `add-apt-repository ppa:x` | -                         |     |
 
 ### yum/dnf & rpm
 
