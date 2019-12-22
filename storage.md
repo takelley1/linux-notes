@@ -53,6 +53,11 @@
 
 > NOTE: xfs filesystems cannot be shrunk; use ext4 instead
 
+| filesystem features          | ext4 | xfs | btrfs | zfs | ufs | ntfs | bcachefs |
+|------------------------------|------|-----|-------|-----|-----|------|----------|
+| online growing               | no   | yes |       |     |     |      |          |
+| online shrinking             | no   | no  |       |     |     |      |          |
+
 ---
 ## DISKS & MOUNTS
 
