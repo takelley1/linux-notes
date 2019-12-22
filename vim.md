@@ -1,5 +1,18 @@
 ## VIM
 
+#### split-window editing
+
+`:split filename`  =  split window and load another file
+`ctrl-w k`         =  move cursor up a window
+`ctrl-w j`         =  move cursor down a window
+`ctrl-w ctrl-w`    =  move cursor to another window (cycle)
+`ctrl-w =`         =  make all equal size
+`10 ctrl-w+`       =  increase window size by 10 lines
+`:vsplit file`     =  vertical split
+`:hide`            =  close current window
+`:only`            =  keep only this window open
+
+---
 #### general
 
 `v` enter visual mode  
@@ -21,7 +34,9 @@
 ---  
 #### indenting 
 
-press `v` and then arrow keys (or `h`,`j`,`k`,`l`,`w`,`$`) to highlight lines of text  
+`:set shiftwidth=1` = set indents to 1 space wide
+
+press `v` and highlight lines of text using the standard navigation keys  
 type `>` or `<` to indent right or left
 
 (to indent more, type `2>` or `3>`)  
@@ -114,7 +129,7 @@ Use `h`,`j`,`k`,`l`,`w`,`b`,`$` keys to highlight and press `d` to cut selection
 `CTRL-c` (*close*) exit insert mode
 
 ---
-#### typed commands
+#### misc typed commands
 
 `:q` (*quit*) exit file  
 `:q!` (*quit!*) force exit file
