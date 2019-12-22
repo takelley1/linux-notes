@@ -1,22 +1,3 @@
-## ANSIBLE 
-
-- `ansible-playbook /path/to/playbook -kK –f 100` = run playbook
-
-run ad-hoc command as root on target box
-- `ansible 192.168.1.1 -a "yum update" -u akelley -k –b –-become-user root –K –-become-method su -f 10`
-  - `-a` run ad-hoc command
-  - `-u` use this user to access the machine
-  - `-k` ask for user's password instead of using ssh key
-  - `-b` use become to elevate privileges
-  - `--become-user root` become the user root when elevating
-  - `-K` ask for escalation password
-  - `--become-method su` use su instead of sudo when elevating
-  - `-f 100` = run 100 separate worker threads
-
-`ansible-playbook --syntax-check ./playbook.yml` = check syntax  
-`ansible-link ./playbook.yml` = check best-practices
-
-
 ## GIT
 [https://education.github.com/git-cheat-sheet-education.pdf]
 
@@ -87,7 +68,7 @@ retrieving updates from another repository and updating local repos
 `git push [alias] [branch]` = transmit local branch commits to the remote repository branch  
 `git pull` = fetch and merge any commits from the tracking remote branch
 
-
+---
 #### rewrite history
 rewriting branches, updating commits and clearing history  
 `git rebase [branch]` = apply any commits of current branch ahead of specified one  
@@ -101,41 +82,10 @@ temporarily store modified, tracked files in order to change branches
 `git stash pop` = write working from top of stash stack  
 `git stash drop` = discard the changes from top of stash stack
 
----
-## LESS 
-
-`SPACE` next page  
-`b` previous page  
-`>` last line  
-`<` first line  
-`/` forward search  
-`?` backward search  
-`n` next search match  
-`N` previous search match  
-`q` quit
-
-
-## OPENSCAP  
-
-- run scap scan
-  ```
-  oscap xccdf eval \
-  --fetch-remote-resources \
-  --profile xccdf_mil.disa.stig_profile_MAC-3_Sensitive \
-  --results /scap_nfs/scap_$(hostname)_$(date +%Y-%m-%d_%H:%M).xml \
-  --report /scap_nfs/scap_$(hostname)_$(date +%Y-%m-%d_%H:%M).html \
-  /shares/U_Red_Hat_Enterprise_Linux_7_V2R2_STIG_SCAP_1-2_Benchmark.xml
-  ```
-  - `--fetch-remote-resources` = download any new definition updates
-  - `--profile` = which profile within the STIG checklist to use
-  - `--results` = filepath to place XML results
-  - `--report` = filepath to place HTML-formatted results
-  - `/shares/U_Red_Hat_Enterprise_Linux_7_V2R2_STIG_SCAP_1-2_Benchmark.xml` = filepath of the STIG checklist file
-
 
 ## TMUX & SCREEN
 
-|  action                                   | tmux                                           | screen                |
+| action                                    | tmux                                           | screen                |
 |-------------------------------------------|------------------------------------------------|-----------------------|
 | start a new session                       | `tmux`<br>`tmux new`                           | `screen`              | 
 | re-attach the detached session            | `tmux attach`                                  | `screen -r`           |
@@ -159,7 +109,7 @@ temporarily store modified, tracked files in order to change branches
 | kill all other panes but the current one  | `^b` `!`                                       |                       |
 | swap location of panes                    | `^b` `^o`                                      |                       |
 | resize pane downwards by 15 units         | `^b` `:resize -D 15`                           |                       |
-| rearrange pane layouts   	                | `^b` `space`                                   |                       |
+| rearrange pane layouts   	            | `^b` `space`                                   |                       |
 | move split pane to a separate window      | `^b` `:break-pane`                             | `^a` `X`              |
 | make window a split pane with another window | `^b` `:join-pane -t [window-number]`        |                       |
 | show numeric values of panes              | `^b` `q`                                       |                       |
@@ -167,7 +117,7 @@ temporarily store modified, tracked files in order to change branches
 
 ### screen
 
-> note: precede all screen keybindings with CTRL + A and all tmux keybindings with CTRL + B
+> note: precede all screen keybindings with CTRL + A
 
 `c` create new window and switch to it
 
@@ -191,3 +141,53 @@ temporarily store modified, tracked files in order to change branches
 
 (at bash prompt) `screen -ls` = list open screen sessions  
 (at bash prompt) `screen -r [id#]` = reconnect to screen session with same pid number
+
+
+## ANSIBLE 
+
+- `ansible-playbook /path/to/playbook -kK –f 100` = run playbook
+
+run ad-hoc command as root on target box
+- `ansible 192.168.1.1 -a "yum update" -u akelley -k –b –-become-user root –K –-become-method su -f 10`
+  - `-a` run ad-hoc command
+  - `-u` use this user to access the machine
+  - `-k` ask for user's password instead of using ssh key
+  - `-b` use become to elevate privileges
+  - `--become-user root` become the user root when elevating
+  - `-K` ask for escalation password
+  - `--become-method su` use su instead of sudo when elevating
+  - `-f 100` = run 100 separate worker threads
+
+`ansible-playbook --syntax-check ./playbook.yml` = check syntax  
+`ansible-link ./playbook.yml` = check best-practices
+
+
+## OPENSCAP  
+
+- run scap scan
+  ```
+  oscap xccdf eval \
+  --fetch-remote-resources \
+  --profile xccdf_mil.disa.stig_profile_MAC-3_Sensitive \
+  --results /scap_nfs/scap_$(hostname)_$(date +%Y-%m-%d_%H:%M).xml \
+  --report /scap_nfs/scap_$(hostname)_$(date +%Y-%m-%d_%H:%M).html \
+  /shares/U_Red_Hat_Enterprise_Linux_7_V2R2_STIG_SCAP_1-2_Benchmark.xml
+  ```
+  - `--fetch-remote-resources` = download any new definition updates
+  - `--profile` = which profile within the STIG checklist to use
+  - `--results` = filepath to place XML results
+  - `--report` = filepath to place HTML-formatted results
+  - `/shares/U_Red_Hat_Enterprise_Linux_7_V2R2_STIG_SCAP_1-2_Benchmark.xml` = filepath of the STIG checklist file
+
+
+## LESS 
+
+`SPACE` next page  
+`b` previous page  
+`>` last line  
+`<` first line  
+`/` forward search  
+`?` backward search  
+`n` next search match  
+`N` previous search match  
+`q` quit
