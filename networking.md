@@ -13,6 +13,7 @@ disallow port 123 tdp traffic
   ```
 
 #### `firewall-cmd` command
+
 `--list-ports` or `--list-services` = show allowed ports/services  
 `--list-all-zones` = show firewalld rules for both public and private zones
 
@@ -43,8 +44,8 @@ add new rule to allow port 80 traffic both to and from host
 
 #### config
 `ip n show` = show neighbor/arp cache  
-`ip r` = show routing table  
-`ip a` = show network interfaces and IP addresses
+`ip r`      = show routing table  
+`ip a`      = show network interfaces and IP addresses
 
 `/etc/sysconfig/network` = see default gateway  
 `/etc/sysconfig/network-scripts/ifcfg-[interface]` = networking device interface options (Fedora-based systems)
@@ -55,18 +56,18 @@ add new rule to allow port 80 traffic both to and from host
 #### remote ports
 `nmap -p [port#] [ip]` or `telnet [ip] [port#]` = ping specific port on remote host  
 `nc -zvu [ip] [port#]` = ping specific remote udp port  
-  `z` zero IO mode, show only if connection is up/down  
-  `v` verbose  
-  `u` query udp instead of tcp
+  `z` = zero IO mode, show only if connection is up/down  
+  `v` = verbose  
+  `u` = query udp instead of tcp
 
 #### local ports
 `less /etc/services` = show ports being used by specific services  
 `nmap localhost` or `ss -tulpn` or `netstat -plant` = view all open ports  
-  `p` associated process PIDs  
-  `l` only listening ports  
-  `n` numerical ip addresses  
-  `t` tcp ports  
-  `u` udp ports
+  `p` = associated process PIDs  
+  `l` = only listening ports  
+  `n` = numerical ip addresses  
+  `t` = tcp ports  
+  `u` = udp ports
 
 #### network scanning
 `nmap -p 22 192.168.1.1-254` = scan ip range for every box with port 22 open  
@@ -87,8 +88,8 @@ add new rule to allow port 80 traffic both to and from host
 *`ntpd` has been deprecated in favor of `chrony`* [1]
 
 `date +%T –s "16:45:00"` = manually set time in HH:mm:ss format  
-`timedatectl` = edit time  
-`date` = view current time
+`timedatectl`            = edit time  
+`date`                   = view current time
 
 #### chrony
 show timekeeping stats [1]
@@ -110,7 +111,7 @@ Update interval : 64.3 seconds                         # how frequently chrony m
 Leap status     : Normal                               # whether a leap second is pending to be added/removed
                                                        # 1 ppm = 1.000001
 ```
-
+other commands
 `chronyc sources -v`   
 `chronyc sourcestats`   
 `systemctl status chronyd`   
