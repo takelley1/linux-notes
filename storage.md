@@ -2,26 +2,27 @@
 
 #### physical volumes (PV)
 
-`pvcreate /dev/sdb` = create a physical volume (PV) from sdb  
+`pvcreate /dev/sdb`            = create a physical volume (PV) from sdb  
 `pvremove /dev/sdb1 /dev/sdc1` = remove physical volumes on partitions sdb1 and sdc1  
-`pvmove /dev/sdb1 /dev/sdb2` = copy all data from sdb1 to sdb2  
-`pvdisplay` or `pvscan` = show physical volumes
+`pvmove /dev/sdb1 /dev/sdb2`   = copy all data from sdb1 to sdb2  
+`pvdisplay` or `pvscan`        = show physical volumes
 
 #### logical volumes (LV)
 
-`lvcreate -L 5G LV1 -n LV2` = create 5 GB logical volumes called LV1 and LV2  
-`lvdisplay` or `lvscan` = show logical volumes  
+`lvcreate -L 5G LV1 -n LV2`        = create 5 GB logical volumes called LV1 and LV2  
+`lvdisplay` or `lvscan`            = show logical volumes  
 `lvextend -L 1.5G /dev/mapper/LV1` = extend logical volume LV1 to 1.5 GB  
 `lvreduce -l -200 /dev/mapper/LV1` = reduce logical volume LV1 by 200 extents 
 
 #### volume groups (VG)
 
 `vgcreate VG1 /dev/sdb /dev/sdc` = create a volume group containing PVs sdb and sdc called VG1  
-`vgdisplay` or `vgscan` = show volume groups  
-`vgextend vgroup /dev/sdb1` = add PV sdb1 to “vgroup” volume group 
+`vgdisplay` or `vgscan`          = show volume groups  
+`vgextend vgroup /dev/sdb1`      = add PV sdb1 to “vgroup” volume group 
 
 ---
 #### extend volume with LVM
+
 ```bash
 1. fdisk /dev/sdb # create partition from new disk
 2. pvcreate /dev/sdb1 # create a physical volume from the new partition
@@ -35,10 +36,10 @@
 ## FILES & FILESYSTEMS
 
 `du -sh /home/alice` = display disk space used by specified directory or file  
-`-s` (*summarize*) = list total storage used by entire directory and all subdirectories  
+`-s` (*summarize*)   = list total storage used by entire directory and all subdirectories  
 `-h` = use human-readable format for filesizes (ex. `8.7M` instead of `8808`)
 
-`du -d 1 -h /` = list the sizes of each directory one level beneath the specified directory  
+`du -d 1 -h /`   = list the sizes of each directory one level beneath the specified directory  
 `-d 1` (*depth*) = recurse at a depth of 1
 
 ---
@@ -47,7 +48,7 @@
 `e2fsck -f /dev/mapper/LV1 && resize2fs /dev/mapper/LV1` = expand filesystem to fit size of LV1 (must be unmounted)  
 `xfs_growfs /dev/centos/var` = expand mounted xfs filesystem (must be mounted)
 
-`e4degrag /` = defragment all partitions  
+`e4degrag /`     = defragment all partitions  
 `fsck /dev/sda2` = check sda2 partition for errors (ext4 only)
 
 > NOTE: xfs filesystems cannot be shrunk; use ext4 instead
@@ -56,15 +57,15 @@
 ## DISKS & MOUNTS
 
 `lsblk -f` = show disk tree layout, including logical volumes  
-  `-f` = show filysystem type
+  `-f`     = show filysystem type
   
 `df -Th` = show space used by mounted drives  
-  `-h` = make output human-readable  
-  `-T` = show filesystem type
+  `-h`   = make output human-readable  
+  `-T`   = show filesystem type
 
 `blkid` = show partition UUIDs
 
-`fdisk -l` = show drives and their partition tables  
+`fdisk -l`       = show drives and their partition tables  
 `fdisk /dev/sdb` = edit the partition table of sdb
 
 `mount` = show mounted volumes and their mount locations  
@@ -72,7 +73,8 @@
  
 ---
 ## NFS
-> Note: assumes fedora-based system
+
+> NOTE: assumes fedora-based system
 
 #### server 
 
