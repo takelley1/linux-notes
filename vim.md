@@ -2,18 +2,18 @@
 
 #### split-window editing
 
-`:split filename`  =  split window and load another file
+`:sp` or `:split file`  =  open another file in a split window  
+`:vsplit file`          =  vertical split
 
-`CTRL-w k`         =  move cursor up a window  
-`CTRL-w j`         =  move cursor down a window    
-`CTRL-w CTRL-w`    =  move cursor to another window (cycle)
+`CTRL-w k`              =  move cursor up a window  
+`CTRL-w j`              =  move cursor down a window  
+`CTRL-w CTRL-w`         =  move cursor to another window (cycle)
 
-`CTFL-w =`         =  make all equal size  
-`10 CTRL-w+`       =  increase window size by 10 lines
+`CTFL-w =`              =  make all equal size  
+`10 CTRL-w+`            =  increase window size by 10 lines
 
-`:vsplit file`     =  vertical split  
-`:hide`            =  close current window  
-`:only`            =  keep only this window open  
+`:hide`                 =  close current window  
+`:only`                 =  keep only this window open
 
 ---
 #### general
@@ -70,18 +70,18 @@ type `>` or `<` to indent right or left
 `}`   = jump forward 1 paragraph  
 `{`   = jump back 1 paragraph
 
-`CTRL-u` (*up*)   = jump up 1 page  
-`CTRL-d` (*down*) = jump down 1 page
+`CTRL-u`        = jump up 1 page  
+`CTRL-d`        = jump down 1 page
 
-`H` (*high*)      = jump to top of screen  
-`L` (*low*)       = jump to bottom of screen  
-`M` (*middle*)    = jump to middle of screen
+`H` (*high*)    = jump to top of screen  
+`L` (*low*)     = jump to bottom of screen  
+`M` (*middle*)  = jump to middle of screen
 
-`gg`        = jump to first line  
-`G` (*Go!*) = jump to last line
+`gg`            = jump to first line  
+`G` (*Go!*)     = jump to last line
 
-`fx` (*find*) = jump forward to closest `x`  
-`Fx`          = jump back to closest `x`
+`fx` (*find*)   = jump forward to closest `x`  
+`Fx`            = jump back to closest `x`
 
 ---
 #### cut / copy / paste 
@@ -89,17 +89,17 @@ type `>` or `<` to indent right or left
 to enter visual mode so you can highlight stuff and cut selected text: `v`  
 Use `h`,`j`,`k`,`l`,`w`,`b`,`$` keys to highlight and press `d` to cut selection
 
-`x` (*x looks like scissors*) = cut character at cursor  
-`X`                           = cut character before cursor
+`x`             = cut character at cursor  
+`X`             = cut character before cursor
 
-`diw` or `daw`                = cut word at cursor  
-`dis`                         = cut sentence
+`diw` or `daw`  = cut word at cursor  
+`dis`           = cut sentence
 
-`D`                           = cut to end of line  
-`d^` cut to beginning of line (note `^` is regex for matching beginning of string)
+`D`             = cut to end of line  
+`d^`            = cut to beginning of line
 
-`dd`                                       = cut line  
-`dis` or `das` (*`d`elete `a` `s`entence*) = cut sentence
+`dd`            = cut line  
+`dis` or `das`  = cut sentence
 
 `y` (*yank*)    = copy selection  
 `yiw`           = copy word  
