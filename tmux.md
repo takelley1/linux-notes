@@ -1,34 +1,35 @@
 ## TMUX
 
-| action                                    | tmux (preceed all hotkeys with `CTRL-b`) | screen (`CTRL-a`)   |
-|-------------------------------------------|------------------------------------------|---------------------|
-| start a new session                       | `tmux`<br>`tmux new`                     | `screen`            | 
-| re-attach to detached session             | `tmux attach`                            | `screen -r`         |
-| re-attach to detached session x           | `tmux attach -t [x]`<br>`tmux a -t [x]`  |`screen -r [x]`      |
-| detach from currently attached session    | `d`<br>`^b` `:detach`                    | `d`                 |
-| rename window                             | `:rename-window [new-name]`              | `A` `[new-name]`    |
-| list windows                              | `w`                                      | `w`                 |
-| go to window #                            | `#`                                      | `#`                 |
-| go to last active window                  | `l`                                      | `l`                 |
-| go to next window                         | `n`                                      | `n`                 |
-| go to previous window                     | `p`                                      | `p`                 |
-| see keybindings                           | `?`                                      | `?`                 |
-| list sessions                             | `s`<br>`tmux ls`<br>`tmux list-sessions` | `screen -ls`        |
-| kill the current pane                     | `x`                                      | `k`                 |
-| kill the current window                   | `&`                                      | `k`<br>`^a` `^k`    |
-| detatch from terminal                     | `^d`                                     | `^d`                |
-| create another window                     | `c`                                      | `c`                 |
-| switch to another pane                    | `o`                                      | `Tab`               |
-| split pane horizontally                   | `"`                                      | `S`-`Tab`-`c`       |
-| split pane vertically                     | `%`                                      | `\|`-`Tab`-`c`      |
-| kill all other panes but the current one  | `!`                                      |                     |
-| swap location of panes                    | `^o`                                     |                     |
-| resize pane downwards by 15 units         | `:resize -D 15`                          |                     |
-| rearrange pane layouts   	                |`space`                                   |                     |
-| move split pane to a separate window      | `:break-pane`                            | `X`                 |
-| make window a split pane with another window | `:join-pane -t [window-number]`       |                     |
-| show numeric values of panes              | `q`                                      |                     |
-| enable scroll / view scrollback           | `PAGEUP`<br>(`q` to exit)                | `[`<br>(`q` to exit)|
+| action                               | tmux (preceed all hotkeys with `CTRL-b`) | screen (`CTRL-a`)   |
+|--------------------------------------|------------------------------------------|---------------------|
+| help                                 | `?`                                      | `?`                 |
+| create new session                   | `tmux`<br>`tmux new`                     | `screen`            |
+| list sessions                        | `s`<br>`tmux ls`<br>`tmux list-sessions` | `screen -ls`        |
+| re-attach to session                 | `tmux attach`                            | `screen -r`         |
+| re-attach to session x               | `tmux attach -t [x]`<br>`tmux a -t [x]`  |`screen -r [x]`      |
+| detach from session                  | `d` or `:detach`                         | `d`                 |
+|--------------------------------------|------------------------------------------|---------------------|
+| create new window                    | `c`                                      | `c`                 |
+| list windows                         | `w`                                      | `w`                 |
+| rename window                        | `:rename-window [new-name]`              | `A` `[new-name]`    |
+| go to window #                       | `#`                                      | `#`                 |
+| go to last active window             | `l`                                      | `l`                 |
+| go to next window                    | `n`                                      | `n`                 |
+| go to previous window                | `p`                                      | `p`                 |
+|                                      |                                          |                     |
+| kill current pane                    | `x`                                      | `k`                 |
+| kill current window                  | `&`                                      | `k`<br>`^a` `^k`    |
+| kill all other panes but current one | `!`                                      |                     |
+| split window horizontally            | `"`                                      | `S`-`Tab`-`c`       |
+| split window vertically              | `%`                                      | `\|`-`Tab`-`c`      |
+| switch panes                         | `o`                                      | `Tab`               |
+| swap location of panes               | `^o`                                     |                     |
+| cycle through pane layouts   	       |`space`                                   |                     |
+| resize pane downwards by 15 units    | `:resize -D 15`                          |                     |
+| move pane to another window          | `:break-pane`                            | `X`                 |
+| join pane to another window          | `:join-pane -t [window-number]`          |                     |
+| show numeric values of panes         | `q`                                      |                     |
+| enable scroll / view scrollback      | `PAGEUP`<br>(`q` to exit)                | `[`<br>(`q` to exit)|
 
 ### screen
 
