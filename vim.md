@@ -87,7 +87,7 @@ type `>` or `<` to indent right or left
 #### cut / copy / paste 
 
 to enter visual mode so you can highlight stuff and cut selected text: `v`  
-Use `h`,`j`,`k`,`l`,`w`,`b`,`$` keys to highlight and press `d` to cut selection
+Use navigation keys to highlight and press `d` to cut selection
 
 `x`             = cut character at cursor  
 `X`             = cut character before cursor
@@ -104,6 +104,12 @@ Use `h`,`j`,`k`,`l`,`w`,`b`,`$` keys to highlight and press `d` to cut selection
 `y` (*yank*)    = copy selection  
 `yiw`           = copy word  
 `yy` or `Y`     = copy line
+
+`"*y`           = copy into PRIMARY register *mnemonic: Star is Select (for copy-on-select)*  
+`"+y`           = copy into CLIPBOARD register *mnemonic: CTRL PLUS C (for the common keybind)*
+
+> note: the PRIMARY and CLIPBOARD registers are managed by X11 (not Vim), so data copied into these
+        registers can be used elsewhere in the X11 session [1]
 
 `“xy`           = copy selection to register `x`  
 `“xp`           = paste from register `x`
@@ -147,3 +153,5 @@ Use `h`,`j`,`k`,`l`,`w`,`b`,`$` keys to highlight and press `d` to cut selection
 `:%s/xxx/yyy/g`              = replace `xxx` with `yyy` in entire file
 
 `:g/^x/d`                    = delete all lines beginning with `x`
+
+[1] https://vi.stackexchange.com/questions/84/how-can-i-copy-text-to-the-system-clipboard-from-vim
