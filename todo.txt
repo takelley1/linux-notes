@@ -8,3 +8,4 @@
 - add BSD pkg commands in the table with yum and apt and pacman
 - create a consistent style guide
 - fill out the filesystem features table in storage.md
+- change vim.md sections to tables
