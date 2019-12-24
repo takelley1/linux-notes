@@ -53,10 +53,24 @@
 
 > NOTE: xfs filesystems cannot be shrunk; use ext4 instead
 
-| filesystem features          | ext4 | xfs | btrfs | zfs | ufs | ntfs | bcachefs |
-|------------------------------|------|-----|-------|-----|-----|------|----------|
-| online growing               | no   | yes |       |     |     |      |          |
-| online shrinking             | no   | no  |       |     |     |      |          |
+| filesystems compared         | ext4 | xfs | btrfs | zfs  | ufs | ntfs | bcachefs | FAT32 | exFAT |
+|------------------------------|------|-----|-------|------|-----|------|----------|-------|-------|
+| online growing               | no   | yes | yes   | yes  |     | yes  |          | no    | no    |
+| online shrinking             | no   | no  | yes   | no   | no  | yes  |          | no    | no    |
+| transparent compression      | no   | no  | yes   | yes  |     | yes  | yes      | no    | no    |
+| transparent encryption       | no   | no  | yes   | yes  |     | yes  | yes      | no    | no    |
+| native deduplication         | no   | no  | yes   | yes  | no  | yes  | yes      | no    | no    |
+| snapshots                    | LVM  | LVM | yes   | yes  |     | no   | yes      | no    | no    |
+| checksumming                 | no   | no  | yes   | yes  | no  | no   | yes      | no    | no    |
+| native RAID                  | no   | no  | yes   | yes  | no  | yes  | yes      | no    | no    |
+| journaling                   | yes  | yes | COW   | COW  |     | yes  | COW      | no    | no    |
+| max filesize                 | -    | -   | -     | -    | -   | -    | -        | 4GB   | -     |
+| max filesystem size          | -    | -   | -     | -    | -   | -    | -        | 2TB   | -     |
+[1]
+
+LVM = can provide limited snapshot functionality through LVM
+COW = copy-on-write (COW) filesystems, so their lack of journaling is not an issue
+\-  = have maximum theoretical sizes so large they're effectively irrelevant
 
 ---
 ## DISKS & MOUNTS
@@ -130,3 +144,6 @@ ex: `10.0.0.10:/data  /mnt/data  nfs  defaults  0 0`
 7. update `fstab` with the copied partition's new UUID
 8. run `grub-mkconfig -o /boot/grub/grub.cfg` or `update-grub` (if `update-grub` was installed)
 9. reboot. If you're dropped into an emergency shell, try regenerating grub
+
+[1] https://www.tldp.org/LDP/sag/html/filesystems.html
+
