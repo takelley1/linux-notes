@@ -8,17 +8,17 @@
 
 #### flags
 
-`s` (*substitute*) perform a string substitution (ex: `sed 's/happy/sad/'` = replace 'happy' with 'sad')  
-`i` (*insert*) insert input above match (ex: `echo "all is fair" | sed 'i\in love and war'`)  
-`a` (*after*) insert input after match (ex: `echo "in love and war" | sed 'a\all is fair'`)  
+`s` (*substitute*) perform a string substitution                                      (ex: `sed 's/happy/sad/'` = replace 'happy' with 'sad')  
+`i` (*insert*) insert input above match                                               (ex: `echo "all is fair" | sed 'i\in love and war'`)  
+`a` (*after*) insert input after match                                                (ex: `echo "in love and war" | sed 'a\all is fair'`)  
 `g` (*global*) perform operation throughout the entirety of the file  
 `p` (*print*) force-print match to stdout. Usually used with `-n` to only print match (ex: `sed -n '2p'` = print 2nd line of input)  
-`w` (*write*) write to the provided file (ex: `sed 's/string1/string2/w file.txt'` = write modified data to file.txt)  
-`I` (*insensitive*) make regex case-insensitive (ex: `sed 's/abc/xyz/I'` = match abc or ABC)
+`w` (*write*) write to the provided file                                              (ex: `sed 's/string1/string2/w file.txt'` = write modified data to file.txt)  
+`I` (*insensitive*) make regex case-insensitive                                       (ex: `sed 's/abc/xyz/I'` = match abc or ABC)
 
 #### parameters
 
-`-e` (*expression*) combine multiple invocations into a single command (ex: `sed -e 's/a/A' -e 's/b/B'`)  
+`-e` (*expression*) combine multiple invocations into a single command                (ex: `sed -e 's/a/A' -e 's/b/B'`)  
 `-r` (*regex*) use extended regular expressions, allowing the use of characters like `+`  
 `-n` (*nullify*) suppress printing modified input to stdout  
 `-i` (*in-place*) don't print result to stdout, just go ahead and immediately edit file
