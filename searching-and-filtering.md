@@ -78,7 +78,7 @@ syntax: `sed -[parameter] '[restriction] [flag1]/[pattern1]/[pattern2]/[flag2]'`
 ---
 ## `grep` command
 
-### `grep` options
+### options
 
 `r` = recursive  
 `i` = ignore case  
@@ -87,35 +87,35 @@ syntax: `sed -[parameter] '[restriction] [flag1]/[pattern1]/[pattern2]/[flag2]'`
 `l` = show filenames of matches only  
 `w` = match complete words
 
-`C #` (*context*) = show `#` lines after and before match  
-`A #` (*after*)   = show `#` lines after match  
-`B #` (*before*)  = show `#` lines before match
+`C 5` (*context*) = show 5 lines after and before match  
+`A 2` (*after*)   = show 2 lines after match  
+`B 1` (*before*)  = show 1 line before match
 
-### `grep` regex (invoked with `-E` option)
+### regex (invoked with `-E` option)
 
-`^` = match string at start  
-`$` = match string at end  
-`|`     = logical OR               (ex. `grep -E ‘i|a’ file`)  
-`*`     = zero or more of previous (`grep -E ‘a*’ file`)  
-`+`     = one or more of previous  
-`{1,3}` = match the previous 1-3 times  
-`[0-9]` = any digit  
+`^`        = match string at start  
+`$`        = match string at end  
+`|`        = logical OR               (ex. `grep -E ‘i|a’ file`)  
+`*`        = zero or more of previous (ex. `grep -E ‘a*’ file`)  
+`+`        = one or more of previous  
+`{1,3}`    = match the previous 1-3 times  
+`[0-9]`    = any digit  
 `[A-Za-z]` = any letter  
-`.` = any character  
-`\` = escape next character
+`.`        = any character  
+`\`        = escape next character
 
-### `grep` examples
+### examples
 
 `grep -h -o '[0-9]\{1,3\}\.[0-9]\{1,3\}\.[0-9]\{1,3\}\.[0-9]\{1,3\}' /var/log/maillog* | sort -u` = extract IPs  
-`-h` don't print filenames (used only when grep is searching through multiple files)  
-`-o` print only the matching part of the line, instead of the whole line  
-`sort -u` remove duplicates  
-`-u` (*unique*) only match unique lines
+`-h`            = don't print filenames (used only when grep is searching through multiple files)  
+`-o`            = print only the matching part of the line, instead of the whole line  
+`sort -u`       = remove duplicates  
+`-u` (*unique*) = only match unique lines
 
 `grep -nir ‘ex*le’ ./f*.txt` = search for string ‘ex*le’ with globbing  
 search in all `.txt` files starting with `f` in or beneath (`-r`) the current directory (`./`)  
-`-i` ignore case  
-`-n` display line number of match
+`-i` = ignore case  
+`-n` = display line number of match
 
 `grep -l ‘^alice’ /etc/*` = show only the filenames containing matches (`-l`) instead of the matches themselves
 
@@ -128,32 +128,32 @@ search in all `.txt` files starting with `f` in or beneath (`-r`) the current di
 
 #### options 
 
-`-type f` match is of type `f` (`f`=file, `d`=dir, `l`=link, `p`=pipe, `b`=block, `c`=character)  
-`-iname` match by file name, ignoring case  
-`-regex` match by file name using regex
+`-type f` = match is of type `f` (`f`=file, `d`=dir, `l`=link, `p`=pipe, `b`=block, `c`=character)  
+`-iname`  = match by file name, ignoring case  
+`-regex`  = match by file name using regex
 
-`-uid 1000` = match is owned by UID 1000 (`-gid N` for file's group's GID)  
-`-user alice` = match is owned by user alice  
+`-uid 1000`    = match is owned by UID 1000 (`-gid N` for file's group's GID)  
+`-user alice`  = match is owned by user alice  
 `-group wheel` = match is owned by group wheel 
 
-`-mmin -19` match was last modified less than 19 minutes ago  
-`-mmin +5` match was last modified more than 5 minutes ago  
-`-mtime 3` same as `mmin` but in days, not minutes (match modified 3 days ago)  
-`-newer file.txt` match is newer than file.txt
+`-mmin -19`       = match was last modified less than 19 minutes ago  
+`-mmin +5`        = match was last modified more than 5 minutes ago  
+`-mtime 3`        = same as `mmin` but in days, not minutes (match modified 3 days ago)  
+`-newer file.txt` = match is newer than file.txt
 
-`-size +5G` match is more than 5 gigabytes (`c`=bytes, `w`=two-byte words, `k`=kilobytes), (`-`=less than, `+`=more than)  
-`-perm 755` match has octal permissions 755
+`-size +5G` = match is more than 5 gigabytes (`c`=bytes, `w`=two-byte words, `k`=kilobytes), (`-`=less than, `+`=more than)  
+`-perm 755` = match has octal permissions 755
 
-`-delete` delete matches  
-`-L` follow symbolic links
+`-delete` = delete matches  
+`-L`      = follow symbolic links
 
 #### examples
 
-ex. `find -name "file[0-9].txt" -exec ls -l {} \;` = perform `ls –l` command on files that are found with find 
+`find -name "file[0-9].txt" -exec ls -l {} \;` =  
+  -perform `ls –l` command on files that are found with find 
 
-or
-
-ex. `find -name "file[0-9].txt" | xargs ls -l` = converts stdout of find into input arguments for the piped command using `xargs`
+`find -name "file[0-9].txt" | xargs ls -l` =  
+  -converts stdout of find into input arguments for the piped command using `xargs`
 
 `find ./ -type f | wc –l` =  
   -print number of files beneath current path  
