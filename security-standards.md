@@ -63,7 +63,7 @@
   - **SPN (Service Principal Name)** = The formal name of the resource or service a user is requesting access to.
   - **TGS (Ticket-Granting Service)** = The Kerberos service running on the KDC
   
-  `kinit username@REALM` = request TGT from KDC \
+  `kinit username@REALM` = request TGT from KDC  
   `klist` = list all tickets
 
 ![kerberos](/images/kerberos.jpg)    
