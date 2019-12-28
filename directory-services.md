@@ -1,3 +1,4 @@
+
 ## ACTIVE DIRECTORY
 
 ### `ldapsearch` command
@@ -124,3 +125,4 @@ ssh -l [DOMAIN]\\[DOMAIN-USERNAME] localhost
 
 exit 0
 ```
+

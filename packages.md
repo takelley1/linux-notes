@@ -1,17 +1,18 @@
+
 ## PACKAGES
 
-| action                               | yum/dnf                             | apt                           | pacman               | pkg |
-|--------------------------------------|-------------------------------------|-------------------------------|----------------------|-----|
-| update packages                      | `yum update`                        | `apt update && apt upgrade`   | `pacman -Syu`        |     |
-| show installed packages              | `rpm -qa`                           | `dpkg --list`                 | `pacman -Q`          |     |
-| show package that provides file x    | `yum whatprovides x`                | `dpkg -S x`                   | `pacman -F x`        |     |
-| get package x info                   | `yum info x`                        | `apt-cache show x`            | `pacman -Qi x`       |     |
-| install package group x              | `yum groupinstall x`                | -                             | `pacman -S x`        |     |
-| show package groups                  | `yum group list`                    | -                             | `pacman -Qg`         |     |
-| remove duplicate packages            | `package-cleanup --cleandupes`      | -                             | -                    |     |
-| remove orphaned packages             | -                                   | `apt autoremove`              | `pacman -Ru`         |     |
-| show update history                  | `yum history list all`              | `/var/log/apt/history.log`    | `/var/log/pacman.log`|     |
-| rollback update|`yum history undo [transaction-id]`|`apt-history rollback`|`pacman -U /var/cache/pacman/pkg/[old-package-version]`|     |
+| action                               | yum/dnf                             | apt                           | pacman               | pkg          |
+|--------------------------------------|-------------------------------------|-------------------------------|----------------------|--------------|
+| update packages                      | `yum update`                        | `apt update && apt upgrade`   | `pacman -Syu`        | `pkg update` |
+| show installed packages              | `rpm -qa`                           | `dpkg --list`                 | `pacman -Q`          |              |
+| show package that provides file x    | `yum whatprovides x`                | `dpkg -S x`                   | `pacman -F x`        |              |
+| get package x info                   | `yum info x`                        | `apt-cache show x`            | `pacman -Qi x`       |              |
+| install package group x              | `yum groupinstall x`                | -                             | `pacman -S x`        |              |
+| show package groups                  | `yum group list`                    | -                             | `pacman -Qg`         |              |
+| remove duplicate packages            | `package-cleanup --cleandupes`      | -                             | -                    |              |
+| remove orphaned packages             | -                                   | `apt autoremove`              | `pacman -Ru`         |              |
+| show update history                  | `yum history list all`              | `/var/log/apt/history.log`    | `/var/log/pacman.log`|              |
+| rollback update|`yum history undo [transaction-id]`|`apt-history rollback`|`pacman -U /var/cache/pacman/pkg/[old-package-version]`|              |
 
 #### rpm
 
@@ -63,3 +64,4 @@
 1. next to `baseurl=`, enter the path of the mounted disk. For example, if you mounted the disk on `/mnt`, the row would read `baseurl=file:///mnt`
 1. run `yum clean all`
 1. yum should now recognize the disk as a repository
+

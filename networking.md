@@ -1,3 +1,4 @@
+
 ## FIREWALLD
 
 allow https traffic
@@ -56,18 +57,18 @@ add new rule to allow port 80 traffic both to and from host
 #### remote ports
 `nmap -p [port#] [ip]` or `telnet [ip] [port#]` = ping specific port on remote host  
 `nc -zvu [ip] [port#]` = ping specific remote udp port  
-`-z` = zero IO mode, show only if connection is up/down  
-`-v` = verbose  
-`-u` = query udp instead of tcp
+                  `-z` = zero IO mode, show only if connection is up/down  
+                  `-v` = verbose  
+                  `-u` = query udp instead of tcp
 
 #### local ports
 `less /etc/services` = show ports being used by specific services  
 `nmap localhost` or `ss -tulpn` or `netstat -plant` = view all open ports  
-`-p` = associated process PIDs  
-`-l` = only listening ports  
-`-n` = numerical ip addresses  
-`-t` = tcp ports  
-`-u` = udp ports
+                                               `-p` = associated process PIDs  
+                                               `-l` = only listening ports  
+                                               `-n` = numerical ip addresses  
+                                               `-t` = tcp ports  
+                                               `-u` = udp ports
 
 #### network scanning
 `nmap -p 22 192.168.1.1-254` = scan ip range for every box with port 22 open  
@@ -190,3 +191,4 @@ rhn-channel --list
 ```
 
 [1] https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/8/html-single/configuring_basic_system_settings/index#migrating-to-chrony_using-chrony-to-configure-ntp
+

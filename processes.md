@@ -1,4 +1,5 @@
-## processes
+
+## PROCESSES
 
 `CTRL-z` = suspend current foreground job  
 `bg`     = push most recently suspended job into background  
@@ -9,7 +10,7 @@
             `-e` = everything  
             `-f` = full-format
 
-#### process signals [1]
+#### SIGNALS [1]
 
 | name      | ID | hotkey | description                                     |
 |-----------|----|--------|-------------------------------------------------|
@@ -20,14 +21,14 @@
 | `SIGTERM` | 15 |        | identical to `SIGINT`                           |
 | `SIGSTP`  | 20 | Ctrl-z | ask the process to stop temporarily             |
 
-#### status codes
+#### STATUS CODES
 
 `D` = uninterruptible sleep (CPU waiting for I/O to complete)  
 `S` = interruptible sleep (waiting for event)  
 `T` = stopped by job control signal  
 `R` = running or in run queue
 
-#### process commands
+#### COMMANDS
 
 `top -u alice` = show user alice’s currently running processes, use O to sort by column  
 `kill -s 9 7423` or `kill -9 7423` = end process with PID 7423 by sending it a `SIGKILL` signal  
@@ -37,9 +38,10 @@
 
 ![performance-observation-tools](/images/performance-observation-tools.png)
  
-## `top` command
+## `top` COMMAND
 
-#### upper section 
+#### UPPER SECTION 
+
 `15:39:37`          = system time  
 `up 90 days, 15:26` = uptime in days, hours:minutes
 
@@ -50,7 +52,6 @@ ex. for a single-core system -- `0.4` = cpu at 40% capacity, `1.12` = cpu 'overl
 ex. For a quad-core system – `1.0` = 3 cores idle, 1 core at full capacity, or all cores at 33% load (on average)
 ex. `5.35` = system overloaded at 135% capacity, `1.35` processes were waiting for cpu time during the specified interval (1min, 5min or 15min) 
 
- 
 `%cpu(s):` = cpu time usage statistics, in % of total cpu time available  
       `us` = % cpu time running userpace processes  
       `sy` = % cpu time running kernel processes  
@@ -61,7 +62,8 @@ ex. `5.35` = system overloaded at 135% capacity, `1.35` processes were waiting f
       `si` = % cpu time handling software interrupts  
       `st` = (virtualized environments) % time OS is waiting for cpu to finish executing processes on another VM (st for steal) 
 
-#### lower section
+#### LOWER SECTION
+
 `PID`     = process ID  
 `USER`    = process' 'effective' username  
 `PR & NI` = priority & nice value, a lower nice value correlates to higher priority  
@@ -75,7 +77,8 @@ ex. `5.35` = system overloaded at 135% capacity, `1.35` processes were waiting f
 `TIME+`   = total cpu time used on process in format minutes:seconds:0.01 seconds  
 `COMMAND` = process name 
 
-#### hotkeys (case sensitive!)
+#### HOTKEYS (case sensitive!)
+
 `P` = sort by %CPU column (default sort)  
 `M` = sort by %MEM column  
 `N` = sort by PID column  
@@ -91,7 +94,8 @@ ex. `5.35` = system overloaded at 135% capacity, `1.35` processes were waiting f
 
 Filters can be stacked via multiple searches, use = to clear all filters 
 
-## hardware
+
+## HARDWARE
 
 `lsof -u alice` = list files currently open by processes (useful when unmounting a disk) 
      `-u alice` = show files open by user alice 
@@ -101,3 +105,4 @@ Filters can be stacked via multiple searches, use = to clear all filters
 `lsblk` = list bock devices
 
 [1] https://www.computerhope.com/unix/signals.htm
+

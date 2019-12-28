@@ -1,3 +1,4 @@
+
 ### Desktop Environment
 implements the desktop metaphor and bundles together a variety of components, provides its own custom window manager [1]
 - KDE Plasma (default in Kubuntu)
@@ -53,3 +54,4 @@ system-level interface between desktop GUI and hardware
 [2] https://wiki.archlinux.org/index.php/Display_manager  
 [3] https://wiki.archlinux.org/index.php/Window_manager  
 [4] https://wiki.archlinux.org/index.php/Xorg
+

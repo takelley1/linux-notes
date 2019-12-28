@@ -1,3 +1,4 @@
+
 ## STREAM EDITING
 
 ### `awk` command
@@ -49,13 +50,12 @@ syntax: `sed -[parameter] '[restriction] [flag1]/[pattern1]/[pattern2]/[flag2]'`
 
 `sort -rk 2`                      = reverse (`r`) sort results by the second column (`k`) of output 
 
-`ifconfig ens32 | grep "inet" | grep –v "inet6" | tr –s " " ":" | cut –f 3 –d ":"` =  
-  -filter out only the ipv4 address of the ens32 interface  
-  -first print the full ens32 interface (`ifconfig ens32`)  
-  -then grep for lines with 'inet' (`grep "inet"`)  
-  -then filter out lines with `inet6` with (`grep –v 'inet6'`)  
-  -then translate all spaces into colons (`tr –s " " ":"`) to provide a common delimiter  
-  -then filter out the third field using cut and specifying the colon delimiter (`cut –f 3 –d ":"`)
+`ifconfig ens32 | grep "inet" | grep –v "inet6" | tr –s " " ":" | cut –f 3 –d ":"` = filter out only the ipv4 address of the ens32 interface  
+  `ifconfig ens32`  = first print the full ens32 interface  
+  `grep "inet"`     = then grep for lines with 'inet'   
+  `grep –v 'inet6'` = then filter out lines with `inet6` with   
+  `tr –s " " ":"`   = then translate all spaces into colons  to provide a common delimiter  
+  `cut –f 3 –d ":"` = then filter out the third field using cut and specifying the colon delimiter 
 
 ---
 ## WILDCARDS
@@ -107,15 +107,15 @@ syntax: `sed -[parameter] '[restriction] [flag1]/[pattern1]/[pattern2]/[flag2]'`
 ### examples
 
 `grep -h -o '[0-9]\{1,3\}\.[0-9]\{1,3\}\.[0-9]\{1,3\}\.[0-9]\{1,3\}' /var/log/maillog* | sort -u` = extract IPs  
-`-h`            = don't print filenames (used only when grep is searching through multiple files)  
-`-o`            = print only the matching part of the line, instead of the whole line  
-`sort -u`       = remove duplicates  
-`-u` (*unique*) = only match unique lines
+  `-h`            = don't print filenames (used only when grep is searching through multiple files)  
+  `-o`            = print only the matching part of the line, instead of the whole line  
+  `sort -u`       = remove duplicates  
+  `-u` (*unique*) = only match unique lines
 
 `grep -nir ‘ex*le’ ./f*.txt` = search for string ‘ex*le’ with globbing  
 search in all `.txt` files starting with `f` in or beneath (`-r`) the current directory (`./`)  
-`-i` = ignore case  
-`-n` = display line number of match
+  `-i` = ignore case  
+  `-n` = display line number of match
 
 `grep -l ‘^alice’ /etc/*` = show only the filenames containing matches (`-l`) instead of the matches themselves
 
@@ -149,34 +149,34 @@ search in all `.txt` files starting with `f` in or beneath (`-r`) the current di
 
 #### examples
 
-`find -name "file[0-9].txt" -exec ls -l {} \;` =  
-  -perform `ls –l` command on files that are found with find 
+`find -name "file[0-9].txt" -exec ls -l {} \;` =  perform `ls –l` command on files that are found with find 
 
-`find -name "file[0-9].txt" | xargs ls -l` =  
-  -converts stdout of find into input arguments for the piped command using `xargs`
+`find -name "file[0-9].txt" | xargs ls -l` = converts stdout of find into input arguments for the piped command using `xargs`
 
-`find ./ -type f | wc –l` =  
-  -print number of files beneath current path  
-  -search for files only, not directories (`-type f`)  
-  -count the number of lines in the ouput (`wc –l`)
+`find ./ -type f | wc –l` = print number of files beneath current path  
+  `-type f` = search for files only, not directories  
+  `wc –l`   = count the number of lines in the ouput
 
 `find -03 -L . -type f -name *.jpg` =  
-  -optimize file search order based on likelihood of finding a match (`-03`)  
-  -follow symbolic links (`-L`)  
-  -search in or below the current directory (`.`)  
-  -look for files (`-type f`)  
-  -search based on file name (`-name`)  
-  -use wildcard to search for all files with .jpg extension (`*.jpg`)
+  `-03`     = optimize file search order based on likelihood of finding a match  
+  `-L`      = follow symbolic links  
+  `.`       = search in or below the current directory  
+  `-type f` = look for files  
+  `-name`   = search based on file name  
+  `*.jpg`   = use wildcard to search for all files with .jpg extension 
 
 `find ~ -user alice -mtime 7 -iname “.log” -delete` =  
-  -files owned by user alice (`-user`)  
-  -search in or beneath the specified user's home directory (`~`)  
-  -filter by file's modified time, in # of days ago (`-mtime`)  
-  -ignore case (`-i`)  
-  -match by file name (`-name`)  
-  -delete after locating files (`-delete`)
+  `-user`   = files owned by user alice  
+  `~`       = search in or beneath the specified user's home directory  
+  `-mtime`  = filter by file's modified time, in # of days ago  
+  `-i`      = ignore case  
+  `-name`   = match by file name  
+  `-delete` = delete after locating files
 
-`locate -ice *.txt` = search for all .txt files, ignore case (`-i`), show number of matches (`-c` for “count”), and verify file’s existence before producing result since database may be old (`-e`) 
+`locate -ice *.txt` = search for all .txt files
+  `-i` (*ignore*) = ignore case of match
+  `-c` (*count*)  = list number of matches
+  `-e` (*exist*)  = verify file’s existence before producing result since database may be old
 
 > Note: locate is much faster than find, but locate searches a tabulated database instead of actively scrubbing your disk for a match. This means the data locate uses may be a few hours old 
 
@@ -211,15 +211,15 @@ search in all `.txt` files starting with `f` in or beneath (`-r`) the current di
 rotate the `/var/log/syslog` file daily and keep 7 copies of the rotated file, limit size to 100M 
 
 #### log locations
-`/var/log/messages` or `/var/log/syslog` generic system activity logs  
-`/var/log/secure` or `/var/log/auth` authentication logs  
-`/var/log/kernel` logs from the kernel  
-`/var/log/cron` record of cron jobs  
-`/var/log/maillog` log of all mail messages  
-`/var/log/faillog` failed logon attempts  
-`/var/log/boot.log` dump location of `init.d`  
-`/var/log/dmesg` kernel ring buffer logs for hardware drivers  
-`/var/log/httpd` apache server logs
+`/var/log/messages` or `/var/log/syslog` = generic system activity logs  
+`/var/log/secure` or `/var/log/auth`     = authentication logs  
+`/var/log/kernel`                        = logs from the kernel  
+`/var/log/cron`                          = record of cron jobs  
+`/var/log/maillog`                       = log of all mail messages  
+`/var/log/faillog`                       = failed logon attempts  
+`/var/log/boot.log`                      = dump location of `init.d`  
+`/var/log/dmesg`                         = kernel ring buffer logs for hardware drivers  
+`/var/log/httpd`                         = apache server logs
 
 ---  
 ## MISC
@@ -227,3 +227,4 @@ rotate the `/var/log/syslog` file daily and keep 7 copies of the rotated file, l
 `man -k string` search man pages for given string 
 
 `history` = print past commands to stdout, grep and use ![line_number] to repeat command without retyping; [or] use CTRL+R to search history 
+

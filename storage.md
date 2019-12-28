@@ -1,3 +1,4 @@
+
 ## LOGICAL VOLUMES (LVM)
 
 #### physical volumes (PV)
@@ -37,7 +38,7 @@
 
 `du -sh /home/alice` = display disk space used by specified directory or file  
 `-s` (*summarize*)   = list total storage used by entire directory and all subdirectories  
-`-h` = use human-readable format for filesizes (ex. `8.7M` instead of `8808`)
+`-h` (*human*)       = use human-readable format for filesizes (ex. `8.7M` instead of `8808`)
 
 `du -d 1 -h /`   = list the sizes of each directory one level beneath the specified directory  
 `-d 1` (*depth*) = recurse at a depth of 1
@@ -76,11 +77,11 @@ COW = copy-on-write (COW) filesystems, so their lack of journaling is not an iss
 ## DISKS & MOUNTS
 
 `lsblk -f` = show disk tree layout, including logical volumes  
-  `-f`     = show filysystem type
+      `-f` = show filysystem type
   
 `df -Th` = show space used by mounted drives  
-  `-h`   = make output human-readable  
-  `-T`   = show filesystem type
+    `-h` = make output human-readable  
+    `-T` = show filesystem type
 
 `blkid` = show partition UUIDs
 

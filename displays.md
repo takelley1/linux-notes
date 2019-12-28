@@ -1,3 +1,4 @@
+
 ## LCD / TFT LCD
 
 `liquid crystal display` [1, 2]
@@ -38,3 +39,4 @@
 [1] https://www.tomshardware.com/reviews/lcd-led-led-oled-panel-difference,5394.html  
 [2] https://www.displayninja.com/ips-vs-tn-vs-va/  
 [3] https://www.cnet.com/news/mini-led-is-here-how-smaller-lights-could-lead-to-big-tv-improvements/
+

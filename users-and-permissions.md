@@ -1,3 +1,4 @@
+
 **`faillock --user alice --reset` = unlock user**
 
 ## ACLs 
@@ -16,14 +17,14 @@
 #### directories 
 
 example:
-default permissions for directories: `777`  
-umask of user that created directory: `002` (example)  
+default permissions for directories:    `777`  
+umask of user that created directory:   `002` (example)  
 new default permissions of directories: `775`
 
 #### files 
 
-default permissions for files: `666`  
-umask of user that created file: `022` (example)  
+default permissions for files:     `666`  
+umask of user that created file:   `022` (example)  
 new default permissions for files: `644`
 
 > umask is permanently set in `/etc/profile` or `/etc/login.defs`
@@ -87,7 +88,7 @@ examples:
 |------------|----------------------------------------------------------------|------------------------------------|
 |setuid      | the user running the file temporarily becomes the file's owner | N/A                                |
 |setgid      | the user running the file temporarily becomes a member of file's owning group | causes all new files beneath that directory to inherit its group ownership |
-|sticky bit* | N/A | prevents a user from deleting a file in a directory unless they own the file or directory |
+|sticky bit\* | N/A | prevents a user from deleting a file in a directory unless they own the file or directory |
 
 *\*The sticky bit is useful for negating deletion abilities in a directory, as normally a user who has execute and write permissions to a directory can also delete files within that directory, even if the user doesn't own the files.*
 
@@ -111,3 +112,4 @@ example:
 `g` (*group*) = owning group  
 `o` (*other*) = users not in the file's owning group  
 `a` (*all*)   = everyone, including the owning user and group
+

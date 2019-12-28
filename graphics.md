@@ -1,3 +1,4 @@
+
 ### Anisotropic Filtering
 A method of enhancing the image quality of textures on surfaces of computer graphics that are at oblique viewing angles with respect to the camera where the projection of the texture (not the polygon or other primitive on which it is rendered) appears to be non-orthogonal.
 
@@ -51,3 +52,4 @@ An AA mode based on the Post-AA blur filter of MLAA (and FXAA). The alisasing "d
 A very complex form of AA. It's not post-AA, though it still blurs because of the downsampling method used. Uses much more performance than FXAA, MLAA and SMAA. The reduction of "jaggies" is one of the best of all AA modes, but everything blurs. 
 
 If the sampling rate used internally for TXAA is upgraded to SSAA (it is based on MSAA) the result can be quite good.
+
