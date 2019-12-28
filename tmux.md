@@ -25,7 +25,7 @@
 | split window vertically           | `%`                                      | `\|`-`Tab`-`c`    |
 | switch panes                      | `o`                                      | `Tab`             |
 | swap location of panes            | `^o`                                     |                   |
-| cycle through pane layouts   	    | `space`                                  |                   |
+| cycle through pane layouts        | `space`                                  |                   |
 | resize pane downwards by 15 units | `:resize -D 15`                          |                   |
 |-----------------------------------|------------------------------------------|-------------------|
 | move pane to another window       | `:break-pane`                            | `X`               |
@@ -39,23 +39,23 @@
 
 `c` create new window and switch to it
 
-`SPACE` or `n` switch to next window  
-`BACKSPACE` or `p` switch to previous window  
-`ESC` enter 'scrollback' mode (use up/down arrow keys)
-(within scrollback mode) `SPACE` begin/end copy selection
+`SPACE` or `n`     = switch to next window  
+`BACKSPACE` or `p` = switch to previous window  
+`ESC`              = enter scrollback mode (use up/down arrow keys)
+`SPACE` (within scrollback mode) = begin/end copy selection
 
-`]` paste selection
+`]` = paste selection
 
-`|` split window vertically (pipe)  
-`S` split window horizontally (capital S)
+`|` = split window vertically (pipe)  
+`S` = split window horizontally (capital S)
 
-`k` kill current window  
-`\` kill all windows  
-`X` collapse split window (capital X)  
-`d` detach from session
+`k` = kill current window  
+`\` = kill all windows  
+`X` = collapse split window (capital X)  
+`d` = detach from session
 
-`r` toggle line-wrap  
-`A` name current window (capital A)
+`r` = toggle line-wrap  
+`A` = name current window (capital A)
 
-(at bash prompt) `screen -ls` = list open screen sessions  
+(at bash prompt) `screen -ls`      = list open screen sessions  
 (at bash prompt) `screen -r [id#]` = reconnect to screen session with same pid number

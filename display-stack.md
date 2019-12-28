@@ -49,7 +49,7 @@ system-level interface between desktop GUI and hardware
   - libmir-server / libmir-client
 
 ---
-[1] https://wiki.archlinux.org/index.php/Desktop_environment \
-[2] https://wiki.archlinux.org/index.php/Display_manager \
-[3] https://wiki.archlinux.org/index.php/Window_manager \
+[1] https://wiki.archlinux.org/index.php/Desktop_environment  
+[2] https://wiki.archlinux.org/index.php/Display_manager  
+[3] https://wiki.archlinux.org/index.php/Window_manager  
 [4] https://wiki.archlinux.org/index.php/Xorg

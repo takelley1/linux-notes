@@ -52,21 +52,19 @@ type `>` or `<` to indent right or left
 ---
 #### navigation
 
-`#k`  = go up `#` lines  
-`#j`  = go down `#` lines
+`4k`   = go up 4 lines  
+`9j`   = go down 9 lines
+`100h` = go left 100 chars  
+`50l`  = go right 50chars
 
-`#h`  = go left `#` chars  
-`#l`  = go right `#` chars
+`b` (*back*) = go left 1 word  
+`w` (*word*) = go right 1 word
 
-`b` (*back*)  = go left 1 word  
-`w` (*word*)  = go right 1 word
-
-`$` (*$ is regex for end of string*) = jump to end of line  
-`0`                                  = jump to beginning of line
+`$` (*regex for end of string*) = jump to end of line  
+`0`                             = jump to beginning of line
 
 `)`   = jump forward 1 sentence  
 `(`   = jump back 1 sentence
-
 `}`   = jump forward 1 paragraph  
 `{`   = jump back 1 paragraph
 
@@ -111,40 +109,40 @@ Use navigation keys to highlight and press `d` to cut selection
 > note: the PRIMARY and CLIPBOARD registers are managed by X11 (not Vim), so data copied into these
         registers can be used elsewhere in the X11 session [1]
 
-`“xy`           = copy selection to register `x`  
-`“xp`           = paste from register `x`
+`“xy`         = copy selection to register `x`  
+`“xp`         = paste from register `x`
 
-`P` (*paste*)   = paste before cursor  
-`p`             = paste after cursor
+`P` (*paste*) = paste before cursor  
+`p`           = paste after cursor
 
 ---
 #### inserting text (actions that switch to insert mode) 
 
-`i` (*insert*)  = insert before cursor  
-`a` (*after*)   = insert after cursor
+`i` (*insert*) = insert before cursor  
+`a` (*after*)  = insert after cursor
 
-`I`             = insert at beginning of line  
-`A`             = insert at end of line
+`I`            = insert at beginning of line  
+`A`            = insert at end of line
 
-`ciw`           = cut word and insert
+`ciw`          = cut word and insert
 
-`C` (*change*)  = cut to end of line and insert  
-`cc` or `S`     = cut entire line and insert
+`C` (*change*) = cut to end of line and insert  
+`cc` or `S`    = cut entire line and insert
 
-`c`             = cut selection and insert
+`c`            = cut selection and insert
 
-`o` (*open*)    = add line below and insert  
-`O`             = add line above and insert
+`o` (*open*)   = add line below and insert  
+`O`            = add line above and insert
 
 `CTRL-c` (*close*) = exit insert mode
 
 ---
 #### misc typed commands
 
-`:q` (*quit*)     = exit file  
-`:q!` (*quit!*)   = force exit file
+`:q` (*quit*)   = exit file  
+`:q!` (*quit!*) = force exit file
 
-`:w` (*write*)    = save file
+`:w` (*write*)  = save file
  
 `:wq` or `:x` or hotkey `ZZ` = save and quit
 

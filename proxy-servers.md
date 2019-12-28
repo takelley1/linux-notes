@@ -45,7 +45,7 @@ apache config (httpd.conf) [4]
 
 ![forward-proxy](/images/forward-proxy.jpg) [2]
 
-[1] https://en.wikipedia.org/wiki/Reverse_proxy \
-[2] https://www.imperva.com/learn/performance/reverse-proxy/ \
-[3] https://www.jscape.com/blog/bid/87783/forward-proxy-vs-reverse-proxy \
+[1] https://en.wikipedia.org/wiki/Reverse_proxy  
+[2] https://www.imperva.com/learn/performance/reverse-proxy/  
+[3] https://www.jscape.com/blog/bid/87783/forward-proxy-vs-reverse-proxy  
 [4] https://httpd.apache.org/docs/2.4/howto/reverse_proxy.html

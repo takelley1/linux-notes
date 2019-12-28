@@ -39,7 +39,7 @@ syntax: `sed -[parameter] '[restriction] [flag1]/[pattern1]/[pattern2]/[flag2]'`
 `sed 's/string1/string2/3' file.txt` = replace the third occurrence of string1 with string2 in file.txt
 
 `sed '2,3/^str*ng/d' file.txt`       = delete all strings matching expression  
-`2,3`                                = limit command to the second and third lines of the file  
+                         `2,3`       = limit command to the second and third lines of the file  
 
 ### other commands and examples
 
@@ -183,11 +183,11 @@ search in all `.txt` files starting with `f` in or beneath (`-r`) the current di
 ---
 ## LOGS
 
-`logger test123` = send a test log to `/var/log/mesages`  
+`logger test123`   = send a test log to `/var/log/mesages`  
 `tail -f file.txt` = view text file in as it updates in realtime (`-f` for follow)  
-`ls -ltrh` = list files sorted by last modified time, include filesize (`-h`)  
-`journalctl -xe` = show system log files with explanatory (`-x`) text included (systemd only)  
-`strace` = trace system call
+`ls -ltrh`         = list files sorted by last modified time, include filesize (`-h`)  
+`journalctl -xe`   = show system log files with explanatory (`-x`) text included (systemd only)  
+`strace`           = trace system call
 
 
 `/etc/logrotate.d/` = log rotation scripts 
