@@ -83,5 +83,4 @@ temporarily store modified, tracked files in order to change branches
 `git stash pop`  = write working from top of stash stack  
 `git stash drop` = discard the changes from top of stash stack
 
- [1] https://education.github.com/git-cheat-sheet-education.pdf
-
+[1] https://education.github.com/git-cheat-sheet-education.pdf

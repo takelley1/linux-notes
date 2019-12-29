@@ -191,4 +191,3 @@ rhn-channel --list
 ```
 
 [1] https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/8/html-single/configuring_basic_system_settings/index#migrating-to-chrony_using-chrony-to-configure-ntp
-

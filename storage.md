@@ -147,4 +147,3 @@ ex: `10.0.0.10:/data  /mnt/data  nfs  defaults  0 0`
 9. reboot. If you're dropped into an emergency shell, try regenerating grub
 
 [1] https://www.tldp.org/LDP/sag/html/filesystems.html
-

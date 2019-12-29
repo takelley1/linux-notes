@@ -71,4 +71,3 @@
 [1] https://stackoverflow.com/questions/15783701/which-characters-need-to-be-escaped-when-using-bash#20053121  
 [2] https://www.shellscript.sh/escape.html  
 [3] http://tldp.org/LDP/Bash-Beginners-Guide/html/sect_03_03.html
-

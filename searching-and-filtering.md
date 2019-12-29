@@ -227,4 +227,3 @@ rotate the `/var/log/syslog` file daily and keep 7 copies of the rotated file, l
 `man -k string` search man pages for given string 
 
 `history` = print past commands to stdout, grep and use ![line_number] to repeat command without retyping; [or] use CTRL+R to search history 
-
