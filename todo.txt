@@ -1,4 +1,4 @@
-- fix ssd-over-provisioning section in storage-terminology.md
+
 - add content to 'awk' section in searching-and-filtering.md
 - add pam syntax
 - add image for 'top' command
@@ -6,3 +6,4 @@
 - add BSD pkg commands in the table with yum and apt and pacman
 - create a consistent style guide
 - change vim.md sections to tables
+- break searching-and-filtering into stream-editing.md and move 'find' functions into programs.md or its own file
