@@ -1,8 +1,8 @@
 
 ## MANPAGES
 
-`man 1 crontab` = view the `crontab` entry in `manpage` section 1  
-`man 5 crontab` = view the `crontab` entry in `manpage` section 5
+`man 1 crontab` = view the `crontab` entry in manpage section 1  
+`man 5 crontab` = view the `crontab` entry in manpage section 5
 
 | manpage section [1] | category                                              |
 |---------------------|-------------------------------------------------------|
@@ -18,22 +18,17 @@
 ---
 ## MISC
 
-#### `shutdown` command
-
-`shutdown -r now` or `reboot` = immediately reboot system  
-`shutdown 2 this machine is shutting down in 2 minutes!` = power off system in 2 minutes and send the provided message to all logged-in users  
-`shutdown -r 0:00` = reboot at midnight tonight
-
-crontab syntax 
-`minofhour|hourofday|dayofmonth|month#|dayofweek`
+`minute of hour | hour of day | day of month | month # | day of week` = crontab syntax 
 
 if `/sys/firmware/efi exists`, system is UEFI 
 
-`CTRL-SHIFT-j` or `CTRL-j` to get shell prompt back after `CTRL-c` has resulted in an unresponsive program 
-
 `man -k string` search man pages for given string 
 
-`history` = print past commands to stdout, grep and use ![line_number] to repeat command without retyping; [or] use CTRL+R to search history 
+#### `shutdown` command
+
+`shutdown -r now` or `reboot`                            = immediately reboot system  
+`shutdown 2 this machine is shutting down in 2 minutes!` = power off system in 2 minutes and send the provided message to all logged-in users  
+`shutdown -r 0:00`                                       = reboot at midnight tonight
 
 #### interestimg lesser-known commands
 
@@ -47,7 +42,6 @@ if `/sys/firmware/efi exists`, system is UEFI
 - `read` 
 - `case` 
 - `fuser`
-
 
 ---
 ## LOGS
