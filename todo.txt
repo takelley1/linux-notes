@@ -1,3 +1,4 @@
+- emphasize a large number of command examples over everything else
 - fix ssd-over-provisioning section in storage-terminology.md
 - add content to 'awk' section in searching-and-filtering.md
 - cleanup zfs commands
