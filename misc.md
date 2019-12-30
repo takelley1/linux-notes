@@ -44,4 +44,3 @@ if `/sys/firmware/efi exists`, system is UEFI
 - `fuser`
 
 [1] https://www.geeksforgeeks.org/linux-man-page-entries-different-types/
-

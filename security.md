@@ -96,4 +96,3 @@ scontext=system_u:system_r:keepalived_t:s0 tcontext=system_u:object_r:su_exec_t:
 ```
 
 [1] https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/6/html/security-enhanced_linux/sect-security-enhanced_linux-fixing_problems-allowing_access_audit2allow
-

@@ -65,4 +65,3 @@ write mode.
 to the original data, not the data itself 
 
 [1] https://www.embedded.com/flash-101-nand-flash-vs-nor-flash/
-

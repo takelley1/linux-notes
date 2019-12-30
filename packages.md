@@ -64,4 +64,3 @@
 1. next to `baseurl=`, enter the path of the mounted disk. For example, if you mounted the disk on `/mnt`, the row would read `baseurl=file:///mnt`
 1. run `yum clean all`
 1. yum should now recognize the disk as a repository
-

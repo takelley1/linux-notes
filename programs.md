@@ -42,4 +42,3 @@ run scap scan
 `n`     = next search match  
 `N`     = previous search match  
 `q`     = quit
-
