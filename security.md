@@ -42,6 +42,11 @@ on receiver:
 1. `gpg --output file.gpg --symmetric file.txt` = encrypt file.txt into file.gpg using a password that must be provided  
 2. `gpg --decrypt file.gpg`                     = decrypt file.gpg into file.txt using the same password used to encrypt file.txt
 
+#### further reading
+
+The GNU Privacy Handbook https://www.gnupg.org/gph/en/manual/book1.html  
+Backing up private keys on paper https://wiki.archlinux.org/index.php/Paperkey, https://www.jabberwocky.com/software/paperkey/, https://www.saminiir.com/paper-storage-and-recovery-of-gpg-keys/
+
 ---
 ## PAM
 
@@ -109,13 +114,6 @@ Dec 16 16:28:22 [hostname] kernel: type=1400 audit(1576531702.010:97659712): avc
 for pid=28583 comm="pidof" path="/usr/bin/su" dev="dm-0" ino=50444389
 scontext=system_u:system_r:keepalived_t:s0 tcontext=system_u:object_r:su_exec_t:s0 tclass=file permissive=0
 ```
-
-#### interesting links
-
-https://wiki.archlinux.org/index.php/Paperkey  
-https://www.jabberwocky.com/software/paperkey/  
-https://www.saminiir.com/paper-storage-and-recovery-of-gpg-keys/#fn:png-correction
-
 
 #### sources
 
