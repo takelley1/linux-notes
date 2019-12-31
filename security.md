@@ -95,4 +95,13 @@ for pid=28583 comm="pidof" path="/usr/bin/su" dev="dm-0" ino=50444389
 scontext=system_u:system_r:keepalived_t:s0 tcontext=system_u:object_r:su_exec_t:s0 tclass=file permissive=0
 ```
 
+#### interesting links
+
+https://wiki.archlinux.org/index.php/Paperkey  
+https://www.jabberwocky.com/software/paperkey/  
+https://www.saminiir.com/paper-storage-and-recovery-of-gpg-keys/#fn:png-correction
+
+
+#### sources
+
 [1] https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/6/html/security-enhanced_linux/sect-security-enhanced_linux-fixing_problems-allowing_access_audit2allow
