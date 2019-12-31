@@ -17,15 +17,30 @@ certtool --generate-self-signed --load-privkey key.pem --outfile cert.pem
 
 #### digitally sign and verify a file
 
-on server:
+(assumes recipient does not yet have sender's public key)  
+on sender:  
 1. `gpg --gen-key`                                  = create public and private key pair
 2. `gpg --output file.sig --detatch-sign file.txt`  = sign file.txt with private key, producing the signature file file.sig
 3. `gpg --export --armor "pubkey.gpg" > public.asc` = export binary public key to ASCII-encoded string
-4. transfer `file.sig`, `file.txt`, and `public.asc` to client
+4. transfer `file.sig`, `file.txt`, and `public.asc` to recipient
 
-on client:
-1. `gpg --import public.asc`                        = import server's public key
-2. `gpg --verify file.sig file.txt`                 = verify the file.sig signature of file.txt using server's public key  
+on recipient:  
+1. `gpg --import public.asc`                        = import sender's public key
+2. `gpg --verify file.sig file.txt`                 = verify the file.sig signature of file.txt using sender's public key
+
+#### asymetrically encrypt/decrypt and sign a file [3, 4]
+
+on sender:  
+1. `gpg --encrypt --sign --armor --recipient receiver@gmail.com file.txt` = encrpyt file.txt using receiver's public key (assuming it's in the gpg keychain), then sign file.txt using your private key
+2. this produces the encrypted and signed file `file.txt.asc`
+
+on receiver:  
+1. `gpg --decrypt file.txt.asc > file.txt` = decrypt file using receiver's private key and verify sender's signature
+
+#### symmetrically encrypt/decrypt a file [2]
+
+1. `gpg --output file.gpg --symmetric file.txt` = encrypt file.txt into file.gpg using a password that must be provided  
+2. `gpg --decrypt file.gpg`                     = decrypt file.gpg into file.txt using the same password used to encrypt file.txt
 
 ---
 ## PAM
@@ -104,4 +119,7 @@ https://www.saminiir.com/paper-storage-and-recovery-of-gpg-keys/#fn:png-correcti
 
 #### sources
 
-[1] https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/6/html/security-enhanced_linux/sect-security-enhanced_linux-fixing_problems-allowing_access_audit2allow
+[1] https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/6/html/security-enhanced_linux/sect-security-enhanced_linux-fixing_problems-allowing_access_audit2allow  
+[2] https://stackoverflow.com/questions/36393922/how-to-decrypt-a-symmetrically-encrypted-openpgp-message-using-php  
+[3] https://www.networkworld.com/article/3293052/encypting-your-files-with-gpg.html  
+[4] https://www.howtogeek.com/427982/how-to-encrypt-and-decrypt-files-with-gpg-on-linux/
