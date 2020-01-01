@@ -7,3 +7,4 @@
 - add BSD pkg commands in the table with yum and apt and pacman
 - create a consistent style guide
 - change vim.md sections to tables
+- add info on RAM UDIMM vs RDIMM
