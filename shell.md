@@ -1,13 +1,13 @@
 
 ## CONSOLE
 
-`dpkg-reconfigure console-setup`    = change console font size (debian-based distros) \
+`dpkg-reconfigure console-setup`    = change console font size (debian-based distros)  
 [edit `/etc/default/console-setup`] = change console font size
 
-
+---
 ## BASH
 
-`while true; do [COMMAND] ; sleep 10; done` = loop command indefinitely
+`while true; do [COMMAND]; sleep 10; done` = loop command indefinitely
 
 `[COMMAND] &`              = run command in background  
 `[COMMAND1] && [COMMAND2]` = run command2 only if command1 is successful  
@@ -38,7 +38,11 @@
 ---
 ### hotkeys
 
+`CTRL-SHIFT-j` or `CTRL-j` = get shell prompt back
+
 `CTRL-r` = search command history  
+`history` = print past commands to stdout, grep and use ![line_number] to repeat command without retyping
+
 `CTRL-l` = clear screen
 
 `CTRL-c` = send `SIGINT` to foreground process  
@@ -46,7 +50,7 @@
 
 `CTRL-d` = exit current shell
 
-`ALT-f` = jump forward one word (when editing a command)  
+`ALT-f` = jump forward one word  (when editing a command)  
 `ALT-b` = jump backward one word (when editing a command)
 
 ---
@@ -67,6 +71,7 @@
 `SHELL`   = path of the shell's binary  
 `TERM`    = type of terminal being used  
 `USER`    = current username
+
 
 [1] https://stackoverflow.com/questions/15783701/which-characters-need-to-be-escaped-when-using-bash#20053121  
 [2] https://www.shellscript.sh/escape.html  

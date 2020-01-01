@@ -1,9 +1,9 @@
-
-- add content to 'awk' section in searching-and-filtering.md
+- emphasize a large number of command examples over everything else
+- add content to 'awk' section in stream-editing.md
 - add pam syntax
+- add info on ZFS snapshots, ARC, L2ARC, and ZIL
 - add image for 'top' command
 - link bookmarked article describing htop 
 - add BSD pkg commands in the table with yum and apt and pacman
 - create a consistent style guide
 - change vim.md sections to tables
-- break searching-and-filtering into stream-editing.md and move 'find' functions into programs.md or its own file
