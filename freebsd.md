@@ -1,6 +1,15 @@
 
 ## FREEBSD
 
+| linux command    | freebsd equivalent  |
+|------------------|---------------------|
+| useradd          | adduser             |
+| userdel          | rmuser              |
+| chage            | chpass              |
+| usermod -a -G    | pw groupmod         |
+| apt/yum/pacman   | pkg                 |
+| yay (Arch Linux) | portsnap/portmaster |
+
 #### tips
 
 -use `sudo -i` instead of `sudo su` to ensure root's environment variables are loaded properly  
@@ -19,3 +28,4 @@ OpenBSD is secure
 #### sources
 
 [1] https://jameshoward.us/archive/the-bsd-family-tree/
+
