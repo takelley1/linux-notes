@@ -40,7 +40,9 @@ add new rule to allow port 80 traffic both to and from host
 ## `ip` command  
 
 #### interfaces
-`ip a add 192.168.1.200/255.255.255.0 dev eth0` or `ip a add 192.168.1.200/24 dev eth0` = change ip  
+`ip a add 192.168.1.200/24 dev eth0` = add ip to device  
+`ip a del 10.0.0.10/24 dev enp12s0`  = remove ip from device
+
 `ip link set dev eth1 up` = enable/disable interface  
 
 #### config
