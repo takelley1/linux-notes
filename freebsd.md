@@ -21,9 +21,9 @@
 
 #### misc [1]
 
-FreeBSD is simple and stable  
-NetBSD is portable  
-OpenBSD is secure
+FreeBSD is focused on robustness and stablility  
+NetBSD is focused on portability  
+OpenBSD is focused on security
 
 #### sources
 
