@@ -17,6 +17,7 @@
 | go to last active window          | `l`                                      | `l`               |
 | go to next window                 | `n`                                      | `n`               |
 | go to previous window             | `p`                                      | `p`               |
+| pass COMMAND to nested session    | `CTRL-b`-`CTRL-b` COMMAND                |                   |
 |-----------------------------------|------------------------------------------|-------------------|
 | kill current pane                 | `x`                                      | `k`               |
 | kill current window               | `&`                                      | `k`-`^k`          |
@@ -37,23 +38,6 @@
 ### screen
 
 > note: precede all screen keybindings with `CTRL-A`
-
-`c` create new window and switch to it
-
-`SPACE` or `n`     = switch to next window  
-`BACKSPACE` or `p` = switch to previous window  
-`ESC`              = enter scrollback mode (use up/down arrow keys)
-`SPACE` (within scrollback mode) = begin/end copy selection
-
-`]` = paste selection
-
-`|` = split window vertically (pipe)  
-`S` = split window horizontally (capital S)
-
-`k` = kill current window  
-`\` = kill all windows  
-`X` = collapse split window (capital X)  
-`d` = detach from session
 
 `r` = toggle line-wrap  
 `A` = name current window (capital A)
