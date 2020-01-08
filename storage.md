@@ -90,7 +90,13 @@ COW = copy-on-write (COW) filesystems, so their lack of journaling is not an iss
 
 `mount` = show mounted volumes and their mount locations  
 `mount –o remount,rw /dev/sda1 /mountpoint` = remount drive with read-write permissions 
- 
+
+---
+## SAMBA
+
+`smbclient`
+
+
 ---
 ## NFS
 
