@@ -74,7 +74,7 @@ add new rule to allow port 80 traffic both to and from host
 
 #### network scanning
 `nmap -p 22 192.168.1.1-254` = scan ip range for every box with port 22 open  
-`nmap 192.168.1.20-40` = scan all ports on hosts within range
+`nmap 192.168.1.20-40`       = scan all ports on hosts within range
 
 ---
 ## ROUTES
@@ -84,6 +84,14 @@ add new rule to allow port 80 traffic both to and from host
 `ip r` or `routel` = view routing table  
 `dig domain.com` or `nslookup domain.com` = perform dns lookup on domain  
 `traceroute domain.com` = print the route packets take to a given destination
+
+---
+## MONITORING
+
+`iperf`
+`iftop`
+`ifstat`
+`tcpdump`
 
 ---
 ## NTP
