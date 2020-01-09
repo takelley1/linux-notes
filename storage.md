@@ -91,6 +91,9 @@ COW = copy-on-write (COW) filesystems, so their lack of journaling is not an iss
 `mount` = show mounted volumes and their mount locations  
 `mount –o remount,rw /dev/sda1 /mountpoint` = remount drive with read-write permissions 
 
+#### disk testing
+`badblocks -b 4096 -c 98304 -p 0 -w -s /dev/hda` = destructively test disk hda for bad data blocks (useful for testing new drive)  
+
 ---
 ## SAMBA
 
@@ -152,4 +155,8 @@ ex: `10.0.0.10:/data  /mnt/data  nfs  defaults  0 0`
 8. run `grub-mkconfig -o /boot/grub/grub.cfg` or `update-grub` (if `update-grub` was installed)
 9. reboot. If you're dropped into an emergency shell, try regenerating grub
 
-[1] https://www.tldp.org/LDP/sag/html/filesystems.html
+---
+#### sources
+
+[1] https://www.tldp.org/LDP/sag/html/filesystems.html  
+[2] https://calomel.org/badblocks_wipe.html
