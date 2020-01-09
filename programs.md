@@ -29,6 +29,25 @@ run scap scan
   --report /scap_nfs/scap_$(hostname)_$(date +%Y-%m-%d_%H:%M).html \    # filepath to place HTML-formatted results
   /shares/U_Red_Hat_Enterprise_Linux_7_V2R2_STIG_SCAP_1-2_Benchmark.xml # filepath of the STIG checklist file
   ```
+  
+  minimum XCCDF file for importing SCAP results to DISA STIG viewer:
+  ```
+  <?xml version="1.0" encoding="UTF-8"?>
+<TestResult>
+  <rule-result idref="SV-86681r2_rule">
+    <result>pass</result>
+  </rule-result>
+  <rule-result idref="SV-86921r3_rule">
+    <result>notchecked</result>
+  </rule-result>
+  <rule-result idref="SV-86473r3_rule">
+    <result>notapplicable</result>
+  </rule-result>
+  <rule-result idref="SV-86853r3_rule">
+    <result>fail</result>
+  </rule-result>
+</TestResult>
+```
 
 
 ## LESS 
