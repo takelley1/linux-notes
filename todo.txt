@@ -10,3 +10,4 @@
 - add info on RAM UDIMM vs RDIMM
 - add CIFS/SMB and Active Directory share mounting to storage.md
 - fill out MONITORING section of networking.md
+- fill out table comparing compression algorithms, use last image from https://clearlinux.org/news-blogs/linux-os-data-compression-options-comparing-behavior
