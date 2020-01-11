@@ -1,7 +1,7 @@
 
 ## PACKAGES
 
-| action                               | yum/dnf                             | apt                           | pacman               | pkg          |
+| package managers compared            | yum/dnf (.rpm files)                | apt (.deb files)              | pacman               | pkg          |
 |--------------------------------------|-------------------------------------|-------------------------------|----------------------|--------------|
 | update packages                      | `yum update`                        | `apt update && apt upgrade`   | `pacman -Syu`        | `pkg update` |
 | show installed packages              | `rpm -qa`                           | `dpkg --list`                 | `pacman -Q`          |              |
@@ -16,20 +16,15 @@
 
 #### rpm
 
-`rpm -ivh file.rpm` or `yum install ./file.rpm` = install .rpm file as package  
-`-i` = install .rpm  
-`-v` = verbose  
-`-h` = use hash marks to display progress
+`rpm -ivh file.rpm` = install .rpm file as package  
+               `-i` = install .rpm  
+               `-v` = verbose  
+               `-h` = use hash marks to display progress
 
-#### tarballs
-
-`tar xzvf file.tar.gz` = extract archive into current path (*xtract ze v'ing files*)  
-`x` = extract tar archive  
-`z` = use `gzip` (only works with `tar.gz` or `.tgz` tarballs)  
-`v` = verbose  
-`f` = extract files
+`yum install ./file.rpm` = install .rpm file and automatically resolve and install dependencies
 
 
+---
 ## REPOSITORIES
 
 | action                  | yum/dnf               | apt                        | pacman                    | pkg |
@@ -45,6 +40,7 @@
 
 ---
 #### add iso repo to centos
+
 1. go to centos.org
 1. click 'get centos now'
 1. click 'alternative downloads'
@@ -64,3 +60,4 @@
 1. next to `baseurl=`, enter the path of the mounted disk. For example, if you mounted the disk on `/mnt`, the row would read `baseurl=file:///mnt`
 1. run `yum clean all`
 1. yum should now recognize the disk as a repository
+

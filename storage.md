@@ -43,6 +43,10 @@ COW = journaling is superceded by copy-on-write mechanisms
 \-  = maximum theoretical size so large it's effectively irrelevant
 ?   = currently unknown and/or no reliable data available
 
+
+---
+## ARCHIVES
+
 | compression algorithms [2] | gzip | bzip2 | xz | lzip | lzma | zstd |
 
 | archive formats | tar | zip | 7z | tar.gz |
@@ -50,6 +54,23 @@ COW = journaling is superceded by copy-on-write mechanisms
 
 *further reading on compression algorithms compared*: https://quixdb.github.io/squash-benchmark/#results
 
+#### tar
+
+`tar xzvf myarchive.tar.gz` = extract myarchive.tar.gz to current path (*xtract ze v'ing files*)  
+                        `x` = extract  
+                        `z` = decompress with gzip (only works with extracting `tar.gz` or `.tgz` tarballs)  
+                        `v` = verbose  
+                        `f` = work in file mode (rather than tape mode)
+
+`tar czvf myarchive.tar.gz dir1/ dir2/ dir3/` = create myarchive.tar.gz from dir1, dir2, and dir3 (*create ze v'ing files*)
+
+#### 7zip
+
+`7za x myarchive.7z` = extract myarchive.7z to current path (DO NOT USE THE 'e' SWITCH, USE 'x' INSTEAD TO PRESERVE FILEPATHS)
+
+`7za a -mx=10 myarchive.7z dir1/ dir2/` = create myarchive.7z from dir1 and dir2
+                               `-mx=10` = use compression lvl 10
+                          
 
 ---
 ## DISKS & MOUNTS
