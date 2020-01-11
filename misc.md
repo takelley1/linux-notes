@@ -15,33 +15,6 @@
 | 7	              | miscellaneous                                         |
 | 8	              | system administration commands and daemons            |
 
----
-## MISC
-
-`minute of hour | hour of day | day of month | month # | day of week` = crontab syntax 
-
-if `/sys/firmware/efi exists`, system is UEFI 
-
-`man -k string` search man pages for given string 
-
-#### `shutdown` command
-
-`shutdown -r now` or `reboot`                            = immediately reboot system  
-`shutdown 2 this machine is shutting down in 2 minutes!` = power off system in 2 minutes and send the provided message to all logged-in users  
-`shutdown -r 0:00`                                       = reboot at midnight tonight
-
-#### interestimg lesser-known commands
-
-- `set` 
-- `type`
-- `info`  
-- `watch` 
-- `finger`
-- `sar` 
-- `at` 
-- `read` 
-- `case` 
-- `fuser`
 
 ---
 ## LOGS
@@ -86,5 +59,35 @@ rotate the `/var/log/syslog` file daily and keep 7 copies of the rotated file, l
 `/var/log/httpd`                         = apache server logs
 
 
-[1] https://www.geeksforgeeks.org/linux-man-page-entries-different-types/
+---
+## MISC
 
+`minute of hour | hour of day | day of month | month # | day of week` = crontab syntax 
+
+if `/sys/firmware/efi exists`, system is UEFI 
+
+`man -k string` search man pages for given string 
+
+#### `shutdown` command
+
+`shutdown -r now` or `reboot`                            = immediately reboot system  
+`shutdown 2 this machine is shutting down in 2 minutes!` = power off system in 2 minutes and send the provided message to all logged-in users  
+`shutdown -r 0:00`                                       = reboot at midnight tonight
+
+#### interestimg lesser-known commands
+
+- `set` 
+- `type`
+- `info`  
+- `watch` 
+- `finger`
+- `sar` 
+- `at` 
+- `read` 
+- `case` 
+- `fuser`
+
+---
+#### sources
+
+[1] https://www.geeksforgeeks.org/linux-man-page-entries-different-types/
