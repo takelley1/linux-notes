@@ -1,7 +1,11 @@
 
-## TCP/IP STACK
+## TCP/IP STACK [1,2]
 
 ![tcp/ip-stack](/images/tcp-ip-stack.png)
 
-https://www.tummy.com/articles/networking-basics-how-arp-works/  
-https://www.cubrid.org/blog/understanding-tcp-ip-network-stack
+---
+#### sources
+
+[1] https://www.tummy.com/articles/networking-basics-how-arp-works/  
+[2] https://www.cubrid.org/blog/understanding-tcp-ip-network-stack
+

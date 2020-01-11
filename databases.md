@@ -102,3 +102,4 @@ local   all             @admins,+support                        md5
 # The database column can also use lists and file names:
 local   db1,db2,@demodbs  all                                   md5
 ```
+

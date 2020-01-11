@@ -91,3 +91,4 @@ if `/sys/firmware/efi exists`, system is UEFI
 #### sources
 
 [1] https://www.geeksforgeeks.org/linux-man-page-entries-different-types/
+

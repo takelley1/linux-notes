@@ -64,4 +64,8 @@ write mode.
 - snapshots are not backups because if the original disk's data is lost, the delta .vmdk becomes useless as it only contains the changes 
 to the original data, not the data itself 
 
+---
+#### sources
+
 [1] https://www.embedded.com/flash-101-nand-flash-vs-nor-flash/
+

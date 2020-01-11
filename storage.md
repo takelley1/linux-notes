@@ -200,3 +200,4 @@ ex: `10.0.0.10:/data  /mnt/data  nfs  defaults  0 0`
 [2] https://clearlinux.org/news-blogs/linux-os-data-compression-options-comparing-behavior  
 [3] https://calomel.org/badblocks_wipe.html  
 [4] https://unix.stackexchange.com/questions/467385/should-i-use-xfs-or-ext4
+

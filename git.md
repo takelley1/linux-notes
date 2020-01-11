@@ -1,6 +1,5 @@
 
-## GIT
-[1]
+## GIT [1]
 
 #### setup
 configuring user information used across all local repositories  
@@ -82,5 +81,8 @@ temporarily store modified, tracked files in order to change branches
 `git stash list` = list stack-order of stashed file changes  
 `git stash pop`  = write working from top of stash stack  
 `git stash drop` = discard the changes from top of stash stack
+
+---
+#### sources
 
 [1] https://education.github.com/git-cheat-sheet-education.pdf

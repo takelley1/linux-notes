@@ -106,4 +106,8 @@ Filters can be stacked via multiple searches, use = to clear all filters
 `lspci` = list pci devices  
 `lsblk` = list bock devices
 
+---
+#### sources
+
 [1] https://www.computerhope.com/unix/signals.htm
+

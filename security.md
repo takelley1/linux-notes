@@ -114,10 +114,11 @@ Dec 16 16:28:22 [hostname] kernel: type=1400 audit(1576531702.010:97659712): avc
 for pid=28583 comm="pidof" path="/usr/bin/su" dev="dm-0" ino=50444389
 scontext=system_u:system_r:keepalived_t:s0 tcontext=system_u:object_r:su_exec_t:s0 tclass=file permissive=0
 ```
-
+---
 #### sources
 
 [1] https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/6/html/security-enhanced_linux/sect-security-enhanced_linux-fixing_problems-allowing_access_audit2allow  
 [2] https://stackoverflow.com/questions/36393922/how-to-decrypt-a-symmetrically-encrypted-openpgp-message-using-php  
 [3] https://www.networkworld.com/article/3293052/encypting-your-files-with-gpg.html  
 [4] https://www.howtogeek.com/427982/how-to-encrypt-and-decrypt-files-with-gpg-on-linux/
+
