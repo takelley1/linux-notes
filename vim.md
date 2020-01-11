@@ -1,6 +1,8 @@
 
 ## VIM
 
+*useful reading on vim*: https://danielmiessler.com/study/vim/ 
+
 #### split-window editing
 
 `:sp` or `:split file`  =  open another file in a split window  
