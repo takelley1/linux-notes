@@ -63,6 +63,11 @@ COW = journaling is superceded by copy-on-write mechanisms
 `mount` = show mounted volumes and their mount locations  
 `mount –o remount,rw /dev/sda1 /mountpoint` = remount drive with read-write permissions 
 
+#### disk testing [3]
+
+`badblocks -b 4096 -c 98304 -p 0 -w -s /dev/hda` = destructively test disk hda for bad data blocks (useful for testing new drive)  
+`bonnie++`
+
 
 ---
 ## LOGICAL VOLUME MANAGEMENT (LVM)
@@ -98,7 +103,6 @@ COW = journaling is superceded by copy-on-write mechanisms
 5. lvextend -l +127999 /dev/centos/var # extend the relevant logical volume by adding free extents
 6. xfs_growfs /var                     # grow the filesystem on the extended logical volume
 ```
-
 
 ---
 ## SAMBA
@@ -166,4 +170,5 @@ ex: `10.0.0.10:/data  /mnt/data  nfs  defaults  0 0`
 #### sources
 
 [1] https://www.tldp.org/LDP/sag/html/filesystems.html  
-[2] https://clearlinux.org/news-blogs/linux-os-data-compression-options-comparing-behavior
+[2] https://clearlinux.org/news-blogs/linux-os-data-compression-options-comparing-behavior  
+[3] https://calomel.org/badblocks_wipe.html
