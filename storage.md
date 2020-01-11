@@ -1,5 +1,71 @@
 
-## LOGICAL VOLUMES (LVM)
+## FILES & FILESYSTEMS
+
+`du -sh /home/alice` = display disk space used by specified directory or file  
+`-s` (*summarize*)   = list total storage used by entire directory and all subdirectories  
+`-h` (*human*)       = use human-readable format for filesizes (ex. `8.7M` instead of `8808`)
+
+`du -d 1 -h /`   = list the sizes of each directory one level beneath the specified directory  
+`-d 1` (*depth*) = recurse at a depth of 1
+
+---
+`mkfs.ext4 /dev/mapper/LV1` or `mkfs -t ext4 /dev/mapper/LV1` = create ext4 filesystem on LV1 logical volume
+
+`e2fsck -f /dev/mapper/LV1 && resize2fs /dev/mapper/LV1` = expand filesystem to fit size of LV1 (must be unmounted)  
+`xfs_growfs /dev/centos/var` = expand mounted xfs filesystem (must be mounted)
+
+`e4degrag /`     = defragment all partitions  
+`fsck /dev/sda2` = check sda2 partition for errors (supported filesystems only)
+
+> NOTE: xfs filesystems cannot be shrunk; use ext4 instead
+
+| filesystems compared [1]     | ext4 | xfs  | btrfs | zfs  | ufs | ntfs | bcachefs | FAT32 | exFAT |
+|------------------------------|------|------|-------|------|-----|------|----------|-------|-------|
+| online growing               | no   | yes  | yes   | yes  | ?   | yes  | ?        | no    | no    |
+| online shrinking             | no   | no   | yes   | no   | no  | yes  | ?        | no    | no    |
+| transparent data compression | no   | no   | yes   | yes  | ?   | yes  | yes      | no    | no    |
+| native encryption            | LUKS | LUKS | yes   | yes  | ?   | yes  | yes      | no    | no    |
+| data deduplication           | no   | no   | yes   | yes  | no  | yes  | yes      | no    | no    |
+| immutable snapshots          | LVM  | LVM  | yes   | yes  | ?   | no   | yes      | no    | no    |
+| data + metadata checksumming | no   | no   | yes   | yes  | no  | no   | yes      | no    | no    |
+| native RAID support          | no   | no   | yes   | yes  | no  | yes  | yes      | no    | no    |
+| journaling support           | yes  | yes  | COW   | COW  | ?   | yes  | COW      | no    | no    |
+| max filesize                 | -    | -    | -     | -    | -   | -    | -        | 4GB   | -     |
+| max filesystem size          | -    | -    | -     | -    | -   | -    | -        | 2TB   | -     |
+
+LUKS = encrypting these filesystems is usually handled through LUKS and/or dm-crypt
+LVM = can provide limited snapshot functionality through LVM
+COW = journaling is superceded by copy-on-write mechanisms
+\-  = maximum theoretical size so large it's effectively irrelevant
+?   = currently unknown and/or no reliable data available
+
+| compression algorithms [2] | gzip | bzip2 | xz | lzip | lzma | zstd |
+
+| archive formats | tar | zip | 7z | tar.gz |
+|                 |     |     |    |        |
+
+
+---
+## DISKS & MOUNTS
+
+`lsblk -f` = show disk tree layout, including logical volumes  
+      `-f` = show filysystem type
+  
+`df -Th` = show space used by mounted drives  
+    `-h` = make output human-readable  
+    `-T` = show filesystem type
+
+`blkid` = show partition UUIDs
+
+`fdisk -l`       = show drives and their partition tables  
+`fdisk /dev/sdb` = edit the partition table of sdb
+
+`mount` = show mounted volumes and their mount locations  
+`mount –o remount,rw /dev/sda1 /mountpoint` = remount drive with read-write permissions 
+
+
+---
+## LOGICAL VOLUME MANAGEMENT (LVM)
 
 #### physical volumes (PV)
 
@@ -22,74 +88,17 @@
 `vgextend vgroup /dev/sdb1`      = add PV sdb1 to “vgroup” volume group 
 
 ---
-#### extend volume with LVM
+#### extending /var xfs filesystem with LVM
 
 ```bash
-1. fdisk /dev/sdb # create partition from new disk
-2. pvcreate /dev/sdb1 # create a physical volume from the new partition
-3. vgextend vgname /dev/sdb1 # add the new physical volume to the relevant volume group
-4. pvdisplay # show the number of new extents available
+1. fdisk /dev/sdb                      # create partition from new disk
+2. pvcreate /dev/sdb1                  # create a physical volume from the new partition
+3. vgextend vgname /dev/sdb1           # add the new physical volume to the relevant volume group
+4. pvdisplay                           # show the number of new extents available
 5. lvextend -l +127999 /dev/centos/var # extend the relevant logical volume by adding free extents
-6. xfs_growfs /var # grow the filesystem on the extended logical volume
+6. xfs_growfs /var                     # grow the filesystem on the extended logical volume
 ```
 
----
-## FILES & FILESYSTEMS
-
-`du -sh /home/alice` = display disk space used by specified directory or file  
-`-s` (*summarize*)   = list total storage used by entire directory and all subdirectories  
-`-h` (*human*)       = use human-readable format for filesizes (ex. `8.7M` instead of `8808`)
-
-`du -d 1 -h /`   = list the sizes of each directory one level beneath the specified directory  
-`-d 1` (*depth*) = recurse at a depth of 1
-
----
-`mkfs.ext4 /dev/mapper/LV1` or `mkfs -t ext4 /dev/mapper/LV1` = create ext4 filesystem on LV1 logical volume
-
-`e2fsck -f /dev/mapper/LV1 && resize2fs /dev/mapper/LV1` = expand filesystem to fit size of LV1 (must be unmounted)  
-`xfs_growfs /dev/centos/var` = expand mounted xfs filesystem (must be mounted)
-
-`e4degrag /`     = defragment all partitions  
-`fsck /dev/sda2` = check sda2 partition for errors (ext4 only)
-
-> NOTE: xfs filesystems cannot be shrunk; use ext4 instead
-
-| filesystems compared         | ext4 | xfs | btrfs | zfs  | ufs | ntfs | bcachefs | FAT32 | exFAT |
-|------------------------------|------|-----|-------|------|-----|------|----------|-------|-------|
-| online growing               | no   | yes | yes   | yes  |     | yes  |          | no    | no    |
-| online shrinking             | no   | no  | yes   | no   | no  | yes  |          | no    | no    |
-| transparent compression      | no   | no  | yes   | yes  |     | yes  | yes      | no    | no    |
-| transparent encryption       | no   | no  | yes   | yes  |     | yes  | yes      | no    | no    |
-| native deduplication         | no   | no  | yes   | yes  | no  | yes  | yes      | no    | no    |
-| snapshots                    | LVM  | LVM | yes   | yes  |     | no   | yes      | no    | no    |
-| checksumming                 | no   | no  | yes   | yes  | no  | no   | yes      | no    | no    |
-| native RAID                  | no   | no  | yes   | yes  | no  | yes  | yes      | no    | no    |
-| journaling                   | yes  | yes | COW   | COW  |     | yes  | COW      | no    | no    |
-| max filesize                 | -    | -   | -     | -    | -   | -    | -        | 4GB   | -     |
-| max filesystem size          | -    | -   | -     | -    | -   | -    | -        | 2TB   | -     |
-[1]
-
-LVM = can provide limited snapshot functionality through LVM
-COW = copy-on-write (COW) filesystems, so their lack of journaling is not an issue
-\-  = have maximum theoretical sizes so large they're effectively irrelevant
-
----
-## DISKS & MOUNTS
-
-`lsblk -f` = show disk tree layout, including logical volumes  
-      `-f` = show filysystem type
-  
-`df -Th` = show space used by mounted drives  
-    `-h` = make output human-readable  
-    `-T` = show filesystem type
-
-`blkid` = show partition UUIDs
-
-`fdisk -l`       = show drives and their partition tables  
-`fdisk /dev/sdb` = edit the partition table of sdb
-
-`mount` = show mounted volumes and their mount locations  
-`mount –o remount,rw /dev/sda1 /mountpoint` = remount drive with read-write permissions 
 
 ---
 ## SAMBA
@@ -120,6 +129,7 @@ ex: `/mirror 192.168.1.1/24(rw)`
 3. create entry in `/etc/fstab`  
 `[server ip or fqdn]:/[directory being shared] /[local mount location] nfs defaults 0 0`  
 ex: `10.0.0.10:/data  /mnt/data  nfs  defaults  0 0`
+
 
 ---
 ## MISC
@@ -152,4 +162,8 @@ ex: `10.0.0.10:/data  /mnt/data  nfs  defaults  0 0`
 8. run `grub-mkconfig -o /boot/grub/grub.cfg` or `update-grub` (if `update-grub` was installed)
 9. reboot. If you're dropped into an emergency shell, try regenerating grub
 
-[1] https://www.tldp.org/LDP/sag/html/filesystems.html
+---
+#### sources
+
+[1] https://www.tldp.org/LDP/sag/html/filesystems.html  
+[2] https://clearlinux.org/news-blogs/linux-os-data-compression-options-comparing-behavior
