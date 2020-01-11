@@ -2,16 +2,16 @@
 ## FIREWALLD
 
 allow https traffic
-  ```
-  firewall-cmd --zone=public –-permanent --add-service=https
-  firewall-cmd --reload
-  ```
+```
+firewall-cmd --zone=public –-permanent --add-service=https
+firewall-cmd --reload
+```
 
 disallow port 123 tdp traffic
-  ```
-  firewall-cmd --zone=public –-permanent --remove-port 123/tcp
-  firewall-cmd --reload
-  ```
+```
+firewall-cmd --zone=public –-permanent --remove-port 123/tcp
+firewall-cmd --reload
+```
 
 #### `firewall-cmd` command
 
@@ -29,13 +29,13 @@ disallow port 123 tdp traffic
 
 add new rule to allow port 80 traffic both to and from host
 
-  ```bash
-  iptables -A INPUT -i eth0 –p tcp --dport 80 –m state --state NEW,ESTABLISHED –j ACCEPT
-  iptables –A OUTPUT -o eth0 –p tcp --dport 80 –m state --state NEW,ESTABLISHED –j ACCEPT
+```bash
+iptables -A INPUT -i eth0 –p tcp --dport 80 –m state --state NEW,ESTABLISHED –j ACCEPT
+iptables –A OUTPUT -o eth0 –p tcp --dport 80 –m state --state NEW,ESTABLISHED –j ACCEPT
 
-  iptables –A INPUT -i eth0 –p tcp --sport 80 –m state --state NEW,ESTABLISHED –j ACCEPT 
-  iptables –A OUTPUT -o eth0 –p tcp --sport 80 –m state --state NEW,ESTABLISHED –j ACCEPT
-  ```
+iptables –A INPUT -i eth0 –p tcp --sport 80 –m state --state NEW,ESTABLISHED –j ACCEPT 
+iptables –A OUTPUT -o eth0 –p tcp --sport 80 –m state --state NEW,ESTABLISHED –j ACCEPT
+```
 
 
 ---
@@ -74,27 +74,27 @@ add new rule to allow port 80 traffic both to and from host
 
 `less /etc/services` = show ports being used by specific services
 
-`netstat -plant` or `nmap localhost` or `ss -plunt` = view all open ports  
-                                               `-p` = associated process PIDs  
-                                               `-l` = only listening ports  
-                                               `-n` = numerical ip addresses  
-                                               `-t` = tcp ports  
-                                               `-u` = udp ports
+`netstat -plant` or `ss -plunt` = view all open ports  
+                           `-p` = associated process PIDs  
+                           `-l` = only listening ports  
+                           `-n` = numerical ip addresses  
+                           `-t` = tcp ports  
+                           `-u` = udp ports
 
-#### port scanning
+#### scanning [3]
 
-`nmap -p 22 192.168.1.1-254` = scan ip range for every host with port 22 open  
-`nmap 192.168.1.20-40`       = scan all ports on hosts within range
+`nmap -p 22 192.168.1.0/24`      = scan for every host on subnet with port 22 open  
+`nmap -p 1-1000 192.168.1.20-40` = scan tcp ports 1-1000 on hosts within range 
+`nmap -sU localhost`             = scan localhost for open udp ports
+
+`nmap -sP 10.0.0.0/8 = attempt to ping all hosts on the 10.0.0.0/8 subnet and list responses
 
 
 ---
 ## ROUTES
 
-`route add default gw 192.168.1.1 eth0` = manually add default gateway
-
 `ip r` or `routel` = view routing table  
-
-`dig domain.com` or `nslookup domain.com` = perform dns lookup on domain  
+`route add default gw 192.168.1.1 eth0` = manually add default gateway
 
 `traceroute domain.com` = print the route that packets take to a given destination
 
@@ -106,7 +106,8 @@ add new rule to allow port 80 traffic both to and from host
 `iftop`
 `ifstat`
 
----
+`dig domain.com` or `nslookup domain.com` or `host domain.com` = perform dns lookup on domain  
+
 #### tcpdump [2]
 
 `tcpdump -tvv` = dump all packets on all interfaces
@@ -136,7 +137,7 @@ add new rule to allow port 80 traffic both to and from host
 
 show timekeeping stats [1]
 ```
-[user@test]#: chronyc tracking
+[root@host]#: chronyc tracking
 
 Reference ID    : 9B1D9843 (hostname.domain)           # source ntp server
 Stratum         : 4                                    # number of ntp server hops to a root ntp server
@@ -186,6 +187,7 @@ yourfriend@gmail.com              # this is the 'to' field of the email
 `grep -o -E 'from=<.*>' /var/log/maillog | sort -u` = filter sending addresses from maillog
 
 #### postfix whitelists
+
 1. Add line to `/etc/postfix/main.cf`    
    `mynetworks = /postfix-whitelist`
 2. Populate `/postfix-whitelist` with IPs
@@ -200,6 +202,7 @@ yourfriend@gmail.com              # this is the 'to' field of the email
 #!/bin/bash
 
 # spacewalk client setup script
+
 # for rhel/centos 7
 
 # whitelist spacewalk server
@@ -238,5 +241,6 @@ rhn-channel --list
 #### sources
 
 [1] https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/8/html-single/configuring_basic_system_settings/index#migrating-to-chrony_using-chrony-to-configure-ntp  
-[2] https://danielmiessler.com/study/tcpdump/
+[2] https://danielmiessler.com/study/tcpdump/  
+[3] https://danielmiessler.com/study/nmap/
 
