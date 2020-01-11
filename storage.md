@@ -19,7 +19,11 @@
 
 > NOTE: xfs filesystems cannot be shrunk; use ext4 instead
 
-| filesystems compared [1]     | ext4 | xfs  | btrfs | zfs  | ufs | ntfs | bcachefs | FAT32 | exFAT |
+*ext4 vs xfs* [4]
+-ext4 is better with lots of smaller files and metadata-intensive tasks
+-xfs is better with very large files (>30GB) 
+
+| filesystem features [1]      | ext4 | xfs  | btrfs | zfs  | ufs | ntfs | bcachefs | FAT32 | exFAT |
 |------------------------------|------|------|-------|------|-----|------|----------|-------|-------|
 | online growing               | no   | yes  | yes   | yes  | ?   | yes  | ?        | no    | no    |
 | online shrinking             | no   | no   | yes   | no   | no  | yes  | ?        | no    | no    |
@@ -43,6 +47,8 @@ COW = journaling is superceded by copy-on-write mechanisms
 
 | archive formats | tar | zip | 7z | tar.gz |
 |                 |     |     |    |        |
+
+*further reading on compression algorithms compared*: https://quixdb.github.io/squash-benchmark/#results
 
 
 ---
@@ -171,4 +177,5 @@ ex: `10.0.0.10:/data  /mnt/data  nfs  defaults  0 0`
 
 [1] https://www.tldp.org/LDP/sag/html/filesystems.html  
 [2] https://clearlinux.org/news-blogs/linux-os-data-compression-options-comparing-behavior  
-[3] https://calomel.org/badblocks_wipe.html
+[3] https://calomel.org/badblocks_wipe.html  
+[4] https://unix.stackexchange.com/questions/467385/should-i-use-xfs-or-ext4
