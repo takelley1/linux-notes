@@ -21,6 +21,7 @@ disallow port 123 tdp traffic
 `--state` = check if firewalld is running  
 `--zone=private --add-interface=ens32` = attach zone to network interface
 
+
 ---
 ## IPTABLES
 
@@ -36,16 +37,19 @@ add new rule to allow port 80 traffic both to and from host
   iptables –A OUTPUT -o eth0 –p tcp --sport 80 –m state --state NEW,ESTABLISHED –j ACCEPT
   ```
 
+
 ---
-## `ip` command  
+## `ip` COMMAND  
 
 #### interfaces
+
 `ip a add 192.168.1.200/24 dev eth0` = add ip to device  
 `ip a del 10.0.0.10/24 dev enp12s0`  = remove ip from device
 
 `ip link set dev eth1 up` = enable/disable interface  
 
 #### config
+
 `ip n show` = show neighbor/arp cache  
 `ip r`      = show routing table  
 `ip a`      = show network interfaces and IP addresses
@@ -53,45 +57,71 @@ add new rule to allow port 80 traffic both to and from host
 `/etc/sysconfig/network` = see default gateway  
 `/etc/sysconfig/network-scripts/ifcfg-[interface]` = networking device interface options (Fedora-based systems)
 
+
 ---
 ## PORTS 
 
 #### remote ports
-`nmap -p [port#] [ip]` or `telnet [ip] [port#]` = ping specific port on remote host  
-`nc -zvu [ip] [port#]` = ping specific remote udp port  
+
+`nmap -p [port#] [ip]` or `telnet [ip] [port#]` = ping specific tcp port on host
+
+`nc -zvu [ip] [port#]` = ping specific udp port on host  
                   `-z` = zero IO mode, show only if connection is up/down  
                   `-v` = verbose  
                   `-u` = query udp instead of tcp
 
 #### local ports
-`less /etc/services` = show ports being used by specific services  
-`nmap localhost` or `ss -tulpn` or `netstat -plant` = view all open ports  
+
+`less /etc/services` = show ports being used by specific services
+
+`netstat -plant` or `nmap localhost` or `ss -plunt` = view all open ports  
                                                `-p` = associated process PIDs  
                                                `-l` = only listening ports  
                                                `-n` = numerical ip addresses  
                                                `-t` = tcp ports  
                                                `-u` = udp ports
 
-#### network scanning
-`nmap -p 22 192.168.1.1-254` = scan ip range for every box with port 22 open  
+#### port scanning
+
+`nmap -p 22 192.168.1.1-254` = scan ip range for every host with port 22 open  
 `nmap 192.168.1.20-40`       = scan all ports on hosts within range
+
 
 ---
 ## ROUTES
 
-`route add default gw 192.168.1.1 eth0` = add default gateway
+`route add default gw 192.168.1.1 eth0` = manually add default gateway
 
 `ip r` or `routel` = view routing table  
+
 `dig domain.com` or `nslookup domain.com` = perform dns lookup on domain  
-`traceroute domain.com` = print the route packets take to a given destination
+
+`traceroute domain.com` = print the route that packets take to a given destination
+
 
 ---
-## MONITORING
+## MONITORING & TROUBLESHOOTING
 
-`iperf`
+`iperf` and `iperf3`
 `iftop`
 `ifstat`
-`tcpdump`
+
+---
+#### tcpdump [2]
+
+`tcpdump -tvv` = dump all packets on all interfaces
+ `-v` or `-vv` = extra packet information
+	  `-t` = human-readable timestamps
+
+`tcpdump host 1.1.1.1'     = packets going to or from 1.1.1.1
+`tcpdump src 10.0.0.5'     = packets coming from 10.0.0.5
+`tcpdump dst 192.168.1.10' = packets going to 192.168.1.10
+
+`tcpdump -v port 3389'  = packets on port 3389
+`tcpdump src port 1025' = packets coming from port 1025'
+
+`tcpdump -vvt src 10.0.0.5 and dst port 22` = packets coming from 10.0.0.5 to port 22
+
 
 ---
 ## NTP
@@ -103,6 +133,7 @@ add new rule to allow port 80 traffic both to and from host
 `date`                   = view current time
 
 #### chrony
+
 show timekeeping stats [1]
 ```
 [user@test]#: chronyc tracking
@@ -128,6 +159,7 @@ other commands
 `systemctl status chronyd`   
 `chronyc activity`   
 
+
 ---
 ## EMAIL
 
@@ -149,6 +181,7 @@ yourfriend@gmail.com              # this is the 'to' field of the email
 ```
 
 #### filtering
+
 `grep -h -o '[0-9]\{1,3\}\.[0-9]\{1,3\}\.[0-9]\{1,3\}\.[0-9]\{1,3\}' /var/log/maillog* | sort -u` = filter IPs from maillog  
 `grep -o -E 'from=<.*>' /var/log/maillog | sort -u` = filter sending addresses from maillog
 
@@ -159,8 +192,9 @@ yourfriend@gmail.com              # this is the 'to' field of the email
 3. Run `postmap /postfix-whitelist && systemctl restart postfix`
 4. Now only the IPs in `/postfix-whitelist` will be permitted to use the postfix server as an smtp relay
 
+
 ---
-## spacewalk / red hat satellite
+## SPACEWALK / RED HAT SATELLITE
 
 ```
 #!/bin/bash
@@ -200,4 +234,8 @@ systemctl enable osad && systemctl start osad
 rhn-channel --list
 ```
 
-[1] https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/8/html-single/configuring_basic_system_settings/index#migrating-to-chrony_using-chrony-to-configure-ntp
+---
+#### sources
+
+[1] https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/8/html-single/configuring_basic_system_settings/index#migrating-to-chrony_using-chrony-to-configure-ntp  
+[2] https://danielmiessler.com/study/tcpdump/
