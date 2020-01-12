@@ -1,5 +1,6 @@
 
 ### Desktop Environment
+
 implements the desktop metaphor and bundles together a variety of components, provides its own custom window manager [1]
 - KDE Plasma (default in Kubuntu)
 - GNOME (default in Ubuntu, Fedora)
@@ -10,6 +11,7 @@ implements the desktop metaphor and bundles together a variety of components, pr
 
 ---
 ### Display Manager
+
 manages the login screen [2]
 - Console
   - CDM
@@ -23,6 +25,7 @@ manages the login screen [2]
 
 ---
 ### Window Manager
+
 controls the placement of windows within the desktop environment, typically an X server client [3]
 - Tiling: windows can't overlap
   - i3
@@ -38,6 +41,7 @@ controls the placement of windows within the desktop environment, typically an X
 
 ---
 ### Display server / Window System
+
 system-level interface between desktop GUI and hardware
 - X / X11 Window System implementations
   - X.Org Server / Xorg (most common display server) [4]

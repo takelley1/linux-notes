@@ -2,6 +2,7 @@
 **A proxy acts on behalf of the client(s), while a reverse proxy acts on behalf of the server(s)** [1]**.**
 
 ## REVERSE PROXY
+
 also known as a *gateway server*
 
 - Used for security, high-availability, load-balancing, and centralized authentication/authorization. [4]

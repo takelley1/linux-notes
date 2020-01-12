@@ -2,6 +2,7 @@
 ## GIT [1]
 
 #### setup
+
 configuring user information used across all local repositories  
 `git config --global user.name “[firstname lastname]”` = set a name that is identifiable for credit when review version history  
 `git config --global user.email “[valid-email]”`       = set an email address that will be associated with each history marker  
@@ -9,12 +10,14 @@ configuring user information used across all local repositories
 
 ---
 #### init
+
 configuring user information, initializing and cloning repositories  
 `git init`        = initialize an existing directory as a git repository  
 `git clone [url]` = retrieve an entire repository from a hosted location via url
 
 ---
 #### stage & snapshot
+
 working with snapshots and the git staging area  
 `git status`                = show modified files in working directory, staged for your next commit  
 `git add [file]`            = add a file as it looks now to your next commit (stage)  
@@ -25,6 +28,7 @@ working with snapshots and the git staging area
 
 ---
 #### branch & merge
+
 isolating work in branches, changing context, and integrating changes  
 `git branch`               = list your branches. a `*` will appear next to the currently active branch  
 `git branch [branch-name]` = create a new branch at the current commit  
@@ -34,6 +38,7 @@ isolating work in branches, changing context, and integrating changes
 
 ---
 #### inspect & compare
+
 examining logs, diffs and object information  
 `git log`                    = show the commit history for the currently active branch  
 `git log branchB..branchA`   = show the commits on branchA that are not on branchB  
@@ -43,6 +48,7 @@ examining logs, diffs and object information
 
 ---
 #### tracking path changes
+
 versioning file removes and path changes  
 `git rm [file]`                    = delete the file from project and stage the removal for commit  
 `git mv [current-path] [new-path]` = change an existing file path and stage the move  
@@ -50,6 +56,7 @@ versioning file removes and path changes
 
 ---
 #### ignoring patterns
+
 preventing unintentional staging or commiting of files
 ```
 logs/
@@ -61,6 +68,7 @@ save a file with desired paterns as .gitignore with either direct string matches
 
 ---
 #### share & update
+
 retrieving updates from another repository and updating local repos  
 `git remote add [alias] [url]` = add a git url as an alias  
 `git fetch [alias]`            = fetch down all the branches from that git remote  
@@ -70,12 +78,14 @@ retrieving updates from another repository and updating local repos
 
 ---
 #### rewrite history
+
 rewriting branches, updating commits and clearing history  
 `git rebase [branch]`       = apply any commits of current branch ahead of specified one  
 `git reset --hard [commit]` = clear staging area, rewrite working tree from specified commit
 
 ---
 #### temporary commits
+
 temporarily store modified, tracked files in order to change branches  
 `git stash`      = save modified and staged changes  
 `git stash list` = list stack-order of stashed file changes  
