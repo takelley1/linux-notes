@@ -1,50 +1,4 @@
 
-## FILES & FILESYSTEMS
-
-`du -sh /home/alice` = display disk space used by specified directory or file  
-`-s` (*summarize*)   = list total storage used by entire directory and all subdirectories  
-`-h` (*human*)       = use human-readable format for filesizes (ex. `8.7M` instead of `8808`)
-
-`du -d 1 -h /`   = list the sizes of each directory one level beneath the specified directory  
-`-d 1` (*depth*) = recurse at a depth of 1
-
----
-`mkfs.ext4 /dev/mapper/LV1` or `mkfs -t ext4 /dev/mapper/LV1` = create ext4 filesystem on LV1 logical volume
-
-`e2fsck -f /dev/mapper/LV1 && resize2fs /dev/mapper/LV1` = expand filesystem to fit size of LV1 (must be unmounted)  
-`xfs_growfs /dev/centos/var` = expand mounted xfs filesystem (must be mounted)
-
-`e4degrag /`     = defragment all partitions  
-`fsck /dev/sda2` = check sda2 partition for errors (supported filesystems only)
-
-> NOTE: xfs filesystems cannot be shrunk; use ext4 instead
-
-*ext4 vs xfs* [4]
--ext4 is better with lots of smaller files and metadata-intensive tasks
--xfs is better with very large files (>30GB) 
-
-| filesystem features [1]      | ext4 | xfs  | btrfs | zfs  | ufs | ntfs | bcachefs | FAT32 | exFAT |
-|------------------------------|------|------|-------|------|-----|------|----------|-------|-------|
-| online growing               | no   | yes  | yes   | yes  | ?   | yes  | ?        | no    | no    |
-| online shrinking             | no   | no   | yes   | no   | no  | yes  | ?        | no    | no    |
-| transparent data compression | no   | no   | yes   | yes  | ?   | yes  | yes      | no    | no    |
-| native encryption            | LUKS | LUKS | yes   | yes  | ?   | yes  | yes      | no    | no    |
-| data deduplication           | no   | no   | yes   | yes  | no  | yes  | yes      | no    | no    |
-| immutable snapshots          | LVM  | LVM  | yes   | yes  | ?   | no   | yes      | no    | no    |
-| data + metadata checksumming | no   | no   | yes   | yes  | no  | no   | yes      | no    | no    |
-| native RAID support          | no   | no   | yes   | yes  | no  | yes  | yes      | no    | no    |
-| journaling support           | yes  | yes  | COW   | COW  | ?   | yes  | COW      | no    | no    |
-| max filesize                 | -    | -    | -     | -    | -   | -    | -        | 4GB   | -     |
-| max filesystem size          | -    | -    | -     | -    | -   | -    | -        | 2TB   | -     |
-
-LUKS = encrypting these filesystems is usually handled through LUKS and/or dm-crypt
-LVM = can provide limited snapshot functionality through LVM
-COW = journaling is superceded by copy-on-write mechanisms
-\-  = maximum theoretical size so large it's effectively irrelevant
-?   = currently unknown and/or no reliable data available
-
-
----
 ## ARCHIVES
 
 | compression algorithms [2] | gzip | bzip2 | xz | lzip | lzma | zstd |
@@ -92,8 +46,92 @@ COW = journaling is superceded by copy-on-write mechanisms
 
 #### disk testing [3]
 
-`badblocks -b 4096 -c 98304 -p 0 -w -s /dev/hda` = destructively test disk hda for bad data blocks (useful for testing new drive)  
+`badblocks -b 4096 -s -v -w /dev/sdb` = destructively test disk hda for bad data blocks (useful for testing new drive)  
 `bonnie++`
+
+#### SMART
+
+*SMART tests*
+
+`smartctl -t long /dev/sdc` = start a long HDD self test - after the test is done (could take 12+ hours), check the results with `smartctl -a /dev/sdc`
+
+    Pending sector reallocations (smartctl -a /dev/ | grep Current_Pending_Sector)
+    Reallocated sector cont (smartctl -a /dev/ | grep Reallocated_Sector_Ct)
+    UDMA CRC errors (smartctl -a /dev/ | grep UDMA_CRC_Error_Count)
+    HDD and SSD write latency consistency (diskinfo -wS ) Unformatted drives only!
+    HDD and SSD hours (smartctl -a /dev/ | grep Power_On_Hours)
+    NVMe percentage used (nvmecontrol logpage -p 2 nvme0 | grep “Percentage used”)
+u
+
+
+*SMART field names*
+
+`Normalized value` = commonly referred to as just "value". This is a most universal measurement, on the scale from 0 (bad) to some maximum (good) value. Maximum values are typically 100, 200 or 253. Rule of thumb is: high values are good, low values are bad.
+
+`Threshold` = the minimum normalized value limit for the attribute. If the normalized value falls below the threshold, the disk is considered defective and should be replaced under warranty. This situation is called "T.E.C." (Threshold Exceeded Condition).
+
+`Raw value` = the value of the attribute as it is tracked by the device, before any normalization takes place. Some raw numbers provide valuable insight when properly interpreted. These cases will be discussed later on. Raw values are typically listed in hexadecimal numbers.
+
+| SMART attributes [5]                                                      |                                                                            | 
+|---------------------------------------------------------------------------|----------------------------------------------------------------------------|
+| Reallocated sectors count                                                 | How many defective sectors were discovered on drive and remapped using a spare sectors pool. Low values in absence of other fault indications point to a disk surface problem. Raw value indicates the exact number of such sectors. |
+| Current pending sectors count                                             | How many suspected defective sectors are pending "investigation". These will not necessarily be remapped. In fact, such sectors my be not defective at all (e.g. if some transient condition prevented reading of the sector, it will be marked "pending") - they will be then re-tested by the device off-line scan1 procedure and returned to the pool of serviceable sectors. Raw value indicates the exact number of such sectors. |
+| Off-line uncorrectable sectors count                                      | Similar to "Reallocated sectors count". Indicates how many defective sectors were found during the off-line scan1. |
+| Read error rate, read error retry rate, write error rate, seek error rate | Rate at which specified events (errors) occur. Lower value indicates more events (errors). Retries are not necessarily indicate a persistent problem, but one should proceed with caution if any of these attributes is degraded. |
+| Recalibration retries                                                     | How often the drive is unable to recalibrate at the first attempt. Raw value may show the exact number of recalibration events (at least with some vendors) but this should be taken with a grain of salt. |
+| Spin up time                                                              | Low value indicates that a drive takes longer than expected to spin up to its rated speed. Might indicate either a controller or a spindle bearing problem |
+| Spin retry count                                                          | Spin retry event is logged each time the drive was unable to spin its platters up to the rated rotation speed in the due time. Spin-up attempt was aborted and retried. This typically indicates severe controller or bearing problem, but may be sometimes caused by power supply problems. |
+| Drive start/stop count, Power off/retract cycle count                     | Estimation of the drive wear. Vendor estimates the supposed device lifetime and the number of cycles. The value for these attributes is then computed based on this estimation. The T.E.C. condition with one of these attributes does not necessarily indicate a drive failure, but rather suggests that a drive should be considered unreliable due to the wear and tear. Raw values are typically just the count of events. |
+| Power on hours count, Head flying hours count                             | Normalized values are computed similar to the above. Despite what the name suggests, the raw value of the attribute is stored using all sorts of measurement units (hours, half-hours, or ten-minute intervals to name a few) depending on the manufacturer of the device. |
+| Temperature                                                               | Device temperature, if the appropriate sensor is fitted. Lowest byte of the raw value contains the exact temperature value (Celsius degrees). |
+| Ultra DMA CRC error rate                                                  | Low value of this attribute typically indicates that something is wrong with the connectors and/or cables. Disk-to-host transfers are protected by CRC error detection code when Ultra-DMA 66 or 100 is used. So if the data gets garbled between the disk and the host machine, the receiving controller senses this and the retransmission is initiated. Such a situation is called "UDMA CRC error". Once the problem is rectified (typically by replacing a cable), the attribute value returns to the normal levels pretty quick. |
+| G-sense error rate                                                        | Indicates if the errors are occurring attributed to the drive shocking (either due to the environmental factors or due to improper installation). The hard drive must be fitted with the appropriate sensor to get information about the G-loads. This attribute is mainly limited to the notebook (2.5") drives. Once the operation conditions are corrected, the attribute value will  return to normal. |
+
+
+---
+## FILES & FILESYSTEMS
+
+`du -sh /home/alice` = display disk space used by specified directory or file  
+`-s` (*summarize*)   = list total storage used by entire directory and all subdirectories  
+`-h` (*human*)       = use human-readable format for filesizes (ex. `8.7M` instead of `8808`)
+
+`du -d 1 -h /`   = list the sizes of each directory one level beneath the specified directory  
+`-d 1` (*depth*) = recurse at a depth of 1
+
+---
+`mkfs.ext4 /dev/mapper/LV1` or `mkfs -t ext4 /dev/mapper/LV1` = create ext4 filesystem on LV1 logical volume
+
+`e2fsck -f /dev/mapper/LV1 && resize2fs /dev/mapper/LV1` = expand filesystem to fit size of LV1 (must be unmounted)  
+`xfs_growfs /dev/centos/var` = expand mounted xfs filesystem (must be mounted)
+
+`e4degrag /`     = defragment all partitions  
+`fsck /dev/sda2` = check sda2 partition for errors (supported filesystems only)
+
+> NOTE: xfs filesystems cannot be shrunk; use ext4 instead
+
+*ext4 vs xfs* [4]
+-ext4 is better with lots of smaller files and metadata-intensive tasks
+-xfs is better with very large files (>30GB) 
+
+| filesystem features [1]      | ext4 | xfs  | btrfs | zfs  | ufs | ntfs | bcachefs | FAT32 | exFAT |
+|------------------------------|------|------|-------|------|-----|------|----------|-------|-------|
+| online growing               | no   | yes  | yes   | yes  | ?   | yes  | ?        | no    | no    |
+| online shrinking             | no   | no   | yes   | no   | no  | yes  | ?        | no    | no    |
+| transparent data compression | no   | no   | yes   | yes  | ?   | yes  | yes      | no    | no    |
+| native encryption            | LUKS | LUKS | yes   | yes  | ?   | yes  | yes      | no    | no    |
+| data deduplication           | no   | no   | yes   | yes  | no  | yes  | yes      | no    | no    |
+| immutable snapshots          | LVM  | LVM  | yes   | yes  | ?   | no   | yes      | no    | no    |
+| data + metadata checksumming | no   | no   | yes   | yes  | no  | no   | yes      | no    | no    |
+| native RAID support          | no   | no   | yes   | yes  | no  | yes  | yes      | no    | no    |
+| journaling support           | yes  | yes  | COW   | COW  | ?   | yes  | COW      | no    | no    |
+| max filesize                 | -    | -    | -     | -    | -   | -    | -        | 4GB   | -     |
+| max filesystem size          | -    | -    | -     | -    | -   | -    | -        | 2TB   | -     |
+
+LUKS = encrypting these filesystems is usually handled through LUKS and/or dm-crypt
+LVM = can provide limited snapshot functionality through LVM
+COW = journaling is superceded by copy-on-write mechanisms
+\-  = maximum theoretical size so large it's effectively irrelevant
+?   = currently unknown and/or no reliable data available
 
 
 ---
@@ -200,4 +238,5 @@ ex: `10.0.0.10:/data  /mnt/data  nfs  defaults  0 0`
 [2] https://clearlinux.org/news-blogs/linux-os-data-compression-options-comparing-behavior  
 [3] https://calomel.org/badblocks_wipe.html  
 [4] https://unix.stackexchange.com/questions/467385/should-i-use-xfs-or-ext4
+[5] https://www.z-a-recovery.com/manual/smart.aspx
 
