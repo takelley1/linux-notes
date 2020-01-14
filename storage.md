@@ -29,6 +29,8 @@
 ---
 ## DISKS & MOUNTS
 
+`partprobe` = scan for new disks
+
 `lsblk -f` = show disk tree layout, including logical volumes  
       `-f` = show filysystem type
   
