@@ -1,7 +1,7 @@
 
 ## ANSIBLE 
 
-- `ansible-playbook /path/to/playbook -kK –f 100` = run playbook
+`ansible-playbook /path/to/playbook -kK –f 100` = run playbook
 
 run ad-hoc command as root on target box
 `ansible 192.168.1.1 -a "yum update" -u akelley -k –b –-become-user root –K –-become-method su -f 10`
@@ -18,6 +18,12 @@ run ad-hoc command as root on target box
 `ansible-lint ./playbook.yml`                    = check best-practices
 
 
+---
+## GRAYLOG
+
+`curl -XPUT -H "Content-Type: application/json"  https://localhost:9200/_all/_settings -d '{"index.blocks.read_only_allow_delete": null}'` = Change Graylog to RW mode from RO mode
+
+---
 ## OPENSCAP  
 
 run scap scan
@@ -50,6 +56,7 @@ run scap scan
 ```
 
 
+---
 ## LESS 
 
 `SPACE` = next page  
