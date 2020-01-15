@@ -6,83 +6,94 @@
 #### split-window editing
 
 `:sp` or `:split file`  =  open another file in a split window  
-`:vsplit file`          =  vertical split
+`:vsplit file`          =  vertical split  
 
-`CTRL-w k`              =  move cursor up a window  
-`CTRL-w j`              =  move cursor down a window  
-`CTRL-w CTRL-w`         =  move cursor to another window (cycle)
+`CTRL-w k`              =  switch to upper window  
+`CTRL-w j`              =  switch to lower window  
+`CTRL-w CTRL-w`         =  switch to another window (cycle)  
 
-`CTFL-w =`              =  make all equal size  
-`10 CTRL-w+`            =  increase window size by 10 lines
+`CTFL-w =`              =  make all windows equal size  
+`10 CTRL-w+`            =  increase window size by 10 lines  
+`:resize`               =  make window full size  
 
 `:hide`                 =  close current window  
-`:only`                 =  keep only this window open
+`:only`                 =  keep only this window open  
 
 ---
 #### general
 
+`:help`        = get help  
+`:help usr_01` = show user manual  
+
 `v`       = enter visual mode  
-`CTRL-v`  = enter visual block mode
+`CTRL-v`  = enter visual block mode  
 
 `u`       = undo  
-`CTRL-r`  = redo
-
-`CTRL-n`  = keyword completion
+`CTRL-r`  = redo   
+`CTRL-n`  = keyword completion  
 
 `qx`      = record macro bound to `x`  
 `q`       = stop recording macro  
-`100@x`   = play macro bound to `x` 100 times
+`100@x`   = play macro bound to `x` 100 times  
 
-`u`           = convert to lowercase (visual mode)  
-`U` (*upper*) = convert to uppercase (visual mode)
+`u`           = convert selection to lowercase (visual mode)  
+`U` (*upper*) = convert selection to uppercase (visual mode)  
 
-`.`           = repeat last action
+`.`           = repeat last action  
 
 ---  
 #### indenting 
 
-`:set shiftwidth=1` = set indents to 1 space wide
+`:set shiftwidth=1` = set indents to 1 space wide  
 
 press `v` and highlight lines of text using the standard navigation keys  
-type `>` or `<` to indent right or left
+type `>` or `<` to indent right or left  
 
-(to indent more, type `2>` or `3>`)  
-(to change your indenting/tabbing to use spaces and not tabs, type `:set et`)  
-(to set auto-indenting, type `:set ai`)  
-(to set the tab-size, type `:set ts=2` (or whatever number you want)  
-(also, for tabbing-size, set shiftwidth (`>`) by typing `:set sw=2`)
+-to indent more, type `2>` or `3>`  
+-to change your indenting/tabbing to use spaces and not tabs, type `:set et`)  
+-to set auto-indenting, type `:set ai`)  
+-to set the tab-size, type `:set ts=2` (or whatever number you want)  
+-also, for tabbing-size, set shiftwidth (`>`) by typing `:set sw=2`)  
 
 ---
 #### navigation
 
-`4k`   = go up 4 lines  
-`9j`   = go down 9 lines
-`100h` = go left 100 chars  
-`50l`  = go right 50chars
+`4k`   = jump up 4 lines  
+`9j`   = jump down 9 lines (*the letter j points downwards*)  
+`100h` = jump left 100 chars  
+`50l`  = jump right 50 chars  
 
-`b` (*back*) = go left 1 word  
-`w` (*word*) = go right 1 word
+`b` (*back*) = jump backward 1 word  
+`B`          = jump backward 1 WORD*  
+`w` (*word*) = jump forward 1 word  
+`W`          = jump forward 1 WORD  
+`e` (*end*)  = jump forward 1 word to end of word  
+`E`          = jump forward 1 WORD to end of word  
 
-`$` (*regex for end of string*) = jump to end of line  
-`0`                             = jump to beginning of line
+`$`    = jump to end of line                       (*regex for end of string*)  
+`0`    = jump to beginning of line  
+`^`    = jump to first non-whitespace char of line (*regex for start of string*)  
 
-`)`   = jump forward 1 sentence  
-`(`   = jump back 1 sentence
-`}`   = jump forward 1 paragraph  
-`{`   = jump back 1 paragraph
-
-`CTRL-u`        = jump up 1 page  
-`CTRL-d`        = jump down 1 page
-
+`CTRL-u`        = jump up 1/2 page  
+`CTRL-d`        = jump down 1/2 page  
 `H` (*high*)    = jump to top of screen  
+`M` (*middle*)  = jump to middle of screen  
 `L` (*low*)     = jump to bottom of screen  
-`M` (*middle*)  = jump to middle of screen
 
 `gg`            = jump to first line  
-`G` (*Go!*)     = jump to last line
+`G` (*Go!*)     = jump to last line  
+`33G`           = jump to line 33
 
 `fx` (*find*)   = jump forward to closest `x`  
 `Fx`            = jump back to closest `x`
+
+`)`   = jump forward 1 sentence  
+`(`   = jump back 1 sentence  
+`}`   = jump forward 1 paragraph  
+`{`   = jump back 1 paragraph
+
+\*= WORDs use more liberal rules to determine where a words starts and  
+    where it ends (ex: "http://www.vimcheatsheet.com" is 7 words but 1 WORD)
 
 ---
 #### cut / copy / paste 
@@ -97,7 +108,8 @@ Use navigation keys to highlight and press `d` to cut selection
 `dis`           = cut sentence
 
 `D`             = cut to end of line  
-`d^`            = cut to beginning of line
+`d^`            = cut to beginning of line  
+`J` (*join*)    = remove line breaks
 
 `dd`            = cut line  
 `dis` or `das`  = cut sentence
@@ -106,8 +118,8 @@ Use navigation keys to highlight and press `d` to cut selection
 `yiw`           = copy word  
 `yy` or `Y`     = copy line
 
-`"*y`           = copy into PRIMARY register *mnemonic: Star is Select (for copy-on-select)*  
-`"+y`           = copy into CLIPBOARD register *mnemonic: CTRL PLUS C (for the common keybind)*
+`"*y`           = copy into PRIMARY register  
+`"+y`           = copy into CLIPBOARD register  
 
 > note: the PRIMARY and CLIPBOARD registers are managed by X11 (not Vim), so data copied into these
         registers can be used elsewhere in the X11 session [1]
@@ -142,18 +154,23 @@ Use navigation keys to highlight and press `d` to cut selection
 ---
 #### misc typed commands
 
-`:q` (*quit*)   = exit file  
-`:q!` (*quit!*) = force exit file
+`:q` (*quit*)         = exit file  
+`:q!`                 = force exit file  
+`:w` (*write*)        = save file  
+`:wq` or `:x` or `ZZ` = save and quit  
 
-`:w` (*write*)  = save file
- 
-`:wq` or `:x` or hotkey `ZZ` = save and quit
+`:noh`                = turn off match highlighting (after string search)
 
-`:noh`                       = turn off highlighting (after string search)
+`:%s/xxx/yyy/g`       = replace `xxx` with `yyy` in entire file
 
-`:%s/xxx/yyy/g`              = replace `xxx` with `yyy` in entire file
+`:g/^x/d`             = delete all lines beginning with `x`
 
-`:g/^x/d`                    = delete all lines beginning with `x`
+*find and replace*  
+1. search for word using `/word` in normal mode  
+2. use `ciw` to change first match of `word` and exit insert mode  
+4. use `n` to jump to next match of `word`  
+5. use `.` to repeat last action  
+6. continue to use `n` and `.` to replace matches  
 
 ---
 #### sources
