@@ -3,7 +3,7 @@
 
 ### `awk` command
 
-`awk {'print $3}` file.txt = print the 3rd column, of file.txt 
+`awk {'print $3'}` file.txt = print the 3rd column, of file.txt 
 
 ---
 ### `sed` command
