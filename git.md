@@ -1,7 +1,8 @@
 
 ## GIT [1]
 
-`git add -A` = stage all modified files, including deleted files
+`git add -A` = stage all modified files, including deleted files  
+`git checkout [commit hash] -- ./file1 ../file2` = revert file1 and file2 to previous commit
 
 #### setup
 
