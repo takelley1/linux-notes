@@ -1,6 +1,8 @@
 
 ## GIT [1]
 
+`git add -A` = stage all modified files, including deleted files
+
 #### setup
 
 configuring user information used across all local repositories  
