@@ -114,14 +114,14 @@ iptables –A OUTPUT -o eth0 –p tcp --sport 80 –m state --state NEW,ESTABLIS
  `-v` or `-vv` = extra packet information
 	  `-t` = human-readable timestamps
 
-`tcpdump host 1.1.1.1'     = packets going to or from 1.1.1.1
-`tcpdump src 10.0.0.5'     = packets coming from 10.0.0.5
-`tcpdump dst 192.168.1.10' = packets going to 192.168.1.10
+`tcpdump host 1.1.1.1`     = packets going to or from 1.1.1.1  
+`tcpdump src 10.0.0.5`     = packets coming from 10.0.0.5  
+`tcpdump dst 192.168.1.10` = packets going to 192.168.1.10  
 
-`tcpdump -v port 3389'  = packets on port 3389
-`tcpdump src port 1025' = packets coming from port 1025'
+`tcpdump -v port 3389`  = packets on port 3389  
+`tcpdump src port 1025` = packets coming from port 1025  
 
-`tcpdump -vvt src 10.0.0.5 and dst port 22` = packets coming from 10.0.0.5 to port 22
+`tcpdump -vvt src 10.0.0.5 and dst port 22` = packets coming from 10.0.0.5 to port 22  
 
 
 ---
