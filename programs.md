@@ -17,11 +17,16 @@ run ad-hoc command as root on target box
 `ansible-playbook --syntax-check ./playbook.yml` = check syntax  
 `ansible-lint ./playbook.yml`                    = check best-practices
 
+---
+## BORG BACKUP
+
+`borg extract --progress --list --verbose /mnt/backup/borgrepo::backup-2020-01-19-01-00 mnt/tank/share/pictures/` = extract /mnt/tank/share/pictures in repo backup-2020-01-19-01-00 to current path
+
 
 ---
 ## GRAYLOG
 
-`curl -XPUT -H "Content-Type: application/json"  https://localhost:9200/_all/_settings -d '{"index.blocks.read_only_allow_delete": null}'` = Change Graylog to RW mode from RO mode
+`curl -XPUT -H "Content-Type: application/json"  https://localhost:9200/_all/_settings -d '{"index.blocks.read_only_allow_delete": null}'` = change Graylog to RW mode from RO mode
 
 ---
 ## OPENSCAP  
