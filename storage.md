@@ -94,8 +94,9 @@
 #### metadata
 
 `stat file.txt` = get file metadata on file.txt  
-`mtime` (*modify time*) = last time file's contents were edited  
-`ctime` (*change time*) = last time file's inode was edited (permissions, ownership, name, hard links, etc.)
+`atime` (*access time*) = last time file's contents were read
+`mtime` (*modify time*) = last time file's contents were changed  
+`ctime` (*change time*) = last time file's inode was changed (permissions, ownership, name, hard links, etc.)
 
 `inode` = a special data structure holding a file's metadata, contains the file's physical address on the storage medium, size, permissions, and modification timestamps. The file that the user interacts with is only a pointer to its corresponding inode [6]
 
