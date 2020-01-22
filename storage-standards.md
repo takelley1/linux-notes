@@ -1,12 +1,12 @@
 
-### Storage protocols
+### Protocols
 
 | Storage Spec | Data Bus             | Connector / Form Factor                          |
 |--------------|----------------------|--------------------------------------------------|
 | NVMe         | PCIe                 | M.2, mPCIe, U.2, PCIe                            |
 | AHCI         | SATA, PATA, SAS, IDE | M.2, mPCIe, U.2, mSATA, 2.5in/3.5in SATA/SAS/IDE |
 
-### Data storage terminology
+### Terminology
 
 | Name           | Mathematical Equivalent | # of Bytes                 |
 |:---------------|:-----------------------:|:---------------------------|
@@ -51,7 +51,7 @@
 - Factory-set OP is free space set by the manufacturer that cannot be partitioned by the OS 
 - Dynamic OP is partitioned space that has not yet been used by the filesystem 
 
-#### How VMWare snapshots work: 
+#### How VMWare snapshots work
 
 In VMware VMs, the virtual disk is a .vmdk file residing on a data store (LUN). When a snapshot is created in Snapshot Manager,
 the original disk becomes read-only, and all the new data changes are written into a temporary .vmdk delta disk, pointing to the 
