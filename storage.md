@@ -120,8 +120,8 @@
 
 > NOTE: xfs filesystems cannot be shrunk; use ext4 instead
 
-*ext4 vs xfs* [4]
--ext4 is better with lots of smaller files and metadata-intensive tasks
+*ext4 vs xfs* [4]  
+-ext4 is better with lots of smaller files and metadata-intensive tasks  
 -xfs is better with very large files (>30GB) 
 
 | filesystem features [1]      | ext4 | xfs  | btrfs | zfs  | ufs | ntfs | bcachefs | FAT32 | exFAT |
