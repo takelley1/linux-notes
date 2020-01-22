@@ -24,7 +24,7 @@
 
 `7za a -mx=10 myarchive.7z dir1/ dir2/` = create myarchive.7z from dir1 and dir2
                                `-mx=10` = use compression lvl 10
-                          
+         
 
 ---
 ## DISKS & MOUNTS
@@ -91,6 +91,16 @@
 ---
 ## FILES & FILESYSTEMS
 
+#### metadata
+
+`stat file.txt` = get file metadata on file.txt  
+`mtime` (*modify time*) = last time file's contents were edited  
+`ctime` (*change time*) = last time file's inode was edited (permissions, ownership, name, hard links, etc.)
+
+`inode` = a special data structure holding a file's metadata, contains the file's physical address on the storage medium, size, permissions, and modification timestamps. The file that the user interacts with is only a pointer to its corresponding inode [6]
+
+#### sizing
+
 `du -sh /home/alice` = display disk space used by specified directory or file  
 `-s` (*summarize*)   = list total storage used by entire directory and all subdirectories  
 `-h` (*human*)       = use human-readable format for filesizes (ex. `8.7M` instead of `8808`)
@@ -98,7 +108,8 @@
 `du -d 1 -h /`   = list the sizes of each directory one level beneath the specified directory  
 `-d 1` (*depth*) = recurse at a depth of 1
 
----
+#### filesystems
+
 `mkfs.ext4 /dev/mapper/LV1` or `mkfs -t ext4 /dev/mapper/LV1` = create ext4 filesystem on LV1 logical volume
 
 `e2fsck -f /dev/mapper/LV1 && resize2fs /dev/mapper/LV1` = expand filesystem to fit size of LV1 (must be unmounted)  
@@ -203,11 +214,6 @@ ex: `10.0.0.10:/data  /mnt/data  nfs  defaults  0 0`
 ---
 ## MISC
 
- `inode` = a special data structure containing a file's metadata. Contains the file's physical address on the storage medium, size,
- permissions, and modification timestamps. The file that the user interacts with is only a pointer to its corresponding inode.
- http://www.linfo.org/inode.html 
-
----
 #### hard & symbolic links 
 
 `ln /home/sourcefile.txt /var/hardlink.txt` = create hard link to file (`ln -s` for soft/symbolic link), 
@@ -238,5 +244,6 @@ ex: `10.0.0.10:/data  /mnt/data  nfs  defaults  0 0`
 [2] https://clearlinux.org/news-blogs/linux-os-data-compression-options-comparing-behavior  
 [3] https://calomel.org/badblocks_wipe.html  
 [4] https://unix.stackexchange.com/questions/467385/should-i-use-xfs-or-ext4  
-[5] https://www.z-a-recovery.com/manual/smart.aspx
+[5] https://www.z-a-recovery.com/manual/smart.aspx  
+[6] http://www.linfo.org/inode.html  
 
