@@ -4,8 +4,6 @@
 `git add -A` = stage all modified files, including deleted files  
 `git add -u` = stage all modified files  
 
-`git checkout [commit hash] -- ./file1 ../file2` = revert file1 and file2 to the specified commit
-
 #### setup
 
 configuring user information used across all local repositories  
@@ -22,6 +20,10 @@ configuring user information, initializing and cloning repositories
 
 ---
 #### stage & snapshot
+
+reverting changes  
+`git checkout [commit hash] -- ./file1 ../file2` = revert file1 and file2 to the specified commit  
+`git checkout -- [file]`                         = undo changes made to an unstaged file
 
 working with snapshots and the git staging area  
 `git status`                = show modified files in working directory, staged for your next commit  
