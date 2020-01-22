@@ -22,6 +22,8 @@ Send packet CA->Netherlands->CA    150,000,000   ns  150,000 us  150 ms
 
 > memory is only about 6 times faster when you're doing sequential access (350 Mvalues/sec for memory compared with 58 Mvalues/sec for disk); but it's about 100,000 times faster when you're doing random access [3].
 
+**see also:** https://colin-scott.github.io/personal_website/research/interactive_latency.html
+
 ### Protocols
 
 | Storage Spec | Data Bus             | Connector / Form Factor                          |
