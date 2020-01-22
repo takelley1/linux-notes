@@ -57,14 +57,12 @@
 
 `smartctl -t long /dev/sdc` = start a long HDD self test - after the test is done (could take 12+ hours), check the results with `smartctl -a /dev/sdc`
 
-    Pending sector reallocations (smartctl -a /dev/ | grep Current_Pending_Sector)
-    Reallocated sector cont (smartctl -a /dev/ | grep Reallocated_Sector_Ct)
-    UDMA CRC errors (smartctl -a /dev/ | grep UDMA_CRC_Error_Count)
-    HDD and SSD write latency consistency (diskinfo -wS ) Unformatted drives only!
-    HDD and SSD hours (smartctl -a /dev/ | grep Power_On_Hours)
-    NVMe percentage used (nvmecontrol logpage -p 2 nvme0 | grep “Percentage used”)
-u
-
+`smartctl -a /dev/ | grep Current_Pending_Sector`         = pending sector reallocations  
+`smartctl -a /dev/ | grep Reallocated_Sector_Ct`          = reallocated sector count  
+`smartctl -a /dev/ | grep UDMA_CRC_Error_Count`           = UDMA CRC errors  
+`diskinfo -wS`                                            = HDD and SSD write latency consistency (unformatted drives only!)
+`smartctl -a /dev/ | grep Power_On_Hours`                 = HDD and SSD hours  
+`nvmecontrol logpage -p 2 nvme0 | grep “Percentage used”` = NVMe percentage used  
 
 *SMART field names*
 
@@ -129,10 +127,10 @@ u
 | max filesize                 | -    | -    | -     | -    | -   | -    | -        | 4GB   | -     |
 | max filesystem size          | -    | -    | -     | -    | -   | -    | -        | 2TB   | -     |
 
-LUKS = encrypting these filesystems is usually handled through LUKS and/or dm-crypt
-LVM = can provide limited snapshot functionality through LVM
-COW = journaling is superceded by copy-on-write mechanisms
-\-  = maximum theoretical size so large it's effectively irrelevant
+LUKS = encrypting these filesystems is usually handled through LUKS and/or dm-crypt  
+LVM = can provide limited snapshot functionality through LVM  
+COW = journaling is superceded by copy-on-write mechanisms  
+\-  = maximum theoretical size so large it's effectively irrelevant  
 ?   = currently unknown and/or no reliable data available
 
 
@@ -239,6 +237,6 @@ ex: `10.0.0.10:/data  /mnt/data  nfs  defaults  0 0`
 [1] https://www.tldp.org/LDP/sag/html/filesystems.html  
 [2] https://clearlinux.org/news-blogs/linux-os-data-compression-options-comparing-behavior  
 [3] https://calomel.org/badblocks_wipe.html  
-[4] https://unix.stackexchange.com/questions/467385/should-i-use-xfs-or-ext4
+[4] https://unix.stackexchange.com/questions/467385/should-i-use-xfs-or-ext4  
 [5] https://www.z-a-recovery.com/manual/smart.aspx
 
