@@ -94,7 +94,7 @@
 #### metadata
 
 `stat file.txt` = get file metadata on file.txt  
-`atime` (*access time*) = last time file's contents were read
+`atime` (*access time*) = last time file's contents were read  
 `mtime` (*modify time*) = last time file's contents were changed  
 `ctime` (*change time*) = last time file's inode was changed (permissions, ownership, name, hard links, etc.)
 
