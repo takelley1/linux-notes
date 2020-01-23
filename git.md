@@ -77,6 +77,7 @@ save a file with desired paterns as .gitignore with either direct string matches
 #### share & update
 
 retrieving updates from another repository and updating local repos  
+`git remove -v`                = show remote repo info  
 `git remote add [alias] [url]` = add a git url as an alias  
 `git fetch [alias]`            = fetch down all the branches from that git remote  
 `git merge [alias]/[branch]`   = merge a remote branch into your current branch to bring it up to date  
