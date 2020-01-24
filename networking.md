@@ -3,13 +3,13 @@
 
 allow https traffic
 ```
-firewall-cmd --zone=public –-permanent --add-service=https
+firewall-cmd --zone=public --permanent --add-service=https
 firewall-cmd --reload
 ```
 
 disallow port 123 tdp traffic
 ```
-firewall-cmd --zone=public –-permanent --remove-port 123/tcp
+firewall-cmd --zone=public --permanent --remove-port 123/tcp
 firewall-cmd --reload
 ```
 
@@ -24,6 +24,8 @@ firewall-cmd --reload
 
 ---
 ## IPTABLES
+
+> NOTE: `iptables` has been deprecated in favor of `nftables` [4]
 
 `iptables -L` = show firewall ruleset
 
@@ -87,7 +89,7 @@ iptables –A OUTPUT -o eth0 –p tcp --sport 80 –m state --state NEW,ESTABLIS
 `nmap -p 1-1000 192.168.1.20-40` = scan tcp ports 1-1000 on hosts within range 
 `nmap -sU localhost`             = scan localhost for open udp ports
 
-`nmap -sP 10.0.0.0/8 = attempt to ping all hosts on the 10.0.0.0/8 subnet and list responses
+`nmap -sP 10.0.0.0/8` = attempt to ping all hosts on the 10.0.0.0/8 subnet and list responses
 
 
 ---
@@ -127,7 +129,7 @@ iptables –A OUTPUT -o eth0 –p tcp --sport 80 –m state --state NEW,ESTABLIS
 ---
 ## NTP
 
-*`ntpd` has been deprecated in favor of `chrony`* [1]
+> NOTE: `ntpd` has been deprecated in favor of `chrony` [1]
 
 `date +%T –s "16:45:00"` = manually set time in HH:mm:ss format  
 `timedatectl`            = edit time  
@@ -242,5 +244,6 @@ rhn-channel --list
 
 [1] https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/8/html-single/configuring_basic_system_settings/index#migrating-to-chrony_using-chrony-to-configure-ntp  
 [2] https://danielmiessler.com/study/tcpdump/  
-[3] https://danielmiessler.com/study/nmap/
+[3] https://danielmiessler.com/study/nmap/  
+[4] https://wiki.debian.org/nftables
 
