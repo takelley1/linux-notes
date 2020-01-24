@@ -23,7 +23,7 @@
 ---
 #### staging
 
-*reverting changes*
+*reverting changes*  
 `git checkout [commit hash] -- ./file1 ../file2` = revert file1 and file2 to the specified commit  
 `git checkout -- [file]`                         = undo changes made to an unstaged file
 
