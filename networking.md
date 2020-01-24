@@ -74,14 +74,16 @@ iptables –A OUTPUT -o eth0 –p tcp --sport 80 –m state --state NEW,ESTABLIS
 
 #### local ports
 
+> NOTE: `netstat` has been deprecated in favor of `ss` [5]
+
 `less /etc/services` = show ports being used by specific services
 
-`netstat -plant` or `ss -plunt` = view all open ports  
-                           `-p` = associated process PIDs  
-                           `-l` = only listening ports  
-                           `-n` = numerical ip addresses  
-                           `-t` = tcp ports  
-                           `-u` = udp ports
+`netstat -plaunt` or `ss -plunt` = view all open ports  
+                            `-p` = associated process PIDs  
+                            `-l` = only listening ports  
+                            `-n` = numerical ip addresses  
+                            `-t` = tcp ports  
+                            `-u` = udp ports
 
 #### scanning [3]
 
@@ -245,5 +247,5 @@ rhn-channel --list
 [1] https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/8/html-single/configuring_basic_system_settings/index#migrating-to-chrony_using-chrony-to-configure-ntp  
 [2] https://danielmiessler.com/study/tcpdump/  
 [3] https://danielmiessler.com/study/nmap/  
-[4] https://wiki.debian.org/nftables
-
+[4] https://wiki.debian.org/nftables  
+[5] https://dougvitale.wordpress.com/2011/12/21/deprecated-linux-networking-commands-and-their-replacements/#netstat
