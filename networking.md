@@ -88,35 +88,35 @@ iptables –A OUTPUT -o eth0 –p tcp --sport 80 –m state --state NEW,ESTABLIS
 #### scanning [3]
 
 `nmap -p 22 192.168.1.0/24`      = scan for every host on subnet with port 22 open  
-`nmap -p 1-1000 192.168.1.20-40` = scan tcp ports 1-1000 on hosts within range 
-`nmap -sU localhost`             = scan localhost for open udp ports
+`nmap -p 1-1000 192.168.1.20-40` = scan tcp ports 1-1000 on hosts within range  
+`nmap -sU localhost`             = scan localhost for open udp ports  
 
-`nmap -sP 10.0.0.0/8` = attempt to ping all hosts on the 10.0.0.0/8 subnet and list responses
+`nmap -sP 10.0.0.0/8` = attempt to ping all hosts on the 10.0.0.0/8 subnet and list responses  
 
 
 ---
 ## ROUTES
 
 `ip r` or `routel` = view routing table  
-`route add default gw 192.168.1.1 eth0` = manually add default gateway
+`route add default gw 192.168.1.1 eth0` = manually add default gateway  
 
-`traceroute domain.com` = print the route that packets take to a given destination
+`traceroute domain.com` = print the route that packets take to a given destination  
 
 
 ---
 ## MONITORING & TROUBLESHOOTING
 
-`iperf` and `iperf3`
-`iftop`
-`ifstat`
+`iperf` and `iperf3`  
+`iftop`  
+`ifstat`  
 
 `dig domain.com` or `nslookup domain.com` or `host domain.com` = perform dns lookup on domain  
 
 #### tcpdump [2]
 
-`tcpdump -tvv` = dump all packets on all interfaces
- `-v` or `-vv` = extra packet information
-	  `-t` = human-readable timestamps
+`tcpdump -tvv` = dump all packets on all interfaces  
+ `-v` or `-vv` = extra packet information  
+	  `-t` = human-readable timestamps  
 
 `tcpdump host 1.1.1.1`     = packets going to or from 1.1.1.1  
 `tcpdump src 10.0.0.5`     = packets coming from 10.0.0.5  
@@ -158,7 +158,7 @@ Update interval : 64.3 seconds                         # how frequently chrony m
 Leap status     : Normal                               # whether a leap second is pending to be added/removed
                                                        # 1 ppm = 1.000001
 ```
-other commands
+other commands  
 `chronyc sources -v`   
 `chronyc sourcestats`   
 `systemctl status chronyd`   
@@ -168,9 +168,9 @@ other commands
 ---
 ## EMAIL
 
-`mail -s "Test Subject" example@mail.com < /dev/null` = send test email (using the current host has the smtp relay)
+`mail -s "Test Subject" example@mail.com < /dev/null` = send test email (using the current host has the smtp relay)  
 
-send email using a specific smtp relay
+send email using a specific smtp relay  
 ```
 echo "This is the message body and contains the message" | \
 mailx -v \
@@ -188,15 +188,15 @@ yourfriend@gmail.com              # this is the 'to' field of the email
 #### filtering
 
 `grep -h -o '[0-9]\{1,3\}\.[0-9]\{1,3\}\.[0-9]\{1,3\}\.[0-9]\{1,3\}' /var/log/maillog* | sort -u` = filter IPs from maillog  
-`grep -o -E 'from=<.*>' /var/log/maillog | sort -u` = filter sending addresses from maillog
+`grep -o -E 'from=<.*>' /var/log/maillog | sort -u` = filter sending addresses from maillog  
 
 #### postfix whitelists
 
-1. Add line to `/etc/postfix/main.cf`    
-   `mynetworks = /postfix-whitelist`
-2. Populate `/postfix-whitelist` with IPs
-3. Run `postmap /postfix-whitelist && systemctl restart postfix`
-4. Now only the IPs in `/postfix-whitelist` will be permitted to use the postfix server as an smtp relay
+1. Add line to `/etc/postfix/main.cf`  
+   `mynetworks = /postfix-whitelist`  
+2. Populate `/postfix-whitelist` with IPs  
+3. Run `postmap /postfix-whitelist && systemctl restart postfix`  
+4. Now only the IPs in `/postfix-whitelist` will be permitted to use the postfix server as an smtp relay  
 
 
 ---
@@ -248,4 +248,4 @@ rhn-channel --list
 [2] https://danielmiessler.com/study/tcpdump/  
 [3] https://danielmiessler.com/study/nmap/  
 [4] https://wiki.debian.org/nftables  
-[5] https://dougvitale.wordpress.com/2011/12/21/deprecated-linux-networking-commands-and-their-replacements/#netstat
+[5] https://dougvitale.wordpress.com/2011/12/21/deprecated-linux-networking-commands-and-their-replacements/#netstat  
