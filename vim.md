@@ -139,7 +139,8 @@ Use navigation keys to highlight and press `d` to cut selection
 `I`            = insert at beginning of line  
 `A`            = insert at end of line
 
-`ciw`          = cut word and insert
+`ciw`          = cut word and insert  
+`cf[x]`        = cut to first instance of [x] on the current line and insert  
 
 `C` (*change*) = cut to end of line and insert  
 `cc` or `S`    = cut entire line and insert
