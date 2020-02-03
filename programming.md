@@ -103,7 +103,7 @@ released: 2009
 use: applications, web, server-side, cloud  
 examples: Docker, Ethereum, OpenShift, Kubernetes, Terraform  
 
-- Design heavily influenced by C
+- design heavily influenced by C
 
 ```go
 package main
