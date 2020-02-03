@@ -36,7 +36,7 @@ examples:
 - oldest high-level language
 
 sample:
-```
+```fortran
 C     AREA OF A TRIANGLE
       READ*,A,B,C
       S=(A+B+C)/2
@@ -56,7 +56,7 @@ examples: Docker, Ethereum, OpenShift, Kubernetes, Terraform
 - Design heavily influenced by C
 
 sample:
-```
+```go
 package main
 
 import "fmt"
@@ -74,7 +74,7 @@ released: 1990
 examples: Xmonad window manager, Git-annex
 
 sample:
-```
+```haskell
 factorial n = if n < 2
               then 1
               else n * factorial (n - 1)
@@ -91,7 +91,7 @@ examples:
 - known for verbose syntax
 
 sample:
-```
+```java
 public class HelloWorldApp {
     public static void main(String[] args) {
         System.out.println("Hello World!"); // Prints the string to the console.
@@ -110,7 +110,7 @@ examples:
 - lightweight and portable
 
 sample:
-```
+```lua
 function factorial(n)
   local x = 1
   for i = 2, n do
@@ -131,7 +131,7 @@ examples:
 - second-oldest high-level language (behind Fortran by 1 year)
 
 sample:
-```
+```lisp
  (defun factorial (n)
    (if (= n 0) 1
        (* n (factorial (- n 1)))))
