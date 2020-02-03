@@ -1,4 +1,55 @@
-# COMPARISON OF PROGRAMMING LANGUAGES
+## PARADIGMS
+[1]
+
+- **imperative: programming with an explicit sequence of commands that update state**
+  - **procedural: imperative programming with procedure calls**
+  ```
+  start:
+    numPeople = length(people)
+    if i >= numPeople goto finished
+    p = people[i]
+    nameLength = length(p.name)
+    if nameLength <= 5 goto nextOne
+    upperName = toUpper(p.name)
+    addToList(result, upperName)
+  nextOne:
+    i = i + 1
+    goto start
+  finished:
+    return sort(result)
+    ```
+ 
+- **declarative: programming by specifying the result you want, not how to get it**
+  ```
+  select upper(name)
+  from people
+  where length(name) > 5
+  order by name
+  ```
+
+- **object-oriented: programming by defining objects that send messages to each other**
+  ```
+  result = []
+  for p in people {
+      if p.name.length > 5 {
+          result.add(p.name.toUpper);
+      }
+  }
+  return result.sort;
+  ```
+
+- **functional: programming with function calls that avoid any global state.**
+  ```
+  let
+      fun uppercasedLongNames [] = []
+        | uppercasedLongNames (p :: ps) =
+            if length(name p) > 5 then (to_upper(name p))::(uppercasedLongNames ps)
+            else (uppercasedLongNames ps)
+  in
+      sort(uppercasedLongNames(people))
+  ```
+
+## LANGUAGES
 
 ---
 ## C
@@ -204,3 +255,7 @@ type: markup
 
 type: scripting
 
+---
+#### sources
+
+[1] https://cs.lmu.edu/~ray/notes/paradigms/  
