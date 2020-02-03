@@ -129,7 +129,7 @@ factorial n = if n < 2
 ```
 
 ---
-## Java
+## Java and Kotlin
 
 released: 1995  
 use: application, web, general-purpose  
@@ -195,27 +195,51 @@ examples: urxvt terminal extensions
 - used as a glue language
 - perceived to be inelegant due to its unplanned development
 
-
 ---
 ## Python
 
 released: 1991  
-use: general-purpose, scripting, machine learning  
+use: general-purpose, scripting, machine learning, data science  
+paradigm: multi-paradigm, but leans towards object-oriented [2]
 examples: Ansible, Openstack, Blender, Ranger file browser  
 
-- designed to be easy to read
+- designed to be easy to read (uses whitespace instead of brackets)
 - extremely popular
 - good first language
+
+```python
+# Python code to demonstrate naive method 
+# to compute factorial 
+n = 23
+fact = 1
+  
+for i in range(1,n+1): 
+    fact = fact * i 
+      
+print ("The factorial of 23 is : ",end="") 
+print (fact) 
+```
 
 ---
 ## Ruby
 
 released: 1995  
 use: general-purpose, scripting  
+paradigm: 100% object-oriented: everything is an object
 examples: Ruby on Rails, Homebrew package manager, Metasploit  
 
-- designed to be productive and fun
-- follows the Principle of Least Astonishment and attempts to minimize programmer confusion
+- designed to be productive and fun, focused on humans rather than computers
+- follows the Principle of Least Astonishment and attempts to minimize programmer confusion [2]
+
+```ruby
+def factorial(n)
+ if n == 0
+  return 1
+ else
+  return n * factorial(n-1)
+ end
+end
+```
 
 ---
 ## Rust
@@ -246,3 +270,4 @@ examples:
 #### sources
 
 [1] https://cs.lmu.edu/~ray/notes/paradigms/  
+[2] https://www.coursereport.com/blog/ruby-vs-python-choosing-your-first-programming-language  
