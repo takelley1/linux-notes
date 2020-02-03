@@ -54,25 +54,25 @@
 ---
 ## C
 
-use: systems, applications, general-purpose
-released:
-examples: Linux kernel
+use: systems, applications, general-purpose  
+released:  
+examples: Linux kernel  
 
 ---
 ## C++
 
-use: systems, applications, games
-released:
-examples:
+use: systems, applications, games  
+released:  
+examples:  
 
 - most 3D games are written in C++
 
 ---
 ## C\#
 
-use: applications, web
-released:
-examples:
+use: applications, web  
+released:  
+examples:  
 
 ---
 ## COBOL
@@ -80,9 +80,9 @@ examples:
 ---
 ## Fortran
 
-use: numerical, scientific, high-performance computing
-released: 1957
-examples:
+use: numerical, scientific, high-performance computing  
+released: 1957  
+examples:  
 
 - oldest high-level language
 
@@ -100,13 +100,13 @@ C     AREA OF A TRIANGLE
 ---
 ## Go
 
-use: applications, web, server-side, cloud
-released: 2009
-examples: Docker, Ethereum, OpenShift, Kubernetes, Terraform
+use: applications, web, server-side, cloud  
+released: 2009  
+examples: Docker, Ethereum, OpenShift, Kubernetes, Terraform  
 
 - Design heavily influenced by C
 
-sample:
+sample:  
 ```go
 package main
 
@@ -120,11 +120,11 @@ func main() {
 ---
 ## Haskell
 
-use: applications
-released: 1990
-examples: Xmonad window manager, Git-annex
+use: applications  
+released: 1990  
+examples: Xmonad window manager, Git-annex  
 
-sample:
+sample:  
 ```haskell
 factorial n = if n < 2
               then 1
@@ -134,14 +134,14 @@ factorial n = if n < 2
 ---
 ## Java
 
-use: application, web, general-purpose
-released: 1995
-examples:
+use: application, web, general-purpose  
+released: 1995  
+examples:  
 
 - "write once, run anywhere"
 - known for verbose syntax
 
-sample:
+sample:  
 ```java
 public class HelloWorldApp {
     public static void main(String[] args) {
@@ -153,14 +153,14 @@ public class HelloWorldApp {
 ---
 ## Lua
 
-use: scripting
-released: 1993
-examples:
+use: scripting  
+released: 1993  
+examples:  
 
 - designed for embedded use within applications
 - lightweight and portable
 
-sample:
+sample:  
 ```lua
 function factorial(n)
   local x = 1
@@ -174,14 +174,14 @@ end
 ---
 ## Lisp and Clojure
 
-use:
-released: 1958
-examples:
+use:  
+released: 1958  
+examples:  
 
 - known for heavy use of parenthesis
 - second-oldest high-level language (behind Fortran by 1 year)
 
-sample:
+sample:  
 ```lisp
  (defun factorial (n)
    (if (= n 0) 1
@@ -191,9 +191,9 @@ sample:
 ---
 ## Perl and Raku (aka Perl 6)
 
-use: general-purpose, scripting, text parsing
-released: 1987 (Perl), 2019 (Raku)
-examples: urxvt terminal extensions
+use: general-purpose, scripting, text parsing  
+released: 1987 (Perl), 2019 (Raku)  
+examples: urxvt terminal extensions  
 
 - old and possibly dying
 - originally used in early internet back-end code
@@ -201,14 +201,14 @@ examples: urxvt terminal extensions
 - used as a glue language
 - perceived to be inelegant due to its unplanned development
 
-sample code:
+sample code:  
 
 ---
 ## Python
 
-use: general-purpose, scripting, machine learning
-released: 1991
-examples: Ansible, Openstack, Blender, Ranger file browser
+use: general-purpose, scripting, machine learning  
+released: 1991  
+examples: Ansible, Openstack, Blender, Ranger file browser  
 
 - designed to be easy to read
 - extremely popular
@@ -217,9 +217,9 @@ examples: Ansible, Openstack, Blender, Ranger file browser
 ---
 ## Ruby
 
-use: general-purpose, scripting
-released: 1995
-examples: Ruby on Rails, Homebrew package manager, Metasploit
+use: general-purpose, scripting  
+released: 1995  
+examples: Ruby on Rails, Homebrew package manager, Metasploit  
 
 - designed to be productive and fun
 - follows the Principle of Least Astonishment and attempts to minimize programmer confusion
@@ -227,16 +227,16 @@ examples: Ruby on Rails, Homebrew package manager, Metasploit
 ---
 ## Rust
 
-use:
-released:
-examples: Alacritty terminal
+use:  
+released:  
+examples: Alacritty terminal  
 
 ---
 ## Scala
 
-use:
-released:
-examples:
+use:  
+released:  
+examples:  
 
 ---
 ## WEB LANGUAGES
@@ -245,15 +245,15 @@ examples:
 
 ### HTML
 
-type: markup
+type: markup  
 
 ### CSS
 
-type: markup
+type: markup  
 
 ### JavaScript and Node.js
 
-type: scripting
+type: scripting  
 
 ---
 #### sources
