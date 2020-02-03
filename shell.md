@@ -23,6 +23,7 @@
 `cat /file.log 2>&1 | grep -i error` = pass both stdout and stderr to grep through pipe, by default pipe only passes stdout  
 `stat /home/file.txt`                = show last modified date, creation date, and other metadata about given file
 
+---
 ### if statement conditional tests
 
 see also: http://tldp.org/LDP/Bash-Beginners-Guide/html/sect_07_01.html
