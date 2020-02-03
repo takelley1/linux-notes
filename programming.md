@@ -54,15 +54,15 @@
 ---
 ## C
 
-use: systems, applications, general-purpose  
 released:  
+use: systems, applications, general-purpose  
 examples: Linux kernel  
 
 ---
 ## C++
 
-use: systems, applications, games  
 released:  
+use: systems, applications, games  
 examples:  
 
 - most 3D games are written in C++
@@ -70,8 +70,8 @@ examples:
 ---
 ## C\#
 
-use: applications, web  
 released:  
+use: applications, web  
 examples:  
 
 ---
@@ -80,13 +80,12 @@ examples:
 ---
 ## Fortran
 
-use: numerical, scientific, high-performance computing  
 released: 1957  
+use: numerical, scientific, high-performance computing  
 examples:  
 
 - oldest high-level language
 
-sample:
 ```fortran
 C     AREA OF A TRIANGLE
       READ*,A,B,C
@@ -100,13 +99,12 @@ C     AREA OF A TRIANGLE
 ---
 ## Go
 
-use: applications, web, server-side, cloud  
 released: 2009  
+use: applications, web, server-side, cloud  
 examples: Docker, Ethereum, OpenShift, Kubernetes, Terraform  
 
 - Design heavily influenced by C
 
-sample:  
 ```go
 package main
 
@@ -120,11 +118,10 @@ func main() {
 ---
 ## Haskell
 
-use: applications  
 released: 1990  
+use: applications  
 examples: Xmonad window manager, Git-annex  
 
-sample:  
 ```haskell
 factorial n = if n < 2
               then 1
@@ -134,14 +131,13 @@ factorial n = if n < 2
 ---
 ## Java
 
-use: application, web, general-purpose  
 released: 1995  
+use: application, web, general-purpose  
 examples:  
 
 - "write once, run anywhere"
 - known for verbose syntax
 
-sample:  
 ```java
 public class HelloWorldApp {
     public static void main(String[] args) {
@@ -153,14 +149,13 @@ public class HelloWorldApp {
 ---
 ## Lua
 
-use: scripting  
 released: 1993  
+use: scripting  
 examples:  
 
 - designed for embedded use within applications
 - lightweight and portable
 
-sample:  
 ```lua
 function factorial(n)
   local x = 1
@@ -174,14 +169,13 @@ end
 ---
 ## Lisp and Clojure
 
-use:  
 released: 1958  
+use:  
 examples:  
 
 - known for heavy use of parenthesis
 - second-oldest high-level language (behind Fortran by 1 year)
 
-sample:  
 ```lisp
  (defun factorial (n)
    (if (= n 0) 1
@@ -191,8 +185,8 @@ sample:
 ---
 ## Perl and Raku (aka Perl 6)
 
-use: general-purpose, scripting, text parsing  
 released: 1987 (Perl), 2019 (Raku)  
+use: general-purpose, scripting, text parsing  
 examples: urxvt terminal extensions  
 
 - old and possibly dying
@@ -201,13 +195,12 @@ examples: urxvt terminal extensions
 - used as a glue language
 - perceived to be inelegant due to its unplanned development
 
-sample code:  
 
 ---
 ## Python
 
-use: general-purpose, scripting, machine learning  
 released: 1991  
+use: general-purpose, scripting, machine learning  
 examples: Ansible, Openstack, Blender, Ranger file browser  
 
 - designed to be easy to read
@@ -217,8 +210,8 @@ examples: Ansible, Openstack, Blender, Ranger file browser
 ---
 ## Ruby
 
-use: general-purpose, scripting  
 released: 1995  
+use: general-purpose, scripting  
 examples: Ruby on Rails, Homebrew package manager, Metasploit  
 
 - designed to be productive and fun
@@ -227,15 +220,15 @@ examples: Ruby on Rails, Homebrew package manager, Metasploit
 ---
 ## Rust
 
-use:  
 released:  
+use:  
 examples: Alacritty terminal  
 
 ---
 ## Scala
 
-use:  
 released:  
+use:  
 examples:  
 
 ---
@@ -245,15 +238,9 @@ examples:
 
 ### HTML
 
-type: markup  
-
 ### CSS
 
-type: markup  
-
 ### JavaScript and Node.js
-
-type: scripting  
 
 ---
 #### sources
