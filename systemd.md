@@ -82,6 +82,8 @@ sudo journalctl -u my_daemon
 journalctl --user-unit my_user_daemon
 ```
 
+systemd-analyze blame = show startup times by process
+
 
 ## RUNLEVELS
 

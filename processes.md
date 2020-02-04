@@ -1,8 +1,6 @@
 
 ## PROCESSES
 
-systemd-analyze blame = display how long each daemon process took to start on bootup
-
 `CTRL-z` = suspend current foreground job  
 `bg`     = push most recently suspended job into background  
 `fg`     = pull most recent background job into foreground
