@@ -84,4 +84,4 @@ list users [1]
 ---
 #### sources
 
-[1] # /opt/sc/support/bin/sqlite3 /opt/sc/application.db "select * from UserAuth"  
+[1] https://community.tenable.com/s/article/Reset-admin-password-in-Tenable-sc-and-unlock-the-account-if-its-been-locked-Formerly-SecurityCenter  
