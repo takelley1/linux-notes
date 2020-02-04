@@ -17,6 +17,7 @@ run ad-hoc command as root on target box
 `ansible-playbook --syntax-check ./playbook.yml` = check syntax  
 `ansible-lint ./playbook.yml`                    = check best-practices
 
+
 ---
 ## BORG BACKUP
 
@@ -27,6 +28,7 @@ run ad-hoc command as root on target box
 ## GRAYLOG
 
 `curl -XPUT -H "Content-Type: application/json"  https://localhost:9200/_all/_settings -d '{"index.blocks.read_only_allow_delete": null}'` = change Graylog to RW mode from RO mode
+
 
 ---
 ## OPENSCAP  
@@ -59,18 +61,3 @@ run scap scan
   </rule-result>
 </TestResult>
 ```
-
-
----
-## LESS 
-
-`SPACE` = next page  
-`b`     = previous page  
-`>`     = last line  
-`<`     = first line  
-`/`     = forward search  
-`?`     = backward search  
-`n`     = next search match  
-`N`     = previous search match  
-`q`     = quit
-
