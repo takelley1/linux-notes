@@ -24,6 +24,12 @@
 `stat /home/file.txt`                = show last modified date, creation date, and other metadata about given file
 
 ---
+### sourcing vs executing
+`bash script.sh` or `source script.sh`? [5]  
+- **Sourcing** a script runs in the current shell process, preserving all environment variables of the current shell
+- **Executing** a script runs in a new shell, which will load only the default environment variables 
+
+---
 ### if statement conditional tests
 
 see also: http://tldp.org/LDP/Bash-Beginners-Guide/html/sect_07_01.html
@@ -111,5 +117,6 @@ see also: http://tldp.org/LDP/Bash-Beginners-Guide/html/sect_07_01.html
 [1] https://stackoverflow.com/questions/15783701/which-characters-need-to-be-escaped-when-using-bash#20053121  
 [2] https://www.shellscript.sh/escape.html  
 [3] http://tldp.org/LDP/Bash-Beginners-Guide/html/sect_03_03.html
-[4] http://tldp.org/LDP/Bash-Beginners-Guide/html/sect_07_01.html
+[4] http://tldp.org/LDP/Bash-Beginners-Guide/html/sect_07_01.html  
+[5] https://superuser.com/questions/176783/what-is-the-difference-between-executing-a-bash-script-vs-sourcing-it/176788#176788
 
