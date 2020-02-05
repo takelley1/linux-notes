@@ -1,8 +1,23 @@
 
-## CONSOLE
+## SHELL TYPES
 
-`dpkg-reconfigure console-setup`    = change console font size (debian-based distros)  
-[edit `/etc/default/console-setup`] = change console font size
+- **interactive login shell**
+  - logging in remotely via, for example, ssh
+  - drop to a tty on your local machine (Ctrl+Alt+F1) and login there
+  - `.bash_profile` is sourced when starting this shell type
+
+- **interactive non-login shell**
+  - opening a new terminal window
+  - `.bashrc` is sourced when starting this shell type
+
+- **non-interactive non-login shell**
+  - runing a script.
+
+- **non-interactive login shell**
+  - this is extremely rare, and you're unlikey to encounter it
+
+from: https://askubuntu.com/questions/879364/differentiate-interactive-login-and-non-interactive-non-login-shell
+
 
 ---
 ## BASH
@@ -28,6 +43,36 @@
 `bash script.sh` or `source script.sh`? [5]  
 - **Sourcing** a script runs in the current shell process, preserving all environment variables of the current shell
 - **Executing** a script runs in a new shell, which will load only the default environment variables 
+
+---
+### escape characters
+
+`'single quotes'`
+- when in doubt, put the whole string in single quotes [1]
+  - **single quotes preserve the literal value of every character enclosed within the quotes** [3]
+  - a single quote *cannot* occur between single quotes, even when escaped by a backslash [3]
+
+`"double quotes"`
+- double quotes preserve literal value of every character except the dollar sign, backtick, and backslash [3]
+- characters that need to be escaped: `"`, `$`, `\`, `[space]` [2]
+
+---
+### hotkeys
+
+`CTRL-SHIFT-j` or `CTRL-j` = get shell prompt back
+
+`CTRL-r` = search command history  
+`history` = print past commands to stdout, grep and use ![line_number] to repeat command without retyping
+
+`CTRL-l` = clear screen
+
+`CTRL-c` = send `SIGINT` to foreground process  
+`CTRL-z` = suspend foreground process
+
+`CTRL-d` = exit current shell
+
+`ALT-f` = jump forward one word  (when editing a command)  
+`ALT-b` = jump backward one word (when editing a command)
 
 ---
 ### if statement conditional tests
@@ -62,35 +107,6 @@ see also: http://tldp.org/LDP/Bash-Beginners-Guide/html/sect_07_01.html
 | [ FILE1 -ef FILE2 ] | True if FILE1 and FILE2 refer to the same device and inode numbers.                |
 | [ -o OPTIONNAME ]   | True if shell option "OPTIONNAME" is enabled.                                      |
 
----
-### escape characters
-
-`'single quotes'`
-- when in doubt, put the whole string in single quotes [1]
-  - **single quotes preserve the literal value of every character enclosed within the quotes** [3]
-  - a single quote *cannot* occur between single quotes, even when escaped by a backslash [3]
-
-`"double quotes"`
-- double quotes preserve literal value of every character except the dollar sign, backtick, and backslash [3]
-- characters that need to be escaped: `"`, `$`, `\`, `[space]` [2]
-
----
-### hotkeys
-
-`CTRL-SHIFT-j` or `CTRL-j` = get shell prompt back
-
-`CTRL-r` = search command history  
-`history` = print past commands to stdout, grep and use ![line_number] to repeat command without retyping
-
-`CTRL-l` = clear screen
-
-`CTRL-c` = send `SIGINT` to foreground process  
-`CTRL-z` = suspend foreground process
-
-`CTRL-d` = exit current shell
-
-`ALT-f` = jump forward one word  (when editing a command)  
-`ALT-b` = jump backward one word (when editing a command)
 
 ---
 ## ENVIRONMENT VARIABLES
@@ -110,6 +126,14 @@ see also: http://tldp.org/LDP/Bash-Beginners-Guide/html/sect_07_01.html
 `SHELL`   = path of the shell's binary  
 `TERM`    = type of terminal being used  
 `USER`    = current username
+
+
+---
+## CONSOLE / TTY
+
+`dpkg-reconfigure console-setup`    = change console font size (debian-based distros)  
+[edit `/etc/default/console-setup`] = change console font size
+
 
 ---
 #### sources
