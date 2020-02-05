@@ -147,9 +147,9 @@ see also: http://tldp.org/LDP/Bash-Beginners-Guide/html/sect_07_01.html
 
 [1] https://stackoverflow.com/questions/15783701/which-characters-need-to-be-escaped-when-using-bash#20053121  
 [2] https://www.shellscript.sh/escape.html  
-[3] http://tldp.org/LDP/Bash-Beginners-Guide/html/sect_03_03.html
+[3] http://tldp.org/LDP/Bash-Beginners-Guide/html/sect_03_03.html  
 [4] http://tldp.org/LDP/Bash-Beginners-Guide/html/sect_07_01.html  
-[5] https://superuser.com/questions/176783/what-is-the-difference-between-executing-a-bash-script-vs-sourcing-it/176788#176788  
-[6] https://medium.com/@abhinavkorpal/bash-profile-vs-bashrc-c52534a787d3    
-[7] https://askubuntu.com/questions/879364/differentiate-interactive-login-and-non-interactive-non-login-shell
+[5] https://superuser.com/questions/176783/what-is-the-difference-between-executing-a-bash-script-vs-sourcing-it/176788#176788   
+[6] https://medium.com/@abhinavkorpal/bash-profile-vs-bashrc-c52534a787d3   
+[7] https://askubuntu.com/questions/879364/differentiate-interactive-login-and-non-interactive-non-login-shell  
 
