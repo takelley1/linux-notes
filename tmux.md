@@ -28,7 +28,7 @@
 | switch panes                      | `o`                                      | `Tab`             |
 | swap location of panes            | `^o`                                     |                   |
 | cycle through pane layouts        | `space`                                  |                   |
-| resize pane downwards by 15 units | `:resize -D 15`                          |                   |
+| resize pane downwards by 15 units | `:resize -D 15`<br>`ALT-DownArrow`       |                   |
 | swap windows 3 and 1              | `swap-window -s 3 -t 1`                  |                   |
 |-----------------------------------|------------------------------------------|-------------------|
 | move pane to another window       | `:break-pane`                            | `X`               |
