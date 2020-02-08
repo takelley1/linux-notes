@@ -3,19 +3,20 @@
 
 `ansible-playbook /path/to/playbook -kK –f 100` = run playbook
 
-run ad-hoc command as root on target box
-`ansible 192.168.1.1 -a "yum update" -u akelley -k –b –-become-user root –K –-become-method su -f 10`
-  `-a`                 = run ad-hoc command
-  `-u`                 = use this user to access the machine
-  `-k`                 = ask for user's password instead of using ssh key
-  `-b`                 = use become to elevate privileges
-  `--become-user root` = become the user root when elevating
-  `-K`                 = ask for escalation password
-  `--become-method su` = use su instead of sudo when elevating
-  `-f 100`             = run 100 separate worker threads
+run ad-hoc command as root on target box  
+`ansible 192.168.1.1 -a "yum update" -u akelley -k –b –-become-user root –K –-become-method su -f 10`  
+  `-a`                 = run ad-hoc command  
+  `-u`                 = use this user to access the machine  
+  `-k`                 = ask for user's password instead of using ssh key  
+  `-b`                 = use become to elevate privileges  
+  `--become-user root` = become the user root when elevating  
+  `-K`                 = ask for escalation password   
+  `--become-method su` = use su instead of sudo when elevating 
+  `-f 100`             = run 100 separate worker threads  
 
 `ansible-playbook --syntax-check ./playbook.yml` = check syntax  
-`ansible-lint ./playbook.yml`                    = check best-practices
+`ansible-lint ./playbook.yml`                    = check best-practices  
+
 
 ---
 ## BORG BACKUP
@@ -27,6 +28,7 @@ run ad-hoc command as root on target box
 ## GRAYLOG
 
 `curl -XPUT -H "Content-Type: application/json"  https://localhost:9200/_all/_settings -d '{"index.blocks.read_only_allow_delete": null}'` = change Graylog to RW mode from RO mode
+
 
 ---
 ## OPENSCAP  
@@ -62,15 +64,35 @@ run scap scan
 
 
 ---
-## LESS 
+## Tenable.SC (SecurityCenter)
 
-`SPACE` = next page  
-`b`     = previous page  
-`>`     = last line  
-`<`     = first line  
-`/`     = forward search  
-`?`     = backward search  
-`n`     = next search match  
-`N`     = previous search match  
-`q`     = quit
+reset admin password to "password" [1]
+```
+## Versions 5.10 and earlier
+/opt/sc/support/bin/sqlite3 /opt/sc/application.db "update userauth set password = 'bbd29bd33eb161d738536b59e37db31e' where username='admin';"
 
+## Versions 5.11 and later
+/opt/sc/support/bin/sqlite3 /opt/sc/application.db "update userauth set password = 'bbd29bd33eb161d738536b59e37db31e', salt = '',
+hashtype = 1 where username='admin';"
+
+# password hash for easier reading
+bbd2
+9bd3
+3eb1
+61d7
+3853
+6b59
+e37d
+b31e
+```
+
+list users [1]
+```
+# /opt/sc/support/bin/sqlite3 /opt/sc/application.db "select * from UserAuth" 
+```
+
+
+---
+#### sources
+
+[1] https://community.tenable.com/s/article/Reset-admin-password-in-Tenable-sc-and-unlock-the-account-if-its-been-locked-Formerly-SecurityCenter  

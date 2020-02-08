@@ -1,8 +1,30 @@
 
-## CONSOLE
+## SHELL INITIALIZATION
 
-`dpkg-reconfigure console-setup`    = change console font size (debian-based distros)  
-[edit `/etc/default/console-setup`] = change console font size
+- **interactive login shell**
+  - logging in remotely via, for example, ssh
+  - drop to a tty on your local machine (Ctrl+Alt+F1) and login there
+  - `~/.bash_profile` is sourced when starting this shell type
+  - `~/.profile` is sourced if `~/.bash_profile` doesn't exist
+
+- **interactive non-login shell**
+  - opening a new terminal window
+  - `~/.bashrc` is sourced when starting this shell type
+
+- **non-interactive non-login shell**
+  - runing a script.
+
+- **non-interactive login shell**
+  - this is extremely rare, and you're unlikey to encounter it
+
+`~/.profile` is the place to put stuff that applies to your whole session, such as programs that you want to start when you log in, and environment variable definitions.  
+
+`~/.bashrc` is the place to put stuff that applies only to bash itself, such as alias and function definitions, shell options, and prompt settings (you could also put key bindings there, but for bash they normally go into `~/.inputrc`.)  
+
+`~/.bash_profile` can be used instead of `~/.profile`, but it is read by bash only, not by any other shell (this is mostly a concern if you want your initialization files to work on multiple machines and your login shell isn't bash on all of them.) This is a logical place to include `~/.bashrc` if the shell is interactive.
+
+[6] [7]
+
 
 ---
 ## BASH
@@ -22,6 +44,12 @@
 
 `cat /file.log 2>&1 | grep -i error` = pass both stdout and stderr to grep through pipe, by default pipe only passes stdout  
 `stat /home/file.txt`                = show last modified date, creation date, and other metadata about given file
+
+---
+### sourcing vs executing
+`bash script.sh` or `source script.sh`? [5]  
+- **Sourcing** a script runs in the current shell process, preserving all environment variables of the current shell
+- **Executing** a script runs in a new shell, which will load only the default environment variables 
 
 ---
 ### escape characters
@@ -54,6 +82,40 @@
 `ALT-b` = jump backward one word (when editing a command)
 
 ---
+### if statement conditional tests
+
+see also: http://tldp.org/LDP/Bash-Beginners-Guide/html/sect_07_01.html
+
+| syntax [4]          | meaning                                                                            |
+|---------------------|------------------------------------------------------------------------------------|
+| [ -a FILE ]         | True if FILE exists.                                                               |
+| [ -b FILE ]         | True if FILE exists and is a block-special file.                                   |
+| [ -c FILE ]         | True if FILE exists and is a character-special file.                               |
+| [ -d FILE ]         | True if FILE exists and is a directory.                                            |
+| [ -e FILE ]         | True if FILE exists.                                                               |
+| [ -f FILE ]         | True if FILE exists and is a regular file.                                         |
+| [ -g FILE ]         | True if FILE exists and its SGID bit is set.                                       |
+| [ -h FILE ]         | True if FILE exists and is a symbolic link.                                        |
+| [ -k FILE ]         | True if FILE exists and its sticky bit is set.                                     |
+| [ -p FILE ]         | True if FILE exists and is a named pipe (FIFO).                                    |
+| [ -r FILE ]         | True if FILE exists and is readable.                                               |
+| [ -s FILE ]         | True if FILE exists and has a size greater than zero.                              |
+| [ -t FD ]           | True if file descriptor FD is open and refers to a terminal.                       |
+| [ -u FILE ]         | True if FILE exists and its SUID (set user ID) bit is set.                         |
+| [ -w FILE ]         | True if FILE exists and is writable.                                               |
+| [ -x FILE ]         | True if FILE exists and is executable.                                             |
+| [ -O FILE ]         | True if FILE exists and is owned by the effective user ID.                         |
+| [ -G FILE ]         | True if FILE exists and is owned by the effective group ID.                        |
+| [ -L FILE ]         | True if FILE exists and is a symbolic link.                                        |
+| [ -N FILE ]         | True if FILE exists and has been modified since it was last read.                  |
+| [ -S FILE ]         | True if FILE exists and is a socket.                                               |
+| [ FILE1 -nt FILE2 ] | True if FILE1 was changed sooner than FILE2, or if FILE1 exists and FILE2 doesn't. |
+| [ FILE1 -ot FILE2 ] | True if FILE1 is older than FILE2, or if FILE2 exists and FILE1 doesn't.           |
+| [ FILE1 -ef FILE2 ] | True if FILE1 and FILE2 refer to the same device and inode numbers.                |
+| [ -o OPTIONNAME ]   | True if shell option "OPTIONNAME" is enabled.                                      |
+
+
+---
 ## ENVIRONMENT VARIABLES
 
 `echo $VARIABLE-NAME`          = get value of VARIABLE-NAME  
@@ -72,10 +134,22 @@
 `TERM`    = type of terminal being used  
 `USER`    = current username
 
+
+---
+## CONSOLE / TTY
+
+`dpkg-reconfigure console-setup`    = change console font size (debian-based distros)  
+[edit `/etc/default/console-setup`] = change console font size
+
+
 ---
 #### sources
 
 [1] https://stackoverflow.com/questions/15783701/which-characters-need-to-be-escaped-when-using-bash#20053121  
 [2] https://www.shellscript.sh/escape.html  
-[3] http://tldp.org/LDP/Bash-Beginners-Guide/html/sect_03_03.html
+[3] http://tldp.org/LDP/Bash-Beginners-Guide/html/sect_03_03.html  
+[4] http://tldp.org/LDP/Bash-Beginners-Guide/html/sect_07_01.html  
+[5] https://superuser.com/questions/176783/what-is-the-difference-between-executing-a-bash-script-vs-sourcing-it/176788#176788   
+[6] https://medium.com/@abhinavkorpal/bash-profile-vs-bashrc-c52534a787d3   
+[7] https://askubuntu.com/questions/879364/differentiate-interactive-login-and-non-interactive-non-login-shell  
 
