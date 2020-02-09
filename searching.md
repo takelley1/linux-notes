@@ -3,6 +3,9 @@
 
 #### examples
 
+`find . -print0 | perl -n0e 'chomp; print $_, "\n" if /[[:^ascii:][:cntrl:]]/'` = print all files with non-ascii characters in the name [1]
+`find . -print0 | perl -MFile::Path=remove_tree -n0e 'chomp; remove_tree($_, {verbose=>1}) if /[[:^ascii:][:cntrl:]]/'` = remove all files with non-ascii characters in the name [1]
+
 `find -name "file[0-9].txt" -exec ls -l {} \;` or `find -name "file[0-9].txt" | xargs ls -l` = perform `ls –l` command on found files
 
 `find ./ -type f | wc –l` = print number of files beneath current path  
@@ -58,3 +61,6 @@
 
 > Note: locate is much faster than find, but locate searches a tabulated database instead of actively scrubbing your disk for a match. This means the data locate uses may be a few hours old 
 
+#### sources
+
+[1] https://stackoverflow.com/questions/19146240/find-and-delete-files-with-non-ascii-names
