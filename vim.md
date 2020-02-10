@@ -161,6 +161,7 @@ Use navigation keys to highlight and press `d` to cut selection
 `:wq` or `:x` or `ZZ` = save and quit  
 
 `:noh`                = turn off match highlighting (after string search)
+`:sort`               = sort text
 
 `:%s/xxx/yyy/g`       = replace `xxx` with `yyy` in entire file
 
