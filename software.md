@@ -64,7 +64,13 @@ run scap scan
 
 
 ---
-## Tenable.SC (SecurityCenter)
+## RANGER
+
+`cd /path` = jump to /path  
+`gh`       = jump to ~ (*go home*)  
+
+---
+## TENABLE.SC (SECURITYCENTER)
 
 reset admin password to "password" [1]
 ```
