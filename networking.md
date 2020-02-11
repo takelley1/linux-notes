@@ -116,7 +116,7 @@ iptables –A OUTPUT -o eth0 –p tcp --sport 80 –m state --state NEW,ESTABLIS
 
 `tcpdump -tvv` = dump all packets on all interfaces  
  `-v` or `-vv` = extra packet information  
-	  `-t` = human-readable timestamps  
+          `-t` = human-readable timestamps  
 
 `tcpdump host 1.1.1.1`     = packets going to or from 1.1.1.1  
 `tcpdump src 10.0.0.5`     = packets coming from 10.0.0.5  
@@ -198,6 +198,21 @@ yourfriend@gmail.com              # this is the 'to' field of the email
 3. Run `postmap /postfix-whitelist && systemctl restart postfix`  
 4. Now only the IPs in `/postfix-whitelist` will be permitted to use the postfix server as an smtp relay  
 
+
+---
+## `wget` COMMAND
+
+```bash
+wget                            \
+  --recursive                   \ # descend into all subdirectories
+  --no-clobber                  \ # don't overwrite existing files
+  --page-requisites             \ # download all files required to display each page properly
+  --html-extension              \ # explicitly add .html extensions to relevant files
+  --convert-links               \ # convert http:// to file:// links for offline browsing
+  --restrict-file-names=windows \ # escape control characters in filenames
+  --no-parent                   \ # don't include directories above the path provided
+  www.website.org/
+```
 
 ---
 ## SPACEWALK / RED HAT SATELLITE
