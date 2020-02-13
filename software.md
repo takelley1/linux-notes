@@ -69,6 +69,13 @@ run scap scan
 `cd /path` = jump to /path  
 `gh`       = jump to ~ (*go home*)  
 
+
+---
+## SPACEWALK / RED HAT SATELLITE
+
+`rhncfg-client get` = force spacewalk client to pull configuration files
+
+
 ---
 ## TENABLE.SC (SECURITYCENTER)
 
