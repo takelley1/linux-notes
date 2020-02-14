@@ -1,9 +1,9 @@
 
 ## VIM
 
-*useful reading on vim*: https://danielmiessler.com/study/vim/ 
+**see also**: https://danielmiessler.com/study/vim/ 
 
-#### split-window editing
+### split-window editing
 
 `:sp` or `:split file`  =  open another file in a split window  
 `:vsplit file`          =  vertical split  
@@ -20,7 +20,7 @@
 `:only`                 =  keep only this window open  
 
 ---
-#### general
+### general
 
 `:help`        = get help  
 `:help usr_01` = show user manual  
@@ -42,7 +42,7 @@
 `.`           = repeat last action  
 
 ---  
-#### indenting 
+### indenting 
 
 `:set shiftwidth=1` = set indents to 1 space wide  
 
@@ -56,7 +56,7 @@ type `>` or `<` to indent right or left
 -also, for tabbing-size, set shiftwidth (`>`) by typing `:set sw=2`)  
 
 ---
-#### navigation
+### navigation
 
 `4k`   = jump up 4 lines  
 `9j`   = jump down 9 lines (*the letter j points downwards*)  
@@ -96,7 +96,7 @@ type `>` or `<` to indent right or left
     where it ends (ex: "http://www.vimcheatsheet.com" is 7 words but 1 WORD)
 
 ---
-#### cut / copy / paste 
+### cut / copy / paste 
 
 to enter visual mode so you can highlight stuff and cut selected text: `v`  
 Use navigation keys to highlight and press `d` to cut selection
@@ -131,7 +131,7 @@ Use navigation keys to highlight and press `d` to cut selection
 `p`           = paste after cursor
 
 ---
-#### inserting text (actions that switch to insert mode) 
+### inserting text (actions that switch to insert mode) 
 
 `i` (*insert*) = insert before cursor  
 `a` (*after*)  = insert after cursor
@@ -153,7 +153,7 @@ Use navigation keys to highlight and press `d` to cut selection
 `CTRL-c` (*close*) = exit insert mode
 
 ---
-#### misc typed commands
+### misc typed commands
 
 `:q` (*quit*)         = exit file  
 `:q!`                 = force exit file  
