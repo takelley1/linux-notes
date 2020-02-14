@@ -10,7 +10,7 @@ man systemd.target
 
 - service files can be placed in `$HOME/.config/systemd/user/my_daemon.service` or `/etc/systemd/system/my_daemon.service`
 
-example syntax [1,2,3]
+example syntax
 ```bash
 [Unit]
 Description=My Miscellaneous Service
@@ -33,6 +33,7 @@ Restart=on-failure
 [Install]
 WantedBy=multi-user.target
 ```
+
 ```bash
 [Unit]
 Description=The NGINX HTTP and reverse proxy server
@@ -61,8 +62,9 @@ ExecStart=/bin/bash /usr/bin/test_service.sh
 [Install]
 WantedBy=multi-user.target
 ```
+[1, 2, 3]
 
-viewing service file logs [1]
+viewing service file logs
 ```bash
 # See if running, uptime, view latest logs
 sudo systemctl status
@@ -81,6 +83,7 @@ sudo journalctl -u my_daemon
 # For user service
 journalctl --user-unit my_user_daemon
 ```
+[1]
 
 systemd-analyze blame = show startup times by process
 
@@ -106,7 +109,7 @@ systemd-analyze blame = show startup times by process
 
 #### runlevel scripts
 - init - place script in `/etc/rc#.d/`, in which `#` corresponds to the desired runlevel in which you'd like the script to run
-- systemd - place script in `/etc/systemd/system/[TARGET].wants
+- systemd - place script in `/etc/systemd/system/[TARGET].wants`
 
 ---
 #### sources
