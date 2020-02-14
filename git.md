@@ -1,7 +1,7 @@
 
 ## GIT [1]
 
-**further reading:** https://git-scm.com/docs
+**see also:** https://git-scm.com/docs
 
 `git add -A` = stage all modified files, including deleted files  
 `git add -u` = stage all modified files  
