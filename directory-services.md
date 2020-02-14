@@ -3,9 +3,16 @@
 
 ### `ldapsearch` command
 
-`ldapsearch -LLL -x -w [password] -H ldaps://[servername].[domain] -D "[authenticating-user].[domain]" "mail=[user-email]"`
+```bash
+ldapsearch \
+-LLL -x \
+-w [password] \
+-H ldaps://[servername].[domain] \
+-D "[authenticating-user].[domain]" \
+"mail=[user-email]"
+```
 
-#### ssh key authentication
+### ssh key authentication
 
 the below script is referenced in `/etc/ssh/sshd_config` at the line `AuthorizedKeysCommand`  
 the script attempts to authenticate users using a public key stored in the `comment` field of their ldap user account attributes
@@ -18,14 +25,14 @@ PASS=$(cat ./passwordfile)
 ldapsearch -u -LLL -x -w $PASS \
 -D "ldapsearch.svc@[DOMAIN]" \
 -H "ldaps://[DOMAIN-CONTROLLER-NAME].[DOMAIN]" \
-'(sAMAccountName='"$USER"')' 'comment' \
-| sed -n '/^ /{H;d};/comment:/x;$g;s/\n *//g;s/comment: //gp'
+'(sAMAccountName='"$USER"')' 'comment' | \
+sed -n '/^ /{H;d};/comment:/x;$g;s/\n *//g;s/comment: //gp'
 ```
 
 ---
 ### integration
 
-https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/7/html-single/windows_integration_guide/#sssd-ad-proc 
+**see also:** https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/7/html-single/windows_integration_guide/#sssd-ad-proc 
 
 `net ads testjoin` 
 `net ads info`
@@ -33,8 +40,9 @@ https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/7/html-si
 
 `kinit`
 
-**integrate Linux with Active Directory using `realmd`**  
-run all commands as root 
+## integrate Linux with Active Directory using `realmd`
+
+*run all commands as root*
 
 ```bash
 #!/bin/bash
@@ -125,4 +133,3 @@ ssh -l [DOMAIN]\\[DOMAIN-USERNAME] localhost
 
 exit 0
 ```
-
