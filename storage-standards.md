@@ -1,8 +1,9 @@
 
 ### LATENCY
 
+**see also:** https://colin-scott.github.io/personal_website/research/interactive_latency.html
 ```
-Latency Comparison Numbers (~2012) [2]
+Latency Comparison Numbers (~2012)
 ----------------------------------
 L1 cache reference                           0.5 ns
 Branch mispredict                            5   ns
@@ -19,15 +20,12 @@ Disk seek                           10,000,000   ns   10,000 us   10 ms  20x dat
 Read 1 MB sequentially from disk    20,000,000   ns   20,000 us   20 ms  80x memory, 20X SSD
 Send packet CA->Netherlands->CA    150,000,000   ns  150,000 us  150 ms
 ```
-
+[2]
 > memory is only about 6 times faster when you're doing sequential access (350 Mvalues/sec for memory compared with 58 Mvalues/sec for disk); but it's about 100,000 times faster when you're doing random access [3].
-
-**see also:** https://colin-scott.github.io/personal_website/research/interactive_latency.html
 
 
 ---
 ## RAID
-
 
 ```
          ZFS Raid Speed Capacity and Performance Benchmarks
@@ -98,25 +96,25 @@ Send packet CA->Netherlands->CA    150,000,000   ns  150,000 us  150 ms
 ## SOLID-STATE MEMORY
 
 - Non-volatile - memory that retains its data after power loss
-  - ROM (Read Only Memory) - data not rewritable after manufacture, used in BIOS chips and embedded devices
+  - **ROM** (Read Only Memory) - data not rewritable after manufacture, used in BIOS chips and embedded devices
     - PROM (Programmable Read Only Memory) - programmed by blowing internal fuses permanently
     - EPROM (Eletrically Programmable Read Only Memory) - programmed and erased using ultraviolet light
     - EEPROM (Electrically Eraseable Programmable Read Only Memory) - can be erased more times than EPROM
       - FRAM (Ferroelectric Random Access Memory) - type of EEPROM with unlimited writes 
-  - Flash - easy to rewrite (like RAM), but nonvolatile (like ROM), used as a fast replacement for hard drives
+  - **Flash** - easy to rewrite (like RAM), but nonvolatile (like ROM), used as a fast replacement for hard drives
     - NOR - flash based on NOR gates, used for code execution due to its execute-in-place (XIP) feature
     - NAND - based on NAND gates, cheaper and denser than NOR flash, used for data storage
       - V-NAND (Vertical NAND) / 3D NAND - stacks memory cells to increase density
       - SLC (Single-Level Cell) - NAND that stores only one bit per MOSFET memory cell
       - MLC (Multi-Level Cell), TLC (Triple), QLC (Quad) - NAND that stores multiple bits per cell, slower but cheaper than SLC
-  - NVRAM (non-volatile RAM) - memory that acts like RAM but retains its data after losing power like Flash
+  - **NVRAM** (non-volatile RAM) - memory that acts like RAM but retains its data after losing power like Flash
     - 3D XPoint / Optane / QuantX - balances the performance and density of DRAM and flash, uses resistance rather than charge to store bits
     - FeRAM (Ferroelectric RAM)
     
 ![nand-vs-nor-flash](/images/nand-vs-nor-flash.jpg) [1]
     
 - Volatile - memory that loses its data after power loss, used as a working cache to store frequently-accessed data
-  - RAM (Random Access Memory) - fast memory for storing running programs
+  - **RAM** (Random Access Memory) - fast memory for storing running programs
     - SRAM (Static RAM) - expensive but fast, built into CPU dies to be used as L1-L3 caches
     - DRAM (Dynamic RAM) - cheaper than SRAM, but slower, used as main system memory
       - SDRAM (Synchronous DRAM) - RAM that synchronizes its clock with the CPU, most modern RAM is SDRAM
@@ -124,14 +122,14 @@ Send packet CA->Netherlands->CA    150,000,000   ns  150,000 us  150 ms
         - GDDR (Graphics DDR) - SDRAM designed for use with GPUs
         - HBM (High Bandwidth Memory) - 3D-stacked SDRAM for graphics and network devices
 
-### Protocols
+### Data Protocols
 
 | Storage Spec | Data Bus             | Connector / Form Factor                          |
 |--------------|----------------------|--------------------------------------------------|
 | NVMe         | PCIe                 | M.2, mPCIe, U.2, PCIe                            |
 | AHCI         | SATA, PATA, SAS, IDE | M.2, mPCIe, U.2, mSATA, 2.5in/3.5in SATA/SAS/IDE |
 
-### Terminology
+### Units of Measurement
 
 | Name           | Mathematical Equivalent | # of Bytes                 |
 |:---------------|:-----------------------:|:---------------------------|
