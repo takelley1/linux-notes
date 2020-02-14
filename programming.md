@@ -1,5 +1,4 @@
 ## PARADIGMS
-[1]
 
 - **imperative: programming with an explicit sequence of commands that update state**
   - **procedural: imperative programming with procedure calls**
@@ -48,6 +47,8 @@
   in
       sort(uppercasedLongNames(people))
   ```
+[1]
+
 
 ## LANGUAGES
 
