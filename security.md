@@ -15,7 +15,7 @@ certtool --generate-self-signed --load-privkey key.pem --outfile cert.pem
 ---
 ## GPG
 
-#### digitally sign and verify a file
+### digitally sign and verify a file
 
 (assumes recipient does not yet have sender's public key)  
 on sender:  
@@ -28,24 +28,28 @@ on recipient:
 1. `gpg --import public.asc`                        = import sender's public key
 2. `gpg --verify file.sig file.txt`                 = verify the file.sig signature of file.txt using sender's public key
 
-#### asymetrically encrypt/decrypt and sign a file [3, 4]
+### asymetrically encrypt/decrypt and sign a file
 
-on sender:  
+#### on sender:  
 1. `gpg --encrypt --sign --armor --recipient receiver@gmail.com file.txt` = encrpyt file.txt using receiver's public key (assuming it's in the gpg keychain), then sign file.txt using your private key
 2. this produces the encrypted and signed file `file.txt.asc`
 
-on receiver:  
+#### on receiver:  
 1. `gpg --decrypt file.txt.asc > file.txt` = decrypt file using receiver's private key and verify sender's signature
 
-#### symmetrically encrypt/decrypt a file [2]
+[3, 4]
+
+#### symmetrically encrypt/decrypt a file
 
 1. `gpg --output file.gpg --symmetric file.txt` = encrypt file.txt into file.gpg using a password that must be provided  
 2. `gpg --decrypt file.gpg`                     = decrypt file.gpg into file.txt using the same password used to encrypt file.txt
+[2]
 
 #### further reading
 
 The GNU Privacy Handbook https://www.gnupg.org/gph/en/manual/book1.html  
 Backing up private keys on paper https://wiki.archlinux.org/index.php/Paperkey, https://www.jabberwocky.com/software/paperkey/, https://www.saminiir.com/paper-storage-and-recovery-of-gpg-keys/
+
 
 ---
 ## PAM
@@ -53,6 +57,7 @@ Backing up private keys on paper https://wiki.archlinux.org/index.php/Paperkey, 
 `authconfig --disablesssdauth --update` = remove pam sssd module
 
 #### /etc/pam.d/ syntax
+
 
 ---
 ## SELINUX
@@ -79,14 +84,15 @@ selinux context syntax: `user:role:type:level`
 `setsebool httpd_can_network_connect on` = allow outside directory access to httpd
 
 ---
-#### `audit2allow` command [1]
+#### `audit2allow` command
 
 `audit2allow -w -a` or `audit2why -a` = generate a list of policies triggering selinux denials  
 `audit2allow -a -M [policy]` = create an selinux module that would fix the current policy denial (see below)
 
 `semodule -l` = list all current selinux modules
+[1]
 
-``` [1]
+```basg
 ~]# audit2allow -w -a
 
 type=AVC msg=audit(1226270358.848:238): avc:  denied  { write }
@@ -107,6 +113,7 @@ To make this policy package active, execute:
 
 semodule -i mycertwatch.pp
 ```
+[1]
 
 selinux denial log example in `/var/log/messages`:
 ```
@@ -114,6 +121,7 @@ Dec 16 16:28:22 [hostname] kernel: type=1400 audit(1576531702.010:97659712): avc
 for pid=28583 comm="pidof" path="/usr/bin/su" dev="dm-0" ino=50444389
 scontext=system_u:system_r:keepalived_t:s0 tcontext=system_u:object_r:su_exec_t:s0 tclass=file permissive=0
 ```
+
 ---
 #### sources
 
