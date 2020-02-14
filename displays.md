@@ -1,7 +1,7 @@
 
 ## LCD / TFT LCD
 
-`liquid crystal display` [1, 2]  
+*liquid crystal display* [1, 2]  
 - works by shining an LED backlight through a crystal structure, which has three polarization filters for producing different levels of red, green, or blue light, based on the voltage applied to it  
 - the crystal panel of LCDs can only *block* light, so black pixels are blocked, but the backlight still shines through, causing blacks to appear grey
 - panel types  
@@ -24,7 +24,7 @@
 ---
 ## OLED
 
-`organic light-emitting diode` [1, 2]  
+*organic light-emitting diode* [1, 2]  
 - each pixel emits its own light, brightness is controlled by the voltage applied to the panel  
 - black pixels are completely turned off, allowing for "perfect" contrast  
   - Pros: excellent contrast capable of HDR, colors, and power efficiency, thinner than LCDs  
@@ -42,4 +42,3 @@
 [1] https://www.tomshardware.com/reviews/lcd-led-led-oled-panel-difference,5394.html  
 [2] https://www.displayninja.com/ips-vs-tn-vs-va/  
 [3] https://www.cnet.com/news/mini-led-is-here-how-smaller-lights-could-lead-to-big-tv-improvements/  
-
