@@ -6,9 +6,9 @@
 | archive formats | tar | zip | 7z | tar.gz |
 |                 |     |     |    |        |
 
-*further reading on compression algorithms compared*: https://quixdb.github.io/squash-benchmark/#results
+**see also**: https://quixdb.github.io/squash-benchmark/#results
 
-#### tar
+### tar
 
 `tar xzvf myarchive.tar.gz` = extract myarchive.tar.gz to current path (*xtract ze v'ing files*)  
                         `x` = extract  
@@ -18,13 +18,13 @@
 
 `tar czvf myarchive.tar.gz dir1/ dir2/ dir3/` = create myarchive.tar.gz from dir1, dir2, and dir3 (*create ze v'ing files*)
 
-#### 7zip
+### 7zip
 
 `7za x myarchive.7z` = extract myarchive.7z to current path (DO NOT USE THE 'e' SWITCH, USE 'x' INSTEAD TO PRESERVE FILEPATHS)
 
 `7za a -mx=10 myarchive.7z dir1/ dir2/` = create myarchive.7z from dir1 and dir2
                                `-mx=10` = use compression lvl 10
-         
+
 
 ---
 ## DISKS & MOUNTS
@@ -46,14 +46,15 @@
 `mount` = show mounted volumes and their mount locations  
 `mount –o remount,rw /dev/sda1 /mountpoint` = remount drive with read-write permissions 
 
-#### disk testing [3]
+### disk testing
 
 `badblocks -b 4096 -s -v -w /dev/sdb` = destructively test disk hda for bad data blocks (useful for testing new drive)  
 `bonnie++`
+[3]
 
-#### SMART
+### SMART
 
-*SMART tests*
+#### SMART tests
 
 `smartctl -t long /dev/sdc` = start a long HDD self test - after the test is done (could take 12+ hours), check the results with `smartctl -a /dev/sdc`
 
@@ -64,7 +65,7 @@
 `smartctl -a /dev/ | grep Power_On_Hours`                 = HDD and SSD hours  
 `nvmecontrol logpage -p 2 nvme0 | grep “Percentage used”` = NVMe percentage used  
 
-*SMART field names*
+#### SMART field names
 
 `Normalized value` = commonly referred to as just "value". This is a most universal measurement, on the scale from 0 (bad) to some maximum (good) value. Maximum values are typically 100, 200 or 253. Rule of thumb is: high values are good, low values are bad.
 
@@ -72,7 +73,7 @@
 
 `Raw value` = the value of the attribute as it is tracked by the device, before any normalization takes place. Some raw numbers provide valuable insight when properly interpreted. These cases will be discussed later on. Raw values are typically listed in hexadecimal numbers.
 
-| SMART attributes [5]                                                      |                                                                            | 
+| SMART attributes                                                      |                                                                            | 
 |---------------------------------------------------------------------------|----------------------------------------------------------------------------|
 | Reallocated sectors count                                                 | How many defective sectors were discovered on drive and remapped using a spare sectors pool. Low values in absence of other fault indications point to a disk surface problem. Raw value indicates the exact number of such sectors. |
 | Current pending sectors count                                             | How many suspected defective sectors are pending "investigation". These will not necessarily be remapped. In fact, such sectors my be not defective at all (e.g. if some transient condition prevented reading of the sector, it will be marked "pending") - they will be then re-tested by the device off-line scan1 procedure and returned to the pool of serviceable sectors. Raw value indicates the exact number of such sectors. |
@@ -86,12 +87,13 @@
 | Temperature                                                               | Device temperature, if the appropriate sensor is fitted. Lowest byte of the raw value contains the exact temperature value (Celsius degrees). |
 | Ultra DMA CRC error rate                                                  | Low value of this attribute typically indicates that something is wrong with the connectors and/or cables. Disk-to-host transfers are protected by CRC error detection code when Ultra-DMA 66 or 100 is used. So if the data gets garbled between the disk and the host machine, the receiving controller senses this and the retransmission is initiated. Such a situation is called "UDMA CRC error". Once the problem is rectified (typically by replacing a cable), the attribute value returns to the normal levels pretty quick. |
 | G-sense error rate                                                        | Indicates if the errors are occurring attributed to the drive shocking (either due to the environmental factors or due to improper installation). The hard drive must be fitted with the appropriate sensor to get information about the G-loads. This attribute is mainly limited to the notebook (2.5") drives. Once the operation conditions are corrected, the attribute value will  return to normal. |
+[5]
 
 
 ---
 ## FILES & FILESYSTEMS
 
-#### metadata
+### metadata
 
 `stat file.txt` = get file metadata on file.txt  
 `atime` (*access time*) = last time file's contents were read  
@@ -100,7 +102,7 @@
 
 `inode` = a special data structure holding a file's metadata, contains the file's physical address on the storage medium, size, permissions, and modification timestamps. The file that the user interacts with is only a pointer to its corresponding inode [6]
 
-#### sizing
+### sizing
 
 `du -sh /home/alice` = display disk space used by specified directory or file  
 `-s` (*summarize*)   = list total storage used by entire directory and all subdirectories  
@@ -109,7 +111,7 @@
 `du -d 1 -h /`   = list the sizes of each directory one level beneath the specified directory  
 `-d 1` (*depth*) = recurse at a depth of 1
 
-#### filesystems
+### filesystems
 
 `mkfs.ext4 /dev/mapper/LV1` or `mkfs -t ext4 /dev/mapper/LV1` = create ext4 filesystem on LV1 logical volume
 
@@ -121,11 +123,13 @@
 
 > NOTE: xfs filesystems cannot be shrunk; use ext4 instead
 
-*ext4 vs xfs* [4]  
--ext4 is better with lots of smaller files and metadata-intensive tasks  
--xfs is better with very large files (>30GB) 
+#### ext4 vs xfs
 
-| filesystem features [1]      | ext4 | xfs  | btrfs | zfs  | ufs | ntfs | bcachefs | FAT32 | exFAT |
+-ext4 is better with lots of smaller files and metadata-intensive tasks  
+-xfs is better with very large files (>30GB)  
+[4]
+
+| filesystem features          | ext4 | xfs  | btrfs | zfs  | ufs | ntfs | bcachefs | FAT32 | exFAT |
 |------------------------------|------|------|-------|------|-----|------|----------|-------|-------|
 | online growing               | no   | yes  | yes   | yes  | ?   | yes  | ?        | no    | no    |
 | online shrinking             | no   | no   | yes   | no   | no  | yes  | ?        | no    | no    |
@@ -143,34 +147,35 @@ LUKS = encrypting these filesystems is usually handled through LUKS and/or dm-cr
 LVM = can provide limited snapshot functionality through LVM  
 COW = journaling is superceded by copy-on-write mechanisms  
 \-  = maximum theoretical size so large it's effectively irrelevant  
-?   = currently unknown and/or no reliable data available
+?   = currently unknown and/or no reliable data available  
+[1]
 
 
 ---
 ## LOGICAL VOLUME MANAGEMENT (LVM)
 
-#### physical volumes (PV)
+### physical volumes (PV)
 
 `pvcreate /dev/sdb`            = create a physical volume (PV) from sdb  
 `pvremove /dev/sdb1 /dev/sdc1` = remove physical volumes on partitions sdb1 and sdc1  
 `pvmove /dev/sdb1 /dev/sdb2`   = copy all data from sdb1 to sdb2  
 `pvdisplay` or `pvscan`        = show physical volumes
 
-#### logical volumes (LV)
+### logical volumes (LV)
 
 `lvcreate -L 5G LV1 -n LV2`        = create 5 GB logical volumes called LV1 and LV2  
 `lvdisplay` or `lvscan`            = show logical volumes  
 `lvextend -L 1.5G /dev/mapper/LV1` = extend logical volume LV1 to 1.5 GB  
 `lvreduce -l -200 /dev/mapper/LV1` = reduce logical volume LV1 by 200 extents 
 
-#### volume groups (VG)
+### volume groups (VG)
 
 `vgcreate VG1 /dev/sdb /dev/sdc` = create a volume group containing PVs sdb and sdc called VG1  
 `vgdisplay` or `vgscan`          = show volume groups  
 `vgextend vgroup /dev/sdb1`      = add PV sdb1 to “vgroup” volume group 
 
 ---
-#### extending /var xfs filesystem with LVM
+### extending /var xfs filesystem with LVM
 
 ```bash
 1. fdisk /dev/sdb                      # create partition from new disk
@@ -180,6 +185,7 @@ COW = journaling is superceded by copy-on-write mechanisms
 5. lvextend -l +127999 /dev/centos/var # extend the relevant logical volume by adding free extents
 6. xfs_growfs /var                     # grow the filesystem on the extended logical volume
 ```
+
 
 ---
 ## SAMBA
@@ -192,7 +198,7 @@ COW = journaling is superceded by copy-on-write mechanisms
 
 > NOTE: assumes fedora-based system
 
-#### server 
+### server 
 
 1. `yum install nfs-utils`
 2. `systemctl enable nfs`
@@ -202,8 +208,8 @@ COW = journaling is superceded by copy-on-write mechanisms
 ex: `/mirror 192.168.1.1/24(rw)`
 5. `exportfs -a`
 6. `sync`
- 
-#### client 
+
+### client 
 
 1. `mount -t nfs [server ip or fqdn]:/[directory being shared] /[local mount location]`
 2. `showmount`
@@ -215,7 +221,7 @@ ex: `10.0.0.10:/data  /mnt/data  nfs  defaults  0 0`
 ---
 ## MISC
 
-#### hard & symbolic links 
+### hard & symbolic links 
 
 `ln /home/sourcefile.txt /var/hardlink.txt` = create hard link to file (`ln -s` for soft/symbolic link), 
 
@@ -223,8 +229,7 @@ ex: `10.0.0.10:/data  /mnt/data  nfs  defaults  0 0`
 
 > symbolic links can be made for directories as well as files and work across partitions (unlike hard links), but break if the location they're pointing to is deleted. Similar to Windows shortcuts
 
----
-#### transfer root linux installation to another drive
+### transfer root linux installation to another drive
 
 1. install the `update-grub` package on the source drive (optional)
 2. use `gparted` to copy the source drive's root partition to an empty partition on the target drive
@@ -247,4 +252,3 @@ ex: `10.0.0.10:/data  /mnt/data  nfs  defaults  0 0`
 [4] https://unix.stackexchange.com/questions/467385/should-i-use-xfs-or-ext4  
 [5] https://www.z-a-recovery.com/manual/smart.aspx  
 [6] http://www.linfo.org/inode.html  
-
