@@ -3,7 +3,7 @@
 
 - **interactive login shell**
   - logging in remotely via, for example, ssh
-  - drop to a tty on your local machine (Ctrl+Alt+F1) and login there
+  - drop to a tty on your local machine (Ctrl-Alt-F1) and login there
   - `~/.bash_profile` is sourced when starting this shell type
   - `~/.profile` is sourced if `~/.bash_profile` doesn't exist
 
@@ -21,9 +21,8 @@
 
 `~/.bashrc` is the place to put stuff that applies only to bash itself, such as alias and function definitions, shell options, and prompt settings (you could also put key bindings there, but for bash they normally go into `~/.inputrc`.)  
 
-`~/.bash_profile` can be used instead of `~/.profile`, but it is read by bash only, not by any other shell (this is mostly a concern if you want your initialization files to work on multiple machines and your login shell isn't bash on all of them.) This is a logical place to include `~/.bashrc` if the shell is interactive.
-
-[6] [7]
+`~/.bash_profile` can be used instead of `~/.profile`, but it is read by bash only, not by any other shell (this is mostly a concern if you want your initialization files to work on multiple machines and your login shell isn't bash on all of them.) This is a logical place to include `~/.bashrc` if the shell is interactive.  
+[6, 7]
 
 
 ---
