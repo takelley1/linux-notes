@@ -1,7 +1,7 @@
 
 ## ZFS
 
-| POOL CREATION [1]                |                                                     |
+| POOL CREATION                    |                                                     |
 |----------------------------------|-----------------------------------------------------|
 | `zpool create datapool1`         | create basic pool named datapool                    |
 | `zpool create -m /data datapool` | create pool with different mount point than default |
@@ -12,6 +12,8 @@
 | `zpool add datapool spare`       | add spare device to datapool                        |
 | `zpool create -n geekpool`       | do dry run on pool creation                         |
 
+[1]
+ 
 | POOL INFO                  |                                             |
 |----------------------------|---------------------------------------------|
 | `zpool status -x`          | show pool status                            |
