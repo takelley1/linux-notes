@@ -1,12 +1,13 @@
 
-## GIT [1]
+## GIT
+[1]
 
 **see also:** https://git-scm.com/docs
 
 `git add -A` = stage all modified files, including deleted files  
 `git add -u` = stage all modified files  
 
-#### setup
+### setup
 
 *configuring user information used across all local repositories*   
 `git config --global user.name “[firstname lastname]”` = set a name that is identifiable for credit when review version history  
@@ -14,14 +15,14 @@
 `git config --global color.ui auto`                    = set automatic command line coloring for git for easy reviewing
 
 ---
-#### init
+### init
 
 *configuring user information, initializing and cloning repositories*  
 `git init`        = initialize an existing directory as a git repository  
 `git clone [url]` = retrieve an entire repository from a hosted location via url
 
 ---
-#### staging
+### staging
 
 *reverting changes*  
 `git checkout [commit hash] -- ./file1 ../file2` = revert file1 and file2 to the specified commit  
@@ -37,7 +38,7 @@
 `git commit -m “[message]”` = commit your staged content as a new commit snapshot
 
 ---
-#### branches
+### branches
 
 *isolating work in branches, changing context, and integrating changes*  
 `git branch`                 = list your branches. a `*` will appear next to the currently active branch  
@@ -47,7 +48,7 @@
 `git log`                    = show all commits in the current branch’s history
 
 ---
-#### history
+### history
 
 *examining logs, diffs and object information*  
 `git log`                    = show the commit history for the currently active branch  
@@ -59,7 +60,7 @@
 `git checkout [commit-hash]` = checkout the repository at the specified commit
 
 ---
-#### tracking path changes
+### tracking path changes
 
 *versioning file removes and path changes*  
 `git rm [file]`                    = delete the file from project and stage the removal for commit  
@@ -67,7 +68,7 @@
 `git log --stat -M`                = show all commit logs with indication of any paths that moved
 
 ---
-#### ignoring patterns
+### ignoring patterns
 
 *preventing unintentional staging or commiting of files*  
 ```
@@ -79,7 +80,7 @@ pattern*/
 `git config --global core.excludesfile [file]` = system wide ignore patern for all local repositories
 
 ---
-#### remotes
+### remotes
 
 *retrieving updates from another repository and updating local repos*  
 `git remove -v`                = show remote repo info  
@@ -91,14 +92,14 @@ pattern*/
 `git pull`                     = fetch and merge any commits from the tracking remote branch
 
 ---
-#### rewriting history
+### rewriting history
 
 *rewriting branches, updating commits and clearing history*  
 `git rebase [branch]`       = apply any commits of current branch ahead of specified one  
 `git reset --hard [commit]` = clear staging area, rewrite working tree from specified commit
 
 ---
-#### stashing
+### stashing
 
 *temporarily store modified, tracked files in order to change branches*  
 `git stash`      = save modified and staged changes  
@@ -107,6 +108,6 @@ pattern*/
 `git stash drop` = discard the changes from top of stash stack
 
 ---
-#### sources
+### sources
 
 [1] https://education.github.com/git-cheat-sheet-education.pdf
