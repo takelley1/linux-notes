@@ -4,7 +4,7 @@
 `psql -h [hostname-or-ip] -p [port] -U [username] [database-name]` = remotely connect to database  
 `sudo -u postgres psql` = launch sql shell as user postgres
 
-#### psql shell
+### psql shell
 
 `\l`             = list all databases  
 `\c [dbname]`    = connect to new database  
@@ -15,8 +15,8 @@
 `\set`           = system variables  
 `\q`             = quit
 
-#### pg_hba.conf
-manages client authentication to the db host
+### pg_hba.conf
+manage client authentication to the db host
 
 ```
 # Allow any user on the local system to connect to any database with
