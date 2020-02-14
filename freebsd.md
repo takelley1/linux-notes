@@ -10,22 +10,23 @@
 | apt/yum/pacman   | pkg                 |
 | yay (Arch Linux) | portsnap/portmaster |
 
-#### tips
+### tips
 
 -use `sudo -i` instead of `sudo su` to ensure root's environment variables are loaded properly  
-  -if this is not done, running `crontab -e` as root won't invoke root's editor set by $EDITOR
+  -if this is not done, running `crontab -e` as root won't invoke root's editor set by `$EDITOR`
 
-#### useful commands
+### useful commands
 
 `bsdconfig` = text-based GUI for general system configuration
 
-#### misc [1]
+### misc
+[1]
 
 FreeBSD is focused on robustness and stablility  
 NetBSD is focused on portability  
 OpenBSD is focused on security
 
+---
 #### sources
 
-[1] https://jameshoward.us/archive/the-bsd-family-tree/
-
+[1] https://jameshoward.us/archive/the-bsd-family-tree/  
