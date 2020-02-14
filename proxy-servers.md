@@ -14,13 +14,14 @@ httpd itself does not generate or host the data, but rather the content is obtai
 backend servers,which normally have no direct connection to the external network. As httpd receives a
 request from a client, the request itself is proxied to one of these backend servers, which then handles
 the request, generates the content and then sends this content back to httpd, which then generates the
-actual HTTP response back to the client. [4]
+actual HTTP response back to the client.
 ```
+[4]
 
 ![reverse-proxy](/images/reverse-proxy.jpg) [2]
 
 ```xml
-apache config (httpd.conf) [4]
+apache config (httpd.conf)
 
     # Requests to the /bitbucket directory are proxied to a different server
     <Location /bitbucket>
@@ -40,6 +41,7 @@ apache config (httpd.conf) [4]
         BalancerMember https://jenkins-cluster-server2.domain
     </Proxy>
 ```  
+[4]
 
 
 ## FORWARD PROXY
@@ -52,5 +54,4 @@ apache config (httpd.conf) [4]
 [1] https://en.wikipedia.org/wiki/Reverse_proxy  
 [2] https://www.imperva.com/learn/performance/reverse-proxy/  
 [3] https://www.jscape.com/blog/bid/87783/forward-proxy-vs-reverse-proxy  
-[4] https://httpd.apache.org/docs/2.4/howto/reverse_proxy.html
-
+[4] https://httpd.apache.org/docs/2.4/howto/reverse_proxy.html  
