@@ -3,31 +3,36 @@
 
 ## ACLs 
 
-`setfacl –R –m u:alice:rw /photos` = grant user alice read and write access to all files in `/photos`, regardless of alice's POSIX permissions on those files
-                              `-R` = recursive
-                              `-m` = modify file or directory permissions
+grant user alice read and write access to all files in `/photos`, regardless of alice's POSIX permissions on those files
+```bash
+setfacl –R –m u:alice:rw /photos
+```
+`-R` = recursive  
+`-m` = modify file or directory permissions  
 
 `getfacl /file.txt` = view ACL for given file  
+
 
 ---
 ## UMASK 
 
 > umask modifies the default permissions of created files and directories to make them more restrictive 
 
-#### directories 
+### directories 
 
 example:
 default permissions for directories:    `777`  
 umask of user that created directory:   `002` (example)  
 new default permissions of directories: `775`
 
-#### files 
+### files 
 
 default permissions for files:     `666`  
 umask of user that created file:   `022` (example)  
 new default permissions for files: `644`
 
-> umask is permanently set in `/etc/profile` or `/etc/login.defs`
+> NOTE: umask is permanently set in `/etc/profile` or `/etc/login.defs`
+
 
 ---
 ## USERS 
@@ -42,6 +47,7 @@ new default permissions for files: `644`
 `/etc/passwd` syntax = `uname:'x':uid:gid:comments:homedir:shell`  
 `/etc/group` syntax  = `groupname:'x':groupid:userlist(user1,user2)`
 
+
 ---
 ## GROUPS
 
@@ -51,6 +57,7 @@ new default permissions for files: `644`
 
 `id alice`    = show what groups user alice is in, and show uid and gids  
 `id -G wheel` = show gid of wheel group
+
 
 ---
 ## PERMISSIONS
@@ -112,4 +119,3 @@ example:
 `g` (*group*) = owning group  
 `o` (*other*) = users not in the file's owning group  
 `a` (*all*)   = everyone, including the owning user and group
-
