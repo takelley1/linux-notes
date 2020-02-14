@@ -20,6 +20,7 @@
 | `SIGKILL` | 9  |        | forcefully terminate process, cannot be ignored |
 | `SIGTERM` | 15 |        | identical to `SIGINT`                           |
 | `SIGSTP`  | 20 | Ctrl-z | ask the process to stop temporarily             |
+
 [1]
 
 ### status codes
