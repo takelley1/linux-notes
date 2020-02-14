@@ -1,34 +1,44 @@
 
 ## `find` command
 
-#### examples
+### examples
 
-`find . -print0 | perl -n0e 'chomp; print $_, "\n" if /[[:^ascii:][:cntrl:]]/'` = print all files with non-ascii characters in the name [1]
-`find . -print0 | perl -MFile::Path=remove_tree -n0e 'chomp; remove_tree($_, {verbose=>1}) if /[[:^ascii:][:cntrl:]]/'` = remove all files with non-ascii characters in the name [1]
+print all files with non-ascii characters in the name [1]
+```bash
+find . -print0 | \
+perl -n0e 'chomp; print $_, "\n" if /[[:^ascii:][:cntrl:]]/'
+```
 
-`find -name "file[0-9].txt" -exec ls -l {} \;` or `find -name "file[0-9].txt" | xargs ls -l` = perform `ls –l` command on found files
+remove all files with non-ascii characters in the name [1]
+```bash
+find . -print0 | \
+perl -MFile::Path=remove_tree -n0e 'chomp; remove_tree($_, {verbose=>1}) if /[[:^ascii:][:cntrl:]]/'
+```
+
+perform `ls –l` command on found files
+`find -name "file[0-9].txt" -exec ls -l {} \;` or `find -name "file[0-9].txt" | xargs ls -l` 
 
 `find ./ -type f | wc –l` = print number of files beneath current path  
-  `-type f` = search for files only, not directories  
-  `wc –l`   = count the number of lines in the ouput
+                `-type f` = search for files only, not directories  
+                `wc –l`   = count the number of lines in the ouput
 
 `find -03 -L . -type f -name *.jpg` =  
-  `-03`     = optimize file search order based on likelihood of finding a match  
-  `-L`      = follow symbolic links  
-  `.`       = search in or below the current directory  
-  `-type f` = look for files  
-  `-name`   = search based on file name  
-  `*.jpg`   = use wildcard to search for all files with .jpg extension 
+                          `-03`     = optimize file search order based on likelihood of finding a match  
+                          `-L`      = follow symbolic links  
+                          `.`       = search in or below the current directory  
+                          `-type f` = look for files  
+                          `-name`   = search based on file name  
+                          `*.jpg`   = use wildcard to search for all files with .jpg extension 
 
 `find ~ -user alice -mtime 7 -iname “.log” -delete` =  
-  `-user`   = files owned by user alice  
-  `~`       = search in or beneath the specified user's home directory  
-  `-mtime`  = filter by file's modified time, in # of days ago  
-  `-i`      = ignore case  
-  `-name`   = match by file name  
-  `-delete` = delete after locating files
+                                          `-user`   = files owned by user alice  
+                                          `~`       = search in or beneath the specified user's home directory  
+                                          `-mtime`  = filter by file's modified time, in # of days ago  
+                                          `-i`      = ignore case  
+                                         `-name`   = match by file name  
+                                         `-delete` = delete after locating files
 
-#### options 
+### options 
 
 `-type f` = match is of type `f` (`f`=file, `d`=dir, `l`=link, `p`=pipe, `b`=block, `c`=character)  
 `-iname`  = match by file name, ignoring case  
@@ -52,15 +62,16 @@
 ---
 ## `locate` command 
 
-#### examples
+### examples
 
-`locate -ice *.txt` = search for all .txt files on the system
-  `-i` (*ignore*) = ignore case of match
-  `-c` (*count*)  = list number of matches
-  `-e` (*exist*)  = verify file’s existence before producing result since database may be old
+`locate -ice *.txt` = search for all .txt files on the system  
+    `-i` (*ignore*) = ignore case of match  
+    `-c` (*count*)  = list number of matches  
+    `-e` (*exist*)  = verify file’s existence before producing result since database may be old  
 
-> Note: locate is much faster than find, but locate searches a tabulated database instead of actively scrubbing your disk for a match. This means the data locate uses may be a few hours old 
+> Note: locate is much faster than find, but locate searches a tabulated database instead of actively scrubbing your disk for a match. This means the data locate uses may be a few hours old  
 
+---
 #### sources
 
 [1] https://stackoverflow.com/questions/19146240/find-and-delete-files-with-non-ascii-names
