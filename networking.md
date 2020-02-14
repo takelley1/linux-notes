@@ -13,7 +13,7 @@ firewall-cmd --zone=public --permanent --remove-port 123/tcp
 firewall-cmd --reload
 ```
 
-#### `firewall-cmd` command
+### `firewall-cmd` command
 
 `--list-ports` or `--list-services` = show allowed ports/services  
 `--list-all-zones` = show firewalld rules for both public and private zones
@@ -43,14 +43,14 @@ iptables –A OUTPUT -o eth0 –p tcp --sport 80 –m state --state NEW,ESTABLIS
 ---
 ## `ip` COMMAND  
 
-#### interfaces
+### interfaces
 
 `ip a add 192.168.1.200/24 dev eth0` = add ip to device  
 `ip a del 10.0.0.10/24 dev enp12s0`  = remove ip from device
 
 `ip link set dev eth1 up` = enable/disable interface  
 
-#### config
+### config
 
 `ip n show` = show neighbor/arp cache  
 `ip r`      = show routing table  
@@ -63,7 +63,7 @@ iptables –A OUTPUT -o eth0 –p tcp --sport 80 –m state --state NEW,ESTABLIS
 ---
 ## PORTS 
 
-#### remote ports
+### remote ports
 
 `nmap -p [port#] [ip]` or `telnet [ip] [port#]` = ping specific tcp port on host
 
@@ -72,7 +72,7 @@ iptables –A OUTPUT -o eth0 –p tcp --sport 80 –m state --state NEW,ESTABLIS
                   `-v` = verbose  
                   `-u` = query udp instead of tcp
 
-#### local ports
+### local ports
 
 > NOTE: `netstat` has been deprecated in favor of `ss` [5]
 
@@ -85,13 +85,14 @@ iptables –A OUTPUT -o eth0 –p tcp --sport 80 –m state --state NEW,ESTABLIS
                             `-t` = tcp ports  
                             `-u` = udp ports
 
-#### scanning [3]
+### scanning
 
 `nmap -p 22 192.168.1.0/24`      = scan for every host on subnet with port 22 open  
 `nmap -p 1-1000 192.168.1.20-40` = scan tcp ports 1-1000 on hosts within range  
 `nmap -sU localhost`             = scan localhost for open udp ports  
 
 `nmap -sP 10.0.0.0/8` = attempt to ping all hosts on the 10.0.0.0/8 subnet and list responses  
+[3]
 
 
 ---
@@ -112,7 +113,7 @@ iptables –A OUTPUT -o eth0 –p tcp --sport 80 –m state --state NEW,ESTABLIS
 
 `dig domain.com` or `nslookup domain.com` or `host domain.com` = perform dns lookup on domain  
 
-#### tcpdump [2]
+### tcpdump
 
 `tcpdump -tvv` = dump all packets on all interfaces  
  `-v` or `-vv` = extra packet information  
@@ -126,6 +127,7 @@ iptables –A OUTPUT -o eth0 –p tcp --sport 80 –m state --state NEW,ESTABLIS
 `tcpdump src port 1025` = packets coming from port 1025  
 
 `tcpdump -vvt src 10.0.0.5 and dst port 22` = packets coming from 10.0.0.5 to port 22  
+[2]
 
 
 ---
@@ -137,9 +139,10 @@ iptables –A OUTPUT -o eth0 –p tcp --sport 80 –m state --state NEW,ESTABLIS
 `timedatectl`            = edit time  
 `date`                   = view current time
 
-#### chrony
 
-show timekeeping stats [1]
+### chrony
+
+show timekeeping stats
 ```
 [root@host]#: chronyc tracking
 
@@ -158,6 +161,8 @@ Update interval : 64.3 seconds                         # how frequently chrony m
 Leap status     : Normal                               # whether a leap second is pending to be added/removed
                                                        # 1 ppm = 1.000001
 ```
+[1]
+
 other commands  
 `chronyc sources -v`   
 `chronyc sourcestats`   
@@ -185,12 +190,12 @@ mailx -v \
 yourfriend@gmail.com              # this is the 'to' field of the email
 ```
 
-#### filtering
+### filtering
 
 `grep -h -o '[0-9]\{1,3\}\.[0-9]\{1,3\}\.[0-9]\{1,3\}\.[0-9]\{1,3\}' /var/log/maillog* | sort -u` = filter IPs from maillog  
 `grep -o -E 'from=<.*>' /var/log/maillog | sort -u` = filter sending addresses from maillog  
 
-#### postfix whitelists
+### postfix whitelists
 
 1. Add line to `/etc/postfix/main.cf`  
    `mynetworks = /postfix-whitelist`  
