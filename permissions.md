@@ -16,7 +16,7 @@ setfacl –R –m u:alice:rw /photos
 ---
 ## UMASK 
 
-> umask modifies the default permissions of created files and directories to make them more restrictive 
+> NOTE: umask modifies the default permissions of created files and directories to make them more restrictive 
 
 ### directories 
 
@@ -119,3 +119,4 @@ example:
 `g` (*group*) = owning group  
 `o` (*other*) = users not in the file's owning group  
 `a` (*all*)   = everyone, including the owning user and group
+

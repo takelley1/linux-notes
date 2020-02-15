@@ -16,6 +16,7 @@
 `\q`             = quit
 
 ### pg_hba.conf
+
 manage client authentication to the db host
 
 ```

@@ -35,10 +35,10 @@
 1. thank your linux admin for configuring things properly  
 
 > NOTE: you may still receive a warning from your vnc client that your session is unencrypted. This is  
-because the vnc client isn't aware it's being tunneled through ssh. In order to test this and make sure  
-the session is encrypted, simply terminate your ssh connection to the vnc server. If your vnc session also  
-terminates, then you know it was an encrypted session. You can also use the `netstat -plant` command to  
-see the forwarded ports on the vnc server.  
+        because the vnc client isn't aware it's being tunneled through ssh. In order to test this and make sure  
+        the session is encrypted, simply terminate your ssh connection to the vnc server. If your vnc session also  
+        terminates, then you know it was an encrypted session. You can also use the `netstat -plant` command to  
+        see the forwarded ports on the vnc server.  
 
 
 ### for admins

@@ -10,27 +10,34 @@ Personal documentation and notes for Linux and a few other technologies.
 ---
 ## SECTION HEADER
 
+
+---
+## `command` SECTION HEADER
+
 ### subsection header
 
 `command --param 1 --param 2` (*mneumonic*) = command description [1, 2, 3]  
                                 `--param 1` = param 1 description (ex: `example usage of command`)  
                                 `--param 2` = param 2 description (*long mneumonic*)  
 
-> NOTE: note subsection
+> NOTE: note subsection line
+        note subsection line continued
 
 ---
 ### subsection header with dividing line
 
+![image name](/image/path.webp) [3]
+
 #### minor subsection header
 
-long command description
+long command description #1
 ```bash
 loooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooong command --longparam 1 --param 2`
 ```
 `--longparam 1` = param 1 description (ex: `example usage of command`)  
 `--param 2`     = description  
 
-very long command description
+long command description #2
 ```bash
 very long command line 1 \
 very long command line 2 \
@@ -70,3 +77,4 @@ echo "looooooooooooooooooooooooooooooooooooooooooooooooooooong line four"
 [1] source 1  
 [2] source 2  
 [3] source 3
+

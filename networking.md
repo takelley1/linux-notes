@@ -139,7 +139,6 @@ iptables –A OUTPUT -o eth0 –p tcp --sport 80 –m state --state NEW,ESTABLIS
 `timedatectl`            = edit time  
 `date`                   = view current time
 
-
 ### chrony
 
 show timekeeping stats
@@ -176,17 +175,17 @@ other commands
 `mail -s "Test Subject" example@mail.com < /dev/null` = send test email (using the current host has the smtp relay)  
 
 send email using a specific smtp relay  
-```
+```bash
 echo "This is the message body and contains the message" | \
-mailx -v \
--r "me@gmail.com" \               # this is the 'from' field of the email
--s "This is the subject" \
--S smtp="mail.example.com:25" \   # this is the smtp relay
--S smtp-use-starttls \
--S smtp-auth=login \
+mailx -v                       \
+-r "me@gmail.com"              \  # this is the 'from' field of the email
+-s "This is the subject"       \
+-S smtp="mail.example.com:25"  \  # this is the smtp relay
+-S smtp-use-starttls           \
+-S smtp-auth=login             \
 -S smtp-auth-user="someone@example.com" \
 -S smtp-auth-password="abc123" \
--S ssl-verify=ignore \
+-S ssl-verify=ignore           \
 yourfriend@gmail.com              # this is the 'to' field of the email
 ```
 
@@ -197,11 +196,13 @@ yourfriend@gmail.com              # this is the 'to' field of the email
 
 ### postfix whitelists
 
-1. Add line to `/etc/postfix/main.cf`  
-   `mynetworks = /postfix-whitelist`  
-2. Populate `/postfix-whitelist` with IPs  
-3. Run `postmap /postfix-whitelist && systemctl restart postfix`  
-4. Now only the IPs in `/postfix-whitelist` will be permitted to use the postfix server as an smtp relay  
+1. add line to `/etc/postfix/main.cf`  
+   ```bash
+   mynetworks = /postfix-whitelist
+   ```
+1. populate `/postfix-whitelist` with IPs  
+1. run `postmap /postfix-whitelist && systemctl restart postfix`  
+1. now only the IPs in `/postfix-whitelist` will be permitted to use the postfix server as an smtp relay  
 
 
 ---
@@ -219,7 +220,6 @@ wget                            \
   www.website.org/
 ```
 
-
 ---
 #### sources
 
@@ -228,3 +228,4 @@ wget                            \
 [3] https://danielmiessler.com/study/nmap/  
 [4] https://wiki.debian.org/nftables  
 [5] https://dougvitale.wordpress.com/2011/12/21/deprecated-linux-networking-commands-and-their-replacements/#netstat  
+

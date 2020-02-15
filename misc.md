@@ -6,14 +6,15 @@
 
 | manpage section     | category                                              |
 |---------------------|-------------------------------------------------------|
-| 1	                  | shell commands and executables                        |
+| 1	              | shell commands and executables                        |
 | 2                   |	sernel functions (system calls)                       |
 | 3                   |	library functions                                     |
 | 4                   |	special files (usually devices in `/dev`) and drivers |
-| 5	                  | file formats and conventions (e.g. `/etc/passwd`)     |
-| 6	                  | games                                                 |
-| 7	                  | miscellaneous                                         |
-| 8	                  | system administration commands and daemons            |
+| 5	              | file formats and conventions (e.g. `/etc/passwd`)     |
+| 6	              | games                                                 |
+| 7	              | miscellaneous                                         |
+| 8	              | system administration commands and daemons            |
+
 [1]
 
 ---
@@ -81,9 +82,9 @@ if `/sys/firmware/efi exists`, system is UEFI
 - `info`  
 - `finger`
 - `sar` 
-- `at` 
+- `at`        = run a command at a certain time, similar to crontab
 - `read` 
-- `case` 
+- `case`      = test multiple conditions, similar to `if`
 - `column`    = create columns from text input  
 - `join`      = like a database join but for text    
 - `comm`      = file comparison like a db join    
@@ -137,6 +138,7 @@ if `/sys/firmware/efi exists`, system is UEFI
 - `dd`        = disk writing    
 - `ndiff`     = show differences in nmap scans    
 - `ss`        = socket statistics (show apps using the Internet)    
+
 [2]
 
 ---
@@ -144,3 +146,4 @@ if `/sys/firmware/efi exists`, system is UEFI
 
 [1] https://www.geeksforgeeks.org/linux-man-page-entries-different-types/  
 [2] https://danielmiessler.com/blog/collection-of-less-commonly-used-unix-commands/  
+

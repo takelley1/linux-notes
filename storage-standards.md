@@ -1,5 +1,5 @@
 
-### LATENCY
+## LATENCY
 
 **see also:** https://colin-scott.github.io/personal_website/research/interactive_latency.html
 ```
@@ -21,6 +21,7 @@ Read 1 MB sequentially from disk    20,000,000   ns   20,000 us   20 ms  80x mem
 Send packet CA->Netherlands->CA    150,000,000   ns  150,000 us  150 ms
 ```
 [2]
+
 > memory is only about 6 times faster when you're doing sequential access (350 Mvalues/sec for memory compared with 58 Mvalues/sec for disk); but it's about 100,000 times faster when you're doing random access [3].
 
 
@@ -168,3 +169,4 @@ to the original data, not the data itself
 [2] https://colin-scott.github.io/personal_website/research/interactive_latency.html  
 [3] https://stackoverflow.com/questions/1371400/how-much-faster-is-the-memory-usually-than-the-disk  
 [4] https://calomel.org/zfs_raid_speed_capacity.html  
+

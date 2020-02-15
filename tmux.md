@@ -38,7 +38,7 @@
 
 ### screen
 
-> note: precede all screen keybindings with `CTRL-A`
+> NOTE: precede all screen keybindings with `CTRL-A`
 
 `r` = toggle line-wrap  
 `A` = name current window (capital A)

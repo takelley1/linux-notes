@@ -1,14 +1,14 @@
 
 ## `.service` FILES
 
+**see also:** systemd man pages: http://0pointer.de/public/systemd-man/
+
 ```bash
 man systemd.unit
 man systemd.service
 man systemd.target
 ```
-- systemd man pages: http://0pointer.de/public/systemd-man/
-
-- service files can be placed in `$HOME/.config/systemd/user/my_daemon.service` or `/etc/systemd/system/my_daemon.service`
+service files can be placed in `$HOME/.config/systemd/user/my_daemon.service` or `/etc/systemd/system/my_daemon.service`
 
 example syntax
 ```bash
@@ -51,6 +51,7 @@ PrivateTmp=true
 [Install]
 WantedBy=multi-user.target
 ```
+
 ```bash
 [Unit]
 Description=Example systemd service.
@@ -88,6 +89,7 @@ journalctl --user-unit my_user_daemon
 systemd-analyze blame = show startup times by process
 
 
+---
 ## RUNLEVELS
 
 | `init` runlevel | `systemd` target                         | result                          |
@@ -108,8 +110,9 @@ systemd-analyze blame = show startup times by process
 
 
 #### runlevel scripts
-- init - place script in `/etc/rc#.d/`, in which `#` corresponds to the desired runlevel in which you'd like the script to run
-- systemd - place script in `/etc/systemd/system/[TARGET].wants`
+
+init:    place script in `/etc/rc#.d/`, in which `#` corresponds to the desired runlevel in which you'd like the script to run  
+systemd: place script in `/etc/systemd/system/[TARGET].wants`  
 
 ---
 #### sources

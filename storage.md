@@ -1,7 +1,12 @@
 
 ## ARCHIVES
 
-| compression algorithms [2] | gzip | bzip2 | xz | lzip | lzma | zstd |
+| compression algorithms | gzip | bzip2 | xz | lzip | lzma | zstd |
+| compression speed      |      |       |    |      |      |      |
+| decompression speed    |      |       |    |      |      |      |
+| compression            |      |       |    |      |      |      |
+
+[2]
 
 | archive formats | tar | zip | 7z | tar.gz |
 |                 |     |     |    |        |
@@ -43,7 +48,7 @@
 `fdisk -l`       = show drives and their partition tables  
 `fdisk /dev/sdb` = edit the partition table of sdb
 
-`mount` = show mounted volumes and their mount locations  
+`mount`                                     = show mounted volumes and their mount locations  
 `mount –o remount,rw /dev/sda1 /mountpoint` = remount drive with read-write permissions 
 
 ### disk testing
@@ -54,7 +59,7 @@
 
 ### SMART
 
-#### SMART tests
+#### SMART testing
 
 `smartctl -t long /dev/sdc` = start a long HDD self test - after the test is done (could take 12+ hours), check the results with `smartctl -a /dev/sdc`
 
@@ -87,6 +92,7 @@
 | Temperature                                                               | Device temperature, if the appropriate sensor is fitted. Lowest byte of the raw value contains the exact temperature value (Celsius degrees). |
 | Ultra DMA CRC error rate                                                  | Low value of this attribute typically indicates that something is wrong with the connectors and/or cables. Disk-to-host transfers are protected by CRC error detection code when Ultra-DMA 66 or 100 is used. So if the data gets garbled between the disk and the host machine, the receiving controller senses this and the retransmission is initiated. Such a situation is called "UDMA CRC error". Once the problem is rectified (typically by replacing a cable), the attribute value returns to the normal levels pretty quick. |
 | G-sense error rate                                                        | Indicates if the errors are occurring attributed to the drive shocking (either due to the environmental factors or due to improper installation). The hard drive must be fitted with the appropriate sensor to get information about the G-loads. This attribute is mainly limited to the notebook (2.5") drives. Once the operation conditions are corrected, the attribute value will  return to normal. |
+
 [5]
 
 
@@ -95,7 +101,7 @@
 
 ### metadata
 
-`stat file.txt` = get file metadata on file.txt  
+`stat file.txt`         = get file metadata on file.txt  
 `atime` (*access time*) = last time file's contents were read  
 `mtime` (*modify time*) = last time file's contents were changed  
 `ctime` (*change time*) = last time file's inode was changed (permissions, ownership, name, hard links, etc.)
@@ -116,7 +122,7 @@
 `mkfs.ext4 /dev/mapper/LV1` or `mkfs -t ext4 /dev/mapper/LV1` = create ext4 filesystem on LV1 logical volume
 
 `e2fsck -f /dev/mapper/LV1 && resize2fs /dev/mapper/LV1` = expand filesystem to fit size of LV1 (must be unmounted)  
-`xfs_growfs /dev/centos/var` = expand mounted xfs filesystem (must be mounted)
+`xfs_growfs /dev/centos/var`                             = expand mounted xfs filesystem (must be mounted)
 
 `e4degrag /`     = defragment all partitions  
 `fsck /dev/sda2` = check sda2 partition for errors (supported filesystems only)
@@ -192,6 +198,8 @@ COW = journaling is superceded by copy-on-write mechanisms
 
 `smbclient`
 
+TODO: fill out section
+
 
 ---
 ## NFS
@@ -201,19 +209,19 @@ COW = journaling is superceded by copy-on-write mechanisms
 ### server 
 
 1. `yum install nfs-utils`
-2. `systemctl enable nfs`
-3. `systemctl start nfs`
-4. create entry in `/etc/exports` (see examples at bottom of man page for `exports`)  
+1. `systemctl enable nfs`
+1. `systemctl start nfs`
+1. create entry in `/etc/exports` (see examples at bottom of man page for `exports`)  
 `/[mountpoint being shared] [authorized ips or fqdns]([mount options])`  
 ex: `/mirror 192.168.1.1/24(rw)`
-5. `exportfs -a`
-6. `sync`
+1. `exportfs -a`
+1. `sync`
 
 ### client 
 
 1. `mount -t nfs [server ip or fqdn]:/[directory being shared] /[local mount location]`
-2. `showmount`
-3. create entry in `/etc/fstab`  
+1. `showmount`
+1. create entry in `/etc/fstab`  
 `[server ip or fqdn]:/[directory being shared] /[local mount location] nfs defaults 0 0`  
 ex: `10.0.0.10:/data  /mnt/data  nfs  defaults  0 0`
 
@@ -232,16 +240,17 @@ ex: `10.0.0.10:/data  /mnt/data  nfs  defaults  0 0`
 ### transfer root linux installation to another drive
 
 1. install the `update-grub` package on the source drive (optional)
-2. use `gparted` to copy the source drive's root partition to an empty partition on the target drive
-3. physically disconnect the source drive
-4. open a terminal and generate a new UUID for the new partition on the target drive
-   - use `blkid` to list partition UUIDs
-   - use `tune2fs -U random /dev/sdx1` (if ext4) or `xfs_admin -U generate /dev/sdx1` (if xfs) to generate a new UUID for the copied partition on the target drive
-5. mount the target drive and bind mount `/dev`, `/run`, `/proc`, and `/sys` from the currently booted drive to the target drive
-6. `chroot` into the target drive
-7. update `fstab` with the copied partition's new UUID
-8. run `grub-mkconfig -o /boot/grub/grub.cfg` or `update-grub` (if `update-grub` was installed)
-9. reboot. If you're dropped into an emergency shell, try regenerating grub
+1. use `gparted` to copy the source drive's root partition to an empty partition on the target drive
+1. physically disconnect the source drive
+1. open a terminal and generate a new UUID for the new partition on the target drive
+   1. use `blkid` to list partition UUIDs
+   1. use `tune2fs -U random /dev/sdx1` (if ext4) or `xfs_admin -U generate /dev/sdx1` (if xfs) to generate a new UUID for the copied partition on the target drive
+1. mount the target drive and bind mount `/dev`, `/run`, `/proc`, and `/sys` from the currently booted drive to the target drive
+1. `chroot` into the target drive
+1. update `fstab` with the copied partition's new UUID
+1. run `grub-mkconfig -o /boot/grub/grub.cfg` or `update-grub` (if `update-grub` was installed)
+1. reboot. If you're dropped into an emergency shell, try regenerating grub
+
 
 ---
 #### sources
@@ -252,3 +261,4 @@ ex: `10.0.0.10:/data  /mnt/data  nfs  defaults  0 0`
 [4] https://unix.stackexchange.com/questions/467385/should-i-use-xfs-or-ext4  
 [5] https://www.z-a-recovery.com/manual/smart.aspx  
 [6] http://www.linfo.org/inode.html  
+

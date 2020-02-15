@@ -31,13 +31,13 @@ perform `ls –l` command on found files
                           `-name`   = search based on file name  
                           `*.jpg`   = use wildcard to search for all files with .jpg extension 
 
-`find ~ -user alice -mtime 7 -iname “.log” -delete` =  
+`find ~ -user alice -mtime 7 -iname “.log” -delete` = delete log files owned by alice within a certain date range
                                           `-user`   = files owned by user alice  
                                           `~`       = search in or beneath the specified user's home directory  
                                           `-mtime`  = filter by file's modified time, in # of days ago  
                                           `-i`      = ignore case  
-                                         `-name`   = match by file name  
-                                         `-delete` = delete after locating files
+                                          `-name`   = match by file name  
+                                          `-delete` = delete after locating files
 
 ### options 
 
@@ -70,9 +70,11 @@ perform `ls –l` command on found files
     `-c` (*count*)  = list number of matches  
     `-e` (*exist*)  = verify file’s existence before producing result since database may be old  
 
-> Note: locate is much faster than find, but locate searches a tabulated database instead of actively scrubbing your disk for a match. This means the data locate uses may be a few hours old  
+> NOTE: locate is much faster than find, but locate searches a tabulated database instead of actively scrubbing your disk for a match.
+        This means the data locate uses may be a few hours old  
 
 ---
 #### sources
 
 [1] https://stackoverflow.com/questions/19146240/find-and-delete-files-with-non-ascii-names
+

@@ -70,9 +70,9 @@ type `>` or `<` to indent right or left
 `e` (*end*)  = jump forward 1 word to end of word  
 `E`          = jump forward 1 WORD to end of word  
 
-`$`    = jump to end of line                       (*regex for end of string*)  
-`0`    = jump to beginning of line  
-`^`    = jump to first non-whitespace char of line (*regex for start of string*)  
+`$`          = jump to end of line                       (*regex for end of string*)  
+`0`          = jump to beginning of line  
+`^`          = jump to first non-whitespace char of line (*regex for start of string*)  
 
 `CTRL-u`        = jump up 1/2 page  
 `CTRL-d`        = jump down 1/2 page  
@@ -121,7 +121,7 @@ Use navigation keys to highlight and press `d` to cut selection
 `"*y`           = copy into PRIMARY register  
 `"+y`           = copy into CLIPBOARD register  
 
-> note: the PRIMARY and CLIPBOARD registers are managed by X11 (not Vim), so data copied into these
+> NOTE: the PRIMARY and CLIPBOARD registers are managed by X11 (not Vim), so data copied into these
         registers can be used elsewhere in the X11 session [1]
 
 `“xy`         = copy selection to register `x`  
