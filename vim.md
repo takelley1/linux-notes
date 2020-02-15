@@ -155,24 +155,25 @@ Use navigation keys to highlight and press `d` to cut selection
 ---
 ### misc typed commands
 
+`:noh`                = turn off match highlighting (after string search)
+`:sort`               = sort text
+`:retab`              = replace tabs with spaces in file
+
+`:%s/xxx/yyy/g`       = replace `xxx` with `yyy` in entire file
+`:g/^x/d`             = delete all lines beginning with `x`
+
 `:q` (*quit*)         = exit file  
 `:q!`                 = force exit file  
 `:w` (*write*)        = save file  
 `:wq` or `:x` or `ZZ` = save and quit  
 
-`:noh`                = turn off match highlighting (after string search)
-`:sort`               = sort text
+#### find and replace
 
-`:%s/xxx/yyy/g`       = replace `xxx` with `yyy` in entire file
-
-`:g/^x/d`             = delete all lines beginning with `x`
-
-*find and replace*  
 1. search for word using `/word` in normal mode  
-2. use `ciw` to change first match of `word` and exit insert mode  
-4. use `n` to jump to next match of `word`  
-5. use `.` to repeat last action  
-6. continue to use `n` and `.` to replace matches  
+1. use `ciw` to change first match of `word` and exit insert mode  
+1. use `n` to jump to next match of `word`  
+1. use `.` to repeat last action  
+1. continue to use `n` and `.` to replace matches  
 
 ---
 #### sources
