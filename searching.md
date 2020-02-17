@@ -1,5 +1,5 @@
 
-## `find` command
+## `find` COMMAND
 
 ### examples
 
@@ -61,7 +61,7 @@ perform `ls –l` command on found files
 `-L`      = follow symbolic links
 
 ---
-## `locate` command 
+## `locate` COMMAND
 
 ### examples
 
