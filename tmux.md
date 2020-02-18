@@ -36,6 +36,13 @@
 | show numeric values of panes      | `q`                                      |                   |
 | enable scroll / view scrollback   | `PAGEUP` (`q` to exit)                   | `[` (`q` to exit) |
 
+#### tmux copy and paste
+
+1. `CTRL-b [` = enter scrollback mode  
+1. `SPACE`    = enter text selection mode  
+1. `ENTER`    = copy selected text to clipboard  
+1. `CTRL-b ]` = paste text from clipboard  
+
 ### screen
 
 > NOTE: precede all screen keybindings with `CTRL-A`
