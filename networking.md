@@ -1,4 +1,23 @@
 
+## SSH
+
+**see more:**  
+https://www.digitalocean.com/community/tutorials/ssh-essentials-working-with-ssh-servers-clients-and-keys  
+https://security.stackexchange.com/questions/20706/what-is-the-difference-between-authorized-keys-and-known-hosts-file-for-ssh  
+
+### files
+
+`~/.ssh/known_hosts`
+  - contains the public keys of servers this user has connected to
+  - servers maintain their own host keypairs (in /etc/ssh) to prove their identity to connecting clients
+    - via a key-exchange, clients can know they're connecting to the same host and not an impersonator or man-in-the-middle (because the server can prove it has posession of the matching private key)
+  
+`alice/.ssh/authorized_keys` = contains the public keys of users allowed to login to alice's account
+
+[6]
+
+
+---
 ## FIREWALLD
 
 allow https traffic
@@ -228,4 +247,4 @@ wget                            \
 [3] https://danielmiessler.com/study/nmap/  
 [4] https://wiki.debian.org/nftables  
 [5] https://dougvitale.wordpress.com/2011/12/21/deprecated-linux-networking-commands-and-their-replacements/#netstat  
-
+[6] https://www.techrepublic.com/article/the-4-most-important-files-for-ssh-connections/  
