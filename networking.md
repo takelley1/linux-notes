@@ -12,7 +12,8 @@ https://security.stackexchange.com/questions/20706/what-is-the-difference-betwee
   - servers maintain their own host keypairs (in /etc/ssh) to prove their identity to connecting clients
     - via a key-exchange, clients can know they're connecting to the same host and not an impersonator or man-in-the-middle (because the server can prove it has posession of the matching private key)
   
-`alice/.ssh/authorized_keys` = contains the public keys of users allowed to login to alice's account
+`~/.ssh/authorized_keys`
+  - contains the public keys of users allowed to login to this account
 
 [6]
 
