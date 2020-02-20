@@ -1,4 +1,41 @@
 
+## LOGICAL VOLUME MANAGEMENT (LVM)
+
+### physical volumes (PV)
+
+`pvcreate /dev/sdb`            = create a physical volume (PV) from sdb  
+`pvremove /dev/sdb1 /dev/sdc1` = remove physical volumes on partitions sdb1 and sdc1  
+`pvmove /dev/sdb1 /dev/sdb2`   = copy all data from sdb1 to sdb2  
+`pvdisplay` or `pvscan`        = show physical volumes
+
+### logical volumes (LV)
+
+`lvcreate -l 2500 centos -n vol_1` = create a new volume called vol_1 with 2500 extents in vgroup centos   
+`lvcreate -L 5G LV1 -n LV2`        = create 5 GB logical volumes called LV1 and LV2  
+`lvdisplay` or `lvscan`            = show logical volumes  
+`lvextend -L 1.5G /dev/mapper/LV1` = extend volume LV1 to 1.5 GB  
+`lvreduce -l -200 /dev/mapper/LV1` = reduce volume LV1 by 200 extents 
+
+### volume groups (VG)
+
+`vgcreate VG1 /dev/sdb /dev/sdc` = create a volume group containing PVs sdb and sdc called VG1  
+`vgdisplay` or `vgscan`          = show volume groups  
+`vgextend vgroup /dev/sdb1`      = add PV sdb1 to “vgroup” volume group 
+
+
+### extending /var xfs filesystem with LVM
+
+```bash
+1. fdisk /dev/sdb                      # create partition from new disk
+2. pvcreate /dev/sdb1                  # create a physical volume from the new partition
+3. vgextend vgname /dev/sdb1           # add the new physical volume to the relevant volume group
+4. pvdisplay                           # show the number of new extents available
+5. lvextend -l +127999 /dev/centos/var # extend the relevant logical volume by adding free extents
+6. xfs_growfs /var                     # grow the filesystem on the extended logical volume
+```
+
+
+---
 ## ARCHIVES
 
 | compression algorithms | gzip | bzip2 | xz | lzip | lzma | zstd |
@@ -155,42 +192,6 @@ COW = journaling is superceded by copy-on-write mechanisms
 \-  = maximum theoretical size so large it's effectively irrelevant  
 ?   = currently unknown and/or no reliable data available  
 [1]
-
-
----
-## LOGICAL VOLUME MANAGEMENT (LVM)
-
-### physical volumes (PV)
-
-`pvcreate /dev/sdb`            = create a physical volume (PV) from sdb  
-`pvremove /dev/sdb1 /dev/sdc1` = remove physical volumes on partitions sdb1 and sdc1  
-`pvmove /dev/sdb1 /dev/sdb2`   = copy all data from sdb1 to sdb2  
-`pvdisplay` or `pvscan`        = show physical volumes
-
-### logical volumes (LV)
-
-`lvcreate -L 5G LV1 -n LV2`        = create 5 GB logical volumes called LV1 and LV2  
-`lvdisplay` or `lvscan`            = show logical volumes  
-`lvextend -L 1.5G /dev/mapper/LV1` = extend logical volume LV1 to 1.5 GB  
-`lvreduce -l -200 /dev/mapper/LV1` = reduce logical volume LV1 by 200 extents 
-
-### volume groups (VG)
-
-`vgcreate VG1 /dev/sdb /dev/sdc` = create a volume group containing PVs sdb and sdc called VG1  
-`vgdisplay` or `vgscan`          = show volume groups  
-`vgextend vgroup /dev/sdb1`      = add PV sdb1 to “vgroup” volume group 
-
----
-### extending /var xfs filesystem with LVM
-
-```bash
-1. fdisk /dev/sdb                      # create partition from new disk
-2. pvcreate /dev/sdb1                  # create a physical volume from the new partition
-3. vgextend vgname /dev/sdb1           # add the new physical volume to the relevant volume group
-4. pvdisplay                           # show the number of new extents available
-5. lvextend -l +127999 /dev/centos/var # extend the relevant logical volume by adding free extents
-6. xfs_growfs /var                     # grow the filesystem on the extended logical volume
-```
 
 
 ---
