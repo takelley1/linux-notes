@@ -2,7 +2,7 @@
 ## GIT
 [1]
 
-**see also:** https://git-scm.com/docs
+**see also:** [github fundamentals](https://git-scm.com/docs), [github branching best-practices](https://nvie.com/posts/a-successful-git-branching-model/)
 
 `git add -A` = stage all modified files, including deleted files  
 `git add -u` = stage all modified files  
@@ -110,5 +110,4 @@ pattern*/
 ---
 ### sources
 
-[1] https://education.github.com/git-cheat-sheet-education.pdf
-
+[1]: https://education.github.com/git-cheat-sheet-education.pdf
