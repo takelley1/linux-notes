@@ -2,7 +2,7 @@
 ## GIT
 [1]
 
-**see also:** [github fundamentals](https://git-scm.com/docs), [github branching best-practices](https://nvie.com/posts/a-successful-git-branching-model/)
+**see also:** [github fundamentals](https://git-scm.com/docs)
 
 `git add -A` = stage all modified files, including deleted files  
 `git add -u` = stage all modified files  
@@ -49,6 +49,8 @@
 
 ---
 ### branches
+
+**further reading:** [github branching best-practices](https://nvie.com/posts/a-successful-git-branching-model/)
 
 *isolating work in branches, changing context, and integrating changes*  
 `git branch`                 = list your branches, a `*` will appear next to the currently active branch  
