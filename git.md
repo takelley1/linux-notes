@@ -107,7 +107,4 @@ pattern*/
 `git stash pop`  = write working from top of stash stack  
 `git stash drop` = discard the changes from top of stash stack
 
----
-### sources
-
 [1]: https://education.github.com/git-cheat-sheet-education.pdf
