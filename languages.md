@@ -27,6 +27,7 @@ released:
 use:  
 type: framework  
 
+![comparison-of-programming-languages](/images/comparison-of-programming-languages.png)
 
 ## LANGUAGES
 
@@ -285,7 +286,7 @@ examples:
 
 released: 1991  
 use: general-purpose, scripting, machine learning, data science  
-paradigm: multi-paradigm, but leans towards object-oriented [2]  
+paradigm: multi-paradigm, but leans towards object-oriented<sup>[2]</sup>  
 examples: Ansible, Openstack, Blender, Ranger file browser  
 
 - designed to be easy to read (uses whitespace instead of brackets)
@@ -313,7 +314,7 @@ paradigm: 100% object-oriented: everything is an object
 examples: Ruby on Rails, Homebrew package manager, Metasploit  
 
 - designed to be productive and fun, focused on humans rather than computers
-- follows the Principle of Least Astonishment and attempts to minimize programmer confusion [2]
+- follows the Principle of Least Astonishment and attempts to minimize programmer confusion<sup>[2]</sup>  
 
 ```ruby
 def factorial(n)
@@ -351,9 +352,5 @@ released:
 use:  
 examples:  
 
----
-#### sources
-
-[1] https://cs.lmu.edu/~ray/notes/paradigms/  
-[2] https://www.coursereport.com/blog/ruby-vs-python-choosing-your-first-programming-language  
-
+[1]: https://cs.lmu.edu/~ray/notes/paradigms/  
+[2]: https://www.coursereport.com/blog/ruby-vs-python-choosing-your-first-programming-language  
