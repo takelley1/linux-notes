@@ -54,6 +54,8 @@ very long command line 2 \
 --param 2 \
 ```
 
+**further reading:** [link name](https://www.link-address.example.com)
+
 1. step 1
    ```bash
    step 1 command
@@ -81,9 +83,6 @@ echo "looooooooooooooooooooooooooooooooooooooooooooooooooooong line four"
 ```
 [1]
 
----
-#### sources section
-[1] source 1  
-[2] source 2  
-[3] source 3
-
+[1]: https://www.source-1.com  
+[2]: https://www.source-2.com  
+[3]: https://www.source-3.com  
