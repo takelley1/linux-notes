@@ -14,8 +14,7 @@
 | 6	              | games                                                 |
 | 7	              | miscellaneous                                         |
 | 8	              | system administration commands and daemons            |
-
-[1]
+<sup>[1]</sup> 
 
 ---
 ## LOGS
@@ -75,7 +74,7 @@ if `/sys/firmware/efi exists`, system is UEFI
 `shutdown 2 this machine is shutting down in 2 minutes!` = power off system in 2 minutes and send the provided message to all logged-in users  
 `shutdown -r 0:00`                                       = reboot at midnight tonight
 
-### interesting lesser-known commands
+### interesting lesser-known commands <sup>[2]</sup> 
 
 - `set` 
 - `type`
@@ -139,11 +138,5 @@ if `/sys/firmware/efi exists`, system is UEFI
 - `ndiff`     = show differences in nmap scans    
 - `ss`        = socket statistics (show apps using the Internet)    
 
-[2]
-
----
-#### sources    
-
-[1] https://www.geeksforgeeks.org/linux-man-page-entries-different-types/  
-[2] https://danielmiessler.com/blog/collection-of-less-commonly-used-unix-commands/  
-
+[1]: https://www.geeksforgeeks.org/linux-man-page-entries-different-types/  
+[2]: https://danielmiessler.com/blog/collection-of-less-commonly-used-unix-commands/  

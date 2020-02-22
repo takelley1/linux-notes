@@ -1,11 +1,9 @@
 
 ## SSH
 
-**see more:**  
-https://www.digitalocean.com/community/tutorials/ssh-essentials-working-with-ssh-servers-clients-and-keys  
-https://security.stackexchange.com/questions/20706/what-is-the-difference-between-authorized-keys-and-known-hosts-file-for-ssh  
+**see more:** [ssh essentials](https://www.digitalocean.com/community/tutorials/ssh-essentials-working-with-ssh-servers-clients-and-keys), [authorized_keys vs known_hosts](https://security.stackexchange.com/questions/20706/what-is-the-difference-between-authorized-keys-and-known-hosts-file-for-ssh)
 
-### files
+### files <sup>[6]</sup> 
 
 `~/.ssh/known_hosts`
   - contains the public keys of servers this user has connected to
@@ -14,8 +12,6 @@ https://security.stackexchange.com/questions/20706/what-is-the-difference-betwee
   
 `~/.ssh/authorized_keys`
   - contains the public keys of users allowed to login to this account
-
-[6]
 
 
 ---
@@ -45,7 +41,7 @@ firewall-cmd --reload
 ---
 ## IPTABLES
 
-> NOTE: `iptables` has been deprecated in favor of `nftables` [4]
+> NOTE: `iptables` has been deprecated in favor of `nftables` <sup>[4]</sup> 
 
 `iptables -L` = show firewall ruleset
 
@@ -94,7 +90,7 @@ iptables –A OUTPUT -o eth0 –p tcp --sport 80 –m state --state NEW,ESTABLIS
 
 ### local ports
 
-> NOTE: `netstat` has been deprecated in favor of `ss` [5]
+> NOTE: `netstat` has been deprecated in favor of `ss` <sup>[5]</sup> 
 
 `less /etc/services` = show ports being used by specific services
 
@@ -105,14 +101,13 @@ iptables –A OUTPUT -o eth0 –p tcp --sport 80 –m state --state NEW,ESTABLIS
                             `-t` = tcp ports  
                             `-u` = udp ports
 
-### scanning
+### scanning <sup>[3]</sup> 
 
 `nmap -p 22 192.168.1.0/24`      = scan for every host on subnet with port 22 open  
 `nmap -p 1-1000 192.168.1.20-40` = scan tcp ports 1-1000 on hosts within range  
 `nmap -sU localhost`             = scan localhost for open udp ports  
 
 `nmap -sP 10.0.0.0/8` = attempt to ping all hosts on the 10.0.0.0/8 subnet and list responses  
-[3]
 
 
 ---
@@ -133,7 +128,7 @@ iptables –A OUTPUT -o eth0 –p tcp --sport 80 –m state --state NEW,ESTABLIS
 
 `dig domain.com` or `nslookup domain.com` or `host domain.com` = perform dns lookup on domain  
 
-### tcpdump
+### tcpdump <sup>[2]</sup> 
 
 `tcpdump -tvv` = dump all packets on all interfaces  
  `-v` or `-vv` = extra packet information  
@@ -147,19 +142,18 @@ iptables –A OUTPUT -o eth0 –p tcp --sport 80 –m state --state NEW,ESTABLIS
 `tcpdump src port 1025` = packets coming from port 1025  
 
 `tcpdump -vvt src 10.0.0.5 and dst port 22` = packets coming from 10.0.0.5 to port 22  
-[2]
 
 
 ---
 ## NTP
 
-> NOTE: `ntpd` has been deprecated in favor of `chrony` [1]
+> NOTE: `ntpd` has been deprecated in favor of `chrony` <sup>[1]</sup> 
 
 `date +%T –s "16:45:00"` = manually set time in HH:mm:ss format  
 `timedatectl`            = edit time  
 `date`                   = view current time
 
-### chrony
+### chrony <sup>[1]</sup> 
 
 show timekeeping stats
 ```
@@ -180,7 +174,6 @@ Update interval : 64.3 seconds                         # how frequently chrony m
 Leap status     : Normal                               # whether a leap second is pending to be added/removed
                                                        # 1 ppm = 1.000001
 ```
-[1]
 
 other commands  
 `chronyc sources -v`   
@@ -240,12 +233,9 @@ wget                            \
   www.website.org/
 ```
 
----
-#### sources
-
-[1] https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/8/html-single/configuring_basic_system_settings/index#migrating-to-chrony_using-chrony-to-configure-ntp  
-[2] https://danielmiessler.com/study/tcpdump/  
-[3] https://danielmiessler.com/study/nmap/  
-[4] https://wiki.debian.org/nftables  
-[5] https://dougvitale.wordpress.com/2011/12/21/deprecated-linux-networking-commands-and-their-replacements/#netstat  
-[6] https://www.techrepublic.com/article/the-4-most-important-files-for-ssh-connections/  
+[1]: https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/8/html-single/configuring_basic_system_settings/index#migrating-to-chrony_using-chrony-to-configure-ntp  
+[2]: https://danielmiessler.com/study/tcpdump/  
+[3]: https://danielmiessler.com/study/nmap/  
+[4]: https://wiki.debian.org/nftables  
+[5]: https://dougvitale.wordpress.com/2011/12/21/deprecated-linux-networking-commands-and-their-replacements/#netstat  
+[6]: https://www.techrepublic.com/article/the-4-most-important-files-for-ssh-connections/  

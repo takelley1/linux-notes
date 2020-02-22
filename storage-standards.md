@@ -1,7 +1,8 @@
 
-## LATENCY
+## LATENCY <sup>[2]</sup> 
 
-**see also:** https://colin-scott.github.io/personal_website/research/interactive_latency.html
+**see also:** [interactive latency](https://colin-scott.github.io/personal_website/research/interactive_latency.html)
+
 ```
 Latency Comparison Numbers (~2012)
 ----------------------------------
@@ -20,13 +21,12 @@ Disk seek                           10,000,000   ns   10,000 us   10 ms  20x dat
 Read 1 MB sequentially from disk    20,000,000   ns   20,000 us   20 ms  80x memory, 20X SSD
 Send packet CA->Netherlands->CA    150,000,000   ns  150,000 us  150 ms
 ```
-[2]
 
-> memory is only about 6 times faster when you're doing sequential access (350 Mvalues/sec for memory compared with 58 Mvalues/sec for disk); but it's about 100,000 times faster when you're doing random access [3].
+> memory is only about 6 times faster when you're doing sequential access (350 Mvalues/sec for memory compared with 58 Mvalues/sec for disk); but it's about 100,000 times faster when you're doing random access <sup>[3]</sup> 
 
 
 ---
-## RAID
+## RAID <sup>[4]</sup> 
 
 ```
          ZFS Raid Speed Capacity and Performance Benchmarks
@@ -90,7 +90,6 @@ Send packet CA->Netherlands->CA    150,000,000   ns  150,000 us  150 ms
 
 24x 256GB raid0 striped   5.5 terabytes ( w=1620MB/s , rw=796MB/s , r=2043MB/s )
 ```
-[4]
 
 
 ---
@@ -112,7 +111,7 @@ Send packet CA->Netherlands->CA    150,000,000   ns  150,000 us  150 ms
     - 3D XPoint / Optane / QuantX - balances the performance and density of DRAM and flash, uses resistance rather than charge to store bits
     - FeRAM (Ferroelectric RAM)
     
-![nand-vs-nor-flash](/images/nand-vs-nor-flash.jpg) [1]
+![nand-vs-nor-flash](/images/nand-vs-nor-flash.jpg) <sup>[1]</sup> 
     
 - Volatile - memory that loses its data after power loss, used as a working cache to store frequently-accessed data
   - **RAM** (Random Access Memory) - fast memory for storing running programs
@@ -162,11 +161,8 @@ write mode.
 - snapshots are not backups because if the original disk's data is lost, the delta .vmdk becomes useless as it only contains the changes 
 to the original data, not the data itself 
 
----
-#### sources
-
-[1] https://www.embedded.com/flash-101-nand-flash-vs-nor-flash/  
-[2] https://colin-scott.github.io/personal_website/research/interactive_latency.html  
-[3] https://stackoverflow.com/questions/1371400/how-much-faster-is-the-memory-usually-than-the-disk  
-[4] https://calomel.org/zfs_raid_speed_capacity.html  
+[1]: https://www.embedded.com/flash-101-nand-flash-vs-nor-flash/  
+[2]: https://colin-scott.github.io/personal_website/research/interactive_latency.html  
+[3]: https://stackoverflow.com/questions/1371400/how-much-faster-is-the-memory-usually-than-the-disk  
+[4]: https://calomel.org/zfs_raid_speed_capacity.html  
 

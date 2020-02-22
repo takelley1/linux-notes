@@ -10,7 +10,7 @@
             `-e` = everything  
             `-f` = full-format
 
-### signals
+### signals <sup>[1]</sup> 
 
 | name      | ID | hotkey | description                                     |
 |-----------|----|--------|-------------------------------------------------|
@@ -20,8 +20,6 @@
 | `SIGKILL` | 9  |        | forcefully terminate process, cannot be ignored |
 | `SIGTERM` | 15 |        | identical to `SIGINT`                           |
 | `SIGSTP`  | 20 | Ctrl-z | ask the process to stop temporarily             |
-
-[1]
 
 ### status codes
 
@@ -109,8 +107,5 @@ Filters can be stacked via multiple searches, use = to clear all filters
 `lspci` = list pci devices  
 `lsblk` = list bock devices  
 
----
-#### sources
-
-[1] https://www.computerhope.com/unix/signals.htm
+[1]: https://www.computerhope.com/unix/signals.htm
 

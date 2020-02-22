@@ -1,5 +1,5 @@
 
-## ZFS
+## ZFS <sup>[1]</sup> 
 
 | POOL CREATION                    |                                                     |
 |----------------------------------|-----------------------------------------------------|
@@ -11,8 +11,6 @@
 | `zpool add datapool mirror`      | add new mirrored vdev to datapool                   |
 | `zpool add datapool spare`       | add spare device to datapool                        |
 | `zpool create -n geekpool`       | do dry run on pool creation                         |
-
-[1]
  
 | POOL INFO                  |                                             |
 |----------------------------|---------------------------------------------|
@@ -22,9 +20,5 @@
 | `zpool list -o name,size`  | show particular properties of all pools     |
 | `zpool list -Ho name`      | show all pools without headers and columns  |
 
-
----
-#### sources
-
-[1] https://www.thegeekdiary.com/solaris-zfs-command-line-reference-cheat-sheet/  
+[1]: https://www.thegeekdiary.com/solaris-zfs-command-line-reference-cheat-sheet/  
 

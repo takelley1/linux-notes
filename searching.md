@@ -3,13 +3,13 @@
 
 ### examples
 
-print all files with non-ascii characters in the name [1]
+print all files with non-ascii characters in the name <sup>[1]</sup> 
 ```bash
 find . -print0 | \
 perl -n0e 'chomp; print $_, "\n" if /[[:^ascii:][:cntrl:]]/'
 ```
 
-remove all files with non-ascii characters in the name [1]
+remove all files with non-ascii characters in the name <sup>[1]</sup> 
 ```bash
 find . -print0 | \
 perl -MFile::Path=remove_tree -n0e 'chomp; remove_tree($_, {verbose=>1}) if /[[:^ascii:][:cntrl:]]/'
@@ -73,8 +73,5 @@ perform `ls –l` command on found files
 > NOTE: locate is much faster than find, but locate searches a tabulated database instead of actively scrubbing your disk for a match.
         This means the data locate uses may be a few hours old  
 
----
-#### sources
-
-[1] https://stackoverflow.com/questions/19146240/find-and-delete-files-with-non-ascii-names
+[1]: https://stackoverflow.com/questions/19146240/find-and-delete-files-with-non-ascii-names
 

@@ -1,5 +1,5 @@
 
-## PARADIGMS
+## PARADIGMS <sup>[1]</sup> 
 
 **imperative:** programming with an explicit sequence of commands that update state  
 **procedural:** imperative programming with procedure calls  
@@ -7,7 +7,6 @@
 **object-oriented:** programming by defining objects that send messages to each other  
 **functional:** programming with function calls that avoid any global state  
 
-[1]
 
 ## FRAMEWORKS AND RUNTIMES
 
@@ -286,7 +285,7 @@ examples:
 
 released: 1991  
 use: general-purpose, scripting, machine learning, data science  
-paradigm: multi-paradigm, but leans towards object-oriented<sup>[2]</sup>  
+paradigm: multi-paradigm, but leans towards object-oriented <sup>[2]</sup>  
 examples: Ansible, Openstack, Blender, Ranger file browser  
 
 - designed to be easy to read (uses whitespace instead of brackets)

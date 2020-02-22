@@ -1,7 +1,7 @@
 
 ## `.service` FILES
 
-**see also:** systemd man pages: http://0pointer.de/public/systemd-man/
+**see also:** [systemd man pages](http://0pointer.de/public/systemd-man/)
 
 ```bash
 man systemd.unit
@@ -63,7 +63,7 @@ ExecStart=/bin/bash /usr/bin/test_service.sh
 [Install]
 WantedBy=multi-user.target
 ```
-[1, 2, 3]
+<sup>[1], [2], [3]</sup> 
 
 viewing service file logs
 ```bash
@@ -84,7 +84,7 @@ sudo journalctl -u my_daemon
 # For user service
 journalctl --user-unit my_user_daemon
 ```
-[1]
+<sup>[1]</sup> 
 
 systemd-analyze blame = show startup times by process
 
@@ -114,10 +114,7 @@ systemd-analyze blame = show startup times by process
 init:    place script in `/etc/rc#.d/`, in which `#` corresponds to the desired runlevel in which you'd like the script to run  
 systemd: place script in `/etc/systemd/system/[TARGET].wants`  
 
----
-#### sources
-
-[1] https://www.devdungeon.com/content/creating-systemd-service-files  
-[2] https://www.shellhacks.com/systemd-service-file-example/  
-[3] https://www.linode.com/docs/quick-answers/linux/start-service-at-boot/ 
+[1]: https://www.devdungeon.com/content/creating-systemd-service-files  
+[2]: https://www.shellhacks.com/systemd-service-file-example/  
+[3]: https://www.linode.com/docs/quick-answers/linux/start-service-at-boot/ 
 

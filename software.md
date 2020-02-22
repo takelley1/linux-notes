@@ -132,7 +132,7 @@ rhn-channel --list
 
 
 ---
-## TENABLE.SC (SECURITYCENTER)
+## TENABLE.SC (SECURITYCENTER) <sup>[1]</sup> 
 
 reset admin password to "password"
 ```
@@ -153,15 +153,10 @@ bbd2
 e37d
 b31e
 ```
-[1]
 
 list users
 ```
 # /opt/sc/support/bin/sqlite3 /opt/sc/application.db "select * from UserAuth" 
 ```
-[1]
 
----
-#### sources
-
-[1] https://community.tenable.com/s/article/Reset-admin-password-in-Tenable-sc-and-unlock-the-account-if-its-been-locked-Formerly-SecurityCenter  
+[1]: https://community.tenable.com/s/article/Reset-admin-password-in-Tenable-sc-and-unlock-the-account-if-its-been-locked-Formerly-SecurityCenter  

@@ -126,4 +126,3 @@ search in all `.txt` files starting with `f` in or beneath (`-r`) the current di
 `[A-Za-z]` = any letter  
 `.`        = any character  
 `\`        = escape next character
-

@@ -37,19 +37,17 @@
 
 
 ---
-## ARCHIVES
+## ARCHIVES <sup>[2]</sup> 
 
 | compression algorithms | gzip | bzip2 | xz | lzip | lzma | zstd |
 | compression speed      |      |       |    |      |      |      |
 | decompression speed    |      |       |    |      |      |      |
 | compression            |      |       |    |      |      |      |
 
-[2]
-
 | archive formats | tar | zip | 7z | tar.gz |
 |                 |     |     |    |        |
 
-**see also**: https://quixdb.github.io/squash-benchmark/#results
+**see also**: [squash benchmark](https://quixdb.github.io/squash-benchmark/#results)
 
 ### tar
 
@@ -89,11 +87,10 @@
 `mount`                                     = show mounted volumes and their mount locations  
 `mount –o remount,rw /dev/sda1 /mountpoint` = remount drive with read-write permissions 
 
-### disk testing
+### disk testing <sup>[3]</sup> 
 
 `badblocks -b 4096 -s -v -w /dev/sdb` = destructively test disk hda for bad data blocks (useful for testing new drive)  
 `bonnie++`
-[3]
 
 ---
 ### SMART
@@ -117,7 +114,7 @@
 
 `Raw value` = the value of the attribute as it is tracked by the device, before any normalization takes place. Some raw numbers provide valuable insight when properly interpreted. These cases will be discussed later on. Raw values are typically listed in hexadecimal numbers.
 
-| SMART attributes                                                      |                                                                            | 
+| SMART attributes <sup>[5]</sup>                                           |                                                                            | 
 |---------------------------------------------------------------------------|----------------------------------------------------------------------------|
 | Reallocated sectors count                                                 | How many defective sectors were discovered on drive and remapped to spare sectors. Low values in absence of other fault indications point to a disk surface problem. Raw value indicates the exact number of such sectors. |
 | Current pending sectors count                                             | How many suspected defective sectors are pending "investigation." These will not necessarily be remapped. In fact, such sectors my be not defective at all (e.g. if some transient condition prevented reading of the sector, it will be marked "pending") - they will be then re-tested by the device off-line scan1 procedure and returned to the pool of serviceable sectors. Raw value indicates the exact number of such sectors. |
@@ -131,8 +128,6 @@
 | Temperature                                                               | Device temperature, if the appropriate sensor is fitted. Lowest byte of the raw value contains the exact temperature value (in Celsius). |
 | Ultra DMA CRC error rate                                                  | Low value of this attribute typically indicates that something is wrong with the connectors and/or cables. Disk-to-host transfers are protected by CRC error detection code when Ultra-DMA 66 or 100 is used. So if the data gets garbled between the disk and the host machine, the receiving controller senses this and the retransmission is initiated. Such a situation is called "UDMA CRC error." Once the problem is rectified (typically by replacing a cable), the attribute value returns to normal levels. |
 | G-sense error rate                                                        | Indicates if errors are occurring from physical shocks to the drive (either due to the environmental factors or due to improper installation). The hard drive must be fitted with the appropriate sensor to get information about the G-loads. This attribute is mainly limited to notebook (2.5") drives. Once the operation conditions are corrected, the attribute value will return to normal. |
-
-[5]
 
 
 ---
@@ -168,32 +163,30 @@
 
 > NOTE: xfs filesystems cannot be shrunk; use ext4 instead
 
-#### ext4 vs xfs
+#### ext4 vs xfs <sup>[4]</sup> 
 
 -ext4 is better with lots of smaller files and metadata-intensive tasks  
 -xfs is better with very large files (>30GB)  
-[4]
 
-| filesystem features          | ext4 | xfs  | btrfs | zfs  | ufs | ntfs | bcachefs | FAT32 | exFAT |
-|------------------------------|------|------|-------|------|-----|------|----------|-------|-------|
-| online growing               | no   | yes  | yes   | yes  | ?   | yes  | ?        | no    | no    |
-| online shrinking             | no   | no   | yes   | no   | no  | yes  | ?        | no    | no    |
-| transparent data compression | no   | no   | yes   | yes  | ?   | yes  | yes      | no    | no    |
-| native encryption            | LUKS | LUKS | yes   | yes  | ?   | yes  | yes      | no    | no    |
-| data deduplication           | no   | no   | yes   | yes  | no  | yes  | yes      | no    | no    |
-| immutable snapshots          | LVM  | LVM  | yes   | yes  | ?   | no   | yes      | no    | no    |
-| data + metadata checksumming | no   | no   | yes   | yes  | no  | no   | yes      | no    | no    |
-| native RAID support          | no   | no   | yes   | yes  | no  | yes  | yes      | no    | no    |
-| journaling support           | yes  | yes  | COW   | COW  | ?   | yes  | COW      | no    | no    |
-| max filesize                 | -    | -    | -     | -    | -   | -    | -        | 4GB   | -     |
-| max filesystem size          | -    | -    | -     | -    | -   | -    | -        | 2TB   | -     |
+| filesystem features <sup>[1]</sup>| ext4 | xfs  | btrfs | zfs  | ufs | ntfs | bcachefs | FAT32 | exFAT |
+|----------------------------- -----|------|------|-------|------|-----|------|----------|-------|-------|
+| online growing                    | no   | yes  | yes   | yes  | ?   | yes  | ?        | no    | no    |
+| online shrinking                  | no   | no   | yes   | no   | no  | yes  | ?        | no    | no    |
+| transparent data compression      | no   | no   | yes   | yes  | ?   | yes  | yes      | no    | no    |
+| native encryption                 | LUKS | LUKS | yes   | yes  | ?   | yes  | yes      | no    | no    |
+| data deduplication                | no   | no   | yes   | yes  | no  | yes  | yes      | no    | no    |
+| immutable snapshots               | LVM  | LVM  | yes   | yes  | ?   | no   | yes      | no    | no    |
+| data + metadata checksumming      | no   | no   | yes   | yes  | no  | no   | yes      | no    | no    |
+| native RAID support               | no   | no   | yes   | yes  | no  | yes  | yes      | no    | no    |
+| journaling support                | yes  | yes  | COW   | COW  | ?   | yes  | COW      | no    | no    |
+| max filesize                      | -    | -    | -     | -    | -   | -    | -        | 4GB   | -     |
+| max filesystem size               | -    | -    | -     | -    | -   | -    | -        | 2TB   | -     |
 
 LUKS = encrypting these filesystems is usually handled through LUKS and/or dm-crypt  
 LVM = can provide limited snapshot functionality through LVM  
 COW = journaling is superceded by copy-on-write mechanisms  
 \-  = maximum theoretical size so large it's effectively irrelevant  
 ?   = currently unknown and/or no reliable data available  
-[1]
 
 
 ---
@@ -254,14 +247,10 @@ ex: `10.0.0.10:/data  /mnt/data  nfs  defaults  0 0`
 1. run `grub-mkconfig -o /boot/grub/grub.cfg` or `update-grub` (if `update-grub` was installed)
 1. reboot. If you're dropped into an emergency shell, try regenerating grub
 
-
----
-#### sources
-
-[1] https://www.tldp.org/LDP/sag/html/filesystems.html  
-[2] https://clearlinux.org/news-blogs/linux-os-data-compression-options-comparing-behavior  
-[3] https://calomel.org/badblocks_wipe.html  
-[4] https://unix.stackexchange.com/questions/467385/should-i-use-xfs-or-ext4  
-[5] https://www.z-a-recovery.com/manual/smart.aspx  
-[6] http://www.linfo.org/inode.html  
+[1]: https://www.tldp.org/LDP/sag/html/filesystems.html  
+[2]: https://clearlinux.org/news-blogs/linux-os-data-compression-options-comparing-behavior  
+[3]: https://calomel.org/badblocks_wipe.html  
+[4]: https://unix.stackexchange.com/questions/467385/should-i-use-xfs-or-ext4  
+[5]: https://www.z-a-recovery.com/manual/smart.aspx  
+[6]: http://www.linfo.org/inode.html  
 

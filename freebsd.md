@@ -19,15 +19,11 @@
 
 `bsdconfig` = text-based GUI for general system configuration
 
-### misc
+### misc <sup>[1]</sup> 
 
 FreeBSD is focused on robustness and stablility  
 NetBSD is focused on portability  
 OpenBSD is focused on security
-[1]
 
----
-#### sources
-
-[1] https://jameshoward.us/archive/the-bsd-family-tree/  
+[1]: https://jameshoward.us/archive/the-bsd-family-tree/  
 

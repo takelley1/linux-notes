@@ -1,13 +1,13 @@
 
-**A proxy acts on behalf of the client(s), while a reverse proxy acts on behalf of the server(s)** [1]**.**
+**A proxy acts on behalf of the client(s), while a reverse proxy acts on behalf of the server(s).** <sup>[1]</sup> 
 
-## REVERSE PROXY
+## REVERSE PROXY <sup>[4]</sup> 
 
 also known as a *gateway server*
 
-- Used for security, high-availability, load-balancing, and centralized authentication/authorization. [4]
-- Allows many different isolated servers to provide their services behind a single domain
-- As far as the client is concerned, the reverse proxy server is the sole source of all content. [4]
+- used for security, high-availability, load-balancing, and centralized authentication/authorization
+- allows many different isolated servers to provide their services behind a single domain
+- as far as the client is concerned, the reverse proxy server is the sole source of all content
 
 ```
 httpd itself does not generate or host the data, but rather the content is obtained by one or several
@@ -16,9 +16,8 @@ request from a client, the request itself is proxied to one of these backend ser
 the request, generates the content and then sends this content back to httpd, which then generates the
 actual HTTP response back to the client.
 ```
-[4]
 
-![reverse-proxy](/images/reverse-proxy.jpg) [2]
+![reverse-proxy](/images/reverse-proxy.jpg) <sup>[2]</sup> 
 
 ```xml
 apache config (httpd.conf)
@@ -41,17 +40,14 @@ apache config (httpd.conf)
         BalancerMember https://jenkins-cluster-server2.domain
     </Proxy>
 ```  
-[4]
+<sup>[4]</sup> 
 
 
 ## FORWARD PROXY
 
-![forward-proxy](/images/forward-proxy.jpg) [2]
+![forward-proxy](/images/forward-proxy.jpg) <sup>[2]</sup> 
 
----
-#### sources
-
-[1] https://en.wikipedia.org/wiki/Reverse_proxy  
-[2] https://www.imperva.com/learn/performance/reverse-proxy/  
-[3] https://www.jscape.com/blog/bid/87783/forward-proxy-vs-reverse-proxy  
-[4] https://httpd.apache.org/docs/2.4/howto/reverse_proxy.html  
+[1]: https://en.wikipedia.org/wiki/Reverse_proxy  
+[2]: https://www.imperva.com/learn/performance/reverse-proxy/  
+[3]: https://www.jscape.com/blog/bid/87783/forward-proxy-vs-reverse-proxy  
+[4]: https://httpd.apache.org/docs/2.4/howto/reverse_proxy.html  

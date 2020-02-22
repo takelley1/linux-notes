@@ -1,6 +1,5 @@
 
-## GIT
-[1]
+## GIT <sup>[1]</sup>
 
 **see also:** [github fundamentals](https://git-scm.com/docs)
 
@@ -120,3 +119,4 @@ pattern*/
 `git stash drop` = discard the changes from top of stash stack
 
 [1]: https://education.github.com/git-cheat-sheet-education.pdf
+

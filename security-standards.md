@@ -168,7 +168,7 @@ CA, Bob can trust the Intermediate CA.
 Bob's web browser when he downloaded it, along with the Public Key of every other common Root CA.
 
   Bob trusts the Root CA because it has established its reputation through the Web of Trust, along with the fact that the Root CA's
-Public Key came with his browser [1].
+Public Key came with his browser. <sup>[1]</sup> 
  
 <img src="/images/session-keys.jpg" width="400"/> 
 
@@ -181,7 +181,7 @@ Public Key came with his browser [1].
   3. The Client verifies the server’s Certificate using the Server's Certificate issuer's Public Key. 
   4. If successful, the Client then sends its Certificate to the Server. 
   5. The Server verifies the Client’s credentials using the Client's Certificate issuer's Public Key. 
-  6. If successful, the Server grants access to the protected resource requested by the Client [2]. 
+  6. If successful, the Server grants access to the protected resource requested by the Client. <sup>[2]</sup>  
 
 ![mutual-ssl-authentication](/images/mutual-ssl-auth.png)
 
@@ -231,17 +231,14 @@ Public Key came with his browser [1].
 ![time-complexity](/images/time-complexity.jpg)
  
   - classical brute-force time complexity of breaking a cryptographic hash = **O(2<sup>N</sup>)**
-    - A SHA256 hash has a search space of **2<sup>256</sup>** [3]
+    - A SHA256 hash has a search space of **2<sup>256</sup>** <sup>[3]</sup> 
   
-  - quantum brute-force time complexity of factoring an RSA key using Shor's algorithm = **O(72(logN)<sup>3</sup>)** [4]
+  - quantum brute-force time complexity of factoring an RSA key using Shor's algorithm = **O(72(logN)<sup>3</sup>)** <sup>[4]</sup> 
   
 ![shors-algorithm](/images/time-complexity-shors-algorithm.jpg)
 
----
-#### sources
-
-[1] https://strongarm.io/blog/how-https-works/  
-[2] https://www.codeproject.com/Articles/326574/An-Introduction-to-Mutual-SSL-Authentication  
-[3] https://www.youtube.com/watch?v=S9JGmA5_unY&t=1s  
-[4] https://cs.stackexchange.com/questions/16684/shors-algorithm-speed
+[1]: https://strongarm.io/blog/how-https-works/  
+[2]: https://www.codeproject.com/Articles/326574/An-Introduction-to-Mutual-SSL-Authentication  
+[3]: https://www.youtube.com/watch?v=S9JGmA5_unY&t=1s  
+[4]: https://cs.stackexchange.com/questions/16684/shors-algorithm-speed
 

@@ -1,7 +1,7 @@
 
 ## VIM
 
-**see also**: https://danielmiessler.com/study/vim/ 
+**see also:** [daniel messler on vim](https://danielmiessler.com/study/vim/)
 
 ### split-window editing
 
@@ -122,7 +122,7 @@ Use navigation keys to highlight and press `d` to cut selection
 `"+y`           = copy into CLIPBOARD register  
 
 > NOTE: the PRIMARY and CLIPBOARD registers are managed by X11 (not Vim), so data copied into these
-        registers can be used elsewhere in the X11 session [1]
+        registers can be used elsewhere in the X11 session <sup>[1]</sup> 
 
 `“xy`         = copy selection to register `x`  
 `“xp`         = paste from register `x`
@@ -175,8 +175,4 @@ Use navigation keys to highlight and press `d` to cut selection
 1. use `.` to repeat last action  
 1. continue to use `n` and `.` to replace matches  
 
----
-#### sources
-
-[1] https://vi.stackexchange.com/questions/84/how-can-i-copy-text-to-the-system-clipboard-from-vim
-
+[1]: https://vi.stackexchange.com/questions/84/how-can-i-copy-text-to-the-system-clipboard-from-vim

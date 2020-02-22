@@ -32,7 +32,7 @@ sed -n '/^ /{H;d};/comment:/x;$g;s/\n *//g;s/comment: //gp'
 ---
 ### integration
 
-**see also:** https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/7/html-single/windows_integration_guide/#sssd-ad-proc 
+**see also:** [inux integration with windows](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/7/html-single/windows_integration_guide/#sssd-ad-proc)  
 
 `net ads testjoin` 
 `net ads info`
