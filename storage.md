@@ -40,14 +40,16 @@
 ## ARCHIVES <sup>[2]</sup> 
 
 | compression algorithms | gzip | bzip2 | xz | lzip | lzma | zstd |
+|------------------------|------|-------|----|------|------|------|
+| released               |      |       |    |      |      |      |
 | compression speed      |      |       |    |      |      |      |
 | decompression speed    |      |       |    |      |      |      |
-| compression            |      |       |    |      |      |      |
+| compression ratio      |      |       |    |      |      |      |
 
 | archive formats | tar | zip | 7z | tar.gz |
 |                 |     |     |    |        |
 
-**see also**: [squash benchmark](https://quixdb.github.io/squash-benchmark/#results)
+**see also**: [squash compression benchmark](https://quixdb.github.io/squash-benchmark/#results)
 
 ### tar
 
@@ -168,19 +170,19 @@
 -ext4 is better with lots of smaller files and metadata-intensive tasks  
 -xfs is better with very large files (>30GB)  
 
-| filesystem features <sup>[1]</sup>| ext4 | xfs  | btrfs | zfs  | ufs | ntfs | bcachefs | FAT32 | exFAT |
-|----------------------------- -----|------|------|-------|------|-----|------|----------|-------|-------|
-| online growing                    | no   | yes  | yes   | yes  | ?   | yes  | ?        | no    | no    |
-| online shrinking                  | no   | no   | yes   | no   | no  | yes  | ?        | no    | no    |
-| transparent data compression      | no   | no   | yes   | yes  | ?   | yes  | yes      | no    | no    |
-| native encryption                 | LUKS | LUKS | yes   | yes  | ?   | yes  | yes      | no    | no    |
-| data deduplication                | no   | no   | yes   | yes  | no  | yes  | yes      | no    | no    |
-| immutable snapshots               | LVM  | LVM  | yes   | yes  | ?   | no   | yes      | no    | no    |
-| data + metadata checksumming      | no   | no   | yes   | yes  | no  | no   | yes      | no    | no    |
-| native RAID support               | no   | no   | yes   | yes  | no  | yes  | yes      | no    | no    |
-| journaling support                | yes  | yes  | COW   | COW  | ?   | yes  | COW      | no    | no    |
-| max filesize                      | -    | -    | -     | -    | -   | -    | -        | 4GB   | -     |
-| max filesystem size               | -    | -    | -     | -    | -   | -    | -        | 2TB   | -     |
+| filesystem features <sup>[1]</sup> | ext4 | xfs  | btrfs | zfs  | ufs | ntfs | bcachefs | FAT32 | exFAT |
+|------------------------------------|------|------|-------|------|-----|------|----------|-------|-------|
+| online growing                     | no   | yes  | yes   | yes  | ?   | yes  | ?        | no    | no    |
+| online shrinking                   | no   | no   | yes   | no   | no  | yes  | ?        | no    | no    |
+| transparent data compression       | no   | no   | yes   | yes  | ?   | yes  | yes      | no    | no    |
+| native encryption                  | LUKS | LUKS | yes   | yes  | ?   | yes  | yes      | no    | no    |
+| data deduplication                 | no   | no   | yes   | yes  | no  | yes  | yes      | no    | no    |
+| immutable snapshots                | LVM  | LVM  | yes   | yes  | ?   | no   | yes      | no    | no    |
+| data + metadata checksumming       | no   | no   | yes   | yes  | no  | no   | yes      | no    | no    |
+| native RAID support                | no   | no   | yes   | yes  | no  | yes  | yes      | no    | no    |
+| journaling support                 | yes  | yes  | COW   | COW  | ?   | yes  | COW      | no    | no    |
+| max filesize                       | -    | -    | -     | -    | -   | -    | -        | 4GB   | -     |
+| max filesystem size                | -    | -    | -     | -    | -   | -    | -        | 2TB   | -     |
 
 LUKS = encrypting these filesystems is usually handled through LUKS and/or dm-crypt  
 LVM = can provide limited snapshot functionality through LVM  
@@ -233,19 +235,19 @@ ex: `10.0.0.10:/data  /mnt/data  nfs  defaults  0 0`
 
 > symbolic links can be made for directories as well as files and work across partitions (unlike hard links), but break if the location they're pointing to is deleted. Similar to Windows shortcuts
 
-### transfer root linux installation to another drive
+### transfer root linux installation to another drive <sup>[7]</sup>
 
 1. install the `update-grub` package on the source drive (optional)
-1. use `gparted` to copy the source drive's root partition to an empty partition on the target drive
+1. boot from a live OS and use `gparted` to copy the source drive's root partition to an empty partition on the target drive
 1. physically disconnect the source drive
 1. open a terminal and generate a new UUID for the new partition on the target drive
    1. use `blkid` to list partition UUIDs
    1. use `tune2fs -U random /dev/sdx1` (if ext4) or `xfs_admin -U generate /dev/sdx1` (if xfs) to generate a new UUID for the copied partition on the target drive
-1. mount the target drive and bind mount `/dev`, `/run`, `/proc`, and `/sys` from the currently booted drive to the target drive
+1. mount the target drive and bind mount `/dev`, `/run`, `/proc`, and `/sys` from the currently booted live OS to the target drive
 1. `chroot` into the target drive
 1. update `fstab` with the copied partition's new UUID
 1. run `grub-mkconfig -o /boot/grub/grub.cfg` or `update-grub` (if `update-grub` was installed)
-1. reboot. If you're dropped into an emergency shell, try regenerating grub
+1. reboot. if you're dropped into an emergency shell, try regenerating grub
 
 [1]: https://www.tldp.org/LDP/sag/html/filesystems.html  
 [2]: https://clearlinux.org/news-blogs/linux-os-data-compression-options-comparing-behavior  
@@ -253,4 +255,5 @@ ex: `10.0.0.10:/data  /mnt/data  nfs  defaults  0 0`
 [4]: https://unix.stackexchange.com/questions/467385/should-i-use-xfs-or-ext4  
 [5]: https://www.z-a-recovery.com/manual/smart.aspx  
 [6]: http://www.linfo.org/inode.html  
+[7]: https://askubuntu.com/questions/741723/moving-entire-linux-installation-to-another-drive
 
