@@ -110,6 +110,11 @@ iptables –A OUTPUT -o eth0 –p tcp --sport 80 –m state --state NEW,ESTABLIS
 `nmap -sP 10.0.0.0/8` = attempt to ping all hosts on the 10.0.0.0/8 subnet and list responses  
 
 
+### VLANS
+
+[how do VLANs work?](https://serverfault.com/questions/188350/how-do-vlans-work?rq=1)  
+[access ports vs trunk ports](https://www.solarwindsmsp.com/blog/vlan-trunking)
+
 ---
 ## ROUTES
 
