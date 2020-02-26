@@ -91,8 +91,7 @@ Send packet CA->Netherlands->CA    150,000,000   ns  150,000 us  150 ms
 24x 256GB raid0 striped   5.5 terabytes ( w=1620MB/s , rw=796MB/s , r=2043MB/s )
 ```
 
-![raid10](/images/raid10.png) <sup>[5]</sup> 
-
+<img src="/images/raid10.png" width="300"/> <sup>[5]</sup> 
 
 ---
 ## SOLID-STATE MEMORY
