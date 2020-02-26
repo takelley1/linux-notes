@@ -91,6 +91,8 @@ Send packet CA->Netherlands->CA    150,000,000   ns  150,000 us  150 ms
 24x 256GB raid0 striped   5.5 terabytes ( w=1620MB/s , rw=796MB/s , r=2043MB/s )
 ```
 
+![raid10](/images/raid10.png) <sup>[5]</sup> 
+
 
 ---
 ## SOLID-STATE MEMORY
@@ -165,4 +167,4 @@ to the original data, not the data itself
 [2]: https://colin-scott.github.io/personal_website/research/interactive_latency.html  
 [3]: https://stackoverflow.com/questions/1371400/how-much-faster-is-the-memory-usually-than-the-disk  
 [4]: https://calomel.org/zfs_raid_speed_capacity.html  
-
+[5]: https://blog.ssdnodes.com/blog/what-is-raid-10-vps/
