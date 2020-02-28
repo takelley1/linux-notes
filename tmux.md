@@ -12,7 +12,8 @@
 |-----------------------------------|------------------------------------------|
 | create new window                 | `c`                                      |
 | list windows                      | `w`                                      |
-| rename window                     | `:rename-window [new-name]`              |
+| rename window                     | `,`                                      |
+| rename session                    | `$`                                      |
 | go to window #                    | `#`                                      |
 | go to last active window          | `l`                                      |
 | go to next window                 | `n`                                      |
