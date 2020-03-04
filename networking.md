@@ -1,17 +1,21 @@
 
 ## SSH
 
-**see more:** [ssh essentials](https://www.digitalocean.com/community/tutorials/ssh-essentials-working-with-ssh-servers-clients-and-keys), [authorized_keys vs known_hosts](https://security.stackexchange.com/questions/20706/what-is-the-difference-between-authorized-keys-and-known-hosts-file-for-ssh)
+*Applies to OpenSSH only*
+
+**see more:** [ssh essentials](https://www.digitalocean.com/community/tutorials/ssh-essentials-working-with-ssh-servers-clients-and-keys), [authorized_keys vs known_hosts](https://security.stackexchange.com/questions/20706/what-is-the-difference-between-authorized-keys-and-known-hosts-file-for-ssh), [sshd_config man page](https://www.freebsd.org/cgi/man.cgi?sshd_config(5))
 
 ### files <sup>[6]</sup> 
 
 `~/.ssh/known_hosts`
-  - contains the public keys of servers this user has connected to
+  - kept on the client
+  - contains the public keys of servers (host keys) this user trusts
   - servers maintain their own host keypairs (in /etc/ssh) to prove their identity to connecting clients
     - via a key-exchange, clients can know they're connecting to the same host and not an impersonator or man-in-the-middle (because the server can prove it has posession of the matching private key)
   
 `~/.ssh/authorized_keys`
-  - contains the public keys of users allowed to login to this account
+  - kept on the server
+  - contains the public keys of users (user keys) allowed to login to this account
 
 
 ---
