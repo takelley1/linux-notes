@@ -1,3 +1,4 @@
+- fill out table comparing compression algorithms, use last image from https://clearlinux.org/news-blogs/linux-os-data-compression-options-comparing-behavior
 - emphasize a large number of command examples over everything else
 - add content to 'awk' section in stream-editing.md
 - add pam syntax
@@ -5,9 +6,6 @@
 - add image for 'top' command
 - link bookmarked article describing htop 
 - add BSD pkg commands in the table with yum and apt and pacman
-- create a consistent style guide
-- change vim.md sections to tables
 - add info on RAM UDIMM vs RDIMM
 - add CIFS/SMB and Active Directory share mounting to storage.md
 - fill out MONITORING section of networking.md
-- fill out table comparing compression algorithms, use last image from https://clearlinux.org/news-blogs/linux-os-data-compression-options-comparing-behavior
