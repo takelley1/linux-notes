@@ -84,7 +84,7 @@ syntax: `sed -[parameter] '[restriction] [flag1]/[pattern1]/[pattern2]/[flag2]'`
 
 ### grep examples
 
-`grep -h -o '[0-9]\{1,3\}\.[0-9]\{1,3\}\.[0-9]\{1,3\}\.[0-9]\{1,3\}' /var/log/maillog* | sort -u` = extract IPs  
+`grep -h -o '[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}' /var/log/maillog* | sort -u` = extract IPs  
                                                                                   `-h`            = don't print filenames (used only when grep is searching through multiple files)  
                                                                                   `-o`            = print only the matching part of the line, instead of the whole line  
                                                                                   `sort -u`       = remove duplicates  
