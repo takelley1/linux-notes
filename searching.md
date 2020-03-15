@@ -17,7 +17,11 @@ perl -MFile::Path=remove_tree -n0e 'chomp; remove_tree($_, {verbose=>1}) if /[[:
 
 perform `ls –l` command on found files  
 `find -name "file[0-9].txt" -exec ls -l {} \;` or  
-`find -name "file[0-9].txt" | xargs ls -l` 
+`find -name "file[0-9].txt" | xargs ls -l`  
+
+`-exec [COMMAND] {} \;` = perform [COMMAND] on every returned result  
+                   `{}` = the current result  
+                   `\;` = terminator  
 
 `find ./ -type f | wc –l` = print number of files beneath current path  
                 `-type f` = search for files only, not directories  

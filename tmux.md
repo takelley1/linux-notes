@@ -9,6 +9,7 @@
 | re-attach to session              | `tmux attach`                            |
 | re-attach to session x            | `tmux attach -t [x]`<br>`tmux a -t [x]`  |
 | detach from session               | `d` or `:detach`                         |
+| fix dotted lines in windows       | `D` (detatch from nested session)        |
 |-----------------------------------|------------------------------------------|
 | create new window                 | `c`                                      |
 | list windows                      | `w`                                      |
