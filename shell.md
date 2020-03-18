@@ -128,7 +128,11 @@
 ## CONSOLE / TTY
 
 `dpkg-reconfigure console-setup`    = change console font size (debian-based distros)  
-`/etc/default/console-setup`        = change console font size
+`/etc/default/console-setup`        = change console font size  
+
+---
+`who` or `w`  = view users currently logged in  
+`write alice` = compose a message to the user alice (assuming she's logged in), use `CTRL-D` to send your message <sup>[8]</sup>   
 
 [1]: https://stackoverflow.com/questions/15783701/which-characters-need-to-be-escaped-when-using-bash#20053121  
 [2]: https://www.shellscript.sh/escape.html  
@@ -137,4 +141,4 @@
 [5]: https://superuser.com/questions/176783/what-is-the-difference-between-executing-a-bash-script-vs-sourcing-it/176788#176788   
 [6]: https://medium.com/@abhinavkorpal/bash-profile-vs-bashrc-c52534a787d3   
 [7]: https://askubuntu.com/questions/879364/differentiate-interactive-login-and-non-interactive-non-login-shell  
-
+[8]: https://www.tecmint.com/send-a-message-to-logged-users-in-linux-terminal/  
