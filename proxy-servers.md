@@ -3,21 +3,23 @@
 
 ## REVERSE PROXY <sup>[4]</sup> 
 
-also known as a *gateway server*
+Also known as a *gateway server*.
 
-- used for security, high-availability, load-balancing, and centralized authentication/authorization
-- allows many different isolated servers to provide their services behind a single domain
-- as far as the client is concerned, the reverse proxy server is the sole source of all content
+- Used for security, high-availability, load-balancing, and centralized authentication/authorization.
+- Allows many different isolated servers to provide their services behind a single domain.
+- As far as the client is concerned, the reverse proxy server is the sole source of all content.
 
 ```
-httpd itself does not generate or host the data, but rather the content is obtained by one or several
-backend servers,which normally have no direct connection to the external network. As httpd receives a
+Httpd itself does not generate or host the data, but rather the content is obtained by one or several
+backend servers,vwhich normally have no direct connection to the external network. As httpd receives a
 request from a client, the request itself is proxied to one of these backend servers, which then handles
 the request, generates the content and then sends this content back to httpd, which then generates the
 actual HTTP response back to the client.
 ```
 
-![reverse-proxy](/images/reverse-proxy.jpg) <sup>[2]</sup>
+<img src="/images/reverse-proxy.jpg" width="500"/> <sup>[2]</sup>
+
+### Configuration examples
 
 ```xml
 # Reverse proxy config for the localhost using subdomains.
@@ -93,7 +95,7 @@ Require all granted
 
 ## FORWARD PROXY
 
-![forward-proxy](/images/forward-proxy.jpg) <sup>[2]</sup> 
+<img src="/images/forward-proxy.jpg" width="500"/> <sup>[2]</sup>
 
 [1]: https://en.wikipedia.org/wiki/Reverse_proxy  
 [2]: https://www.imperva.com/learn/performance/reverse-proxy/  
