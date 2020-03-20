@@ -77,12 +77,13 @@ systemctl --user status my_service
 sudo journalctl
 
 # Tail logs
-sudo journalctl -f
+sudo journalctl -xef
 
-# Show logs for specific service
-sudo journalctl -u my_daemon
+# Tail logs for the httpd service only
+sudo journalctl -fu httpd
+
 # For user service
-journalctl --user-unit my_user_daemon
+journalctl -f --user-unit my_user_daemon
 ```
 <sup>[1]</sup> 
 
