@@ -17,28 +17,48 @@ the request, generates the content and then sends this content back to httpd, wh
 actual HTTP response back to the client.
 ```
 
-![reverse-proxy](/images/reverse-proxy.jpg) <sup>[2]</sup> 
+![reverse-proxy](/images/reverse-proxy.jpg) <sup>[2]</sup>
 
 ```xml
+# Reverse proxy config for the localhost using subdomains.
 apache config (httpd.conf)
 
-    # Requests to the /bitbucket directory are proxied to a different server
-    <Location /bitbucket>
-        ProxyPass https://bitbucket-server.domain
-        ProxyPassReverse https://bitbucket-server.domain
-    </Location>
+<Proxy *>
+Require all granted
+</Proxy>
 
-    # Requests to the /jenkins directory are proxied to a cluster for load balancing
-    <Location /jenkins>
-        ProxyPass balancer://jenkins-cluster
-        ProxyPassReverse balancer://jenkins-cluster
-    </Location>
+<VirtualHost first.example.com:80>
+    ServerName first.example.com
+    ProxyPass / http://localhost:1234
+</VirtualHost>
 
-    # Add servers to the jenkins cluster
-    <Proxy balancer://jenkins-cluster>
-        BalancerMember https://jenkins-cluster-server1.domain
-        BalancerMember https://jenkins-cluster-server2.domain
-    </Proxy>
+<VirtualHost second.example.com:80>
+    ServerName second.example.com
+    ProxyPass / http://localhost:5678
+</VirtualHost>
+```
+
+```xml
+# Reverse proxy config using paths.
+apache config (httpd.conf)
+
+# Requests to the /bitbucket directory are proxied to a different server.
+<Location /bitbucket>
+    ProxyPass https://10.0.0.50:443
+    ProxyPassReverse https://10.0.0.50:443
+</Location>
+
+# Requests to the /jenkins directory are proxied to a cluster for load balancing.
+<Location /jenkins>
+    ProxyPass balancer://jenkins-cluster
+    ProxyPassReverse balancer://jenkins-cluster
+</Location>
+
+# Add servers to the jenkins cluster.
+<Proxy balancer://jenkins-cluster>
+    BalancerMember https://jenkins-cluster-server1.example.com
+    BalancerMember https://jenkins-cluster-server2.example.com
+</Proxy>
 ```  
 <sup>[4]</sup> 
 
