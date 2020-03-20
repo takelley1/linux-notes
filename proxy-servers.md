@@ -21,7 +21,6 @@ actual HTTP response back to the client.
 
 ```xml
 # Reverse proxy config for the localhost using subdomains.
-apache config (httpd.conf)
 
 <Proxy *>
 Require all granted
@@ -39,8 +38,37 @@ Require all granted
 ```
 
 ```xml
-# Reverse proxy config using paths.
-apache config (httpd.conf)
+# Reverse proxy config using paths and forced HTTPS redirection.
+
+<VirtualHost server.example.com:80>
+    ServerName server.example.com
+    Redirect permanent / https://server.example.com/
+</VirtualHost>
+
+<VirtualHost server.example.com:443>
+    ServerAdmin example@example.com
+    ServerName server.example.com
+
+    LogLevel info
+    ErrorLog /var/log/httpd/proxy.log
+    TransferLog /var/log/httpd/proxy.log
+
+    SSLEngine On
+    SSLCertificateFile /etc/httpd/certificate.crt
+    SSLCertificateKeyFile /etc/httpd/certificate.key
+
+    <Location /chat>
+        Order allow,deny
+        Allow from all
+        ProxyPass http://localhost:3000/chat
+        ProxyPassReverse http://127.0.0.1:3000/chat
+    </Location>
+
+</VirtualHost>
+```
+
+```xml
+# Reverse proxy config using paths and load balancer.
 
 # Requests to the /bitbucket directory are proxied to a different server.
 <Location /bitbucket>
