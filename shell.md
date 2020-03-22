@@ -85,23 +85,45 @@
 
 **see also:** [bash beginners guide](http://tldp.org/LDP/Bash-Beginners-Guide/html/sect_07_01.html)
 
-| syntax              | meaning                                                                            |
-|---------------------|------------------------------------------------------------------------------------|
-| [ -e FILE ]         | True if FILE exists.                                                               |
-| [ -d FILE ]         | True if FILE exists and is a directory.                                            |
-| [ -f FILE ]         | True if FILE exists and is a regular file.                                         |
-| [ -L FILE ]         | True if FILE exists and is a symbolic link.                                        |
-| [ -k FILE ]         | True if FILE exists and its sticky bit is set.                                     |
-| [ -r FILE ]         | True if FILE exists and is readable.                                               |
-| [ -w FILE ]         | True if FILE exists and is writable.                                               |
-| [ -x FILE ]         | True if FILE exists and is executable.                                             |
-| [ -s FILE ]         | True if FILE exists and has a size greater than zero.                              |
-| [ -O FILE ]         | True if FILE exists and is owned by the effective user ID.                         |
-| [ -G FILE ]         | True if FILE exists and is owned by the effective group ID.                        |
-| [ -N FILE ]         | True if FILE exists and has been modified since it was last read.                  |
-| [ FILE1 -nt FILE2 ] | True if FILE1 was changed sooner than FILE2, or if FILE1 exists and FILE2 doesn't. |
-| [ FILE1 -ot FILE2 ] | True if FILE1 is older than FILE2, or if FILE2 exists and FILE1 doesn't.           |
-| [ -o OPTIONNAME ]   | True if shell option "OPTIONNAME" is enabled.                                      |
+#### File-based conditions <sup>[8]</sup> 
+
+| syntax          | meaning                                                                    |
+|-----------------|----------------------------------------------------------------------------|
+| -a or -e FILE   | FILE exists.                                                               |
+| -d FILE         | FILE exists and is a directory.                                            |
+| -f FILE         | FILE exists and is a regular file.                                         |
+| -L FILE         | FILE exists and is a symbolic link.                                        |
+| -k FILE         | FILE exists and its sticky bit is set.                                     |
+| -r FILE         | FILE exists and is readable.                                               |
+| -w FILE         | FILE exists and is writable.                                               |
+| -x FILE         | FILE exists and is executable.                                             |
+| -s FILE         | FILE exists and has a size greater than zero.                              |
+| -O FILE         | FILE exists and is owned by the effective user ID.                         |
+| -G FILE         | FILE exists and is owned by the effective group ID.                        |
+| -N FILE         | FILE exists and has been modified since it was last read.                  |
+| FILE1 -nt FILE2 | FILE1 was changed sooner than FILE2, or if FILE1 exists and FILE2 doesn't. |
+| FILE1 -ot FILE2 | FILE1 is older than FILE2, or if FILE2 exists and FILE1 doesn't.           |
+| -o OPTIONNAME   | Shell option "OPTIONNAME" is enabled.                                      |
+
+#### String-based conditions <sup>[8]</sup> 
+
+| syntax             | meaning                          |
+|--------------------|----------------------------------|
+| -z STRING          | STRING is empty.                 |
+| -n STRING          | STRING is NOT empty.             |
+| STRING1 == STRING2 | STRING1 is equal to STRING2.     | 
+| STRING1 != STRING2 | STRING1 is NOT equal to STRING2. |
+
+#### Number-based conditions <sup>[8]</sup> 
+
+| syntax             | meaning                                |
+|--------------------|----------------------------------------|
+| NUM1 -eq NUM2      | NUM1 is equal to NUM2.                 |
+| NUM1 -ne NUM2      | NUM1 is NOT equal to NUM2.             |
+| NUM1 -gt NUM2      | NUM1 is greater than NUM2.             | 
+| NUM1 -ge NUM2      | NUM1 is greater than or equal to NUM2. |
+| NUM1 -lt NUM2      | NUM1 is less than NUM2.                | 
+| NUM1 -le NUM2      | NUM1 is less than or equal to NUM2.    |
 
 
 ---
@@ -137,4 +159,4 @@
 [5]: https://superuser.com/questions/176783/what-is-the-difference-between-executing-a-bash-script-vs-sourcing-it/176788#176788   
 [6]: https://medium.com/@abhinavkorpal/bash-profile-vs-bashrc-c52534a787d3   
 [7]: https://askubuntu.com/questions/879364/differentiate-interactive-login-and-non-interactive-non-login-shell  
-
+[8]: https://linuxacademy.com/blog/linux/conditions-in-bash-scripting-if-statements/
