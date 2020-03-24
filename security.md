@@ -1,6 +1,11 @@
 
 ## CERTIFICATES
 
+generate CSR
+```bash
+openssl req -new -newkey rsa:2048 -nodes -keyout server.key -out server.csr
+```
+
 generate self-signed cert
 ```bash
 certtool --generate-privkey --outfile key.pem
