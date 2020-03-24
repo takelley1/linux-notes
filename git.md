@@ -4,6 +4,7 @@
 **see also:** [github fundamentals](https://git-scm.com/docs)
 
 `git add -A` = stage all modified files, including deleted files  
+`git add -A ./*` = stage all modified files, including deleted files, beneath the current path  
 `git add -u` = stage all modified files  
 
 ---
