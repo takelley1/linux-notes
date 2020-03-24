@@ -22,55 +22,122 @@ actual HTTP response back to the client.
 ### Configuration examples
 
 ```xml
-# Reverse proxy config for the localhost using subdomains.
+# Full Apache reverse proxy config for a handful of apps.
+  # Requires creating a separate DNS domain for admin.example.com.
+    # 1 DNS A record pointing admin.example.com to the IP of the reverse proxy.
+    # 1 DNS CNAME wildcard record pointing *.admin.example.com to the A record.
+  # Requires a wildcard certificate for *.admin.example.com.
 
-<Proxy *>
-Require all granted
-</Proxy>
-
-<VirtualHost first.example.com:80>
-    ServerName first.example.com
-    ProxyPass / http://localhost:1234
+# Force upgrade from http to https.
+<VirtualHost admin.example.com:80>
+    ServerName admin.example.com
+    Redirect permanent / https://admin.example.com/
 </VirtualHost>
 
-<VirtualHost second.example.com:80>
-    ServerName second.example.com
-    ProxyPass / http://localhost:5678
-</VirtualHost>
-```
+<VirtualHost admin.example.com:443>
+    ServerName admin.example.com
 
-```xml
-# Reverse proxy config using paths and forced HTTPS redirection.
+    LogLevel warn
+    ErrorLog /var/log/httpd/admin.example.com.log
+    TransferLog /var/log/httpd/admin.example.com.access.log
 
-<VirtualHost server.example.com:80>
-    ServerName server.example.com
-    Redirect permanent / https://server.example.com/
-</VirtualHost>
+    SSLProxyCheckPeerName off
+    SSLProxyCheckPeerCN off
+    SSLProxyEngine on
+    SSLEngine on
+    SSLCertificateFile /etc/httpd/certs/admin.example.com.crt
+    SSLCertificateKeyFile /etc/httpd/certs/admin.example.com.key
 
-<VirtualHost server.example.com:443>
-    ServerAdmin example@example.com
-    ServerName server.example.com
+    ProxyRequests off
+    ProxyPreserveHost on
 
-    LogLevel info
-    ErrorLog /var/log/httpd/proxy.log
-    TransferLog /var/log/httpd/proxy.log
+    # Heimdall
+    <Location />
+        ProxyPass "https://127.0.0.1:8443/"
+        ProxyPassReverse "https://127.0.0.1:8443/"
+        Order deny,allow
+        Allow from all
+    </Location>
 
-    SSLEngine On
-    SSLCertificateFile /etc/httpd/certificate.crt
-    SSLCertificateKeyFile /etc/httpd/certificate.key
-
+    # Rocket.Chat
     <Location /chat>
         Order allow,deny
         Allow from all
-        ProxyPass http://localhost:3000/chat
+        RewriteEngine on
+        RewriteCond %{HTTP:Upgrade} =websocket [NC]
+        RewriteRule /var/www/(.*)           ws://localhost:3000/$1 [P,L]
+        RewriteCond %{HTTP:Upgrade} !=websocket [NC]
+        RewriteRule /var/www/(.*)           http://localhost:3000/$1 [P,L]
+
+        ProxyPass http://127.0.0.1:3000/chat
         ProxyPassReverse http://127.0.0.1:3000/chat
     </Location>
 
 </VirtualHost>
+
+<VirtualHost spacewalk.admin.example.com:443>
+    ServerName spacewalk.admin.example.com
+
+    LogLevel warn
+    ErrorLog /var/log/httpd/admin.example.com.log
+    TransferLog /var/log/httpd/admin.example.com.access.log
+
+    SSLProxyEngine on
+    SSLEngine on
+    SSLCertificateFile /etc/httpd/certs/admin.example.com.crt
+    SSLCertificateKeyFile /etc/httpd/certs/admin.example.com.key
+
+    ProxyPass "/" "https://spacewalk-hostname.example.com/"
+    ProxyPassReverse "/" "https://spacewalk-hostname.example.com/"
+</VirtualHost>
+
+<VirtualHost graylog.admin.example.com:443>
+    ServerName graylog.admin.example.com
+
+    LogLevel warn
+    ErrorLog /var/log/httpd/admin.example.com.log
+    TransferLog /var/log/httpd/admin.example.com.access.log
+
+    ProxyRequests off
+    SSLEngine on
+    SSLCertificateFile /etc/httpd/certs/admin.example.com.crt
+    SSLCertificateKeyFile /etc/httpd/certs/admin.example.com.key
+    <Proxy *>
+        Order deny,allow
+        Allow from all
+    </Proxy>
+
+    <Location />
+        RequestHeader set X-Graylog-Server-URL "https://graylog.admin.example.com"
+        ProxyPass "http://graylog-hostname.example.com:9000/"
+        ProxyPassReverse "http://graylog-hostname.example.com:9000/"
+    </Location>
+
+</VirtualHost>
+
+<VirtualHost vsphere.admin.example.com:443>
+    ServerName vsphere.admin.example.com
+
+    LogLevel warn
+    ErrorLog /var/log/httpd/admin.example.com.log
+    TransferLog /var/log/httpd/admin.example.com.access.log
+
+    SSLProxyCheckPeerName off
+    SSLProxyCheckPeerCN off
+    SSLProxyEngine on
+    SSLEngine on
+    SSLCertificateFile /etc/httpd/certs/admin.example.com.crt
+    SSLCertificateKeyFile /etc/httpd/certs/admin.example.com.key
+
+    ProxyRequests off
+    ProxyPreserveHost on
+    ProxyPass "/" "https://vsphere-hostname.example.com/"
+    ProxyPassReverse "/" "https://vsphere-hostname.example.com/"
+</VirtualHost>
 ```
 
 ```xml
-# Reverse proxy config using paths and load balancer.
+# Genric reverse proxy config using paths and load balancer.
 
 # Requests to the /bitbucket directory are proxied to a different server.
 <Location /bitbucket>
