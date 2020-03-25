@@ -117,10 +117,10 @@ fi
 
 #Uncomment and change to defaults you want
 : ${DN_C=US}
-: ${DN_ST=Maryland}
-: ${DN_L='Aberdeen Proving Ground'}}
-: ${DN_O='AMC CECOM SEC.'}
-: ${DN_OU='Software Engineering Center (SE2)'}
+: ${DN_ST=''}
+: ${DN_L=''}}
+: ${DN_O=''}
+: ${DN_OU=''}
 
 crt_generate $@
 ```
