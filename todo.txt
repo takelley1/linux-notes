@@ -11,3 +11,4 @@
 - add info on RAM UDIMM vs RDIMM
 - add CIFS/SMB and Active Directory share mounting to storage.md
 - fill out MONITORING section of networking.md
+- add docker commands
