@@ -219,7 +219,9 @@ selinux context syntax: `user:role:type:level`
 
 `getsebool`                              = get selinux boolean values  
 `setsebool`                              = toggle selinux boolean values  
-`setsebool httpd_can_network_connect on` = allow outside directory access to httpd
+`setsebool httpd_can_network_connect on` = allow outside directory access to httpd  
+
+`aureport -a` = summarize audit logs and show failures
 
 ---
 #### `audit2allow` command
