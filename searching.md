@@ -17,7 +17,8 @@ perl -MFile::Path=remove_tree -n0e 'chomp; remove_tree($_, {verbose=>1}) if /[[:
 
 perform `ls –l` command on found files  
 `find -name "file[0-9].txt" -exec ls -l {} \;` or  
-`find -name "file[0-9].txt" | xargs ls -l`  
+`find -name "file[0-9].txt" | xargs ls -l` or  
+`find -name "file[0-9].txt" -ls`  
 
 `-exec [COMMAND] {} \;` = perform [COMMAND] on every returned result  
                    `{}` = the current result  
@@ -25,23 +26,22 @@ perform `ls –l` command on found files
 
 `find ./ -type f | wc –l` = print number of files beneath current path  
                 `-type f` = search for files only, not directories  
-                `wc –l`   = count the number of lines in the ouput
+                  `wc –l` = count the number of lines in the ouput  
 
-`find -03 -L . -type f -name *.jpg` =  
-                          `-03`     = optimize file search order based on likelihood of finding a match  
-                          `-L`      = follow symbolic links  
-                          `.`       = search in or below the current directory  
-                          `-type f` = look for files  
-                          `-name`   = search based on file name  
-                          `*.jpg`   = use wildcard to search for all files with .jpg extension 
+`find -03 -L . -type f -name "*.jpg"` =  
+                                `-03` = optimize file search order based on likelihood of finding a match  
+                                 `-L` = follow symbolic links  
+                                  `.` = search in or below the current directory  
+                            `-type f` = look for regular files only  
+                              `-name` = search based on file name  
+                            `"*.jpg"` = use wildcard to search for all files with .jpg extension  
 
 `find ~ -user alice -mtime 7 -iname “.log” -delete` = delete log files owned by alice within a certain date range
-                                          `-user`   = files owned by user alice  
-                                          `~`       = search in or beneath the specified user's home directory  
-                                          `-mtime`  = filter by file's modified time, in # of days ago  
-                                          `-i`      = ignore case  
-                                          `-name`   = match by file name  
-                                          `-delete` = delete after locating files
+                                      `-user alice` = files owned by user alice  
+                                                `~` = search in or beneath the specified user's home directory  
+                                         `-mtime 7` = look for files modified 7 days ago  
+                                            `-iname`= match by file name (case insensitive)  
+                                          `-delete` = delete matched files  
 
 ### options 
 
