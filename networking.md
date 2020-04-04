@@ -5,14 +5,14 @@
 
 **see more:** [ssh essentials](https://www.digitalocean.com/community/tutorials/ssh-essentials-working-with-ssh-servers-clients-and-keys), [authorized_keys vs known_hosts](https://security.stackexchange.com/questions/20706/what-is-the-difference-between-authorized-keys-and-known-hosts-file-for-ssh), [sshd_config man page](https://www.freebsd.org/cgi/man.cgi?sshd_config(5))
 
-### files <sup>[6]</sup> 
+### files <sup>[6]</sup>
 
 `~/.ssh/known_hosts`
   - kept on the client
   - contains the public keys of servers (host keys) this user trusts
   - servers maintain their own host keypairs (in /etc/ssh) to prove their identity to connecting clients
     - via a key-exchange, clients can know they're connecting to the same host and not an impersonator or man-in-the-middle (because the server can prove it has posession of the matching private key)
-  
+
 `~/.ssh/authorized_keys`
   - kept on the server
   - contains the public keys of users (user keys) allowed to login to this account
@@ -37,17 +37,17 @@ firewall-cmd --reload
 
 ### `firewall-cmd` command
 
-`--list-ports` or `--list-services` = show allowed ports/services  
+`--list-ports` or `--list-services` = show allowed ports/services
 `--list-all-zones` = show firewalld rules for both public and private zones
 
-`--state` = check if firewalld is running  
+`--state` = check if firewalld is running
 `--zone=private --add-interface=ens32` = attach zone to network interface
 
 
 ---
 ## IPTABLES
 
-> NOTE: `iptables` has been deprecated in favor of `nftables` <sup>[4]</sup> 
+> NOTE: `iptables` has been deprecated in favor of `nftables` <sup>[4]</sup>
 
 `iptables -L` = show firewall ruleset
 
@@ -57,114 +57,114 @@ add new rule to allow port 80 traffic both to and from host
 iptables -A INPUT -i eth0 –p tcp --dport 80 –m state --state NEW,ESTABLISHED –j ACCEPT
 iptables –A OUTPUT -o eth0 –p tcp --dport 80 –m state --state NEW,ESTABLISHED –j ACCEPT
 
-iptables –A INPUT -i eth0 –p tcp --sport 80 –m state --state NEW,ESTABLISHED –j ACCEPT 
+iptables –A INPUT -i eth0 –p tcp --sport 80 –m state --state NEW,ESTABLISHED –j ACCEPT
 iptables –A OUTPUT -o eth0 –p tcp --sport 80 –m state --state NEW,ESTABLISHED –j ACCEPT
 ```
 
 
 ---
-## `ip` COMMAND  
+## `ip` COMMAND
 
 ### interfaces
 
-`ip a add 192.168.1.200/24 dev eth0` = add ip to device  
+`ip a add 192.168.1.200/24 dev eth0` = add ip to device
 `ip a del 10.0.0.10/24 dev enp12s0`  = remove ip from device
 
-`ip link set dev eth1 up` = enable/disable interface  
+`ip link set dev eth1 up` = enable/disable interface
 
 ### config
 
-`ip n show` = show neighbor/arp cache  
-`ip r`      = show routing table  
+`ip n show` = show neighbor/arp cache
+`ip r`      = show routing table
 `ip a`      = show network interfaces and IP addresses
 
-`/etc/sysconfig/network` = see default gateway  
+`/etc/sysconfig/network` = see default gateway
 `/etc/sysconfig/network-scripts/ifcfg-[interface]` = networking device interface options (Fedora-based systems)
 
 
 ---
-## PORTS 
+## PORTS
 
 ### remote ports
 
 `nmap -p [port#] [ip]` or `telnet [ip] [port#]` = ping specific tcp port on host
 
-`nc -zvu [ip] [port#]` = ping specific udp port on host  
-                  `-z` = zero IO mode, show only if connection is up/down  
-                  `-v` = verbose  
+`nc -zvu [ip] [port#]` = ping specific udp port on host
+                  `-z` = zero IO mode, show only if connection is up/down
+                  `-v` = verbose
                   `-u` = query udp instead of tcp
 
 ### local ports
 
-> NOTE: `netstat` has been deprecated in favor of `ss` <sup>[5]</sup> 
+> NOTE: `netstat` has been deprecated in favor of `ss` <sup>[5]</sup>
 
 `less /etc/services` = show ports being used by specific services
 
-`netstat -plaunt` or `ss -plunt` = view all open ports  
-                            `-p` = associated process PIDs  
-                            `-l` = only listening ports  
-                            `-n` = numerical ip addresses  
-                            `-t` = tcp ports  
+`netstat -plaunt` or `ss -plunt` = view all open ports
+                            `-p` = associated process PIDs
+                            `-l` = only listening ports
+                            `-n` = numerical ip addresses
+                            `-t` = tcp ports
                             `-u` = udp ports
 
-### scanning <sup>[3]</sup> 
+### scanning <sup>[3]</sup>
 
-`nmap -p 22 192.168.1.0/24`      = scan for every host on subnet with port 22 open  
-`nmap -p 1-1000 192.168.1.20-40` = scan tcp ports 1-1000 on hosts within range  
-`nmap -sU localhost`             = scan localhost for open udp ports  
+`nmap -p 22 192.168.1.0/24`      = scan for every host on subnet with port 22 open
+`nmap -p 1-1000 192.168.1.20-40` = scan tcp ports 1-1000 on hosts within range
+`nmap -sU localhost`             = scan localhost for open udp ports
 
-`nmap -sP 10.0.0.0/8` = attempt to ping all hosts on the 10.0.0.0/8 subnet and list responses  
+`nmap -sP 10.0.0.0/8` = attempt to ping all hosts on the 10.0.0.0/8 subnet and list responses
 
 
 ### VLANS
 
-[how do VLANs work?](https://serverfault.com/questions/188350/how-do-vlans-work?rq=1)  
+[how do VLANs work?](https://serverfault.com/questions/188350/how-do-vlans-work?rq=1)
 [access ports vs trunk ports](https://www.solarwindsmsp.com/blog/vlan-trunking)
 
 ---
 ## ROUTES
 
-`ip r` or `routel` = view routing table  
-`route add default gw 192.168.1.1 eth0` = manually add default gateway  
+`ip r` or `routel` = view routing table
+`route add default gw 192.168.1.1 eth0` = manually add default gateway
 
-`traceroute domain.com` = print the route that packets take to a given destination  
+`traceroute domain.com` = print the route that packets take to a given destination
 
 
 ---
 ## MONITORING & TROUBLESHOOTING
 
-`iperf` and `iperf3`  
-`iftop`  
-`ifstat`  
+`iperf` and `iperf3`
+`iftop`
+`ifstat`
 
-`dig domain.com` or `nslookup domain.com` or `host domain.com` = perform dns lookup on domain  
+`dig domain.com` or `nslookup domain.com` or `host domain.com` = perform dns lookup on domain
 
-### tcpdump <sup>[2]</sup> 
+### tcpdump <sup>[2]</sup>
 
-`tcpdump -tvv` = dump all packets on all interfaces  
- `-v` or `-vv` = extra packet information  
-          `-t` = human-readable timestamps  
+`tcpdump -tvv` = dump all packets on all interfaces
+ `-v` or `-vv` = extra packet information
+          `-t` = human-readable timestamps
 
-`tcpdump host 1.1.1.1`     = packets going to or from 1.1.1.1  
-`tcpdump src 10.0.0.5`     = packets coming from 10.0.0.5  
-`tcpdump dst 192.168.1.10` = packets going to 192.168.1.10  
+`tcpdump host 1.1.1.1`     = packets going to or from 1.1.1.1
+`tcpdump src 10.0.0.5`     = packets coming from 10.0.0.5
+`tcpdump dst 192.168.1.10` = packets going to 192.168.1.10
 
-`tcpdump -v port 3389`  = packets on port 3389  
-`tcpdump src port 1025` = packets coming from port 1025  
+`tcpdump -v port 3389`  = packets on port 3389
+`tcpdump src port 1025` = packets coming from port 1025
 
-`tcpdump -vvt src 10.0.0.5 and dst port 22` = packets coming from 10.0.0.5 to port 22  
+`tcpdump -vvt src 10.0.0.5 and dst port 22` = packets coming from 10.0.0.5 to port 22
 
 
 ---
 ## NTP
 
-> NOTE: `ntpd` has been deprecated in favor of `chrony` <sup>[1]</sup> 
+> NOTE: `ntpd` has been deprecated in favor of `chrony` <sup>[1]</sup>
 
-`date +%T –s "16:45:00"` = manually set time in HH:mm:ss format  
-`timedatectl`            = edit time  
+`date +%T –s "16:45:00"` = manually set time in HH:mm:ss format
+`timedatectl`            = edit time
 `date`                   = view current time
 
-### chrony <sup>[1]</sup> 
+### chrony <sup>[1]</sup>
 
 show timekeeping stats
 ```
@@ -186,19 +186,19 @@ Leap status     : Normal                               # whether a leap second i
                                                        # 1 ppm = 1.000001
 ```
 
-other commands  
-`chronyc sources -v`   
-`chronyc sourcestats`   
-`systemctl status chronyd`   
-`chronyc activity`   
+other commands
+`chronyc sources -v`
+`chronyc sourcestats`
+`systemctl status chronyd`
+`chronyc activity`
 
 
 ---
 ## EMAIL
 
-`mail -s "Test Subject" example@mail.com < /dev/null` = send test email (using the current host has the smtp relay)  
+`mail -s "Test Subject" example@mail.com < /dev/null` = send test email (using the current host has the smtp relay)
 
-send email using a specific smtp relay  
+send email using a specific smtp relay
 ```bash
 echo "This is the message body and contains the message" | \
 mailx -v                       \
@@ -215,18 +215,19 @@ yourfriend@gmail.com              # this is the 'to' field of the email
 
 ### filtering
 
-`grep -h -o '[0-9]\{1,3\}\.[0-9]\{1,3\}\.[0-9]\{1,3\}\.[0-9]\{1,3\}' /var/log/maillog* | sort -u` = filter IPs from maillog  
-`grep -o -E 'from=<.*>' /var/log/maillog | sort -u` = filter sending addresses from maillog  
+`grep -h -o '[0-9]\{1,3\}\.[0-9]\{1,3\}\.[0-9]\{1,3\}\.[0-9]\{1,3\}' /var/log/maillog* | sort -u` = filter IPs from maillog
+`grep -o -E 'from=<.*>' /var/log/maillog | sort -u` = filter sending addresses from maillog
 
 ### postfix whitelists
 
-1. add line to `/etc/postfix/main.cf`  
+1. add line to `/etc/postfix/main.cf`
    ```bash
    mynetworks = /postfix-whitelist
+
    ```
-1. populate `/postfix-whitelist` with IPs  
-1. run `postmap /postfix-whitelist && systemctl restart postfix`  
-1. now only the IPs in `/postfix-whitelist` will be permitted to use the postfix server as an smtp relay  
+1. populate `/postfix-whitelist` with IPs
+1. run `postmap /postfix-whitelist && systemctl restart postfix`
+1. now only the IPs in `/postfix-whitelist` will be permitted to use the postfix server as an smtp relay
 
 
 ---
@@ -242,11 +243,13 @@ wget                            \
   --restrict-file-names=windows \ # escape control characters in filenames
   --no-parent                   \ # don't include directories above the path provided
   www.website.org/
+
+wget --recursive --no-clobber --page-requisites --html-extension --convert-links --restrict-file-names=windows --no-parent www.website.org/
 ```
 
-[1]: https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/8/html-single/configuring_basic_system_settings/index#migrating-to-chrony_using-chrony-to-configure-ntp  
-[2]: https://danielmiessler.com/study/tcpdump/  
-[3]: https://danielmiessler.com/study/nmap/  
-[4]: https://wiki.debian.org/nftables  
-[5]: https://dougvitale.wordpress.com/2011/12/21/deprecated-linux-networking-commands-and-their-replacements/#netstat  
-[6]: https://www.techrepublic.com/article/the-4-most-important-files-for-ssh-connections/  
+[1]: https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/8/html-single/configuring_basic_system_settings/index#migrating-to-chrony_using-chrony-to-configure-ntp
+[2]: https://danielmiessler.com/study/tcpdump/
+[3]: https://danielmiessler.com/study/nmap/
+[4]: https://wiki.debian.org/nftables
+[5]: https://dougvitale.wordpress.com/2011/12/21/deprecated-linux-networking-commands-and-their-replacements/#netstat
+[6]: https://www.techrepublic.com/article/the-4-most-important-files-for-ssh-connections/
