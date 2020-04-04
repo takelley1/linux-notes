@@ -8,7 +8,7 @@
 ---
 ### `sed` command
 
-syntax: `sed -[parameter] '[restriction] [flag1]/[pattern1]/[pattern2]/[flag2]'`
+syntax: `sed -[parameter] '[restriction] [flag1]/[pattern1]/[pattern2]/[flag2]' [file1] [file2]...`
 
 #### sed examples
 
@@ -56,9 +56,9 @@ syntax: `sed -[parameter] '[restriction] [flag1]/[pattern1]/[pattern2]/[flag2]'`
 `ifconfig ens32 | grep "inet" | grep –v "inet6" | tr –s " " ":" | cut –f 3 –d ":"` = filter out only the ipv4 address of the ens32 interface  
                                                                  `ifconfig ens32`  = print the full ens32 interface  
                                                                  `grep "inet"`     = grep for lines with 'inet'   
-                                                                 `grep –v 'inet6'` = filter out lines with `inet6` with   
+                                                                 `grep –v 'inet6'` = filter out lines with `inet6`  
                                                                  `tr –s " " ":"`   = translate all spaces into colons  to provide a common delimiter  
-                                                                 `cut –f 3 –d ":"` = filter out the third field using cut and specifying the colon delimiter 
+                                                                 `cut –f 3 –d ":"` = filter out the third field using cut and specifying the colon delimiter  
 
 
 ---
@@ -85,21 +85,19 @@ syntax: `sed -[parameter] '[restriction] [flag1]/[pattern1]/[pattern2]/[flag2]'`
 ### grep examples
 
 `grep -h -o '[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}' /var/log/maillog* | sort -u` = extract IPs  
-                                                                                  `-h`            = don't print filenames (used only when grep is searching through multiple files)  
-                                                                                  `-o`            = print only the matching part of the line, instead of the whole line  
-                                                                                  `sort -u`       = remove duplicates  
-                                                                                  `-u` (*unique*) = only match unique lines
+                                                                                     `-h` = don't print filenames (used only when grep is searching through multiple files)  
+                                                                                     `-o` = print only the matching part of the line, instead of the whole line  
+                                                                                `sort -u` = remove duplicates  
 
-`grep -nir ‘ex*le’ ./f*.txt` = search for string ‘ex*le’ with globbing  
-search in all `.txt` files starting with `f` in or beneath (`-r`) the current directory (`./`)  
-  `-i` = ignore case  
-  `-n` = display line number of match
+`grep -nir ‘ex*le’ ./f*.txt` = search for string ‘ex*le’ (with globbing) in all `.txt` files starting with `f` in or beneath the current directory
+                        `-i` = ignore case  
+                        `-n` = display line number of match  
 
 `grep -l ‘^alice’ /etc/*` = show only the filenames containing matches (`-l`) instead of the matches themselves
 
 `grep -wv ‘[a-d]’ /*.txt` = grep for words (`-w`) that DON’T contain the letters 'a' through 'd' (`-v`)
 
-`grep -C 5 '192.168'` = show five lines of context (`-C 5`) surrounding matched results, escape (`\`) the `.` in string to search for it literally and not interpret it as part of a globbing expression
+`grep -C 5 '192\.168'` = show five lines of context (`-C 5`) surrounding matched results, escape (`\`) the `.` in string to search for it literally and not interpret it as part of a globbing expression
 
 ### grep options
 
