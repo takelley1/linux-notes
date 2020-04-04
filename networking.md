@@ -21,15 +21,17 @@
 ---
 ## FIREWALLD
 
-allow https traffic
+**see more:** [using firewalld on centos7](https://www.digitalocean.com/community/tutorials/how-to-set-up-a-firewall-using-firewalld-on-centos-7)
+
+allow https traffic in the public zone
 ```
 firewall-cmd --zone=public --permanent --add-service=https
 firewall-cmd --reload
 ```
 
-disallow port 123 tdp traffic
+disallow port 123 tdp traffic in the block zone
 ```
-firewall-cmd --zone=public --permanent --remove-port 123/tcp
+firewall-cmd --zone=block --permanent --remove-port 123/tcp
 firewall-cmd --reload
 ```
 
