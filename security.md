@@ -134,6 +134,11 @@ certtool --generate-privkey --outfile key.pem
 certtool --generate-self-signed --load-privkey key.pem --outfile cert.pem
 ```
 
+convert .pem to .crt
+```bash
+openssl x509 -outform der -in cert.pem -out cert.crt
+```
+
 ---
 ## FIPS
 
