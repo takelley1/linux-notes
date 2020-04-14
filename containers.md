@@ -1,12 +1,15 @@
 ## DOCKER
 
-`docker exec -it bitbucket /bin/bash` = enter a shell in the bitbucket container.  
+`docker exec -it bitbucket /bin/bash` = Enter a shell in the bitbucket container.
 
+`docker stack services -q jitsi | xargs -L1 -I{} sh -c 'docker service logs -f {} &'` = Tail combined logs for all services in the jitsi stack. Use `pkill -f 'docker service logs'` to stop logs. <sup>[1]</sup>
 
-add `:z` to end of volume mount to prevent SELinux from denying the container access:
+Add `:z` to end of volume mount to prevent SELinux from denying the container access:
 ```yaml
  db_data_mysql:
   image: busybox
   volumes:
    - ./env/var/lib/mysql:/var/lib/mysql:z
 ```
+
+[1]: https://github.com/moby/moby/issues/31458
