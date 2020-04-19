@@ -161,7 +161,6 @@ iptables –A OUTPUT -o eth0 –p tcp --sport 80 –m state --state NEW,ESTABLIS
 > NOTE: `ntpd` has been deprecated in favor of `chrony` <sup>[1]</sup>
 
 `date +%T –s "16:45:00"` = manually set time in HH:mm:ss format
-`timedatectl`            = edit time
 `date`                   = view current time
 
 ### chrony <sup>[1]</sup>
@@ -183,14 +182,16 @@ Root delay      : 0.014488510 seconds                  # network delay for packe
 Root dispersion : 0.079814211 seconds
 Update interval : 64.3 seconds                         # how frequently chrony modifies the system clock
 Leap status     : Normal                               # whether a leap second is pending to be added/removed
-                                                       # 1 ppm = 1.000001
+                                                       # 1 ppm = 1.000001 seconds
 ```
 
-other commands
-`chronyc sources -v`
-`chronyc sourcestats`
-`systemctl status chronyd`
-`chronyc activity`
+other useful commands <sup>[7]</sup>  
+```bash
+chronyc sources -v
+chronyc sourcestats
+chronyc activity
+timedatectl
+```
 
 
 ---
@@ -253,3 +254,4 @@ wget --recursive --no-clobber --page-requisites --html-extension --convert-links
 [4]: https://wiki.debian.org/nftables
 [5]: https://dougvitale.wordpress.com/2011/12/21/deprecated-linux-networking-commands-and-their-replacements/#netstat
 [6]: https://www.techrepublic.com/article/the-4-most-important-files-for-ssh-connections/
+[7]: https://www.thegeekdiary.com/centos-rhel-7-tips-on-troubleshooting-ntp-chrony-issues/
