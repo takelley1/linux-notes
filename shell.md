@@ -1,4 +1,3 @@
-
 ## SHELL INITIALIZATION <sup>[1], [2]</sup> 
 
 - **interactive login shell**
@@ -41,7 +40,8 @@
 `2>&1` or `&>` = stdout and stderr
 
 `cat /file.log 2>&1 | grep -i error` = pass both stdout and stderr to grep through pipe, by default pipe only passes stdout  
-`stat /home/file.txt`                = show last modified date, creation date, and other metadata about given file
+`stat /home/file.txt`                = show last modified date, creation date, and other metadata about given file  
+`history` = print past commands to stdout, grep and use ![line_number] to repeat command without retyping  
 
 ---
 ### sourcing vs executing <sup>[5]</sup> 
@@ -65,18 +65,17 @@
 ---
 ### hotkeys
 
-`CTRL-SHIFT-j` or `CTRL-j` = get shell prompt back
-
 `CTRL-r` = search command history  
-`history` = print past commands to stdout, grep and use ![line_number] to repeat command without retyping
 
 `CTRL-l` = clear screen
 
 `CTRL-c` = send `SIGINT` to foreground process  
-`CTRL-z` = suspend foreground process
+`CTRL-SHIFT-j` or `CTRL-j` = get shell prompt back  
+`CTRL-z` = suspend foreground process  
+`CTRL-d` = exit current shell  
 
-`CTRL-d` = exit current shell
-
+`ALT-k` (in vi mode) = recall previous command  
+`ALT-j` (in vi mode) = recall next command  
 `ALT-f` = jump forward one word  (when editing a command)  
 `ALT-b` = jump backward one word (when editing a command)
 
