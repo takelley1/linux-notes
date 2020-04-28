@@ -4,7 +4,7 @@
 - add pam syntax
 - add ssh syntax to networking.mg -- like ssh-keygen-t rsa-b 4096 -o 500 -f id_rsa -- and -- ssh -p 443 -i id_rsa user@server
 - add info on ZFS snapshots, ARC, L2ARC, and ZIL
-- add info on ZFS vdev vs volume vs file system vs pool, etc
+- add info on ZFS vdev vs volume vs file system vs zpool vs dataset vs zvol, etc
 - add image for 'top' command
 - link bookmarked article describing htop 
 - add BSD pkg commands in the table with yum and apt and pacman
