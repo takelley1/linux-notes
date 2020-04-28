@@ -14,7 +14,8 @@
 | remove duplicate packages            | `package-cleanup --cleandupes`      | -                             | -                    |              |
 | remove orphaned packages             | -                                   | `apt autoremove`              | `pacman -Ru`         |              |
 | show update history                  | `yum history list all`              | `/var/log/apt/history.log`    | `/var/log/pacman.log`|              |
-| rollback update|`yum history undo [transaction-id]`|`apt-history rollback`|`pacman -U /var/cache/pacman/pkg/[old-package-version]`|              |
+| show updated packages from transaction | `yum history info [ID]`           | -                             | -                    |              |
+| rollback update             |`yum history undo [ID]`|`apt-history rollback`|`pacman -U /var/cache/pacman/pkg/[old-package-version]`|             |
 
 #### rpm
 
