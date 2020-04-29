@@ -19,12 +19,12 @@
 
 #### rpm
 
-`rpm -ivh file.rpm` = install .rpm file as package  
-               `-i` = install .rpm  
-               `-v` = verbose  
-               `-h` = use hash marks to display progress
+`rpm -ivh file.rpm` = install .rpm file as package.    
+               `-i` = install .rpm.    
+               `-v` = verbose.    
+               `-h` = use hash marks to display progress.  
 
-`yum install ./file.rpm` = install .rpm file and automatically resolve and install dependencies
+`yum install ./file.rpm` = install .rpm file and automatically resolve and install dependencies.  
 
 
 ---
@@ -34,12 +34,12 @@
 |-------------------------|-----------------------|----------------------------|---------------------------|-----|
 | show installed repos    | `yum repolist`        | `/etc/apt.sources.list`    | `/etc/pacman.conf`        |     |
 | show available repos    | `yum repolist all`    | `/etc/apt.sources.list`    | -                         |     |
-| add repo x              | `yum --enablerepo=x`  | `add-apt-repository x`     | `/etc/pacman.conf`        |     |
+| add repo x              | `yum --enablerepo=x`  | `add-apt-repository x`     | `/etc/pacman.conf.  `        |     |
 | add third-party repo x  | -                     | `add-apt-repository ppa:x` | -                         |     |
 
 ### yum/dnf & rpm
 
-`yum install epel-release` = install EPEL repo
+`yum install epel-release` = install EPEL repo.  
 
 ---
 #### add iso repo to centos
@@ -59,8 +59,8 @@
 1. run `head -1 /[mount-location]/.discinfo`
 1. copy that number
 1. run your favorite text editor to open `/etc/yum.repos.d/CentOS-Base.repo`
-1. for each repo you'd like to add, next to `mediaid=` , enter the number you copied
-1. next to `baseurl=`, enter the path of the mounted disk. For example, if you mounted the disk on `/mnt`, the row would read `baseurl=file:///mnt`
+1. for each repo you'd like to add, next to `mediaid=` , enter the number you copied.  
+1. next to `baseurl=`, enter the path of the mounted disk. For example, if you mounted the disk on `/mnt`, the row would read `baseurl=file:///mnt.  `
 1. run `yum clean all`
 1. yum should now recognize the disk as a repository
 

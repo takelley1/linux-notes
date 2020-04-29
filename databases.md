@@ -1,19 +1,19 @@
 
 ## POSTGRES
 
-`psql -h [hostname-or-ip] -p [port] -U [username] [database-name]` = remotely connect to database  
-`sudo -u postgres psql` = launch sql shell as user postgres
+`psql -h [hostname-or-ip] -p [port] -U [username] [database-name]` = remotely connect to database.    
+`sudo -u postgres psql` = launch sql shell as user postgres.  
 
 ### psql shell
 
-`\l`             = list all databases  
-`\c [dbname]`    = connect to new database  
-`\dt`            = view list of relations/tables  
-`\d [tablename]` = show details of table  
-`\h`             = get help  
-`\?`             = list all psql slash commands  
-`\set`           = system variables  
-`\q`             = quit
+`\l`             = list all databases.    
+`\c [dbname]`    = connect to new database.    
+`\dt`            = view list of relations/tables.    
+`\d [tablename]` = show details of table.    
+`\h`             = get help.    
+`\?`             = list all psql slash commands.    
+`\set`           = system variables.    
+`\q`             = quit.  
 
 ### pg_hba.conf
 
@@ -83,7 +83,7 @@ host    all             all             0.0.0.0/0               krb5
 # "omicron" that says "bryanh" is allowed to connect as "guest1".
 #
 # TYPE  DATABASE        USER            ADDRESS                 METHOD
-host    all             all             192.168.0.0/16          ident map=omicron
+host    all             all             192.168.0.0/16          ident map=omicron.  
 
 # If these are the only three lines for local connections, they will
 # allow local users to connect only to their own databases (databases

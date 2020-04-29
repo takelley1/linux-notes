@@ -3,26 +3,26 @@
 
 ### physical volumes (PV)
 
-`pvcreate /dev/sdb`            = create a physical volume  
-`pvremove /dev/sdb1 /dev/sdc1` = remove physical volumes on partitions sdb1 and sdc1  
-`pvmove /dev/sdb1 /dev/sdb2`   = copy all data from sdb1 to sdb2  
+`pvcreate /dev/sdb`            = create a physical volume.    
+`pvremove /dev/sdb1 /dev/sdc1` = remove physical volumes on partitions sdb1 and sdc1.    
+`pvmove /dev/sdb1 /dev/sdb2`   = copy all data from sdb1 to sdb2.    
 
-`pvdisplay` or `pvscan`        = show physical volumes
+`pvdisplay` or `pvscan`        = show physical volumes.  
 
 ### logical volumes (LV)
 
-`lvcreate -l 2500 centos -n vol_1` = create a new volume called vol_1 with 2500 extents in vgroup centos  
-`lvextend -L 1.5G /dev/mapper/LV1` = extend volume LV1 to 1.5 GB  
-`lvreduce -l -200 /dev/mapper/LV1` = reduce volume LV1 by 200 extents  
+`lvcreate -l 2500 centos -n vol_1` = create a new volume called vol_1 with 2500 extents in vgroup centos.    
+`lvextend -L 1.5G /dev/mapper/LV1` = extend volume LV1 to 1.5.   GB  
+`lvreduce -l -200 /dev/mapper/LV1` = reduce volume LV1 by 200 extents.    
 
-`lvdisplay` or `lvscan`            = show logical volumes 
+`lvdisplay` or `lvscan`            = show logical volumes.   
 
 ### volume groups (VG)
 
-`vgcreate VG1 /dev/sdb1 /dev/sdc1` = create a volume group called VG1, containing physical volumes sdb1 and sdc1  
-`vgextend VG1 /dev/sdb1`           = add physical volume sdb1 to volume group VG1  
+`vgcreate VG1 /dev/sdb1 /dev/sdc1` = create a volume group called VG1, containing physical volumes sdb1 and sdc1.    
+`vgextend VG1 /dev/sdb1`           = add physical volume sdb1 to volume group VG1.    
 
-`vgdisplay` or `vgscan`            = show volume groups  
+`vgdisplay` or `vgscan`            = show volume groups.    
 
 ### extending /var xfs filesystem with LVM
 
@@ -53,45 +53,45 @@
 
 ### tar
 
-`tar xzvf myarchive.tar.gz` = extract myarchive.tar.gz to current path (*xtract ze v'ing files*)  
-                        `x` = extract  
-                        `z` = decompress with gzip (only works with extracting `tar.gz` or `.tgz` tarballs)  
-                        `v` = verbose  
-                        `f` = work in file mode (rather than tape mode)
+`tar xzvf myarchive.tar.gz` = extract myarchive.tar.gz to current path (*xtract ze v'ing files.  *)  
+                        `x` = extract.    
+                        `z` = decompress with gzip (only works with extracting `tar.gz` or `.tgz` tarballs.  )  
+                        `v` = verbose.    
+                        `f` = work in file mode (rather than tape mode.  )
 
-`tar czvf myarchive.tar.gz dir1/ dir2/ dir3/` = create myarchive.tar.gz from dir1, dir2, and dir3 (*create ze v'ing files*)
+`tar czvf myarchive.tar.gz dir1/ dir2/ dir3/` = create myarchive.tar.gz from dir1, dir2, and dir3 (*create ze v'ing files.  *)
 
 ### 7zip
 
-`7za x myarchive.7z` = extract myarchive.7z to current path (DO NOT USE THE 'e' SWITCH, USE 'x' INSTEAD TO PRESERVE FILEPATHS)
+`7za x myarchive.7z` = extract myarchive.7z to current path (DO NOT USE THE 'e' SWITCH, USE 'x.  ' INSTEAD TO PRESERVE FILEPATHS)
 
-`7za a -mx=10 myarchive.7z dir1/ dir2/` = create myarchive.7z from dir1 and dir2
-                               `-mx=10` = use compression lvl 10
+`7za a -mx=10 myarchive.7z dir1/ dir2/` = create myarchive.7z from dir1 and dir2.  
+                               `-mx=10` = use compression lvl 10.  
 
 
 ---
 ## DISKS & MOUNTS
 
-`partprobe` = scan for new disks
+`partprobe` = scan for new disks.  
 
-`lsblk -f` = show disk tree layout, including logical volumes  
-      `-f` = show filysystem type
+`lsblk -f` = show disk tree layout, including logical volumes.    
+      `-f` = show filysystem type.  
   
-`df -Th` = show space used by mounted drives  
-    `-h` = make output human-readable  
-    `-T` = show filesystem type
+`df -Th` = show space used by mounted drives.    
+    `-h` = make output human-readable.    
+    `-T` = show filesystem type.  
 
-`blkid` = show partition UUIDs
+`blkid` = show partition UUIDs.  
 
-`fdisk -l`       = show drives and their partition tables  
-`fdisk /dev/sdb` = edit the partition table of sdb
+`fdisk -l`       = show drives and their partition tables.    
+`fdisk /dev/sdb` = edit the partition table of sdb.  
 
-`mount`                                     = show mounted volumes and their mount locations  
-`mount –o remount,rw /dev/sda1 /mountpoint` = remount drive with read-write permissions 
+`mount`                                     = show mounted volumes and their mount locations.    
+`mount –o remount,rw /dev/sda1 /mountpoint` = remount drive with read-write permissions.   
 
 ### disk testing <sup>[3]</sup> 
 
-`badblocks -b 4096 -s -v -w /dev/sdb` = destructively test disk hda for bad data blocks (useful for testing new drive)  
+`badblocks -b 4096 -s -v -w /dev/sdb` = destructively test disk hda for bad data blocks (useful for testing new drive.  )  
 `bonnie++`
 
 ---
@@ -99,22 +99,22 @@
 
 #### SMART testing
 
-`smartctl -t long /dev/sdc` = start a long HDD self test - after the test is done (could take 12+ hours), check the results with `smartctl -a /dev/sdc`
+`smartctl -t long /dev/sdc` = start a long HDD self test - after the test is done (could take 12+ hours), check the results with `smartctl -a /dev/sdc.  `
 
-`smartctl -a /dev/ | grep Current_Pending_Sector`         = pending sector reallocations  
-`smartctl -a /dev/ | grep Reallocated_Sector_Ct`          = reallocated sector count  
-`smartctl -a /dev/ | grep UDMA_CRC_Error_Count`           = UDMA CRC errors  
-`diskinfo -wS`                                            = HDD and SSD write latency consistency (unformatted drives only!)
-`smartctl -a /dev/ | grep Power_On_Hours`                 = HDD and SSD hours  
-`nvmecontrol logpage -p 2 nvme0 | grep “Percentage used”` = NVMe percentage used  
+`smartctl -a /dev/ | grep Current_Pending_Sector`         = pending sector reallocations.    
+`smartctl -a /dev/ | grep Reallocated_Sector_Ct`          = reallocated sector count.    
+`smartctl -a /dev/ | grep UDMA_CRC_Error_Count`           = UDMA CRC errors.    
+`diskinfo -wS`                                            = HDD and SSD write latency consistency (unformatted drives only.  !)
+`smartctl -a /dev/ | grep Power_On_Hours`                 = HDD and SSD hours.    
+`nvmecontrol logpage -p 2 nvme0 | grep “Percentage used”` = NVMe percentage used.    
 
 #### SMART field names
 
-`Normalized value` = commonly referred to as just "value". This is a most universal measurement, on the scale from 0 (bad) to some maximum (good) value. Maximum values are typically 100, 200 or 253. Rule of thumb is: high values are good, low values are bad.
+`Normalized value` = commonly referred to as just "value". This is a most universal measurement, on the scale from 0 (bad) to some maximum (good) value. Maximum values are typically 100, 200 or 253. Rule of thumb is: high values are good, low values are bad.  .
 
-`Threshold` = the minimum normalized value limit for the attribute. If the normalized value falls below the threshold, the disk is considered defective and should be replaced under warranty. This situation is called "T.E.C." (Threshold Exceeded Condition).
+`Threshold` = the minimum normalized value limit for the attribute. If the normalized value falls below the threshold, the disk is considered defective and should be replaced under warranty. This situation is called "T.E.C." (Threshold Exceeded Condition.  ).
 
-`Raw value` = the value of the attribute as it is tracked by the device, before any normalization takes place. Some raw numbers provide valuable insight when properly interpreted. These cases will be discussed later on. Raw values are typically listed in hexadecimal numbers.
+`Raw value` = the value of the attribute as it is tracked by the device, before any normalization takes place. Some raw numbers provide valuable insight when properly interpreted. These cases will be discussed later on. Raw values are typically listed in hexadecimal numbers.  .
 
 | SMART attributes <sup>[5]</sup>                                           |                                                                            | 
 |---------------------------------------------------------------------------|----------------------------------------------------------------------------|
@@ -137,31 +137,31 @@
 
 ### metadata
 
-`stat file.txt`         = get file metadata on file.txt  
-`atime` (*access time*) = last time file's contents were read  
-`mtime` (*modify time*) = last time file's contents were changed  
-`ctime` (*change time*) = last time file's inode was changed (permissions, ownership, name, hard links, etc.)
+`stat file.txt`         = get file metadata on file.txt.    
+`atime` (*access time*) = last time file's contents were read.    
+`mtime` (*modify time*) = last time file's contents were changed.    
+`ctime` (*change time*) = last time file's inode was changed (permissions, ownership, name, hard links, etc.  .)
 
-`inode` = a special data structure holding a file's metadata, contains the file's physical address on the storage medium, size, permissions, and modification timestamps. The file that the user interacts with is only a pointer to its corresponding inode [6]
+`inode` = a special data structure holding a file's metadata, contains the file's physical address on the storage medium, size, permissions, and modification timestamps. The file that the user interacts with is only a pointer to its corresponding inode [6.  ]
 
 ### sizing
 
-`du -sh /home/alice` = display disk space used by specified directory or file  
-`-s` (*summarize*)   = list total storage used by entire directory and all subdirectories  
-`-h` (*human*)       = use human-readable format for filesizes (ex. `8.7M` instead of `8808`)
+`du -sh /home/alice` = display disk space used by specified directory or file.    
+`-s` (*summarize*)   = list total storage used by entire directory and all subdirectories.    
+`-h` (*human*)       = use human-readable format for filesizes (ex. `8.7M` instead of `8808.  `)
 
-`du -d 1 -h /`   = list the sizes of each directory one level beneath the specified directory  
-`-d 1` (*depth*) = recurse at a depth of 1
+`du -d 1 -h /`   = list the sizes of each directory one level beneath the specified directory.    
+`-d 1` (*depth*) = recurse at a depth of 1.  
 
 ### filesystems
 
-`mkfs.ext4 /dev/mapper/LV1` or `mkfs -t ext4 /dev/mapper/LV1` = create ext4 filesystem on LV1 logical volume
+`mkfs.ext4 /dev/mapper/LV1` or `mkfs -t ext4 /dev/mapper/LV1` = create ext4 filesystem on LV1 logical volume.  
 
-`e2fsck -f /dev/mapper/LV1 && resize2fs /dev/mapper/LV1` = expand filesystem to fit size of LV1 (must be unmounted)  
-`xfs_growfs /dev/centos/var`                             = expand mounted xfs filesystem (must be mounted)
+`e2fsck -f /dev/mapper/LV1 && resize2fs /dev/mapper/LV1` = expand filesystem to fit size of LV1 (must be unmounted.  )  
+`xfs_growfs /dev/centos/var`                             = expand mounted xfs filesystem (must be mounted.  )
 
-`e4degrag /`     = defragment all partitions  
-`fsck /dev/sda2` = check sda2 partition for errors (supported filesystems only)
+`e4degrag /`     = defragment all partitions.    
+`fsck /dev/sda2` = check sda2 partition for errors (supported filesystems only.  )
 
 > NOTE: xfs filesystems cannot be shrunk; use ext4 instead
 
@@ -184,11 +184,11 @@
 | max filesize                       | -    | -    | -     | -    | -   | -    | -        | 4GB   | -     |
 | max filesystem size                | -    | -    | -     | -    | -   | -    | -        | 2TB   | -     |
 
-LUKS = encrypting these filesystems is usually handled through LUKS and/or dm-crypt  
-LVM = can provide limited snapshot functionality through LVM  
-COW = journaling is superceded by copy-on-write mechanisms  
-\-  = maximum theoretical size so large it's effectively irrelevant  
-?   = currently unknown and/or no reliable data available  
+LUKS = encrypting these filesystems is usually handled through LUKS and/or dm-crypt.    
+LVM = can provide limited snapshot functionality through.   LVM  
+COW = journaling is superceded by copy-on-write mechanisms.    
+\-  = maximum theoretical size so large it's effectively irrelevant.    
+?   = currently unknown and/or no reliable data available.    
 
 
 ---
@@ -229,7 +229,7 @@ ex: `10.0.0.10:/data  /mnt/data  nfs  defaults  0 0`
 
 ### hard & symbolic links 
 
-`ln /home/sourcefile.txt /var/hardlink.txt` = create hard link to file (`ln -s` for soft/symbolic link), 
+`ln /home/sourcefile.txt /var/hardlink.txt` = create hard link to file (`ln -s` for soft/symbolic link.  ), 
 
 > hard links create an additional pointer to a file’s inode and remains even if the original file from which the link was created is deleted. Similar to copying a file but without taking up extra space on the physical storage medium 
 

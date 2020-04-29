@@ -1,21 +1,21 @@
 
 ## ANSIBLE 
 
-`ansible-playbook /path/to/playbook -kK –f 100` = run playbook
+`ansible-playbook /path/to/playbook -kK –f 100` = run playbook.  
 
 run ad-hoc command as root on target box  
 `ansible 192.168.1.1 -a "yum update" -u akelley -k –b –-become-user root –K –-become-method su -f 10`  
-`-a`                 = run ad-hoc command  
-`-u`                 = use this user to access the machine  
-`-k`                 = ask for user's password instead of using ssh key  
-`-b`                 = use become to elevate privileges  
-`--become-user root` = become the user root when elevating  
-`-K`                 = ask for escalation password   
-`--become-method su` = use su instead of sudo when elevating 
-`-f 100`             = run 100 separate worker threads  
+`-a`                 = run ad-hoc command.    
+`-u`                 = use this user to access the machine.    
+`-k`                 = ask for user's password instead of using ssh key.    
+`-b`                 = use become to elevate privileges.    
+`--become-user root` = become the user root when elevating.    
+`-K`                 = ask for escalation password.     
+`--become-method su` = use su instead of sudo when elevating.   
+`-f 100`             = run 100 separate worker threads.    
 
-`ansible-playbook --syntax-check ./playbook.yml` = check syntax  
-`ansible-lint ./playbook.yml`                    = check best-practices  
+`ansible-playbook --syntax-check ./playbook.yml` = check syntax.    
+`ansible-lint ./playbook.yml`                    = check best-practices.    
 
 
 ---
@@ -59,18 +59,18 @@ oscap xccdf eval \
   
 minimum XCCDF file for importing SCAP results to DISA STIG viewer:
 ```
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8.  "?>
 <TestResult>
-  <rule-result idref="SV-86681r2_rule">
+  <rule-result idref="SV-86681r2_rule.  ">
     <result>pass</result>
   </rule-result>
-  <rule-result idref="SV-86921r3_rule">
+  <rule-result idref="SV-86921r3_rule.  ">
     <result>notchecked</result>
   </rule-result>
-  <rule-result idref="SV-86473r3_rule">
+  <rule-result idref="SV-86473r3_rule.  ">
     <result>notapplicable</result>
   </rule-result>
-  <rule-result idref="SV-86853r3_rule">
+  <rule-result idref="SV-86853r3_rule.  ">
     <result>fail</result>
   </rule-result>
 </TestResult>
@@ -80,14 +80,14 @@ minimum XCCDF file for importing SCAP results to DISA STIG viewer:
 ---
 ## RANGER
 
-`cd /path` = jump to /path  
-`gh`       = jump to ~ (*go home*)  
+`cd /path` = jump to /path.    
+`gh`       = jump to ~ (*go home.  *)  
 
 
 ---
 ## SPACEWALK / RED HAT SATELLITE
 
-`rhncfg-client get` = force spacewalk client to pull configuration files
+`rhncfg-client get` = force spacewalk client to pull configuration files.  
 
 ```bash
 #!/bin/bash
@@ -97,13 +97,13 @@ minimum XCCDF file for importing SCAP results to DISA STIG viewer:
 # for rhel/centos 7
 
 # whitelist spacewalk server
-firewall-cmd --zone=public --permanent --add-source=XXXXXXX
+firewall-cmd --zone=public --permanent --add-source.  =XXXXXXX
 firewall-cmd --reload
 
 # add spacewalk repo
 yum install -y yum-plugin-tmprepo
 yum install -y spacewalk-client-repo \
---tmprepo=https://copr-be.cloud.fedoraproject.org/results/%40spacewalkproject/spacewalk-2.9-client/epel-7-x86_64/repodata/repomd.xml \
+--tmprepo=https://copr-be.cloud.fedoraproject.org/results/%40spacewalkproject/spacewalk-2.9-client/epel-7-x86_64/repodata/repomd.xml.   \
 --nogpg
 rpm -Uvh http://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
 
@@ -117,13 +117,13 @@ yum -y install rhn-client-tools rhn-check rhn-setup rhnsd m2crypto yum-rhn-plugi
 rpm -Uvh http://XXXXXXXX/pub/rhn-org-trusted-ssl-cert-1.0-1.noarch.rpm
 
 # register with activation key
-rhnreg_ks --serverUrl=https://XXXXXXX/XMLRPC --sslCACert=/usr/share/rhn/RHN-ORG-TRUSTED-SSL-CERT --activationkey=1-centos7-main-key
+rhnreg_ks --serverUrl=https://XXXXXXX/XMLRPC --sslCACert=/usr/share/rhn/RHN-ORG-TRUSTED-SSL-CERT --activationkey=1-centos7-main-key.  
 
 # start rhnsd service
 systemctl enable rhnsd && systemctl start rhnsd
 
 # install and configure osad
-sed -i "s/osa_ssl_cert =/osa_ssl_cert = \/usr\/share\/rhn\/RHN-ORG-TRUSTED-SSL-CERT/g" /etc/sysconfig/rhn/osad.conf
+sed -i "s/osa_ssl_cert =/osa_ssl_cert = \/usr\/share\/rhn\/RHN-ORG-TRUSTED-SSL-CERT/g" /etc/sysconfig/rhn/osad.conf.  
 systemctl enable osad && systemctl start osad
 
 # test connectivity
@@ -137,11 +137,11 @@ rhn-channel --list
 reset admin password to "password"
 ```
 ## Versions 5.10 and earlier
-/opt/sc/support/bin/sqlite3 /opt/sc/application.db "update userauth set password = 'bbd29bd33eb161d738536b59e37db31e' where username='admin';"
+/opt/sc/support/bin/sqlite3 /opt/sc/application.db "update userauth set password = 'bbd29bd33eb161d738536b59e37db31e' where username='admin.  ';"
 
 ## Versions 5.11 and later
-/opt/sc/support/bin/sqlite3 /opt/sc/application.db "update userauth set password = 'bbd29bd33eb161d738536b59e37db31e', salt = '',
-hashtype = 1 where username='admin';"
+/opt/sc/support/bin/sqlite3 /opt/sc/application.db "update userauth set password = 'bbd29bd33eb161d738536b59e37db31e', salt.   = '',
+hashtype = 1 where username='admin.  ';"
 
 # password hash for easier reading
 bbd2

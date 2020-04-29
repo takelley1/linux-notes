@@ -26,22 +26,22 @@
 ---
 ## BASH
 
-`while true; do [COMMAND]; sleep 10; done` = loop command indefinitely
+`while true; do [COMMAND]; sleep 10; done` = loop command indefinitely.  
 
-`[COMMAND] &`              = run command in background  
-`[COMMAND1] && [COMMAND2]` = run command2 only if command1 is successful  
-`[COMMAND1] || [COMMAND2]` = run command2 only if command1 is NOT successful  
-`[COMMAND1] ; [COMMAND2]`  = run command2 immediately after command1, even if command1 is not successful (ex: `cd /home ; ls`)
+`[COMMAND] &`              = run command in background.    
+`[COMMAND1] && [COMMAND2]` = run command2 only if command1 is successful.    
+`[COMMAND1] || [COMMAND2]` = run command2 only if command1 is NOT successful.    
+`[COMMAND1] ; [COMMAND2]`  = run command2 immediately after command1, even if command1 is not successful (ex: `cd /home ; ls.  `)
 
-`sudo !!` = execute last command with `sudo` privileges
+`sudo !!` = execute last command with `sudo` privileges.  
 
-`1>` or `>`    = stdout  
-`2>`           = stderr  
-`2>&1` or `&>` = stdout and stderr
+`1>` or `>`    = stdout.    
+`2>`           = stderr.    
+`2>&1` or `&>` = stdout and stderr.  
 
-`cat /file.log 2>&1 | grep -i error` = pass both stdout and stderr to grep through pipe, by default pipe only passes stdout  
-`stat /home/file.txt`                = show last modified date, creation date, and other metadata about given file  
-`history` = print past commands to stdout, grep and use ![line_number] to repeat command without retyping  
+`cat /file.log 2>&1 | grep -i error` = pass both stdout and stderr to grep through pipe, by default pipe only passes stdout.    
+`stat /home/file.txt`                = show last modified date, creation date, and other metadata about given file.    
+`history` = print past commands to stdout, grep and use ![line_number] to repeat command without retyping.    
 
 ---
 ### sourcing vs executing <sup>[5]</sup> 
@@ -65,19 +65,19 @@
 ---
 ### hotkeys
 
-`CTRL-r` = search command history  
+`CTRL-r` = search command history.    
 
-`CTRL-l` = clear screen
+`CTRL-l` = clear screen.  
 
-`CTRL-c` = send `SIGINT` to foreground process  
-`CTRL-SHIFT-j` or `CTRL-j` = get shell prompt back  
-`CTRL-z` = suspend foreground process  
-`CTRL-d` = exit current shell  
+`CTRL-c` = send `SIGINT` to foreground process.    
+`CTRL-SHIFT-j` or `CTRL-j` = get shell prompt back.    
+`CTRL-z` = suspend foreground process.    
+`CTRL-d` = exit current shell.    
 
-`ALT-k` (in vi mode) = recall previous command  
-`ALT-j` (in vi mode) = recall next command  
-`ALT-f` = jump forward one word  (when editing a command)  
-`ALT-b` = jump backward one word (when editing a command)
+`ALT-k` (in vi mode) = recall previous command.    
+`ALT-j` (in vi mode) = recall next command.    
+`ALT-f` = jump forward one word  (when editing a command.  )  
+`ALT-b` = jump backward one word (when editing a command.  )
 
 ---
 ### if statement conditional tests <sup>[4]</sup> 
@@ -110,8 +110,8 @@
 |--------------------|----------------------------------|
 | -z STRING          | STRING is empty.                 |
 | -n STRING          | STRING is NOT empty.             |
-| STRING1 == STRING2 | STRING1 is equal to STRING2.     | 
-| STRING1 != STRING2 | STRING1 is NOT equal to STRING2. |
+| STRING1 == STRING2 | STRING1 is equal to STRING2.  .     | 
+| STRING1 != STRING2 | STRING1 is NOT equal to STRING2.  . |
 
 #### Number-based conditions <sup>[8]</sup> 
 
@@ -128,32 +128,32 @@
 ---
 ## ENVIRONMENT VARIABLES
 
-`echo $VARIABLE-NAME`          = get value of VARIABLE-NAME  
-`printenv`                     = get values of all environment variables  
-`export HOME=/home/newhomedir` = set value of environment variable (note lack of `$`)
+`echo $VARIABLE-NAME`          = get value of.   VARIABLE-NAME  
+`printenv`                     = get values of all environment variables.    
+`export HOME=/home/newhomedir` = set value of environment variable (note lack of.   `$`)
  
-`DISPLAY` = name of X window display  
-`EDITOR`  = default text editor  
-`HOME`    = path of current user's home directory  
-`LOGNAME` = current user's login name  
-`MAIL`    = path of current user's mailbox  
-`OLDPWD`  = the shell's previous working directory  
-`PATH`    = where the shell looks for command binaries, paths separated by a colon  
-`PWD`     = the shell's current working directory  
-`SHELL`   = path of the shell's binary  
-`TERM`    = type of terminal being used  
-`USER`    = current username
+`DISPLAY` = name of X window display.    
+`EDITOR`  = default text editor.    
+`HOME`    = path of current user's home directory.    
+`LOGNAME` = current user's login name.    
+`MAIL`    = path of current user's mailbox.    
+`OLDPWD`  = the shell's previous working directory.    
+`PATH`    = where the shell looks for command binaries, paths separated by a colon.    
+`PWD`     = the shell's current working directory.    
+`SHELL`   = path of the shell's binary.    
+`TERM`    = type of terminal being used.    
+`USER`    = current username.  
 
 
 ---
 ## CONSOLE / TTY
 
-`dpkg-reconfigure console-setup`    = change console font size (debian-based distros)  
-`/etc/default/console-setup`        = change console font size  
+`dpkg-reconfigure console-setup`    = change console font size (debian-based distros.  )  
+`/etc/default/console-setup`        = change console font size.    
 
 ---
-`who` or `w`  = view users currently logged in  
-`write alice` = compose a message to the user alice (assuming she's logged in), use `CTRL-D` to send your message <sup>[9]</sup>   
+`who` or `w`  = view users currently logged in.    
+`write alice` = compose a message to the user alice (assuming she's logged in), use `CTRL-D` to send your message <sup>[9]</sup.  >   
 
 [1]: https://stackoverflow.com/questions/15783701/which-characters-need-to-be-escaped-when-using-bash#20053121  
 [2]: https://www.shellscript.sh/escape.html  
