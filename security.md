@@ -1,12 +1,29 @@
 
 ## CERTIFICATES
 
-generate CSR
+Generate generic CSR:
 ```bash
 openssl req -new -newkey rsa:2048 -nodes -keyout server.key -out server.csr
 ```
 
-generate CSR with Subject Alternate Names:
+Generate self-signed cert:
+```bash
+certtool --generate-privkey --outfile key.pem
+certtool --generate-self-signed --load-privkey key.pem --outfile cert.pem
+```
+
+Add private key to certificate. This allows the cert and private key to be imported into Windows: <sup>[5]</sup> 
+```bash
+openssl pkcs12 -export -out cert.pfx -inkey private.key -in cert.crt -certfile CACert.crt
+```
+
+
+Convert *.pem* to *.crt*:
+```bash
+openssl x509 -outform der -in cert.pem -out cert.crt
+```
+
+Generate CSR with Subject Alternate Names:
 ```bash
 #!/bin/sh
 
@@ -128,16 +145,6 @@ crt_generate $@
 bash ./certgen.sh domain.example.com 'DNS:*.domain.example.com,IP:10.0.0.10'
 ```
 
-generate self-signed cert
-```bash
-certtool --generate-privkey --outfile key.pem
-certtool --generate-self-signed --load-privkey key.pem --outfile cert.pem
-```
-
-convert .pem to .crt
-```bash
-openssl x509 -outform der -in cert.pem -out cert.crt
-```
 
 ---
 ## FIPS
@@ -272,5 +279,6 @@ scontext=system_u:system_r:keepalived_t:s0 tcontext=system_u:object_r:su_exec_t:
 [1]: https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/6/html/security-enhanced_linux/sect-security-enhanced_linux-fixing_problems-allowing_access_audit2allow  
 [2]: https://stackoverflow.com/questions/36393922/how-to-decrypt-a-symmetrically-encrypted-openpgp-message-using-php  
 [3]: https://www.networkworld.com/article/3293052/encypting-your-files-with-gpg.html  
-[4]: https://www.howtogeek.com/427982/how-to-encrypt-and-decrypt-files-with-gpg-on-linux/
+[4]: https://www.howtogeek.com/427982/how-to-encrypt-and-decrypt-files-with-gpg-on-linux/  
+[5]: https://security.stackexchange.com/questions/25996/how-to-import-a-private-key-in-windows
 
