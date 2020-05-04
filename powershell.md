@@ -1,10 +1,17 @@
 # POWERSHELL
 
+## Networking
+
 `netstat -np` = View open ports.
+
+## Certificates
 
 `certreq -submit -attrib "CertificateTemplate:WebServer" request.csr` = Import and sign *request.csr* using the *WebServer* template.
 
-## Windows 10
+`certlm.msc`  = Local computer certificates.
+`certmgr.msc` = Current user certificates.
+
+## Extra features (Windows 10)
 
 Install or remove RSAT tools. <sup>1</sup>
 ```powershell
