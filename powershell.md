@@ -12,3 +12,5 @@ Remove-WindowsCapability -Name Rsat.CertificateServices.Tools~~~~0.0.1.0 –Onli
 ## Windows 10 / Server
 
 `netstat -np` = View open ports.
+
+`certreq -submit -attrib "CertificateTemplate:WebServer" request.csr` = Import and sign *request.csr* using the *WebServer* template.
