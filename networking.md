@@ -5,7 +5,7 @@
 
 **see more:** [ssh essentials](https://www.digitalocean.com/community/tutorials/ssh-essentials-working-with-ssh-servers-clients-and-keys), [authorized_keys vs known_hosts](https://security.stackexchange.com/questions/20706/what-is-the-difference-between-authorized-keys-and-known-hosts-file-for-ssh), [sshd_config man page](https://www.freebsd.org/cgi/man.cgi?sshd_config(5))
 
-### files <sup>[6]</sup.  >
+### files <sup>[6]</sup>
 
 `~/.ssh/known_hosts`
   - kept on the client
@@ -63,7 +63,7 @@ iptables –A OUTPUT -o eth0 –p tcp --sport 80 –m state --state NEW,ESTABLIS
 
 
 ---
-## `ip.  ` COMMAND
+## `ip` COMMAND
 
 ### interfaces.  
 
@@ -139,20 +139,22 @@ iptables –A OUTPUT -o eth0 –p tcp --sport 80 –m state --state NEW,ESTABLIS
 
 `dig domain.com` or `nslookup domain.com` or `host domain.com` = perform dns lookup on domain.  
 
-### tcpdump <sup>[2]</sup.  >
+### tcpdump <sup>[2]</sup>
 
 `tcpdump -tvv` = dump all packets on all interfaces.  
  `-v` or `-vv` = extra packet information.  
           `-t` = human-readable timestamps.  
+ 
+`tcpdump -i ens32` = Packets on interface *ens32*.
 
-`tcpdump host 1.1.1.1`     = packets going to or from.   1.1.1.1
-`tcpdump src 10.0.0.5`     = packets coming from.   10.0.0.5
-`tcpdump dst 192.168.1.10` = packets going to.   192.168.1.10
+`tcpdump host 1.1.1.1`     = packets going to or from 1.1.1.1  
+`tcpdump src 10.0.0.5`     = packets coming from 10.0.0.5  
+`tcpdump dst 192.168.1.10` = packets going to 192.168.1.10  
 
-`tcpdump -v port 3389`  = packets on port.   3389
-`tcpdump src port 1025` = packets coming from port.   1025
+`tcpdump -v port 3389`  = packets on port 3389  
+`tcpdump src port 1025` = packets coming from port 1025  
 
-`tcpdump -vvt src 10.0.0.5 and dst port 22` = packets coming from 10.0.0.5 to port.   22
+`tcpdump -vvt src 10.0.0.5 and dst port 22` = packets coming from 10.0.0.5 to port 22  
 
 
 ---
