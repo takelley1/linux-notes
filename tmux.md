@@ -1,48 +1,48 @@
 
 ## TMUX
 
-| action                           | default binding (preceed with `CTRL-b`)  |
+| Action                           | Default binding (Preceed with `CTRL-b`)  |
 |----------------------------------|------------------------------------------|
-| show current bindings            | `?`                                      |
-| create new session               | `tmux`<br>`tmux new`                     |
-| list sessions                    | `s` or `tmux ls`                         |
-| re-attach to session             | `tmux attach`                            |
-| re-attach to session x           | `tmux attach -t [x]`<br>`tmux a -t [x]`  |
-| detach from session              | `d` or `:detach`                         |
-| fix dotted lines in windows      | `D` (detatch from nested session)        |
+| Show current bindings            | `?`                                      |
+| Create new session               | `tmux`<br>`tmux new`                     |
+| List sessions                    | `s` or `tmux ls`                         |
+| Re-attach to session             | `tmux attach`                            |
+| Re-attach to session x           | `tmux attach -t [x]`<br>`tmux a -t [x]`  |
+| Detach from session              | `d` or `:detach`                         |
+| Fix dotted lines in windows      | `D` (detatch from nested session)        |
 |----------------------------------|------------------------------------------|
-| create new window                | `c`                                      |
-| list windows                     | `w` (use `j` and `k` to navigate)        |
-| rename window                    | `,`                                      |
-| rename session                   | `$`                                      |
-| go to window #                   | `#`                                      |
-| go to last active window         | `l`                                      |
-| go to next window                | `n`                                      |
-| go to previous window            | `p`                                      |
-| pass COMMAND to nested session   | `CTRL-b,CTRL-b` COMMAND                  |
+| Create new window                | `c`                                      |
+| List windows                     | `w` (use `j` and `k` to navigate)        |
+| Rename window                    | `,`                                      |
+| Rename session                   | `$`                                      |
+| Go to window #                   | `#`                                      |
+| Go to last active window         | `l`                                      |
+| Go to next window                | `n`                                      |
+| Go to previous window            | `p`                                      |
+| Pass COMMAND to nested session   | `CTRL-b,CTRL-b` COMMAND                  |
 |----------------------------------|------------------------------------------|
-| kill current pane                | `x`                                      |
-| kill current window              | `&`                                      |
-| kill all other panes             | `!`                                      |
+| Kill current pane                | `x`                                      |
+| Kill current window              | `&`                                      |
+| Kill all other panes             | `!`                                      |
 |----------------------------------|------------------------------------------|
-| split window horizontally        | `"`                                      |
-| split window vertically          | `%`                                      |
-| switch pane focus                | `o`                                      |
-| rotate pane locations            | `^o`                                     |
-| cycle through pane layouts       | `space`                                  |
-| resize pane downwards by 5 units | `:resize -D 5`<br>`ALT-DownArrow`        |
-| swap windows 3 and 1             | `swap-window -s 3 -t 1`                  |
+| Split window horizontally        | `"`                                      |
+| Split window vertically          | `%`                                      |
+| Switch pane focus                | `o`                                      |
+| Rotate pane locations            | `^o`                                     |
+| Cycle through pane layouts       | `space`                                  |
+| Resize pane downwards by 5 units | `:resize -D 5`<br>`ALT-DownArrow`        |
+| Swap windows 3 and 1             | `swap-window -s 3 -t 1`                  |
 |----------------------------------|------------------------------------------|
-| move pane to another window      | `:break-pane`                            |
-| join pane to another window      | `:join-pane -t [window-number]`          |
-| show numeric values of panes     | `q` (type pane's number to switch to it) |
-| enter scrollback mode            | `[` or `PAGEUP` (`q` to exit)            |
+| Move pane to another window      | `:break-pane`                            |
+| Join pane to another window      | `:join-pane -t [window-number]`          |
+| Show numeric values of panes     | `q` (type pane's number to switch to it) |
+| Enter scrollback mode            | `[` or `PAGEUP` (`q` to exit)            |
 
 #### tmux copy and paste
 
-1. `CTRL-b [` = enter scrollback mode
-1. `SPACE`    = enter text selection mode
-1. `ENTER`    = copy selected text to clipboard
-1. `CTRL-b ]` = paste text from clipboard
+1. `CTRL-b [` = Enter scrollback mode.  
+1. `SPACE`    = Enter text selection mode.  
+1. `ENTER`    = Copy selected text to clipboard.  
+1. `CTRL-b ]` = Paste text from clipboard.  
 
--. `CTRL-b =` = list paste buffers (clipboard history)
+-. `CTRL-b =` = List paste buffers (clipboard history).  

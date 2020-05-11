@@ -1,35 +1,34 @@
 
 ## `.service` FILES
 
-**see also:** [systemd man pages](http://0pointer.de/public/systemd-man/)
+**See also:** [systemd man pages](http://0pointer.de/public/systemd-man/)
 
 ```bash
 man systemd.unit
 man systemd.service
 man systemd.target
 ```
-service files can be placed in `$HOME/.config/systemd/user/my_daemon.service` or `/etc/systemd/system/my_daemon.service`
+Service files can be placed in `$HOME/.config/systemd/user/my_daemon.service` or `/etc/systemd/system/my_daemon.service`.  
 
-example syntax
+Example syntax:
 ```bash
 [Unit]
 Description=My Miscellaneous Service
 After=network.target
 
 [Service]
+# Systemd forks "simple"-type services immediately into the background without
+# waiting to see if the service encountered an error for 
+
 Type=simple
-# Another Type: forking
 User=austin
 WorkingDirectory=/home/austin
 ExecStart=/home/austin/my_daemon --option=123
-Restart=on-failure
-# Other restart options: always, on-abort, etc
+Restart=on-failure # Other restart options: always, on-abort
 
-# The install section is needed to use
-# `systemctl enable` to start on boot
-# For a user service that you want to enable
-# and start automatically, use `default.target`
-# For system level services, use `multi-user.target`
+# The install section is needed to use `systemctl enable` to start on boot.
+# For a user service that you want to enable and start automatically,
+# use `default.target`. For system level services, use `multi-user.target`.
 [Install]
 WantedBy=multi-user.target
 ```
@@ -65,29 +64,30 @@ WantedBy=multi-user.target
 ```
 <sup>[1], [2], [3]</sup> 
 
-viewing service file logs
+Viewing service file logs:
 ```bash
-# See if running, uptime, view latest logs
+# See if running, uptime, view latest logs:
 sudo systemctl status
 sudo systemctl status my_service
-# Or for a user service
+
+# Or for a user service:
 systemctl --user status my_service
 
-# See all systemd logs
+# See all systemd logs:
 sudo journalctl
 
-# Tail logs
+# Tail logs:
 sudo journalctl -xef
 
-# Tail logs for the httpd service only
+# Tail logs for the httpd service only:
 sudo journalctl -fu httpd
 
-# For user service
+# For user service:
 journalctl -f --user-unit my_user_daemon
 ```
 <sup>[1]</sup> 
 
-systemd-analyze blame = show startup times by process
+`systemd-analyze blame` = Show startup times by process.
 
 
 ---
@@ -112,8 +112,8 @@ systemd-analyze blame = show startup times by process
 
 #### runlevel scripts
 
-init:    place script in `/etc/rc#.d/`, in which `#` corresponds to the desired runlevel in which you'd like the script to run  
-systemd: place script in `/etc/systemd/system/[TARGET].wants`  
+init:    Place script in `/etc/rc#.d/`, in which `#` corresponds to the desired runlevel in which you'd like the script to run.  
+systemd: Place or symlink script in `/etc/systemd/system/` and enable service.   
 
 [1]: https://www.devdungeon.com/content/creating-systemd-service-files  
 [2]: https://www.shellhacks.com/systemd-service-file-example/  

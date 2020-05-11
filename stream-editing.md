@@ -3,62 +3,76 @@
 
 ### `awk` command
 
-`awk '{print $3}' file.txt` = print the 3rd column of file.txt 
+`awk '{print $3}' file.txt` = Print the 3rd column of file.txt.
 
 ---
 ### `sed` command
 
-syntax: `sed -[parameter] '[restriction] [flag1]/[pattern1]/[pattern2]/[flag2]' [file1] [file2]...`
+`sed -[parameter] '[restriction] [flag1]/[pattern1]/[pattern2]/[flag2]' [file1] [file2]...`
 
-#### sed examples
+#### Sed examples
 
-`sed '1s/^/string/ file.txt`         = insert string at first line of file.txt
+`sed '1s/^/spam/ file.txt` = Insert `spam` at the first line of `file.txt`.
+                       `1` = Restrict operations to the first line of the input.
+                       `s` = Replace mode.
+                       `^` = (First string) Replace the start of the first line with the second string.
+                    `spam` = (Second string) This string will replace the start of the first line in `file.txt`.
 
-`sed 's/string1/string2/3' file.txt` = replace the third occurrence of string1 with string2 in file.txt
+`sed 's/spam/eggs/3' file.txt` = Replace the third occurrence of `spam` with `eggs` in `file.txt`.
 
-`sed '2,3/^str*ng/d' file.txt`       = delete all strings matching expression  
-                         `2,3`       = limit command to the second and third lines of the file  
+`sed '2,3/^str*ng/d' file.txt` = Delete all strings matching expression.
+                         `2,3` = Limit command to the second and third lines of the file.
+
+`echo "all is fair" | sed 'i\in love and war'` = Returns `all is fair in love and war`. Inserts input before match.
+`echo "in love and war" | sed 'a\all is fair'` = Returns `all is fair in love and war`. Inserts input after match.
+
+`sed -n '2p'` = Print second line of input.
+
+`sed 's/string1/string2/w file.txt'` = Write modified data to file.txt.
+
+`sed 's/abc/xyz/I'` = Match abc or ABC.  
+`sed -e 's/a/A' -e 's/b/B'`
 
 #### sed flags
 
-`s` (*substitute*)  = perform a string substitution                                           (ex: `sed 's/happy/sad/'` = replace 'happy' with 'sad')  
-`i` (*insert*)      = insert input above match                                                (ex: `echo "all is fair" | sed 'i\in love and war'`)  
-`a` (*after*)       = insert input after match                                                (ex: `echo "in love and war" | sed 'a\all is fair'`)  
-`g` (*global*)      = perform operation throughout the entirety of the file  
-`p` (*print*)       = force-print match to stdout. Usually used with `-n` to only print match (ex: `sed -n '2p'` = print 2nd line of input)  
-`w` (*write*)       = write to the provided file                                              (ex: `sed 's/string1/string2/w file.txt'` = write modified data to file.txt)  
-`I` (*insensitive*) = make regex case-insensitive                                             (ex: `sed 's/abc/xyz/I'` = match abc or ABC)
+`s` (*substitute*)  = Perform a string substitution.  
+`i` (*insert*)      = Insert input above match.  
+`a` (*after*)       = Insert input after match.  
+`g` (*global*)      = Perform operation throughout the entirety of the file.  
+`p` (*print*)       = Force-print match to stdout. Usually used with `-n` to only print match.  
+`w` (*write*)       = Write to the provided file.  
+`I` (*insensitive*) = Make regex case-insensitive.  
 
-#### sed parameters
+#### Sed Parameters
 
-`-e` (*expression*) = combine multiple invocations into a single command                      (ex: `sed -e 's/a/A' -e 's/b/B'`)  
-`-r` (*regex*)      = use extended regular expressions, allowing the use of characters like `+`  
-`-n` (*nullify*)    = suppress printing modified input to stdout  
-`-i` (*in-place*)   = don't print result to stdout, just go ahead and immediately edit file
+`-e` (*expression*) = Combine multiple invocations into a single command.
+`-r` (*regex*)      = Use extended regular expressions, allowing the use of characters like `+`.
+`-n` (*nullify*)    = Suppress printing modified input to stdout.
+`-i` (*in-place*)   = Don't print result to stdout, just go ahead and immediately edit file.
 
-#### sed patterns
+#### Sed patterns
 
-`&` = current regex match (ex: `echo "123 abc" | sed 's/[0-9]*/& &/'` = `123 123 abc`)
+`&` = Current regex match (ex: `echo "123 abc" | sed 's/[0-9]*/& &/'` = `123 123 abc`).  
 
-#### sed restrictions
+#### Sed restrictions
 
-- the opposite of `g`, perform operations only on the listed lines of file
-`sed '3,5d` = delete lines 3 through 5
+- the opposite of `g`, perform operations only on the listed lines of file.  
+`sed '3,5d` = Delete lines 3 through 5.  
 
-### other commands and examples
+### Other commands and examples
 
-`tr ‘a-z’ ‘A-Z’` (*translate*)    = find first parameter (`‘a-z’`) and replace matches with second parameter (`‘A-Z’`) 
+`tr ‘a-z’ ‘A-Z’` (*translate*)    = Find first parameter (`‘a-z’`) and replace matches with second parameter (`‘A-Z’`).  
 
-`cat file.txt | awk {'print $12}` = print the 12th column, space delimited, of every line in file.txt 
+`cat file.txt | awk {'print $12}` = Print the 12th column, space delimited, of every line in file.txt.  
 
-`sort -rk 2`                      = reverse (`r`) sort results by the second column (`k`) of output 
+`sort -rk 2`                      = Reverse (`r`) sort results by the second column (`k`) of output.  
 
-`ifconfig ens32 | grep "inet" | grep –v "inet6" | tr –s " " ":" | cut –f 3 –d ":"` = filter out only the ipv4 address of the ens32 interface  
-                                                                 `ifconfig ens32`  = print the full ens32 interface  
-                                                                 `grep "inet"`     = grep for lines with 'inet'   
-                                                                 `grep –v 'inet6'` = filter out lines with `inet6`  
-                                                                 `tr –s " " ":"`   = translate all spaces into colons  to provide a common delimiter  
-                                                                 `cut –f 3 –d ":"` = filter out the third field using cut and specifying the colon delimiter  
+`ifconfig ens32 | grep "inet" | grep –v "inet6" | tr –s " " ":" | cut –f 3 –d ":"` = Filter out only the ipv4 address of the ens32 interface.  
+                                                                 `ifconfig ens32`  = Print the full ens32 interface.  
+                                                                 `grep "inet"`     = Grep for lines with 'inet'.  
+                                                                 `grep –v 'inet6'` = Filter out lines with `inet6`.  
+                                                                 `tr –s " " ":"`   = Translate all spaces into colons  to provide a common delimiter.  
+                                                                 `cut –f 3 –d ":"` = Filter out the third field using cut and specifying the colon delimiter.  
 
 
 ---
@@ -66,61 +80,61 @@ syntax: `sed -[parameter] '[restriction] [flag1]/[pattern1]/[pattern2]/[flag2]' 
 
 ### globbing
 
-`*`      = zero or more of any character  
-`?`      = exactly one of any character  
-`[xyz]`  = any characters within set or within range of xyz (ex: `[0-9]`, `[H-K]`, `[aeiou]`, `[a-z]`)  
-`[!xyz]` = negation of xyz (any characters NOT in the set of xyz)
+`*`      = Zero or more of any character.
+`?`      = Exactly one of any character.
+`[xyz]`  = Any characters within set or within range of xyz (ex: `[0-9]`, `[H-K]`, `[aeiou]`, `[a-z]`).
+`[!xyz]` = Negation of xyz (any characters NOT in the set of xyz).
 
-### generic regex
+### Generic regex
 
-`^` = match string at start    (ex. `rpm –qa | grep -E ^a`)  
-`$` = match string at end      (ex. `rpm –qa | grep -E 64$`)  
-`|` = logical OR               (ex. `grep -E ‘i|a’ file`)  
-`*` = zero or more of previous (ex. `grep -E ‘a*’ file`)  
-`+` = one or more of previous
+`^` = Match string at start.   (ex. `rpm –qa | grep -E ^a`)
+`$` = Match string at end.     (ex. `rpm –qa | grep -E 64$`)
+`|` = Logical OR.               (ex. `grep -E ‘i|a’ file`)
+`*` = Zero or more of previous. (ex. `grep -E ‘a*’ file`)
+`+` = One or more of previous.  
 
 ---
 ## `grep` command
 
-### grep examples
+### Grep examples
 
-`grep -h -o '[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}' /var/log/maillog* | sort -u` = extract IPs  
-                                                                                     `-h` = don't print filenames (used only when grep is searching through multiple files)  
-                                                                                     `-o` = print only the matching part of the line, instead of the whole line  
-                                                                                `sort -u` = remove duplicates  
+`grep -h -o '[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}' /var/log/maillog* | sort -u` = Extract IPs.  
+                                                                                     `-h` = Don't print filenames (used only when grep is searching through multiple files).  
+                                                                                     `-o` = Print only the matching part of the line, instead of the whole line.  
+                                                                                `sort -u` = Remove duplicates.  
 
-`grep -nir ‘ex*le’ ./f*.txt` = search for string ‘ex*le’ (with globbing) in all `.txt` files starting with `f` in or beneath the current directory
-                        `-i` = ignore case  
-                        `-n` = display line number of match  
+`grep -nir ‘ex*le’ ./f*.txt` = Search for string ‘ex*le’ (with globbing) in all `.txt` files starting with `f` in or beneath the current directory.  
+                        `-i` = Ignore case.  
+                        `-n` = Display line number of match.  
 
-`grep -l ‘^alice’ /etc/*` = show only the filenames containing matches (`-l`) instead of the matches themselves
+`grep -l ‘^alice’ /etc/*` = Show only the filenames containing matches (`-l`) instead of the matches themselves.  
 
-`grep -wv ‘[a-d]’ /*.txt` = grep for words (`-w`) that DON’T contain the letters 'a' through 'd' (`-v`)
+`grep -wv ‘[a-d]’ /*.txt` = Grep for words (`-w`) that DON’T contain the letters 'a' through 'd' (`-v`).  
 
-`grep -C 5 '192\.168'` = show five lines of context (`-C 5`) surrounding matched results, escape (`\`) the `.` in string to search for it literally and not interpret it as part of a globbing expression
+`grep -C 5 '192\.168'` = Show five lines of context (`-C 5`) surrounding matched results, escape (`\`) the `.` in string to search for it literally and not interpret it as part of a globbing expression.  
 
-### grep options
+### Grep options
 
-`r` = recurse through subdirectories  
-`i` = ignore case  
-`v` = show everything NOT in match (negation)  
-`n` = show the line number of matches  
-`l` = show filenames of matches only  
-`w` = match complete words rather than just letters  
+`r` = Recurse through subdirectories.  
+`i` = Ignore case.  
+`v` = Show everything NOT in match (negation).  
+`n` = Show the line number of matches.  
+`l` = Show filenames of matches only.  
+`w` = Match complete words rather than just letters.  
 
-`C 5` (*context*) = show 5 lines after and before match  
-`A 2` (*after*)   = show 2 lines after match  
-`B 1` (*before*)  = show 1 line before match  
+`C 5` (*context*) = Show 5 lines after and before match.  
+`A 2` (*after*)   = Show 2 lines after match.  
+`B 1` (*before*)  = Show 1 line before match.  
 
-### grep regex (invoked with `-E` option)
+### Grep regex (Invoked with `-E` option or by using `egrep`)
 
-`^`        = match string at start  
-`$`        = match string at end  
-`|`        = logical OR               (ex. `grep -E ‘i|a’ file`)  
-`*`        = zero or more of previous (ex. `grep -E ‘a*’ file`)  
-`+`        = one or more of previous  
-`{1,3}`    = match the previous 1-3 times  
-`[0-9]`    = any digit  
-`[A-Za-z]` = any letter  
-`.`        = any character  
-`\`        = escape next character
+`^`        = Match string at start.
+`$`        = Match string at end.
+`|`        = Logical OR.              (ex. `grep -E ‘i|a’ file`)
+`*`        = Zero or more of previous. (ex. `grep -E ‘a*’ file`)
+`+`        = One or more of previous.  
+`{1,3}`    = Match the previous 1-3 times.  
+`[0-9]`    = Any digit.
+`[A-Za-z]` = Any letter.
+`.`        = Any character.
+`\`        = Escape next character.

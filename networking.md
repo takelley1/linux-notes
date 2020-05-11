@@ -23,13 +23,13 @@
 
 **see more:** [using firewalld on centos7](https://www.digitalocean.com/community/tutorials/how-to-set-up-a-firewall-using-firewalld-on-centos-7)
 
-allow https traffic in the public zone
+Allow https traffic in the public zone.  
 ```
 firewall-cmd --zone=public --permanent --add-service=https.  
 firewall-cmd --reload
 ```
 
-disallow port 123 tdp traffic in the block zone
+Disallow port 123 tdp traffic in the block zone.  
 ```
 firewall-cmd --zone=block --permanent --remove-port 123/tcp.  
 firewall-cmd --reload
@@ -37,11 +37,11 @@ firewall-cmd --reload
 
 ### `firewall-cmd` command.  
 
-`--list-ports` or `--list-services` = show allowed ports/services.  
-`--list-all-zones` = show firewalld rules for both public and private zones.  
+`--list-ports` or `--list-services` = Show allowed ports/services.  
+`--list-all-zones` = Show firewalld rules for both public and private zones.  
 
-`--state` = check if firewalld is running.  
-`--zone=private --add-interface=ens32` = attach zone to network interface.  
+`--state` = Check if firewalld is running.  
+`--zone=private --add-interface=ens32` = Attach zone to network interface.  
 
 
 ---
@@ -49,10 +49,9 @@ firewall-cmd --reload
 
 > NOTE: `iptables` has been deprecated in favor of `nftables` <sup>[4]</sup>
 
-`iptables -L` = show firewall ruleset.  
+`iptables -L` = Show firewall ruleset.  
 
-add new rule to allow port 80 traffic both to and from host
-
+Add new rule to allow port 80 traffic both to and from host:  
 ```bash
 iptables -A INPUT -i eth0 –p tcp --dport 80 –m state --state NEW,ESTABLISHED –j ACCEPT
 iptables –A OUTPUT -o eth0 –p tcp --dport 80 –m state --state NEW,ESTABLISHED –j ACCEPT
@@ -67,19 +66,19 @@ iptables –A OUTPUT -o eth0 –p tcp --sport 80 –m state --state NEW,ESTABLIS
 
 ### interfaces.  
 
-`ip a add 192.168.1.200/24 dev eth0` = add ip to device.  
-`ip a del 10.0.0.10/24 dev enp12s0`  = remove ip from device.  
+`ip a add 192.168.1.200/24 dev eth0` = Add ip to device.  
+`ip a del 10.0.0.10/24 dev enp12s0`  = Remove ip from device.  
 
-`ip link set dev eth1 up` = enable/disable interface.  
+`ip link set dev eth1 up` = Enable/disable interface.  
 
 ### config.  
 
-`ip n show` = show neighbor/arp cache.  
-`ip r`      = show routing table.  
-`ip a`      = show network interfaces and IP addresses.  
+`ip n show` = Show neighbor/arp cache.  
+`ip r`      = Show routing table.  
+`ip a`      = Show network interfaces and IP addresses.  
 
-`/etc/sysconfig/network` = see default gateway.  
-`/etc/sysconfig/network-scripts/ifcfg-[interface]` = networking device interface options (Fedora-based systems.  )
+`/etc/sysconfig/network` = See default gateway.  
+`/etc/sysconfig/network-scripts/ifcfg-[interface]` = Networking device interface options (Fedora-based systems).  
 
 
 ---
@@ -87,33 +86,33 @@ iptables –A OUTPUT -o eth0 –p tcp --sport 80 –m state --state NEW,ESTABLIS
 
 ### remote ports.  
 
-`nmap -p [port#] [ip]` or `telnet [ip] [port#]` = ping specific tcp port on host.  .  
+`nmap -p [port#] [ip]` or `telnet [ip] [port#]` = Ping specific tcp port on host.  
 
-`nc -zvu [ip] [port#]` = ping specific udp port on host.  .  
-                  `-z` = zero IO mode, show only if connection is up/down.  
-                  `-v` = verbose.  
-                  `-u` = query udp instead of tcp.  
+`nc -zvu [ip] [port#]` = Ping specific udp port on host.  
+                  `-z` = Zero IO mode, show only if connection is up/down.  
+                  `-v` = Verbose.  
+                  `-u` = Query udp instead of tcp.  
 
 ### local ports.  
 
 > NOTE: `netstat` has been deprecated in favor of `ss` <sup>[5]</sup>
 
-`less /etc/services` = show ports being used by specific services.  
+`less /etc/services` = Show ports being used by specific services.  
 
-`netstat -plaunt` or `ss -plunt` = view all open ports.  
-                            `-p` = associated process PIDs.  
-                            `-l` = only listening ports.  
-                            `-n` = numerical ip addresses.  
-                            `-t` = tcp ports.  
-                            `-u` = udp ports.  
+`netstat -plaunt` or `ss -plunt` = View all open ports.  
+                            `-p` = Associated process PIDs.  
+                            `-l` = Only listening ports.  
+                            `-n` = Numerical ip addresses.  
+                            `-t` = Tcp ports.  
+                            `-u` = Udp ports.  
 
 ### scanning <sup>[3]</sup.  >
 
-`nmap -p 22 192.168.1.0/24`      = scan for every host on subnet with port 22 open.  
-`nmap -p 1-1000 192.168.1.20-40` = scan tcp ports 1-1000 on hosts within range.  
-`nmap -sU localhost`             = scan localhost for open udp ports.  
+`nmap -p 22 192.168.1.0/24`      = Scan for every host on subnet with port 22 open.  
+`nmap -p 1-1000 192.168.1.20-40` = Scan tcp ports 1-1000 on hosts within range.  
+`nmap -sU localhost`             = Scan localhost for open udp ports.  
 
-`nmap -sP 10.0.0.0/8` = attempt to ping all hosts on the 10.0.0.0/8 subnet and list responses.  
+`nmap -sP 10.0.0.0/8` = Attempt to ping all hosts on the 10.0.0.0/8 subnet and list responses.  
 
 
 ### VLANS
@@ -124,10 +123,10 @@ iptables –A OUTPUT -o eth0 –p tcp --sport 80 –m state --state NEW,ESTABLIS
 ---
 ## ROUTES
 
-`ip r` or `routel` = view routing table.  
-`route add default gw 192.168.1.1 eth0` = manually add default gateway.  
+`ip r` or `routel` = View routing table.  
+`route add default gw 192.168.1.1 eth0` = Manually add default gateway.  
 
-`traceroute domain.com` = print the route that packets take to a given destination.  
+`traceroute domain.com` = Print the route that packets take to a given destination.  
 
 
 ---
@@ -137,22 +136,22 @@ iptables –A OUTPUT -o eth0 –p tcp --sport 80 –m state --state NEW,ESTABLIS
 `iftop`
 `ifstat`
 
-`dig domain.com` or `nslookup domain.com` or `host domain.com` = perform dns lookup on domain.  
+`dig domain.com` or `nslookup domain.com` or `host domain.com` = Perform dns lookup on domain.  
 
-### tcpdump <sup>[2]</sup.  >
+### tcpdump <sup>[2]</sup>
 
-`tcpdump -tvv` = dump all packets on all interfaces.  
- `-v` or `-vv` = extra packet information.  
-          `-t` = human-readable timestamps.  
+`tcpdump -tvv` = Dump all packets on all interfaces.  
+ `-v` or `-vv` = Extra packet information.  
+          `-t` = Human-readable timestamps.  
 
-`tcpdump host 1.1.1.1`     = packets going to or from.   1.1.1.1
-`tcpdump src 10.0.0.5`     = packets coming from.   10.0.0.5
-`tcpdump dst 192.168.1.10` = packets going to.   192.168.1.10
+`tcpdump host 1.1.1.1`     = Packets going to or from 1.1.1.1.  
+`tcpdump src 10.0.0.5`     = Packets coming from 10.0.0.5.  
+`tcpdump dst 192.168.1.10` = Packets going to 192.168.1.10.  
 
-`tcpdump -v port 3389`  = packets on port.   3389
-`tcpdump src port 1025` = packets coming from port.   1025
+`tcpdump -v port 3389`  = Packets on port 3389.  
+`tcpdump src port 1025` = Packets coming from port 1025.  
 
-`tcpdump -vvt src 10.0.0.5 and dst port 22` = packets coming from 10.0.0.5 to port.   22
+`tcpdump -vvt src 10.0.0.5 and dst port 22` = Packets coming from 10.0.0.5 to port 22.  
 
 
 ---
@@ -160,10 +159,10 @@ iptables –A OUTPUT -o eth0 –p tcp --sport 80 –m state --state NEW,ESTABLIS
 
 > NOTE: `ntpd` has been deprecated in favor of `chrony` <sup>[1]</sup>
 
-`date +%T –s "16:45:00"` = manually set time in HH:mm:ss format.  
-`date`                   = view current time.  
+`date +%T –s "16:45:00"` = Manually set time in HH:mm:ss format.  
+`date`                   = View current time.  
 
-### chrony <sup>[1]</sup.  >
+### chrony <sup>[1]</sup>
 
 show timekeeping stats
 ```
@@ -182,7 +181,7 @@ Root delay      : 0.014488510 seconds                  # network delay for packe
 Root dispersion : 0.079814211 seconds
 Update interval : 64.3 seconds                         # how frequently chrony modifies the system clock.  
 Leap status     : Normal                               # whether a leap second is pending to be added/removed.  
-                                                       # 1 ppm = 1.000001 seconds.  .  
+                                                       # 1 ppm = 1.000001 seconds.  
 ```
 
 other useful commands <sup>[7]</sup>  
@@ -197,7 +196,7 @@ timedatectl
 ---
 ## EMAIL
 
-`mail -s "Test Subject" example@mail.com < /dev/null` = send test email (using the current host has the smtp relay.  )
+`mail -s "Test Subject" example@mail.com < /dev/null` = Send test email (using the current host has the smtp relay).  
 
 send email using a specific smtp relay
 ```bash
@@ -205,19 +204,19 @@ echo "This is the message body and contains the message" | \
 mailx -v                       \
 -r "me@gmail.com"              \  # this is the 'from' field of the email.  
 -s "This is the subject"       \
--S smtp="mail.example.com:25"  \  # this is the smtp relay.  .  
+-S smtp="mail.example.com:25"  \  # this is the smtp relay.  
 -S smtp-use-starttls           \
 -S smtp-auth=login.               \
 -S smtp-auth-user="someone@example.com.  " \
 -S smtp-auth-password="abc.  123" \
 -S ssl-verify=ignore.             \
-yourfriend@gmail.com              # this is the 'to' field of the email.  
+yourfriend@gmail.com              # This is the 'to' field of the email.  
 ```
 
 ### filtering.  
 
-`grep -h -o '[0-9]\{1,3\}\.[0-9]\{1,3\}\.[0-9]\{1,3\}\.[0-9]\{1,3\}' /var/log/maillog* | sort -u` = filter IPs from maillog.  
-`grep -o -E 'from=<.*>' /var/log/maillog | sort -u` = filter sending addresses from maillog.  
+`grep -h -o '[0-9]\{1,3\}\.[0-9]\{1,3\}\.[0-9]\{1,3\}\.[0-9]\{1,3\}' /var/log/maillog* | sort -u` = Filter IPs from maillog.  
+`grep -o -E 'from=<.*>' /var/log/maillog | sort -u` = Filter sending addresses from maillog.  
 
 ### postfix whitelists.  
 
@@ -236,16 +235,16 @@ yourfriend@gmail.com              # this is the 'to' field of the email.
 
 ```bash
 wget                            \
-  --recursive                   \ # descend into all subdirectories.  
-  --no-clobber                  \ # don't overwrite existing files.  
-  --page-requisites             \ # download all files required to display each page properly.  
-  --html-extension              \ # explicitly add .html extensions to relevant files.  
-  --convert-links               \ # convert http:// to file:// links for offline browsing.  
-  --restrict-file-names=windows \ # escape control characters in filenames.  .  
-  --no-parent                   \ # don't include directories above the path provided.  
+  --recursive                   \ # Descend into all subdirectories.  
+  --no-clobber                  \ # Don't overwrite existing files.  
+  --page-requisites             \ # Download all files required to display each page properly.  
+  --html-extension              \ # Explicitly add .html extensions to relevant files.  
+  --convert-links               \ # Convert http:// to file:// links for offline browsing.  
+  --restrict-file-names=windows \ # Escape control characters in filenames.  .  
+  --no-parent                   \ # Don't include directories above the path provided.  
   www.website.org/
 
-wget --recursive --no-clobber --page-requisites --html-extension --convert-links --restrict-file-names=windows --no-parent www.website.org.  /
+wget --recursive --no-clobber --page-requisites --html-extension --convert-links --restrict-file-names=windows --no-parent www.website.org ./
 ```
 
 [1]: https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/8/html-single/configuring_basic_system_settings/index#migrating-to-chrony_using-chrony-to-configure-ntp.  

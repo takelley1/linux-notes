@@ -1,38 +1,38 @@
 
 ## LOGICAL VOLUME MANAGEMENT (LVM)
 
-### physical volumes (PV)
+### Physical volumes (PV)
 
-`pvcreate /dev/sdb`            = create a physical volume.    
-`pvremove /dev/sdb1 /dev/sdc1` = remove physical volumes on partitions sdb1 and sdc1.    
-`pvmove /dev/sdb1 /dev/sdb2`   = copy all data from sdb1 to sdb2.    
+`pvcreate /dev/sdb`            = Create a physical volume.  
+`pvremove /dev/sdb1 /dev/sdc1` = Remove physical volumes on partitions sdb1 and sdc1.  
+`pvmove /dev/sdb1 /dev/sdb2`   = Copy all data from sdb1 to sdb2.  
 
-`pvdisplay` or `pvscan`        = show physical volumes.  
+`pvdisplay` or `pvscan`        = Show physical volumes.  
 
-### logical volumes (LV)
+### Logical volumes (LV)
 
-`lvcreate -l 2500 centos -n vol_1` = create a new volume called vol_1 with 2500 extents in vgroup centos.    
-`lvextend -L 1.5G /dev/mapper/LV1` = extend volume LV1 to 1.5.   GB  
-`lvreduce -l -200 /dev/mapper/LV1` = reduce volume LV1 by 200 extents.    
+`lvcreate -l 2500 centos -n vol_1` = Create a new volume called vol_1 with 2500 extents in vgroup centos.  
+`lvextend -L 1.5G /dev/mapper/LV1` = Extend volume LV1 to 1.5 GB.  
+`lvreduce -l -200 /dev/mapper/LV1` = Reduce volume LV1 by 200 extents.  
 
-`lvdisplay` or `lvscan`            = show logical volumes.   
+`lvdisplay` or `lvscan`            = Show logical volumes.  
 
-### volume groups (VG)
+### Volume groups (VG)
 
-`vgcreate VG1 /dev/sdb1 /dev/sdc1` = create a volume group called VG1, containing physical volumes sdb1 and sdc1.    
-`vgextend VG1 /dev/sdb1`           = add physical volume sdb1 to volume group VG1.    
+`vgcreate VG1 /dev/sdb1 /dev/sdc1` = Create a volume group called VG1, containing physical volumes sdb1 and sdc1.  
+`vgextend VG1 /dev/sdb1`           = Add physical volume sdb1 to volume group VG1.  
 
-`vgdisplay` or `vgscan`            = show volume groups.    
+`vgdisplay` or `vgscan`            = Show volume groups.  
 
-### extending /var xfs filesystem with LVM
+### Extending /var xfs filesystem with LVM
 
 ```bash
-1. fdisk /dev/sdb                      # create partition from new disk
-2. pvcreate /dev/sdb1                  # create a physical volume from the new partition
-3. vgextend vgname /dev/sdb1           # add the new physical volume to the relevant volume group
-4. pvdisplay                           # show the number of new extents available
-5. lvextend -l +127999 /dev/centos/var # extend the relevant logical volume by adding 127,999 free extents
-6. xfs_growfs /var                     # grow the filesystem on the extended logical volume
+1. fdisk /dev/sdb                      # Create partition from new disk.
+2. pvcreate /dev/sdb1                  # Create a physical volume from the new partition.
+3. vgextend vgname /dev/sdb1           # Add the new physical volume to the relevant volume group.
+4. pvdisplay                           # Show the number of new extents available.
+5. lvextend -l +127999 /dev/centos/var # Extend the relevant logical volume by adding 127,999 free extents.
+6. xfs_growfs /var                     # Grow the filesystem on the extended logical volume.
 ```
 
 
@@ -41,57 +41,57 @@
 
 | compression algorithms | gzip | bzip2 | xz | lzip | lzma | zstd |
 |------------------------|------|-------|----|------|------|------|
-| released               |      |       |    |      |      |      |
-| compression speed      |      |       |    |      |      |      |
-| decompression speed    |      |       |    |      |      |      |
-| compression ratio      |      |       |    |      |      |      |
+| Released               |      |       |    |      |      |      |
+| Compression speed      |      |       |    |      |      |      |
+| Decompression speed    |      |       |    |      |      |      |
+| Compression ratio      |      |       |    |      |      |      |
 
-| archive formats | tar | zip | 7z | tar.gz |
+| Archive formats | tar | zip | 7z | tar.gz |
 |                 |     |     |    |        |
 
-**see also**: [squash compression benchmark](https://quixdb.github.io/squash-benchmark/#results)
+**See also**: [squash compression benchmark](https://quixdb.github.io/squash-benchmark/#results)
 
-### tar
+### Tar
 
-`tar xzvf myarchive.tar.gz` = extract myarchive.tar.gz to current path (*xtract ze v'ing files.  *)  
-                        `x` = extract.    
-                        `z` = decompress with gzip (only works with extracting `tar.gz` or `.tgz` tarballs.  )  
-                        `v` = verbose.    
-                        `f` = work in file mode (rather than tape mode.  )
+`tar xzvf myarchive.tar.gz` = Extract myarchive.tar.gz to current path (*xtract ze v'ing files*).  
+                        `x` = Extract.  
+                        `z` = Decompress with gzip (only works with extracting `tar.gz` or `.tgz` tarballs).  
+                        `v` = Be verbose.  
+                        `f` = Work in file mode (rather than tape mode).  
 
-`tar czvf myarchive.tar.gz dir1/ dir2/ dir3/` = create myarchive.tar.gz from dir1, dir2, and dir3 (*create ze v'ing files.  *)
+`tar czvf myarchive.tar.gz dir1/ dir2/ dir3/` = Create myarchive.tar.gz from dir1, dir2, and dir3 (*create ze v'ing files*).  
 
 ### 7zip
 
-`7za x myarchive.7z` = extract myarchive.7z to current path (DO NOT USE THE 'e' SWITCH, USE 'x.  ' INSTEAD TO PRESERVE FILEPATHS)
+`7za x myarchive.7z` = Extract myarchive.7z to current path (DO NOT USE THE 'e' SWITCH, USE 'x' INSTEAD TO PRESERVE FILEPATHS).  
 
-`7za a -mx=10 myarchive.7z dir1/ dir2/` = create myarchive.7z from dir1 and dir2.  
-                               `-mx=10` = use compression lvl 10.  
+`7za a -mx=10 myarchive.7z dir1/ dir2/` = Create myarchive.7z from dir1 and dir2.  
+                               `-mx=10` = Use compression lvl 10.  
 
 
 ---
 ## DISKS & MOUNTS
 
-`partprobe` = scan for new disks.  
+`partprobe` = Scan for new disks.  
 
-`lsblk -f` = show disk tree layout, including logical volumes.    
-      `-f` = show filysystem type.  
+`lsblk -f` = Show disk tree layout, including logical volumes.  
+      `-f` = Show filysystem type.  
   
-`df -Th` = show space used by mounted drives.    
-    `-h` = make output human-readable.    
-    `-T` = show filesystem type.  
+`df -Th` = Show space used by mounted drives.  
+    `-h` = Make output human-readable.  
+    `-T` = Show filesystem type.  
 
-`blkid` = show partition UUIDs.  
+`blkid` = Show partition UUIDs.  
 
-`fdisk -l`       = show drives and their partition tables.    
-`fdisk /dev/sdb` = edit the partition table of sdb.  
+`fdisk -l`       = Show drives and their partition tables.  
+`fdisk /dev/sdb` = Edit the partition table of sdb.  
 
-`mount`                                     = show mounted volumes and their mount locations.    
-`mount –o remount,rw /dev/sda1 /mountpoint` = remount drive with read-write permissions.   
+`mount`                                     = Show mounted volumes and their mount locations.    
+`mount –o remount,rw /dev/sda1 /mountpoint` = Remount drive with read-write permissions.   
 
-### disk testing <sup>[3]</sup> 
+### Disk testing <sup>[3]</sup> 
 
-`badblocks -b 4096 -s -v -w /dev/sdb` = destructively test disk hda for bad data blocks (useful for testing new drive.  )  
+`badblocks -b 4096 -s -v -w /dev/sdb` = Destructively test disk hda for bad data blocks (useful for testing new drive).  
 `bonnie++`
 
 ---
@@ -99,22 +99,22 @@
 
 #### SMART testing
 
-`smartctl -t long /dev/sdc` = start a long HDD self test - after the test is done (could take 12+ hours), check the results with `smartctl -a /dev/sdc.  `
+`smartctl -t long /dev/sdc` = Start a long HDD self test. After the test is done (could take 12+ hours), check the results with `smartctl -a /dev/sdc`.  
 
-`smartctl -a /dev/ | grep Current_Pending_Sector`         = pending sector reallocations.    
-`smartctl -a /dev/ | grep Reallocated_Sector_Ct`          = reallocated sector count.    
-`smartctl -a /dev/ | grep UDMA_CRC_Error_Count`           = UDMA CRC errors.    
-`diskinfo -wS`                                            = HDD and SSD write latency consistency (unformatted drives only.  !)
-`smartctl -a /dev/ | grep Power_On_Hours`                 = HDD and SSD hours.    
-`nvmecontrol logpage -p 2 nvme0 | grep “Percentage used”` = NVMe percentage used.    
+`smartctl -a /dev/ | grep Current_Pending_Sector`         = Pending sector reallocations.  
+`smartctl -a /dev/ | grep Reallocated_Sector_Ct`          = Reallocated sector count.  
+`smartctl -a /dev/ | grep UDMA_CRC_Error_Count`           = UDMA CRC errors.  
+`diskinfo -wS`                                            = HDD and SSD write latency consistency (unformatted drives only!).  
+`smartctl -a /dev/ | grep Power_On_Hours`                 = HDD and SSD hours.  
+`nvmecontrol logpage -p 2 nvme0 | grep “Percentage used”` = NVMe percentage used.  
 
 #### SMART field names
 
-`Normalized value` = commonly referred to as just "value". This is a most universal measurement, on the scale from 0 (bad) to some maximum (good) value. Maximum values are typically 100, 200 or 253. Rule of thumb is: high values are good, low values are bad.  .
+`Normalized value` = Commonly referred to as just "value". This is a most universal measurement, on the scale from 0 (bad) to some maximum (good) value. Maximum values are typically 100, 200 or 253. Rule of thumb is: high values are good, low values are bad.  .
 
-`Threshold` = the minimum normalized value limit for the attribute. If the normalized value falls below the threshold, the disk is considered defective and should be replaced under warranty. This situation is called "T.E.C." (Threshold Exceeded Condition.  ).
+`Threshold` = The minimum normalized value limit for the attribute. If the normalized value falls below the threshold, the disk is considered defective and should be replaced under warranty. This situation is called "T.E.C." (Threshold Exceeded Condition.  ).
 
-`Raw value` = the value of the attribute as it is tracked by the device, before any normalization takes place. Some raw numbers provide valuable insight when properly interpreted. These cases will be discussed later on. Raw values are typically listed in hexadecimal numbers.  .
+`Raw value` = The value of the attribute as it is tracked by the device, before any normalization takes place. Some raw numbers provide valuable insight when properly interpreted. These cases will be discussed later on. Raw values are typically listed in hexadecimal numbers.  
 
 | SMART attributes <sup>[5]</sup>                                           |                                                                            | 
 |---------------------------------------------------------------------------|----------------------------------------------------------------------------|
@@ -135,60 +135,69 @@
 ---
 ## FILES & FILESYSTEMS
 
-### metadata
+### Metadata
 
-`stat file.txt`         = get file metadata on file.txt.    
-`atime` (*access time*) = last time file's contents were read.    
-`mtime` (*modify time*) = last time file's contents were changed.    
-`ctime` (*change time*) = last time file's inode was changed (permissions, ownership, name, hard links, etc.  .)
+`stat file.txt`         = Get file metadata on file.txt.  
+`atime` (*access time*) = Last time file's contents were read.  
+`mtime` (*modify time*) = Last time file's contents were changed.  
+`ctime` (*change time*) = Last time file's inode was changed (permissions, ownership, name, hard links, etc.).  
 
-`inode` = a special data structure holding a file's metadata, contains the file's physical address on the storage medium, size, permissions, and modification timestamps. The file that the user interacts with is only a pointer to its corresponding inode [6.  ]
+```
+inode:
 
-### sizing
+A special data structure holding a file's metadata, contains the file's physical address on the storage medium, size,
+permissions, and modification timestamps. The file that the user interacts with is only a pointer to its
+corresponding inode.
+```
+<sup>[6]</sup> 
 
-`du -sh /home/alice` = display disk space used by specified directory or file.    
-`-s` (*summarize*)   = list total storage used by entire directory and all subdirectories.    
-`-h` (*human*)       = use human-readable format for filesizes (ex. `8.7M` instead of `8808.  `)
+### Sizing
 
-`du -d 1 -h /`   = list the sizes of each directory one level beneath the specified directory.    
-`-d 1` (*depth*) = recurse at a depth of 1.  
+`du -sh /home/alice` = Display disk space used by specified directory or file.  
+`-s` (*summarize*)   = List total storage used by entire directory and all subdirectories.  
+`-h` (*human*)       = Use human-readable format for filesizes (ex. `8.7M` instead of `8808`).  
 
-### filesystems
+`du -d 1 -h /`           = List the sizes of each directory one level beneath the specified directory.    
+`        -d 1` (*depth*) = Recurse at a depth of 1 directory.  
 
-`mkfs.ext4 /dev/mapper/LV1` or `mkfs -t ext4 /dev/mapper/LV1` = create ext4 filesystem on LV1 logical volume.  
+### Filesystems
 
-`e2fsck -f /dev/mapper/LV1 && resize2fs /dev/mapper/LV1` = expand filesystem to fit size of LV1 (must be unmounted.  )  
-`xfs_growfs /dev/centos/var`                             = expand mounted xfs filesystem (must be mounted.  )
+`mkfs.ext4 /dev/mapper/LV1` or `mkfs -t ext4 /dev/mapper/LV1` = Create ext4 filesystem on LV1 logical volume.  
 
-`e4degrag /`     = defragment all partitions.    
-`fsck /dev/sda2` = check sda2 partition for errors (supported filesystems only.  )
+`e2fsck -f /dev/mapper/LV1 && resize2fs /dev/mapper/LV1` = Expand filesystem to fit size of LV1 (must be unmounted).  
+`xfs_growfs /dev/centos/var`                             = Expand mounted xfs filesystem (must be mounted).  
 
-> NOTE: xfs filesystems cannot be shrunk; use ext4 instead
+`e4degrag /`     = Defragment all partitions.  
+`fsck /dev/sda2` = Check sda2 partition for errors (supported filesystems only).  
 
-#### ext4 vs xfs <sup>[4]</sup> 
+> NOTE: Xfs filesystems cannot be shrunk; use ext4 instead.  
 
--ext4 is better with lots of smaller files and metadata-intensive tasks  
--xfs is better with very large files (>30GB)  
+#### Ext4 vs xfs <sup>[4]</sup> 
 
-| filesystem features <sup>[1]</sup> | ext4 | xfs  | btrfs | zfs  | ufs | ntfs | bcachefs | FAT32 | exFAT |
+```
+Ext4 is better with lots of smaller files and metadata-intensive tasks.
+Xfs is better with very large files (>30GB).
+```
+
+| Filesystem features <sup>[1]</sup> | ext4 | xfs  | btrfs | zfs  | ufs | ntfs | bcachefs | FAT32 | exFAT |
 |------------------------------------|------|------|-------|------|-----|------|----------|-------|-------|
-| online growing                     | no   | yes  | yes   | yes  | ?   | yes  | ?        | no    | no    |
-| online shrinking                   | no   | no   | yes   | no   | no  | yes  | ?        | no    | no    |
-| transparent data compression       | no   | no   | yes   | yes  | ?   | yes  | yes      | no    | no    |
-| native encryption                  | LUKS | LUKS | yes   | yes  | ?   | yes  | yes      | no    | no    |
-| data deduplication                 | no   | no   | yes   | yes  | no  | yes  | yes      | no    | no    |
-| immutable snapshots                | LVM  | LVM  | yes   | yes  | ?   | no   | yes      | no    | no    |
-| data + metadata checksumming       | no   | no   | yes   | yes  | no  | no   | yes      | no    | no    |
-| native RAID support                | no   | no   | yes   | yes  | no  | yes  | yes      | no    | no    |
-| journaling support                 | yes  | yes  | COW   | COW  | ?   | yes  | COW      | no    | no    |
-| max filesize                       | -    | -    | -     | -    | -   | -    | -        | 4GB   | -     |
-| max filesystem size                | -    | -    | -     | -    | -   | -    | -        | 2TB   | -     |
+| Online growing                     | no   | yes  | yes   | yes  | ?   | yes  | ?        | no    | no    |
+| Online shrinking                   | no   | no   | yes   | no   | no  | yes  | ?        | no    | no    |
+| Transparent data compression       | no   | no   | yes   | yes  | ?   | yes  | yes      | no    | no    |
+| Native encryption                  | LUKS | LUKS | yes   | yes  | ?   | yes  | yes      | no    | no    |
+| Data deduplication                 | no   | no   | yes   | yes  | no  | yes  | yes      | no    | no    |
+| Immutable snapshots                | LVM  | LVM  | yes   | yes  | ?   | no   | yes      | no    | no    |
+| Data + metadata checksumming       | no   | no   | yes   | yes  | no  | no   | yes      | no    | no    |
+| Native RAID support                | no   | no   | yes   | yes  | no  | yes  | yes      | no    | no    |
+| Journaling support                 | yes  | yes  | COW   | COW  | ?   | yes  | COW      | no    | no    |
+| Max filesize                       | -    | -    | -     | -    | -   | -    | -        | 4GB   | -     |
+| Max filesystem size                | -    | -    | -     | -    | -   | -    | -        | 2TB   | -     |
 
-LUKS = encrypting these filesystems is usually handled through LUKS and/or dm-crypt.    
-LVM = can provide limited snapshot functionality through.   LVM  
-COW = journaling is superceded by copy-on-write mechanisms.    
-\-  = maximum theoretical size so large it's effectively irrelevant.    
-?   = currently unknown and/or no reliable data available.    
+LUKS = Encrypting these filesystems is usually handled through LUKS and/or dm-crypt.  
+LVM  = Can provide limited snapshot functionality through LVM.  
+COW  = Journaling is superceded by copy-on-write mechanisms.  
+\-   = Maximum theoretical size is so large that it's effectively irrelevant.  
+?    = Currently unknown and/or no reliable data available.  
 
 
 ---
@@ -204,7 +213,7 @@ TODO: fill out section
 
 > NOTE: assumes fedora-based system
 
-### server 
+### Server 
 
 1. `yum install nfs-utils`
 1. `systemctl enable nfs`
@@ -215,7 +224,7 @@ ex: `/mirror 192.168.1.1/24(rw)`
 1. `exportfs -a`
 1. `sync`
 
-### client 
+### Client 
 
 1. `mount -t nfs [server ip or fqdn]:/[directory being shared] /[local mount location]`
 1. `showmount`
@@ -227,27 +236,31 @@ ex: `10.0.0.10:/data  /mnt/data  nfs  defaults  0 0`
 ---
 ## MISC
 
-### hard & symbolic links 
+### Hard & symbolic links 
 
-`ln /home/sourcefile.txt /var/hardlink.txt` = create hard link to file (`ln -s` for soft/symbolic link.  ), 
+`ln /home/sourcefile.txt /var/hardlink.txt` = Create hard link to file (`ln -s` for soft/symbolic link).
 
-> hard links create an additional pointer to a file’s inode and remains even if the original file from which the link was created is deleted. Similar to copying a file but without taking up extra space on the physical storage medium 
+```
+Hard links create an additional pointer to a file’s inode and remains even if the original file from which the link
+was created is deleted. Similar to copying a file but without taking up extra space on the physical storage medium.
 
-> symbolic links can be made for directories as well as files and work across partitions (unlike hard links), but break if the location they're pointing to is deleted. Similar to Windows shortcuts
+Symbolic links can be made for directories as well as files and work across partitions (unlike hard links), but
+break if the location they're pointing to is deleted. Similar to Windows shortcuts.
+```
 
-### transfer root linux installation to another drive <sup>[7]</sup>
+### Transfer root Linux installation to another drive: <sup>[7]</sup>
 
-1. install the `update-grub` package on the source drive (optional)
-1. boot from a live OS and use `gparted` to copy the source drive's root partition to an empty partition on the target drive
-1. physically disconnect the source drive
-1. open a terminal and generate a new UUID for the new partition on the target drive
-   1. use `blkid` to list partition UUIDs
-   1. use `tune2fs -U random /dev/sdx1` (if ext4) or `xfs_admin -U generate /dev/sdx1` (if xfs) to generate a new UUID for the copied partition on the target drive
-1. mount the target drive and bind mount `/dev`, `/run`, `/proc`, and `/sys` from the currently booted live OS to the target drive
-1. `chroot` into the target drive
-1. update `fstab` with the copied partition's new UUID
-1. run `grub-mkconfig -o /boot/grub/grub.cfg` or `update-grub` (if `update-grub` was installed)
-1. reboot. if you're dropped into an emergency shell, try regenerating grub
+1. Install the `update-grub` package on the source drive (optional).
+1. Boot from a live OS and use `gparted` to copy the source drive's root partition to an empty partition on the target drive.
+1. Physically disconnect the source drive.
+1. Open a terminal and generate a new UUID for the new partition on the target drive.
+   1. Use `blkid` to list partition UUIDs.
+   1. Use `tune2fs -U random /dev/sdx1` (if ext4) or `xfs_admin -U generate /dev/sdx1` (if xfs) to generate a new UUID for the copied partition on the target drive.
+1. Mount the target drive and bind mount `/dev`, `/run`, `/proc`, and `/sys` from the currently booted live OS to the target drive.
+1. `chroot` into the target drive.
+1. Edit `fstab` and replace the copied partition's UUID with the new UUID.
+1. Run `grub-mkconfig -o /boot/grub/grub.cfg` or `update-grub` (if `update-grub` was installed).
+1. Reboot. if you're dropped into an emergency shell, try regenerating grub.
 
 [1]: https://www.tldp.org/LDP/sag/html/filesystems.html  
 [2]: https://clearlinux.org/news-blogs/linux-os-data-compression-options-comparing-behavior  

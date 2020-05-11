@@ -17,7 +17,7 @@
 
 ### useful commands
 
-`bsdconfig` = text-based GUI for general system configuration
+`bsdconfig` = Text-based GUI for general system configuration.
 
 ### misc <sup>[1]</sup> 
 

@@ -1,50 +1,50 @@
 
 ## VIM
 
-**see also:** [daniel messler on vim](https://danielmiessler.com/study/vim/)
+**See also:** [daniel messler on vim](https://danielmiessler.com/study/vim/)
 
-### split-window editing
+### Split-window editing
 
-`:sp` or `:split file`  =  open another file in a split window.    
-`:vsplit file`          =  vertical split.    
+`:sp` or `:split file`  =  Open another file in a split window.    
+`:vsplit file`          =  Vertical split.    
 
-`CTRL-w k`              =  switch to upper window.    
-`CTRL-w j`              =  switch to lower window.    
-`CTRL-w CTRL-w`         =  switch to another window (cycle.  )  
+`CTRL-w k`              =  Switch to upper window.    
+`CTRL-w j`              =  Switch to lower window.    
+`CTRL-w CTRL-w`         =  Switch to another window (cycle).  
 
-`CTFL-w =`              =  make all windows equal size.    
-`10 CTRL-w+`            =  increase window size by 10 lines.    
-`:resize`               =  make window full size.    
+`CTFL-w =`              =  Make all windows equal size.    
+`10 CTRL-w+`            =  Increase window size by 10 lines.    
+`:resize`               =  Make window full size.    
 
-`:hide`                 =  close current window.    
-`:only`                 =  keep only this window open.    
+`:hide`                 =  Close current window.    
+`:only`                 =  Keep only this window open.    
 
 ---
-### general
+### General
 
-`:help`        = get help.    
-`:help usr_01` = show user manual.    
+`:help`        = Get help.    
+`:help usr_01` = Show user manual.    
 
-`v`       = enter visual mode.    
-`CTRL-v`  = enter visual block mode.    
+`v`       = Enter visual mode.    
+`CTRL-v`  = Enter visual block mode.    
 
-`u`       = undo.    
-`CTRL-r`  = redo.     
-`CTRL-n`  = keyword completion.    
+`u`       = Undo.    
+`CTRL-r`  = Redo.     
+`CTRL-n`  = Keyword completion.    
 
-`qx`      = record macro bound to `x.  `  
-`q`       = stop recording macro.    
-`100@x`   = play macro bound to `x` 100 times.    
+`qx`      = Record macro bound to `x`.  
+`q`       = Stop recording macro.    
+`100@x`   = Play macro bound to `x` 100 times.    
 
-`u`           = convert selection to lowercase (visual mode.  )  
-`U` (*upper*) = convert selection to uppercase (visual mode.  )  
+`u`           = Convert selection to lowercase (visual mode).  
+`U` (*upper*) = Convert selection to uppercase (visual mode).  
 
-`.`           = repeat last action.    
+`.`           = Repeat last action.    
 
 ---  
-### indenting 
+### Indenting 
 
-`:set shiftwidth=1` = set indents to 1 space wide.    
+`:set shiftwidth=1` = Set indents to 1 space wide.    
 
 press `v` and highlight lines of text using the standard navigation keys  
 type `>` or `<` to indent right or left  
@@ -52,127 +52,127 @@ type `>` or `<` to indent right or left
 -to indent more, type `2>` or `3>`  
 -to change your indenting/tabbing to use spaces and not tabs, type `:set et`)  
 -to set auto-indenting, type `:set ai`)  
--to set the tab-size, type `:set ts=2` (or whatever number you want.  )  
--also, for tabbing-size, set shiftwidth (`>`) by typing `:set sw=2.  `)  
+-to set the tab-size, type `:set ts=2` (or whatever number you want).  
+-also, for tabbing-size, set shiftwidth (`>`) by typing `:set sw=2`).    
 
 ---
-### navigation
+### Navigation
 
-`4k`   = jump up 4 lines.    
-`9j`   = jump down 9 lines (*the letter j points downwards.  *)  
-`100h` = jump left 100 chars.    
-`50l`  = jump right 50 chars.    
+`4k`   = Jump up 4 lines.    
+`9j`   = Jump down 9 lines (*the letter j points downwards*).  
+`100h` = Jump left 100 chars.    
+`50l`  = Jump right 50 chars.    
 
-`b` (*back*) = jump backward 1 word.    
-`B`          = jump backward 1.   WORD*  
-`w` (*word*) = jump forward 1 word.    
-`W`          = jump forward 1.   WORD  
-`e` (*end*)  = jump forward 1 word to end of word.    
-`E`          = jump forward 1 WORD to end of word.    
+`b` (*back*) = Jump backward 1 word.    
+`B`          = Jump backward 1 WORD*.  
+`w` (*word*) = Jump forward 1 word.    
+`W`          = Jump forward 1 WORD.  
+`e` (*end*)  = Jump forward 1 word to end of word.    
+`E`          = Jump forward 1 WORD to end of word.    
 
-`$`          = jump to end of line                       (*regex for end of string.  *)  
-`0`          = jump to beginning of line.    
-`^`          = jump to first non-whitespace char of line (*regex for start of string.  *)  
+`$`          = Jump to end of line (*regex for end of string*).   
+`0`          = Jump to beginning of line.    
+`^`          = Jump to first non-whitespace char of line (*regex for start of string*).  
 
-`CTRL-u`        = jump up 1/2 page.    
-`CTRL-d`        = jump down 1/2 page.    
-`H` (*high*)    = jump to top of screen.    
-`M` (*middle*)  = jump to middle of screen.    
-`L` (*low*)     = jump to bottom of screen.    
+`CTRL-u`        = Jump up 1/2 page.    
+`CTRL-d`        = Jump down 1/2 page.    
+`H` (*high*)    = Jump to top of screen.    
+`M` (*middle*)  = Jump to middle of screen.    
+`L` (*low*)     = Jump to bottom of screen.    
 
-`gg`            = jump to first line.    
-`G` (*Go!*)     = jump to last line.    
-`33G`           = jump to line 33.  
+`gg`            = Jump to first line.    
+`G` (*Go!*)     = Jump to last line.    
+`33G`           = Jump to line 33.  
 
-`fx` (*find*)   = jump forward to closest `x.  `  
-`Fx`            = jump back to closest `x.  `
+`fx` (*find*)   = Jump forward to closest `x`.  
+`Fx`            = Jump back to closest `x`.  
 
-`)`   = jump forward 1 sentence.    
-`(`   = jump back 1 sentence.    
-`}`   = jump forward 1 paragraph.    
-`{`   = jump back 1 paragraph.  
+`)`   = Jump forward 1 sentence.    
+`(`   = Jump back 1 sentence.    
+`}`   = Jump forward 1 paragraph.    
+`{`   = Jump back 1 paragraph.  
 
 \*= WORDs use more liberal rules to determine where a words starts and.    
     where it ends (ex: "http://www.vimcheatsheet.com" is 7 words but 1 WORD)
 
 ---
-### cut / copy / paste 
+### Cut / Copy / Paste 
 
-to enter visual mode so you can highlight stuff and cut selected text: `v`  
-Use navigation keys to highlight and press `d` to cut selection
+To enter visual mode so you can highlight stuff and cut selected text: `v`  
+Use navigation keys to highlight and press `d` to cut selection.
 
-`x`             = cut character at cursor.    
-`X`             = cut character before cursor.  
+`x`             = Cut character at cursor.    
+`X`             = Cut character before cursor.  
 
-`diw` or `daw`  = cut word at cursor.    
-`dis`           = cut sentence.  
+`diw` or `daw`  = Cut word at cursor.    
+`dis`           = Cut sentence.  
 
-`D`             = cut to end of line.    
-`d^`            = cut to beginning of line.    
-`J` (*join*)    = remove line breaks.  
+`D`             = Cut to end of line.    
+`d^`            = Cut to beginning of line.    
+`J` (*join*)    = Remove line breaks.  
 
-`dd`            = cut line.    
-`dis` or `das`  = cut sentence.  
+`dd`            = Cut line.    
+`dis` or `das`  = Cut sentence.  
 
-`y` (*yank*)    = copy selection.    
-`yiw`           = copy word.    
-`yy` or `Y`     = copy line.  
+`y` (*yank*)    = Copy selection.    
+`yiw`           = Copy word.    
+`yy` or `Y`     = Copy line.  
 
-`"*y`           = copy into PRIMARY register.    
-`"+y`           = copy into CLIPBOARD register.    
+`"*y`           = Copy into PRIMARY register.    
+`"+y`           = Copy into CLIPBOARD register.    
 
-> NOTE: the PRIMARY and CLIPBOARD registers are managed by X11 (not Vim), so data copied into these
+> NOTE: The PRIMARY and CLIPBOARD registers are managed by X11 (not Vim), so data copied into these
         registers can be used elsewhere in the X11 session <sup>[1]</sup> 
 
-`“xy`         = copy selection to register `x.  `  
-`“xp`         = paste from register `x.  `
+`“xy`         = Copy selection to register `x`.  
+`“xp`         = Paste from register `x`.  
 
-`P` (*paste*) = paste before cursor.    
-`p`           = paste after cursor.  
-
----
-### inserting text (actions that switch to insert mode) 
-
-`i` (*insert*) = insert before cursor.    
-`a` (*after*)  = insert after cursor.  
-
-`I`            = insert at beginning of line.    
-`A`            = insert at end of line.  
-
-`ciw`          = cut word and insert.    
-`cf[x]`        = cut to first instance of [x] on the current line and insert.    
-
-`C` (*change*) = cut to end of line and insert.    
-`cc` or `S`    = cut entire line and insert.  
-
-`c`            = cut selection and insert.  
-
-`o` (*open*)   = add line below and insert.    
-`O`            = add line above and insert.  
-
-`CTRL-c` (*close*) = exit insert mode.  
+`P` (*paste*) = Paste before cursor.    
+`p`           = Paste after cursor.  
 
 ---
-### misc typed commands
+### Inserting text (Actions that switch to insert mode) 
 
-`:noh`                = turn off match highlighting (after string search.  )
-`:sort`               = sort text.  
-`:retab`              = replace tabs with spaces in file.  
+`i` (*insert*) = Insert before cursor.    
+`a` (*after*)  = Insert after cursor.  
 
-`:%s/xxx/yyy/g`       = replace `xxx` with `yyy` in entire file.  
-`:g/^x/d`             = delete all lines beginning with `x.  `
+`I`            = Insert at beginning of line.    
+`A`            = Insert at end of line.  
 
-`:q` (*quit*)         = exit file.    
-`:q!`                 = force exit file.    
-`:w` (*write*)        = save file.    
-`:wq` or `:x` or `ZZ` = save and quit.    
+`ciw`          = Cut word and insert.    
+`cf[x]`        = Cut to first instance of [x] on the current line and insert.    
 
-#### find and replace
+`C` (*change*) = Cut to end of line and insert.    
+`cc` or `S`    = Cut entire line and insert.  
 
-1. search for word using `/word` in normal mode  
-1. use `ciw` to change first match of `word` and exit insert mode  
-1. use `n` to jump to next match of `word`  
-1. use `.` to repeat last action  
-1. continue to use `n` and `.` to replace matches  
+`c`            = Cut selection and insert.  
+
+`o` (*open*)   = Add line below and insert.    
+`O`            = Add line above and insert.  
+
+`CTRL-c` (*close*) = Exit insert mode.  
+
+---
+### Misc typed commands
+
+`:noh`                = Turn off match highlighting (after string search).  
+`:sort`               = Sort text.  
+`:retab`              = Replace tabs with spaces in file.  
+
+`:%s/xxx/yyy/g`       = Replace `xxx` with `yyy` in entire file.  
+`:g/^x/d`             = Delete all lines beginning with `x`.  
+
+`:q` (*quit*)         = Exit file.    
+`:q!`                 = Force exit file.    
+`:w` (*write*)        = Save file.    
+`:wq` or `:x` or `ZZ` = Save and quit.    
+
+#### Find and replace
+
+1. Search for word using `/word` in normal mode.  
+1. Use `ciw` to change first match of `word` and exit insert mode.  
+1. Use `n` to jump to next match of `word`.  
+1. Use `.` to repeat last action.  
+1. Continue to use `n` and `.` to replace matches.  
 
 [1]: https://vi.stackexchange.com/questions/84/how-can-i-copy-text-to-the-system-clipboard-from-vim

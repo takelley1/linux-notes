@@ -1,5 +1,5 @@
 
-**`faillock --user alice --reset` = unlock user**
+**`faillock --user alice --reset` = Unlock user**
 
 ## ACLs 
 
@@ -7,10 +7,10 @@ grant user alice read and write access to all files in `/photos`, regardless of 
 ```bash
 setfacl –R –m u:alice:rw /photos
 ```
-`-R` = recursive  
-`-m` = modify file or directory permissions  
+`-R` = Recursive.  
+`-m` = Modify file or directory permissions.  
 
-`getfacl /file.txt` = view ACL for given file  
+`getfacl /file.txt` = View ACL for given file.  
 
 
 ---
@@ -37,12 +37,12 @@ new default permissions for files: `644`
 ---
 ## USERS 
 
-`usermod -U alice`              = unlock user account alice (due to kernel locking user)  
-`faillock --user alice --reset` = unlock user account alice (due to pam_faillock.so locking user)
+`usermod -U alice`              = Unlock user account alice (due to kernel locking user)  
+`faillock --user alice --reset` = Unlock user account alice (due to pam_faillock.so locking user)
 
-`w`               = print recently logged-on user data  
-`last`            = view all users' last logins  
-`passwd -e alice` = expire password for user alice, prompting her for a password reset upon next login 
+`w`               = Print recently logged-on user data  
+`last`            = View all users' last logins  
+`passwd -e alice` = Expire password for user alice, prompting her for a password reset upon next login 
 
 `/etc/passwd` syntax = `uname:'x':uid:gid:comments:homedir:shell`  
 `/etc/group` syntax  = `groupname:'x':groupid:userlist(user1,user2)`
@@ -51,35 +51,35 @@ new default permissions for files: `644`
 ---
 ## GROUPS
 
-`usermod -a -G wheel,group1 alice` = add alice to wheel and group1 groups   
-`usermod -G group1 alice`          = remove alice from all groups except group 1  
-`gpasswd -d alice wheel`           = delete alice from group wheel
+`usermod -a -G wheel,group1 alice` = Add alice to wheel and group1 groups   
+`usermod -G group1 alice`          = Remove alice from all groups except group 1  
+`gpasswd -d alice wheel`           = Delete alice from group wheel
 
-`id alice`    = show what groups user alice is in, and show uid and gids  
-`id -G wheel` = show gid of wheel group
+`id alice`    = Show what groups user alice is in, and show uid and gids  
+`id -G wheel` = Show gid of wheel group
 
 
 ---
 ## PERMISSIONS
 
-`chown -R alice:admins /home/Documents` = change ownership of Documents directory recursively (`-R`) to alice and the admins group  
-`chgrp wheel /home/alice` = change group owner of the /home/alice directory to wheel 
+`chown -R alice:admins /home/Documents` = Change ownership of Documents directory recursively (`-R`) to alice and the admins group  
+`chgrp wheel /home/alice` = Change group owner of the /home/alice directory to wheel 
 
 ### octal 
 
 chmod octal permissions order --> | special | user (`u`) | group (`g`) | everyone else (`o`) |
 
 regular permissions:  
-`4` = read (`r`)  
-`2` = write (`w`)  
-`1` = execute (`x`)  
-`0` = none (`-`)
+`4` = Read (`r`)  
+`2` = Write (`w`)  
+`1` = Execute (`x`)  
+`0` = None (`-`)
 
 special permissions only:  
-`4` = setuid - appears as an `s` instead of `x` for the file owner (ex. `rwsrwxrwx`)  
-`2` = setgid - appears as an `s` instead of `x` for the group owner (ex. `rwxrwsrwx`)  
-`1` = sticky bit - appears as a `t` instead of `x` for 'other' (ex. `rwxrwxrwt`)  
-`0` = none (`-`)
+`4` = Setuid - appears as an `s` instead of `x` for the file owner (ex. `rwsrwxrwx`)  
+`2` = Setgid - appears as an `s` instead of `x` for the group owner (ex. `rwxrwsrwx`)  
+`1` = Sticky bit - appears as a `t` instead of `x` for 'other' (ex. `rwxrwxrwt`)  
+`0` = None (`-`)
 
 examples:  
 `0755` = `rwxr-xr-x`  
@@ -112,11 +112,11 @@ example:
 ---
 ### standard (non-octal) 
 
-`chmod u+r file.txt`  = add read permissions to user on file.txt
-`chmod a-rw file.txt` = remove read/write permissions for all on file.txt 
+`chmod u+r file.txt`  = Add read permissions to user on file.txt
+`chmod a-rw file.txt` = Remove read/write permissions for all on file.txt 
 
-`u` (*user*)  = owning user  
-`g` (*group*) = owning group  
-`o` (*other*) = users not in the file's owning group  
-`a` (*all*)   = everyone, including the owning user and group
+`u` (*user*)  = Owning user  
+`g` (*group*) = Owning group  
+`o` (*other*) = Users not in the file's owning group  
+`a` (*all*)   = Everyone, including the owning user and group
 

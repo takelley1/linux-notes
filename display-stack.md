@@ -1,7 +1,7 @@
 
 ### Desktop Environment
 
-implements the desktop metaphor and bundles together a variety of components, provides its own custom window manager <sup>[1]</sup>
+Implements the desktop metaphor and bundles together a variety of components, provides its own custom window manager. <sup>[1]</sup>
 - KDE Plasma (default in Kubuntu)
 - GNOME (default in Ubuntu, Fedora)
 - MATE
@@ -12,7 +12,7 @@ implements the desktop metaphor and bundles together a variety of components, pr
 ---
 ### Display Manager
 
-manages the login screen <sup>[2]</sup>
+Manages the login screen. <sup>[2]</sup>
 - Console
   - CDM
   - Ly
@@ -26,7 +26,7 @@ manages the login screen <sup>[2]</sup>
 ---
 ### Window Manager
 
-controls the placement of windows within the desktop environment, typically an X server client <sup>[3]</sup>
+Controls the placement of windows within the desktop environment, typically an X server client. <sup>[3]</sup>
 - Tiling: windows can't overlap
   - i3
   - Bspwm
@@ -42,7 +42,7 @@ controls the placement of windows within the desktop environment, typically an X
 ---
 ### Display server / Window System
 
-system-level interface between desktop GUI and hardware
+System-level interface between desktop GUI and hardware.
 - X / X11 Window System implementations
   - X.Org Server / Xorg (most common display server) <sup>[4]</sup> 
   - XQuartz

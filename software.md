@@ -1,27 +1,27 @@
 
 ## ANSIBLE 
 
-`ansible-playbook /path/to/playbook -kK –f 100` = run playbook.  
+`ansible-playbook /path/to/playbook -kK –f 100` = Run playbook.  
 
-run ad-hoc command as root on target box  
-`ansible 192.168.1.1 -a "yum update" -u akelley -k –b –-become-user root –K –-become-method su -f 10`  
-`-a`                 = run ad-hoc command.    
-`-u`                 = use this user to access the machine.    
-`-k`                 = ask for user's password instead of using ssh key.    
-`-b`                 = use become to elevate privileges.    
-`--become-user root` = become the user root when elevating.    
-`-K`                 = ask for escalation password.     
-`--become-method su` = use su instead of sudo when elevating.   
-`-f 100`             = run 100 separate worker threads.    
+Run ad-hoc command as root on target box:
+`ansible 192.168.1.1 -a "yum update" -u austin -k –b –-become-user root –K –-become-method su -f 10`  
+`-a`                 = Run ad-hoc command.    
+`-u`                 = Use this user to access the machine.    
+`-k`                 = Ask for user's password instead of using ssh key.    
+`-b`                 = Use become to elevate privileges.    
+`--become-user root` = Become the user root when elevating.    
+`-K`                 = Ask for escalation password.     
+`--become-method su` = Use su instead of sudo when elevating.   
+`-f 100`             = Run 100 separate worker threads.    
 
-`ansible-playbook --syntax-check ./playbook.yml` = check syntax.    
-`ansible-lint ./playbook.yml`                    = check best-practices.    
+`ansible-playbook --syntax-check ./playbook.yml` = Check syntax.    
+`ansible-lint ./playbook.yml`                    = Check best-practices.    
 
 
 ---
 ## BORG BACKUP
 
-extract /mnt/tank/share/pictures in repo backup-2020-01-19-01-00 to current path
+Extract /mnt/tank/share/pictures in repo backup-2020-01-19-01-00 to current path:
 ```bash
 borg extract \
 --progress \
@@ -34,7 +34,7 @@ borg extract \
 ---
 ## GRAYLOG
 
-change Graylog from RO to RW mode
+Change Graylog from RO to RW mode:
 ```bash
 curl \
 -XPUT \
@@ -47,18 +47,18 @@ https://localhost:9200/_all/_settings \
 ---
 ## OPENSCAP  
 
-run scap scan
+Run SCAP scan:
 ```
 oscap xccdf eval \
---fetch-remote-resources \                                            # download any new definition updates
---profile xccdf_mil.disa.stig_profile_MAC-3_Sensitive \               # which profile within the STIG checklist to use
---results /scap_nfs/scap_$(hostname)_$(date +%Y-%m-%d_%H:%M).xml \    # filepath to place XML results
---report /scap_nfs/scap_$(hostname)_$(date +%Y-%m-%d_%H:%M).html \    # filepath to place HTML-formatted results
-/shares/U_Red_Hat_Enterprise_Linux_7_V2R2_STIG_SCAP_1-2_Benchmark.xml # filepath of the STIG checklist file
+--fetch-remote-resources \                                            # Download any new definition updates.
+--profile xccdf_mil.disa.stig_profile_MAC-3_Sensitive \               # Which profile within the STIG checklist to use.
+--results /scap_nfs/scap_$(hostname)_$(date +%Y-%m-%d_%H:%M).xml \    # Filepath to place XML results.
+--report /scap_nfs/scap_$(hostname)_$(date +%Y-%m-%d_%H:%M).html \    # Filepath to place HTML-formatted results.
+/shares/U_Red_Hat_Enterprise_Linux_7_V2R2_STIG_SCAP_1-2_Benchmark.xml # Filepath of the STIG checklist file.
 ```
   
-minimum XCCDF file for importing SCAP results to DISA STIG viewer:
-```
+Minimum XCCDF file for importing SCAP results to DISA STIG viewer:
+```xml
 <?xml version="1.0" encoding="UTF-8.  "?>
 <TestResult>
   <rule-result idref="SV-86681r2_rule.  ">
@@ -80,14 +80,14 @@ minimum XCCDF file for importing SCAP results to DISA STIG viewer:
 ---
 ## RANGER
 
-`cd /path` = jump to /path.    
-`gh`       = jump to ~ (*go home.  *)  
+`cd /path` = Jump to /path.    
+`gh`       = Jump to ~ (*go home.  *)  
 
 
 ---
 ## SPACEWALK / RED HAT SATELLITE
 
-`rhncfg-client get` = force spacewalk client to pull configuration files.  
+`rhncfg-client get` = Force spacewalk client to pull configuration files.  
 
 ```bash
 #!/bin/bash
@@ -134,7 +134,7 @@ rhn-channel --list
 ---
 ## TENABLE.SC (SECURITYCENTER) <sup>[1]</sup> 
 
-reset admin password to "password"
+Reset admin password to "password":
 ```
 ## Versions 5.10 and earlier
 /opt/sc/support/bin/sqlite3 /opt/sc/application.db "update userauth set password = 'bbd29bd33eb161d738536b59e37db31e' where username='admin.  ';"
@@ -143,7 +143,7 @@ reset admin password to "password"
 /opt/sc/support/bin/sqlite3 /opt/sc/application.db "update userauth set password = 'bbd29bd33eb161d738536b59e37db31e', salt.   = '',
 hashtype = 1 where username='admin.  ';"
 
-# password hash for easier reading
+# Password hash for easier reading:
 bbd2
 9bd3
 3eb1
@@ -154,7 +154,7 @@ e37d
 b31e
 ```
 
-list users
+List users:
 ```
 # /opt/sc/support/bin/sqlite3 /opt/sc/application.db "select * from UserAuth" 
 ```
