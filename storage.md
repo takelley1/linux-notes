@@ -91,8 +91,10 @@
 
 ### Disk testing <sup>[3]</sup> 
 
-`badblocks -b 4096 -s -v -w /dev/sdb` = Destructively test disk hda for bad data blocks (useful for testing new drive).  
+`badblocks -b 4096 -s -v -w /dev/sdb` = Destructively test disk sdb for bad data blocks (useful for testing new drive).  
 `bonnie++`
+
+`dd if=/dev/zero of=./test1.img bs=1G count=1 oflag=dsync` = Test disk write speed. <sup>[8]</sup>
 
 ---
 ### SMART
@@ -269,4 +271,5 @@ break if the location they're pointing to is deleted. Similar to Windows shortcu
 [5]: https://www.z-a-recovery.com/manual/smart.aspx  
 [6]: http://www.linfo.org/inode.html  
 [7]: https://askubuntu.com/questions/741723/moving-entire-linux-installation-to-another-drive
+[8]: https://www.cyberciti.biz/faq/howto-linux-unix-test-disk-performance-with-dd-command/
 
