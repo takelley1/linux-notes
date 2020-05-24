@@ -10,20 +10,24 @@
 | apt/yum/pacman   | pkg                 |
 | yay (Arch Linux) | portsnap/portmaster |
 
-### tips
+### Jails
 
--use `sudo -i` instead of `sudo su` to ensure root's environment variables are loaded properly  
-  -if this is not done, running `crontab -e` as root won't invoke root's editor set by `$EDITOR`
+- Use devfs_ruleset `2` to give the jail access to all the /dev devices that are on the host.
 
-### useful commands
+### Tips
+
+- Use `sudo -i` instead of `sudo su` to ensure root's environment variables are loaded properly.
+- If this is not done, running `crontab -e` as root won't invoke root's editor set by `$EDITOR`.
+
+### Useful commands
 
 `bsdconfig` = Text-based GUI for general system configuration.
 
-### misc <sup>[1]</sup> 
+### Misc <sup>[1]</sup> 
 
 FreeBSD is focused on robustness and stablility  
 NetBSD is focused on portability  
-OpenBSD is focused on security
+OpenBSD is focused on security  
 
 [1]: https://jameshoward.us/archive/the-bsd-family-tree/  
 
