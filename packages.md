@@ -3,19 +3,19 @@
 
 **See also**: [comparison of package managers](https://fusion809.github.io/comparison-of-package-managers/)
 
-| package managers compared            | yum/dnf (.rpm files)                | apt (.deb files)              | pacman               | pkg          |
-|--------------------------------------|-------------------------------------|-------------------------------|----------------------|--------------|
-| Update packages                      | `yum update`                        | `apt update && apt upgrade`   | `pacman -Syu`        | `pkg update` |
-| Show installed packages              | `rpm -qa`                           | `dpkg --list`                 | `pacman -Q`          |              |
-| Show package that provides file x    | `yum whatprovides x`                | `dpkg -S x`                   | `pacman -F x`        |              |
-| Get package x info                   | `yum info x`                        | `apt-cache show x`            | `pacman -Qi x`       |              |
-| Install package group x              | `yum groupinstall x`                | -                             | `pacman -S x`        |              |
-| Show package groups                  | `yum group list`                    | -                             | `pacman -Qg`         |              |
-| Remove duplicate packages            | `package-cleanup --cleandupes`      | -                             | -                    |              |
-| Remove orphaned packages             | -                                   | `apt autoremove`              | `pacman -Ru`         |              |
-| Show update history                  | `yum history list all`              | `/var/log/apt/history.log`    | `/var/log/pacman.log`|              |
-| Show updated packages from transaction | `yum history info [ID]`           | -                             | -                    |              |
-| Rollback update             |`yum history undo [ID]`|`apt-history rollback`|`pacman -U /var/cache/pacman/pkg/[old-package-version]`|             |
+| package managers compared            | yum/dnf (.rpm files)           | apt (.deb files)            | pacman (.tgz files)           | pkg              |
+|--------------------------------------|--------------------------------|-----------------------------|-------------------------------|------------------|
+| Update packages                      | `yum update`                   | `apt update && apt upgrade` | `pacman -Syu`                 | `pkg update`     |
+| Show installed packages              | `rpm -qa`                      | `dpkg --list`               | `pacman -Q`                   | `pkg info`       |
+| Show package that provides file x    | `yum whatprovides x`           | `dpkg -S x`                 | `pacman -F x`                 | `pkg which x`    |
+| Get package x info                   | `yum info x`                   | `apt-cache show x`          | `pacman -Qi x`                | `pkg info x`     |
+| Install package group x              | `yum groupinstall x`           | -                           | `pacman -S x`                 | -                |
+| Show package groups                  | `yum group list`               | -                           | `pacman -Qg`                  | -                |
+| Remove duplicate packages            | `package-cleanup --cleandupes` | -                           | -                             | -                |
+| Remove orphaned packages             | -                              | `apt autoremove`            | `pacman -Rns $(pacman -Qdtq)` | `pkg autoremove` |
+| Show update history                  | `yum history list all`         | `/var/log/apt/history.log`  | `/var/log/pacman.log`         | -                |
+| Show info from recent transaction    | `yum history info [ID]`        | -                           | -                             | -                |
+| Rollback update                      | `yum history undo [ID]`        | `apt-history rollback`      | `pacman -U /var/cache/pacman/pkg/[pkg-ver]`|     |
 
 #### rpm
 
