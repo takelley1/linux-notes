@@ -261,6 +261,9 @@ examples:
 ```
 
 ---
+### Pascal
+
+---
 ### Perl and Raku (aka Perl 6)
 
 released: 1987 (Perl), 2019 (Raku)  
