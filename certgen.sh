@@ -1,4 +1,5 @@
-#!/bin/sh
+#!/usr/bin/env bash
+
 # certgen.sh
 # This script makes it easier to create CSRs with SANs.
 
@@ -40,8 +41,8 @@ EOF
 }
 
 crt_generate() {
-  : ${DAYS:=3650.  }
-  : ${BITS:=2048.  }
+  : "${DAYS:=3650.  }"
+  : "${BITS:=2048.  }"
  
   CN=$1.  
   ALT_NAMES=$2.  
@@ -59,23 +60,23 @@ crt_generate() {
   openssl req -x509 \
           -nodes -sha256 \
           -config "${CFG}" \
-          -days ${DAYS} \
-          -newkey rsa:${BITS} \
-          -keyout ${CN}.key \
-          -out ${CN}.crt
+          -days "${DAYS}" \
+          -newkey rsa:"${BITS}" \
+          -keyout "${CN}.key" \
+          -out "${CN}.crt"
 
   # create csr
   openssl req \
           -new -sha256 \
           -config "${CFG}" \
           -reqexts CSR \
-          -key ${CN}.key \
-          -out ${CN}.csr
+          -key "${CN}.key" \
+          -out "${CN}.csr"
 
   #rm "${CFG}"
   # -subj "/C=${DN_C}/ST=${DN_ST}/L=${CN_L}/O=${DN_O}/OU=${DN_OU}/CN=${CN}" \
 
-  openssl x509 -text < ${CN}.crt > ${CN}.about.txt
+  openssl x509 -text < "${CN}.crt" > "${CN}.about.txt"
   echo "
 
 Generated following files:
@@ -106,10 +107,10 @@ Environment variables:
 fi
 
 #Uncomment and change to defaults you want
-: ${DN_C=US}
-: ${DN_ST=''}
-: ${DN_L=''}}
-: ${DN_O=''}
-: ${DN_OU=''}
+: "${DN_C=US}"
+: "${DN_ST=''}"
+: "${DN_L=''}}"
+: "${DN_O=''}"
+: "${DN_OU=''}"
 
-crt_generate $@
+crt_generate "$@"
