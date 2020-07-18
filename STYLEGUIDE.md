@@ -1,4 +1,4 @@
-
+## SECTION HEADERS AT THE BEGINNING OF FILES LOOK LIKE THIS
 
 ---
 ## SECTION HEADERS ARE IN ALL CAPS AND HAVE TWO BLANK SPACES BETWEEN THEM AND THE END OF THE PREVIOUS SECTION
@@ -9,25 +9,28 @@
 
 ### Subsection headers are in sentence case and have one blank space between them and the end of the previous section
 
-`command --param 1 --param 2` (*mneumonic*) = Command descriptions are full sentences. <sup>References look like this</sup>
+`command --param 1 --param 2` (*mneumonic*) = Command descriptions are full sentences. <sup>[References look like this]</sup>
                                 `--param 1` = Parameter descriptions are aligned with the end of the command.
                                 `--param 2` = Parameter 2 description (*long mneumonic*). <sup>[1]</sup> 
 
-> NOTE: Note subsections wrap at 120 characters and are full sentences.
+> NOTE: Note subsections wrap at 120 characters and are full sentences. This is a very long line and is an example of
+        note wrapping.
 
 Explanation header:
 ```
-Long explanation text within code blocks are also usually wrapped at 120 characters.
+Long explanation text within code blocks are also usually wrapped at 120 characters. This is a very long line and is
+wrapped at 120 characters.
 ```
 
 ---
-### Subsection header with dividing lines have two blank lines before them
+### Subsection header with dividing lines have two blank lines before them <sup>[2]</sup>
 
 | Table header   | Table header 2          | Table headers are in sentence case               |
 |----------------|-------------------------|--------------------------------------------------|
-| Gigabyte (GB)  | 10<sup>9</sup> bytes    | <- Once space between column borders and text -> |
+| Gigabyte (GB)  | 10<sup>9</sup> bytes    | <- One space between column borders and text ->  |
 
-![image name](/image/path.webp) [3]
+![image name](/image/path.webp) [Image references don't use superscripts]
+![image name 2](/image/path2.webp) [2]
 
 #### Minor subsection headers are also in sentence case and have one blank line above them
 
@@ -41,15 +44,20 @@ Very long commands like this are wrapped at 120 characters within code blocks. \
 
 1. step 1
    ```bash
-   step 1 command
+   example command
    ```
 1. step 2
-   ```bash
-   step 2 command
+   ```yaml
+   yaml_example_line1:
+   yaml_example_line2:
    ```
    1. step 2a
    ```bash
-   step 2a command
+   vim /path/to/text/file
+   ```
+   ```
+   text file content line 1
+   text file content line 2
    ```
    1. step 2b
 1. step 3
