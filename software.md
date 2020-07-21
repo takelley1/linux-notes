@@ -134,6 +134,8 @@ rhn-channel --list
 ---
 ## TENABLE.SC (SECURITYCENTER) <sup>[1]</sup> 
 
+Get new plugins: https://patches.csd.disa.mil
+
 Reset admin password to "password":
 ```
 ## Versions 5.10 and earlier
