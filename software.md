@@ -1,5 +1,7 @@
 
-## ANSIBLE 
+## ANSIBLE
+
+`ansible-vault encrypt_string --vault-password-file vaultpw.txt "ThisIsAGoodPassword" --name 'userpassword' --encrypt-vault-id default` = Encrypt variable.
 
 `ansible-playbook /path/to/playbook -kK –f 100` = Run playbook.  
 
