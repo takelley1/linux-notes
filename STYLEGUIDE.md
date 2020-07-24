@@ -9,9 +9,11 @@
 
 ### Subsection headers are in sentence case and have one blank space between them and the end of the previous section
 
-`command --param 1 --param 2` (*mneumonic*) = Command descriptions are full sentences. <sup>[References look like this]</sup>
-                                `--param 1` = Parameter descriptions are aligned with the end of the command.
-                                `--param 2` = Parameter 2 description (*long mneumonic*). <sup>[1]</sup> 
+`command --param 1 --param 2` (*mneumonic*) = Command descriptions are full sentences. <sup>[References look like this]</sup>  
+                                `--param 1` = Parameter descriptions are aligned with the end of the command.  
+                                `--param 2` = Parameter 2 description (*long mneumonic*). <sup>[1]</sup>   
+                                
+`command <VARIABLES_IN_COMMANDS_LOOK_LIKE_THIS>`
 
 > NOTE: Note subsections wrap at 120 characters and are full sentences. This is a very long line and is an example of
         note wrapping.
@@ -30,14 +32,14 @@ wrapped at 120 characters.
 | Gigabyte (GB)  | 10<sup>9</sup> bytes    | <- One space between column borders and text ->  |
 
 ![image name](/image/path.webp) [Image references don't use superscripts]
-![image name 2](/image/path2.webp) [2]
+![another image name](/image/path2.webp) <sup>[2]</sup>
 
 #### Minor subsection headers are also in sentence case and have one blank line above them
 
 ```bash
-Very long commands like this are wrapped at 120 characters within code blocks. \   # Comments describing command lines within blocks go here and usually ignore the 120 line limit.
+Very long commands like this are wrapped at 120 characters within code blocks.   \ # Comments describing command lines within blocks go here and usually ignore the 120 line limit.
   --Parameters can go on separate lines like this to make things easier to read. \ # All comments are one space away from the last character of the command and aligned like this.
-  --Parameters are indented by two spaces compared to the command. \               # Here's another comment line.
+  --Parameters are indented by two spaces compared to the command.               \ # Here's another comment line.
 ```
 
 **See also:** [link name](https://www.link-address.example.com)
