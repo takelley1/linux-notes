@@ -20,6 +20,8 @@ ansible 192.168.1.1       \
 ansible 192.168.1.1 -a "yum update" -u austin -kK –b –-become-user root –-become-method sudo -f 10
 ```
 
+`ansible localhost -m debug -a msg="{{ lookup('env','HOME') }}"` = Run ad-hoc module on localhost to print user's home directory.  
+
 `ansible-playbook --syntax-check ./playbook.yml` = Check syntax.    
 `ansible-lint ./playbook.yml`                    = Check best-practices.    
 
