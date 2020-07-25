@@ -13,6 +13,9 @@
                                 `--param 1` = Parameter descriptions are aligned with the end of the command.
                                 `--param 2` = Parameter 2 description (*long mneumonic*). <sup>[1]</sup> 
 
+`command [VARIABLE1] [VARIABLE2]` = Commands that require explanatory variables store the variable names in
+                                    square brackets, all-caps.
+
 > NOTE: Note subsections wrap at 120 characters and are full sentences. This is a very long line and is an example of
         note wrapping.
 
@@ -25,9 +28,10 @@ wrapped at 120 characters.
 ---
 ### Subsection header with dividing lines have two blank lines before them <sup>[2]</sup>
 
-| Table header   | Table header 2          | Table headers are in sentence case               |
+| Table header   | Another table header    | Table headers are in sentence case               |
 |----------------|-------------------------|--------------------------------------------------|
-| Gigabyte (GB)  | 10<sup>9</sup> bytes    | <- One space between column borders and text ->  |
+| Gigabyte (GB)  | 10<sup>9</sup> bytes    | <= One space between column borders and text =>  |
+|                                          | Table fields are in sentence case                |
 
 ![image name](/image/path.webp) [Image references don't use superscripts]
 ![image name 2](/image/path2.webp) [2]
