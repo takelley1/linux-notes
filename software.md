@@ -1,18 +1,26 @@
 
-## ANSIBLE 
+## ANSIBLE
 
-`ansible-playbook /path/to/playbook -kK –f 100` = Run playbook.  
+`ansible -i inventories/hostsfile.yml -m debug -a "var=hostvars" all` = View all variables from all hosts in hostsfile.yml.  
 
-Run ad-hoc command as root on target box:
-`ansible 192.168.1.1 -a "yum update" -u austin -k –b –-become-user root –K –-become-method su -f 10`  
-`-a`                 = Run ad-hoc command.    
-`-u`                 = Use this user to access the machine.    
-`-k`                 = Ask for user's password instead of using ssh key.    
-`-b`                 = Use become to elevate privileges.    
-`--become-user root` = Become the user root when elevating.    
-`-K`                 = Ask for escalation password.     
-`--become-method su` = Use su instead of sudo when elevating.   
-`-f 100`             = Run 100 separate worker threads.    
+`ansible-vault encrypt_string --vault-password-file vaultpw.txt "ThisIsAGoodPassword" --name 'userpassword' --encrypt-vault-id default` = Encrypt variable.  
+`ansible localhost -m debug -a var='userpassword' -e '@group_vars/all/path/to/file.yml` = View decrypted variable within file.  
+
+Run ad-hoc command as root on target box
+```bash
+ansible 192.168.1.1       \
+  -a "yum update"         \ # Run ad-hoc.
+  -u austin               \ # User to use when connecting to target.
+  -k                      \ # Ask for user's SSH password to authenticate.
+  –b                      \ # Use become to elevate privileges
+  –K                      \ # Ask for the user's escalation password.
+  –-become-method sudo    \ # Use sudo to escalate.
+  -f 10                     # Run 10 separate threads.
+  
+ansible 192.168.1.1 -a "yum update" -u austin -kK –b –-become-user root –-become-method sudo -f 10
+```
+
+`ansible localhost -m debug -a msg="{{ lookup('env','HOME') }}"` = Run ad-hoc module on localhost to print user's home directory.  
 
 `ansible-playbook --syntax-check ./playbook.yml` = Check syntax.    
 `ansible-lint ./playbook.yml`                    = Check best-practices.    

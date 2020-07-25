@@ -1,24 +1,23 @@
 
 ## POSTGRES
 
-`psql -h [hostname-or-ip] -p [port] -U [username] [database-name]` = Remotely connect to database.    
+`psql -h <HOSTNAME_OR_IP> -p <PORT> -U <USERNAME> <DATABSE_NAME>` = Remotely connect to database.    
 `sudo -u postgres psql` = Launch a SQL shell as user postgres.  
 
 ### psql shell
 
-`\l`             = List all databases.    
-`\c [dbname]`    = Connect to new database.    
-`\dt`            = View list of relations/tables.    
-`\d [tablename]` = Show details of table.    
-`\h`             = Get help.    
-`\?`             = List all psql "slash" commands.    
-`\set`           = System variables.    
-`\q`             = Quit.  
+`\l`              = List all databases.    
+`\c <DB_NAME>`    = Connect to new database.    
+`\dt`             = View list of relations/tables.    
+`\d <TABLE_NAME>` = Show details of table.    
+`\h`              = Print help.    
+`\?`              = List all psql "slash" commands.    
+`\set`            = System variables.    
+`\q`              = Quit.  
 
 ### pg_hba.conf
 
 Manage client authentication to the db host:
-
 ```
 # Allow any user on the local system to connect to any database with
 # any database user name using Unix-domain sockets (the default for local
