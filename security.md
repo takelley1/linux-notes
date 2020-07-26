@@ -1,166 +1,136 @@
 
-## CERTIFICATES
+## Data security
 
-Generate generic CSR:
-```bash
-openssl req -new -newkey rsa:2048 -nodes -keyout server.key -out server.csr
-```
+| Feature          | Hash | HMAC      | Digital Signature |
+|------------------|------|-----------|-------------------|
+| Integrity        | Yes  | Yes       | Yes               |
+| Authentication   | No   | Yes       | Yes               |
+| Non-repudiation  | No   | No        | Yes               |
+| Relative Speed   | Fast | Fast      | Slow              |
+| Key type         | None | Symmetric | Asymmetric        |
+| Can be truncated | Yes  | Yes       | No                |
 
-Generate self-signed cert:
-```bash
-certtool --generate-privkey --outfile key.pem
-certtool --generate-self-signed --load-privkey key.pem --outfile cert.pem
-```
-
-Add private key to certificate. This allows the cert and private key to be imported into Windows: <sup>[5]</sup>
-```bash
-openssl pkcs12 -export -out cert.pfx -inkey private.key -in cert.crt -certfile CACert.crt
-```
-
-Convert `.pem` to `.crt`:
-```bash
-openssl x509 -outform der -in cert.pem -out cert.crt
-```
-
-Generate CSR with Subject Alternate Names: (See ./certgen.sh for script):
-```bash
-bash ./certgen.sh domain.example.com 'DNS:*.domain.example.com,IP:10.0.0.10'
-```
+- **Integrity**: Has the message been altered?
+- **Authentication**: Is this entity who they say they are?
+- **Non-Repudiation**: Has this entity provided proof that this message actually came from them?
+  - Non-Repudiation also provides Authentication as a byproduct.
 
 
 ---
-## FIPS
+## KDF (Key Derivation Functions)
 
-`cat /proc/sys/crypto/fips_enabled` = Check if FIPS is enabled.<br>
+> PBKDF2, scrypt
 
-
----
-## GPG
-
-**See also**: [The GNU Privacy Handbook](https://www.gnupg.org/gph/en/manual/book1.html), [Backing up private keys on paper 1](https://wiki.archlinux.org/index.php/Paperkey), [2](https://www.jabberwocky.com/software/paperkey/), [3](https://www.saminiir.com/paper-storage-and-recovery-of-gpg-keys/)  
-
-### Digitally sign and verify a file
-
-*Assumes recipient does not yet have sender's public key*
-
-#### Sender:
-
-1. `gpg --gen-key`                                  = Create public and private key pair.
-1. `gpg --output file.sig --detatch-sign file.txt`  = Sign file.txt with private key, producing the signature file file.sig.
-1. `gpg --export --armor "pubkey.gpg" > public.asc` = Export binary public key to ASCII-encoded string.
-1. Transfer `file.sig`, `file.txt`, and `public.asc` to recipient.
-
-#### Recipient:  
-
-1. `gpg --import public.asc`                        = Import sender's public key.
-1. `gpg --verify file.sig file.txt`                 = Verify the file.sig signature of file.txt using sender's public key.
-
-### Asymetrically encrypt/decrypt and sign a file
-
-#### Sender:  
-
-1. Encrpyt file.txt using recipient's public key (assuming it's in the gpg keychain), then sign file.txt using your private key:
-  ```bash
-  gpg --encrypt --sign --armor --recipient receiver@gmail.com file.txt
-  ```
-2. This produces the encrypted and signed file `file.txt.asc`.
-
-#### Receiver: <sup>[3], [4]</sup> 
-
-1. Decrypt file.txt using receiver's private key and verify sender's signature:
-   ```bash
-   gpg --decrypt file.txt.asc > file.txt
-   ```
-
-### Symmetrically encrypt/decrypt a file <sup>[2]</sup> 
-
-1. Encrypt file.txt into file.gpg using a password that must be provided:
-   ```bash
-   gpg --output file.gpg --symmetric file.txt
-   ```
-1. Decrypt file.gpg into file.txt using the same password used to encrypt file.txt:
-   ```bash
-   gpg --decrypt file.gpg
-   ```
+  - Used to derive a cryptographically-secure symmetric Secret Key from a less secure password or other input (like a Shared Secret created via a Diffie-Hellman exchange).
+  - Very similar to hash functions, but more secure. This is because KDFs produce higher-entropy and more uniformly random outputs.
+    - Used both to create encryption keys from passwords and to create cryptographically-secure hashes from passwords
+  - Keyed-hash MACs (HMACs) are frequently used as part of KDFs. The input for the KDF may be hashed thousands of times to increase the difficulty of Brute Force Attacks. This is called a Work Factor.
 
 
 ---
-## PAM
+## MAC (Message Authentication Code)
 
-`authconfig --disablesssdauth --update` = Remove pam sssd module.<br>
+> HMAC, PMAC, OMAC
 
-#### /etc/pam.d/ syntax
+  - Used to ensure data integrity in messages. Similar to Digital Signatures, except much smaller (only a few bytes) and faster.
+  1. The Sender uses a MAC algorithm with a Shared Secret on a message's hash to create a cryptographic checksum, called a MAC.
+  2. The MAC is attached to the message and sent to the Receiver.
+  3. The Receiver uses the same Shared Secret with the same MAC algorithm on the message's hash.
+  4. The Receiver compares his MAC with the Sender's MAC. If they match, the message is good and has not been altered en route. The Receiver also knows that the message definitely came from the Sender (and not a Man-in-the-Middle) because only the Receiver and Sender posess the Shared Secret.
+  - Faster than Digital Signatures, but doesn't provide Non-Repudiation because the Symmetric Key used to sign the hash is not unique to the Sender.
+
+### HMAC (Keyed-Hash Message Authentication Code)
+
+> HMAC-SHA256, HMAC-MD5, HMAC-SHA1
+
+- HMACs are a type of Keyed Cryptographic hash functions, which are used to dervice MACs.
+```
+Example:
+HMAC-MD5(key="key", message="The quick brown fox jumps over the lazy dog") = 80070713463e7749b90c2dc24911e275
+```
+
+<img src="images/hmac.png" width="600"/>
+
+
+---
+## HASHING
+
+> - *Unkeyed cryptographic*: MD5 (deprecated), SHA1 (deprecated), SHA2 (SHA256 & SHA512), SHA3, bcrypt
+> - *Keyed cryptographic*: HMACs, KMACs, MD6, UMACs, VMACs, BLAKE2
+> - *Non-cryptographic*: Buzhash, xxHash, Pearson hashing, MurmurHash
+> - *Checksums*: sum8, sum32, fletcher-4, fletcher-32, xor8, Adler-32
+>   - *Cyclic Redundancy Checks (CRCs)*: cksum, CRC-16, CRC-32, CRC-64
+  - Hashes are one-way functions to ensure data integrity and to obscure/obfuscate passwords.
+    - **CRCs** (a common type of checksum) are short and used to detect and/or correct changes in data.
+    - **Unkeyed hashes** depend only on input data, intentioanlly designed to be computationally intensive, and are cryptographically secure against brute-force attacks.
+    - **Keyed hashes** depend on input data and a Symmetric Key. Much faster than salted hashes. An HMAC is a type of keyed hash.
+  - **Salting:** When hashing passwords, it is recommended to salt them by hashing the user's password concatenated with a random unique string tied to that user's account. This eliminates the effectiveness of Rainbow Tables because common passwords that have been salted now create hashes different from what would appear on Rainbow Tables.
+
+| Salted vs Keyed hashes             | Salted hash               | Keyed hash            |
+|------------------------------------|---------------------------|-----------------------|
+| Primary function                   | Deter brute-force attacks | Ensure data integrity |
+| Salt/Key is known to attacker      | Yes                       | No                    |
+| Reused between messages            | No                        | Yes                   |
+| Relative speed                     | Slow                      | Fast                  |
+
+<img src="images/salted-hash.png" width="600"/>
+
+
+---
+## MFA (Multi-Factor Authentication)
+
+### TOTP (Time-based One-Time Password)
+- Used with an Authenticator app that combines a shared symmetric Secret Key with the current timestamp (on a 30s interval) to create a single-use one-time password.
+  - An HMAC is used to create the TOTP, which is encoded and truncated down to 6-digits.
+  - Only the Authenticator app and the authenticating server know the Secret Key.
+  - Based on HMAC-based One-Time Passwords (HOTP)
+
+### FIDO U2F
 `TODO`
 
+## KEY EXCHANGE
 
----
-## SELINUX
+- #### Diffie-Hellman
+  - Used to securely create a Shared Secret for a symmetrically-encrypted interaction. A Key-Derivation Function (KDF) can then be used with the Shared Secret in order to create a cryptographically-secure Secret Key for use with AES.
+  - Vulnerable to Man in the Middle attacks if the exchange is not encrypted with RSA.
+- #### Diffie-Hellman-RSA (DH_RSA)
+  - DH with RSA
+  - Bob uses signs his DH Public Key with his RSA Private Key before sending it to Alice.
+  - Alice verifies Bob's signature using his RSA Public Key to ensure the DH Public Key is actually from Bob and there is no Man in the Middle.
 
-`semanage port –a –t ssh_port_t tcp 9999` = Set ssh context to allow use of port 9999.<br>
+<img src="images/dh-exchange.png" width="600"/>
 
-SELinux context syntax: `user:role:type:level`  
 
-`ls -Z` = View selinux contexts.<br>
+## ATTACKS
 
-`chcon -R [context] file.txt` = Change selinux context.<br>
-                         `-R` = Recursive.<br>
+- **Side-channel attack** = Attack based on a weakness in the implementation of a security system, rather than a weakness in the system itself.
 
-`sestatus -v` = Display general selinux config.<br>
-         `-v` = Verbose.<br>
+  - **Cold-boot attack** = Attacker with physical access reboots into a temporary OS and performs a memory dump to retrieve encryption keys stored in RAM from the previous boot. Exploits the fact that RAM is unencrypted and remains readable seconds to minutes after losing power. Used to circumvent full-disk encryption.
 
-`setenforce 1` = Enable selinux enforcement (`1` for on, `0` for off.  )  <br>
-`fixfiles`     = Check security context database.<br>
+  - **Cache side-channel attack** = (*ex. Meltdown & Spectre*) Attacker takes advantage of the way speculative execution is performed on certain CPUs to gain access to protected areas of memory.
 
-`restorecon -F ./file.txt` = Restore selinux context to specified file or directory.<br>
-                      `-F` = Force.<br>
+- **Man-in-the-middle attack (MITM)** = Attacker relays or alters messages between two parties who believe they're communicating with each other.
 
-`getsebool`                              = Get selinux boolean values.<br>
-`setsebool`                              = Toggle selinux boolean values.<br>
-`setsebool httpd_can_network_connect on` = Allow outside directory access to httpd.<br>
+  - **ARP spoofing / ARP poisoning** = Attacker replies to ARP messages that are requesting the MAC of a specific IP. This allows the attacker to get their MAC associated with the IP of another host, usually the default gateway. The attacker can then perform a DoS or MITM attack by intercepting and relaying traffic.
 
-`aureport -a` = Summarize audit logs and show failures.<br>
+  - **Replay attack** = Attacker repeats or delays a valid message, fooling a party into believing the attacker is legitimate.
 
----
-#### `audit2allow` command <sup>[1]</sup>  
+<img src="images/replay-attack.png" width="300"/>
 
-`audit2allow -w -a` or `audit2why -a` = Generate a list of policies triggering selinux denials.<br>
-`audit2allow -a -M [policy]` = Create an selinux module that would fix the current policy denial (see below).<br>
 
-`semodule -l` = List all current selinux modules.<br>
+### Breaking encryption
+  "Big O" time complexity
 
-```
-~]# audit2allow -w -a
+![time-complexity](images/time-complexity.jpg)
 
-type=AVC msg=audit(1226270358.848:238): avc:  denied  { write }
-for pid=13349 comm="certwatch" name="cache" dev=dm-0 ino=218171
-scontext=system_u:system_r:certwatch_t:s0  
-tcontext=system_u:object_r:var_t:s0 tclass=dir  
-	Was caused by:
-		Missing type enforcement (TE) allow rule.
+  - classical brute-force time complexity of breaking a cryptographic hash = **O(2<sup>N</sup>)**
+    - A SHA256 hash has a search space of **2<sup>256</sup>** <sup>[3]</sup>
 
-	You can use audit2allow to generate a loadable module to
-  allow this access.
-```  
+  - quantum brute-force time complexity of factoring an RSA key using Shor's algorithm = **O(72(logN)<sup>3</sup>)** <sup>[4]</sup>
 
-```
-~]# audit2allow -a -M mycertwatch
+![shors-algorithm](images/time-complexity-shors-algorithm.jpg)
 
-******************** IMPORTANT ***********************
-To make this policy package active, execute:
-
-semodule -i mycertwatch.pp
-```
-
-selinux denial log example in `/var/log/messages`: <sup>[1]</sup>  
-```
-Dec 16 16:28:22 [hostname] kernel: type=1400 audit(1576531702.010:97659712): avc:  denied  { getattr }
-for pid=28583 comm="pidof" path="/usr/bin/su" dev="dm-0" ino=50444389.<br>
-scontext=system_u:system_r:keepalived_t:s0 tcontext=system_u:object_r:su_exec_t:s0 tclass=file permissive=0
-```
-
-[1]: https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/6/html/security-enhanced_linux/sect-security-enhanced_linux-fixing_problems-allowing_access_audit2allow  
-[2]: https://stackoverflow.com/questions/36393922/how-to-decrypt-a-symmetrically-encrypted-openpgp-message-using-php  
-[3]: https://www.networkworld.com/article/3293052/encypting-your-files-with-gpg.html  
-[4]: https://www.howtogeek.com/427982/how-to-encrypt-and-decrypt-files-with-gpg-on-linux/  
-[5]: https://security.stackexchange.com/questions/25996/how-to-import-a-private-key-in-windows
-
+[1]: https://strongarm.io/blog/how-https-works/
+[2]: https://www.codeproject.com/Articles/326574/An-Introduction-to-Mutual-SSL-Authentication
+[3]: https://www.youtube.com/watch?v=S9JGmA5_unY&t=1s
+[4]: https://cs.stackexchange.com/questions/16684/shors-algorithm-speed

@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/usr/bin/env sh
 
 # certgen.sh
 # This script makes it easier to create CSRs with SANs.

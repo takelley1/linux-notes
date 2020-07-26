@@ -3,9 +3,12 @@
 
 *OpenSSH only*
 
-**See also:** [ssh essentials](https://www.digitalocean.com/community/tutorials/ssh-essentials-working-with-ssh-servers-clients-and-keys), [authorized_keys vs known_hosts](https://security.stackexchange.com/questions/20706/what-is-the-difference-between-authorized-keys-and-known-hosts-file-for-ssh), [sshd_config man page](https://www.freebsd.org/cgi/man.cgi?sshd_config(5))
+**See also:**<br>
+[ssh essentials](https://www.digitalocean.com/community/tutorials/ssh-essentials-working-with-ssh-servers-clients-and-keys)<br>
+[authorized_keys vs known_hosts](https://security.stackexchange.com/questions/20706/what-is-the-difference-between-authorized-keys-and-known-hosts-file-for-ssh)<br>
+[sshd_config man page](https://www.freebsd.org/cgi/man.cgi?sshd_config(5))<br>
 
-### files <sup>[6]</sup>
+### Files <sup>[6]</sup>
 
 `~/.ssh/known_hosts`
   - Kept on the client.
@@ -35,7 +38,7 @@ firewall-cmd --zone=block --permanent --remove-port 123/tcp
 firewall-cmd --reload
 ```
 
-### `firewall-cmd` command
+### firewall-cmd options
 
 `--list-ports` or `--list-services` = Show allowed ports/services.<br>
 `--list-all-zones` = Show firewalld rules for both public and private zones.<br>
@@ -62,9 +65,9 @@ iptables –A OUTPUT -o eth0 –p tcp --sport 80 –m state --state NEW,ESTABLIS
 
 
 ---
-## `ip` COMMAND
+## IP
 
-### interfaces
+### Interfaces
 
 `ip a add 192.168.1.200/24 dev eth0`   = Add ip to device.
 `ip a del 10.0.0.10/24 dev enp12s0`    = Remove ip from device.
@@ -72,7 +75,7 @@ iptables –A OUTPUT -o eth0 –p tcp --sport 80 –m state --state NEW,ESTABLIS
 
 `ip link set dev eth1 up` = Enable/disable interface.
 
-### config
+### Config
 
 `ip n show` = Show neighbor/arp cache.
 `ip r`      = Show routing table.
@@ -85,16 +88,16 @@ iptables –A OUTPUT -o eth0 –p tcp --sport 80 –m state --state NEW,ESTABLIS
 ---
 ## PORTS
 
-### remote ports
+### Remote ports
 
-`nmap -p [port#] [ip]` or `telnet [ip] [port#]` = Ping specific tcp port on host.
+`nmap -p <PORT> <IP>` or `telnet <IP> <PORT>` = Ping specific tcp port on host.
 
-`nc -zvu [ip] [port#]` = Ping specific udp port on host.<br>
-                  `-z` = Zero IO mode, show only if connection is up/down.<br>
-                  `-v` = Verbose.<br>
-                  `-u` = Query udp instead of tcp.<br>
+`nc -zvu <IP> <PORT>` = Ping specific udp port on host.<br>
+                 `-z` = Zero IO mode, show only if connection is up/down.<br>
+                 `-v` = Verbose.<br>
+                 `-u` = Query udp instead of tcp.<br>
 
-### local ports
+### Local ports
 
 > NOTE: `netstat` has been deprecated in favor of `ss` <sup>[5]</sup>
 
@@ -107,7 +110,7 @@ iptables –A OUTPUT -o eth0 –p tcp --sport 80 –m state --state NEW,ESTABLIS
                             `-t` = Tcp ports.<br>
                             `-u` = Udp ports.<br>
 
-### scanning <sup>[3]</sup>
+### Scanning <sup>[3]</sup>
 
 `nmap -p 22 192.168.1.0/24`      = Scan for every host on subnet with port 22 open.<br>
 `nmap -p 1-1000 192.168.1.20-40` = Scan tcp ports 1-1000 on hosts within range.<br>
@@ -118,7 +121,7 @@ iptables –A OUTPUT -o eth0 –p tcp --sport 80 –m state --state NEW,ESTABLIS
 
 ### VLANS
 
-[how do VLANs work?](https://serverfault.com/questions/188350/how-do-vlans-work?rq=1)
+[how do VLANs work?](https://serverfault.com/questions/188350/how-do-vlans-work?rq=1)<br>
 [access ports vs trunk ports](https://www.solarwindsmsp.com/blog/vlan-trunking)
 
 ---
@@ -139,7 +142,7 @@ iptables –A OUTPUT -o eth0 –p tcp --sport 80 –m state --state NEW,ESTABLIS
 
 `dig domain.com` or `nslookup domain.com` or `host domain.com` = Perform dns lookup on domain.
 
-### tcpdump <sup>[2]</sup>
+### Tcpdump <sup>[2]</sup>
 
 `tcpdump -tvv` = Dump all packets on all interfaces.<br>
  `-v` or `-vv` = Extra packet information.<br>
@@ -165,7 +168,7 @@ iptables –A OUTPUT -o eth0 –p tcp --sport 80 –m state --state NEW,ESTABLIS
 `date +%T –s "16:45:00"` = Manually set time in HH:mm:ss format.<br>
 `date`                   = View current time.<br>
 
-### chrony <sup>[1]</sup>
+### Chrony <sup>[1]</sup>
 
 Show timekeeping stats:
 ```
@@ -216,11 +219,11 @@ mail -v                                   \
 recipient@example.com                        # This is the 'to' field of the email.
 ```
 
-### filtering
+### Mail filtering
 
 `grep -o -E 'from=<.*>' /var/log/maillog | sort -u` = Filter sending addresses from maillog.<br>
 
-### postfix whitelists
+### Postfix whitelists
 
 1. add line to `/etc/postfix/main.cf`<br>
    ```bash
@@ -233,7 +236,7 @@ recipient@example.com                        # This is the 'to' field of the ema
 
 
 ---
-## `wget` COMMAND
+## WGET
 
 ```bash
 wget                            \
