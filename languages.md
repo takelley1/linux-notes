@@ -1,11 +1,11 @@
 
-## PARADIGMS <sup>[1]</sup> 
+## PARADIGMS <sup>[1]</sup>
 
-**imperative:** programming with an explicit sequence of commands that update state  
-**procedural:** imperative programming with procedure calls  
-**declarative:** programming by specifying the result you want, not how to get it  
-**object-oriented:** programming by defining objects that send messages to each other  
-**functional:** programming with function calls that avoid any global state  
+- **Imperative:** Programming with an explicit sequence of commands that update state.<br>
+  - **Procedural:** Imperative programming with procedure calls.<br>
+  - **Object-oriented:** Programming by defining objects that send messages to each other.<br>
+- **Declarative:** Programming by specifying the result you want, not how to get it.<br>
+  - **Functional:** Programming with function calls that avoid any global state.<br>
 
 
 ## FRAMEWORKS AND RUNTIMES
@@ -13,18 +13,18 @@
 ---
 ### Node.js
 
-released: 2009  
-use: server-side scripting  
-type: runtime environment  
+Released: 2009<br>
+Type: Runtime environment<br>
+Use: Server-side scripting<br>
 
-- runs JavaScript outside of a browser
+- Runs JavaScript outside of a browser.
 
 ---
 ### .NET
 
-released:  
-use:  
-type: framework  
+Released:<br>
+Type: Framework<br>
+Use:<br>
 
 ![comparison-of-programming-languages](/images/comparison-of-programming-languages.png)
 
@@ -33,39 +33,41 @@ type: framework
 ---
 ### C
 
-released: 1972  
-use: systems, applications, general-purpose  
-examples: Linux kernel  
+Examples: Linux kernel<br>
+Paradigm:
+Released: 1972<br>
+Use: Systems, apps, general-purpose<br>
 
 ---
 ### C++
 
-released: 1985  
-use: systems, applications, games  
-examples:  
+Examples:<br>
+Released: 1985<br>
+Use: Systems, apps, games<br>
 
-- most 3D games are written in C++
-- strong focus on performance and efficiency
+- Most 3D games are written in C++.
+- Strong focus on performance and efficiency.
 
 ---
 ### C#
 
-released: 2000  
-use: applications, web  
-examples:  
+Examples:<br>
+Released: 2000<br>
+Use: Apps, web<br>
 
-- microsoft's .NET answer to java
-- heavily object-oriented compared to C or C++
+- Microsoft's .NET answer to Java.
+- Heavily object-oriented compared to C or C++.
 
 ---
 ### COBOL
 
-released: 1959  
-use: business, legacy support, mainframes, transaction processing  
-examples:  
+*Common Business-Oriented Language*
 
-- "Common Business-Oriented Language"
-- Mostly dead, all current work in COBOL is to maintain older apps
+Examples:<br>
+Released: 1959<br>
+Use: Business, legacy support, mainframes, transaction processing<br>
+
+- Mostly dead, all current work in COBOL is to maintain older apps.
 
 ```cobol
   OPEN INPUT sales, OUTPUT report-out
@@ -93,13 +95,14 @@ examples:
 ---
 ### CSS
 
-released: 1996  
-use: style sheet for presentation
-examples:  
+*Cascading Style Sheets*
 
-- "Cascading Style Sheets"
-- used to describe how HTML is presented on a web page
-- cornerstone of the web, along with HTML and JavaScript
+Examples:<br>
+Released: 1996<br>
+Use: Style sheet for presentation<br>
+
+- Used to describe how HTML is presented on a web page.
+- Cornerstone of the web, along with HTML and JavaScript.
 
 ```css
 body {
@@ -114,11 +117,11 @@ body {
 ---
 ### Fortran
 
-released: 1957  
-use: numerical, scientific, high-performance computing  
-examples:  
+Examples:<br>
+Released: 1957<br>
+Use: Numerical, scientific, high-performance computing<br>
 
-- oldest high-level language
+- Oldest high-level language.
 
 ```fortran
 C     AREA OF A TRIANGLE
@@ -133,11 +136,11 @@ C     AREA OF A TRIANGLE
 ---
 ### Go
 
-released: 2009  
-use: applications, web, server-side, cloud  
-examples: Docker, Ethereum, OpenShift, Kubernetes, Terraform  
+Examples: Docker, Ethereum, OpenShift, Kubernetes, Terraform<br>
+Released: 2009<br>
+Use: Applications, web, server-side, cloud<br>
 
-- design heavily influenced by C
+- Design heavily influenced by C.
 
 ```go
 package main
@@ -152,9 +155,9 @@ func main() {
 ---
 ### Haskell
 
-released: 1990  
-use: applications  
-examples: Xmonad window manager, Git-annex  
+Examples: Xmonad window manager, Git-annex<br>
+Released: 1990<br>
+Use: Applications<br>
 
 ```haskell
 factorial n = if n < 2
@@ -165,9 +168,9 @@ factorial n = if n < 2
 ---
 ### HTML
 
-released:  
-use:  
-examples:  
+Examples:<br>
+Released:<br>
+Use:<br>
 
 ```html
 <!DOCTYPE html>
@@ -187,13 +190,13 @@ examples:
 ---
 ### Java and Kotlin
 
-released: 1995  
-use: application, web, general-purpose  
-examples:  
+Examples:<br>
+Released: 1995<br>
+Use: Apps, web, general-purpose<br>
 
-- "write once, run anywhere"
-- known for verbose syntax
-- Kotlin (released 2011) is a related Java-compatible language developed by JetBrains
+- "Write once, run anywhere".
+- Known for verbose syntax.
+- Kotlin (released 2011) is a related Java-compatible language developed by JetBrains.
 
 ```java
 public class HelloWorldApp {
@@ -206,11 +209,11 @@ public class HelloWorldApp {
 ---
 ### JavaScript
 
-released: 1995  
-use: web apps, client-side web scripting
-examples:  
+Examples:<br>
+Released: 1995<br>
+Use: Web apps, client-side web scripting<br>
 
-- enables interactive web pages
+- Enables interactive web pages.
 
 ```javascript
 function factorial(n) {
@@ -226,12 +229,12 @@ factorial(3); // returns 6
 ---
 ### Lua
 
-released: 1993  
-use: scripting  
-examples:  
+Examples:<br>
+Released: 1993<br>
+Use: Scripting<br>
 
-- designed for embedded use within applications
-- lightweight and portable
+- Designed for embedded use within applications.
+- Lightweight and portable.
 
 ```lua
 function factorial(n)
@@ -244,15 +247,20 @@ end
 ```
 
 ---
-### Lisp and Clojure
+### Lisp
 
-released: 1958  
-use:  
-examples:  
+*LISt Processing*
 
-- known for heavy use of parentheses
-- second-oldest high-level language (behind Fortran by 1 year)
-- Clojure is a common Lisp dialect
+Dialects: [Clojure](https://clojure.org), [Common Lisp](https://lisp-lang.org/), Emacs Lisp, Racket, Scheme
+Examples: Emacs, Grammarly<br>
+Paradigm: Functional, procedural
+Released: 1958<br>
+Use: AI, scripting, apps<br>
+
+- Technically a family of programming languages.
+- Recently seen a resurgence
+- Known for heavy use of parentheses and prefix-style syntax.
+- Second-oldest high-level language (behind Fortran by 1 year).
 
 ```lisp
  (defun factorial (n)
@@ -261,62 +269,74 @@ examples:
 ```
 
 ---
-### Pascal
+### Pascal <sup>[3]</sup>
+
+Examples:<br>
+Paradigm: Procedural
+Released: 1970<br>
+Use:<br>
+
+- Emphasis on structured programming.
+- Designed to improve upon ALGOL, FORTRAN, and COBOL.
+- Popular in the 1970s and 80s.
+- Replaced by C and C++
 
 ---
-### Perl and Raku (aka Perl 6)
+### Perl and Raku
 
-released: 1987 (Perl), 2019 (Raku)  
-use: general-purpose, scripting, text parsing  
-examples: urxvt terminal extensions  
+Examples: Urxvt terminal extensions<br>
+Paradigm:
+Released: 1987 (Perl), 2019 (Raku)<br>
+Use: General-purpose, scripting, text parsing<br>
 
-- old and possibly dying
-- originally used in early internet back-end code
-- regular expressions in Linux originate from Perl
-- used as a glue language
-- perceived to be inelegant due to its unplanned development
+- Old and possibly dying.
+- Perl 6 became Raku, a separate project.
+- Originally used in early internet back-end code.
+- Regular expressions in Linux originate from Perl.
+- Popular as a "glue language".
+- Perceived to be inelegant due to its unplanned development.
 
 ---
 ### PHP
 
-released:  
-use:  
-examples:  
+Examples:<br>
+Released:<br>
+Use:<br>
 
 ---
 ### Python
 
-released: 1991  
-use: general-purpose, scripting, machine learning, data science  
-paradigm: multi-paradigm, but leans towards object-oriented <sup>[2]</sup>  
-examples: Ansible, Openstack, Blender, Ranger file browser  
+Examples: Ansible, Openstack, Blender, Ranger file browser<br>
+Paradigm: Multi-paradigm, but leans towards object-oriented <sup>[2]</sup><br>
+Released: 1991<br>
+Use: General-purpose, scripting, machine learning, data science<br>
 
-- designed to be easy to read (uses whitespace instead of brackets)
-- extremely popular
-- good first language
+- Designed to be easy to read (uses whitespace instead of brackets).
+- Extremely popular.
+- Good first language.
 
 ```python
-# computing a factorial 
+# computing a factorial
 n = 23
 fact = 1
-  
-for i in range(1,n+1): 
-    fact = fact * i 
-      
-print ("The factorial of 23 is : ",end="") 
-print (fact) 
+
+for i in range(1,n+1):
+    fact = fact * i
+
+print ("The factorial of 23 is : ",end="")
+print (fact)
 ```
 
 ---
 ### Ruby
 
-released: 1995  
-use: general-purpose, scripting  
-paradigm: 100% object-oriented: everything is an object
-examples: Ruby on Rails, Homebrew package manager, Metasploit  
+Examples: Puppet, Chef, Ruby on Rails, Homebrew, Metasploit<br>
+Paradigm: Strictly object-oriented<br>
+Released: 1995<br>
+Use: General-purpose, scripting<br>
 
-- designed to be productive and fun, focused on humans rather than computers
-- follows the Principle of Least Astonishment and attempts to minimize programmer confusion<sup>[2]</sup>  
+- Designed to be productive and fun, focused on humans rather than computers.
+- Follows the Principle of Least Astonishment and attempts to minimize programmer confusion<sup>[2]</sup>.
 
 ```ruby
 def factorial(n)
@@ -331,12 +351,12 @@ end
 ---
 ### Rust
 
-released: 2010  
-use:  
-examples: Alacritty terminal, Firefox's Servo engine  
+Examples: Alacritty terminal, Firefox's Servo engine<br>
+Released: 2010<br>
+Use:<br>
 
-- focused on safety, especially safe concurrency
-- one of the most loved languages in StackOverflow's developer survey
+- Focused on safety, especially safe concurrency.
+- One of the most loved languages in StackOverflow's developer survey.
 
 ```rust
 fn factorial(i: u64) -> u64 {
@@ -350,9 +370,10 @@ fn factorial(i: u64) -> u64 {
 ---
 ### Scala
 
-released:  
-use:  
-examples:  
+Examples:<br>
+Released:<br>
+Use:<br>
 
-[1]: https://cs.lmu.edu/~ray/notes/paradigms/  
-[2]: https://www.coursereport.com/blog/ruby-vs-python-choosing-your-first-programming-language  
+[1]: https://cs.lmu.edu/~ray/notes/paradigms/
+[2]: https://www.coursereport.com/blog/ruby-vs-python-choosing-your-first-programming-language
+[3]: https://www.britannica.com/technology/Pascal-computer-language

@@ -1,5 +1,5 @@
 
-## `.service` FILES
+## UNIT FILES
 
 **See also:** [systemd man pages](http://0pointer.de/public/systemd-man/)
 
@@ -8,10 +8,10 @@ man systemd.unit
 man systemd.service
 man systemd.target
 ```
-Service files can be placed in `$HOME/.config/systemd/user/my_daemon.service` or `/etc/systemd/system/my_daemon.service`.  
+User service files can be placed in `$HOME/.config/systemd/user/my_daemon.service` or `/etc/systemd/system/my_daemon.service`.<br>
 
 Example syntax:
-```bash
+```
 [Unit]
 Description=My Miscellaneous Service
 After=network.target
@@ -28,12 +28,12 @@ Restart=on-failure # Other restart options: always, on-abort
 
 # The install section is needed to use `systemctl enable` to start on boot.
 # For a user service that you want to enable and start automatically,
-# use `default.target`. For system level services, use `multi-user.target`.
+# use `default.target`. For system level services, use `multi-user.target`.<br>
 [Install]
 WantedBy=multi-user.target
 ```
 
-```bash
+```
 [Unit]
 Description=The NGINX HTTP and reverse proxy server
 After=syslog.target network.target remote-fs.target nss-lookup.target
@@ -51,7 +51,7 @@ PrivateTmp=true
 WantedBy=multi-user.target
 ```
 
-```bash
+```
 [Unit]
 Description=Example systemd service.
 
@@ -87,33 +87,33 @@ journalctl -f --user-unit my_user_daemon
 ```
 <sup>[1]</sup> 
 
-`systemd-analyze blame` = Show startup times by process.
+`systemd-analyze time` = Show startup times by process.
 
 
 ---
 ## RUNLEVELS
 
-| `init` runlevel | `systemd` target                         | result                          |
-|-----------------|------------------------------------------|---------------------------------|
-| `0`             | `poweroff.target` / `runlevel0.target`   | shutdown                        |
-| `1`             | `rescue.target` / `runlevel1.target`     | single-user mode / rescue shell |
-| `2`             | `multi-user.target` / `runlevel2.target` | multi-user mode                 |
-| `3`             | `multi-user.target` / `runlevel3.target` | multi-user mode                 |
-| `5`             | `graphical.target` / `runlevel5.target`  | multi-user mode w/ GUI          |
-| `6`             | `reboot.target` / `runlevel6.target`     | reboot                          |
+| Init runlevel | Systemd target      | Result                          |
+|---------------|---------------------|---------------------------------|
+| 0             | `poweroff.target`   | Shutdown                        |
+| 1             | `rescue.target`     | Single-user mode / rescue shell |
+| 2             | `multi-user.target` | Multi-user mode                 |
+| 3             | `multi-user.target` | Multi-user mode                 |
+| 5             | `graphical.target`  | Multi-user mode w/ GUI          |
+| 6             | `reboot.target`     | Reboot                          |
 
-| action                  | init                      | systemd                                   |
-|-------------------------|---------------------------|-------------------------------------------|
-|change default runlevel  |`/etc/init/rc-sysinit.conf`|`systemd set-default [TARGET]`             |
-|change current runlevel  |`init #`                   |`systemd isolate [TARGET]`                 |
-|get default runlevel     |                           |`systemctl get-default`                    |
-|enter system rescue mode |`init 1`                   |`systemctl rescue` or `systemctl emergency`|
+| Action                   | Init                        | Systemd                                     |
+|--------------------------|-----------------------------|---------------------------------------------|
+| Change default runlevel  | `/etc/init/rc-sysinit.conf` | `systemd set-default <TARGET>`              |
+| Change current runlevel  | `init <RUNLEVEL>`           | `systemd isolate <TARGET>`                  |
+| Get default runlevel     | -                           | `systemctl get-default`                     |
+| Enter system rescue mode | `init 1`                    | `systemctl rescue` or `systemctl emergency` |
 
 
-#### runlevel scripts
+#### Runlevel scripts
 
-init:    Place script in `/etc/rc#.d/`, in which `#` corresponds to the desired runlevel in which you'd like the script to run.  
-systemd: Place or symlink script in `/etc/systemd/system/` and enable service.   
+init:    Place script in `/etc/rc#.d/`, in which `#` corresponds to the desired runlevel in which you'd like the script to run.<br>
+systemd: Place or symlink script in `/etc/systemd/system/` and enable service.<br>
 
 [1]: https://www.devdungeon.com/content/creating-systemd-service-files  
 [2]: https://www.shellhacks.com/systemd-service-file-example/  

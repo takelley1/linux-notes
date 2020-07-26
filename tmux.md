@@ -40,9 +40,9 @@
 
 #### tmux copy and paste
 
-1. `CTRL-b [` = Enter scrollback mode.  
-1. `SPACE`    = Enter text selection mode.  
-1. `ENTER`    = Copy selected text to clipboard.  
-1. `CTRL-b ]` = Paste text from clipboard.  
+1. `CTRL-b [` = Enter scrollback mode.<br>
+1. `SPACE`    = Enter text selection mode.<br>
+1. `ENTER`    = Copy selected text to clipboard.<br>
+1. `CTRL-b ]` = Paste text from clipboard.<br>
 
--. `CTRL-b =` = List paste buffers (clipboard history).  
+-. `CTRL-b =` = List paste buffers (clipboard history).<br>

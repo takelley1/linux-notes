@@ -1,123 +1,122 @@
 
 ## GIT <sup>[1]</sup>
 
-**see also:** [github fundamentals](https://git-scm.com/docs)
+**See also:** [github fundamentals](https://git-scm.com/docs)
 
-`git add -A` = Stage all modified files, including deleted files.    
-`git add -A ./*` = Stage all modified files, including deleted files, beneath the current path.    
-`git add -u` = Stage all modified files.    
-
----
-### tags
-
-**further reading:** [git basics - tagging](https://git-scm.com/book/en/v2/Git-Basics-Tagging)
-
-*tag specific commits to release your software*  
-`git tag v0.1`           = Tag the current commit as version 0.1.  
-`git push origin --tags` = Push tags.    
+`git add -A` = Stage all modified files, including deleted files.<br>
+`git add -A ./*` = Stage all modified files, including deleted files, beneath the current path.<br>
+`git add -u` = Stage all modified files.<br>
 
 ---
-### setup
+### Tags
 
-*configuring user information used across all local repositories*   
-`git config --global user.name “[firstname lastname]”` = Set a name that is identifiable for credit when review version history.    
-`git config --global user.email “[valid-email]”`       = Set an email address that will be associated with each history marker.    
-`git config --global color.ui auto`                    = Set automatic command line coloring for git for easy reviewing.  
+**See also:** [git basics - tagging](https://git-scm.com/book/en/v2/Git-Basics-Tagging)
 
----
-### init
-
-*configuring user information, initializing and cloning repositories*  
-`git init`        = Initialize an existing directory as a git repository.    
-`git clone [url]` = Retrieve an entire repository from a hosted location via url.  
+*Tag specific commits to release your software.*<br>
+`git tag v0.1`           = Tag the current commit as version 0.1.<br>
+`git push origin --tags` = Push tags.<br>
 
 ---
-### staging
+### Setup
 
-*reverting changes*  
-`git checkout [commit hash] -- ./file1 ../file2` = Revert file1 and file2 to the specified commit.    
-`git checkout -- [file]`                         = Undo changes made to an unstaged file.  
-
-*working with snapshots and the staging area*  
-`git status`                = Show modified files in working directory, staged for your next commit.    
-`git add [file]`            = Add a file as it looks now to your next commit (stage).  
-`git reset [file]`          = Unstage a file while retaining the changes in working directory.    
-
-`git diff`                  = Diff of what is changed but not staged.    
-`git diff --staged`         = Diff of what is staged but not yet commited.    
-`git commit -m '[message]'` = Commit your staged content as a new commit snapshot.  
+*Configuring user information used across all local repositories.*<br>
+`git config --global user.name “<FIRSTNAME LASTNAME>”` = Set a name that is identifiable for credit when review version history.<br>
+`git config --global user.email “<VALID-EMAIL>”`       = Set an email address that will be associated with each history marker.<br>
+`git config --global color.ui auto`                    = Set automatic command line coloring for git for easy reviewing.<br>
 
 ---
-### branches
+### Init
 
-**further reading:** [github branching best-practices](https://nvie.com/posts/a-successful-git-branching-model/)
-
-*isolating work in branches, changing context, and integrating changes*  
-`git branch`                 = List your branches, a `*` will appear next to the currently active branch.    
-`git branch [branch-name]`   = Create a new branch at the current commit.    
-`git checkout [branch-name]` = Switch to another branch and check it out into your working directory.    
-`git merge [branch-name]`    = Merge the specified branch into the current one.    
+*Configuring user information, initializing and cloning repositories.*<br>
+`git init`        = Initialize an existing directory as a git repository.<br>
+`git clone <URL>` = Retrieve an entire repository from a hosted location via url.<br>
 
 ---
-### history
+### Staging
 
-*examining logs, diffs and object information*  
-`git log`                    = Show the commit history for the active branch.    
-`git log branchB..branchA`   = Show the commits on branchA that are not on branchB.  
-`git log --follow [file]`    = Show the commits that changed file, even across renames.    
+*Reverting changes.*<br>
+`git checkout <COMMIT HASH> -- ./file1 ../file2` = Revert file1 and file2 to the specified commit.<br>
+`git checkout -- <FILE>`                         = Undo changes made to an unstaged file.<br>
 
-`git diff branchB...branchA` = Show the diff of what is in branchA that is not in branchB.  
-`git show [commit-hash]`     = Show any object in git in human-readable format.    
-`git checkout [commit-hash]` = Checkout the repository at the specified commit.  
+*Working with snapshots and the staging area.*<br>
+`git status`                = Show modified files in working directory, staged for your next commit.<br>
+`git add <FILE>`            = Add a file as it looks now to your next commit (stage).<br>
+`git reset <FILE>`          = Unstage a file while retaining the changes in working directory.<br>
 
----
-### tracking path changes
-
-*versioning file removes and path changes*  
-`git rm [file]`                    = Delete the file from project and stage the removal for commit.    
-`git mv [current-path] [new-path]` = Change an existing file path and stage the move.    
-`git log --stat -M`                = Show all commit logs with indication of any paths that moved.  
+`git diff`                  = Diff of what is changed but not staged.<br>
+`git diff --staged`         = Diff of what is staged but not yet commited.<br>
+`git commit -m '<MESSAGE>'` = Commit your staged content as a new commit snapshot.<br>
 
 ---
-### ignoring patterns
+### Branches
 
-*preventing unintentional staging or commiting of files*  
+**See also:** [github branching best-practices](https://nvie.com/posts/a-successful-git-branching-model/)
+
+*Isolating work in branches, changing context, and integrating changes.*<br>
+`git branch`                 = List your branches, a `*` will appear next to the currently active branch.<br>
+`git branch <BRANCH-NAME>`   = Create a new branch at the current commit.<br>
+`git checkout <BRANCH-NAME>` = Switch to another branch and check it out into your working directory.<br>
+`git merge <BRANCH-NAME>`    = Merge the specified branch into the current one.<br>
+
+---
+### History
+
+*Examining logs, diffs and object information.*<br>
+`git log`                    = Show the commit history for the active branch.<br>
+`git log branchB..branchA`   = Show the commits on branchA that are not on branchB.<br>
+`git log --follow <FILE>`    = Show the commits that changed file, even across renames.<br>
+
+`git diff branchB...branchA` = Show the diff of what is in branchA that is not in branchB.<br>
+`git show <COMMIT-HASH>`     = Show any object in git in human-readable format.<br>
+`git checkout <COMMIT-HASH>` = Checkout the repository at the specified commit.<br>
+
+---
+### Tracking path changes
+
+*Versioning file removes and path changes.*<br>
+`git rm <FILE>`                    = Delete the file from project and stage the removal for commit.<br>
+`git mv <CURRENT-PATH> <NEW-PATH>` = Change an existing file path and stage the move.<br>
+`git log --stat -M`                = Show all commit logs with indication of any paths that moved.<br>
+
+---
+### Ignoring patterns
+
+*Preventing unintentional staging or commiting of files.*<br>
 .gitignore:
 ```
 logs/
 *.notes
 pattern*/
 ```
-*save a file with desired paterns as .gitignore with either direct string matches or wildcard globs*  
-`git config --global core.excludesfile [file]` = System wide ignore patern for all local repositories.  
+*Save a file with desired paterns as .gitignore with either direct string matches or wildcard globs.*<br>
+`git config --global core.excludesfile <FILE>` = System wide ignore patern for all local repositories.<br>
 
 ---
-### remotes
+### Remotes
 
-*retrieving updates from another repository and updating local repos*  
-`git remote -v`                = Show remote repo info.    
-`git remote add [alias] [url]` = Add a git url as an alias.    
-`git fetch [alias]`            = Fetch down all the branches from that git remote.    
-`git merge [alias]/[branch]`   = Merge a remote branch into your current branch to bring it up to date.    
+*Retrieving updates from another repository and updating local repos.*<br>
+`git remote -v`                = Show remote repo info.<br>
+`git remote add <ALIAS> <URL>` = Add a git url as an alias.<br>
+`git fetch <ALIAS>`            = Fetch down all the branches from that git remote.<br>
+`git merge <ALIAS>/<BRANCH>`   = Merge a remote branch into your current branch to bring it up to date.<br>
 
-`git push [alias] [branch]`    = Transmit local branch commits to the remote repository branch.    
-`git pull`                     = Fetch and merge any commits from the tracking remote branch.  
-
----
-### rewriting history
-
-*rewriting branches, updating commits and clearing history*  
-`git rebase [branch]`       = Apply any commits of current branch ahead of specified one.    
-`git reset --hard [commit]` = Clear staging area, rewrite working tree from specified commit.  
+`git push <ALIAS> <BRANCH>`    = Transmit local branch commits to the remote repository branch.<br>
+`git pull`                     = Fetch and merge any commits from the tracking remote branch.<br>
 
 ---
-### stashing
+### Rewriting history
 
-*temporarily store modified, tracked files in order to change branches*  
-`git stash`      = Save modified and staged changes.    
-`git stash list` = List stack-order of stashed file changes.    
-`git stash pop`  = Write working from top of stash stack.    
-`git stash drop` = Discard the changes from top of stash stack.  
+*Rewriting branches, updating commits and clearing history.*<br>
+`git rebase <BRANCH>`       = Apply any commits of current branch ahead of specified one.<br>
+`git reset --hard <COMMIT>` = Clear staging area, rewrite working tree from specified commit.<br>
+
+---
+### Stashing
+
+*Temporarily store modified, tracked files in order to change branches.*<br>
+`git stash`      = Save modified and staged changes.<br>
+`git stash list` = List stack-order of stashed file changes.<br>
+`git stash pop`  = Write working from top of stash stack.<br>
+`git stash drop` = Discard the changes from top of stash stack.<br>
 
 [1]: https://education.github.com/git-cheat-sheet-education.pdf
-

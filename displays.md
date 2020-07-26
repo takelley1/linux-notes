@@ -16,25 +16,25 @@
     - Cons: Slower response times than TN, issues with "IPS glow" at screen edges.
 - Backlight technologies
   - Edgelit - Many white LEDs along the edge of the display panel shine inwards.
-  - FALD (full array local dimming) - LCD with multiple LED backlight "zones" that can be selectively activated/deactivated, increasing contrast in some cases. The resolution of the backlight zones determines much "glow" is visible on images with sharp edges of contrast, like white text on a black background.
-  - Mini-LED local dimming - Ultra-high resolution local dimming created by extremely small individual white LED backlights, reducing backlight glow and increasing contrast. <sup>[3]</sup>
+  - FALD (full array local dimming) - LCD with multiple LED backlight "zones" that can be selectively activated/deactivated, increasing contrast in some cases. The resolution of the backlight zones determines much "glow" is visible on images with sharp edges of contrast, like white text on a black background.<br>
+  - Mini-LED local dimming - Ultra-high resolution local dimming created by extremely small individual white LED backlights, reducing backlight glow and increasing contrast. <sup>[3]</sup><br>
 
-![local-dimming](/images/local-dimming.webp) <sup>[3]</sup>
+![local-dimming](images/local-dimming.webp) <sup>[3]</sup>
 
 ---
 ## OLED <sup>[1], [2]</sup>
 
-*organic light-emitting diode*
-- each pixel emits its own light, brightness is controlled by the voltage applied to the panel
-- black pixels are completely turned off, allowing for "perfect" contrast
-  - Pros: excellent contrast capable of HDR, colors, and power efficiency, thinner than LCDs
-  - Cons: possible image retention issues, more expensive than LCD
+*Organic Light-Emitting Diode*
+- Each pixel emits its own light, brightness is controlled by the voltage applied to the panel.
+- Black pixels are completely turned off, allowing for "perfect" contrast.
+  - Pros: Excellent contrast capable of HDR, colors, and power efficiency, thinner than LCDs.
+  - Cons: Possible image retention issues, more expensive than LCD.
 
 ---
 ## MicroLED
 
-- each pixel is an individual LED, allowing for nearly all of the benefits of OLED without image retention issues
-- still an emerging technology
+- Each pixel is an individual LED, allowing for nearly all of the benefits of OLED without image retention issues.
+- Still an emerging technology.
 
 [1]: https://www.tomshardware.com/reviews/lcd-led-led-oled-panel-difference,5394.html
 [2]: https://www.displayninja.com/ips-vs-tn-vs-va/

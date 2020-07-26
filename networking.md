@@ -1,9 +1,9 @@
 
 ## SSH
 
-*Applies to OpenSSH only*
+*OpenSSH only*
 
-**see more:** [ssh essentials](https://www.digitalocean.com/community/tutorials/ssh-essentials-working-with-ssh-servers-clients-and-keys), [authorized_keys vs known_hosts](https://security.stackexchange.com/questions/20706/what-is-the-difference-between-authorized-keys-and-known-hosts-file-for-ssh), [sshd_config man page](https://www.freebsd.org/cgi/man.cgi?sshd_config(5))
+**See also:** [ssh essentials](https://www.digitalocean.com/community/tutorials/ssh-essentials-working-with-ssh-servers-clients-and-keys), [authorized_keys vs known_hosts](https://security.stackexchange.com/questions/20706/what-is-the-difference-between-authorized-keys-and-known-hosts-file-for-ssh), [sshd_config man page](https://www.freebsd.org/cgi/man.cgi?sshd_config(5))
 
 ### files <sup>[6]</sup>
 
@@ -21,27 +21,27 @@
 ---
 ## FIREWALLD
 
-**see more:** [using firewalld on centos7](https://www.digitalocean.com/community/tutorials/how-to-set-up-a-firewall-using-firewalld-on-centos-7)
+**See also:** [using firewalld on centos7](https://www.digitalocean.com/community/tutorials/how-to-set-up-a-firewall-using-firewalld-on-centos-7)
 
-Allow https traffic in the public zone.
-```
+Allow https traffic in the public zone:
+```bash
 firewall-cmd --zone=public --permanent --add-service=https
 firewall-cmd --reload
 ```
 
 Disallow port 123 tdp traffic in the block zone.
-```
+```bash
 firewall-cmd --zone=block --permanent --remove-port 123/tcp
 firewall-cmd --reload
 ```
 
 ### `firewall-cmd` command
 
-`--list-ports` or `--list-services` = Show allowed ports/services.
-`--list-all-zones` = Show firewalld rules for both public and private zones.
+`--list-ports` or `--list-services` = Show allowed ports/services.<br>
+`--list-all-zones` = Show firewalld rules for both public and private zones.<br>
 
-`--state` = Check if firewalld is running.
-`--zone=private --add-interface=ens32` = Attach zone to network interface.
+`--state` = Check if firewalld is running.<br>
+`--zone=private --add-interface=ens32` = Attach zone to network interface.<br>
 
 
 ---
@@ -78,8 +78,8 @@ iptables –A OUTPUT -o eth0 –p tcp --sport 80 –m state --state NEW,ESTABLIS
 `ip r`      = Show routing table.
 `ip a`      = Show network interfaces and IP addresses.
 
-`/etc/sysconfig/network` = See default gateway.
-`/etc/sysconfig/network-scripts/ifcfg-[interface]` = Networking device interface options (Fedora-based systems).
+`/etc/sysconfig/network` = See default gateway.<br>
+`/etc/sysconfig/network-scripts/ifcfg-[interface]` = Networking device interface options (Fedora-based systems).<br>
 
 
 ---
@@ -89,10 +89,10 @@ iptables –A OUTPUT -o eth0 –p tcp --sport 80 –m state --state NEW,ESTABLIS
 
 `nmap -p [port#] [ip]` or `telnet [ip] [port#]` = Ping specific tcp port on host.
 
-`nc -zvu [ip] [port#]` = Ping specific udp port on host.
-                  `-z` = Zero IO mode, show only if connection is up/down.
-                  `-v` = Verbose.
-                  `-u` = Query udp instead of tcp.
+`nc -zvu [ip] [port#]` = Ping specific udp port on host.<br>
+                  `-z` = Zero IO mode, show only if connection is up/down.<br>
+                  `-v` = Verbose.<br>
+                  `-u` = Query udp instead of tcp.<br>
 
 ### local ports
 
@@ -100,20 +100,20 @@ iptables –A OUTPUT -o eth0 –p tcp --sport 80 –m state --state NEW,ESTABLIS
 
 `less /etc/services` = Show ports being used by specific services.
 
-`netstat -plaunt` or `ss -plunt` = View all open ports.
-                            `-p` = Associated process PIDs.
-                            `-l` = Only listening ports.
-                            `-n` = Numerical ip addresses.
-                            `-t` = Tcp ports.
-                            `-u` = Udp ports.
+`netstat -plaunt` or `ss -plunt` = View all open ports.<br>
+                            `-p` = Associated process PIDs.<br>
+                            `-l` = Only listening ports.<br>
+                            `-n` = Numerical ip addresses.<br>
+                            `-t` = Tcp ports.<br>
+                            `-u` = Udp ports.<br>
 
 ### scanning <sup>[3]</sup>
 
-`nmap -p 22 192.168.1.0/24`      = Scan for every host on subnet with port 22 open.
-`nmap -p 1-1000 192.168.1.20-40` = Scan tcp ports 1-1000 on hosts within range.
-`nmap -sU localhost`             = Scan localhost for open udp ports.
+`nmap -p 22 192.168.1.0/24`      = Scan for every host on subnet with port 22 open.<br>
+`nmap -p 1-1000 192.168.1.20-40` = Scan tcp ports 1-1000 on hosts within range.<br>
+`nmap -sU localhost`             = Scan localhost for open udp ports.<br>
 
-`nmap -sP 10.0.0.0/8` = Attempt to ping all hosts on the 10.0.0.0/8 subnet and list responses.
+`nmap -sP 10.0.0.0/8` = Attempt to ping all hosts on the 10.0.0.0/8 subnet and list responses.<br>
 
 
 ### VLANS
@@ -124,10 +124,10 @@ iptables –A OUTPUT -o eth0 –p tcp --sport 80 –m state --state NEW,ESTABLIS
 ---
 ## ROUTES
 
-`ip route` or `routel` = View routing table.
-`route add default gw 192.168.1.1 eth0` = Manually add default gateway.
+`ip route` or `routel` = View routing table.<br>
+`route add default gw 192.168.1.1 eth0` = Manually add default gateway.<br>
 
-`traceroute domain.com` = Print the route that packets take to a given destination.
+`traceroute domain.com` = Print the route that packets take to a given destination.<br>
 
 
 ---
@@ -141,20 +141,20 @@ iptables –A OUTPUT -o eth0 –p tcp --sport 80 –m state --state NEW,ESTABLIS
 
 ### tcpdump <sup>[2]</sup>
 
-`tcpdump -tvv` = Dump all packets on all interfaces.
- `-v` or `-vv` = Extra packet information.
-          `-t` = Human-readable timestamps.
+`tcpdump -tvv` = Dump all packets on all interfaces.<br>
+ `-v` or `-vv` = Extra packet information.<br>
+          `-t` = Human-readable timestamps.<br>
 
-`tcpdump -i ens32` = Packets on interface ens32.
+`tcpdump -i ens32` = Packets on interface ens32.<br>
 
-`tcpdump host 1.1.1.1`     = Packets going to or from 1.1.1.1.
-`tcpdump src 10.0.0.5`     = Packets coming from 10.0.0.5.
-`tcpdump dst 192.168.1.10` = Packets going to 192.168.1.10.
+`tcpdump host 1.1.1.1`     = Packets going to or from 1.1.1.1.<br>
+`tcpdump src 10.0.0.5`     = Packets coming from 10.0.0.5.<br>
+`tcpdump dst 192.168.1.10` = Packets going to 192.168.1.10.<br>
 
-`tcpdump -v port 3389`  = Packets on port 3389.
-`tcpdump src port 1025` = Packets coming from port 1025.
+`tcpdump -v port 3389`  = Packets on port 3389.<br>
+`tcpdump src port 1025` = Packets coming from port 1025.<br>
 
-`tcpdump -vvt src 10.0.0.5 and dst port 22` = Packets coming from 10.0.0.5 to port 22.
+`tcpdump -vvt src 10.0.0.5 and dst port 22` = Packets coming from 10.0.0.5 to port 22.<br>
 
 
 ---
@@ -162,8 +162,8 @@ iptables –A OUTPUT -o eth0 –p tcp --sport 80 –m state --state NEW,ESTABLIS
 
 > NOTE: `ntpd` has been deprecated in favor of `chrony` <sup>[1]</sup>
 
-`date +%T –s "16:45:00"` = Manually set time in HH:mm:ss format.
-`date`                   = View current time.
+`date +%T –s "16:45:00"` = Manually set time in HH:mm:ss format.<br>
+`date`                   = View current time.<br>
 
 ### chrony <sup>[1]</sup>
 
@@ -199,38 +199,37 @@ timedatectl
 ---
 ## EMAIL
 
-`mail -s "Test Subject" example@mail.com < /dev/null` = Send test email (using the current host has the smtp relay).
+`mail -s "Test Subject" example@mail.com < /dev/null` = Send test email (using the current host has the smtp relay).<br>
 
-send email using a specific smtp relay
+Send email using a specific smtp relay:
 ```bash
 echo "This is the message body and contains the message" | \
-mailx -v                       \
--r "me@gmail.com"              \  # this is the 'from' field of the email.
--s "This is the subject"       \
--S smtp="mail.example.com:25"  \  # this is the smtp relay.
--S smtp-use-starttls           \
--S smtp-auth=login.               \
--S smtp-auth-user="someone@example.com.  " \
--S smtp-auth-password="abc.  123" \
--S ssl-verify=ignore.             \
-yourfriend@gmail.com              # This is the 'to' field of the email.
+mail -v                                   \
+-r "sender@example.com"                   \  # This is the 'from' field of the email.
+-s "This is the subject"                  \
+-S smtp="mail.example.com:25"             \  # This is the smtp relay.
+-S smtp-use-starttls                      \
+-S smtp-auth=login                        \
+-S smtp-auth-user="authuser@example.com"  \
+-S smtp-auth-password="abc123"            \
+-S ssl-verify=ignore                      \
+recipient@example.com                        # This is the 'to' field of the email.
 ```
 
 ### filtering
 
-`grep -h -o '[0-9]\{1,3\}\.[0-9]\{1,3\}\.[0-9]\{1,3\}\.[0-9]\{1,3\}' /var/log/maillog* | sort -u` = Filter IPs from maillog.
-`grep -o -E 'from=<.*>' /var/log/maillog | sort -u` = Filter sending addresses from maillog.
+`grep -o -E 'from=<.*>' /var/log/maillog | sort -u` = Filter sending addresses from maillog.<br>
 
 ### postfix whitelists
 
-1. add line to `/etc/postfix/main.cf`
+1. add line to `/etc/postfix/main.cf`<br>
    ```bash
    mynetworks = /postfix-whitelist
 
    ```
-1. populate `/postfix-whitelist` with IPs
-1. run `postmap /postfix-whitelist && systemctl restart postfix`
-1. now only the IPs in `/postfix-whitelist` will be permitted to use the postfix server as an smtp relay
+1. populate `/postfix-whitelist` with IPs<br>
+1. run `postmap /postfix-whitelist && systemctl restart postfix`<br>
+1. now only the IPs in `/postfix-whitelist` will be permitted to use the postfix server as an smtp relay<br>
 
 
 ---
@@ -243,7 +242,7 @@ wget                            \
   --page-requisites             \ # Download all files required to display each page properly.
   --html-extension              \ # Explicitly add .html extensions to relevant files.
   --convert-links               \ # Convert http:// to file:// links for offline browsing.
-  --restrict-file-names=windows \ # Escape control characters in filenames.  .
+  --restrict-file-names=windows \ # Escape control characters in filenames.  .<br>
   --no-parent                   \ # Don't include directories above the path provided.
   www.website.org/
 

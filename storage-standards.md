@@ -95,37 +95,38 @@ Memory is only about 6 times faster when you're doing sequential access (350 Mva
 24x 256GB raid0 striped   5.5 terabytes ( w=1620MB/s , rw=796MB/s , r=2043MB/s )
 ```
 
-<img src="/images/raid10.png" width="300"/> <sup>[5]</sup> 
+<img src="images/raid10.png" width="300"/> <sup>[5]</sup> 
+
 
 ---
 ## SOLID-STATE MEMORY
 
-- Non-volatile - Memory that retains its data after power loss.  
-  - **ROM** (Read Only Memory) - Data not rewritable after manufacture, used in BIOS chips and embedded devices.  
-    - PROM (Programmable Read Only Memory) - Programmed by blowing internal fuses permanently.  
-    - EPROM (Eletrically Programmable Read Only Memory) - Programmed and erased using ultraviolet light.  
-    - EEPROM (Electrically Eraseable Programmable Read Only Memory) - Can be erased more times than EPROM.  
-      - FRAM (Ferroelectric Random Access Memory) - Type of EEPROM with unlimited writes.  
-  - **Flash** - Easy to rewrite (like RAM), but nonvolatile (like ROM), used as a fast replacement for hard drives.  
-    - NOR - Flash based on NOR gates, used for code execution due to its execute-in-place (XIP) feature.  
-    - NAND - Flash based on NAND gates, cheaper and denser than NOR flash, used for data storage.  
-      - V-NAND (Vertical NAND) / 3D NAND - Stacks of memory cells to increase density.  
-      - SLC (Single-Level Cell) - NAND that stores only one bit per MOSFET memory cell.  
-      - MLC (Multi-Level Cell), TLC (Triple), QLC (Quad) - NAND that stores multiple bits per cell, slower but cheaper than SLC.  
-  - **NVRAM** (non-volatile RAM) - Memory that acts like RAM but retains its data after losing power like Flash.  
-    - 3D XPoint / Optane / QuantX - Balances the performance and density of DRAM and flash, uses resistance rather than charge to store bits.  
+- Non-volatile - Memory that retains its data after power loss.<br>
+  - **ROM** (Read Only Memory) - Data not rewritable after manufacture, used in BIOS chips and embedded devices.<br>
+    - PROM (Programmable Read Only Memory) - Programmed by blowing internal fuses permanently.<br>
+    - EPROM (Eletrically Programmable Read Only Memory) - Programmed and erased using ultraviolet light.<br>
+    - EEPROM (Electrically Eraseable Programmable Read Only Memory) - Can be erased more times than EPROM.<br>
+      - FRAM (Ferroelectric Random Access Memory) - Type of EEPROM with unlimited writes.<br>
+  - **Flash** - Easy to rewrite (like RAM), but nonvolatile (like ROM), used as a fast replacement for hard drives.<br>
+    - NOR - Flash based on NOR gates, used for code execution due to its execute-in-place (XIP) feature.<br>
+    - NAND - Flash based on NAND gates, cheaper and denser than NOR flash, used for data storage.<br>
+      - V-NAND (Vertical NAND) / 3D NAND - Stacks of memory cells to increase density.<br>
+      - SLC (Single-Level Cell) - NAND that stores only one bit per MOSFET memory cell.<br>
+      - MLC (Multi-Level Cell), TLC (Triple), QLC (Quad) - NAND that stores multiple bits per cell, slower but cheaper than SLC.<br>
+  - **NVRAM** (non-volatile RAM) - Memory that acts like RAM but retains its data after losing power like Flash.<br>
+    - 3D XPoint / Optane / QuantX - Balances the performance and density of DRAM and flash, uses resistance rather than charge to store bits.<br>
     - FeRAM (Ferroelectric RAM)
     
-![nand-vs-nor-flash](/images/nand-vs-nor-flash.jpg) <sup>[1]</sup> 
+![nand-vs-nor-flash](images/nand-vs-nor-flash.jpg) <sup>[1]</sup> 
     
 - Volatile - Memory that loses its data after power loss, used as a working cache to store frequently-accessed data.
-  - **RAM** (Random Access Memory) - Fast memory for storing running programs.  
-    - SRAM (Static RAM) - Expensive but fast, built into CPU dies to be used as L1-L3 caches.  
-    - DRAM (Dynamic RAM) - Cheaper than SRAM, but slower, used as main system memory.  
-      - SDRAM (Synchronous DRAM) - RAM that synchronizes its clock with the CPU, most modern RAM is SDRAM.  
-        - DDR (Double Data Rate) - Double the transfer rate of RAM without increasing the clock.  
-        - GDDR (Graphics DDR) - SDRAM designed for use with GPUs.  
-        - HBM (High Bandwidth Memory) - 3D-stacked SDRAM for graphics and network devices.  
+  - **RAM** (Random Access Memory) - Fast memory for storing running programs.<br>
+    - SRAM (Static RAM) - Expensive but fast, built into CPU dies to be used as L1-L3 caches.<br>
+    - DRAM (Dynamic RAM) - Cheaper than SRAM, but slower, used as main system memory.<br>
+      - SDRAM (Synchronous DRAM) - RAM that synchronizes its clock with the CPU, most modern RAM is SDRAM.<br>
+        - DDR (Double Data Rate) - Double the transfer rate of RAM without increasing the clock.<br>
+        - GDDR (Graphics DDR) - SDRAM designed for use with GPUs.<br>
+        - HBM (High Bandwidth Memory) - 3D-stacked SDRAM for graphics and network devices.<br>
 
 ### Data protocols
 
@@ -157,19 +158,14 @@ Memory is only about 6 times faster when you're doing sequential access (350 Mva
 
 #### How VMWare snapshots work
 
-```
-In VMware VMs, the virtual disk is a .vmdk file residing on a data store (LUN). When a snapshot is created in Snapshot
-Manager, the original disk becomes read-only, and all the new data changes are written into a temporary .vmdk delta
-disk, pointing to the original one. The delta disk is the difference between the current state of the virtual disk and
-the state at the moment the snapshot was taken. After a snapshot is deleted (committed), the .vmdk delta disk is
-merged with the original .vmdk file, and it returns to read-write mode. 
+In VMware VMs, the virtual disk is a .vmdk file residing on a data store (LUN). When a snapshot is created in Snapshot Manager, the original disk becomes read-only, and all the new data changes are written into a temporary .vmdk delta
+disk, pointing to the original one. The delta disk is the difference between the current state of the virtual disk and the state at the moment the snapshot was taken. After a snapshot is deleted (committed), the .vmdk delta disk is merged with the original .vmdk file, and it returns to read-write mode.
 
 If the VM is reverted to the snapshot, the temporary .vmdk delta disk is simply deleted and the VM begins writing to its
 original disk.
 
 Snapshots are not backups because if the original disk's data is lost, the delta .vmdk becomes useless as it only
 contains the changes to the original data, not the data itself.
-```
 
 [1]: https://www.embedded.com/flash-101-nand-flash-vs-nor-flash/  
 [2]: https://colin-scott.github.io/personal_website/research/interactive_latency.html  

@@ -1,66 +1,72 @@
-## ARCH LINUX INSTALL PROCESS
+## ARCH LINUX INSTALL PROCESS <sup>[1][2][3]</sup>
 
-1. Set keyboard layout and clock:
+1. Set keyboard layout and clock:<br>
    ```bash
    loadkeys us
    timedatectl set-ntp true
    ```
 
-1. Configure proxies and certs if needed:
-   1. Set proxies:
+1. Configure proxies and certs if needed:<br>
+   1. Set proxies:<br>
       ```bash
       export http_proxy="http://10.0.0.15:8080"
       export https_proxy="http://10.0.0.15:8080"
       ```
-   1. Prepare system for scp:
+   1. Prepare system for scp:<br>
       ```
       systemctl start sshd
       useradd --create-home temp
       passwd temp
       ```
-   1. Transfer proxy cert to /home/temp from separate host using scp.
-   1. Add proxy cert to trust store:
+   1. Transfer proxy cert to /home/temp from separate host using scp.<br>
+      ```bash
+      scp cert.crt temp@<IP_ADDRESS>:~
+      ```
+   1. Add proxy cert to trust store:<br>
       ```bash
       trust anchor /home/temp/cert.crt
       ```
 
-1. Verify system is UEFI. BIOS systemd do not have this directory:
+1. Verify system is UEFI. BIOS systemd do not have this directory:<br>
    ```bash
    ls /sys/firmware/efi/efivars
    ```
 
-1. Partition devices with fdisk.
+1. Partition devices with fdisk.<br>
+   ```bash
+   fdisk /dev/vda
+   ```
    - Ensure /dev/sda1 has label `EFI System Partition` and is 260-512M in size.
 
-1. Create filesystems.
+1. Create filesystems.<br>
    - EFI boot partition must be FAT32:
      ```bash
      mkfs.vfat -F32 /dev/sda1
      ```
 
-1. Mount filesystems:
+1. Mount filesystems:<br>
    ```bash
    mount /dev/sda1 /mnt
    mkdir /mnt/boot
    mount /dev/sda2 /mnt/boot
    ```
 
-1. Install base system:
+1. Install base system:<br>
    ```bash
    pacstrap /mnt base linux linux-firmware man-db man-pages texinfo vim sshd
    ```
 
-1. Generate fstab:
+1. Generate fstab:<br>
    ```bash
    genfstab -U /mnt >> /mnt/etc/fstab
    ```
 
-1. Chroot into system:
+1. Chroot into system:<br>
    ```bash
    arch-chroot /mnt
    ```
 
-1. Set timezone and localization settings:
+1. Set timezone and localization settings:<br>
    ```bash
    ln -sf /usr/share/zoneinfo/America/New_York /etc/localtime
    hwclock --systohc
@@ -77,7 +83,7 @@
    KEYMAP=us
    ```
 
-1. Configure network:
+1. Configure network:<br>
    ```
    /etc/hostname
 
@@ -91,12 +97,12 @@
    127.0.1.1	myhostname.localdomain	myhostname
    ```
 
-1. Set root password:
+1. Set root password:<br>
    ```bash
    passwd
    ```
 
-1. Install bootloader:
+1. Install bootloader:<br>
    ```bash
    bootctl --path=/boot install
    ```
@@ -111,3 +117,4 @@
 
 [1]: https://wiki.archlinux.org/index.php/Systemd-boot#Configuration
 [2]: https://ramsdenj.com/2016/06/23/arch-linux-on-zfs-part-2-installation.html#install-system
+[3]: https://wiki.archlinux.org/index.php/Installation_guide

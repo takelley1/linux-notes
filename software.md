@@ -1,10 +1,10 @@
 
 ## ANSIBLE
 
-`ansible -i inventories/hostsfile.yml -m debug -a "var=hostvars" all` = View all variables from all hosts in hostsfile.yml.  
+`ansible -i inventories/hostsfile.yml -m debug -a "var=hostvars" all` = View all variables from all hosts in hostsfile.yml.<br>
 
-`ansible-vault encrypt_string --vault-password-file vaultpw.txt "ThisIsAGoodPassword" --name 'userpassword' --encrypt-vault-id default` = Encrypt variable.  
-`ansible localhost -m debug -a var='userpassword' -e '@group_vars/all/path/to/file.yml` = View decrypted variable within file.  
+`ansible-vault encrypt_string --vault-password-file vaultpw.txt "ThisIsAGoodPassword" --name 'userpassword' --encrypt-vault-id default` = Encrypt variable.<br>
+`ansible localhost -m debug -a var='userpassword' -e '@group_vars/all/path/to/file.yml` = View decrypted variable within file.<br>
 
 Run ad-hoc command as root on target box
 ```bash
@@ -20,10 +20,10 @@ ansible 192.168.1.1       \
 ansible 192.168.1.1 -a "yum update" -u austin -kK –b –-become-user root –-become-method sudo -f 10
 ```
 
-`ansible localhost -m debug -a msg="{{ lookup('env','HOME') }}"` = Run ad-hoc module on localhost to print user's home directory.  
+`ansible localhost -m debug -a msg="{{ lookup('env','HOME') }}"` = Run ad-hoc module on localhost to print user's home directory.<br>
 
-`ansible-playbook --syntax-check ./playbook.yml` = Check syntax.    
-`ansible-lint ./playbook.yml`                    = Check best-practices.    
+`ansible-playbook --syntax-check ./playbook.yml` = Check syntax.<br>
+`ansible-lint ./playbook.yml`                    = Check best-practices.<br>
 
 
 ---
@@ -67,18 +67,18 @@ oscap xccdf eval \
   
 Minimum XCCDF file for importing SCAP results to DISA STIG viewer:
 ```xml
-<?xml version="1.0" encoding="UTF-8.  "?>
+<?xml version="1.0" encoding="UTF-8.  "?><br>
 <TestResult>
-  <rule-result idref="SV-86681r2_rule.  ">
+  <rule-result idref="SV-86681r2_rule.  "><br>
     <result>pass</result>
   </rule-result>
-  <rule-result idref="SV-86921r3_rule.  ">
+  <rule-result idref="SV-86921r3_rule.  "><br>
     <result>notchecked</result>
   </rule-result>
-  <rule-result idref="SV-86473r3_rule.  ">
+  <rule-result idref="SV-86473r3_rule.  "><br>
     <result>notapplicable</result>
   </rule-result>
-  <rule-result idref="SV-86853r3_rule.  ">
+  <rule-result idref="SV-86853r3_rule.  "><br>
     <result>fail</result>
   </rule-result>
 </TestResult>
@@ -88,14 +88,15 @@ Minimum XCCDF file for importing SCAP results to DISA STIG viewer:
 ---
 ## RANGER
 
-`cd /path` = Jump to /path.    
-`gh`       = Jump to ~ (*go home.  *)  
+`cd /path` = Jump to /path.<br>
+`gh`       = Jump to ~ (*go home.  *)  <br>
+
 
 
 ---
 ## SPACEWALK / RED HAT SATELLITE
 
-`rhncfg-client get` = Force spacewalk client to pull configuration files.  
+`rhncfg-client get` = Force spacewalk client to pull configuration files.<br>
 
 ```bash
 #!/bin/bash
@@ -105,13 +106,13 @@ Minimum XCCDF file for importing SCAP results to DISA STIG viewer:
 # for rhel/centos 7
 
 # whitelist spacewalk server
-firewall-cmd --zone=public --permanent --add-source.  =XXXXXXX
+firewall-cmd --zone=public --permanent --add-source.  =XXXXXXX<br>
 firewall-cmd --reload
 
 # add spacewalk repo
 yum install -y yum-plugin-tmprepo
 yum install -y spacewalk-client-repo \
---tmprepo=https://copr-be.cloud.fedoraproject.org/results/%40spacewalkproject/spacewalk-2.9-client/epel-7-x86_64/repodata/repomd.xml.   \
+--tmprepo=https://copr-be.cloud.fedoraproject.org/results/%40spacewalkproject/spacewalk-2.9-client/epel-7-x86_64/repodata/repomd.xml.   \<br>
 --nogpg
 rpm -Uvh http://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
 
@@ -125,13 +126,13 @@ yum -y install rhn-client-tools rhn-check rhn-setup rhnsd m2crypto yum-rhn-plugi
 rpm -Uvh http://XXXXXXXX/pub/rhn-org-trusted-ssl-cert-1.0-1.noarch.rpm
 
 # register with activation key
-rhnreg_ks --serverUrl=https://XXXXXXX/XMLRPC --sslCACert=/usr/share/rhn/RHN-ORG-TRUSTED-SSL-CERT --activationkey=1-centos7-main-key.  
+rhnreg_ks --serverUrl=https://XXXXXXX/XMLRPC --sslCACert=/usr/share/rhn/RHN-ORG-TRUSTED-SSL-CERT --activationkey=1-centos7-main-key.<br>
 
 # start rhnsd service
 systemctl enable rhnsd && systemctl start rhnsd
 
 # install and configure osad
-sed -i "s/osa_ssl_cert =/osa_ssl_cert = \/usr\/share\/rhn\/RHN-ORG-TRUSTED-SSL-CERT/g" /etc/sysconfig/rhn/osad.conf.  
+sed -i "s/osa_ssl_cert =/osa_ssl_cert = \/usr\/share\/rhn\/RHN-ORG-TRUSTED-SSL-CERT/g" /etc/sysconfig/rhn/osad.conf.<br>
 systemctl enable osad && systemctl start osad
 
 # test connectivity
@@ -140,18 +141,18 @@ rhn-channel --list
 
 
 ---
-## TENABLE.SC (SECURITYCENTER) <sup>[1]</sup> 
+## TENABLE.SC (SECURITY CENTER) <sup>[1]</sup> 
 
 Get new plugins: https://patches.csd.disa.mil
 
 Reset admin password to "password":
 ```
 ## Versions 5.10 and earlier
-/opt/sc/support/bin/sqlite3 /opt/sc/application.db "update userauth set password = 'bbd29bd33eb161d738536b59e37db31e' where username='admin.  ';"
+/opt/sc/support/bin/sqlite3 /opt/sc/application.db "update userauth set password = 'bbd29bd33eb161d738536b59e37db31e' where username='admin.  ';"<br>
 
 ## Versions 5.11 and later
-/opt/sc/support/bin/sqlite3 /opt/sc/application.db "update userauth set password = 'bbd29bd33eb161d738536b59e37db31e', salt.   = '',
-hashtype = 1 where username='admin.  ';"
+/opt/sc/support/bin/sqlite3 /opt/sc/application.db "update userauth set password = 'bbd29bd33eb161d738536b59e37db31e', salt.   = '',<br>
+hashtype = 1 where username='admin.  ';"<br>
 
 # Password hash for easier reading:
 bbd2

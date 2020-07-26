@@ -6,25 +6,25 @@
 ```bash
 ldapsearch \
 -LLL -x \
--w [password] \
--H ldaps://[servername].[domain] \
--D "[authenticating-user].[domain]" \
-"mail=[user-email]"
+-w <PASSWORD> \
+-H ldaps://<SERVERNAME>.<DOMAIN> \
+-D "<AUTHENTICATING_USER>.<DOMAIN>" \
+"mail=<USER_EMAIL>"
 ```
 
 ### SSH key authentication
 
-The below script is referenced in `/etc/ssh/sshd_config` at the line `AuthorizedKeysCommand`.  
-It attempts to authenticate users using a public key stored in the `comment` field of their ldap user account attributes.  
+For SSH-key-based LDAP authentication the below scriptlet is to be referenced in "/etc/ssh/sshd_config" at the line `AuthorizedKeysCommand`.<br>
+The scriptlet attempts to authenticate users using a public key stored in the `comment` field of their LDAP user account attributes.<br>
 
 ```bash
-#!/bin/bash
+#!/usr/bin/env bash
 USER=$(echo "$1" | cut -f 1 -d "@")
-PASS=$(cat ./passwordfile)
+PASS=$(cat </PATH/TO/PASSWORD/FILE>)
 
 ldapsearch -u -LLL -x -w $PASS \
--D "ldapsearch.svc@[DOMAIN]" \
--H "ldaps://[DOMAIN-CONTROLLER-NAME].[DOMAIN]" \
+-D "ldapsearch.svc@<DOMAIN>" \ # ldapsearch.svc is a service account.
+-H "ldaps://<DOMAIN_CONTROLLER_NAME>.<DOMAIN>" \
 '(sAMAccountName='"$USER"')' 'comment' | \
 sed -n '/^ /{H;d};/comment:/x;$g;s/\n *//g;s/comment: //gp'
 ```
@@ -32,21 +32,21 @@ sed -n '/^ /{H;d};/comment:/x;$g;s/\n *//g;s/comment: //gp'
 ---
 ### Integration
 
-**see also:** [inux integration with windows](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/7/html-single/windows_integration_guide/#sssd-ad-proc)  
+**See also:** [inux integration with windows](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/7/html-single/windows_integration_guide/#sssd-ad-proc)  
 
 ```bash
 net ads testjoin
 net ads info
 net ads status
-kinit`
+kinit
 ```
 
-## Integrate Linux with Active Directory using `realmd`
+## Integrating Linux with Active Directory using realmd
 
 *Run all commands as root.*
 
 ```bash
-#!/bin/bash
+#!/usr/bin/env bash
 
 # make sure server isn't joined already
 realm leave
@@ -64,7 +64,7 @@ systemctl stop chronyd
 # remove lines containing original server IPs
 sed -i '/^server/d' /etc/chrony.conf
 # add new server IPs to chrony config file
-echo -e "server [NTP-SERVER-IP] iburst maxpoll 10\nserver [NTP-SERVER-IP2] iburst maxpoll 10\n$(cat /etc/chrony.conf)" > /etc/chrony.conf
+echo -e "server <NTP_SERVER_IP> iburst maxpoll 10\nserver <NTP_SERVER_IP2> iburst maxpoll 10\n$(cat /etc/chrony.conf)" > /etc/chrony.conf
 systemctl start chronyd
 
 echo "disabling selinux"
@@ -105,7 +105,7 @@ authconfig --update --enablesssd --enablesssdauth --disableldap --disableldapaut
 
 # Join domain.
 echo "joining domain"
-realm join -U [USERNAME.FQDN]
+realm join -U <USERNAME.FQDN>
 
 # Edit sssd file to remove requirement for fully qualified names.
 sed -i '/^use_fully_qualified/d' /etc/sssd/sssd.conf
@@ -120,18 +120,18 @@ echo "verifying domain"
 realm list
 echo ""
 echo ""
-id [DOMAIN]\\[DOMAIN-USERNAME]
+id <DOMAIN>\\<DOMAIN_USERNAME>
 echo ""
 echo ""
-id [DOMAIN]\\[DOMAIN-USERNAME2]
+id <DOMAIN>\\<DOMAIN_USERNAME2>
 
 echo "giving sudo access to sysadmin users in domain"
-echo "%[FQDN-OF-DOMAIN]\\\\[AD-GROUP-NAME] ALL=(ALL) ALL" >> /etc/sudoers
+echo "%<FQDN_OF_DOMAIN>\\\\<AD_GROUP_NAME> ALL=(ALL) ALL" >> /etc/sudoers
 
 # Get IP of local host and try to SSH in with ad account.
 echo "sshing in as domain user"
 
-ssh -l [DOMAIN]\\[DOMAIN-USERNAME] localhost
+ssh -l <DOMAIN>\\<DOMAIN_USERNAME> localhost
 
 exit 0
 ```

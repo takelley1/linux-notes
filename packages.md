@@ -19,14 +19,14 @@
 
 #### rpm
 
-`rpm -ivh file.rpm` = Install .rpm file as package.    
-               `-i` = Install .rpm.    
-               `-v` = Verbose.    
-               `-h` = Use hash marks to display progress.  
+`rpm -ivh file.rpm` = Install .rpm file as package.<br>
+               `-i` = Install .rpm.<br>
+               `-v` = Verbose.<br>
+               `-h` = Use hash marks to display progress.<br>
 
-`yum install ./file.rpm` = Install .rpm file and automatically resolve and install dependencies.  
-                    `-v` = Be verbose.    
-                    `-h` = Use hash marks to display progress.  
+`yum install ./file.rpm` = Install .rpm file and automatically resolve and install dependencies.<br>
+                    `-v` = Be verbose.<br>
+                    `-h` = Use hash marks to display progress.<br>
 
 
 ---
@@ -45,27 +45,27 @@
 
 ### yum/dnf & rpm
 
-`yum install epel-release` = Install EPEL repo.  
+`yum install epel-release` = Install EPEL repo.<br>
 
 ---
 #### Add ISO repo to CentOS 6
 
-1. Go to centos.org.
-1. Click 'get centos now'.
-1. Click 'alternative downloads'.
-1. Click 'i386' in the row corresponding to CentOS version 6.
-1. Click any mirror link.
-1. Click the `.iso` you wish to download. It will likely be the largest one. Don't download the torrent.
-1. Save it anywhere.
-1. Launch the VM and in the top-left corner of VMWare, click VM -> Removable Devices -> CD/DVD -> Connect.
-1. Navigate to the `.iso` image file you downloaded.
-1. Inside the VM, run `sudo mount /dev/cdrom /[mount-location]`.
-1. The disk is now mounted and you can browse the packages.
-1. To turn the packages into a full repo, you need to add the disk ID to the yum configuration. you can do that as follows: `head -1 /[mount-location]/.discinfo`
-1. Copy that number.
-1. Run your favorite text editor to open `/etc/yum.repos.d/CentOS-Base.repo`.
-1. For each repo you'd like to add, next to `mediaid=` , enter the number you copied.  
-1. Next to `baseurl=`, enter the path of the mounted disk. For example, if you mounted the disk on `/mnt`, the row would read `baseurl=file:///mnt`.
-1. Run `yum clean all`.
-1. Yum should now recognize the disk as a repository.
+1. Go to centos.org.<br>
+1. Click 'get centos now'.<br>
+1. Click 'alternative downloads'.<br>
+1. Click 'i386' in the row corresponding to CentOS version 6.<br>
+1. Click any mirror link.<br>
+1. Click the `.iso` you wish to download. It will likely be the largest one. Don't download the torrent.<br>
+1. Save it anywhere.<br>
+1. Launch the VM and in the top-left corner of VMWare, click VM -> Removable Devices -> CD/DVD -> Connect.<br>
+1. Navigate to the `.iso` image file you downloaded.<br>
+1. Inside the VM, run `sudo mount /dev/cdrom /[mount-location]`.<br>
+1. The disk is now mounted and you can browse the packages.<br>
+1. To turn the packages into a full repo, you need to add the disk ID to the yum configuration. you can do that as follows: `head -1 /[mount-location]/.discinfo`<br>
+1. Copy that number.<br>
+1. Run your favorite text editor to open `/etc/yum.repos.d/CentOS-Base.repo`.<br>
+1. For each repo you'd like to add, next to `mediaid=` , enter the number you copied.<br><br>
+1. Next to `baseurl=`, enter the path of the mounted disk. For example, if you mounted the disk on `/mnt`, the row would read `baseurl=file:///mnt`.<br>
+1. Run `yum clean all`.<br>
+1. Yum should now recognize the disk as a repository.<br>
 

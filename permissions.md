@@ -7,10 +7,10 @@ grant user alice read and write access to all files in `/photos`, regardless of 
 ```bash
 setfacl –R –m u:alice:rw /photos
 ```
-`-R` = Recursive.  
-`-m` = Modify file or directory permissions.  
+`-R` = Recursive.<br>
+`-m` = Modify file or directory permissions.<br>
 
-`getfacl /file.txt` = View ACL for given file.  
+`getfacl /file.txt` = View ACL for given file.<br>
 
 
 ---
@@ -76,9 +76,9 @@ regular permissions:
 `0` = None (`-`)
 
 special permissions only:  
-`4` = Setuid - appears as an `s` instead of `x` for the file owner (ex. `rwsrwxrwx`)  
-`2` = Setgid - appears as an `s` instead of `x` for the group owner (ex. `rwxrwsrwx`)  
-`1` = Sticky bit - appears as a `t` instead of `x` for 'other' (ex. `rwxrwxrwt`)  
+`4` = Setuid - appears as an `s` instead of `x` for the file owner (ex. `rwsrwxrwx`)  <br>
+`2` = Setgid - appears as an `s` instead of `x` for the group owner (ex. `rwxrwsrwx`)  <br>
+`1` = Sticky bit - appears as a `t` instead of `x` for 'other' (ex. `rwxrwxrwt`)  <br>
 `0` = None (`-`)
 
 examples:  
@@ -87,8 +87,8 @@ examples:
 `1777` = `rwxrwxrwt`  
 `4655` = `rwsr-xr-x`
 
-> If 3 digits are given, 1st is owner, 2nd is group, 3rd is other (ex. `chmod 755`)  
-> If 4 digits are given, 1st is the special bit, 2nd is owner, 3rd is group, 4th is other (ex. chmod `0755`)
+> If 3 digits are given, 1st is owner, 2nd is group, 3rd is other (ex. `chmod 755`)  <br>
+> If 4 digits are given, 1st is the special bit, 2nd is owner, 3rd is group, 4th is other (ex. chmod `0755`)<br>
 
 
 | permission | Effect when applied to a binary file                           | Effect when applied to a directory |
@@ -101,22 +101,22 @@ examples:
 
 
 example:  
-`chmod -R 6754 /var/log` = 
--(4+2=6, special bit) run executables with permissions of the owning user and group 
--give read, write, and execute (`rwx`) (4+2+1=7) permissions to owner
--give read and write (`rx`) (4+1=5) to members of the owning group
--give read (`r`) (4) permissions to everyone else (aka “all”)
--apply these permissions recursively (`-R`)
-- **permissions of `/var/log` will display as: `rwsr-srw-`**
+`chmod -R 6754 /var/log` = <br>
+-(4+2=6, special bit) run executables with permissions of the owning user and group <br>
+-give read, write, and execute (`rwx`) (4+2+1=7) permissions to owner<br>
+-give read and write (`rx`) (4+1=5) to members of the owning group<br>
+-give read (`r`) (4) permissions to everyone else (aka “all”)<br>
+-apply these permissions recursively (`-R`)<br>
+- **permissions of `/var/log` will display as: `rwsr-srw-`**<br>
 
 ---
 ### standard (non-octal) 
 
-`chmod u+r file.txt`  = Add read permissions to user on file.txt
-`chmod a-rw file.txt` = Remove read/write permissions for all on file.txt 
+`chmod u+r file.txt`  = Add read permissions to user on file.txt<br>
+`chmod a-rw file.txt` = Remove read/write permissions for all on file.txt <br>
 
-`u` (*user*)  = Owning user  
-`g` (*group*) = Owning group  
-`o` (*other*) = Users not in the file's owning group  
-`a` (*all*)   = Everyone, including the owning user and group
+`u` (*user*)  = Owning user.<br>
+`g` (*group*) = Owning group.<br>
+`o` (*other*) = Users not in the file's owning group.<br>
+`a` (*all*)   = Everyone, including the owning user and group.<br>
 
