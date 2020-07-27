@@ -5,7 +5,7 @@
 
 `~/.bashrc` is the place to put stuff that applies only to bash itself, such as alias and function definitions, shell options, and prompt settings (you could also put key bindings there, but for bash they normally go into `~/.inputrc`).<br>
 
-`~/.bash_profile` can be used instead of `~/.profile`, but it is read by bash only, not by any other shell (this is mostly a concern if you want your initialization files to work on multiple machines and your login shell isn't bash on all of them.) This is a logical place to include `~/.bashrc` if the shell is interactive.<br>
+`~/.bash_profile` can be used instead of `~/.profile`, but it is read by bash only, not by any other shell. This is mostly a concern if you want your initialization files to work on multiple machines and your login shell isn't bash on all of them. This is a logical place to include `~/.bashrc` if the shell is interactive.<br>
 
 
 ---
@@ -30,17 +30,29 @@
 ---
 ## BASH
 
-`while true; do <COMMAND>; sleep 1s; done` = Loop command indefinitely.<br>
+### printf
 
-`sudo !!` = Execute last command with sudo privileges.<br>
+`printf "%03d" 5` = `005` = Print with leading zeros.<br>
+              `%` = Marks the start of the formatting string.<br>
+              `0` = Pad with zeros.<br>
+              `3` = Make output 3-places long.<br>
+              `d` = Convert input to a signed decimal.<br>
 
-`1>` or `>`    = Stdout.<br>
-`2>`           = Stderr.<br>
-`2>&1` or `&>` = Stdout and stderr.<br>
+### stdout/stderr
+
+```
+1> or >    = Stdout.
+2>         = Stderr.
+2>&1 or &> = Stdout and stderr.
+```
 
 `cat /file.log 2>&1 | grep -i error` = Pass both stdout and stderr to grep through pipe, by default pipe only passes stdout.<br>
-`stat /home/file.txt`                = Show last modified date, creation date, and other metadata about given file.<br>
+
+### Misc
+
+`sudo !!` = Execute last command with sudo privileges.<br>
 `history` = Print past commands to stdout, grep and use ![line_number] to repeat command without retyping.<br>
+`watch <COMMAND>` = Loop command indefinitely.<br>
 
 ### Sourcing vs executing <sup>[5]</sup>
 
