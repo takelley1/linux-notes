@@ -3,6 +3,8 @@
 
 **See also:** [github fundamentals](https://git-scm.com/docs)
 
+`git commit --amend -m 'Commit message'` = Amend most recent commit message (requires `git push --force` if commit already pushed) <sup>[2]</sup>.<br>
+
 `git add -A` = Stage all modified files, including deleted files.<br>
 `git add -A ./*` = Stage all modified files, including deleted files, beneath the current path.<br>
 `git add -u` = Stage all modified files.<br>
@@ -120,3 +122,4 @@ pattern*/
 `git stash drop` = Discard the changes from top of stash stack.<br>
 
 [1]: https://education.github.com/git-cheat-sheet-education.pdf
+[2]: https://linuxize.com/post/change-git-commit-message/
