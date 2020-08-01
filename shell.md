@@ -32,11 +32,13 @@
 
 ### printf
 
-`printf "%03d" 5` = `005` = Print with leading zeros.<br>
-              `%` = Marks the start of the formatting string.<br>
-              `0` = Pad with zeros.<br>
-              `3` = Make output 3-places long.<br>
-              `d` = Convert input to a signed decimal.<br>
+`printf "%03d\n" 5` = `005` = Print with leading zeros.<br>
+                `%` = Marks the start of the formatting string.<br>
+                `0` = Pad with zeros.<br>
+                `3` = Make output 3-places long.<br>
+                `d` = Convert input to a signed decimal.<br>
+
+`printf "%04.1f\n" 2.5` = `02.5` = Print decimal with leading zeros.<br>
 
 ### stdout/stderr
 
