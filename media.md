@@ -6,6 +6,6 @@
 
 ## IMAGE MAGICK
 
-**see also:** http://www.gnu.org/software/parallel/  
+**See also:** http://www.gnu.org/software/parallel/  
 
 `ls *.jpg | parallel convert -geometry 120 {} thumb_{}` = Convert images **in parallel** 

@@ -228,7 +228,6 @@ recipient@example.com                        # This is the 'to' field of the ema
 1. add line to `/etc/postfix/main.cf`<br>
    ```bash
    mynetworks = /postfix-whitelist
-
    ```
 1. populate `/postfix-whitelist` with IPs<br>
 1. run `postmap /postfix-whitelist && systemctl restart postfix`<br>
