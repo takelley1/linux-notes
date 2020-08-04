@@ -1,16 +1,22 @@
+## AWK
 
-## STREAM EDITING
+- See also:
+  - [AWK one-liners explained](https://catonmat.net/awk-one-liners-explained-part-one)
+  - [GAWK manual](https://www.gnu.org/software/gawk/manual/)
+  - [AWK cheat sheet](https://catonmat.net/ftp/awk.cheat.sheet.pdf)
 
-### `awk` command
+### Examples
 
-`awk '{print $3}' file.txt` = Print the 3rd column of file.txt.
+- `awk '{print $3, $2} file.txt'` = Print the 3rd and 2nd fields of file.txt.
+- `awk '/foo/ {gsub("o",""); print $1}'` = Print 1st field of lines that contain "foo", remove "o" from output.
+- `awk '/[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}/' {print $3}` = Print 3rd field of lines that contain IP-address-like strings in input.
 
 ---
-### `sed` command
+## SED
 
 `sed -[PARAMETER] '[RESTRICTION] [FLAG1]/[PATTERN1]/[PATTERN2]/[FLAG2]' [FILE1] [FILE2]...`
 
-#### Sed examples
+### Examples
 
 `sed '1s/^/spam/ file.txt` = Insert "spam" at the first line of file.txt.<br>
                        `1` = Restrict operations to the first line of the input.<br>
@@ -33,7 +39,7 @@
 `sed 's/abc/xyz/I'` = Match "abc" or "ABC", replace with "xyz".<br>
 `sed -e 's/a/A' -e 's/b/B'`<br>
 
-#### sed flags
+### Flags
 
 `s` (*substitute*)  = Perform a string substitution.<br>
 `i` (*insert*)      = Insert input above match.<br>
@@ -43,18 +49,18 @@
 `w` (*write*)       = Write to the provided file.<br>
 `I` (*insensitive*) = Make regex case-insensitive.<br>
 
-#### Sed Parameters
+### Parameters
 
 `-e` (*expression*) = Combine multiple invocations into a single command.<br>
 `-r` (*regex*)      = Use extended regular expressions, allowing the use of characters like `+`.<br>
 `-n` (*nullify*)    = Suppress printing modified input to stdout.<br>
 `-i` (*in-place*)   = Don't print result to stdout, just go ahead and immediately edit file.<br>
 
-#### Sed patterns
+### Patterns
 
 `&` = Current regex match (ex: `echo "123 abc" | sed 's/[0-9]*/& &/'` = `123 123 abc`).<br>
 
-#### Sed restrictions
+### Restrictions
 
 - the opposite of `g`, perform operations only on the listed lines of file.<br>
 `sed '3,5d` = Delete lines 3 through 5.<br>
@@ -94,9 +100,9 @@
 `+` = One or more of previous.<br>
 
 ---
-## `grep` command
+## GREP
 
-### Grep examples
+### Examples
 
 `grep -h -o '[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}' /var/log/maillog* | sort -u` = Extract IPs.<br>
                                                                                      `-h` = Don't print filenames (used only when grep is searching through multiple files).<br>
@@ -113,7 +119,7 @@
 
 `grep -C 5 '192\.168'` = Show five lines of context (`-C 5`) surrounding matched results, escape (`\`) the `.` in string to search for it literally and not interpret it as part of a globbing expression.<br>
 
-### Grep options
+### Options
 
 `r` = Recurse through subdirectories.<br>
 `i` = Ignore case.<br>
@@ -126,7 +132,7 @@
 `A 2` (*after*)   = Show 2 lines after match.<br>
 `B 1` (*before*)  = Show 1 line before match.<br>
 
-### Grep regex (Invoked with `-E` option or by using `egrep`)
+### Regex (Invoked with `-E` option or by using `egrep`)
 
 `^`        = Match string at start.
 `$`        = Match string at end.
