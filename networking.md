@@ -7,6 +7,7 @@
 [ssh essentials](https://www.digitalocean.com/community/tutorials/ssh-essentials-working-with-ssh-servers-clients-and-keys)<br>
 [authorized_keys vs known_hosts](https://security.stackexchange.com/questions/20706/what-is-the-difference-between-authorized-keys-and-known-hosts-file-for-ssh)<br>
 [sshd_config man page](https://www.freebsd.org/cgi/man.cgi?sshd_config(5))<br>
+- [ssh-keygen best practices]9https://security.stackexchange.com/questions/143442/what-are-ssh-keygen-best-practices)
 
 ### Files <sup>[6]</sup>
 
