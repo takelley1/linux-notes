@@ -8,8 +8,48 @@
 ### Examples
 
 - `awk '{print $3, $2} file.txt'` = Print the 3rd and 2nd fields of file.txt.
-- `awk '/foo/ {gsub("o",""); print $1}'` = Print 1st field of lines that contain "foo", remove "o" from output.
+- `awk '/foo/ {gsub(/abc/,""); gsub(/[0-9]/,""); print $1}'` = Print 1st field of lines that contain "foo", remove "abc" and all numbers from output.
 - `awk '/[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}/' {print $3}` = Print 3rd field of lines that contain IP-address-like strings in input.
+
+### Regex
+
+`^` = Match string at start.    (ex. `rpm –qa | grep -E ^a`)<br>
+`$` = Match string at end.      (ex. `rpm –qa | grep -E 64$`)<br>
+`|` = Logical OR.               (ex. `grep -E ‘i|a’ file`)<br>
+`*` = Zero or more of previous. (ex. `grep -E ‘a*’ file`)<br>
+`+` = One or more of previous.<br>
+- `?` = Zero or one of previous.
+- `{1,5}` = One to five of previous.
+- `{3,}` = At least three of previous.
+- `[abc...]` = Anything within [ ]
+- `[^abc...]` = Anything NOT within [ ]
+
+| Backslash syntax |                      |
+|------|----------------------------------|
+| `\s` | Whitespace characters            |
+| `\S` | NON whitespace characters        |
+| `\w` | letters, digits, underscores     |
+| `\W` | NON letters, digits, underscores |
+| `\f` | Form-feed                        |
+| `\r` | Carriage return                  |
+| `\n` | Newline                          |
+| `\t` | Tab                              |
+
+| Character classes | *Only valid within brackets e.g [[:xyz:]]* |
+|-------------------|-----------------------------------------|
+| `[:alnum:]` | Alphanumeric characters                       |
+| `[:alpha:]` | Alphabetic characters                         |
+| `[:blank:]` | Space or tab characters                       |
+| `[:cntrl:]` | Control characters                            |
+| `[:digit:]` | Numeric characters                            |
+| `[:lower:]` | Lowercase alphabetic characters               |
+| `[:print:]` | Printable characters (non-control characters) |
+| `[:punct:]` | Punctuation characters (non-letter, digit, control char, or space) |
+| `[:space:]` | Space characters (space, tab, formfeed, etc.) |
+| `[:upper:]` | Uppercase alphabetic characters               |
+       
+> NOTE: Enclose character classes in two sets of square brackets when using awk, [[:like_this:]].
+
 
 ---
 ## SED
@@ -91,13 +131,7 @@
 `[xyz]`  = Any characters within set or within range of xyz (ex: `[0-9]`, `[H-K]`, `[aeiou]`, `[a-z]`).<br>
 `[!xyz]` = Negation of xyz (any characters NOT in the set of xyz).<br>
 
-### Generic regex
 
-`^` = Match string at start.    (ex. `rpm –qa | grep -E ^a`)<br>
-`$` = Match string at end.      (ex. `rpm –qa | grep -E 64$`)<br>
-`|` = Logical OR.               (ex. `grep -E ‘i|a’ file`)<br>
-`*` = Zero or more of previous. (ex. `grep -E ‘a*’ file`)<br>
-`+` = One or more of previous.<br>
 
 ---
 ## GREP
