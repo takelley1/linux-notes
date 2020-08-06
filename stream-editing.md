@@ -10,12 +10,14 @@
 - `awk '{print $3, $2} file.txt'` = Print the 3rd and 2nd fields of file.txt.
 - `awk '/foo/ {gsub(/abc/,""); gsub(/[0-9]/,""); print $1}'` = Print 1st field of lines that contain "foo", remove "abc" and all numbers from output.
 - `awk '/[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}/' {print $3}` = Print 3rd field of lines that contain IP-address-like strings in input.
+- `awk -F':' '/:[1-4][0-9]{3}/ {print $6}' /etc/passwd` = Print the home directories of all interactive users.
+- `awk -F':' '! /\/sbin\/nologin/ {print $1}' /etc/passwd` = Print users who don't use /sbin/nologin as their shell.
 
 ### Regex
 
 `^` = Match string at start.    (ex. `rpm –qa | grep -E ^a`)<br>
 `$` = Match string at end.      (ex. `rpm –qa | grep -E 64$`)<br>
-`|` = Logical OR.               (ex. `grep -E ‘i|a’ file`)<br>
+`a|b` = Alternation (`a` OR `b`).               (ex. `grep -E ‘i|a’ file`)<br>
 `*` = Zero or more of previous. (ex. `grep -E ‘a*’ file`)<br>
 `+` = One or more of previous.<br>
 - `?` = Zero or one of previous.
