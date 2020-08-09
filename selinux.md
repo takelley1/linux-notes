@@ -2,39 +2,39 @@
 ## Contexts
 
 Ccontext syntax: `user:role:type:level`  
-`ls -Z` = View contexts of files in directory.<br>
+`ls -Z` = View contexts of files in directory.
 
-`chcon -R <CONTEXT> file.txt` = Change context of file.txt.<br>
-                         `-R` = Recursive.<br>
+`chcon -R <CONTEXT> file.txt` = Change context of file.txt.
+                         `-R` = Recursive.
 
-`restorecon -F file.txt` = Restore context to specified file or directory.<br>
-                    `-F` = Force.<br>
+`restorecon -F file.txt` = Restore context to specified file or directory.
+                    `-F` = Force.
 
 ## Ports
 
-`semanage port –a –t ssh_port_t tcp 9999` = Set ssh context to allow use of port 9999.<br>
+`semanage port –a –t ssh_port_t tcp 9999` = Set ssh context to allow use of port 9999.
 
 ## Config
 
-`sestatus -v` = Display general config.<br>
-         `-v` = Verbose.<br>
+`sestatus -v` = Display general config.
+         `-v` = Verbose.
 
-`setenforce 1` = Enable enforcement (`1` for on, `0` for off).<br>
-`fixfiles`     = Check security context database.<br>
+`setenforce 1` = Enable enforcement (`1` for on, `0` for off).
+`fixfiles`     = Check security context database.
 
 
-`getsebool`                              = Get boolean values.<br>
-`setsebool`                              = Toggle boolean values.<br>
-`setsebool httpd_can_network_connect on` = Allow outside directory access to httpd.<br>
+`getsebool`                              = Get boolean values.
+`setsebool`                              = Toggle boolean values.
+`setsebool httpd_can_network_connect on` = Allow outside directory access to httpd.
 
-`aureport -a` = Summarize audit logs and show failures.<br>
+`aureport -a` = Summarize audit logs and show failures.
 
 ## Troubleshooting <sup>[1]</sup>  
 
-`audit2allow -w -a` or `audit2why -a` = Generate a list of policies triggering SELinux denials.<br>
-`audit2allow -a -M <POLICY>` = Create an SELinux module that would fix the current policy denial (see below).<br>
+`audit2allow -w -a` or `audit2why -a` = Generate a list of policies triggering SELinux denials.
+`audit2allow -a -M <POLICY>` = Create an SELinux module that would fix the current policy denial (see below).
 
-`semodule -l` = List all current SELinux modules.<br>
+`semodule -l` = List all current SELinux modules.
 
 ```
 # audit2allow -w -a
@@ -62,7 +62,7 @@ semodule -i mycertwatch.pp
 SELinux denial log example in `/var/log/messages`: <sup>[1]</sup>  
 ```
 Dec 16 16:28:22 [hostname] kernel: type=1400 audit(1576531702.010:97659712): avc: 
-denied  { getattr } for pid=28583 comm="pidof" path="/usr/bin/su" dev="dm-0" ino=50444389.<br>
+denied  { getattr } for pid=28583 comm="pidof" path="/usr/bin/su" dev="dm-0" ino=50444389.
 scontext=system_u:system_r:keepalived_t:s0 tcontext=system_u:object_r:su_exec_t:s0 
 tclass=file permissive=0
 ```

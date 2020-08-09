@@ -8,7 +8,7 @@ man systemd.unit
 man systemd.service
 man systemd.target
 ```
-User service files can be placed in `$HOME/.config/systemd/user/my_daemon.service` or `/etc/systemd/system/my_daemon.service`.<br>
+User service files can be placed in `$HOME/.config/systemd/user/my_daemon.service` or `/etc/systemd/system/my_daemon.service`.
 
 Example syntax:
 ```
@@ -28,7 +28,7 @@ Restart=on-failure # Other restart options: always, on-abort
 
 # The install section is needed to use `systemctl enable` to start on boot.
 # For a user service that you want to enable and start automatically,
-# use `default.target`. For system level services, use `multi-user.target`.<br>
+# use `default.target`. For system level services, use `multi-user.target`.
 [Install]
 WantedBy=multi-user.target
 ```
@@ -112,8 +112,8 @@ journalctl -f --user-unit my_user_daemon
 
 #### Runlevel scripts
 
-init:    Place script in `/etc/rc#.d/`, in which `#` corresponds to the desired runlevel in which you'd like the script to run.<br>
-systemd: Place or symlink script in `/etc/systemd/system/` and enable service.<br>
+init:    Place script in `/etc/rc#.d/`, in which `#` corresponds to the desired runlevel in which you'd like the script to run.
+systemd: Place or symlink script in `/etc/systemd/system/` and enable service.
 
 [1]: https://www.devdungeon.com/content/creating-systemd-service-files  
 [2]: https://www.shellhacks.com/systemd-service-file-example/  

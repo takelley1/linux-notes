@@ -1,7 +1,7 @@
 
 ### Desktop Environment
 
-Implements the desktop metaphor and bundles together a variety of components, provides its own custom window manager. <sup>[1]</sup><br>
+Implements the desktop metaphor and bundles together a variety of components, provides its own custom window manager. <sup>[1]</sup>
 - KDE Plasma (default in Kubuntu)
 - GNOME (default in Ubuntu, Fedora)
 - MATE
@@ -12,7 +12,7 @@ Implements the desktop metaphor and bundles together a variety of components, pr
 ---
 ### Display Manager
 
-Manages the login screen. <sup>[2]</sup><br>
+Manages the login screen. <sup>[2]</sup>
 - Console
   - CDM
   - Ly
@@ -26,7 +26,7 @@ Manages the login screen. <sup>[2]</sup><br>
 ---
 ### Window Manager
 
-Controls the placement of windows within the desktop environment, typically an X server client. <sup>[3]</sup><br>
+Controls the placement of windows within the desktop environment, typically an X server client. <sup>[3]</sup>
 - Tiling: windows can't overlap
   - i3
   - Bspwm
@@ -46,10 +46,12 @@ System-level interface between desktop GUI and hardware.
 - X / X11 Window System implementations
   - X.Org Server / Xorg (most common display server) <sup>[4]</sup> 
   - XQuartz
+<br><br>
 - Wayland Display Server implementations (called compositors)
   - Weston (reference implementation of Wayland)
   - Mutter (also a Window Manager)
   - Enlightenment (also a Window Manager)
+<br><br>
 - Mir implementations
   - libmir-server / libmir-client
 
@@ -57,4 +59,3 @@ System-level interface between desktop GUI and hardware.
 [2]: https://wiki.archlinux.org/index.php/Display_manager   
 [3]: https://wiki.archlinux.org/index.php/Window_manager  
 [4]: https://wiki.archlinux.org/index.php/Xorg  
-

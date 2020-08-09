@@ -1,11 +1,11 @@
 
 ## SHELL INITIALIZATION <sup>[6]</sup>
 
-`~/.profile` is the place to put stuff that applies to your whole session, such as programs that you want to start when you log in, and environment variable definitions. `/etc/profile` and scripts in `/etc/profile.d/` apply to all user sessions.<br>
+`~/.profile` is the place to put stuff that applies to your whole session, such as programs that you want to start when you log in, and environment variable definitions. `/etc/profile` and scripts in `/etc/profile.d/` apply to all user sessions.
 
-`~/.bashrc` is the place to put stuff that applies only to bash itself, such as alias and function definitions, shell options, and prompt settings (you could also put key bindings there, but for bash they normally go into `~/.inputrc`).<br>
+`~/.bashrc` is the place to put stuff that applies only to bash itself, such as alias and function definitions, shell options, and prompt settings (you could also put key bindings there, but for bash they normally go into `~/.inputrc`).
 
-`~/.bash_profile` can be used instead of `~/.profile`, but it is read by bash only, not by any other shell. This is mostly a concern if you want your initialization files to work on multiple machines and your login shell isn't bash on all of them. This is a logical place to include `~/.bashrc` if the shell is interactive.<br>
+`~/.bash_profile` can be used instead of `~/.profile`, but it is read by bash only, not by any other shell. This is mostly a concern if you want your initialization files to work on multiple machines and your login shell isn't bash on all of them. This is a logical place to include `~/.bashrc` if the shell is interactive.
 
 
 ---
@@ -32,13 +32,13 @@
 
 ### printf
 
-`printf "%03d\n" 5` = `005` = Print with leading zeros.<br>
-                `%` = Marks the start of the formatting string.<br>
-                `0` = Pad with zeros.<br>
-                `3` = Make output 3-places long.<br>
-                `d` = Convert input to a signed decimal.<br>
+`printf "%03d\n" 5` = `005` = Print with leading zeros.
+                `%` = Marks the start of the formatting string.
+                `0` = Pad with zeros.
+                `3` = Make output 3-places long.
+                `d` = Convert input to a signed decimal.
 
-`printf "%04.1f\n" 2.5` = `02.5` = Print decimal with leading zeros.<br>
+`printf "%04.1f\n" 2.5` = `02.5` = Print decimal with leading zeros.
 
 ### stdout/stderr
 
@@ -48,13 +48,13 @@
 2>&1 or &> = Stdout and stderr.
 ```
 
-`cat /file.log 2>&1 | grep -i error` = Pass both stdout and stderr to grep through pipe, by default pipe only passes stdout.<br>
+`cat /file.log 2>&1 | grep -i error` = Pass both stdout and stderr to grep through pipe, by default pipe only passes stdout.
 
 ### Misc
 
-`sudo !!` = Execute last command with sudo privileges.<br>
-`history` = Print past commands to stdout, grep and use ![line_number] to repeat command without retyping.<br>
-`watch <COMMAND>` = Loop command indefinitely.<br>
+`sudo !!` = Execute last command with sudo privileges.
+`history` = Print past commands to stdout, grep and use ![line_number] to repeat command without retyping.
+`watch <COMMAND>` = Loop command indefinitely.
 
 ### Sourcing vs executing <sup>[5]</sup>
 
@@ -77,19 +77,19 @@
 
 ### Hotkeys
 
-`CTRL-r` = Search command history.<br>
+`CTRL-r` = Search command history.
 
-`CTRL-l` = Clear screen.<br>
+`CTRL-l` = Clear screen.
 
-`CTRL-c` = Send `SIGINT` to foreground process.<br>
-`CTRL-SHIFT-j` or `CTRL-j` = Get shell prompt back.<br>
-`CTRL-z` = Suspend foreground process.<br>
-`CTRL-d` = Exit current shell.<br>
+`CTRL-c` = Send `SIGINT` to foreground process.
+`CTRL-SHIFT-j` or `CTRL-j` = Get shell prompt back.
+`CTRL-z` = Suspend foreground process.
+`CTRL-d` = Exit current shell.
 
-`ALT-k` (in vi mode) = Recall previous command.<br>
-`ALT-j` (in vi mode) = Recall next command.<br>
-`ALT-f` = Jump forward one word  (when editing a command).<br>
-`ALT-b` = Jump backward one word (when editing a command).<br>
+`ALT-k` (in vi mode) = Recall previous command.
+`ALT-j` (in vi mode) = Recall next command.
+`ALT-f` = Jump forward one word  (when editing a command).
+`ALT-b` = Jump backward one word (when editing a command).
 
 ### If-statement conditional tests <sup>[4]</sup>
 
@@ -139,27 +139,27 @@
 ---
 ## ENVIRONMENT VARIABLES
 
-`printenv`                     = Get values of all environment variables.<br>
-`export HOME=/home/newhomedir` = Set value of environment variable.<br>
+`printenv`                     = Get values of all environment variables.
+`export HOME=/home/newhomedir` = Set value of environment variable.
 
-`DISPLAY` = Name of X window display.<br>
-`EDITOR`  = Default text editor.<br>
-`HOME`    = Path of current user's home directory.<br>
-`LOGNAME` = Current user's login name.<br>
-`MAIL`    = Path of current user's mailbox.<br>
-`OLDPWD`  = The shell's previous working directory.<br>
-`PATH`    = Where the shell looks for command binaries, paths separated by a colon.<br>
-`PWD`     = The shell's current working directory.<br>
-`SHELL`   = Path of the shell's binary.<br>
-`TERM`    = Type of terminal being used.<br>
-`USER`    = Current username.<br>
+`DISPLAY` = Name of X window display.
+`EDITOR`  = Default text editor.
+`HOME`    = Path of current user's home directory.
+`LOGNAME` = Current user's login name.
+`MAIL`    = Path of current user's mailbox.
+`OLDPWD`  = The shell's previous working directory.
+`PATH`    = Where the shell looks for command binaries, paths separated by a colon.
+`PWD`     = The shell's current working directory.
+`SHELL`   = Path of the shell's binary.
+`TERM`    = Type of terminal being used.
+`USER`    = Current username.
 
 
 ---
 ## CONSOLE / TTY
 
-`dpkg-reconfigure console-setup`    = Change console font size (Debian-based distros).<br>
-`/etc/default/console-setup`        = Change console font size.<br>
+`dpkg-reconfigure console-setup`    = Change console font size (Debian-based distros).
+`/etc/default/console-setup`        = Change console font size.
 
 
 [1]: https://stackoverflow.com/questions/15783701/which-characters-need-to-be-escaped-when-using-bash#20053121

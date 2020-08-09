@@ -1,60 +1,59 @@
 
 ## PARADIGMS <sup>[1]</sup>
 
-- **Imperative:** Programming with an explicit sequence of commands that update state.<br>
-  - **Procedural:** Imperative programming with procedure calls.<br>
-  - **Object-oriented:** Programming by defining objects that send messages to each other.<br>
-- **Declarative:** Programming by specifying the result you want, not how to get it.<br>
-  - **Functional:** Programming with function calls that avoid any global state.<br>
+- **Imperative:** Programming with an explicit sequence of commands that update state.
+  - **Procedural:** Imperative programming with procedure calls.
+  - **Object-oriented:** Programming by defining objects that send messages to each other.
+- **Declarative:** Programming by specifying the result you want, not how to get it.
+  - **Functional:** Programming with function calls that avoid any global state.
 
 
 ## FRAMEWORKS AND RUNTIMES
 
----
 ### Node.js
 
-Released: 2009<br>
-Type: Runtime environment<br>
-Use: Server-side scripting<br>
-
+- Released: 2009
+- Type: Runtime environment
+- Use: Server-side scripting
+<br><br>
 - Runs JavaScript outside of a browser.
 
----
 ### .NET
 
-Released:<br>
-Type: Framework<br>
-Use:<br>
+- Released:
+- Type: Framework
+- Use:
+<br><br>
 
-![comparison-of-programming-languages](/images/comparison-of-programming-languages.png)
+![comparison-of-programming-languages](images/comparison-of-programming-languages.png)
 
 ## LANGUAGES
 
----
 ### C
 
-Examples: Linux kernel<br>
-Paradigm:
-Released: 1972<br>
-Use: Systems, apps, general-purpose<br>
+- Examples: Linux kernel
+- Paradigm:
+- Released: 1972
+- Use: Systems, apps, general-purpose
+<br><br>
 
 ---
 ### C++
 
-Examples:<br>
-Released: 1985<br>
-Use: Systems, apps, games<br>
-
+- Examples:
+- Released: 1985
+- Use: Systems, apps, games
+<br><br>
 - Most 3D games are written in C++.
 - Strong focus on performance and efficiency.
 
 ---
 ### C#
 
-Examples:<br>
-Released: 2000<br>
-Use: Apps, web<br>
-
+- Examples:
+- Released: 2000
+- Use: Apps, web
+<br><br>
 - Microsoft's .NET answer to Java.
 - Heavily object-oriented compared to C or C++.
 
@@ -63,10 +62,10 @@ Use: Apps, web<br>
 
 *Common Business-Oriented Language*
 
-Examples:<br>
-Released: 1959<br>
-Use: Business, legacy support, mainframes, transaction processing<br>
-
+- Examples:
+- Released: 1959
+- Use: Business, legacy support, mainframes, transaction processing
+<br><br>
 - Mostly dead, all current work in COBOL is to maintain older apps.
 
 ```cobol
@@ -97,10 +96,10 @@ Use: Business, legacy support, mainframes, transaction processing<br>
 
 *Cascading Style Sheets*
 
-Examples:<br>
-Released: 1996<br>
-Use: Style sheet for presentation<br>
-
+- Examples:
+- Released: 1996
+- Use: Style sheet for presentation
+<br><br>
 - Used to describe how HTML is presented on a web page.
 - Cornerstone of the web, along with HTML and JavaScript.
 
@@ -117,10 +116,10 @@ body {
 ---
 ### Fortran
 
-Examples:<br>
-Released: 1957<br>
-Use: Numerical, scientific, high-performance computing<br>
-
+- Examples:
+- Released: 1957
+- Use: Numerical, scientific, high-performance computing
+<br><br>
 - Oldest high-level language.
 
 ```fortran
@@ -136,10 +135,10 @@ C     AREA OF A TRIANGLE
 ---
 ### Go
 
-Examples: Docker, Ethereum, OpenShift, Kubernetes, Terraform<br>
-Released: 2009<br>
-Use: Applications, web, server-side, cloud<br>
-
+- Examples: Docker, Ethereum, OpenShift, Kubernetes, Terraform
+- Released: 2009
+- Use: Applications, web, server-side, cloud
+<br><br>
 - Design heavily influenced by C.
 
 ```go
@@ -155,9 +154,10 @@ func main() {
 ---
 ### Haskell
 
-Examples: Xmonad window manager, Git-annex<br>
-Released: 1990<br>
-Use: Applications<br>
+- Examples: Xmonad window manager, Git-annex
+- Released: 1990
+- Use: Applications
+<br><br>
 
 ```haskell
 factorial n = if n < 2
@@ -168,9 +168,10 @@ factorial n = if n < 2
 ---
 ### HTML
 
-Examples:<br>
-Released:<br>
-Use:<br>
+- Examples:
+- Released:
+- Use:
+<br><br>
 
 ```html
 <!DOCTYPE html>
@@ -190,10 +191,10 @@ Use:<br>
 ---
 ### Java and Kotlin
 
-Examples:<br>
-Released: 1995<br>
-Use: Apps, web, general-purpose<br>
-
+- Examples:
+- Released: 1995
+- Use: Apps, web, general-purpose
+<br><br>
 - "Write once, run anywhere".
 - Known for verbose syntax.
 - Kotlin (released 2011) is a related Java-compatible language developed by JetBrains.
@@ -209,10 +210,10 @@ public class HelloWorldApp {
 ---
 ### JavaScript
 
-Examples:<br>
-Released: 1995<br>
-Use: Web apps, client-side web scripting<br>
-
+- Examples:
+- Released: 1995
+- Use: Web apps, client-side web scripting
+<br><br>
 - Enables interactive web pages.
 
 ```javascript
@@ -229,10 +230,10 @@ factorial(3); // returns 6
 ---
 ### Lua
 
-Examples:<br>
-Released: 1993<br>
-Use: Scripting<br>
-
+- Examples:
+- Released: 1993
+- Use: Scripting
+<br><br>
 - Designed for embedded use within applications.
 - Lightweight and portable.
 
@@ -251,12 +252,12 @@ end
 
 *LISt Processing*
 
-Dialects: [Clojure](https://clojure.org), [Common Lisp](https://lisp-lang.org/), Emacs Lisp, Racket, Scheme
-Examples: Emacs, Grammarly<br>
-Paradigm: Functional, procedural
-Released: 1958<br>
-Use: AI, scripting, apps<br>
-
+- Dialects: [Clojure](https://clojure.org), [Common Lisp](https://lisp-lang.org/), Emacs Lisp, Racket, Scheme
+- Examples: Emacs, Grammarly
+- Paradigm: Functional, procedural
+- Released: 1958
+- Use: AI, scripting, apps
+<br><br>
 - Technically a family of programming languages.
 - Recently seen a resurgence
 - Known for heavy use of parentheses and prefix-style syntax.
@@ -271,11 +272,11 @@ Use: AI, scripting, apps<br>
 ---
 ### Pascal <sup>[3]</sup>
 
-Examples:<br>
-Paradigm: Procedural
-Released: 1970<br>
-Use:<br>
-
+- Examples:
+- Paradigm: Procedural
+- Released: 1970
+- Use:
+<br><br>
 - Emphasis on structured programming.
 - Designed to improve upon ALGOL, FORTRAN, and COBOL.
 - Popular in the 1970s and 80s.
@@ -284,11 +285,11 @@ Use:<br>
 ---
 ### Perl and Raku
 
-Examples: Urxvt terminal extensions<br>
-Paradigm:
-Released: 1987 (Perl), 2019 (Raku)<br>
-Use: General-purpose, scripting, text parsing<br>
-
+- Examples: Urxvt terminal extensions
+- Paradigm:
+- Released: 1987 (Perl), 2019 (Raku)
+- Use: General-purpose, scripting, text parsing
+<br><br>
 - Old and possibly dying.
 - Perl 6 became Raku, a separate project.
 - Originally used in early internet back-end code.
@@ -299,18 +300,18 @@ Use: General-purpose, scripting, text parsing<br>
 ---
 ### PHP
 
-Examples:<br>
-Released:<br>
-Use:<br>
+- Examples:
+- Released:
+- Use:
 
 ---
 ### Python
 
-Examples: Ansible, Openstack, Blender, Ranger file browser<br>
-Paradigm: Multi-paradigm, but leans towards object-oriented <sup>[2]</sup><br>
-Released: 1991<br>
-Use: General-purpose, scripting, machine learning, data science<br>
-
+- Examples: Ansible, Openstack, Blender, Ranger file browser
+- Paradigm: Multi-paradigm, but leans towards object-oriented <sup>[2]</sup>
+- Released: 1991
+- Use: General-purpose, scripting, machine learning, data science
+<br><br>
 - Designed to be easy to read (uses whitespace instead of brackets).
 - Extremely popular.
 - Good first language.
@@ -330,11 +331,11 @@ print (fact)
 ---
 ### Ruby
 
-Examples: Puppet, Chef, Ruby on Rails, Homebrew, Metasploit<br>
-Paradigm: Strictly object-oriented<br>
-Released: 1995<br>
-Use: General-purpose, scripting<br>
-
+- Examples: Puppet, Chef, Ruby on Rails, Homebrew, Metasploit
+- Paradigm: Strictly object-oriented
+- Released: 1995
+- Use: General-purpose, scripting
+<br><br>
 - Designed to be productive and fun, focused on humans rather than computers.
 - Follows the Principle of Least Astonishment and attempts to minimize programmer confusion<sup>[2]</sup>.
 
@@ -351,10 +352,10 @@ end
 ---
 ### Rust
 
-Examples: Alacritty terminal, Firefox's Servo engine<br>
-Released: 2010<br>
-Use:<br>
-
+- Examples: Alacritty terminal, Firefox's Servo engine
+- Released: 2010
+- Use:
+<br><br>
 - Focused on safety, especially safe concurrency.
 - One of the most loved languages in StackOverflow's developer survey.
 
@@ -370,9 +371,9 @@ fn factorial(i: u64) -> u64 {
 ---
 ### Scala
 
-Examples:<br>
-Released:<br>
-Use:<br>
+- Examples:
+- Released:
+- Use:
 
 [1]: https://cs.lmu.edu/~ray/notes/paradigms/
 [2]: https://www.coursereport.com/blog/ruby-vs-python-choosing-your-first-programming-language

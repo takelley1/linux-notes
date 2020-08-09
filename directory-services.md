@@ -14,8 +14,8 @@ ldapsearch \
 
 ### SSH key authentication
 
-For SSH-key-based LDAP authentication the below scriptlet is to be referenced in "/etc/ssh/sshd_config" at the line `AuthorizedKeysCommand`.<br>
-The scriptlet attempts to authenticate users using a public key stored in the `comment` field of their LDAP user account attributes.<br>
+- For SSH-key-based LDAP authentication the below scriptlet is to be referenced in "/etc/ssh/sshd_config" at the line `AuthorizedKeysCommand`.
+- The scriptlet attempts to authenticate users using a public key stored in the `comment` field of their LDAP user account attributes.
 
 ```bash
 #!/usr/bin/env bash

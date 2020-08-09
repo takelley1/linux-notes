@@ -1,5 +1,5 @@
 
-  - Used to authenticate users to services over an untrusted network, without sending credentials in plaintext. This is done by converting user passwords into symmetric Secret Keys, which are used to encrypt sensitive traffic.
+Used to authenticate users to services over an untrusted network, without sending credentials in plaintext. This is done by converting user passwords into symmetric Secret Keys, which are used to encrypt sensitive traffic.
 
 ## AUTHENTICATION PROCESS
 
@@ -46,8 +46,8 @@
   - **SPN (Service Principal Name)** = The formal name of the resource or service a user is requesting access to.
   - **TGS (Ticket-Granting Service)** = The Kerberos service running on the KDC.
 
-  `kinit <USERNAME>@<REALM>` = Request TGT from KDC.<br>
-  `klist` = List all tickets.<br>
+  `kinit <USERNAME>@<REALM>` = Request TGT from KDC.
+  `klist` = List all tickets.
 
 ![kerberos](images/kerberos.jpg)
 

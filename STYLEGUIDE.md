@@ -10,21 +10,21 @@
 
 ### Subsection headers are in sentence case and have one blank space between them and the end of the previous section
 
-`command --param 1 --param 2` (*mneumonic*) = Command descriptions are full sentences. <sup>[References look like this]</sup><br>
-                                `--param 1` = Parameter descriptions are aligned with the end of the command.<br>
-                                `--param 2` = Parameter 2 description (*long mneumonic*). <sup>[1]</sup><br><br>
+`command --param 1 --param 2` (*mneumonic*) = Command descriptions are full sentences. <sup>[References look like this]</sup>
+                                `--param 1` = Parameter descriptions are aligned with the end of the command.
+                                `--param 2` = Parameter 2 description (*long mneumonic*). <sup>[1]</sup>
 
 `command <VARIABLES_IN_COMMANDS_LOOK_LIKE_THIS>`
 
 `command [VARIABLE1] [VARIABLE2]` = Commands that require explanatory variables store the variable names in
-                                    square brackets, all-caps.<br>
+                                    square brackets, all-caps.
 
-> NOTE: Note subsections wrap at 120 characters and are full sentences. This is a very long line and is an example of<br>
+> NOTE: Note subsections wrap at 120 characters and are full sentences. This is a very long line and is an example of
         note wrapping.
 
 Explanation header:
 ```
-Long explanation text within code blocks are also usually wrapped at 120 characters. This is a very long line and is<br>
+Long explanation text within code blocks are also usually wrapped at 120 characters. This is a very long line and is
 wrapped at 120 characters.
 ```
 
@@ -42,23 +42,23 @@ wrapped at 120 characters.
 #### Minor subsection headers are also in sentence case and have one blank line above them
 
 ```bash
-Very long commands like this are wrapped at 120 characters within code blocks.   \ # Comments describing command lines within blocks go here and usually ignore the 120 line limit.<br>
-  --Parameters can go on separate lines like this to make things easier to read. \ # All comments are one space away from the last character of the command and aligned like this.<br>
-  --Parameters are indented by two spaces compared to the command.               \ # Here's another comment line.<br>
+Very long commands like this are wrapped at 120 characters within code blocks.   \ # Comments describing command lines within blocks go here and usually ignore the 120 line limit.
+  --Parameters can go on separate lines like this to make things easier to read. \ # All comments are one space away from the last character of the command and aligned like this.
+  --Parameters are indented by two spaces compared to the command.               \ # Here's another comment line.
 ```
 
 **See also:** [link name](https://www.link-address.example.com)
 
-1. step 1<br>
+1. step 1
    ```bash
    example command
    ```
-1. step 2<br>
+1. step 2
    ```yaml
    yaml_example_line1:
    yaml_example_line2:
    ```
-   1. step 2a<br>
+   1. step 2a
    ```bash
    vim /path/to/text/file
    ```
@@ -66,8 +66,8 @@ Very long commands like this are wrapped at 120 characters within code blocks.  
    text file content line 1
    text file content line 2
    ```
-   1. step 2b<br>
-1. step 3<br>
+   1. step 2b
+1. step 3
 
 [1]: https://www.source-1.com
 [2]: https://www.source-2.com

@@ -4,10 +4,10 @@
 | Action                           | Default binding (Preceed with `CTRL-b`)  |
 |----------------------------------|------------------------------------------|
 | Show current bindings            | `?`                                      |
-| Create new session               | `tmux`<br>`tmux new`                     |
+| Create new session               | `tmux``tmux new`                     |
 | List sessions                    | `s` or `tmux ls`                         |
 | Re-attach to session             | `tmux attach`                            |
-| Re-attach to session x           | `tmux attach -t [x]`<br>`tmux a -t [x]`  |
+| Re-attach to session x           | `tmux attach -t [x]``tmux a -t [x]`  |
 | Detach from session              | `d` or `:detach`                         |
 | Fix dotted lines in windows      | `D` (detatch from nested session)        |
 |----------------------------------|------------------------------------------|
@@ -30,7 +30,7 @@
 | Switch pane focus                | `o`                                      |
 | Rotate pane locations            | `^o`                                     |
 | Cycle through pane layouts       | `space`                                  |
-| Resize pane downwards by 5 units | `:resize -D 5`<br>`ALT-DownArrow`        |
+| Resize pane downwards by 5 units | `:resize -D 5``ALT-DownArrow`        |
 | Swap windows 3 and 1             | `swap-window -s 3 -t 1`                  |
 |----------------------------------|------------------------------------------|
 | Move pane to another window      | `:break-pane`                            |
@@ -40,9 +40,9 @@
 
 #### tmux copy and paste
 
-1. `CTRL-b [` = Enter scrollback mode.<br>
-1. `SPACE`    = Enter text selection mode.<br>
-1. `ENTER`    = Copy selected text to clipboard.<br>
-1. `CTRL-b ]` = Paste text from clipboard.<br>
+1. `CTRL-b [` = Enter scrollback mode.
+1. `SPACE`    = Enter text selection mode.
+1. `ENTER`    = Copy selected text to clipboard.
+1. `CTRL-b ]` = Paste text from clipboard.
 
--. `CTRL-b =` = List paste buffers (clipboard history).<br>
+-. `CTRL-b =` = List paste buffers (clipboard history).

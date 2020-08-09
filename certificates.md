@@ -1,28 +1,28 @@
 
 ## CERTIFICATE GENERATION
 
-Generate generic CSR:
+- Generate generic CSR:
 ```
 openssl req -new -newkey rsa:2048 -nodes -keyout server.key -out server.csr
 ```
 
-Generate CSR with Subject Alternate Names: (See ./certgen.sh for script):
+- Generate CSR with Subject Alternate Names: (See ./certgen.sh for script):
 ```
 sh ./certgen.sh domain.example.com 'DNS:*.domain.example.com,IP:10.0.0.10'
 ```
 
-Generate self-signed certificate:
+- Generate self-signed certificate:
 ```
 certtool --generate-privkey --outfile key.pem
 certtool --generate-self-signed --load-privkey key.pem --outfile cert.pem
 ```
 
-Add private key to certificate. This allows the cert and private key to be imported into Windows: <sup>[3]</sup>
+- Add private key to certificate. This allows the cert and private key to be imported into Windows: <sup>[3]</sup>
 ```
 openssl pkcs12 -export -out cert.pfx -inkey private.key -in cert.crt -certfile CACert.crt
 ```
 
-Convert `.pem` to `.crt` format:
+- Convert `.pem` to `.crt` format:
 ```
 openssl x509 -outform der -in cert.pem -out cert.crt
 ```
@@ -48,7 +48,7 @@ Public Key came with his browser. <sup>[1]</sup>
 ---
 ## MUTUAL SSL AUTHENTICATION (2-way SSL Authentication)
 
-  In Mutual Authentication, the Client must trust the Server, but the Server must also trust the Client.
+  - In Mutual Authentication, the Client must trust the Server, but the Server must also trust the Client.
   1. The Client requests access to a protected resource.
   2. The Server presents its Certificate to the Client.
   3. The Client verifies the server’s Certificate using the Server's Certificate issuer's Public Key.

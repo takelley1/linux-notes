@@ -1,23 +1,23 @@
 
 ## POSTGRES
 
-`psql -h <HOSTNAME_OR_IP> -p <PORT> -U <USERNAME> <DATABSE_NAME>` = Remotely connect to database.<br>
-`sudo -u postgres psql` = Launch a SQL shell as user postgres.<br>
+- `psql -h <HOSTNAME_OR_IP> -p <PORT> -U <USERNAME> <DATABSE_NAME>` = Remotely connect to database.
+- `sudo -u postgres psql` = Launch a SQL shell as user postgres.
 
 ### psql shell
 
-`\l`              = List all databases.<br>
-`\c <DB_NAME>`    = Connect to new database.<br>
-`\dt`             = View list of relations/tables.<br>
-`\d <TABLE_NAME>` = Show details of table.<br>
-`\h`              = Print help.<br>
-`\?`              = List all psql "slash" commands.<br>
-`\set`            = System variables.<br>
-`\q`              = Quit.<br>
+- `\l`              = List all databases.
+- `\c <DB_NAME>`    = Connect to new database.
+- `\dt`             = View list of relations/tables.
+- `\d <TABLE_NAME>` = Show details of table.
+- `\h`              = Print help.
+- `\?`              = List all psql "slash" commands.
+- `\set`            = System variables.
+- `\q`              = Quit.
 
 ### pg_hba.conf
 
-Manage client authentication to the db host:
+- Manage client authentication to the db host:
 ```
 # Allow any user on the local system to connect to any database with
 # any database user name using Unix-domain sockets (the default for local
@@ -68,7 +68,7 @@ host    all             all             .example.com            md5
 # In the absence of preceding "host" lines, these two lines will
 # reject all connections from 192.168.54.1 (since that entry will be
 # matched first), but allow Kerberos 5 connections from anywhere else
-# on the Internet.  The zero mask causes no bits of the host IP<br>
+# on the Internet.  The zero mask causes no bits of the host IP
 # address to be considered, so it matches any host.
 #
 # TYPE  DATABASE        USER            ADDRESS                 METHOD
@@ -76,19 +76,19 @@ host    all             all             192.168.54.1/32         reject
 host    all             all             0.0.0.0/0               krb5
 
 # Allow users from 192.168.x.x hosts to connect to any database, if
-# they pass the ident check.  If, for example, ident says the user is<br>
+# they pass the ident check.  If, for example, ident says the user is
 # "bryanh" and he requests to connect as PostgreSQL user "guest1", the
 # connection is allowed if there is an entry in pg_ident.conf for map
 # "omicron" that says "bryanh" is allowed to connect as "guest1".
 #
 # TYPE  DATABASE        USER            ADDRESS                 METHOD
-host    all             all             192.168.0.0/16          ident map=omicron.<br>
+host    all             all             192.168.0.0/16          ident map=omicron.
 
 # If these are the only three lines for local connections, they will
 # allow local users to connect only to their own databases (databases
 # with the same name as their database user name) except for administrators
-# and members of role "support", who can connect to all databases.  The file<br>
-# $PGDATA/admins contains a list of names of administrators.  Passwords<br>
+# and members of role "support", who can connect to all databases.  The file
+# $PGDATA/admins contains a list of names of administrators.  Passwords
 # are required in all cases.
 #
 # TYPE  DATABASE        USER            ADDRESS                 METHOD

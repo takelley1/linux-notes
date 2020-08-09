@@ -11,7 +11,7 @@ Also known as a *gateway server*.
 
 ```
 Httpd itself does not generate or host the data, but rather the content is obtained by one or several
-backend servers,vwhich normally have no direct connection to the external network. As httpd receives a<br>
+backend servers,vwhich normally have no direct connection to the external network. As httpd receives a
 request from a client, the request itself is proxied to one of these backend servers, which then handles
 the request, generates the content and then sends this content back to httpd, which then generates the
 actual HTTP response back to the client.

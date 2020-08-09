@@ -4,6 +4,7 @@
 *Liquid Crystal Display*
 - Works by shining an LED backlight through a crystal structure, which has three polarization filters for producing different levels of red, green, or blue light, based on the voltage applied to it.
 - The crystal panel of LCDs can only *block* light, so black pixels are blocked, but the backlight still shines through, causing blacks to appear grey.
+<br><br>
 - Panel types
   - TN (Twisted Nematic)
     - Pros: Fastest refresh rates and response times.
@@ -14,10 +15,11 @@
   - IPS (In-Plane Switching)
     - Pros: Best viewing angles and colors.
     - Cons: Slower response times than TN, issues with "IPS glow" at screen edges.
+<br><br>
 - Backlight technologies
   - Edgelit - Many white LEDs along the edge of the display panel shine inwards.
-  - FALD (full array local dimming) - LCD with multiple LED backlight "zones" that can be selectively activated/deactivated, increasing contrast in some cases. The resolution of the backlight zones determines much "glow" is visible on images with sharp edges of contrast, like white text on a black background.<br>
-  - Mini-LED local dimming - Ultra-high resolution local dimming created by extremely small individual white LED backlights, reducing backlight glow and increasing contrast. <sup>[3]</sup><br>
+  - FALD (full array local dimming) - LCD with multiple LED backlight "zones" that can be selectively activated/deactivated, increasing contrast in some cases. The resolution of the backlight zones determines much "glow" is visible on images with sharp edges of contrast, like white text on a black background.
+  - Mini-LED local dimming - Ultra-high resolution local dimming created by extremely small individual white LED backlights, reducing backlight glow and increasing contrast. <sup>[3]</sup>
 
 ![local-dimming](images/local-dimming.webp) <sup>[3]</sup>
 
