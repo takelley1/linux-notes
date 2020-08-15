@@ -30,6 +30,15 @@
 ---
 ## BASH
 
+### Substring matching
+
+```bash
+file="2020-08-15_00:17:02_screenshot.png"
+year="${file:0:4}"  # year = 2020
+month="${file:5:2}" # month = 08
+day="${file:8:2}"   # day = 15
+```
+
 ### printf
 
 `printf "%03d\n" 5` = `005` = Print with leading zeros.
