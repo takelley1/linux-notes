@@ -117,7 +117,7 @@
    initrd    /initramfs-linux.img
    options   root=/dev/sda2 rw
    ```
-   
+
 1. Reboot
 
 ## POST-INSTALL NETWORK CONFIGURATION

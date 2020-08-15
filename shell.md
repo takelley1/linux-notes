@@ -1,11 +1,15 @@
 
 ## SHELL INITIALIZATION <sup>[6]</sup>
 
-`~/.profile` is the place to put stuff that applies to your whole session, such as programs that you want to start when you log in, and environment variable definitions. `/etc/profile` and scripts in `/etc/profile.d/` apply to all user sessions.
+- `~/.profile` = The place to put stuff that applies to your whole session, such as programs that you want to start when
+   you log in, and environment variable definitions. `/etc/profile` and scripts in `/etc/profile.d/` apply to all user sessions.
 
-`~/.bashrc` is the place to put stuff that applies only to bash itself, such as alias and function definitions, shell options, and prompt settings (you could also put key bindings there, but for bash they normally go into `~/.inputrc`).
+- `~/.bashrc` = The place to put stuff that applies only to bash itself, such as alias and function definitions, shell
+  options, and prompt settings (you could also put key bindings there, but for bash they normally go into `~/.inputrc`).
 
-`~/.bash_profile` can be used instead of `~/.profile`, but it is read by bash only, not by any other shell. This is mostly a concern if you want your initialization files to work on multiple machines and your login shell isn't bash on all of them. This is a logical place to include `~/.bashrc` if the shell is interactive.
+- `~/.bash_profile` = Can be used instead of `~/.profile`, but it is read by bash only, not by any other shell. This is mostly
+  a concern if you want your initialization files to work on multiple machines and your login shell isn't bash on all of them.
+  This is a logical place to include `~/.bashrc` if the shell is interactive.
 
 
 ---
