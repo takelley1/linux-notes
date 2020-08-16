@@ -2,34 +2,35 @@
 ## SHELL INITIALIZATION <sup>[6]</sup>
 
 - `~/.profile` = The place to put stuff that applies to your whole session, such as programs that you want to start when
-   you log in, and environment variable definitions. `/etc/profile` and scripts in `/etc/profile.d/` apply to all user sessions.
+   you log in, and environment variable definitions. */etc/profile* and scripts in */etc/profile.d/* apply to all user sessions.
 
 - `~/.bashrc` = The place to put stuff that applies only to bash itself, such as alias and function definitions, shell
-  options, and prompt settings (you could also put key bindings there, but for bash they normally go into `~/.inputrc`).
+  options, and prompt settings (you could also put key bindings there, but for bash they normally go into *~/.inputrc*).
 
-- `~/.bash_profile` = Can be used instead of `~/.profile`, but it is read by bash only, not by any other shell. This is mostly
+- `~/.bash_profile` = Can be used instead of *~/.profile*, but it is read by bash only, not by any other shell. This is mostly
   a concern if you want your initialization files to work on multiple machines and your login shell isn't bash on all of them.
-  This is a logical place to include `~/.bashrc` if the shell is interactive.
+  This is a logical place to include *~/.bashrc* if the shell is interactive.
 
 
 ---
 ## SHELL TYPES <sup>[7]</sup>
 
-- #### Interactive login shell
+- Interactive login shell
   - Logging in remotely via, for example, ssh.
   - Dropping to a tty on your local machine (Ctrl-Alt-F1) and login there.
   - `~/.bash_profile` is sourced when starting this shell type.
   - `~/.profile` is sourced if `~/.bash_profile` doesn't exist.
-
-- #### Interactive non-login shell
+<br><br>
+- Interactive non-login shell
   - Opening a new terminal window.
   - `~/.bashrc` is sourced when starting this shell type.
-
-- #### Non-interactive non-login shell
+<br><br>
+- Non-interactive non-login shell
   - Running a script.
-
-- #### Non-interactive login shell
+<br><br>
+- Non-interactive login shell
   - This is extremely rare, and you're unlikey to encounter it.
+
 
 ---
 ## BASH
@@ -45,13 +46,13 @@ day="${file:8:2}"   # day = 15
 
 ### printf
 
-`printf "%03d\n" 5` = `005` = Print with leading zeros.
-                `%` = Marks the start of the formatting string.
-                `0` = Pad with zeros.
-                `3` = Make output 3-places long.
-                `d` = Convert input to a signed decimal.
+- `printf "%03d\n" 5` = `005` = Print with leading zeros.
+  - `%` = Marks the start of the formatting string.
+  - `0` = Pad with zeros.
+  - `3` = Make output 3-places long.
+  - `d` = Convert input to a signed decimal.
 
-`printf "%04.1f\n" 2.5` = `02.5` = Print decimal with leading zeros.
+- `printf "%04.1f\n" 2.5` = `02.5` = Print decimal with leading zeros.
 
 ### stdout/stderr
 
@@ -61,17 +62,17 @@ day="${file:8:2}"   # day = 15
 2>&1 or &> = Stdout and stderr.
 ```
 
-`cat /file.log 2>&1 | grep -i error` = Pass both stdout and stderr to grep through pipe, by default pipe only passes stdout.
+- `cat /file.log 2>&1 | grep -i error` = Pass both stdout and stderr to grep through pipe, by default pipe only passes stdout.
 
 ### Misc
 
-`sudo !!` = Execute last command with sudo privileges.
-`history` = Print past commands to stdout, grep and use ![line_number] to repeat command without retyping.
-`watch <COMMAND>` = Loop command indefinitely.
+- `sudo !!` = Execute last command with sudo privileges.
+- `history` = Print past commands to stdout, grep and use ![line_number] to repeat command without retyping.
+- `watch <COMMAND>` = Loop command indefinitely.
 
 ### Sourcing vs executing <sup>[5]</sup>
 
-`bash script.sh` or `source script.sh`?
+- `bash script.sh` or `source script.sh`?
 - **Sourcing** a script runs in the current shell process, preserving all environment variables of the current shell.
 - **Executing** a script runs in a new shell, which will load only the default environment variables.
 
@@ -90,19 +91,19 @@ day="${file:8:2}"   # day = 15
 
 ### Hotkeys
 
-`CTRL-r` = Search command history.
-
-`CTRL-l` = Clear screen.
-
-`CTRL-c` = Send `SIGINT` to foreground process.
-`CTRL-SHIFT-j` or `CTRL-j` = Get shell prompt back.
-`CTRL-z` = Suspend foreground process.
-`CTRL-d` = Exit current shell.
-
-`ALT-k` (in vi mode) = Recall previous command.
-`ALT-j` (in vi mode) = Recall next command.
-`ALT-f` = Jump forward one word  (when editing a command).
-`ALT-b` = Jump backward one word (when editing a command).
+- `CTRL-r` = Search command history.
+<br><br>
+- `CTRL-l` = Clear screen.
+<br><br>
+- `CTRL-c` = Send `SIGINT` to foreground process.
+- `CTRL-SHIFT-j` or `CTRL-j` = Get shell prompt back.
+- `CTRL-z` = Suspend foreground process.
+- `CTRL-d` = Exit current shell.
+<br><br>
+- `ALT-k` (in vi mode) = Recall previous command.
+- `ALT-j` (in vi mode) = Recall next command.
+- `ALT-f` = Jump forward one word  (when editing a command).
+- `ALT-b` = Jump backward one word (when editing a command).
 
 ### If-statement conditional tests <sup>[4]</sup>
 
@@ -130,7 +131,7 @@ day="${file:8:2}"   # day = 15
 
 #### String-based conditions <sup>[8]</sup>
 
-| syntax             | meaning                          |
+| Syntax             | Meaning                          |
 |--------------------|----------------------------------|
 | -z STRING          | STRING is empty.                 |
 | -n STRING          | STRING is NOT empty.             |
@@ -139,7 +140,7 @@ day="${file:8:2}"   # day = 15
 
 #### Number-based conditions <sup>[8]</sup>
 
-| syntax             | meaning                                |
+| Syntax             | Meaning                                |
 |--------------------|----------------------------------------|
 | NUM1 -eq NUM2      | NUM1 is equal to NUM2.                 |
 | NUM1 -ne NUM2      | NUM1 is NOT equal to NUM2.             |
@@ -152,27 +153,27 @@ day="${file:8:2}"   # day = 15
 ---
 ## ENVIRONMENT VARIABLES
 
-`printenv`                     = Get values of all environment variables.
-`export HOME=/home/newhomedir` = Set value of environment variable.
-
-`DISPLAY` = Name of X window display.
-`EDITOR`  = Default text editor.
-`HOME`    = Path of current user's home directory.
-`LOGNAME` = Current user's login name.
-`MAIL`    = Path of current user's mailbox.
-`OLDPWD`  = The shell's previous working directory.
-`PATH`    = Where the shell looks for command binaries, paths separated by a colon.
-`PWD`     = The shell's current working directory.
-`SHELL`   = Path of the shell's binary.
-`TERM`    = Type of terminal being used.
-`USER`    = Current username.
+- `printenv`                     = Get values of all environment variables.
+- `export HOME=/home/newhomedir` = Set value of environment variable.
+<br><br>
+- `DISPLAY` = Name of X window display.
+- `EDITOR`  = Default text editor.
+- `HOME`    = Path of current user's home directory.
+- `LOGNAME` = Current user's login name.
+- `MAIL`    = Path of current user's mailbox.
+- `OLDPWD`  = The shell's previous working directory.
+- `PATH`    = Where the shell looks for command binaries, paths separated by a colon.
+- `PWD`     = The shell's current working directory.
+- `SHELL`   = Path of the shell's binary.
+- `TERM`    = Type of terminal being used.
+- `USER`    = Current username.
 
 
 ---
 ## CONSOLE / TTY
 
-`dpkg-reconfigure console-setup`    = Change console font size (Debian-based distros).
-`/etc/default/console-setup`        = Change console font size.
+- `dpkg-reconfigure console-setup`    = Change console font size (Debian-based distros).
+- `/etc/default/console-setup`        = Change console font size.
 
 
 [1]: https://stackoverflow.com/questions/15783701/which-characters-need-to-be-escaped-when-using-bash#20053121
