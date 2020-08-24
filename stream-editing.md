@@ -7,34 +7,42 @@
 
 ### Examples
 
-- `awk '{print $3, $2}'` = Print the 3rd and 2nd fields of input.
-- `awk '/foo/ {gsub(/abc/,""); gsub(/[0-9]/,""); print $1}'` = Print 1st field of lines that contain *foo*, remove *abc* and all numbers from output.
+- `awk '{print $3, $2}'`                                              = Print the 3rd and 2nd fields of input.
+- `awk '/foo/ {gsub(/abc/,""); gsub(/[0-9]/,""); print $1}'`          = Print 1st field of lines that contain *foo*, remove *abc* and all numbers from output.
 - `awk '/[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}/' {print $3}` = Print 3rd field of lines that contain IP-address-like strings in input.
 <br><br>
-- `awk -F':' '/:[1-4][0-9]{3}/ {print $6}' /etc/passwd` = Print the home directories of all interactive users.
+- `awk -F':' '/:[1-4][0-9]{3}/ {print $6}' /etc/passwd`    = Print the home directories of all interactive users.
 - `awk -F':' '! /\/sbin\/nologin/ {print $1}' /etc/passwd` = Print users who don't use */sbin/nologin* as their shell.
 <br><br>
 - `awk '{if(NR>2) print $0}'` = Print all but the first two lines.
 
+### Variables
+
+- `FS`   = Input field separator regular expression, a \<space\> by default.
+- `NF`   = The number of fields in the current record.
+- `NR`   = The ordinal number of the current record from the start of input.
+- `OFS`  = The print statement output field separator, \<space\> by default.
+- `ORS`  = The print statement output record separator, a \<newline\> by default.
+
 ### Regex
 
-- `^` = Match string at start.
-- `$` = Match string at end.
-- `a|b` = Alternation (`a` OR `b`).
-- `*` = Zero or more of previous.
-- `+` = One or more of previous.
-- `?` = Zero or one of previous.
-- `{1,5}` = One to five of previous.
-- `{3,}` = At least three of previous.
-- `[abc...]` = Anything within [ ]
+- `^`         = Match string at start.
+- `$`         = Match string at end.
+- `a|b`       = Alternation (*a* or *b*).
+- `*`         = Zero or more of previous.
+- `+`         = One or more of previous.
+- `?`         = Zero or one of previous.
+- `{1,5}`     = One to five of previous.
+- `{3,}`      = At least three of previous.
+- `[abc...]`  = Anything within [ ]
 - `[^abc...]` = Anything NOT within [ ]
 
 | Backslash syntax |                      |
 |------|----------------------------------|
 | `\s` | Whitespace characters            |
-| `\S` | NON whitespace characters        |
+| `\S` | non-whitespace characters        |
 | `\w` | letters, digits, underscores     |
-| `\W` | NON letters, digits, underscores |
+| `\W` | non-letters, digits, underscores |
 | `\f` | Form-feed                        |
 | `\r` | Carriage return                  |
 | `\n` | Newline                          |
