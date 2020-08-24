@@ -4,10 +4,10 @@
 | Action                           | Default binding (Preceed with `CTRL-b`)  |
 |----------------------------------|------------------------------------------|
 | Show current bindings            | `?`                                      |
-| Create new session               | `tmux``tmux new`                     |
+| Create new session               | `tmux``tmux new`                         |
 | List sessions                    | `s` or `tmux ls`                         |
 | Re-attach to session             | `tmux attach`                            |
-| Re-attach to session x           | `tmux attach -t [x]``tmux a -t [x]`  |
+| Re-attach to session x           | `tmux attach -t [x]``tmux a -t [x]`      |
 | Detach from session              | `d` or `:detach`                         |
 | Fix dotted lines in windows      | `D` (detatch from nested session)        |
 |----------------------------------|------------------------------------------|
@@ -30,7 +30,7 @@
 | Switch pane focus                | `o`                                      |
 | Rotate pane locations            | `^o`                                     |
 | Cycle through pane layouts       | `space`                                  |
-| Resize pane downwards by 5 units | `:resize -D 5``ALT-DownArrow`        |
+| Resize pane downwards by 5 units | `:resize -D 5``ALT-DownArrow`            |
 | Swap windows 3 and 1             | `swap-window -s 3 -t 1`                  |
 |----------------------------------|------------------------------------------|
 | Move pane to another window      | `:break-pane`                            |

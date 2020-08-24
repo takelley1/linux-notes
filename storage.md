@@ -3,29 +3,28 @@
 
 ### Physical volumes (PV)
 
-`pvcreate /dev/sdb`            = Create a physical volume.
-`pvremove /dev/sdb1 /dev/sdc1` = Remove physical volumes on partitions sdb1 and sdc1.
-`pvmove /dev/sdb1 /dev/sdb2`   = Copy all data from sdb1 to sdb2.
-
-`pvdisplay` or `pvscan`        = Show physical volumes.
+- `pvcreate /dev/sdb`            = Create a physical volume.
+- `pvremove /dev/sdb1 /dev/sdc1` = Remove physical volumes on partitions sdb1 and sdc1.
+- `pvmove /dev/sdb1 /dev/sdb2`   = Copy all data from sdb1 to sdb2.
+<br><br>
+- `pvdisplay` or `pvscan`        = Show physical volumes.
 
 ### Logical volumes (LV)
 
-`lvcreate -l 2500 centos -n vol_1` = Create a new volume called vol_1 with 2500 extents in vgroup centos.
-`lvextend -L 1.5G /dev/mapper/LV1` = Extend volume LV1 to 1.5 GB.
-`lvreduce -l -200 /dev/mapper/LV1` = Reduce volume LV1 by 200 extents.
-
-`lvdisplay` or `lvscan`            = Show logical volumes.
+- `lvcreate -l 2500 centos -n vol_1` = Create a new volume called vol_1 with 2500 extents in vgroup centos.
+- `lvextend -L 1.5G /dev/mapper/LV1` = Extend volume LV1 to 1.5 GB.
+- `lvreduce -l -200 /dev/mapper/LV1` = Reduce volume LV1 by 200 extents.
+<br><br>
+- `lvdisplay` or `lvscan`            = Show logical volumes.
 
 ### Volume groups (VG)
 
-`vgcreate VG1 /dev/sdb1 /dev/sdc1` = Create a volume group called VG1, containing physical volumes sdb1 and sdc1.
-`vgextend VG1 /dev/sdb1`           = Add physical volume sdb1 to volume group VG1.
+- `vgcreate VG1 /dev/sdb1 /dev/sdc1` = Create a volume group called VG1, containing physical volumes sdb1 and sdc1.
+- `vgextend VG1 /dev/sdb1`           = Add physical volume sdb1 to volume group VG1.
+<br><br>
+- `vgdisplay` or `vgscan`            = Show volume groups.
 
-`vgdisplay` or `vgscan`            = Show volume groups.
-
-### Extending /var xfs filesystem with LVM
-
+Extending */var* XFS filesystem with LVM:
 ```bash
 1. fdisk /dev/sdb                      # Create partition from new disk.
 2. pvcreate /dev/sdb1                  # Create a physical volume from the new partition.
@@ -37,7 +36,7 @@
 
 
 ---
-## ARCHIVES <sup>[2]</sup> 
+## ARCHIVES <sup>[2]</sup>
 `TODO`
 
 | compression algorithms | gzip | bzip2 | xz | lzip | lzma | zstd |
@@ -48,78 +47,83 @@
 | Compression ratio      |      |       |    |      |      |      |
 
 | Archive formats | tar | zip | 7z | tar.gz |
+|-----------------|-----|-----|----|--------|
 |                 |     |     |    |        |
 
-**See also**: [squash compression benchmark](https://quixdb.github.io/squash-benchmark/#results)
+**See also**: [Squash compression benchmark](https://quixdb.github.io/squash-benchmark/#results)
 
 ### Tar
 
-`tar xzvf myarchive.tar.gz` = Extract myarchive.tar.gz to current path (*xtract ze v'ing files*).
-                        `x` = Extract.
-                        `z` = Decompress with gzip (only works with extracting `tar.gz` or `.tgz` tarballs).
-                        `v` = Be verbose.
-                        `f` = Work in file mode (rather than tape mode).
-
-`tar czvf myarchive.tar.gz dir1/ dir2/ dir3/` = Create myarchive.tar.gz from dir1, dir2, and dir3 (*create ze v'ing files*).
+- `tar xzvf myarchive.tar.gz` = Extract myarchive.tar.gz to current path (*xtract ze v'ing files*).
+  - `x` = Extract.
+  - `z` = Decompress with gzip (only works with extracting `tar.gz` or `.tgz` tarballs).
+  - `v` = Be verbose.
+  - `f` = Work in file mode (rather than tape mode).
+<br><br>
+- `tar czvf myarchive.tar.gz dir1/ dir2/ dir3/` = Create myarchive.tar.gz from dir1, dir2, and dir3 (*create ze v'ing files*).
 
 ### 7zip
 
-`7za x myarchive.7z` = Extract myarchive.7z to current path (DO NOT USE THE 'e' SWITCH, USE 'x' INSTEAD TO PRESERVE FILEPATHS).
-
-`7za a -mx=10 myarchive.7z dir1/ dir2/` = Create myarchive.7z from dir1 and dir2.
-                               `-mx=10` = Use compression lvl 10.
+- `7za x myarchive.7z` = Extract myarchive.7z to current path (DO NOT USE THE 'e' SWITCH, USE 'x' INSTEAD TO PRESERVE FILEPATHS).
+<br><br>
+- `7za a -mx=10 myarchive.7z dir1/ dir2/` = Create myarchive.7z from dir1 and dir2.
+  - `-mx=10` = Use compression lvl 10.
 
 
 ---
 ## DISKS & MOUNTS
 
-`partprobe` = Scan for new disks.
+- `partprobe` = Scan for new disks.
+<br><br>
+- `lsblk -f` = Show disk tree layout, including logical volumes.
+ - `-f` = Show filysystem type.
+<br><br>
+- `df -Th` = Show space used by mounted drives.
+  - `-h` = Make output human-readable.
+  - `-T` = Show filesystem type.
+<br><br>
+- `blkid` = Show partition UUIDs.
+<br><br>
+- `fdisk -l`       = Show drives and their partition tables.
+- `fdisk /dev/sdb` = Edit the partition table of sdb.
+<br><br>
+- `mount`                                     = Show mounted volumes and their mount locations.
+- `mount –o remount,rw /dev/sda1 /mountpoint` = Remount drive with read-write permissions.
 
-`lsblk -f` = Show disk tree layout, including logical volumes.
-      `-f` = Show filysystem type.
-  
-`df -Th` = Show space used by mounted drives.
-    `-h` = Make output human-readable.
-    `-T` = Show filesystem type.
+### Disk testing <sup>[3]</sup>
 
-`blkid` = Show partition UUIDs.
-
-`fdisk -l`       = Show drives and their partition tables.
-`fdisk /dev/sdb` = Edit the partition table of sdb.
-
-`mount`                                     = Show mounted volumes and their mount locations.
-`mount –o remount,rw /dev/sda1 /mountpoint` = Remount drive with read-write permissions.
-
-### Disk testing <sup>[3]</sup> 
-
-`badblocks -b 4096 -s -v -w /dev/sdb` = Destructively test disk sdb for bad data blocks (useful for testing new drive).
-`bonnie++`
-
-`dd if=/dev/zero of=./test1.img bs=1G count=1 oflag=dsync` = Test disk write speed. <sup>[8]</sup>
+- `badblocks -b 4096 -s -v -w /dev/sdb` = Destructively test disk sdb for bad data blocks (useful for testing new drive).
+- `bonnie++`
+<br><br>
+- `dd if=/dev/zero of=./test1.img bs=1G count=1 oflag=dsync` = Test disk write speed. <sup>[8]</sup>
 
 ---
 ### SMART
 
 #### SMART testing
 
-`smartctl -t long /dev/sdc` = Start a long HDD self test. After the test is done (could take 12+ hours), check the results with `smartctl -a /dev/sdc`.
-
-`smartctl -a /dev/ | grep Current_Pending_Sector`         = Pending sector reallocations.
-`smartctl -a /dev/ | grep Reallocated_Sector_Ct`          = Reallocated sector count.
-`smartctl -a /dev/ | grep UDMA_CRC_Error_Count`           = UDMA CRC errors.
-`diskinfo -wS`                                            = HDD and SSD write latency consistency (unformatted drives only!).
-`smartctl -a /dev/ | grep Power_On_Hours`                 = HDD and SSD hours.
-`nvmecontrol logpage -p 2 nvme0 | grep “Percentage used”` = NVMe percentage used.
+- `smartctl -t long /dev/sdc` = Start a long HDD self test. After the test is done (could take 12+ hours), check the results with `smartctl -a /dev/sdc`.
+<br><br>
+- `smartctl -a /dev/ | grep Current_Pending_Sector`         = Pending sector reallocations.
+- `smartctl -a /dev/ | grep Reallocated_Sector_Ct`          = Reallocated sector count.
+- `smartctl -a /dev/ | grep UDMA_CRC_Error_Count`           = UDMA CRC errors.
+- `diskinfo -wS`                                            = HDD and SSD write latency consistency (unformatted drives only!).
+- `smartctl -a /dev/ | grep Power_On_Hours`                 = HDD and SSD hours.
+- `nvmecontrol logpage -p 2 nvme0 | grep “Percentage used”` = NVMe percentage used.
 
 #### SMART field names
 
-`Normalized value` = Commonly referred to as just "value". This is a most universal measurement, on the scale from 0 (bad) to some maximum (good) value. Maximum values are typically 100, 200 or 253. Rule of thumb is: high values are good, low values are bad.  .
+- `Normalized value` = Commonly referred to as just "value". This is a most universal measurement, on the scale from 0
+                       (bad) to some maximum (good) value. Maximum values are typically 100, 200 or 253. Rule of thumb
+                       is: high values are good, low values are bad.
+- `Threshold` = The minimum normalized value limit for the attribute. If the normalized value falls below the threshold,
+                the disk is considered defective and should be replaced under warranty. This situation is called "T.E.C."
+                (Threshold Exceeded Condition).
+- `Raw value` = The value of the attribute as it is tracked by the device, before any normalization takes place. Some
+                raw numbers provide valuable insight when properly interpreted. These cases will be discussed later on.
+                Raw values are typically listed in hexadecimal numbers.
 
-`Threshold` = The minimum normalized value limit for the attribute. If the normalized value falls below the threshold, the disk is considered defective and should be replaced under warranty. This situation is called "T.E.C." (Threshold Exceeded Condition.  ).
-
-`Raw value` = The value of the attribute as it is tracked by the device, before any normalization takes place. Some raw numbers provide valuable insight when properly interpreted. These cases will be discussed later on. Raw values are typically listed in hexadecimal numbers.
-
-| SMART attributes <sup>[5]</sup>                                           |                                                                            | 
+| SMART attributes <sup>[5]</sup>                                           |                                                                            |
 |---------------------------------------------------------------------------|----------------------------------------------------------------------------|
 | Reallocated sectors count                                                 | How many defective sectors were discovered on drive and remapped to spare sectors. Low values in absence of other fault indications point to a disk surface problem. Raw value indicates the exact number of such sectors. |
 | Current pending sectors count                                             | How many suspected defective sectors are pending "investigation." These will not necessarily be remapped. In fact, such sectors my be not defective at all (e.g. if some transient condition prevented reading of the sector, it will be marked "pending") - they will be then re-tested by the device off-line scan1 procedure and returned to the pool of serviceable sectors. Raw value indicates the exact number of such sectors. |
@@ -140,10 +144,10 @@
 
 ### Metadata
 
-`stat file.txt`         = Get file metadata on file.txt.
-`atime` (*access time*) = Last time file's contents were read.
-`mtime` (*modify time*) = Last time file's contents were changed.
-`ctime` (*change time*) = Last time file's inode was changed (permissions, ownership, name, hard links, etc.).
+- `stat file.txt`         = Get file metadata on file.txt.
+- `atime` (*access time*) = Last time file's contents were read.
+- `mtime` (*modify time*) = Last time file's contents were changed.
+- `ctime` (*change time*) = Last time file's inode was changed (permissions, ownership, name, hard links, etc.).
 
 ```
 inode:
@@ -152,30 +156,30 @@ A special data structure holding a file's metadata, contains the file's physical
 permissions, and modification timestamps. The file that the user interacts with is only a pointer to its
 corresponding inode.
 ```
-<sup>[6]</sup> 
+<sup>[6]</sup>
 
 ### Sizing
 
-`du -sh /home/alice` = Display disk space used by specified directory or file.
-`-s` (*summarize*)   = List total storage used by entire directory and all subdirectories.
-`-h` (*human*)       = Use human-readable format for filesizes (ex. `8.7M` instead of `8808`).
-
-`du -d 1 -h /`           = List the sizes of each directory one level beneath the specified directory.
-`        -d 1` (*depth*) = Recurse at a depth of 1 directory.
+- `du -sh /home/alice` = Display disk space used by specified directory or file.
+  - `-s` (*summarize*)  = List total storage used by entire directory and all subdirectories.
+  - `-h` (*human*)      = Use human-readable format for filesizes (ex. `8.7M` instead of `8808`).
+<br><br>
+- `du -d 1 -h /` = List the sizes of each directory one level beneath the specified directory.
+  - `d 1` (*depth*) = Recurse at a depth of 1 directory.
 
 ### Filesystems
 
-`mkfs.ext4 /dev/mapper/LV1` or `mkfs -t ext4 /dev/mapper/LV1` = Create ext4 filesystem on LV1 logical volume.
-
-`e2fsck -f /dev/mapper/LV1 && resize2fs /dev/mapper/LV1` = Expand filesystem to fit size of LV1 (must be unmounted).
-`xfs_growfs /dev/centos/var`                             = Expand mounted xfs filesystem (must be mounted).
-
-`e4degrag /`     = Defragment all partitions.
-`fsck /dev/sda2` = Check sda2 partition for errors (supported filesystems only).
+- `mkfs.ext4 /dev/mapper/LV1` or `mkfs -t ext4 /dev/mapper/LV1` = Create ext4 filesystem on LV1 logical volume.
+<br><br>
+- `e2fsck -f /dev/mapper/LV1 && resize2fs /dev/mapper/LV1` = Expand filesystem to fit size of LV1 (must be unmounted).
+- `xfs_growfs /dev/centos/var`                             = Expand mounted xfs filesystem (must be mounted).
+<br><br>
+- `e4degrag /`     = Defragment all partitions.
+- `fsck /dev/sda2` = Check sda2 partition for errors (supported filesystems only).
 
 > NOTE: Xfs filesystems cannot be shrunk; use ext4 instead.
 
-#### Ext4 vs xfs <sup>[4]</sup> 
+#### Ext4 vs xfs <sup>[4]</sup>
 
 ```
 Ext4 is better with lots of smaller files and metadata-intensive tasks.
@@ -214,32 +218,32 @@ COW  = Journaling is superceded by copy-on-write mechanisms.
 
 > NOTE: assumes fedora-based system
 
-### Server 
+### Server
 
 1. `yum install nfs-utils`
 1. `systemctl enable nfs`
 1. `systemctl start nfs`
-1. create entry in `/etc/exports` (see examples at bottom of man page for `exports`)  
-`/[mountpoint being shared] [authorized ips or fqdns]([mount options])`  
+1. create entry in `/etc/exports` (see examples at bottom of man page for `exports`)
+`/[mountpoint being shared] [authorized ips or fqdns]([mount options])`
 ex: `/mirror 192.168.1.1/24(rw)`
 1. `exportfs -a`
 1. `sync`
 
-### Client 
+### Client
 
 1. `mount -t nfs [server ip or fqdn]:/[directory being shared] /[local mount location]`
 1. `showmount`
-1. create entry in `/etc/fstab`  
-`[server ip or fqdn]:/[directory being shared] /[local mount location] nfs defaults 0 0`  
+1. create entry in `/etc/fstab`
+`[server ip or fqdn]:/[directory being shared] /[local mount location] nfs defaults 0 0`
 ex: `10.0.0.10:/data  /mnt/data  nfs  defaults  0 0`
 
 
 ---
 ## MISC
 
-### Hard & symbolic links 
+### Hard & symbolic links
 
-`ln /home/sourcefile.txt /var/hardlink.txt` = Create hard link to file (`ln -s` for soft/symbolic link).
+- `ln /home/sourcefile.txt /var/hardlink.txt` = Create hard link to file (`ln -s` for soft/symbolic link).
 
 ```
 Hard links create an additional pointer to a file’s inode and remains even if the original file from which the link
@@ -263,12 +267,11 @@ break if the location they're pointing to is deleted. Similar to Windows shortcu
 1. Run `grub-mkconfig -o /boot/grub/grub.cfg` or `update-grub` (if `update-grub` was installed).
 1. Reboot. if you're dropped into an emergency shell, try regenerating grub.
 
-[1]: https://www.tldp.org/LDP/sag/html/filesystems.html  
-[2]: https://clearlinux.org/news-blogs/linux-os-data-compression-options-comparing-behavior  
-[3]: https://calomel.org/badblocks_wipe.html  
-[4]: https://unix.stackexchange.com/questions/467385/should-i-use-xfs-or-ext4  
-[5]: https://www.z-a-recovery.com/manual/smart.aspx  
-[6]: http://www.linfo.org/inode.html  
+[1]: https://www.tldp.org/LDP/sag/html/filesystems.html
+[2]: https://clearlinux.org/news-blogs/linux-os-data-compression-options-comparing-behavior
+[3]: https://calomel.org/badblocks_wipe.html
+[4]: https://unix.stackexchange.com/questions/467385/should-i-use-xfs-or-ext4
+[5]: https://www.z-a-recovery.com/manual/smart.aspx
+[6]: http://www.linfo.org/inode.html
 [7]: https://askubuntu.com/questions/741723/moving-entire-linux-installation-to-another-drive
 [8]: https://www.cyberciti.biz/faq/howto-linux-unix-test-disk-performance-with-dd-command/
-
