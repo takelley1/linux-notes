@@ -1,10 +1,12 @@
 
 ## GIT <sup>[1]</sup>
 
-**See also:** [github fundamentals](https://git-scm.com/docs)
-
-`git commit --amend -m 'Commit message'` = Amend most recent commit message (requires `git push --force` if commit already pushed) <sup>[2]</sup>.
-
+**See also:**
+  - [The git book](https://git-scm.com/book/en/v2)
+  - [Git fundamentals](https://git-scm.com/docs)
+<br><br>
+- `git commit --amend -m 'Commit message'` = Amend most recent commit message (requires `git push --force` if commit already pushed) <sup>[2]</sup>.
+<br><br>
 - `git add -A` = Stage all modified files, including deleted files.
 - `git add -A ./*` = Stage all modified files, including deleted files, beneath the current path.
 - `git add -u` = Stage all modified files.
@@ -12,7 +14,7 @@
 ---
 ### Tags
 
-**See also:** [git basics - tagging](https://git-scm.com/book/en/v2/Git-Basics-Tagging)
+**See also:** [Git basics - tagging](https://git-scm.com/book/en/v2/Git-Basics-Tagging)
 
 *Tag specific commits to release your software.*
 
