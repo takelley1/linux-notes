@@ -4,17 +4,17 @@
 **See also:** [Daniel Messler on vim](https://danielmiessler.com/study/vim/)
 
 [Insert comments in bulk](https://stackoverflow.com/questions/1676632/whats-a-quick-way-to-comment-uncomment-lines-in-vim/15588798#15588798):
-1. Method 1
+- Method 1
   1. Enter visual block mode.
   1. Select range.
   1. `SHIFT-i` to enter insert mode.
   1. Type a comment symbol.
   1. Exit insert mode.
-1. Method 2
+- Method 2
   1. Enter visual block mode.
   1. Select range.
   1. Enter command mode with `:`.
-  1. Enter `norm i#` to insert comment sybols.
+  1. Enter `norm i#` to insert comment symbols.
 
 ### Split-window editing
 
