@@ -7,22 +7,22 @@
 
 ### Examples
 
-- `awk '{print $3, $2} file.txt'` = Print the 3rd and 2nd fields of file.txt.
-- `awk '/foo/ {gsub(/abc/,""); gsub(/[0-9]/,""); print $1}'` = Print 1st field of lines that contain "foo", remove "abc" and all numbers from output.
+- `awk '{print $3, $2}'` = Print the 3rd and 2nd fields of input.
+- `awk '/foo/ {gsub(/abc/,""); gsub(/[0-9]/,""); print $1}'` = Print 1st field of lines that contain *foo*, remove *abc* and all numbers from output.
 - `awk '/[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}/' {print $3}` = Print 3rd field of lines that contain IP-address-like strings in input.
 <br><br>
 - `awk -F':' '/:[1-4][0-9]{3}/ {print $6}' /etc/passwd` = Print the home directories of all interactive users.
-- `awk -F':' '! /\/sbin\/nologin/ {print $1}' /etc/passwd` = Print users who don't use /sbin/nologin as their shell.
+- `awk -F':' '! /\/sbin\/nologin/ {print $1}' /etc/passwd` = Print users who don't use */sbin/nologin* as their shell.
 <br><br>
 - `awk '{if(NR>2) print $0}'` = Print all but the first two lines.
 
 ### Regex
 
-- `^` = Match string at start.    (ex. `rpm –qa | grep -E ^a`)<br>
-- `$` = Match string at end.      (ex. `rpm –qa | grep -E 64$`)<br>
-- `a|b` = Alternation (`a` OR `b`).               (ex. `grep -E ‘i|a’ file`)<br>
-- `*` = Zero or more of previous. (ex. `grep -E ‘a*’ file`)<br>
-- `+` = One or more of previous.<br>
+- `^` = Match string at start.
+- `$` = Match string at end.
+- `a|b` = Alternation (`a` OR `b`).
+- `*` = Zero or more of previous.
+- `+` = One or more of previous.
 - `?` = Zero or one of previous.
 - `{1,5}` = One to five of previous.
 - `{3,}` = At least three of previous.
@@ -53,13 +53,11 @@
 | `[:space:]` | Space characters (space, tab, formfeed, etc.) |
 | `[:upper:]` | Uppercase alphabetic characters               |
 
-> NOTE: Enclose character classes in two sets of square brackets when using awk, [[:like_this:]].
-
 
 ---
 ## SED
 
-`sed -<PARAMETER> '<RESTRICTION> <FLAG1>/<PATTERN1>/<PATTERN2>/<FLAG2>' <FILE1> <FILE2>...`
+`sed -<PARAMETER> '<RESTRICTION> <FLAG1>/<PATTERN1>/<PATTERN2>/<FLAG2>' <FILE1> <FILE2>…`
 
 ### Examples
 
@@ -173,8 +171,8 @@
 
 - `^`        = Match string at start.
 - `$`        = Match string at end.
-- `|`        = Logical OR.              (ex. `grep -E ‘i|a’ file`)
-- `*`        = Zero or more of previous. (ex. `grep -E ‘a*’ file`)
+- `|`        = Logical OR.
+- `*`        = Zero or more of previous.
 - `+`        = One or more of previous.
 - `{1,3}`    = Match the previous 1-3 times.
 - `[0-9]`    = Any digit.
