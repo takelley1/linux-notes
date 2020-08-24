@@ -18,11 +18,11 @@
 
 ### Variables
 
-- `FS`   = Input field separator regular expression, a \<space\> by default.
-- `NF`   = The number of fields in the current record.
-- `NR`   = The ordinal number of the current record from the start of input.
-- `OFS`  = The print statement output field separator, \<space\> by default.
-- `ORS`  = The print statement output record separator, a \<newline\> by default.
+- `FS`  = Input field separator regular expression, a \<space\> by default.
+- `NF`  = The number of fields in the current record.
+- `NR`  = The ordinal number of the current record from the start of input.
+- `OFS` = The print statement output field separator, \<space\> by default.
+- `ORS` = The print statement output record separator, a \<newline\> by default.
 
 ### Regex
 *(See `man 7 regex` for more info.)*
@@ -133,7 +133,7 @@
 Filter out only the IPv4 address of the desired interface:
 ```bash
 # Good:
-ip -4 -br a | awk '! /127/ {print $3}'
+ip -4 -br a | awk '! /127\.0\.0/ {gsub(/\/[0-9]{1,2}/,""); print $3}'
 # Bad:
 ifconfig ens32 | grep "inet" | grep –v "inet6" | tr –s " " ":" | cut –f 3 –d ":"
 ```
