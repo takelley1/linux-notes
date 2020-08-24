@@ -1,7 +1,9 @@
 
 ## VIM
 
-**See also:** [Daniel Messler on vim](https://danielmiessler.com/study/vim/)
+**See also:**
+  - [Learn vimscript the hard way](https://learnvimscriptthehardway.stevelosh.com/)
+  - [Daniel Messler on vim](https://danielmiessler.com/study/vim/)
 
 [Insert comments in bulk](https://stackoverflow.com/questions/1676632/whats-a-quick-way-to-comment-uncomment-lines-in-vim/15588798#15588798):
 - Method 1
