@@ -1,5 +1,7 @@
 
-## CERTIFICATE GENERATION
+## CERTIFICATES
+
+### Generation
 
 - Generate generic CSR:
 ```
@@ -22,15 +24,19 @@ certtool --generate-self-signed --load-privkey key.pem --outfile cert.pem
 openssl pkcs12 -export -out cert.pfx -inkey private.key -in cert.crt -certfile CACert.crt
 ```
 
-- Convert `.pem` to `.crt` format:
-```
-openssl x509 -outform der -in cert.pem -out cert.crt
-```
+- `openssl x509 -outform der -in cert.pem -out cert.crt` = Convert *.pem* to *.crt*.
+- `openssl x509 -outform pem -in cert.crt -out cert.pem` = Convert *.crt* to *.pem*.
 
-### Certificate Signing
+
+### Signing
+
 #### Windows
 
+- **See also**
+  - [How to sign a CSR on Windows](https://docs.aws.amazon.com/cloudhsm/latest/userguide/win-ca-sign-csr.html)
+<br><br>
 - `certreq -submit -attrib "CertificateTemplate:WebServer" request.csr` = Import and sign request.csr using the WebServer template.
+<br><br>
 - `certlm.msc` = Local computer certificates.
 - `certmgr.msc` = Current user certificates.
 
