@@ -53,7 +53,8 @@ relevant output.
 #### Minor subsection headers are also in sentence case and have one blank line above them
 
 
-**See also:** [link name](https://www.link-address.example.com)
+- **See also:**
+  - [See also links are in sentence case](https://www.link-address.example.com)
 
 1. step 1
    ```bash
