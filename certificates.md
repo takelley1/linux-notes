@@ -27,6 +27,13 @@ openssl pkcs12 -export -out cert.pfx -inkey private.key -in cert.crt -certfile C
 openssl x509 -outform der -in cert.pem -out cert.crt
 ```
 
+### Certificate Signing
+#### Windows
+
+- `certreq -submit -attrib "CertificateTemplate:WebServer" request.csr` = Import and sign request.csr using the WebServer template.
+- `certlm.msc` = Local computer certificates.
+- `certmgr.msc` = Current user certificates.
+
 
 ---
 ## SSL CERTIFICATES (1-way SSL Authentication)
