@@ -211,7 +211,25 @@ COW  = Journaling is superceded by copy-on-write mechanisms.
 ## SAMBA
 `TODO`
 `smbclient`
-
+- Samba debug logging:
+```
+root@sambaserver:~# cat /etc/samba/smb.conf.client-debug
+[global]
+# no log file size limitation
+max log size = 0
+# specific log file name
+log file = /var/log/samba/log.%I
+# set the debug level
+log level = 3
+# add the pid to the log
+debug pid = yes
+# add the uid to the log
+debug uid = yes
+# add the debug class to the log
+debug class = yes
+# add microsecond resolution to timestamp
+debug hires timestamp = yes
+```
 
 ---
 ## NFS
