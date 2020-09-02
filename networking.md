@@ -9,6 +9,23 @@
 - [sshd_config man page](https://www.freebsd.org/cgi/man.cgi?sshd_config(5))
 - [ssh-keygen best practices](https://security.stackexchange.com/questions/143442/what-are-ssh-keygen-best-practices)
 
+### Connection process <sup>[8]</sup>
+
+1. Server authentication
+   1. Client initiates TCP connection to server.
+   1. Server provides client its public host key. This proves server is the same server that's been connected to before.
+   1. Diffie-Hellman used to create session key.
+   1. Server signs challenge number with its own private host key, sends it to client.
+   1. Client verifies challenge number signature to confirm server is in posession of its public host key. 
+2. User authentication (using key pairs)
+   1. Server checks requested server user's `authorized_keys` file for client user's public key.
+   1. Server sends client challenge number encrypted with client user's public key.
+   1. Client decrypts challenge number using client user's private key.
+   1. Client MD5 hashes (decrypted challenge number + session key) string.
+   1. Client sends MD5 digest to server.
+   1. Server MD5 hashes (original challenge number + session key) string.
+   1. Server compares its MD5 digest to client's MD5 digest. If they match, the requested user is authenticated.
+
 ### Files <sup>[6]</sup>
 
 - `~/.ssh/known_hosts`
@@ -19,7 +36,7 @@
 <br><br>
 - `~/.ssh/authorized_keys`
     - Kept on the server.
-    - Contains the public keys of users (user keys) allowed to login to this account.
+    - Contains the public keys of users (user keys) allowed to login to the requested account.
 
 
 ---
@@ -252,3 +269,4 @@ wget --recursive --no-clobber --page-requisites --html-extension --convert-links
 [5]: https://dougvitale.wordpress.com/2011/12/21/deprecated-linux-networking-commands-and-their-replacements/#netstat.
 [6]: https://www.techrepublic.com/article/the-4-most-important-files-for-ssh-connections/
 [7]: https://www.thegeekdiary.com/centos-rhel-7-tips-on-troubleshooting-ntp-chrony-issues/
+[8]: https://www.digitalocean.com/community/tutorials/understanding-the-ssh-encryption-and-connection-process
