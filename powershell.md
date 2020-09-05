@@ -1,5 +1,3 @@
-# POWERSHELL
-
 
 ## AD FS
 
@@ -7,10 +5,10 @@ Add server to AD FS farm:
 ```powershell
 Import-Module ADFS
 
-# Get the credential used for performaing installation/configuration of ADFS
+# Get the credential used for performaing installation/configuration of ADFS.
 $installationCredential = Get-Credential -Message "Enter the credential for the account used to perform the configuration."
 
-# Get the credential used for the federation service account
+# Get the credential used for the federation service account.
 $serviceAccountCredential = Get-Credential -Message "Enter the credential for the Federation Service Account."
 
 Add-AdfsFarmNode -CertificateThumbprint:"<CERTIFICATE THUMBPRINT>" -Credential:$installationCredential -OverwriteConfiguration:$true -PrimaryComputerName:"<SERVER HOSTNAME>" -ServiceAccountCredential:$serviceAccountCredential
@@ -32,7 +30,7 @@ Add-AdfsFarmNode -CertificateThumbprint:"<CERTIFICATE THUMBPRINT>" -Credential:$
 
 ## Extra features (Windows 10)
 
-Install or remove RSAT tools. <sup>1</sup>
+Install or remove RSAT tools: <sup>1</sup>
 ```powershell
 Get-WindowsCapability -Name RSAT* -Online | Add-WindowsCapability –Online
 Add-WindowsCapability -Name Rsat.CertificateServices.Tools~~~~0.0.1.0 –Online

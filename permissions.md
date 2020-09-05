@@ -1,15 +1,10 @@
 
-**`faillock --user alice --reset` = Unlock user**
-
 ## ACLs
 
-- Grant user alice read and write access to all files in /photos,
-  regardless of alice's POSIX permissions on those files:
-```bash
-setfacl –R –m u:alice:rw /photos
-```
-- `-R` = Recursive.
-- `-m` = Modify file or directory permissions.
+- `setfacl –R –m u:alice:rw /photos` = Grant user *alice* read and write access to all files in */photos*, regardless of
+                                       her POSIX permissions on those files.
+  - `-R` = Recursive.
+  - `-m` = Modify file or directory permissions.
 <br><br>
 - `getfacl /path/to/file.txt` = View ACL for given file.
 
@@ -34,18 +29,18 @@ Example:
 - Umask of user that created file:   `022`
 - New default permissions for files: `644`
 
-> NOTE: umask is permanently set in `/etc/profile` or `/etc/login.defs`
+> NOTE: umask is permanently set in `/etc/profile` or `/etc/login.defs`.
 
 
 ---
 ## USERS
 
-- `usermod -U alice`              = Unlock user account alice (due to kernel locking user)
-- `faillock --user alice --reset` = Unlock user account alice (due to pam_faillock.so locking user)
+- `usermod -U alice`              = Unlock user account *alice* (due to kernel locking user).
+- `faillock --user alice --reset` = Unlock user account *alice* (due to *pam_faillock.so* locking user).
 <br><br>
-- `w`               = Print recently logged-on user data
-- `last`            = View all users' last logins
-- `passwd -e alice` = Expire password for user alice, prompting her for a password reset upon next login
+- `w`               = Print recently logged-on user data.
+- `last`            = View all users' last logins.
+- `passwd -e alice` = Expire password for user alice, prompting her for a password reset upon next login.
 <br><br>
 - `/etc/passwd` syntax = `uname:'x':uid:gid:comments:homedir:shell`
 - `/etc/group` syntax  = `groupname:'x':groupid:userlist(user1,user2)`
@@ -54,66 +49,65 @@ Example:
 ---
 ## GROUPS
 
-- `usermod -a -G wheel,group1 alice` = Add alice to wheel and group1 groups
-- `usermod -G group1 alice`          = Remove alice from all groups except group 1
-- `gpasswd -d alice wheel`           = Delete alice from group wheel
+- `usermod -a -G wheel,group1 alice` = Add *alice* to *wheel* and *group1* groups.
+- `usermod -G group1 alice`          = Remove *alice* from all groups except *group1*.
+- `gpasswd -d alice wheel`           = Remove *alice* from group *wheel*.
 <br><br>
-- `id alice`    = Show what groups user alice is in, and show uid and gids
-- `id -G wheel` = Show gid of wheel group
+- `id alice`    = Show what groups user *alice* is in, also show user ID and group IDs.
+- `id -G wheel` = Show group ID of *wheel* group.
 
 
 ---
 ## PERMISSIONS
 
-- `chown -R alice:admins /home/Documents` = Change ownership of Documents directory recursively (`-R`) to alice and the admins group
-- `chgrp wheel /home/alice` = Change group owner of the /home/alice directory to wheel
+- `chown -R alice:admins /documents` = Change ownership of */documents* directory recursively to *alice* and the *admins* group.
+- `chgrp wheel /home/alice` = Change group owner of the */home/alice* directory to *wheel*.
 
-### octal
+### Octal permissions
 
-- chmod octal permissions order --> | special | user (`u`) | group (`g`) | everyone else (`o`) |
+- chmod octal permissions order --> | special | user (`u`) | group (`g`) | everyone else / other (`o`) |
 <br><br>
-- regular permissions:
-- `4` = Read (`r`)
-- `2` = Write (`w`)
-- `1` = Execute (`x`)
-- `0` = None (`-`)
+- Regular permissions (user, group, other)
+  - `4` = Read (`r`)
+  - `2` = Write (`w`)
+  - `1` = Execute (`x`)
+  - `0` = None (`-`)
 <br><br>
-- special permissions only:
-- `4` = Setuid - appears as an `s` instead of `x` for the file owner (ex. `rwsrwxrwx`)
-- `2` = Setgid - appears as an `s` instead of `x` for the group owner (ex. `rwxrwsrwx`)
-- `1` = Sticky bit - appears as a `t` instead of `x` for 'other' (ex. `rwxrwxrwt`)
-- `0` = None (`-`)
+- Special permissions
+  - `4` = Setuid - Appears as an `s` instead of `x` on the file owner bit (ex. `rwsr-xr-x`).
+  - `2` = Setgid - Appears as an `s` instead of `x` on the group owner bit (ex. `rwxr-sr-x`).
+  - `1` = Sticky bit - Appears as a `t` instead of `x` on the other bit (ex. `rwxr-xr-t`).
+  - `0` = None (`-`)
 <br><br>
-- examples:
-- `0755` = `rwxr-xr-x`
-- `400`  = `r--------`
-- `1777` = `rwxrwxrwt`
-- `4655` = `rwsr-xr-x`
+- Examples:
+  - `0755` = `rwxr-xr-x`
+  - `400`  = `r--------`
+  - `1777` = `rwxrwxrwt`
+  - `4655` = `rwsr-xr-x`
 
 > If 3 digits are given, 1st is owner, 2nd is group, 3rd is other (ex. `chmod 755`)
 > If 4 digits are given, 1st is the special bit, 2nd is owner, 3rd is group, 4th is other (ex. chmod `0755`)
 
+| permission | Effect when applied to a binary file                              | Effect when applied to a directory |
+|------------|-------------------------------------------------------------------|------------------------------------|
+|setuid      | The user executing the file temporarily becomes the file's owner. | N/A                                |
+|setgid      | The user executing the file temporarily becomes a member of file's owning group. | All new files beneath the directory inherit its group ownership. |
+|sticky bit\* | N/A | Prevents a user from deleting a file in a directory unless they own the file or directory. |
 
-| permission | Effect when applied to a binary file                           | Effect when applied to a directory |
-|------------|----------------------------------------------------------------|------------------------------------|
-|setuid      | the user running the file temporarily becomes the file's owner | N/A                                |
-|setgid      | the user running the file temporarily becomes a member of file's owning group | causes all new files beneath that directory to inherit its group ownership |
-|sticky bit\* | N/A | prevents a user from deleting a file in a directory unless they own the file or directory |
+*\*The sticky bit is useful for negating deletion abilities in a directory. Normally a user who has execute and write
+  permissions to a directory can also delete files in that directory, even if the user doesn't own any files in the
+  directory.*
 
-*\*The sticky bit is useful for negating deletion abilities in a directory, as normally a user who has execute and write permissions to a directory can also delete files within that directory, even if the user doesn't own the files.*
-
-
-- example:
-- `chmod -R 6754 /var/log` =
-- -(4+2=6, special bit) run executables with permissions of the owning user and group
-- -give read, write, and execute (`rwx`) (4+2+1=7) permissions to owner
-- -give read and write (`rx`) (4+1=5) to members of the owning group
-- -give read (`r`) (4) permissions to everyone else (aka “all”)
-- -apply these permissions recursively (`-R`)
-- - **permissions of `/var/log` will display as: `rwsr-srw-`**
+- Example: `chmod -R 6754 /var/log`
+  - *Special*: (4+2=6) Run executables with permissions of the owning user and group.
+  - *Owner*: Give read, write, and execute (`rwx`) (4+2+1=7) permission.
+  - *Group*: Give read and write (`rx`) (4+1=5) permission.
+  - *Other*: Give read (`r`) (4) permission.
+  - Apply these permissions recursively (`-R`).
+  - **Resulting permissions will display as `rwsr-srw-`**.
 
 ---
-### standard (non-octal)
+### Standard (non-octal) permissions
 
 - `chmod u+r file.txt`  = Add read permissions to user on file.txt
 - `chmod a-rw file.txt` = Remove read/write permissions for all on file.txt
@@ -121,4 +115,4 @@ Example:
 - `u` (*user*)  = Owning user.
 - `g` (*group*) = Owning group.
 - `o` (*other*) = Users not in the file's owning group.
-- `a` (*all*)   = Everyone, including the owning user and group.
+- `a` (*all*)   = Everyone (user, group, and other).
