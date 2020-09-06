@@ -33,12 +33,12 @@
 - `[^123…]` = Anything NOT within brackets.
 - `\`       = Escape next character.
 - `(   )`   = Pattern grouping (groups multiple *pieces* into a single *atom*).
-  - `([0-9]{1,3}\.){5}` = 5 instances of {{ 1-3 of any digit, followed by a period }}.
+  - `([0-9]{1,3}\.){5}` = 5 instances of ( 1-3 of any digit, followed by a period ).
 
 #### Quantifiers
 - `^`     = Match pattern at start.
 - `$`     = Match pattern at end.
-- `a|b`   = Alternation of two patterns (*a* or *b*) (each side is called a *branch*).
+- `a|b`   = Alternation of patterns (*a* or *b*) (each side is called a *branch*).
 - `*`     = Zero or more of pattern.
 - `+`     = One or more of pattern.
 - `?`     = Zero or one of pattern.
