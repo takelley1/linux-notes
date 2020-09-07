@@ -18,6 +18,28 @@
   1. Enter command mode with `:`.
   1. Enter `norm i#` to insert comment symbols.
 
+### Misc typed commands
+
+- `:noh`                = Turn off match highlighting (after string search).
+- `:sort`               = Sort text.
+- `:retab`              = Replace tabs with spaces in file.
+<br><br>
+- `:%s/xxx/yyy/g`       = Replace *xxx* with *yyy* in entire file.
+- `:g/^x/d`             = Delete all lines beginning with *x*.
+<br><br>
+- `:q` (*quit*)         = Exit file.
+- `:q!`                 = Force exit file.
+- `:w` (*write*)        = Save file.
+- `:wq` or `:x` or `ZZ` = Save and quit.
+
+#### Find and replace
+
+1. Search for word using `/word` in normal mode.
+1. Use `ciw` to change first match of `word` and exit insert mode.
+1. Use `n` to jump to next match of `word`.
+1. Use `.` to repeat last action.
+1. Continue to use `n` and `.` to replace matches.
+
 ### Split-window editing
 
 - `:sp` or `:split file`  =  Open another file in a split window.
@@ -166,28 +188,5 @@
 - `O`            = Add line above and insert.
 <br><br>
 - `CTRL-c` (*close*) = Exit insert mode.
-
----
-### Misc typed commands
-
-- `:noh`                = Turn off match highlighting (after string search).
-- `:sort`               = Sort text.
-- `:retab`              = Replace tabs with spaces in file.
-<br><br>
-- `:%s/xxx/yyy/g`       = Replace *xxx* with *yyy* in entire file.
-- `:g/^x/d`             = Delete all lines beginning with *x*.
-<br><br>
-- `:q` (*quit*)         = Exit file.
-- `:q!`                 = Force exit file.
-- `:w` (*write*)        = Save file.
-- `:wq` or `:x` or `ZZ` = Save and quit.
-
-#### Find and replace
-
-1. Search for word using `/word` in normal mode.
-1. Use `ciw` to change first match of `word` and exit insert mode.
-1. Use `n` to jump to next match of `word`.
-1. Use `.` to repeat last action.
-1. Continue to use `n` and `.` to replace matches.
 
 [1]: https://vi.stackexchange.com/questions/84/how-can-i-copy-text-to-the-system-clipboard-from-vim
