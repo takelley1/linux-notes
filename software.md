@@ -4,7 +4,7 @@
 - `ansible -i inventories/hostsfile.yml -m debug -a "var=hostvars" all` = View all variables from all hosts in hostsfile.yml.
 
 - `ansible-vault encrypt_string --vault-password-file vaultpw.txt "ThisIsAGoodPassword" --name 'userpassword' --encrypt-vault-id default` = Encrypt variable.
-- `ansible localhost -m debug -a var='userpassword' -e '@group_vars/all/path/to/file.yml` = View decrypted variable within file.
+- `ansible localhost -m debug -a var='userpassword' -e '@inventories/path/to/file.yml` = View decrypted variable within file.
 
 Run ad-hoc command as root on target box:
 ```bash
