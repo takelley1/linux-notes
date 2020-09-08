@@ -1,5 +1,16 @@
 ## DOCKER
 
+### Building
+
+- `docker build -t mycontainer:latest .` = Build container in current context with name *mycontainer*.
+- `docker run -it mycontainer` = Run container and attach to its shell.
+
+### Managing
+
+- `docker rm -f $(docker ps -aq)` = Remove all stopped containers.
+- `docker image rm $(docker image ls -q)` = Remove all images.
+
+
 - `docker exec -it bitbucket /bin/bash` = Enter a shell in the bitbucket container.
 <br><br>
 - `docker stack services -q jitsi | xargs -L1 -I{} sh -c 'docker service logs -f {} &'` = Tail combined logs for all services in the jitsi stack.
