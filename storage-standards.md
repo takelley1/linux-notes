@@ -1,7 +1,8 @@
 
-## LATENCY <sup>[2]</sup>
+## LATENCY <sup>[2],[3]</sup>
 
-**See also:** [Interactive latency](https://colin-scott.github.io/personal_website/research/interactive_latency.html)
+- **See also:**
+  - [Interactive latency](https://colin-scott.github.io/personal_website/research/interactive_latency.html)
 
 ```
 Latency Comparison Numbers (~2012)
@@ -13,20 +14,14 @@ Mutex lock/unlock                           25   ns
 Main memory reference                      100   ns                      20x L2 cache, 200x L1 cache
 Compress 1K bytes with Zippy             3,000   ns        3 us
 Send 1K bytes over 1 Gbps network       10,000   ns       10 us
-Read 4K randomly from SSD*             150,000   ns      150 us          ~1GB/sec SSD
+Read 4K randomly from SSD              150,000   ns      150 us          ~1GB/sec SSD
 Read 1 MB sequentially from memory     250,000   ns      250 us
 Round trip within same datacenter      500,000   ns      500 us
-Read 1 MB sequentially from SSD      1,000,000   ns    1,000 us    1 ms  ~1GB/sec SSD, 4X memory
+Read 1 MB sequentially from SSD      1,000,000   ns    1,000 us    1 ms  ~1GB/sec SSD, (4x slower than memory)
 Disk seek                           10,000,000   ns   10,000 us   10 ms  20x datacenter roundtrip
-Read 1 MB sequentially from disk    20,000,000   ns   20,000 us   20 ms  80x memory, 20X SSD
+Read 1 MB sequentially from disk    20,000,000   ns   20,000 us   20 ms  (80x slower than memory, 20x slower than SSD)
 Send packet CA->Netherlands->CA    150,000,000   ns  150,000 us  150 ms  .150 seconds
 ```
-
-```
-Memory is only about 6 times faster when you're doing sequential access (350 Mvalues/sec for memory compared with
-58 Mvalues/sec for disk); but it's about 100,000 times faster when you're doing random access.
-```
-<sup>[3]</sup>
 
 
 ---
@@ -137,11 +132,11 @@ Memory is only about 6 times faster when you're doing sequential access (350 Mva
 
 ### Units of measurement
 
-| Name           | Mathematical equivalent | # of bytes                 |
-|:---------------|:-----------------------:|:---------------------------|
-| Gigabyte (GB)  | 10<sup>9</sup> bytes    | 1,000,000,000              |
-| Gibibyte (GiB) | 2<sup>30</sup> bytes    | 1,073,741,824 (1 GB * 1.07)|
-| Gigabit  (Gb)  | 10<sup>9</sup> bits     | 125,000,000 (1 GB / 8)     |
+| Name           | Mathematical equivalent | # of bytes                  |
+|:---------------|:-----------------------:|:----------------------------|
+| Gigabyte (GB)  | 10<sup>9</sup> bytes    | 1,000,000,000               |
+| Gibibyte (GiB) | 2<sup>30</sup> bytes    | 1,073,741,824 (1 GB * 1.07) |
+| Gigabit  (Gb)  | 10<sup>9</sup> bits     | 125,000,000 (1 GB / 8)      |
 
 
 ---
