@@ -3,7 +3,8 @@
 
 ### How to set up encrypted VNC user sessions with virtual X displays
 
-**See also:** [tiger vnc](https://wiki.archlinux.org/index.php/TigerVNC)
+- **See also:**
+  - [Tiger VNC](https://wiki.archlinux.org/index.php/TigerVNC)
 
 #### For users
 

@@ -1,6 +1,4 @@
 
-**A proxy acts on behalf of the client(s), while a reverse proxy acts on behalf of the server(s).** <sup>[1]</sup> 
-
 ## REVERSE PROXY <sup>[4]</sup> 
 
 Also known as a *gateway server*.

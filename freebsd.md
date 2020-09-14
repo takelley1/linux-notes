@@ -1,7 +1,7 @@
 
 ## FREEBSD
 
-| linux command    | freebsd equivalent  |
+| Linux command    | FreeBSD equivalent  |
 |------------------|---------------------|
 | useradd          | adduser             |
 | userdel          | rmuser              |
@@ -23,11 +23,10 @@
 
 `bsdconfig` = Text-based GUI for general system configuration.
 
-### Misc <sup>[1]</sup> 
+### Misc <sup>[1]</sup>
 
-- FreeBSD is focused on robustness and stablility  
-- NetBSD is focused on portability  
-- OpenBSD is focused on security  
+- FreeBSD is focused on robustness and stablility
+- NetBSD is focused on portability
+- OpenBSD is focused on security
 
-[1]: https://jameshoward.us/archive/the-bsd-family-tree/  
-
+[1]: https://jameshoward.us/archive/the-bsd-family-tree/

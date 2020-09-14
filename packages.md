@@ -1,7 +1,7 @@
 
 ## PACKAGE MANAGERS
 
-**See also**:
+- **See also**:
   - [Comparison of package managers](https://fusion809.github.io/comparison-of-package-managers/)
 
 | Package managers compared         | yum/dnf (rpm files)            | apt (deb files)             | pacman (tgz, ztd files)       | pkg                 |

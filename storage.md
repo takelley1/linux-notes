@@ -50,7 +50,8 @@ Extending */var* XFS filesystem with LVM:
 |-----------------|-----|-----|----|--------|
 |                 |     |     |    |        |
 
-**See also**: [Squash compression benchmark](https://quixdb.github.io/squash-benchmark/#results)
+- **See also:**
+  - [Squash compression benchmark](https://quixdb.github.io/squash-benchmark/#results)
 
 ### Tar
 

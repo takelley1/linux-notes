@@ -11,7 +11,12 @@ $installationCredential = Get-Credential -Message "Enter the credential for the 
 # Get the credential used for the federation service account.
 $serviceAccountCredential = Get-Credential -Message "Enter the credential for the Federation Service Account."
 
-Add-AdfsFarmNode -CertificateThumbprint:"<CERTIFICATE THUMBPRINT>" -Credential:$installationCredential -OverwriteConfiguration:$true -PrimaryComputerName:"<SERVER HOSTNAME>" -ServiceAccountCredential:$serviceAccountCredential
+Add-AdfsFarmNode \
+      -CertificateThumbprint:"<CERTIFICATE THUMBPRINT>" \
+      -Credential:$installationCredential \
+      -OverwriteConfiguration:$true \
+      -PrimaryComputerName:"<SERVER HOSTNAME>" \
+      -ServiceAccountCredential:$serviceAccountCredential
 ```
 
 
@@ -22,7 +27,8 @@ Add-AdfsFarmNode -CertificateThumbprint:"<CERTIFICATE THUMBPRINT>" -Credential:$
 
 ## Certificates
 
-`certreq -submit -attrib "CertificateTemplate:WebServer" request.csr` = Import and sign *request.csr* using the *WebServer* template.
+`certreq -submit -attrib "CertificateTemplate:WebServer" request.csr` = Import and sign *request.csr* using the 
+                                                                        *WebServer* template.
 
 `certlm.msc`  = Local computer certificates.
 `certmgr.msc` = Current user certificates.

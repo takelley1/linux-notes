@@ -10,7 +10,7 @@
   - `-e` = Everything.
   - `-f` = Full-format.
 
-### signals <sup>[1]</sup>
+### Signals <sup>[1]</sup>
 
 | Name      | ID | Hotkey | Description                                     |
 |-----------|----|--------|-------------------------------------------------|
@@ -91,7 +91,7 @@
 - (ex. `COMMAND=audit`  = Filter processes with 'audit' in the COMMAND attribute)
 - (ex. `!COMMAND=getty` = Filter processes which do NOT have 'getty' in the COMMAND attribute)
 <br><br>
-- Filters can be stacked via multiple searches, use = To clear all filters
+- Filters can be stacked via multiple searches, use `=` To clear all filters.
 
 
 ---

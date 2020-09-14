@@ -3,13 +3,13 @@
 
 ### Examples
 
-Print all files with non-ascii characters in the name: <sup>[1]</sup>
+Print all files with non-ASCII characters in their name: <sup>[1]</sup>
 ```bash
 find ./ -print0 | \
 perl -n0e 'chomp; print $_, "\n" if /[[:^ascii:][:cntrl:]]/'
 ```
 
-Remove all files with non-ASCII characters in the name: <sup>[1]</sup>
+Remove all files with non-ASCII characters in their name: <sup>[1]</sup>
 ```bash
 find ./ -print0 | \
 perl -MFile::Path=remove_tree -n0e \
@@ -23,28 +23,28 @@ find ./ -exec ls -l {} \; # Also fine.
 find ./ | xargs ls -l     # Not recommended.
 ```
 
-- `-exec <COMMAND> {} \;` = Run <COMMAND> on every returned result.
+- `find ./ -exec <COMMAND> {} \;` = Run <COMMAND> on every returned result.
   - `{}` = A "variable" that acts as a placeholder for the current result.
   - `\;` = Required terminator for `exec` commands.
 <br><br>
 - `find ./ -type f | wc –l` = Print number of files beneath current path.
   - `-type f` = Search for files only, not directories.
-  - `wc –l` = Count the number of lines in the ouput.
+  - `wc –l`   = Count the number of lines in the ouput.
 <br><br>
 - `find -03 -L . -type f -name "*.jpg"` =
-  - `-03` = Optimize file search order based on likelihood of finding a match.
-  - `-L` = Follow symbolic links.
-  - `.` = Search in or below the current directory.
+  - `-03`     = Optimize file search order based on likelihood of finding a match.
+  - `-L`      = Follow symbolic links.
+  - `.`       = Search in or below the current directory.
   - `-type f` = Look for regular files only.
-  - `-name` = Search based on file name.
+  - `-name`   = Search based on file name.
   - `"*.jpg"` = Use wildcard to search for all files with .jpg extension.
 <br><br>
 - `find ~ -user alice -mtime 7 -iname “.log” -delete` = Delete log files owned by alice within a certain date range.
   - `-user alice` = Files owned by user alice.
-  - `~` = Search in or beneath the specified user's home directory.
-  - `-mtime 7` = Look for files modified 7 days ago.
-  - `-iname`= Match by file name (case insensitive).
-  - `-delete` = Delete matched files.
+  - `~`           = Search in or beneath the current user's home directory.
+  - `-mtime 7`    = Look for files modified 7 days ago.
+  - `-iname`      = Match by file name (case insensitive).
+  - `-delete`     = Delete matched files.
 
 ### Options
 

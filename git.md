@@ -14,7 +14,8 @@
 ---
 ### Tags
 
-**See also:** [Git basics - tagging](https://git-scm.com/book/en/v2/Git-Basics-Tagging)
+- **See also:**
+  - [Git basics - tagging](https://git-scm.com/book/en/v2/Git-Basics-Tagging)
 
 *Tag specific commits to release your software.*
 
@@ -59,7 +60,8 @@
 ---
 ### Branches
 
-**See also:** [github branching best-practices](https://nvie.com/posts/a-successful-git-branching-model/)
+- **See also:**
+  - [GitHub branching best-practices](https://nvie.com/posts/a-successful-git-branching-model/)
 
 *Isolating work in branches, changing context, and integrating changes.*
 

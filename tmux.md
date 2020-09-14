@@ -38,7 +38,7 @@
 | Show numeric values of panes     | `q` (type pane's number to switch to it) |
 | Enter scrollback mode            | `[` or `PAGEUP` (`q` to exit)            |
 
-#### tmux copy and paste
+### Copy and paste
 
 1. `CTRL-b [` = Enter scrollback mode.
 1. `SPACE`    = Enter text selection mode.

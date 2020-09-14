@@ -102,31 +102,30 @@ Minimum XCCDF file for importing SCAP results to DISA STIG viewer:
 - `rhncfg-client get` = Force spacewalk client to pull configuration files.
 
 ```bash
-#!/bin/bash
-# spacewalk client setup script
-# for rhel/centos 7
+#!/usr/bin/env bash
+# Spacewalk client setup script for rhel/centos 7
 
-# whitelist spacewalk server
+# Whitelist spacewalk server.
 firewall-cmd --zone=public --permanent --add-source=XXXXXXX
 firewall-cmd --reload
-# add spacewalk repo
+# Add spacewalk repo.
 yum install -y yum-plugin-tmprepo
 yum install -y spacewalk-client-repo \
 --tmprepo=https://copr-be.cloud.fedoraproject.org/results/%40spacewalkproject/spacewalk-2.9-client/epel-7-x86_64/repodata/repomd.xml \
 --nogpg
 rpm -Uvh http://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
-# add epel repo, install necessary packages
-yum install epel-release && yum -y install rhn-client-tools rhn-check rhn-setup rhnsd m2crypto yum-rhn-plugin osad
-# add spacewalk ca cert
+# Add epel repo, install necessary packages.
+yum install -y epel-release && yum install -y rhn-client-tools rhn-check rhn-setup rhnsd m2crypto yum-rhn-plugin osad
+# Add spacewalk ca cert.
 rpm -Uvh http://XXXXXXXX/pub/rhn-org-trusted-ssl-cert-1.0-1.noarch.rpm
-# register with activation key
+# Register with activation key.
 rhnreg_ks --serverUrl=https://XXXXXXX/XMLRPC --sslCACert=/usr/share/rhn/RHN-ORG-TRUSTED-SSL-CERT --activationkey=1-centos7-main-key
-# start rhnsd service
+# Start rhnsd service.
 systemctl enable rhnsd --now
-# install and configure osad
+# Install and configure osad.
 sed -i "s/osa_ssl_cert =/osa_ssl_cert = \/usr\/share\/rhn\/RHN-ORG-TRUSTED-SSL-CERT/g" /etc/sysconfig/rhn/osad.conf
 systemctl enable osad --now
-# test connectivity
+# Test connectivity.
 rhn-channel --list
 ```
 

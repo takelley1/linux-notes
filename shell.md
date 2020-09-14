@@ -1,4 +1,7 @@
 
+- **See also**
+  - [Google style guide](https://google.github.io/styleguide/shellguide.html)
+
 ## SHELL INITIALIZATION <sup>[6]</sup>
 
 - `~/.profile` = The place to put stuff that applies to your whole session, such as programs that you want to start when
@@ -107,7 +110,8 @@ day="${file:8:2}"   # day = 15
 
 ### If-statement conditional tests <sup>[4]</sup>
 
-**See also:** [bash beginners guide](http://tldp.org/LDP/Bash-Beginners-Guide/html/sect_07_01.html)
+- **See also:**
+  - [Bash beginners guide](http://tldp.org/LDP/Bash-Beginners-Guide/html/sect_07_01.html)
 
 #### File-based conditions <sup>[8]</sup>
 

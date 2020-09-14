@@ -1,6 +1,6 @@
 ## ARCH LINUX INSTALL PROCESS <sup>[1][2][3]</sup>
 
-1. If necessary, connect to a WLAN with iwd
+1. If necessary, connect to a WLAN with iwd.
 
 1. Set keyboard layout and clock:
    ```bash

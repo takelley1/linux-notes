@@ -1,6 +1,6 @@
 ## AWK
 
-- See also:
+- **See also**:
   - [AWK one-liners explained](https://catonmat.net/awk-one-liners-explained-part-one)
   - [GAWK manual](https://www.gnu.org/software/gawk/manual/)
   - [AWK cheat sheet](https://catonmat.net/ftp/awk.cheat.sheet.pdf)
@@ -11,18 +11,18 @@
 - `awk '/foo/ {gsub(/abc/,""); gsub(/[0-9]/,""); print $1}'` = Print 1st field of lines that contain *foo*, remove *abc* and all numbers from output.
 - `awk '/([0-9]{1,3}\.){1,3}[0-9]{1,3}/ {print $3}'`         = Print 3rd field of lines that contain IP-address-like strings in input.
 <br><br>
-- `awk -F':' '/:[1-4][0-9]{3}/ {print $6}' /etc/passwd`    = Print the home directories of all interactive users.
-- `awk -F':' '! /\/sbin\/nologin/ {print $1}' /etc/passwd` = Print users who don't use */sbin/nologin* as their shell.
+- `awk -F':' '/:[1-4][0-9]{3}/ {print $6}' /etc/passwd`      = Print the home directories of all interactive users.
+- `awk -F':' '! /\/sbin\/nologin/ {print $1}' /etc/passwd`   = Print users who don't use */sbin/nologin* as their shell.
 <br><br>
 - `awk '{if(NR>2) print $0}'` = Print all but the first two lines.
 
 ### Variables
 
-- `FS`  = Input field separator regular expression, a \<space\> by default.
+- `FS`  = Input field separator regular expression, a \<SPACE\> by default.
 - `NF`  = The number of fields in the current record.
 - `NR`  = The ordinal number of the current record from the start of input.
-- `OFS` = The print statement output field separator, \<space\> by default.
-- `ORS` = The print statement output record separator, a \<newline\> by default.
+- `OFS` = The print statement output field separator, \<SPACE\> by default.
+- `ORS` = The print statement output record separator, a \<NEWLINE\> by default.
 
 ### Regex
 *(See `man 7 regex` for more info.)*

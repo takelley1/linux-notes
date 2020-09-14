@@ -4,6 +4,9 @@
 ---
 ## SECTION HEADERS ARE IN ALL CAPS AND HAVE TWO BLANK SPACES BETWEEN THEM AND THE END OF THE PREVIOUS SECTION
 
+- **See also:**
+  - [See also links are in sentence case](https://www.link-address.example.com)
+
 
 ---
 ## `commands in section headers are within backticks` SECTION HEADER
@@ -51,10 +54,6 @@ relevant output.
 ![another image name](/image/path2.webp) <sup>[2]</sup>
 
 #### Minor subsection headers are also in sentence case and have one blank line above them
-
-
-- **See also:**
-  - [See also links are in sentence case](https://www.link-address.example.com)
 
 1. step 1
    ```bash

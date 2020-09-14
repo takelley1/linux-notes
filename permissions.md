@@ -15,21 +15,21 @@
 > NOTE: Umask modifies the default permissions of created files and
         directories to make them more restrictive.
 
-### directories
+### Directories
 
 Example:
 - Default permissions for directories:    `777`
 - Umask of user that created directory:   `002`
 - New default permissions of directories: `775`
 
-### files
+### Files
 
 Example:
 - Default permissions for files:     `666`
 - Umask of user that created file:   `022`
 - New default permissions for files: `644`
 
-> NOTE: umask is permanently set in `/etc/profile` or `/etc/login.defs`.
+> NOTE: Umask is permanently set in `/etc/profile` or `/etc/login.defs`.
 
 
 ---
@@ -88,7 +88,7 @@ Example:
 > If 3 digits are given, 1st is owner, 2nd is group, 3rd is other (ex. `chmod 755`)
 > If 4 digits are given, 1st is the special bit, 2nd is owner, 3rd is group, 4th is other (ex. chmod `0755`)
 
-| permission | Effect when applied to a binary file                              | Effect when applied to a directory |
+| Permission | Effect when applied to a binary file                              | Effect when applied to a directory |
 |------------|-------------------------------------------------------------------|------------------------------------|
 |setuid      | The user executing the file temporarily becomes the file's owner. | N/A                                |
 |setgid      | The user executing the file temporarily becomes a member of file's owning group. | All new files beneath the directory inherit its group ownership. |

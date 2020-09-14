@@ -1,14 +1,16 @@
 
 ## UNIT FILES
 
-**See also:** [systemd man pages](http://0pointer.de/public/systemd-man/)
+- **See also:**
+  - [systemd man pages](http://0pointer.de/public/systemd-man/)
 
 ```bash
 man systemd.unit
 man systemd.service
 man systemd.target
 ```
-User service files can be placed in `$HOME/.config/systemd/user/my_daemon.service` or `/etc/systemd/system/my_daemon.service`.
+- User service files can be placed in `$HOME/.config/systemd/user/my_daemon.service` or
+  `/etc/systemd/system/my_daemon.service`.
 
 Example syntax:
 ```

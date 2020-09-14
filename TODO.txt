@@ -1,8 +1,6 @@
 - fill out table comparing compression algorithms, use last image from https://clearlinux.org/news-blogs/linux-os-data-compression-options-comparing-behavior
 - emphasize a large number of command examples over everything else
-- add content to 'awk' section in stream-editing.md
 - add pam syntax
-- add ssh syntax to networking.mg -- like ssh-keygen-t rsa-b 4096 -o 500 -f id_rsa -- and -- ssh -p 443 -i id_rsa user@server
 - add info on ZFS snapshots, ARC, L2ARC, and ZIL
 - add info on ZFS vdev vs volume vs file system vs zpool vs dataset vs zvol, etc
 - add image for 'top' command
@@ -11,4 +9,3 @@
 - add info on RAM UDIMM vs RDIMM
 - add CIFS/SMB and Active Directory share mounting to storage.md
 - fill out MONITORING section of networking.md
-- add docker commands

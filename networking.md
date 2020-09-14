@@ -1,11 +1,11 @@
 
 ## SSH
 
-**See also:**
-- [SSH essentials](https://www.digitalocean.com/community/tutorials/ssh-essentials-working-with-ssh-servers-clients-and-keys)
-- [authorized_keys vs known_hosts](https://security.stackexchange.com/questions/20706/what-is-the-difference-between-authorized-keys-and-known-hosts-file-for-ssh)
-- [sshd_config man page](https://www.freebsd.org/cgi/man.cgi?sshd_config(5))
-- [ssh-keygen best practices](https://security.stackexchange.com/questions/143442/what-are-ssh-keygen-best-practices)
+- **See also:**
+  - [SSH essentials](https://www.digitalocean.com/community/tutorials/ssh-essentials-working-with-ssh-servers-clients-and-keys)
+  - [authorized_keys vs known_hosts](https://security.stackexchange.com/questions/20706/what-is-the-difference-between-authorized-keys-and-known-hosts-file-for-ssh)
+  - [sshd_config man page](https://www.freebsd.org/cgi/man.cgi?sshd_config(5))
+  - [ssh-keygen best practices](https://security.stackexchange.com/questions/143442/what-are-ssh-keygen-best-practices)
 
 ### Connection process <sup>[8]</sup>
 
@@ -40,8 +40,8 @@
 ---
 ## FIREWALLD
 
-**See also:**
-- [Using Firewalld on CentOS7](https://www.digitalocean.com/community/tutorials/how-to-set-up-a-firewall-using-firewalld-on-centos-7)
+- **See also:**
+  - [Using Firewalld on CentOS 7](https://www.digitalocean.com/community/tutorials/how-to-set-up-a-firewall-using-firewalld-on-centos-7)
 
 Allow HTTPS traffic in the public zone:
 ```bash
@@ -138,8 +138,9 @@ iptables –A OUTPUT -o eth0 –p tcp --sport 80 –m state --state NEW,ESTABLIS
 
 ### VLANS
 
-- [How do VLANs work?](https://serverfault.com/questions/188350/how-do-vlans-work?rq=1)
-- [Access ports vs trunk ports](https://www.solarwindsmsp.com/blog/vlan-trunking)
+- **See also:**
+  - [How do VLANs work?](https://serverfault.com/questions/188350/how-do-vlans-work?rq=1)
+  - [Access ports vs trunk ports](https://www.solarwindsmsp.com/blog/vlan-trunking)
 
 
 ---
@@ -253,18 +254,18 @@ wget                            \
   --page-requisites             \ # Download all files required to display each page properly.
   --html-extension              \ # Explicitly add .html extensions to relevant files.
   --convert-links               \ # Convert http:// to file:// links for offline browsing.
-  --restrict-file-names=windows \ # Escape control characters in filenames.  .
+  --restrict-file-names=windows \ # Escape control characters in filenames.
   --no-parent                   \ # Don't include directories above the path provided.
   www.website.org/
 
 wget --recursive --no-clobber --page-requisites --html-extension --convert-links --restrict-file-names=windows --no-parent www.website.org
 ```
 
-[1]: https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/8/html-single/configuring_basic_system_settings/index#migrating-to-chrony_using-chrony-to-configure-ntp.
+[1]: https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/8/html-single/configuring_basic_system_settings/index#migrating-to-chrony_using-chrony-to-configure-ntp
 [2]: https://danielmiessler.com/study/tcpdump/
 [3]: https://danielmiessler.com/study/nmap/
 [4]: https://wiki.debian.org/nftables
-[5]: https://dougvitale.wordpress.com/2011/12/21/deprecated-linux-networking-commands-and-their-replacements/#netstat.
+[5]: https://dougvitale.wordpress.com/2011/12/21/deprecated-linux-networking-commands-and-their-replacements/#netstat
 [6]: https://www.techrepublic.com/article/the-4-most-important-files-for-ssh-connections/
 [7]: https://www.thegeekdiary.com/centos-rhel-7-tips-on-troubleshooting-ntp-chrony-issues/
 [8]: https://www.digitalocean.com/community/tutorials/understanding-the-ssh-encryption-and-connection-process

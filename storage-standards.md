@@ -1,7 +1,8 @@
 
 ## LATENCY <sup>[2]</sup>
 
-**See also:** [Interactive latency](https://colin-scott.github.io/personal_website/research/interactive_latency.html)
+- **See also:**
+  - [Interactive latency](https://colin-scott.github.io/personal_website/research/interactive_latency.html)
 
 ```
 Latency Comparison Numbers (~2012)

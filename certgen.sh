@@ -4,8 +4,8 @@
 # This script makes it easier to create CSRs with SANs.
 
 crt_print_conf() {
-   CN="$1.  "
-   ALT_NAMES="$2.  "
+    CN="$1.  "
+    ALT_NAMES="$2.  "
 
    cat <<EOF
 [req]
@@ -41,69 +41,69 @@ EOF
 }
 
 crt_generate() {
-  : "${DAYS:=3650.  }"
-  : "${BITS:=2048.  }"
- 
-  CN=$1.  
-  ALT_NAMES=$2.  
+    : "${DAYS:=3650.  }"
+    : "${BITS:=2048.  }"
 
-  if [ -e "${CN}.key" ] ; then
-     echo "File already exists: ${CN}.key -- Aborting"
-     exit 1
-  fi
+    CN=$1.
+    ALT_NAMES=$2.
 
-  CFG="${CN}.cnf.  "
+    if [ -e "${CN}.key" ] ; then
+        echo "File already exists: ${CN}.key -- Aborting"
+        exit 1
+    fi
 
-  crt_print_conf "${CN}" "${ALT_NAMES}" > "${CFG}"
+    CFG="${CN}.cnf.  "
 
-  # create cert
-  openssl req -x509 \
-          -nodes -sha256 \
-          -config "${CFG}" \
-          -days "${DAYS}" \
-          -newkey rsa:"${BITS}" \
-          -keyout "${CN}.key" \
-          -out "${CN}.crt"
+    crt_print_conf "${CN}" "${ALT_NAMES}" > "${CFG}"
 
-  # create csr
-  openssl req \
-          -new -sha256 \
-          -config "${CFG}" \
-          -reqexts CSR \
-          -key "${CN}.key" \
-          -out "${CN}.csr"
+    # create cert
+    openssl req -x509 \
+            -nodes -sha256 \
+            -config "${CFG}" \
+            -days "${DAYS}" \
+            -newkey rsa:"${BITS}" \
+            -keyout "${CN}.key" \
+            -out "${CN}.crt"
+
+    # create csr
+    openssl req \
+            -new -sha256 \
+            -config "${CFG}" \
+            -reqexts CSR \
+            -key "${CN}.key" \
+            -out "${CN}.csr"
 
   #rm "${CFG}"
   # -subj "/C=${DN_C}/ST=${DN_ST}/L=${CN_L}/O=${DN_O}/OU=${DN_OU}/CN=${CN}" \
 
-  openssl x509 -text < "${CN}.crt" > "${CN}.about.txt"
-  echo "
+    openssl x509 -text < "${CN}.crt" > "${CN}.about.txt"
+    echo "
 
 Generated following files:
-   ${CN}.crt       -- certificate
-   ${CN}.csr       -- certificate signing request
-   ${CN}.key       -- private key
-   ${CN}.about.txt -- certificate info (delete after reviewing)
+    ${CN}.crt       -- certificate
+    ${CN}.csr       -- certificate signing request
+    ${CN}.key       -- private key
+    ${CN}.about.txt -- certificate info (delete after reviewing)
 "
 }
 
 if [ -z "$1" ] ; then
-   echo "
+    echo "
 Usage: $0 hostname <altnames>
-       where altnames is an optional comma separated list of alternative names
-       For example 'DNS:other.com,DNS:localhost,IP:127.0.0.1'
+        where altnames is an optional comma separated list of alternative names
+        For example 'DNS:other.com,DNS:localhost,IP:127.0.0.1'
 
 Environment variables:
-       BITS  -- number of bits to use for key           (default: 2048)
-       DAYS  -- number of days certificate is valid for (default: 3650)
+        BITS  -- number of bits to use for key           (default: 2048)
+        DAYS  -- number of days certificate is valid for (default: 3650)
 
-       DN_C  -- Country code field                      (default: unset)
-       DN_ST -- State field                             (default: unset)
-       DN_L  -- City field                              (default: unset)
-       DN_O  -- Organization field                      (default: unset)
-       DN_OU -- Organization Unit field                 (default: unset)
+        DN_C  -- Country code field                      (default: unset)
+        DN_ST -- State field                             (default: unset)
+        DN_L  -- City field                              (default: unset)
+        DN_O  -- Organization field                      (default: unset)
+        DN_OU -- Organization Unit field                 (default: unset)
 "
-   exit 1
+    exit 1
 fi
 
 #Uncomment and change to defaults you want

@@ -14,6 +14,33 @@
   - `-noout` = Don't output encoded.
 - `openssl x509 -purpose -in servercert.pem` = View certificate uses.
 
+#### Generation
+
+- `openssl req -new -newkey rsa:2048 -nodes -keyout csrkey.pem -out csr.pem` = Generate CSR (Certificate Signing Request).
+  - `-new` = Create a CSR.
+  - `-newkey rsa:2048` = Create a 2048-bit RSA private key.
+  - `-nodes` (*No DES*) = Don't encrypt the private key (DANGEROUS!).
+  - `-keyout certkey.pem` = Write the private key to *csrkey.pem*.
+  - `-out cert.pem` = Write the CSR to *csr.pem*.
+<br><br>
+- `openssl req -x509 -newkey rsa:2048 -nodes -keyout certkey.pem -out cert.pem -subj "/C=US/ST=/L=/O=/CN=example.com"` = Generate self-signed cert.
+  - `-x509` = Create a self-signed cert instead of a CSR.
+  - `-subj "..."` = Add information to cert without OpenSSL prompting for it.
+<br><br>
+- `sh ./certgen.sh domain.example.com 'DNS:*.domain.example.com,IP:10.0.0.10'` = Generate CSR with Subject Alternate Names
+                                                                                 (See ./certgen.sh for script).
+<br><br>
+- Add private key to certificate. This allows the cert and private key to be imported into Windows: <sup>[3]</sup>
+```
+openssl pkcs12 -export -out cert.pfx -inkey private.key -in cert.crt -certfile CACert.crt
+```
+
+#### Conversion
+
+- `openssl x509 -outform der -in cert.pem -out cert.crt` = Convert *.pem* to *.crt* format.
+- `openssl x509 -outform pem -in cert.crt -out cert.pem` = Convert *.crt* to *.pem* format.
+
+
 #### Files
 
 Example OpenSSL CA config file:
@@ -56,31 +83,6 @@ keyUsage               = keyCertSign, cRLSign
 ```
 
 `openssl req -x509 -config openssl-ca.cnf -newkey rsa -nodes -out cacert.pem -outform PEM` = Generate CA cert using above file.
-
-#### Generation
-
-- `openssl req -new -newkey rsa:2048 -nodes -keyout csrkey.pem -out csr.pem` = Generate CSR (Certificate Signing Request).
-  - `-new` = Create a CSR.
-  - `-newkey rsa:2048` = Create a 2048-bit RSA private key.
-  - `-nodes` (*No DES*) = Don't encrypt the private key (DANGEROUS!).
-  - `-keyout certkey.pem` = Write the private key to *csrkey.pem*.
-  - `-out cert.pem` = Write the CSR to *csr.pem*.
-<br><br>
-- `openssl req -x509 -newkey rsa:2048 -nodes -keyout certkey.pem -out cert.pem -subj "/C=US/ST=/L=/O=/CN=example.com"` = Generate self-signed cert.
-  - `-x509` = Create a self-signed cert instead of a CSR.
-  - `-subj "..."` = Add information to cert without OpenSSL prompting for it.
-<br><br>
-- `sh ./certgen.sh domain.example.com 'DNS:*.domain.example.com,IP:10.0.0.10'` = Generate CSR with Subject Alternate Names (See ./certgen.sh for script).
-<br><br>
-- Add private key to certificate. This allows the cert and private key to be imported into Windows: <sup>[3]</sup>
-```
-openssl pkcs12 -export -out cert.pfx -inkey private.key -in cert.crt -certfile CACert.crt
-```
-
-#### Conversion
-
-- `openssl x509 -outform der -in cert.pem -out cert.crt` = Convert *.pem* to *.crt* format.
-- `openssl x509 -outform pem -in cert.crt -out cert.pem` = Convert *.crt* to *.pem* format.
 
 ### GNU CertTool
 
