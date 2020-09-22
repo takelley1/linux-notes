@@ -1,4 +1,4 @@
-- **See also**
+- **See also:**
   - [SELinux Howto](https://wiki.centos.org/HowTos/SELinux)
 
 ## Contexts
@@ -11,6 +11,7 @@ Context syntax: `user:role:type:level`
 <br><br>
 - `restorecon -F file.txt` = Restore context to specified file or directory.
   - `-F` = Force.
+- `restorecon -R /boot /etc /home /opt /root /srv /usr /var` = Restore context on entire filesystem.
 
 ## Ports
 
