@@ -18,6 +18,9 @@
   1. Enter command mode with `:`.
   1. Enter `norm i#` to insert comment symbols.
 
+### Misc
+- `g+CTRL-g` = [Show word count of selection.](https://vim.fandom.com/wiki/Word_count)
+
 ### Typed commands
 
 - `:noh`                = Turn off match highlighting (after string search).
