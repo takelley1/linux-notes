@@ -2,10 +2,12 @@
 ## ANSIBLE
 
 - `ansible -i inventories/hostsfile.yml -m debug -a "var=hostvars" all` = View all variables from all hosts in hostsfile.yml.
-
+<br><br>
+- `ansible all -i localhost, -m debug -a "msg={{ 'mypassword' | password_hash('sha512', 'mysecretsalt') }}"` = Hash a user's password for use in the `user` module.
+<br><br>
 - `ansible-vault encrypt_string --vault-password-file vaultpw.txt 'CorrectHorseBatteryStaple' --name 'vmware_password' --encrypt-vault-id default` = Encrypt variable.
 - `ansible localhost -m debug -a var='userpassword' -e '@inventories/path/to/file/containing/variable.yml'` = View decrypted variable within file.
-
+<br><br>
 Run ad-hoc command as root on target box:
 ```bash
 ansible 192.168.1.1       \
