@@ -1,3 +1,5 @@
+- **See also:**
+  - [SELinux Howto](https://wiki.centos.org/HowTos/SELinux)
 
 ## Contexts
 
@@ -9,6 +11,7 @@ Context syntax: `user:role:type:level`
 <br><br>
 - `restorecon -F file.txt` = Restore context to specified file or directory.
   - `-F` = Force.
+- `restorecon -R /boot /etc /home /opt /root /srv /usr /var` = Restore context on entire filesystem.
 
 ## Ports
 
@@ -56,6 +59,11 @@ tcontext=system_u:object_r:var_t:s0 tclass=dir
 To make this policy package active, execute:
 
 semodule -i mycertwatch.pp
+```
+
+You can also pipe the entire line containing the relevant ID into *audit2why*:
+```
+grep 'msg=audit(1226270358.848:238)' /var/log/audit/audit.log | audit2why
 ```
 
 SELinux denial log example in */var/log/messages*: <sup>[1]</sup>
