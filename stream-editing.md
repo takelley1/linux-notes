@@ -10,6 +10,7 @@
 - `awk '{print $3, $2}'`                                     = Print the 3rd and 2nd fields of input.
 - `awk '/foo/ {gsub(/abc/,""); gsub(/[0-9]/,""); print $1}'` = Print 1st field of lines that contain *foo*, remove *abc* and all numbers from output.
 - `awk '/([0-9]{1,3}\.){1,3}[0-9]{1,3}/ {print $3}'`         = Print 3rd field of lines that contain IP-address-like strings in input.
+- `ip -4 -br a | awk '! /127\.0\.0/ {gsub(/\/[0-9]{1,2}/,""); print $3}'` = Print the primary IP address, without the subnet mask.
 <br><br>
 - `awk -F':' '/:[1-4][0-9]{3}/ {print $6}' /etc/passwd`      = Print the home directories of all interactive users.
 - `awk -F':' '! /\/sbin\/nologin/ {print $1}' /etc/passwd`   = Print users who don't use */sbin/nologin* as their shell.
@@ -44,6 +45,7 @@
 - `?`     = Zero or one of pattern.
 - `{1,5}` = One to five of pattern (called a *bound*).
 - `{3,}`  = At least three of pattern.
+- `{,2}`  = At most three of pattern.
 
 | Backslash syntax |                      |
 |------|----------------------------------|
@@ -117,7 +119,7 @@
 
 ### Patterns
 
-- `&` = Current regex match (ex: `echo "123 abc" | sed 's/[0-9]*/& &/'` = `123 123 abc`).
+- `&` = Current regex match (ex: `echo "123 abc ABC" | sed 's/abc/& def/'` = `123 abc def ABC`).
 
 ### Restrictions
 
@@ -130,7 +132,7 @@
 <br><br>
 - `sort -rk 2`                   = Reverse (`r`) sort results by the second column (`k`) of output.
 <br><br>
-Filter out only the IPv4 address of the desired interface:
+Filter out only the host's primary IPv4 address:
 ```bash
 # Good:
 ip -4 -br a | awk '! /127\.0\.0/ {gsub(/\/[0-9]{1,2}/,""); print $3}'
