@@ -29,6 +29,8 @@ pacman -Qi | awk -F: '/Size/{gsub(/ /,"");print $2}'>/tmp/1; pacman -Qi | awk -F
 pacman -Qi | grep -E '^Name|^Installed' | cut -f 2 -d ':' | tr -d ' ' | awk '{getline i;print i,$1}' | sort -h
 # Attempt #3:
 pacman -Qi | awk -F: '/^Name|^Installed/ {gsub(/ /,"");print $2}' | awk '{getline i;print i,$1}' | sort -h
+# Attempt #4:
+pacman -Qi | awk -F: '/^Name/ {name=$2} /^Installed/ {gsub(/ /,"");size=$2;print size,name}' | sort -h
 ```
 
 | Repo actions compared   | yum/dnf               | apt                        | pacman                    | pkg |
