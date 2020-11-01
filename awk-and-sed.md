@@ -18,7 +18,8 @@ packages by size.
 - `awk -F: '! /\/sbin\/nologin/ {print $1}' /etc/passwd`   = Print users who don't use */sbin/nologin* as their shell.
 <br><br>
 - `awk '{if(NR>2) print $0}'` = Print all but the first two lines.
-- `awk 'NF > 0'` = Remove blank lines.
+- `awk 'NF > 0'` = Remove blank lines quickly.
+- `awk '!/^$/ {print $1}'` = Remove blank lines while using print statement.
 
 ### Variables
 
