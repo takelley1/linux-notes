@@ -1,5 +1,8 @@
 ## Robocopy
 
+- **See Also**:
+  - [Robocopy over network](https://klyavlin.wordpress.com/2012/09/19/robocopy-network-usernamepassword/)
+
 `NET USE \\<SHARE IP>\<SHARE PATH> /u:server\<USERNAME> <PASSWORD>` = Mount network drive for Robocopy to use.
 
 ---
