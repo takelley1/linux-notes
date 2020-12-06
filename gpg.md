@@ -1,9 +1,7 @@
 
 - **See also**:
   - [The GNU Privacy Handbook](https://www.gnupg.org/gph/en/manual/book1.html)
-  - Backing up private keys on paper: [(1)](https://wiki.archlinux.org/index.php/Paperkey),
-                                      [(2)](https://www.jabberwocky.com/software/paperkey/),
-                                      [(3)](https://www.saminiir.com/paper-storage-and-recovery-of-gpg-keys/)
+  - Backing up private keys on paper: [(1)](https://wiki.archlinux.org/index.php/Paperkey), [(2)](https://www.jabberwocky.com/software/paperkey/), [(3)](https://www.saminiir.com/paper-storage-and-recovery-of-gpg-keys/)
 
 
 ---

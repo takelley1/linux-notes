@@ -209,7 +209,7 @@
    auth       requisite  pam_nologin.so
    auth       include    system-auth
 
-   account    required   pam_tally2.so 
+   account    required   pam_tally2.so
    account    required   pam_access.so
    account    include    homed
    account    required   pam_nologin.so

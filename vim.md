@@ -2,28 +2,26 @@
 ## VIM
 
 **See also:**
-  - [Learn vimscript the hard way](https://learnvimscriptthehardway.stevelosh.com/)
+  - [Learn Vimscript the hard way](https://learnvimscriptthehardway.stevelosh.com/)
   - [Daniel Messler on vim](https://danielmiessler.com/study/vim/)
 
-[Insert comments in bulk](https://stackoverflow.com/questions/1676632/whats-a-quick-way-to-comment-uncomment-lines-in-vim/15588798#15588798):
-- Method 1
+### Tips
+
+- [Use `;` to repeat a single-line search made with `f` or `t`.](https://github.com/iggredible/Learn-Vim/blob/master/ch05_moving_in_file.md#current-line-navigation)
+- `:tabm 1`  = [Move current tab to position 1.](https://stackoverflow.com/questions/7961581/is-there-a-vim-command-to-relocate-a-tab)
+- `g+CTRL-g` = [Show word count of selection.](https://vim.fandom.com/wiki/Word_count)
+
+- [Insert comments in bulk](https://stackoverflow.com/questions/1676632/whats-a-quick-way-to-comment-uncomment-lines-in-vim/15588798#15588798):
   1. Enter visual block mode.
   1. Select range.
   1. `SHIFT-i` to enter insert mode.
   1. Type a comment symbol.
   1. Exit insert mode.
-- Method 2
-  1. Enter visual block mode.
-  1. Select range.
-  1. Enter command mode with `:`.
-  1. Enter `norm i#` to insert comment symbols.
 
-### Misc
-- `g+CTRL-g` = [Show word count of selection.](https://vim.fandom.com/wiki/Word_count)
-
+---
 ### Typed commands
 
-- `:noh`                = Turn off match highlighting (after string search).
+- `:nohl`               = Turn off match highlighting (after string search).
 - `:sort`               = Sort text.
 - `:retab`              = Replace tabs with spaces in file.
 <br><br>
@@ -34,6 +32,7 @@
 - `:q!`                 = Force exit file.
 - `:w` (*write*)        = Save file.
 - `:wq` or `:x` or `ZZ` = Save and quit.
+- `:qa!`                = Close and quit everything.
 
 #### Find and replace
 
@@ -43,35 +42,9 @@
 1. Use `.` to repeat last action.
 1. Continue to use `n` and `.` to replace matches.
 
-### Split-window editing
-
-- `:sp` or `:split file`  =  Open another file in a split window.
-- `:vsplit file`          =  Vertical split.
-<br><br>
-- `CTRL-w k`              =  Switch to upper window.
-- `CTRL-w j`              =  Switch to lower window.
-- `CTRL-w CTRL-w`         =  Switch to another window (cycle).
-<br><br>
-- `CTFL-w =`              =  Make all windows equal size.
-- `10 CTRL-w+`            =  Increase window size by 10 lines.
-- `:resize`               =  Make window full size.
-<br><br>
-- `:hide`                 =  Close current window.
-- `:only`                 =  Keep only this window open.
-
 ---
 ### General
 
-- `:help`        = Get help.
-- `:help usr_01` = Show user manual.
-<br><br>
-- `v`       = Enter visual mode.
-- `CTRL-v`  = Enter visual block mode.
-<br><br>
-- `u`       = Undo.
-- `CTRL-r`  = Redo.
-- `CTRL-n`  = Keyword completion.
-<br><br>
 - `qx`      = Record macro bound to *x*.
 - `q`       = Stop recording macro.
 - `100@x`   = Play macro bound to *x* 100 times.
@@ -80,20 +53,6 @@
 - `U` (*upper*) = Convert selection to uppercase (visual mode).
 <br><br>
 - `.`           = Repeat last action.
-
----
-### Indenting
-
-- `:set shiftwidth=1` = Set indents to 1 space wide.
-<br><br>
-- Press `v` and highlight lines of text using the standard navigation keys.
-- Type `>` or `<` to indent right or left.
-<br><br>
-- To indent more, type `2>` or `3>`.
-- To change your indenting/tabbing to use spaces and not tabs, type `:set et`).
-- To set auto-indenting, type `:set ai`).
-- To set the tab-size, type `:set ts=2` (or whatever number you want).
-- Also, for tabbing-size, set shiftwidth (`>`) by typing `:set sw=2`).
 
 ---
 ### Navigation
