@@ -1,4 +1,30 @@
+## WSUS
 
+https://community.spiceworks.com/topic/2194028-windows-update-error-0x80244022
+```
+And for testing,
+
+Try to download the WSUS iuident CAB file from the client machine.
+
+http://server.domain.local:8530/selfupdate/iuident.cab
+https://server.domain.local:8531/selfupdate/iuident.cab
+
+and then try to browse to:
+
+http://server.domain.local:8530/ClientWebService/client.asmx
+https://server.domain.local:8531/ClientWebService/client.asmx
+
+If you can download it and browse to it, that's the port/url to use in your GPO. If you can't, check firewall settings and port settings.
+```
+
+## Robocopy
+
+- **See Also**:
+  - [Robocopy over network](https://klyavlin.wordpress.com/2012/09/19/robocopy-network-usernamepassword/)
+
+`NET USE \\<SHARE IP>\<SHARE PATH> /u:server\<USERNAME> <PASSWORD>` = Mount network drive for Robocopy to use.
+
+---
 ## WinRM
 
 - **See Also**:
@@ -8,7 +34,7 @@
   - [Allow WinRM with GPOs](https://www.pcwdld.com/winrm-quickconfig-remotely-configure-and-enable)
   - [WinRM authentication](https://docs.microsoft.com/en-us/windows/win32/winrm/authentication-for-remote-connections)
 
-### Server
+### WinRM Server
 
 - The default ports are 5985 for HTTP, and 5986 for HTTPS.
 
@@ -24,7 +50,7 @@ HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System\Loc
 - `winrm set winrm/config/service @{AllowUnencrypted="true"}` = Allow transfer of unencrypted data on the WinRM service.
 - `winrm set winrm/config/service/auth @{CbtHardeningLevel="relaxed"}` = Change challenge binding.
 
-### Client
+### WinRM Client
 
 Test the connection to the WinRM service:
 ```
@@ -34,6 +60,7 @@ winrm identify -r:http://winrm_server:5985 -auth:basic -u:user_name -p:password 
 - `winrm set winrm/config/client @{AllowUnencrypted="true"}` = Enable basic authentication.
 
 
+---
 ## AD FS
 
 Add server to AD FS farm:
@@ -55,12 +82,12 @@ Add-AdfsFarmNode \
 ```
 
 
-## Networking
+## AD FS Networking
 
 `netstat -np` = View open ports.
 
 
-## Certificates
+## AD FS Certificates
 
 `certreq -submit -attrib "CertificateTemplate:WebServer" request.csr` = Import and sign *request.csr* using the 
                                                                         *WebServer* template.
@@ -69,6 +96,7 @@ Add-AdfsFarmNode \
 `certmgr.msc` = Current user certificates.
 
 
+---
 ## Extra features (Windows 10)
 
 Install or remove RSAT tools: <sup>1</sup>
