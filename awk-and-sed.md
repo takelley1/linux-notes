@@ -17,7 +17,8 @@ packages by size.
 - `awk -F: '/:[1-4][0-9]{3}/ {print $6}' /etc/passwd`      = Print the home directories of all interactive users.
 - `awk -F: '! /\/sbin\/nologin/ {print $1}' /etc/passwd`   = Print users who don't use */sbin/nologin* as their shell.
 <br><br>
-- `awk '{if(NR>2) print $0}'` = Print all but the first two lines.
+- `awk '{if(NR>2) print $0}'`  = Print all but the first two lines.
+- `awk '{if(NR==1) print $0}'` = Print the first two line, equivalent to `head -1`.
 - `awk 'NF > 0'` = Remove blank lines quickly.
 - `awk '!/^$/ {print $1}'` = Remove blank lines while using print statement.
 
