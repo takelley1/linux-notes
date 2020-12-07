@@ -28,7 +28,7 @@
   - `-subj "..."` = Add information to cert without OpenSSL prompting for it.
 <br><br>
 - `sh ./certgen.sh domain.example.com 'DNS:*.domain.example.com,IP:10.0.0.10'` = Generate CSR with Subject Alternate Names
-                                                                                 (See ./certgen.sh for script).
+                                                                               (See [certgen.sh](certgen.sh) for script).
 <br><br>
 - Add private key to certificate. This allows the cert and private key to be imported into Windows: <sup>[3]</sup>
 ```
