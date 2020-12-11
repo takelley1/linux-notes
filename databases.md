@@ -2,7 +2,7 @@
 ## POSTGRES
 
 - `psql -h <HOSTNAME_OR_IP> -p <PORT> -U <USERNAME> <DATABSE_NAME>` = Remotely connect to database.
-- `sudo -u postgres psql` = Launch a SQL shell as user postgres.
+- `sudo -u postgres psql -d zabbix` = Launch a SQL shell as user postgres and connect to *zabbix* database.
 
 ### psql shell
 
