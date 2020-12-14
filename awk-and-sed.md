@@ -168,7 +168,8 @@ ifconfig ens32 | grep "inet" | grep –v "inet6" | tr –s " " ":" | cut –f 3 
   - `-o` = Print only the matching part of the line, instead of the whole line.
   - `sort -u` = Remove duplicates.
 <br><br>
-- `grep -nir 'ex*le' ./f*.txt` = Search for *ex\*le* (with globbing) in all *.txt* files starting with *f* in or beneath the current directory.
+- `grep -nir 'ex*le' ./f*.txt` = Search for *ex\*le* (with globbing) in all *.txt* files starting with *f* in or beneath
+  the current directory.
   - `-n` = Display line number of match.
   - `-i` = Ignore case.
 <br><br>
