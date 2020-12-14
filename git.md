@@ -5,6 +5,7 @@
   - [The git book](https://git-scm.com/book/en/v2)
   - [Git fundamentals](https://git-scm.com/docs)
 <br><br>
+- `git push origin --delete feature-123` = Delete the *feature-123* branch remotely.
 - `git commit --amend -m 'Commit message'` = Amend most recent commit message (requires `git push --force` if commit already pushed) <sup>[2]</sup>.
 <br><br>
 - `git add -A` = Stage all modified files, including deleted files.
