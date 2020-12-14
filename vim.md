@@ -6,13 +6,14 @@
   - [Daniel Messler on vim](https://danielmiessler.com/study/vim/)
 
 ### Tips
-
+- `gq` = Format selection.
+<br><br>
 - `m[a-z]` = Create mark bound to letter. Marks allow you to quickly jump to specific lines.
 - `'[a-z]` = Jump to bound mark.
 <br><br>
-- `zC` = Close all folds.
-- `zA` = Open all folds.
-- `za` = Toggle current fold.
+- `zC` or `zM` = Close all folds.
+- `zA`         = Open all folds.
+- `za`         = Toggle current fold.
 <br><br>
 - :!sed '/$^d/' = Delete blank lines from selection.
 - [Use `;` to repeat a single-line search made with `f` or `t`.](https://github.com/iggredible/Learn-Vim/blob/master/ch05_moving_in_file.md#current-line-navigation)
