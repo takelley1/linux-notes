@@ -26,6 +26,12 @@
 
 ### Files <sup>[6]</sup>
 
+- `~/.ssh/id_rsa`
+  - Kept on the client.
+- `~/.ssh/id_rsa.pub`
+  - Kept on the client.
+  - This is the public key of the client. It
+<br><br>
 - `~/.ssh/known_hosts`
   - Kept on the client.
   - Contains the public keys of servers (host keys) this user trusts.
