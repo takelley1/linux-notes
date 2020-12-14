@@ -11,6 +11,7 @@
 ### Variables
 
 - `ansible -i inventories/hostsfile.yml -m debug -a "var=hostvars" all` = View all variables from all hosts in hostsfile.yml.
+- `ansible localhost -m setup -kK -u foo` = Print local host's facts by connecting to it with user *foo*.
 
 ### Ad-hoc commands
 
