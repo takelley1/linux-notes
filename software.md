@@ -36,8 +36,9 @@ Another ad-hoc command example:
 ansible -i inventories/my_inv/hosts.yml -m file -a "path=/etc/yum.repos.d/elasticsearch.repo state=absent" linux_group -kK
 ```
 
-### Useful options
+### Misc
 
+- `ansible-doc -F`                                 = List all available modules.
 - `ansible-playbook --syntax-check ./playbook.yml` = Check syntax.
 - `ansible-lint ./playbook.yml`                    = Check best-practices.
 
