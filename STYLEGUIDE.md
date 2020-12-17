@@ -1,3 +1,4 @@
+<Blank line at beginning of the file>.
 ## SECTION HEADERS AT THE BEGINNING OF FILES LOOK LIKE THIS
 
 

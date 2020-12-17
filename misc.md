@@ -1,5 +1,4 @@
 
----
 ## MISC
 
 - `minute of hour | hour of day | day of month | month # | day of week` = Crontab syntax.
