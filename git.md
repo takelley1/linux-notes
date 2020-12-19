@@ -8,8 +8,9 @@
 ### Tips
 
 - `git push origin --delete feature-123` = Delete the *feature-123* branch remotely.
-- `git submodule update path/to/submodule` = [Update submodule to remove from unstaged changes in parent repo](https://stackoverflow.com/a/6006919)
-- `git commit --amend -m 'Commit message'` = Amend most recent commit message (requires `git push --force` if commit already pushed) <sup>[2]</sup>.
+- `git submodule update` = [Update submodules to remove from unstaged changes in parent repo](https://stackoverflow.com/a/6006919)
+- `git commit --amend -m 'Commit message'` = Amend most recent commit message (requires `git push --force` if commit
+                                             already pushed) <sup>[2]</sup>.
 <br><br>
 - `git add -A` = Stage all modified files, including deleted files.
 - `git add -A ./*` = Stage all modified files, including deleted files, beneath the current path.
@@ -31,9 +32,12 @@
 
 *Configuring user information used across all local repositories.*
 
-- `git config --global user.name “<FIRSTNAME LASTNAME>”` = Set a name that is identifiable for credit when review version history.
-- `git config --global user.email “<VALID-EMAIL>”`       = Set an email address that will be associated with each history marker.
-- `git config --global color.ui auto`                    = Set automatic command line coloring for git for easy reviewing.
+- `git config --global user.name “<FIRSTNAME LASTNAME>”` = Set a name that is identifiable for credit when review
+                                                           version history.
+- `git config --global user.email “<VALID-EMAIL>”`       = Set an email address that will be associated with each
+                                                           history marker.
+- `git config --global color.ui auto`                    = Set automatic command line coloring for git for easy
+                                                           reviewing.
 
 ---
 ### Init
