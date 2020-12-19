@@ -4,8 +4,11 @@
 **See also:**
   - [The git book](https://git-scm.com/book/en/v2)
   - [Git fundamentals](https://git-scm.com/docs)
-<br><br>
+
+### Tips
+
 - `git push origin --delete feature-123` = Delete the *feature-123* branch remotely.
+- `git submodule update path/to/submodule` = [Update submodule to remove from unstaged changes in parent repo](https://stackoverflow.com/a/6006919)
 - `git commit --amend -m 'Commit message'` = Amend most recent commit message (requires `git push --force` if commit already pushed) <sup>[2]</sup>.
 <br><br>
 - `git add -A` = Stage all modified files, including deleted files.

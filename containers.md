@@ -6,6 +6,11 @@
 - `docker build -t mycontainer:latest .` = Build container in current context with name *mycontainer*.
 - `docker run -it mycontainer` = Run container and attach to its shell.
 
+### Swarm
+
+- `docker stack rm zabbix` = Remove zabbix stack.
+- `docker stack deploy zabbix -c zabbix-stack.yml` = Deploy zabbix stack using the *zabbix-stack.yml* file.
+
 ### Managing
 
 - `docker rm -f $(docker ps -aq)` = Remove all stopped containers.
