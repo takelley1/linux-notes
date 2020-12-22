@@ -1,5 +1,26 @@
 
+## MARIADB / MYSQL
+
+- **See also**:
+  - [MariaDB training](https://mariadb.com/kb/en/training-tutorials/)
+
+- `mysql -u<USERNAME> -p<PASSWORD>` = Launch a MySQL shell.
+- `mysqldump -u <USERNAME> -p -x -A >dbs.sql` = [Create database dump.](https://mariadb.com/kb/en/making-backups-with-mysqldump/#backing-up-everything)
+
+### mysql shell
+
+- `show databases;` = Print all databases.
+- `use my_database;` = Connect to the database called *my_database*.
+- `show tables;` = Print tables of the current database.
+- `use mysql; select user from user;` = [Print all users.](https://www.mysqltutorial.org/mysql-show-users/)
+- `create user alice@localhost identified by 'password123';` = [Create user *alice* with password *password123*](https://mariadb.com/kb/en/create-user/)
+- `grant all privileges on my_database.* to 'alice'@'localhost';` = [Give *alice* full permissions to *my_database*](https://chartio.com/resources/tutorials/how-to-grant-all-privileges-on-a-database-in-mysql/)
+
+---
 ## POSTGRES
+
+- **See also**:
+  - [Postgres docs](https://www.postgresql.org/docs/)
 
 - `psql -h <HOSTNAME_OR_IP> -p <PORT> -U <USERNAME> <DATABSE_NAME>` = Remotely connect to database.
 - `sudo -u postgres psql -d zabbix` = Launch a SQL shell as user postgres and connect to *zabbix* database.
@@ -7,7 +28,7 @@
 ### psql shell
 
 - `\l`              = List all databases.
-- `\c <DB_NAME>`    = Connect to new database.
+- `\c <DB_NAME>`    = Connect to database.
 - `\dt`             = View list of relations/tables.
 - `\d <TABLE_NAME>` = Show details of table.
 - `\h`              = Print help.
