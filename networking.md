@@ -222,6 +222,20 @@ wget                            \
 wget --recursive --no-clobber --page-requisites --html-extension --convert-links --restrict-file-names=windows --no-parent www.website.org
 ```
 
+
+---
+## IPv6
+
+| Network   | Purpose                                                                |
+|-----------|------------------------------------------------------------------------|
+| ::1       | Localhost                                                              |
+| fc00::/7  | Unique Local Addresses (ULA) - also known as “Private” IPv6 addresses. |
+| fe80::/10 | Link Local addresses, only valid inside a single broadcast domain.     |
+| 2001::/16 | Global Unique Addresses (GUA) - Routable IPv6 addresses.               |
+| ff00::0/8 | Multicast addresses                                                    |
+
+
+---
 [1]: https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/8/html-single/configuring_basic_system_settings/index#migrating-to-chrony_using-chrony-to-configure-ntp
 [2]: https://danielmiessler.com/study/tcpdump/
 [3]: https://danielmiessler.com/study/nmap/
