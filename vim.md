@@ -20,7 +20,7 @@
 - `:tabm 1`  = [Move current tab to position 1.](https://stackoverflow.com/questions/7961581/is-there-a-vim-command-to-relocate-a-tab)
 - `g+CTRL-g` = [Show word count of selection.](https://vim.fandom.com/wiki/Word_count)
 
-- [Insert comments in bulk](https://stackoverflow.com/questions/1676632/whats-a-quick-way-to-comment-uncomment-lines-in-vim/15588798#15588798):
+- [Insert comments in bulk:](https://stackoverflow.com/questions/1676632/whats-a-quick-way-to-comment-uncomment-lines-in-vim/15588798#15588798)
   1. Enter visual block mode.
   1. Select range.
   1. `SHIFT-i` to enter insert mode.
@@ -35,6 +35,7 @@
 - `:retab`              = Replace tabs with spaces in file.
 <br><br>
 - `:%s/xxx/yyy/g`       = Replace *xxx* with *yyy* in entire file.
+- `:'<,'>s/xxx/yyy/g`   = Replace *xxx* with *yyy* within the selection.
 - `:g/^x/d`             = Delete all lines beginning with *x*.
 <br><br>
 - `:q` (*quit*)         = Exit file.
