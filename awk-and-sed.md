@@ -8,10 +8,17 @@
 
 ### Examples
 
+Create SSH aliases from Ansible inventory file:
+```bash
+awk '/[a-zA-Z]*:$/ {FS=".";gsub(/[\t| |\:]/,"");host=tolower($1);FS=" "}
+     /^\s*[^\#]*ansible_host/ {ip=$2;print "Host " host "\n\t HostName " ip}'
+    ~/scripts/ansible/hosts.yml >> ~/.ssh/config
+```
 - `pacman -Qi | awk -F: '/^Name/ {name=$2} /^Installed/ {gsub(/ /,"");size=$2;print size,name}' | sort -h` = List pacman
 packages by size.
 - `curl -s wttr.in | awk '{if(NR==3) weather1=$4} {if(NR==3) weather2=$5} /\.\./ {if(NR==4) print weather1, weather2, "("$5, $6")"}'` = Get
 weather
+<br><br>
 - `awk '{print $3, $2}'`                                     = Print the 3rd and 2nd fields of input.
 - `awk '/foo/ {gsub(/abc/,""); gsub(/[0-9]/,""); print $1}'` = Print 1st field of lines that contain *foo*, remove *abc* and all numbers from output.
 - `awk '/([0-9]{1,3}\.){1,3}[0-9]{1,3}/ {print $3}'`         = Print 3rd field of lines that contain IP-address-like strings in input.
