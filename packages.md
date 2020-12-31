@@ -4,32 +4,25 @@
 - **See also**:
   - [Comparison of package managers](https://fusion809.github.io/comparison-of-package-managers/)
 
-| Package managers compared         | yum/dnf (rpm files)            | apt (deb files)             | pacman (tgz, ztd files)       | pkg                            |
-|-----------------------------------|--------------------------------|-----------------------------|-------------------------------|--------------------------------|
-| List installed packages by size   | ?                              | ?                           | \*                            | `pkg query '%sh %n' | sort -h` |
-| Show installed packages           | `rpm -qa`                      | `dpkg --list`               | `pacman -Q`                   | `pkg info`                     |
-| Show package that provides file x | `yum whatprovides x`           | `dpkg -S x`                 | `pacman -F x`                 | `pkg which x`                  |
-| Show files from package x         | `repoquery --list x`           | ?                           | `pacman -Ql x`                | `pkg query %Fp x`              |
-| Show package x info               | `yum info x`                   | `apt-cache show x`          | `pacman -Qi x`                | `pkg info x`                   |
-| Show package x's dependencies     | ?                              | ?                           | `pacman -Qi x`                | `pkg query %do x`              |
-| Show packages that depend on x    | ?                              | ?                           | `pacman -Qi x`                | `pkg query %ro x`              |
-| Install package group x           | `yum groupinstall x`           | ?                           | `pacman -S x`                 | -                              |
-| Show package groups               | `yum group list`               | ?                           | `pacman -Qg`                  | -                              |
-| Remove orphaned packages          | -                              | `apt autoremove`            | `pacman -Rns $(pacman -Qdtq)` | `pkg autoremove`               |
-| Show update history               | `yum history list all`         | `/var/log/apt/history.log`  | `/var/log/pacman.log`         | `/var/log/messages`            |
-| Rollback update                   | `yum history undo <ID>`        | `apt-history rollback`      | `pacman -U /var/cache/pacman/pkg/<pkg-version>`| -             |
-| Show info from recent transaction | `yum history info <ID>`        | -                           | -                             | -                              |
-| Remove duplicate packages         | `package-cleanup --cleandupes` | -                           | -                             | -                              |
+| Package managers compared         | yum/dnf (rpm files)            | apt (deb files)             | pacman (tgz, ztd files)       | pkg                             |
+|-----------------------------------|--------------------------------|-----------------------------|-------------------------------|---------------------------------|
+| List installed packages by size   | ?                              | ?                           | \*                            | `pkg query '%sh %n' \| sort -h` |
+| Show installed packages           | `rpm -qa`                      | `dpkg --list`               | `pacman -Q`                   | `pkg info`                      |
+| Show package that provides file x | `yum whatprovides x`           | `dpkg -S x`                 | `pacman -F x`                 | `pkg which x`                   |
+| Show files from package x         | `repoquery --list x`           | ?                           | `pacman -Ql x`                | `pkg query %Fp x`               |
+| Show package x info               | `yum info x`                   | `apt-cache show x`          | `pacman -Qi x`                | `pkg info x`                    |
+| Show package x's dependencies     | ?                              | ?                           | `pacman -Qi x`                | `pkg query %do x`               |
+| Show packages that depend on x    | ?                              | ?                           | `pacman -Qi x`                | `pkg query %ro x`               |
+| Install package group x           | `yum groupinstall x`           | ?                           | `pacman -S x`                 | -                               |
+| Show package groups               | `yum group list`               | ?                           | `pacman -Qg`                  | -                               |
+| Remove orphaned packages          | -                              | `apt autoremove`            | `pacman -Rns $(pacman -Qdtq)` | `pkg autoremove`                |
+| Show update history               | `yum history list all`         | `/var/log/apt/history.log`  | `/var/log/pacman.log`         | `/var/log/messages`             |
+| Rollback update                   | `yum history undo <ID>`        | `apt-history rollback`      | `pacman -U /var/cache/pacman/pkg/<pkg-version>`| -              |
+| Show info from recent transaction | `yum history info <ID>`        | -                           | -                             | -                               |
+| Remove duplicate packages         | `package-cleanup --cleandupes` | -                           | -                             | -                               |
 
 \*
 ```bash
-# Attempt #1:
-pacman -Qi | awk -F: '/Size/{gsub(/ /,"");print $2}'>/tmp/1; pacman -Qi | awk -F: '/^Name/{print $2}'>/tmp/2; paste /tmp/1 /tmp/2 | sort -h | column -t
-# Attempt #2:
-pacman -Qi | grep -E '^Name|^Installed' | cut -f 2 -d ':' | tr -d ' ' | awk '{getline i;print i,$1}' | sort -h
-# Attempt #3:
-pacman -Qi | awk -F: '/^Name|^Installed/ {gsub(/ /,"");print $2}' | awk '{getline i;print i,$1}' | sort -h
-# Attempt #4:
 pacman -Qi | awk -F: '/^Name/ {name=$2} /^Installed/ {gsub(/ /,"");size=$2;print size,name}' | sort -h
 ```
 
