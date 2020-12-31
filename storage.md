@@ -187,22 +187,22 @@ Ext4 is better with lots of smaller files and metadata-intensive tasks.
 Xfs is better with very large files (>30GB).
 ```
 
-| Filesystem features <sup>[1]</sup> | ext4 | xfs  | btrfs | zfs  | ufs | ntfs | bcachefs | FAT32 | exFAT |
-|------------------------------------|------|------|-------|------|-----|------|----------|-------|-------|
-| Online growing                     | no   | yes  | yes   | yes  | ?   | yes  | ?        | no    | no    |
-| Online shrinking                   | no   | no   | yes   | no   | no  | yes  | ?        | no    | no    |
-| Transparent data compression       | no   | no   | yes   | yes  | ?   | yes  | yes      | no    | no    |
-| Native encryption                  | LUKS | LUKS | yes   | yes  | ?   | yes  | yes      | no    | no    |
-| Data deduplication                 | no   | no   | yes   | yes  | no  | yes  | yes      | no    | no    |
-| Immutable snapshots                | LVM  | LVM  | yes   | yes  | ?   | no   | yes      | no    | no    |
-| Data + metadata checksumming       | no   | no   | yes   | yes  | no  | no   | yes      | no    | no    |
-| Native RAID support                | no   | no   | yes   | yes  | no  | yes  | yes      | no    | no    |
-| Journaling support                 | yes  | yes  | COW   | COW  | ?   | yes  | COW      | no    | no    |
-| Max filesize                       | -    | -    | -     | -    | -   | -    | -        | 4GB   | -     |
-| Max filesystem size                | -    | -    | -     | -    | -   | -    | -        | 16TB  | -     |
+| Filesystem features <sup>[1]</sup> | ext4 | XFS  | Btrfs | ZFS  | UFS  | NTFS | bcachefs | FAT32 | exFAT |
+|------------------------------------|------|------|-------|------|------|------|----------|-------|-------|
+| Online/offline growing             | yes  |online| yes   |online| yes  | yes  | ?        | no    | no    |
+| Online/offline shrinking          |offline| no   | yes   | no   | no   | yes  | ?        | no    | no    |
+| Transparent compression            | no   | no   | yes   | yes  | ?    | yes  | yes      | no    | no    |
+| Transparent encryption             | LUKS | LUKS | yes   | yes  | ?    | yes  | yes      | no    | no    |
+| Data deduplication                 | no   | no   | yes   | yes  | no   | yes  | yes      | no    | no    |
+| Snapshots                          | LVM  | LVM  | yes   | yes  | ?    | no   | yes      | no    | no    |
+| Data + metadata checksumming       | no   | no   | yes   | yes  | no   | no   | yes      | no    | no    |
+| RAID                               | LVM  | LVM  | yes   | yes  | no   | yes  | yes      | no    | no    |
+| Journaling                         | yes  | yes  | COW   | COW  | ?    | yes  | COW      | no    | no    |
+| Maximum file size                  | -    | -    | -     | -    | -    | -    | -        | 4GB   | -     |
+| Maximum filesystem size            | -    | -    | -     | -    | -    | -    |- |16TB<br>2TB(Windows)|- |
 
 - LUKS = Encrypting these filesystems is usually handled through LUKS and/or dm-crypt.
-- LVM  = Can provide limited snapshot functionality through LVM.
+- LVM  = This feature is provided through LVM.
 - COW  = Journaling is superceded by copy-on-write mechanisms.
 - \-   = Maximum theoretical size is so large that it's effectively irrelevant.
 - ?    = Currently unknown and/or no reliable data available.
