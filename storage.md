@@ -199,13 +199,13 @@ Xfs is better with very large files (>30GB).
 | Native RAID support                | no   | no   | yes   | yes  | no  | yes  | yes      | no    | no    |
 | Journaling support                 | yes  | yes  | COW   | COW  | ?   | yes  | COW      | no    | no    |
 | Max filesize                       | -    | -    | -     | -    | -   | -    | -        | 4GB   | -     |
-| Max filesystem size                | -    | -    | -     | -    | -   | -    | -        | 2TB   | -     |
+| Max filesystem size                | -    | -    | -     | -    | -   | -    | -        | 16TB  | -     |
 
-LUKS = Encrypting these filesystems is usually handled through LUKS and/or dm-crypt.
-LVM  = Can provide limited snapshot functionality through LVM.
-COW  = Journaling is superceded by copy-on-write mechanisms.
-\-   = Maximum theoretical size is so large that it's effectively irrelevant.
-?    = Currently unknown and/or no reliable data available.
+- LUKS = Encrypting these filesystems is usually handled through LUKS and/or dm-crypt.
+- LVM  = Can provide limited snapshot functionality through LVM.
+- COW  = Journaling is superceded by copy-on-write mechanisms.
+- \-   = Maximum theoretical size is so large that it's effectively irrelevant.
+- ?    = Currently unknown and/or no reliable data available.
 
 
 ---
