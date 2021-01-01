@@ -1,6 +1,25 @@
 
 ## ZFS <sup>[1]</sup> 
 
+### Snapshots
+
+- `zfs list -t snapshot tank` = List snapshots for the *tank* dataset.
+
+### Datasets
+
+- `zfs list -r tank` = List all child datasets of the *tank* dataset.
+
+### [Recordsize](https://jrs-s.net/2019/04/03/on-zfs-recordsize/)
+
+- Default is 128k
+- Set recordsize to match the typical size of files in the dataset.
+  - Dataset with small text files = Small recordsize (128k or less).
+  - Dataset with only videos = Large recordsize (1M).
+  - Dataset with VMs = Match recordsize to VM disk image's sector size (512B or 4k).*
+
+* Use `fdisk -l` to determine a disk's sector size.
+
+
 | POOL CREATION                    |                                                      |
 |----------------------------------|------------------------------------------------------|
 | `zpool create datapool1`         | Create basic pool named datapool                     |
