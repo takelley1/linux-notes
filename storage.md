@@ -286,6 +286,47 @@ break if the location they're pointing to is deleted. Similar to Windows shortcu
 1. Run `grub-mkconfig -o /boot/grub/grub.cfg` or `update-grub` (if `update-grub` was installed).
 1. Reboot. if you're dropped into an emergency shell, try regenerating grub.
 
+### How VMWare snapshots work
+
+In VMware VMs, the virtual disk is a .vmdk file residing on a data store (LUN). When a snapshot is created in
+Snapshot Manager, the original disk becomes read-only, and all the new data changes are written into a temporary
+.vmdk delta disk, pointing to the original one. The delta disk is the difference between the current state of
+the virtual disk and the state at the moment the snapshot was taken. After a snapshot is deleted (committed),
+the .vmdk delta disk is merged with the original .vmdk file, and it returns to read-write mode.
+
+If the VM is reverted to the snapshot, the temporary .vmdk delta disk is simply deleted and the VM begins writing
+to its original disk.
+
+Snapshots are not backups because if the original disk's data is lost, the delta .vmdk becomes useless as it only
+contains the changes to the original data, not the data itself.
+
+### Storage latency
+
+- **See also:**
+  - [Interactive latency](https://colin-scott.github.io/personal_website/research/interactive_latency.html)
+  - [How much faster is memory than flash?](https://stackoverflow.com/questions/1371400/how-much-faster-is-the-memory-usually-than-the-disk)
+```
+Latency Comparison Numbers (~2012)
+----------------------------------
+L1 cache reference                           0.5 ns
+Branch mispredict                            5   ns
+L2 cache reference                           7   ns .................... 14x slower than L1 cache
+Mutex lock/unlock                           25   ns
+Main memory reference                      100   ns .................... 20x slower than L2 cache, 200x L1 cache
+Compress 1K bytes with Zippy             3,000   ns        3 us
+Send 1K bytes over 1 Gbps network       10,000   ns       10 us
+Read 4K randomly from SSD              150,000   ns      150 us ........ ~1GB/sec SSD
+Read 1 MB sequentially from memory     250,000   ns      250 us
+Round trip within same datacenter      500,000   ns      500 us
+Read 1 MB sequentially from SSD      1,000,000   ns    1,000 us    1 ms  ~1GB/sec SSD, (4x slower than memory)
+Disk seek                           10,000,000   ns   10,000 us   10 ms  20x datacenter roundtrip
+Read 1 MB sequentially from disk    20,000,000   ns   20,000 us   20 ms  80x slower than memory, 20x slower than SSD
+Send packet CA->Netherlands->CA    150,000,000   ns  150,000 us  150 ms  .150 seconds
+```
+
+<img src="images/raid10.png" width="300"/> <sup>[9]</sup>
+
+
 [1]: https://www.tldp.org/LDP/sag/html/filesystems.html
 [2]: https://clearlinux.org/news-blogs/linux-os-data-compression-options-comparing-behavior
 [3]: https://calomel.org/badblocks_wipe.html
@@ -294,3 +335,4 @@ break if the location they're pointing to is deleted. Similar to Windows shortcu
 [6]: http://www.linfo.org/inode.html
 [7]: https://askubuntu.com/questions/741723/moving-entire-linux-installation-to-another-drive
 [8]: https://www.cyberciti.biz/faq/howto-linux-unix-test-disk-performance-with-dd-command/
+[9]: https://blog.ssdnodes.com/blog/what-is-raid-10-vps/
