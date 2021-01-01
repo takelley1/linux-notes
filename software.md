@@ -72,6 +72,8 @@ Minimum XCCDF file for importing SCAP results to DISA STIG viewer:
 ---
 ## RANGER
 
+- `m<KEY>`   = Bookmark path at <KEY>
+- \`<KEY>    = Jump to bookmark at <KEY>
 - `cd /path` = Jump to /path.
 - `gh`       = Jump to ~ (*go home.  *)
 
