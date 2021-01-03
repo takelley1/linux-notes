@@ -94,6 +94,34 @@ weather
 
 ### Examples
 
+Sed example using comments.
+```bash
+sed \
+  --regexp-extended \
+  " \
+  # Remove boilerplate
+  s|<p>Necessary cookies.*</p>||g
+  s|<p>Any cookies that may.*</p>||g
+
+  # Remove inline links
+  s/<(a|span)[^>]*>//g
+
+  # Remove other HTML formatting elements.
+  s!<(\/a|\/span|\/b|\/br|\/sup|p|b|br)\s*\/*>!!g
+
+  # Convert HTML escape sequences.
+  s|&#821[6|7];|'|g
+  s|&#822[0|1];|\"|g
+  s|&#8211;| - |g
+  s|&#8212;| -- |g
+  s|&amp;|\&|g
+  s|<sup>|^|g
+  s|</p>|\n|g
+
+  # Remove leading spaces.
+  s|^\s*||g
+```
+
 - `sed '1s/^/spam/ file.txt` = Insert *spam* at the first line of file.txt.
   - `1` = Restrict operations to the first line of the input.
   - `s` = Replace mode.
