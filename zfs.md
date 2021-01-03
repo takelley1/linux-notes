@@ -12,6 +12,13 @@
 
 - `zfs list -r tank` = List all child datasets of the *tank* dataset.
 
+### [Restoring data](https://www.linuxtopia.org/online_books/opensolaris_2008/ZFSADMIN/html/gbchx.html)
+
+`zfs send tank/alice@snapshot1 | zfs receive newtank/alice` = Create a *newtank/alice* dataset from *snapshot1* in the
+                                                              *tank/alice* dataset.
+`zfs send -nv tank/alice@snap1` = Do a "dry-run" ZFS send.
+`zfs send tank/test@tuesday | xz > /backup/test-tuesday.img.xz` = Create a compressed image backup of *tank/test@tuesday*.
+
 ### [Recordsize](https://jrs-s.net/2019/04/03/on-zfs-recordsize/)
 
 - Default is 128k
