@@ -24,10 +24,23 @@ awk \
   {ip=$2;print "Host " host "\n\t HostName " ip}'
   ./ansible/hosts.yml >> ~/.ssh/config
 ```
-- `pacman -Qi | awk -F: '/^Name/ {name=$2} /^Installed/ {gsub(/ /,"");size=$2;print size,name}' | sort -h` = List pacman
-packages by size.
-- `curl -s wttr.in | awk '{if(NR==3) weather1=$4} {if(NR==3) weather2=$5} /\.\./ {if(NR==4) print weather1, weather2, "("$5, $6")"}'` = Get
-weather
+List pacman packages by size:
+```bash
+pacman -Qi | \
+  awk -F: \
+    '/^Name/ {name=$2}
+     /^Installed/ {gsub(/ /,"");size=$2;
+     print size,name}' \
+  | sort -h` 
+```
+Get weather:
+```bash
+curl -s wttr.in | \
+  awk \
+    '{if(NR==3) weather1=$4}
+     {if(NR==3) weather2=$5} 
+     /\.\./ {if(NR==4) print weather1, weather2, "("$5, $6")"}' \
+```
 <br><br>
 - `awk '{print $3, $2}'`                                     = Print the 3rd and 2nd fields of input.
 - `awk '/foo/ {gsub(/abc/,""); gsub(/[0-9]/,""); print $1}'` = Print 1st field of lines that contain *foo*, remove *abc* and all numbers from output.
@@ -39,8 +52,8 @@ weather
 <br><br>
 - `awk '{if(NR>2) print $0}'`  = Print all but the first two lines.
 - `awk '{if(NR==1) print $0}'` = Print the first two line, equivalent to `head -1`.
-- `awk 'NF > 0'` = Remove blank lines quickly.
-- `awk '!/^$/ {print $1}'` = Remove blank lines while using print statement.
+- `awk 'NF > 0'`               = Remove blank lines quickly.
+- `awk '!/^$/ {print $1}'`     = Remove blank lines while using print statement.
 
 ### Variables
 
@@ -59,7 +72,7 @@ weather
 - `[^123…]` = Anything NOT within brackets.
 - `\`       = Escape next character.
 - `(   )`   = Pattern grouping (groups multiple *pieces* into a single *atom*).
-  - `([0-9]{1,3}\.){5}` = 5 instances of ( 1-3 of any digit, followed by a period ).
+- `([0-9]{1,3}\.){5}` = 5 instances of ( 1-3 of any digit, followed by a period ).
 
 #### Quantifiers
 - `^`     = Match pattern at start.
