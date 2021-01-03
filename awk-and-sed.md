@@ -83,24 +83,25 @@ weather
 | `\n` | Newline                          |
 | `\t` | Tab                              |
 
-| Character classes | *Only valid within brackets e.g [[:xyz:]]* |
-|-------------------|-----------------------------------------|
-| `[:alnum:]` | Alphanumeric characters                       |
-| `[:alpha:]` | Alphabetic characters                         |
-| `[:blank:]` | Space or tab characters                       |
-| `[:cntrl:]` | Control characters                            |
-| `[:digit:]` | Numeric characters                            |
-| `[:lower:]` | Lowercase alphabetic characters               |
-| `[:print:]` | Printable characters (non-control characters) |
-| `[:punct:]` | Punctuation characters (non-letter, digit, control char, or space) |
-| `[:space:]` | Space characters (space, tab, formfeed, etc.) |
-| `[:upper:]` | Uppercase alphabetic characters               |
+| Character classes | *Only valid within brackets e.g [[:xyz:]]*    |
+|-------------------|-----------------------------------------------|
+| `[:alnum:]`       | Alphanumeric characters                       |
+| `[:alpha:]`       | Alphabetic characters                         |
+| `[:blank:]`       | Space or tab characters                       |
+| `[:cntrl:]`       | Control characters                            |
+| `[:digit:]`       | Numeric characters                            |
+| `[:lower:]`       | Lowercase alphabetic characters               |
+| `[:print:]`       | Printable characters (non-control characters) |
+| `[:punct:]`       | Punctuation characters (non-letter, digit, control char, or space) |
+| `[:space:]`       | Space characters (space, tab, formfeed, etc.) |
+| `[:upper:]`       | Uppercase alphabetic characters               |
 
 
 ---
 ## SED
 
-`sed -<PARAMETER> '<RESTRICTION> <FLAG1>/<PATTERN1>/<PATTERN2>/<FLAG2>' <FILE1> <FILE2>…`
+- **See also**:
+  - [Sed introduction](https://www.grymoire.com/Unix/Sed.html)
 
 ### Examples
 
