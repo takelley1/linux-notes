@@ -10,9 +10,19 @@
 
 Create SSH aliases from Ansible inventory file:
 ```bash
-awk '/[a-zA-Z]*:$/ {FS=".";gsub(/[\t| |\:]/,"");host=tolower($1);FS=" "}
-     /^\s*[^\#]*ansible_host/ {ip=$2;print "Host " host "\n\t HostName " ip}'
-    ~/scripts/ansible/hosts.yml >> ~/.ssh/config
+awk \
+  '
+  # Look for hostname-like strings.
+  /[a-zA-Z]*:$/ 
+  # Chop off the domain suffix, remove extraneous characters.
+  # Force lowercase names, change the field separator back to default.
+  {FS=".";gsub(/[\t| |:]/,"");
+  host=tolower($1);FS=" "}
+  # Look for the host IP, Ignore commented-out lines.
+  /^\s*[^#]*ansible_host/ 
+  # Put it all together.
+  {ip=$2;print "Host " host "\n\t HostName " ip}'
+  ./ansible/hosts.yml >> ~/.ssh/config
 ```
 - `pacman -Qi | awk -F: '/^Name/ {name=$2} /^Installed/ {gsub(/ /,"");size=$2;print size,name}' | sort -h` = List pacman
 packages by size.
