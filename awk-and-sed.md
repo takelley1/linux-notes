@@ -41,8 +41,9 @@ curl -s wttr.in | \
      {if(NR==3) weather2=$5} 
      /\.\./ {if(NR==4) print weather1, weather2, "("$5, $6")"}' \
 ```
+
+- `awk 'NF > 0 {blank=0} NF == 0 {blank++} blank < 2'`       = Remove consecutive blank lines, emulates `cat -s`.
 <br><br>
-- `awk '{print $3, $2}'`                                     = Print the 3rd and 2nd fields of input.
 - `awk '/foo/ {gsub(/abc/,""); gsub(/[0-9]/,""); print $1}'` = Print 1st field of lines that contain *foo*, remove *abc* and all numbers from output.
 - `awk '/([0-9]{1,3}\.){1,3}[0-9]{1,3}/ {print $3}'`         = Print 3rd field of lines that contain IP-address-like strings in input.
 - `ip -4 -br a | awk '! /127\.0\.0/ {gsub(/\/[0-9]{1,2}/,""); print $3}'` = Print the primary IP address, without the subnet mask.
@@ -51,7 +52,7 @@ curl -s wttr.in | \
 - `awk -F: '! /\/sbin\/nologin/ {print $1}' /etc/passwd`   = Print users who don't use */sbin/nologin* as their shell.
 <br><br>
 - `awk '{if(NR>2) print $0}'`  = Print all but the first two lines.
-- `awk '{if(NR==1) print $0}'` = Print the first two line, equivalent to `head -1`.
+- `awk '{if(NR==1) print $0}'` = Print the first two line, emulates `head -1`.
 - `awk 'NF > 0'`               = Remove blank lines quickly.
 - `awk '!/^$/ {print $1}'`     = Remove blank lines while using print statement.
 
