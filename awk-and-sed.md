@@ -119,7 +119,7 @@ curl -s wttr.in | \
 
 ### Examples
 
-Sed example using comments.
+Sed example using comments:
 ```bash
 sed \
   --regexp-extended \
@@ -147,36 +147,43 @@ sed \
   s|^\s*||g
 ```
 
-- `sed '1s/^/spam/ file.txt` = Insert *spam* at the first line of file.txt.
+- `sed -n '!spam!,!eggs!p'` = Print all lines between *spam* and *eggs*, inclusive.
+- `sed -En '/([a-z]+) \1/p'` = Print instances of duplicated words.
+- `sed '1 s/^/spam/ file.txt` = Insert *spam* at the first line of file.txt.
   - `1` = Restrict operations to the first line of the input.
-  - `s` = Replace mode.
+  - `s` = Substitute mode.
   - `^` = (First string) Replace the start of the first line with the second string.
   - `spam` = (Second string) This string will replace the start of the first line in file.txt.
+- `sed 's|spam|eggs|3' file.txt` = Replace the third occurrence of *spam* with *eggs* in file.txt.
 <br><br>
-- `sed 's/spam/eggs/3' file.txt` = Replace the third occurrence of *spam* with *eggs* in file.txt.
-<br><br>
-- `sed '2,3/^str*ng/d' file.txt` = Delete all strings matching expression.
-  - `2,3` = Limit command to the second and third lines of the file.
-<br><br>
-- `echo "all is fair" | sed 'i\in love and war'` = Returns *all is fair in love and war*. Inserts input before match.
-- `echo "in love and war" | sed 'a\all is fair'` = Returns *all is fair in love and war*. Inserts input after match.
-<br><br>
-- `sed -n '2p'` = Print second line of input.
-<br><br>
-- `sed 's/string1/string2/w file.txt'` = Write modified data to file.txt.
-<br><br>
-- `sed 's/abc/xyz/I'` = Match *abc* or *ABC*, replace with *xyz*.
-- `sed -e 's/a/A' -e 's/b/B'`
+- `sed -n 2p`   = Print second line of input.
+- `sed 10q`     = Print first ten lines of input, emulates `head`.
+- `sed '5,10d'` = Delete lines 5 through 10.
+- `sed '$d'`      = Delete the last line.
+- `sed '/^$/d'`   = Delete all blank lines.
+- `sed '/./,$!d'` = Delete all leadig blank lines at top of file.
+
+#### Restrictions and Ranges
+
+- `sed '/^#/ s/[0-9]+//'` = Delete the first number on all lines starting with *#*.
+  - `'/^#/ `              = Restriction: Operate only on lines matching expression.
+- `sed '2,3 s/[0-9]+//'`    = Same thing, but only on lines 2 and 3.
+- `sed '2,$ s/[0-9]+//'`    = Same thing, but between lines 2 and the end of the file.
+- `sed '/start/,/stop/ s/#.*//'` = Remove comments between the lines *start* and *stop*, inclusive.
 
 ### Flags
 
-- `s` (*substitute*)  = Perform a string substitution.
-- `i` (*insert*)      = Insert input above match.
-- `a` (*after*)       = Insert input after match.
-- `g` (*global*)      = Perform operation throughout the entirety of the file.
-- `p` (*print*)       = Force-print match to stdout. Usually used with `-n` to only print match.
-- `w` (*write*)       = Write to the provided file.
-- `I` (*insensitive*) = Make regex case-insensitive.
+- Before patterns (`sed '<FLAG>/pattern1/pattern2/'`)
+  - `s` (*substitute*)  = Perform a string substitution.
+  - `i` (*insert*)      = Insert input above match.
+  - `a` (*append*)      = Insert input below match.
+
+- After patterns (`sed '/pattern1/pattern2/<FLAG>'`)
+  - `g` (*global*)      = Match pattern multiple times on the same line, if possible.
+  - `p` (*print*)       = Force-print match to stdout. Usually used with `-n` to only print matching lines.
+  - `q` (*quit*)        = Stop processing input.
+  - `w` (*write*)       = Write to the provided file.
+  - `I` (*insensitive*) = Make regex case-insensitive.
 
 ### Parameters
 
@@ -188,11 +195,7 @@ sed \
 ### Patterns
 
 - `&` = Current regex match (ex: `echo "123 abc ABC" | sed 's/abc/& def/'` = `123 abc def ABC`).
-
-### Restrictions
-
-- the opposite of `g`, perform operations only on the listed lines of file.
-- `sed '3,5d` = Delete lines 3 through 5.
+- `$` = The end of the file.
 
 ### Other commands and examples
 
