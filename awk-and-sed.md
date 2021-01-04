@@ -88,26 +88,27 @@ curl -s wttr.in | \
 | Backslash syntax |                      |
 |------|----------------------------------|
 | `\s` | Whitespace characters            |
-| `\S` | non-whitespace characters        |
+| `\S` | Non-whitespace characters        |
 | `\w` | letters, digits, underscores     |
-| `\W` | non-letters, digits, underscores |
+| `\W` | Non-letters, digits, underscores |
 | `\f` | Form-feed                        |
 | `\r` | Carriage return                  |
 | `\n` | Newline                          |
 | `\t` | Tab                              |
 
-| Character classes | *Only valid within brackets e.g [[:xyz:]]*    |
-|-------------------|-----------------------------------------------|
-| `[:alnum:]`       | Alphanumeric characters                       |
-| `[:alpha:]`       | Alphabetic characters                         |
-| `[:blank:]`       | Space or tab characters                       |
-| `[:cntrl:]`       | Control characters                            |
-| `[:digit:]`       | Numeric characters                            |
-| `[:lower:]`       | Lowercase alphabetic characters               |
-| `[:print:]`       | Printable characters (non-control characters) |
-| `[:punct:]`       | Punctuation characters (non-letter, digit, control char, or space) |
-| `[:space:]`       | Space characters (space, tab, formfeed, etc.) |
-| `[:upper:]`       | Uppercase alphabetic characters               |
+| Character classes | Similar to      | GNU synonym | *Only valid within brackets e.g [[:xyz:]]* |
+|-------------------|-----------------|-------------|--------------------------------------------|
+| `[:upper:]`       | `[A-Z]`         |      | Uppercase alphabetic characters                   |
+| `[:lower:]`       | `[a-z]`         |      | Lowercase alphabetic characters                   |
+| `[:digit:]`       | `[0-9]`         |      | Numeric characters                                |
+| `[:alpha:]`       | `[A-Za-z]`      |      | Alphabetic characters                             |
+| `[:alnum:]`       | `[A-Za-z0-9]`   | `\w` | Alphanumeric characters                           |
+| `[:blank:]`       | `[ \t]`         |      | Space and tab characters ONLY                     |
+| `[:space:]`       | `[ \t\n\r\f\v]` | `\s` | Whitespace characters (space, tab, formfeed, etc.)|
+| `[:cntrl:]`       |                 |      | Control characters                                |
+| `[:graph:]`       | `[^ [:cntrl:]]` |      | Graphical characters (non-control characters)     |
+| `[:print:]`       | `[[:graph:] ]`  |      | Graphical characters and space                    |
+| `[:punct:]`       |                 |      | Punctuation characters (non-letter, digit, control char, or space) |
 
 
 ---
