@@ -116,6 +116,8 @@ curl -s wttr.in | \
 - **See also**:
   - [Sed introduction](https://www.grymoire.com/Unix/Sed.html)
 
+sed -<PARAMETER> '<RESTRICTION> <FLAG1>/<PATTERN1>/<PATTERN2>/<FLAG2>' <FILE1> <FILE2>…
+
 ### Examples
 
 Sed example using comments.
