@@ -14,12 +14,15 @@ awk \
   '
   # Look for hostname-like strings.
   /[a-zA-Z]*:$/ 
+  
   # Chop off the domain suffix, remove extraneous characters.
   # Force lowercase names, change the field separator back to default.
   {FS=".";gsub(/[\t| |:]/,"");
   host=tolower($1);FS=" "}
+  
   # Look for the host IP, Ignore commented-out lines.
   /^\s*[^#]*ansible_host/ 
+  
   # Put it all together.
   {ip=$2;print "Host " host "\n\t HostName " ip}'
   ./ansible/hosts.yml >> ~/.ssh/config
@@ -77,13 +80,14 @@ curl -s wttr.in | \
 #### Quantifiers
 - `^`     = Match pattern at start.
 - `$`     = Match pattern at end.
-- `a|b`   = Alternation of patterns (*a* or *b*) (each side is called a *branch*).
+- `a|b`   = Alternation of patterns (*a* or *b*).
 - `*`     = Zero or more of pattern.
 - `+`     = One or more of pattern.
 - `?`     = Zero or one of pattern.
-- `{1,5}` = One to five of pattern (called a *bound*).
-- `{3,}`  = At least three of pattern.
-- `{,2}`  = At most three of pattern.
+- Bounds: basic regex requires `\{ \}`, extended regex uses `{ }`
+  - `{1,5}` = One to five of pattern.
+  - `{3,}`  = At least three of pattern.
+  - `{,2}`  = At most three of pattern.
 
 | Backslash syntax |                      |
 |------|----------------------------------|
@@ -117,7 +121,7 @@ curl -s wttr.in | \
 - **See also**:
   - [Sed introduction](https://www.grymoire.com/Unix/Sed.html)
 
-sed -<PARAMETER> '<RESTRICTION> <FLAG1>/<PATTERN1>/<PATTERN2>/<FLAG2>' <FILE1> <FILE2>…
+sed `-<PARAMETER> '<RESTRICTION> <FLAG1>/<PATTERN1>/<PATTERN2>/<FLAG2>' <FILE1> <FILE2>…`
 
 ### Examples
 
@@ -125,7 +129,7 @@ Sed example using comments.
 ```bash
 sed \
   --regexp-extended \
-  " \
+  "
   # Remove boilerplate
   s|<p>Necessary cookies.*</p>||g
   s|<p>Any cookies that may.*</p>||g
@@ -147,6 +151,7 @@ sed \
 
   # Remove leading spaces.
   s|^\s*||g
+  "
 ```
 
 - `sed '1s/^/spam/ file.txt` = Insert *spam* at the first line of file.txt.
