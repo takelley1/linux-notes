@@ -4,17 +4,24 @@
 - **See also**:
   - [MariaDB training](https://mariadb.com/kb/en/training-tutorials/)
 
+### Shell
+
 - `mysql -u<USERNAME> -p<PASSWORD>` = Launch a MySQL shell.
 - `mysqldump -u <USERNAME> -p -x -A >dbs.sql` = [Create database dump.](https://mariadb.com/kb/en/making-backups-with-mysqldump/#backing-up-everything)
+- `mysqld_safe --skip-grant tables &` = [Launch MySQL to reset the root password.](https://www.digitalocean.com/community/tutorials/how-to-reset-your-mysql-or-mariadb-root-password)
 
-### mysql shell
+### Databases
 
 - `show databases;` = Print all databases.
 - `use my_database;` = Connect to the database called *my_database*.
 - `show tables;` = Print tables of the current database.
+
+### Users
+
 - `use mysql; select user from user;` = [Print all users.](https://www.mysqltutorial.org/mysql-show-users/)
 - `create user alice@localhost identified by 'password123';` = [Create user *alice* with password *password123*](https://mariadb.com/kb/en/create-user/)
 - `grant all privileges on my_database.* to 'alice'@'localhost';` = [Give *alice* full permissions to *my_database*](https://chartio.com/resources/tutorials/how-to-grant-all-privileges-on-a-database-in-mysql/)
+- `set password for 'alice'@'localhost' = password('CorrectHorseBatteryStaple');` = [Change password for *alice*](https://mariadb.com/kb/en/set-password/)
 
 ---
 ## POSTGRES
