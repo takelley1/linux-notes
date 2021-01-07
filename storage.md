@@ -177,45 +177,6 @@ Extending */var* XFS filesystem with LVM:
 - `du -d 1 -h /` = List the sizes of each directory one level beneath the specified directory.
   - `d 1` (*depth*) = Recurse at a depth of 1 directory.
 
-### Filesystems
-
-- `mkfs.ext4 /dev/mapper/LV1` or `mkfs -t ext4 /dev/mapper/LV1` = Create ext4 filesystem on LV1 logical volume.
-<br><br>
-- `e2fsck -f /dev/mapper/LV1 && resize2fs /dev/mapper/LV1` = Expand filesystem to fit size of LV1 (must be unmounted).
-- `xfs_growfs /dev/centos/var`                             = Expand mounted xfs filesystem (must be mounted).
-<br><br>
-- `e4degrag /`     = Defragment all partitions.
-- `fsck /dev/sda2` = Check sda2 partition for errors (supported filesystems only).
-
-> NOTE: Xfs filesystems cannot be shrunk; use ext4 instead.
-
-#### [ext4 vs XFS](https://unix.stackexchange.com/questions/467385/should-i-use-xfs-or-ext4)
-
-> Ext4 is better with lots of smaller files and metadata-intensive tasks.
-> Xfs is better with very large files (>30GB).
-
-
-| Filesystem features <sup>[1]</sup> | ext4 | XFS  | BtrFS | ZFS  | UFS  | NTFS | bcachefs | FAT32 | exFAT |
-|------------------------------------|------|------|-------|------|------|------|----------|-------|-------|
-| Online/offline growing             | yes  |online| yes   |online| yes  | yes  | ?        | no    | no    |
-| Online/offline shrinking          |offline| no   | yes   | no   | no   | yes  | ?        | no    | no    |
-| Transparent compression            | no   | no   | yes   | yes  | ?    | yes  | yes      | no    | no    |
-| Transparent encryption             | LUKS | LUKS | yes   | yes  | ?    | yes  | yes      | no    | no    |
-| Data deduplication                 | no   | no   | yes   | yes  | no   | yes  | yes      | no    | no    |
-| Snapshots                          | LVM  | LVM  | yes   | yes  | ?    | no   | yes      | no    | no    |
-| Data + metadata checksumming       | no   | no   | yes   | yes  | no   | no   | yes      | no    | no    |
-| RAID                               | LVM  | LVM  | yes   | yes  | no   | yes  | yes      | no    | no    |
-| Journaling                         | yes  | yes  | COW   | COW  | ?    | yes  | COW      | no    | no    |
-| Maximum file size                  | -    | -    | -     | -    | -    | -    | -        | 4GB   | -     |
-| Maximum filesystem size            | -    | -    | -     | -    | -    | -    |- |16TB<br>2TB(Windows)|- |
-
-- LUKS = Encrypting these filesystems is usually handled through LUKS and/or dm-crypt.
-- LVM  = This feature is provided through LVM.
-- COW  = Journaling is superceded by copy-on-write mechanisms.
-- \-   = Maximum theoretical size is so large that it's effectively irrelevant.
-- ?    = Currently unknown and/or no reliable data available.
-
-
 ---
 ## SAMBA
 `TODO`
@@ -242,8 +203,6 @@ debug hires timestamp = yes
 
 ---
 ## NFS
-
-> NOTE: assumes fedora-based system
 
 ### Server
 
@@ -335,5 +294,4 @@ Send packet CA->Netherlands->CA    150,000,000   ns  150,000 us  150 ms  .150 se
 <img src="images/raid10.png" width="300"/> <sup>[9]</sup>
 
 
-[1]: https://www.tldp.org/LDP/sag/html/filesystems.html
 [9]: https://blog.ssdnodes.com/blog/what-is-raid-10-vps/
