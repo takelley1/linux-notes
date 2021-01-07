@@ -14,12 +14,15 @@ awk \
   '
   # Look for hostname-like strings.
   /[a-zA-Z]*:$/ 
+  
   # Chop off the domain suffix, remove extraneous characters.
   # Force lowercase names, change the field separator back to default.
   {FS=".";gsub(/[\t| |:]/,"");
   host=tolower($1);FS=" "}
+  
   # Look for the host IP, Ignore commented-out lines.
   /^\s*[^#]*ansible_host/ 
+  
   # Put it all together.
   {ip=$2;print "Host " host "\n\t HostName " ip}'
   ./ansible/hosts.yml >> ~/.ssh/config
@@ -78,37 +81,39 @@ curl -s wttr.in | \
 #### Quantifiers
 - `^`     = Match pattern at start.
 - `$`     = Match pattern at end.
-- `a|b`   = Alternation of patterns (*a* or *b*) (each side is called a *branch*).
+- `a|b`   = Alternation of patterns (*a* or *b*).
 - `*`     = Zero or more of pattern.
 - `+`     = One or more of pattern.
 - `?`     = Zero or one of pattern.
-- `{1,5}` = One to five of pattern (called a *bound*).
-- `{3,}`  = At least three of pattern.
-- `{,2}`  = At most three of pattern.
+- Bounds: basic regex requires `\{ \}`, extended regex uses `{ }`
+  - `{1,5}` = One to five of pattern.
+  - `{3,}`  = At least three of pattern.
+  - `{,2}`  = At most three of pattern.
 
 | Backslash syntax |                      |
 |------|----------------------------------|
 | `\s` | Whitespace characters            |
-| `\S` | non-whitespace characters        |
+| `\S` | Non-whitespace characters        |
 | `\w` | letters, digits, underscores     |
-| `\W` | non-letters, digits, underscores |
+| `\W` | Non-letters, digits, underscores |
 | `\f` | Form-feed                        |
 | `\r` | Carriage return                  |
 | `\n` | Newline                          |
 | `\t` | Tab                              |
 
-| Character classes | *Only valid within brackets e.g [[:xyz:]]*    |
-|-------------------|-----------------------------------------------|
-| `[:alnum:]`       | Alphanumeric characters                       |
-| `[:alpha:]`       | Alphabetic characters                         |
-| `[:blank:]`       | Space or tab characters                       |
-| `[:cntrl:]`       | Control characters                            |
-| `[:digit:]`       | Numeric characters                            |
-| `[:lower:]`       | Lowercase alphabetic characters               |
-| `[:print:]`       | Printable characters (non-control characters) |
-| `[:punct:]`       | Punctuation characters (non-letter, digit, control char, or space) |
-| `[:space:]`       | Space characters (space, tab, formfeed, etc.) |
-| `[:upper:]`       | Uppercase alphabetic characters               |
+| Character classes | Similar to      | GNU synonym | *Only valid within brackets e.g [[:xyz:]]* |
+|-------------------|-----------------|-------------|--------------------------------------------|
+| `[:upper:]`       | `[A-Z]`         |      | Uppercase alphabetic characters                   |
+| `[:lower:]`       | `[a-z]`         |      | Lowercase alphabetic characters                   |
+| `[:digit:]`       | `[0-9]`         |      | Numeric characters                                |
+| `[:alpha:]`       | `[A-Za-z]`      |      | Alphabetic characters                             |
+| `[:alnum:]`       | `[A-Za-z0-9]`   | `\w` | Alphanumeric characters                           |
+| `[:blank:]`       | `[ \t]`         |      | Space and tab characters ONLY                     |
+| `[:space:]`       | `[ \t\n\r\f\v]` | `\s` | Whitespace characters (space, tab, formfeed, etc.)|
+| `[:cntrl:]`       |                 |      | Control characters                                |
+| `[:graph:]`       | `[^ [:cntrl:]]` |      | Graphical characters (non-control characters)     |
+| `[:print:]`       | `[[:graph:] ]`  |      | Graphical characters and space                    |
+| `[:punct:]`       |                 |      | Punctuation characters (non-letter, digit, control char, or space) |
 
 
 ---
@@ -117,13 +122,15 @@ curl -s wttr.in | \
 - **See also**:
   - [Sed introduction](https://www.grymoire.com/Unix/Sed.html)
 
+sed `-<PARAMETER> '<RESTRICTION> <FLAG1>/<PATTERN1>/<PATTERN2>/<FLAG2>' <FILE1> <FILE2>…`
+
 ### Examples
 
 Sed example using comments:
 ```bash
 sed \
   --regexp-extended \
-  " \
+  "
   # Remove boilerplate
   s|<p>Necessary cookies.*</p>||g
   s|<p>Any cookies that may.*</p>||g
@@ -145,6 +152,7 @@ sed \
 
   # Remove leading spaces.
   s|^\s*||g
+  "
 ```
 
 - `sed -n '!spam!,!eggs!p'` = Print all lines between *spam* and *eggs*, inclusive.
