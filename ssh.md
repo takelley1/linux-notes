@@ -4,27 +4,27 @@
 - **See also:**
   - [SSH essentials](https://www.digitalocean.com/community/tutorials/ssh-essentials-working-with-ssh-servers-clients-and-keys)
   - [authorized_keys vs known_hosts](https://security.stackexchange.com/questions/20706/what-is-the-difference-between-authorized-keys-and-known-hosts-file-for-ssh)
-  - [sshd_config man page](https://www.freebsd.org/cgi/man.cgi?sshd_config(5)
+  - [sshd_config man page](https://www.freebsd.org/cgi/man.cgi?sshd_config(5))
   - [ssh-keygen best practices](https://security.stackexchange.com/questions/143442/what-are-ssh-keygen-best-practices)
 
-### Connection process <sup>[8]</sup>
+### [Connection process](https://www.digitalocean.com/community/tutorials/understanding-the-ssh-encryption-and-connection-process)
 
 1. Server authentication
    1. Client initiates TCP connection to server.
    1. Server provides client its public host key. This proves server is the same server that's been connected to before.
-   1. Diffie-Hellman used to create session key.
-   1. Server signs challenge number with its own private host key, sends it to client.
+   1. Diffie-Hellman is used to create a session key.
+   1. Server creates and signs challenge number with its own private host key, then sends it to client.
    1. Client verifies challenge number signature to confirm server is in posession of its public host key.
 2. User authentication (using key pairs)
-   1. Server checks requested server user's `authorized_keys` file for client user's public key.
-   1. Server sends client challenge number encrypted with client user's public key.
-   1. Client decrypts challenge number using client user's private key.
-   1. Client MD5 hashes (decrypted challenge number + session key) string.
-   1. Client sends MD5 digest to server.
-   1. Server MD5 hashes (original challenge number + session key) string.
+   1. Server checks requested server user's *authorized_keys* file for client user's public key.
+   1. Server sends client a challenge number encrypted with the client user's public key.
+   1. Client decrypts challenge number using the client user's private key.
+   1. Client MD5 hashes the *decrypted challenge number + session key* string.
+   1. Server MD5 also hashes the *original challenge number + session key* string.
+   1. Client sends the MD5 digest to server.
    1. Server compares its MD5 digest to client's MD5 digest. If they match, the requested user is authenticated.
 
-### Files <sup>[6]</sup>
+### [Files](https://www.techrepublic.com/article/the-4-most-important-files-for-ssh-connections/)
 
 - `~/.ssh/id_rsa`
   - Kept on the client.

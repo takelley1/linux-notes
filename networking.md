@@ -241,6 +241,4 @@ wget --recursive --no-clobber --page-requisites --html-extension --convert-links
 [3]: https://danielmiessler.com/study/nmap/
 [4]: https://wiki.debian.org/nftables
 [5]: https://dougvitale.wordpress.com/2011/12/21/deprecated-linux-networking-commands-and-their-replacements/#netstat
-[6]: https://www.techrepublic.com/article/the-4-most-important-files-for-ssh-connections/
 [7]: https://www.thegeekdiary.com/centos-rhel-7-tips-on-troubleshooting-ntp-chrony-issues/
-[8]: https://www.digitalocean.com/community/tutorials/understanding-the-ssh-encryption-and-connection-process

@@ -1,5 +1,5 @@
 
-## ZFS <sup>[1]</sup> 
+## ZFS
 
 ### Snapshots
 
@@ -14,14 +14,14 @@
 
 ### [Restoring data](https://www.linuxtopia.org/online_books/opensolaris_2008/ZFSADMIN/html/gbchx.html)
 
-`zfs send tank/alice@snapshot1 | zfs receive newtank/alice` = Create a *newtank/alice* dataset from *snapshot1* in the
+- `zfs send tank/alice@snapshot1 | zfs receive newtank/alice` = Create a *newtank/alice* dataset from *snapshot1* in the
                                                               *tank/alice* dataset.
-`zfs send -nv tank/alice@snap1` = Do a "dry-run" ZFS send.
-`zfs send tank/test@tuesday | xz > /backup/test-tuesday.img.xz` = Create a compressed image backup of *tank/test@tuesday*.
+- `zfs send -nv tank/alice@snap1` = Do a "dry-run" ZFS send.
+- `zfs send tank/test@tuesday | xz > /backup/test-tuesday.img.xz` = Create a compressed image backup of *tank/test@tuesday*.
 
 ### [Recordsize](https://jrs-s.net/2019/04/03/on-zfs-recordsize/)
 
-- Default is 128k
+- Default is 128k.
 - Set recordsize to match the typical size of files in the dataset.
   - Dataset with small text files = Small recordsize (128k or less).
   - Dataset with only videos = Large recordsize (1M).
@@ -61,6 +61,7 @@
   - Equal to the underlying hardware's physical sector size (usually 512B, 4K, or 8K).
   - Immutable, automatically set per-vdev by the ashift property.
 
+[Commands:](https://www.thegeekdiary.com/solaris-zfs-command-line-reference-cheat-sheet/)
 
 | POOL CREATION                    |                                                     |
 |----------------------------------|-----------------------------------------------------|
@@ -146,4 +147,3 @@
 24x 256GB raid0 striped   5.5 terabytes ( w=1620MB/s , rw=796MB/s , r=2043MB/s )
 ```
 
-[1]: https://www.thegeekdiary.com/solaris-zfs-command-line-reference-cheat-sheet/  

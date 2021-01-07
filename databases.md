@@ -2,7 +2,7 @@
 ## MARIADB / MYSQL
 
 - **See also**:
-  - [MariaDB training](https://mariadb.com/kb/en/training-tutorials/)
+  - [MariaDB docs](https://mariadb.com/kb/en/training-tutorials/)
 
 ### Shell
 
@@ -29,10 +29,12 @@
 - **See also**:
   - [Postgres docs](https://www.postgresql.org/docs/)
 
+### Shell
+
 - `psql -h <HOSTNAME_OR_IP> -p <PORT> -U <USERNAME> <DATABSE_NAME>` = Remotely connect to database.
 - `sudo -u postgres psql -d zabbix` = Launch a SQL shell as user postgres and connect to *zabbix* database.
 
-### psql shell
+### psql
 
 - `\l`              = List all databases.
 - `\c <DB_NAME>`    = Connect to database.

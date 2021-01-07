@@ -1,28 +1,7 @@
 
 ## LOGICAL VOLUME MANAGEMENT (LVM)
 
-### Physical volumes (PV)
-
-- `pvcreate /dev/sdb`            = Create a physical volume.
-- `pvremove /dev/sdb1 /dev/sdc1` = Remove physical volumes on partitions sdb1 and sdc1.
-- `pvmove /dev/sdb1 /dev/sdb2`   = Copy all data from sdb1 to sdb2.
-<br><br>
-- `pvdisplay` or `pvscan`        = Show physical volumes.
-
-### Logical volumes (LV)
-
-- `lvcreate -l 2500 centos -n vol_1` = Create a new volume called vol_1 with 2500 extents in vgroup centos.
-- `lvextend -L 1.5G /dev/mapper/LV1` = Extend volume LV1 to 1.5 GB.
-- `lvreduce -l -200 /dev/mapper/LV1` = Reduce volume LV1 by 200 extents.
-<br><br>
-- `lvdisplay` or `lvscan`            = Show logical volumes.
-
-### Volume groups (VG)
-
-- `vgcreate VG1 /dev/sdb1 /dev/sdc1` = Create a volume group called VG1, containing physical volumes sdb1 and sdc1.
-- `vgextend VG1 /dev/sdb1`           = Add physical volume sdb1 to volume group VG1.
-<br><br>
-- `vgdisplay` or `vgscan`            = Show volume groups.
+### Examples
 
 Extending */var* XFS filesystem with LVM:
 ```bash
@@ -34,15 +13,36 @@ Extending */var* XFS filesystem with LVM:
 6. xfs_growfs /var                     # Grow the filesystem on the extended logical volume.
 ```
 
+### Physical volumes (PV)
+
+- `pvdisplay` or `pvscan`        = Show physical volumes.
+- `pvcreate /dev/sdb`            = Create a physical volume.
+- `pvremove /dev/sdb1 /dev/sdc1` = Remove physical volumes on partitions *sdb1* and *sdc1*.
+- `pvmove /dev/sdb1 /dev/sdb2`   = Copy all data from *sdb1* to *sdb2*.
+
+### Logical volumes (LV)
+
+- `lvdisplay` or `lvscan`            = Show logical volumes.
+- `lvcreate -l 2500 centos -n vol_1` = Create a new volume called *vol_1* with *2500* extents in vgroup *centos*.
+- `lvextend -L 1.5G /dev/mapper/LV1` = Extend volume *LV1* to *1.5 GB*.
+- `lvreduce -l -200 /dev/mapper/LV1` = Reduce volume *LV1* by *200* extents.
+
+### Volume groups (VG)
+
+- `vgdisplay` or `vgscan`            = Show volume groups.
+- `vgcreate VG1 /dev/sdb1 /dev/sdc1` = Create a volume group called *VG1*, containing physical volumes *sdb1* and
+                                       *sdc1*.
+- `vgextend VG1 /dev/sdb1`           = Add physical volume sdb1 to volume group VG1.
+
 
 ---
-## COMPRESSION <sup>[2]</sup>
+## [COMPRESSION](https://clearlinux.org/news-blogs/linux-os-data-compression-options-comparing-behavior)
 `TODO`
 
 - **See also:**
   - [Squash compression benchmark](https://quixdb.github.io/squash-benchmark/#results)
 
-[BtrFS compression benchmarks](https://git.kernel.org/pub/scm/linux/kernel/git/mason/linux-btrfs.git/commit/?h=next&id=5c1aab1dd5445ed8bdcdbb575abc1b0d7ee5b2e7)
+[BtrFS compression benchmarks:](https://git.kernel.org/pub/scm/linux/kernel/git/mason/linux-btrfs.git/commit/?h=next&id=5c1aab1dd5445ed8bdcdbb575abc1b0d7ee5b2e7)
 | Method  | Ratio | Compress MB/s | Decompress |
 |---------|-------|---------------|------------|
 | None    |  0.99 |           504 |        686 |
@@ -70,17 +70,18 @@ Extending */var* XFS filesystem with LVM:
 
 - `tar xzvf myarchive.tar.gz` = Extract myarchive.tar.gz to current path (*xtract ze v'ing files*).
   - `x` = Extract.
-  - `z` = Decompress with gzip (only works with extracting `tar.gz` or `.tgz` tarballs).
+  - `z` = Decompress with gzip (only works with extracting *tar.gz* or *.tgz* tarballs).
   - `v` = Be verbose.
   - `f` = Work in file mode (rather than tape mode).
 <br><br>
-- `tar czvf myarchive.tar.gz dir1/ dir2/ dir3/` = Create myarchive.tar.gz from dir1, dir2, and dir3 (*create ze v'ing files*).
+- `tar czvf myarchive.tar.gz dir1/ dir2/` = Create *myarchive.tar.gz* from *dir1* and *dir2*
+                                            (*create ze v'ing files*).
 
 ### 7zip
 
-- `7za x myarchive.7z` = Extract myarchive.7z to current path (DO NOT USE THE 'e' SWITCH, USE 'x' INSTEAD TO PRESERVE FILEPATHS).
+- `7za x myarchive.7z` = Extract *myarchive.7z* to current path (DO NOT USE THE 'e' SWITCH, USE 'x' INSTEAD TO PRESERVE FILEPATHS).
 <br><br>
-- `7za a -mx=10 myarchive.7z dir1/ dir2/` = Create myarchive.7z from dir1 and dir2.
+- `7za a -mx=10 myarchive.7z dir1/ dir2/` = Create *myarchive.7z* from *dir1* and *dir2*.
   - `-mx=10` = Use compression lvl 10.
 
 
@@ -104,12 +105,11 @@ Extending */var* XFS filesystem with LVM:
 - `mount`                                     = Show mounted volumes and their mount locations.
 - `mount –o remount,rw /dev/sda1 /mountpoint` = Remount drive with read-write permissions.
 
-### Disk testing <sup>[3]</sup>
+### [Disk testing](https://calomel.org/badblocks_wipe.html)
 
 - `badblocks -b 4096 -s -v -w /dev/sdb` = Destructively test disk sdb for bad data blocks (useful for testing new drive).
 - `bonnie++`
-<br><br>
-- `dd if=/dev/zero of=./test1.img bs=1G count=1 oflag=dsync` = Test disk write speed. <sup>[8]</sup>
+- `dd if=/dev/zero of=./test1.img bs=1G count=1 oflag=dsync` = [Test disk write speed.](https://www.cyberciti.biz/faq/howto-linux-unix-test-disk-performance-with-dd-command/)
 
 ---
 ### SMART
@@ -137,7 +137,7 @@ Extending */var* XFS filesystem with LVM:
                 raw numbers provide valuable insight when properly interpreted. These cases will be discussed later on.
                 Raw values are typically listed in hexadecimal numbers.
 
-| SMART attributes <sup>[5]</sup>                                           |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       |
+|[SMART attributes](https://www.z-a-recovery.com/manual/smart.aspx)         |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       |
 |---------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | Reallocated sectors count                                                 | How many defective sectors were discovered on drive and remapped to spare sectors. Low values in absence of other fault indications point to a disk surface problem. Raw value indicates the exact number of such sectors.                                                                                                                                                                                                                                                                                            |
 | Current pending sectors count                                             | How many suspected defective sectors are pending "investigation." These will not necessarily be remapped. In fact, such sectors my be not defective at all (e.g. if some transient condition prevented reading of the sector, it will be marked "pending") - they will be then re-tested by the device off-line scan1 procedure and returned to the pool of serviceable sectors. Raw value indicates the exact number of such sectors.                                                                                |
@@ -163,14 +163,10 @@ Extending */var* XFS filesystem with LVM:
 - `mtime` (*modify time*) = Last time file's contents were changed.
 - `ctime` (*change time*) = Last time file's inode was changed (permissions, ownership, name, hard links, etc.).
 
-```
-inode:
-
-A special data structure holding a file's metadata, contains the file's physical address on the storage medium, size,
-permissions, and modification timestamps. The file that the user interacts with is only a pointer to its
-corresponding inode.
-```
-<sup>[6]</sup>
+[inode:](http://www.linfo.org/inode.html)
+  > A special data structure holding a file's metadata, contains the file's physical address on the storage medium, size,
+  > permissions, and modification timestamps. The file that the user interacts with is only a pointer to its
+  > corresponding inode.
 
 ### Sizing
 
@@ -193,12 +189,11 @@ corresponding inode.
 
 > NOTE: Xfs filesystems cannot be shrunk; use ext4 instead.
 
-#### Ext4 vs xfs <sup>[4]</sup>
+#### [ext4 vs XFS](https://unix.stackexchange.com/questions/467385/should-i-use-xfs-or-ext4)
 
-```
-Ext4 is better with lots of smaller files and metadata-intensive tasks.
-Xfs is better with very large files (>30GB).
-```
+> Ext4 is better with lots of smaller files and metadata-intensive tasks.
+> Xfs is better with very large files (>30GB).
+
 
 | Filesystem features <sup>[1]</sup> | ext4 | XFS  | BtrFS | ZFS  | UFS  | NTFS | bcachefs | FAT32 | exFAT |
 |------------------------------------|------|------|-------|------|------|------|----------|-------|-------|
@@ -285,7 +280,7 @@ Symbolic links can be made for directories as well as files and work across part
 break if the location they're pointing to is deleted. Similar to Windows shortcuts.
 ```
 
-### Transfer root Linux installation to another drive: <sup>[7]</sup>
+### [Transfer root Linux installation to another drive:](https://askubuntu.com/questions/741723/moving-entire-linux-installation-to-another-drive)
 
 1. Install the `update-grub` package on the source drive (optional).
 1. Boot from a live OS and use `gparted` to copy the source drive's root partition to an empty partition on the target drive.
@@ -341,11 +336,4 @@ Send packet CA->Netherlands->CA    150,000,000   ns  150,000 us  150 ms  .150 se
 
 
 [1]: https://www.tldp.org/LDP/sag/html/filesystems.html
-[2]: https://clearlinux.org/news-blogs/linux-os-data-compression-options-comparing-behavior
-[3]: https://calomel.org/badblocks_wipe.html
-[4]: https://unix.stackexchange.com/questions/467385/should-i-use-xfs-or-ext4
-[5]: https://www.z-a-recovery.com/manual/smart.aspx
-[6]: http://www.linfo.org/inode.html
-[7]: https://askubuntu.com/questions/741723/moving-entire-linux-installation-to-another-drive
-[8]: https://www.cyberciti.biz/faq/howto-linux-unix-test-disk-performance-with-dd-command/
 [9]: https://blog.ssdnodes.com/blog/what-is-raid-10-vps/
