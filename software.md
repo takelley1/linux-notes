@@ -1,4 +1,20 @@
 
+## MCAFEE
+
+Uninstall McAfee Agent:
+```bash
+rpm -e MFEdx
+rpm -e MFEcma
+rpm -e MFErt
+
+# If the above fails:
+rpm -e MFEdx --nodeps --noscripts
+rpm -e MFEcma --nodeps --noscripts
+rpm -e MFErt --nodeps --noscripts
+```
+
+
+---
 ## PFSENSE
 
 - [Place firewall rules on the interface where the traffic originates](https://blog.monstermuffin.org/pfsense-guide-nat-firewall-rules-networking-101/)
