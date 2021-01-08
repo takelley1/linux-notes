@@ -15,6 +15,8 @@
 - `show databases;` = Print all databases.
 - `use my_database;` = Connect to the database called *my_database*.
 - `show tables;` = Print tables of the current database.
+<br><br>
+- `show global status like 'wsrep_%';` = [Show Galera cluster status.](https://galeracluster.com/library/training/tutorials/galera-monitoring.html)
 
 ### Users
 
