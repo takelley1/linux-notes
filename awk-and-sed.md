@@ -8,6 +8,27 @@
 
 ### Examples
 
+Print all interactive users.
+```bash
+awk -F: \
+  '
+  # Look for lines that don't contain the following:
+  # Contains "nologin"
+  # First non-whitespace character is a "#" (^\s*#)
+  # Last non-whitespace character is a ":" (:\s*$)
+  ! /nologin|^\s*#|:\s*$/ 
+
+  # If the user's UID is over 1000, print the username.
+  {if($3>1000) print $1
+
+  # Otherwise if the user's UID is 0 (i.e. root), print the username.
+  else if($3==0) print $1}
+  ' \
+  /etc/passwd
+
+awk -F: '!/nologin|^\s*#|:$/ {if($3>1000)print $1;else if($3==0)print $1}' /etc/passwd
+```
+
 Create SSH aliases from Ansible inventory file:
 ```bash
 awk \
