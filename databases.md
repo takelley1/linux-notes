@@ -16,7 +16,6 @@
 - `use my_database;` = Connect to the database called *my_database*.
 - `show tables;` = Print tables of the current database.
 <br><br>
-- `show global status like 'wsrep_%';` = [Show Galera cluster status.](https://galeracluster.com/library/training/tutorials/galera-monitoring.html)
 
 ### Users
 
@@ -24,6 +23,16 @@
 - `create user alice@localhost identified by 'password123';` = [Create user *alice* with password *password123*](https://mariadb.com/kb/en/create-user/)
 - `grant all privileges on my_database.* to 'alice'@'localhost';` = [Give *alice* full permissions to *my_database*](https://chartio.com/resources/tutorials/how-to-grant-all-privileges-on-a-database-in-mysql/)
 - `set password for 'alice'@'localhost' = password('CorrectHorseBatteryStaple');` = [Change password for *alice*](https://mariadb.com/kb/en/set-password/)
+
+### Galera cluster
+
+- **See also**:
+  - [Galera node failure & recovery](https://www.symmcom.com/docs/how-tos/databases/how-to-recover-mariadb-galera-cluster-after-partial-or-full-crash)
+  - [Galera node monitoring](https://galeracluster.com/library/documentation/recovery.html)
+<br><br>
+- `galera_new_cluster` = (from `bash`) re-bootstrap a failed cluster.
+- `show global status like 'wsrep_%';` = [Show Galera cluster status.](https://galeracluster.com/library/training/tutorials/galera-monitoring.html)
+
 
 ---
 ## POSTGRES
