@@ -3,6 +3,7 @@
 
 - **See also**
   - [Google style guide](https://google.github.io/styleguide/shellguide.html)
+  - [GNU coreutils decoded](https://www.maizure.org/projects/decoded-gnu-coreutils/index.html)
 
 ## SHELL INITIALIZATION <sup>[6]</sup>
 
@@ -40,13 +41,41 @@
 ---
 ## BASH
 
-### Substring matching
+### String manipulation
 
+Remove prefix:
 ```bash
+${parameter#word}  # Shortest matching pattern
+${parameter##word} # Longest matching pattern
+```
+
+Remove suffix:
+```bash
+${parameter%word}  # Shortest matching pattern
+${parameter%%word} # Longest matching pattern
+
+file="archive.tar.gz"
+name="${file%.*}"  # name = "archive.tar"
+name="${file%%.*}" # name = "archive"
+```
+
+Extract substring:
+```bash
+${parameter:offset}
+${parameter:offset:length}
+
 file="2020-08-15_00:17:02_screenshot.png"
 year="${file:0:4}"  # year = 2020
 month="${file:5:2}" # month = 08
 day="${file:8:2}"   # day = 15
+```
+
+Pattern substitution:
+```bash
+${parameter/pattern/string}
+
+name="Bob Johnson"
+replacement="${name/Johnson/Peterson}" # replacement = "Bob Peterson"
 ```
 
 ### printf
