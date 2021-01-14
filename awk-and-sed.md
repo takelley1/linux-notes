@@ -48,6 +48,7 @@ awk \
   {ip=$2;print "Host " host "\n\t HostName " ip}'
   ./ansible/hosts.yml >> ~/.ssh/config
 ```
+
 List pacman packages by size:
 ```bash
 pacman -Qi | \
@@ -56,7 +57,10 @@ pacman -Qi | \
      /^Installed/ {gsub(/ /,"");size=$2;
      print size,name}' \
   | sort -h` 
+
+pacman -Qi | awk -F: '/^Name/ {name=$2} /^Installed/ {gsub(/ /,"");size=$2; print size,name}' | sort -h` 
 ```
+
 Get weather:
 ```bash
 curl -s wttr.in | \
@@ -91,6 +95,11 @@ curl -s wttr.in | \
 ### Regex
 *(See `man 7 regex` for more info.)*
 
+#### Operators
+
+- `~` = Regex matching operator (`awk '$1 ~ /J/'` = Print field *1* if it contains a *J*.).
+- `!~` = Negation regex matching operator. (`awk '$1 !~ /J/'` = Print field *1* if it doesn't contain a *J*.).
+
 #### Patterns
 - `.`       = Any character.
 - `[abc…]`  = Anything within brackets (called a *bracket expression*).
@@ -111,7 +120,21 @@ curl -s wttr.in | \
   - `{3,}`  = At least three of pattern.
   - `{,2}`  = At most three of pattern.
 
-| Backslash syntax |                      |
+| Character classes | Similar to      | GNU synonym | *Only valid within brackets e.g [[:xyz:]]*        |
+|-------------------|-----------------|-------------|---------------------------------------------------|
+| `[:upper:]`       | `[A-Z]`         |             | Uppercase alphabetic characters                   |
+| `[:lower:]`       | `[a-z]`         |             | Lowercase alphabetic characters                   |
+| `[:digit:]`       | `[0-9]`         |             | Numeric characters                                |
+| `[:alpha:]`       | `[A-Za-z]`      |             | Alphabetic characters                             |
+| `[:alnum:]`       | `[A-Za-z0-9]`   | `\w`        | Alphanumeric characters                           |
+| `[:blank:]`       | `[ \t]`         |             | Space and tab characters ONLY                     |
+| `[:space:]`       | `[ \t\n\r\f\v]` | `\s`        | Whitespace characters (space, tab, formfeed, etc.)|
+| `[:cntrl:]`       |                 |             | Control characters                                |
+| `[:graph:]`       | `[^ [:cntrl:]]` |             | Graphical characters (non-control characters)     |
+| `[:print:]`       | `[[:graph:] ]`  |             | Graphical characters and space                    |
+| `[:punct:]`       |      |       | Punctuation characters (non-letter, digit, control char, or space) |
+
+| GNU-style character classes |           |
 |------|----------------------------------|
 | `\s` | Whitespace characters            |
 | `\S` | Non-whitespace characters        |
@@ -121,20 +144,6 @@ curl -s wttr.in | \
 | `\r` | Carriage return                  |
 | `\n` | Newline                          |
 | `\t` | Tab                              |
-
-| Character classes | Similar to      | GNU synonym | *Only valid within brackets e.g [[:xyz:]]* |
-|-------------------|-----------------|-------------|--------------------------------------------|
-| `[:upper:]`       | `[A-Z]`         |      | Uppercase alphabetic characters                   |
-| `[:lower:]`       | `[a-z]`         |      | Lowercase alphabetic characters                   |
-| `[:digit:]`       | `[0-9]`         |      | Numeric characters                                |
-| `[:alpha:]`       | `[A-Za-z]`      |      | Alphabetic characters                             |
-| `[:alnum:]`       | `[A-Za-z0-9]`   | `\w` | Alphanumeric characters                           |
-| `[:blank:]`       | `[ \t]`         |      | Space and tab characters ONLY                     |
-| `[:space:]`       | `[ \t\n\r\f\v]` | `\s` | Whitespace characters (space, tab, formfeed, etc.)|
-| `[:cntrl:]`       |                 |      | Control characters                                |
-| `[:graph:]`       | `[^ [:cntrl:]]` |      | Graphical characters (non-control characters)     |
-| `[:print:]`       | `[[:graph:] ]`  |      | Graphical characters and space                    |
-| `[:punct:]`       |                 |      | Punctuation characters (non-letter, digit, control char, or space) |
 
 
 ---
