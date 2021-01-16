@@ -6,6 +6,8 @@
   - [Daniel Messler on vim](https://danielmiessler.com/study/vim/)
 
 ### Tips
+- `@@` = Repeat last macro.
+- `nvim -S /path/to/session.vim` = Start with session file.
 - `gq` = Format selection.
 <br><br>
 - `m[a-z]` = Create mark bound to letter. Marks allow you to quickly jump to specific lines.
