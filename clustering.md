@@ -17,6 +17,7 @@
 - `pcs resource agents` = List available resource agents.
 - `pcs resource create zabbix_ip ocf:heartbeat:IPaddr2 ip=10.0.0.20 op monitor interval=5s --group zabbix_cluster` = Create a floating IP for the cluster.
 - `pcs resource create zabbix_web systemd:rh-nginx116-nginx op monitor interval=20s --group zabbix_cluster` = Create an Nginx systemd resource.
+- `pcs resource cleanup` = Reset failed or stopped resources.
 <br><br>
 - `pcs constraint order zabbix_ip then zabbix_server` = Ensure the *zabbix_ip* resource starts before *zabbix_server*.
 - `pcs constraint colocation add zabbix_ip with zabbix_server INFINITY` = Ensure *zabbix_ip* resource is on the same node as *zabbix_server*. 
