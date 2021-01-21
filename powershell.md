@@ -55,12 +55,27 @@ WinRM Service
 HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System\LocalAccountTokenFilterPolicy
 ```
 
+#### Troubleshooting
+1. Is user part of the local `Remote Management Users` group? Run `lustmgr.msc` to check.
+2. Is remote logon for this user allowed? Check GPO with `rsop.exe`:
+```
+Computer Configuration > Windows Settings > Security Settings > Local Ppolicies > User Rights Assignment >
+> Allow log on through Remote Desktop Services
+> Deny log on through Remote Desktop Services
+```
+3. Is the remote host trusted? `winrm set winrm/config/client '@{TrustedHosts="10.0.0.15"}'`
+4. Is Basic Authentication allowed? `winrm set winrm/config/service/auth '@{Basic="true"}'`
+5. Is encryption disabled? `winrm set winrm/config/service '@{AllowUnencrypted="true"}'`
+6. Is the Windows Defender firewall disabled? Does it allow WinRM?
+
 #### Query
 - `winrm e winrm/config/listener` = Check if running, get ports.
 - `winrm get winrm/config/service` = Show authentication settings.
 
 #### Configure
-- `winrm set winrm/config/client '@{TrustedHosts="10.0.0.15"}'` = Set trusted hosts.
+- `winrm set winrm/config/client '@{TrustedHosts="10.0.0.15"}'` = Allow *10.0.0.15* to connect to this host over WinRM.
+- `winrm set winrm/config/client '@{TrustedHosts="*"}'` = Allow any host to connect to this host over WinRM.
+<br><br>
 - `winrm set winrm/config/service/auth '@{Basic="true"}'` =  Enable basic authentication on the WinRM service.
 - `winrm set winrm/config/service '@{AllowUnencrypted="true"}'` = Allow transfer of unencrypted data on the WinRM service.
 - `winrm set winrm/config/service/auth '@{CbtHardeningLevel="relaxed"}'` = Change challenge binding.
