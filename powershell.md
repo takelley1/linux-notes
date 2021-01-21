@@ -45,12 +45,7 @@ If you can't, check firewall settings and port settings.
 
 GPO and Regkey locations:
 ```
-Computer Configuration >
-Policies >
-Administrative Templates: Policy definitions >
-Windows Components >
-Windows Remote Management (WinRM) >
-WinRM Service
+Computer Configuration > Administrative Templates > Windows Components > Windows Remote Management (WinRM)
 
 HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System\LocalAccountTokenFilterPolicy
 ```
@@ -59,7 +54,7 @@ HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System\Loc
 1. Is user part of the local `Remote Management Users` group? Run `lustmgr.msc` to check.
 2. Is remote logon for this user allowed? Check GPO with `rsop.exe`:
 ```
-Computer Configuration > Windows Settings > Security Settings > Local Ppolicies > User Rights Assignment >
+Computer Configuration > Windows Settings > Security Settings > Local Policies > User Rights Assignment >
 > Allow log on through Remote Desktop Services
 > Deny log on through Remote Desktop Services
 ```
