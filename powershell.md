@@ -61,18 +61,18 @@ HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System\Loc
 
 #### Configure
 - `winrm set winrm/config/client ‘@{TrustedHosts="10.0.0.15"}’` = Set trusted hosts.
-- `winrm set winrm/config/service/auth @{Basic="true"}` =  Enable basic authentication on the WinRM service.
-- `winrm set winrm/config/service @{AllowUnencrypted="true"}` = Allow transfer of unencrypted data on the WinRM service.
-- `winrm set winrm/config/service/auth @{CbtHardeningLevel="relaxed"}` = Change challenge binding.
+- `winrm set winrm/config/service/auth '@{Basic="true"}'` =  Enable basic authentication on the WinRM service.
+- `winrm set winrm/config/service '@{AllowUnencrypted="true"}'` = Allow transfer of unencrypted data on the WinRM service.
+- `winrm set winrm/config/service/auth '@{CbtHardeningLevel="relaxed"}'` = Change challenge binding.
 
 ### WinRM Client
 
 Test the connection to the WinRM service:
 ```
-winrm identify -r:http://winrm_server:5985 -auth:basic -u:user_name -p:password -encoding:utf-8
+winrm identify -r:http://<IP_OR_HOSTNAME>:5985 -auth:basic -u:<USERNAME> -p:<PASSWORD> -encoding:utf-8
 ```
-- `winrm set winrm/config/client/auth @{Basic="true"}` = Enable basic authentication.
-- `winrm set winrm/config/client @{AllowUnencrypted="true"}` = Enable basic authentication.
+- `winrm set winrm/config/client/auth '@{Basic="true"}'` = Enable basic authentication.
+- `winrm set winrm/config/client '@{AllowUnencrypted="true"}'` = Enable basic authentication.
 
 
 ---
