@@ -1,7 +1,7 @@
 
 ## WSUS
 
-https://community.spiceworks.com/topic/2194028-windows-update-error-0x80244022
+### [Troubleshooting](https://community.spiceworks.com/topic/2194028-windows-update-error-0x80244022)
 ```
 And for testing,
 
@@ -107,28 +107,16 @@ Add-AdfsFarmNode \
 ```
 
 
-### AD FS Networking
-
-`netstat -np` = View open ports.
-
-
-### AD FS Certificates
-
-`certreq -submit -attrib "CertificateTemplate:WebServer" request.csr` = Import and sign *request.csr* using the 
-                                                                        *WebServer* template.
-
-`certlm.msc`  = Local computer certificates.
-`certmgr.msc` = Current user certificates.
-
-
 ---
-## Extra features (Windows 10)
+## MISC
 
-Install or remove RSAT tools: <sup>1</sup>
+### Extra features (Windows 10)
+
+[Install or remove RSAT tools:](https://www.petri.com/how-to-install-the-remote-server-administration-tools-in-windows-10)
 ```powershell
 Get-WindowsCapability -Name RSAT* -Online | Add-WindowsCapability –Online
 Add-WindowsCapability -Name Rsat.CertificateServices.Tools~~~~0.0.1.0 –Online
 Remove-WindowsCapability -Name Rsat.CertificateServices.Tools~~~~0.0.1.0 –Online
 ```
 
-[1]: https://www.petri.com/how-to-install-the-remote-server-administration-tools-in-windows-10
+- `netstat -np` = View open ports.
