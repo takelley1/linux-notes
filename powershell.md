@@ -1,7 +1,7 @@
 
 ## WSUS
 
-https://community.spiceworks.com/topic/2194028-windows-update-error-0x80244022
+### [Troubleshooting](https://community.spiceworks.com/topic/2194028-windows-update-error-0x80244022)
 ```
 And for testing,
 
@@ -15,15 +15,19 @@ and then try to browse to:
 http://server.domain.local:8530/ClientWebService/client.asmx
 https://server.domain.local:8531/ClientWebService/client.asmx
 
-If you can download it and browse to it, that's the port/url to use in your GPO. If you can't, check firewall settings and port settings.
+If you can download it and browse to it, that's the port/url to use in your GPO.
+If you can't, check firewall settings and port settings.
 ```
 
+
+---
 ## Robocopy
 
 - **See Also**:
   - [Robocopy over network](https://klyavlin.wordpress.com/2012/09/19/robocopy-network-usernamepassword/)
 
 `NET USE \\<SHARE IP>\<SHARE PATH> /u:server\<USERNAME> <PASSWORD>` = Mount network drive for Robocopy to use.
+
 
 ---
 ## WinRM
@@ -41,24 +45,44 @@ If you can download it and browse to it, that's the port/url to use in your GPO.
 
 GPO and Regkey locations:
 ```
-Computer Configuration > Policies > Administrative Templates: Policy definitions > Windows Components > Windows Remote Management (WinRM) > WinRM Service
+Computer Configuration > Administrative Templates > Windows Components > Windows Remote Management (WinRM)
+
 HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System\LocalAccountTokenFilterPolicy
 ```
-- `winrm set winrm/config/client ‘@{TrustedHosts="10.0.0.15"}’` = Set trusted hosts.
+
+#### Troubleshooting
+1. Is user part of the local `Remote Management Users` group? Run `lustmgr.msc` to check.
+2. Is remote logon for this user allowed? Check GPO with `rsop.exe`:
+```
+Computer Configuration > Windows Settings > Security Settings > Local Policies > User Rights Assignment >
+> Allow log on through Remote Desktop Services
+> Deny log on through Remote Desktop Services
+```
+3. Is the remote host trusted? `winrm set winrm/config/client '@{TrustedHosts="10.0.0.15"}'`
+4. Is Basic Authentication allowed? `winrm set winrm/config/service/auth '@{Basic="true"}'`
+5. Is encryption disabled? `winrm set winrm/config/service '@{AllowUnencrypted="true"}'`
+6. Is the Windows Defender firewall disabled? Does it allow WinRM?
+
+#### Query
 - `winrm e winrm/config/listener` = Check if running, get ports.
+- `winrm get winrm/config/service` = Show authentication settings.
+
+#### Configure
+- `winrm set winrm/config/client '@{TrustedHosts="10.0.0.15"}'` = Allow *10.0.0.15* to connect to this host over WinRM.
+- `winrm set winrm/config/client '@{TrustedHosts="*"}'` = Allow any host to connect to this host over WinRM.
 <br><br>
-- `winrm set winrm/config/service/auth @{Basic="true"}` =  Enable basic authentication on the WinRM service.
-- `winrm set winrm/config/service @{AllowUnencrypted="true"}` = Allow transfer of unencrypted data on the WinRM service.
-- `winrm set winrm/config/service/auth @{CbtHardeningLevel="relaxed"}` = Change challenge binding.
+- `winrm set winrm/config/service/auth '@{Basic="true"}'` =  Enable basic authentication on the WinRM service.
+- `winrm set winrm/config/service '@{AllowUnencrypted="true"}'` = Allow transfer of unencrypted data on the WinRM service.
+- `winrm set winrm/config/service/auth '@{CbtHardeningLevel="relaxed"}'` = Change challenge binding.
 
 ### WinRM Client
 
 Test the connection to the WinRM service:
+```bat
+winrm identify -r:http://<IP_OR_HOSTNAME>:5985 -auth:basic -u:<USERNAME> -p:<PASSWORD> -encoding:utf-8
 ```
-winrm identify -r:http://winrm_server:5985 -auth:basic -u:user_name -p:password -encoding:utf-8
-```
-- `winrm set winrm/config/client/auth @{Basic="true"}` = Enable basic authentication.
-- `winrm set winrm/config/client @{AllowUnencrypted="true"}` = Enable basic authentication.
+- `winrm set winrm/config/client/auth '@{Basic="true"}'` = Enable basic authentication.
+- `winrm set winrm/config/client '@{AllowUnencrypted="true"}'` = Enable basic authentication.
 
 
 ---
@@ -83,28 +107,16 @@ Add-AdfsFarmNode \
 ```
 
 
-## AD FS Networking
-
-`netstat -np` = View open ports.
-
-
-## AD FS Certificates
-
-`certreq -submit -attrib "CertificateTemplate:WebServer" request.csr` = Import and sign *request.csr* using the 
-                                                                        *WebServer* template.
-
-`certlm.msc`  = Local computer certificates.
-`certmgr.msc` = Current user certificates.
-
-
 ---
-## Extra features (Windows 10)
+## MISC
 
-Install or remove RSAT tools: <sup>1</sup>
+### Extra features (Windows 10)
+
+[Install or remove RSAT tools:](https://www.petri.com/how-to-install-the-remote-server-administration-tools-in-windows-10)
 ```powershell
 Get-WindowsCapability -Name RSAT* -Online | Add-WindowsCapability –Online
 Add-WindowsCapability -Name Rsat.CertificateServices.Tools~~~~0.0.1.0 –Online
 Remove-WindowsCapability -Name Rsat.CertificateServices.Tools~~~~0.0.1.0 –Online
 ```
 
-[1]: https://www.petri.com/how-to-install-the-remote-server-administration-tools-in-windows-10
+- `netstat -np` = View open ports.
