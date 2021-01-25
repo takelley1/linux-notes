@@ -39,3 +39,23 @@ ansible -i inventories/my_inv/hosts.yml -m file -a "path=/etc/yum.repos.d/elasti
 - `ansible-doc -F`                                 = List all available modules.
 - `ansible-playbook --syntax-check ./playbook.yml` = Check syntax.
 - `ansible-lint ./playbook.yml`                    = Check best-practices.
+
+## WINDOWS
+
+### Kerberos
+
+#### HTTPS transport encryption
+- Run [this script](https://github.com/ansible/ansible/blob/devel/examples/scripts/ConfigureRemotingForAnsible.ps1) on the
+  WinRM server to attach a self-signed certificate to the HTTPS WinRM listener.
+- Set `ansible_winrm_server_cert_validation: ignore` on the Ansible controller.
+
+#### Troubleshooting
+
+```
+fatal: [apgrw4fhaat1t01]: UNREACHABLE! => changed=false
+msg: 'kerberos: Bad HTTP response returned from server. Code 500'
+unreachable: true
+```
+- This means Kerberos is not allowed to connect over HTTP.
+  - Either set `AllowUnencrypted` to *True* on the WinRM server,
+  - Or `ansible_winrm_port: 5986` on the Ansible controller to connect over HTTPS. 
