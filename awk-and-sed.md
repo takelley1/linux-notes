@@ -16,7 +16,7 @@ awk -F: \
   # Contains "nologin"
   # First non-whitespace character is a "#" (^\s*#)
   # Last non-whitespace character is a ":" (:\s*$)
-  ! /nologin|^\s*#|:\s*$/ 
+  ! /nologin|^\s*#|:\s*$/
 
   # If the user's UID is over 1000, print the username.
   {if($3>1000) print $1
@@ -34,16 +34,16 @@ Create SSH aliases from Ansible inventory file:
 awk \
   '
   # Look for hostname-like strings.
-  /[a-zA-Z]*:$/ 
-  
+  /[a-zA-Z]*:$/
+
   # Chop off the domain suffix, remove extraneous characters.
   # Force lowercase names, change the field separator back to default.
   {FS=".";gsub(/[\t| |:]/,"");
   host=tolower($1);FS=" "}
-  
+
   # Look for the host IP, Ignore commented-out lines.
-  /^\s*[^#]*ansible_host/ 
-  
+  /^\s*[^#]*ansible_host/
+
   # Put it all together.
   {ip=$2;print "Host " host "\n\t HostName " ip}'
   ./ansible/hosts.yml >> ~/.ssh/config
@@ -56,9 +56,9 @@ pacman -Qi | \
     '/^Name/ {name=$2}
      /^Installed/ {gsub(/ /,"");size=$2;
      print size,name}' \
-  | sort -h` 
+  | sort -h`
 
-pacman -Qi | awk -F: '/^Name/ {name=$2} /^Installed/ {gsub(/ /,"");size=$2; print size,name}' | sort -h` 
+pacman -Qi | awk -F: '/^Name/ {name=$2} /^Installed/ {gsub(/ /,"");size=$2; print size,name}' | sort -h`
 ```
 
 Get weather:
@@ -66,7 +66,7 @@ Get weather:
 curl -s wttr.in | \
   awk \
     '{if(NR==3) weather1=$4}
-     {if(NR==3) weather2=$5} 
+     {if(NR==3) weather2=$5}
      /\.\./ {if(NR==4) print weather1, weather2, "("$5, $6")"}' \
 ```
 
@@ -80,7 +80,8 @@ curl -s wttr.in | \
 - `awk -F: '! /\/sbin\/nologin/ {print $1}' /etc/passwd`   = Print users who don't use */sbin/nologin* as their shell.
 <br><br>
 - `awk '{if(NR>2) print $0}'`  = Print all but the first two lines.
-- `awk '{if(NR==1) print $0}'` = Print the first two line, emulates `head -1`.
+- `awk 'END{print $0}'`        = Print the last line, emaultes `tail -1`.
+- `awk '{if(NR==1) print $0}'` = Print the first two lines, emulates `head -1`.
 - `awk 'NF > 0'`               = Remove blank lines quickly.
 - `awk '!/^$/ {print $1}'`     = Remove blank lines while using print statement.
 
