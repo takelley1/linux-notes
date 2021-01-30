@@ -241,16 +241,13 @@ break if the location they're pointing to is deleted. Similar to Windows shortcu
 
 ### [Transfer root Linux installation to another drive:](https://askubuntu.com/questions/741723/moving-entire-linux-installation-to-another-drive)
 
-1. Install the `update-grub` package on the source drive (optional).
-1. Boot from a live OS and use `gparted` to copy the source drive's root partition to an empty partition on the target drive.
-1. Physically disconnect the source drive.
-1. Open a terminal and generate a new UUID for the new partition on the target drive.
-   1. Use `blkid` to list partition UUIDs.
-   1. Use `tune2fs -U random /dev/sdx1` (if ext4) or `xfs_admin -U generate /dev/sdx1` (if xfs) to generate a new UUID for the copied partition on the target drive.
-1. Mount the target drive and bind mount `/dev`, `/run`, `/proc`, and `/sys` from the currently booted live OS to the target drive.
+1. Boot from a live OS and use `gparted` to copy the source drive's boot and root partitions to the target drive.
+1. Right-click the new partitions on the target drive and generate a new UUID for each.
+1. Mount the target drive and bind mount `/dev`, `/run`, `/proc`, and `/sys` (`mount -o bind /src /dest`) from the currently booted live OS to the target drive.
 1. `chroot` into the target drive.
 1. Edit `fstab` and replace the copied partition's UUID with the new UUID.
-1. Run `grub-mkconfig -o /boot/grub/grub.cfg` or `update-grub` (if `update-grub` was installed).
+1. Make sure the target drive's `/boot` directory contains a Linux image. If not, copy the directory from the source drive manually.
+1. Run `grub-mkconfig -o /boot/grub/grub.cfg` or `update-grub` (if `update-grub` is installed).
 1. Reboot. if you're dropped into an emergency shell, try regenerating grub.
 
 ### How VMWare snapshots work

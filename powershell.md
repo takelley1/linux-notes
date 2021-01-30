@@ -52,11 +52,12 @@ HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System\Loc
 
 #### Troubleshooting
 1. Is user part of the local `Remote Management Users` group? Run `lustmgr.msc` to check.
-2. Is remote logon for this user allowed? Check GPO with `rsop.exe`:
+2. Is remote logon for this user allowed? Check the below GPO settings with `rsop.exe`:
 ```
 Computer Configuration > Windows Settings > Security Settings > Local Policies > User Rights Assignment >
 > Allow log on through Remote Desktop Services
 > Deny log on through Remote Desktop Services
+> Deny access to this computer from the network
 ```
 3. Is the remote host trusted? `winrm set winrm/config/client '@{TrustedHosts="10.0.0.15"}'`
 4. Is Basic Authentication allowed? `winrm set winrm/config/service/auth '@{Basic="true"}'`
