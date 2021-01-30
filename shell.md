@@ -125,7 +125,7 @@ replacement="${name/Johnson/Peterson}" # replacement = "Bob Peterson"
 
 ### Hotkeys
 
-- `CTRL-r` = Search command history.
+- `CTRL-r` = Search command history. Hit `CTRL-r` multiple times to cycle through search results.
 <br><br>
 - `CTRL-l` = Clear screen.
 <br><br>
