@@ -4,19 +4,18 @@
 - `ansible-vault encrypt_string --vault-password-file vaultpw.txt 'CorrectHorseBatteryStaple' --name 'vmware_password' --encrypt-vault-id default` = Encrypt variable.
 - `ansible localhost -m debug -a var='userpassword' -e '@inventories/path/to/file/containing/variable.yml'` = View decrypted variable within file.
 <br><br>
-- `ansible localhost -m debug -a 'msg={{ "mypassword" | password_hash("sha512", "mysecretsalt") }}'` = Hash a user's password for use in the `user` module.
+- `ansible localhost -m debug -a 'msg={{ "mypassword" | password_hash("sha512", "mysecretsalt") }}'` = Hash a user's password for use in the *ansible.builtin.user* module.
 
 ### Variables
 
-- `ansible -i inventories/hostsfile.yml -m debug -a "var=hostvars" all` = View all variables from all hosts in hostsfile.yml.
+- `ansible -i inventories/hostsfile.yml -m debug -a "var=hostvars" all` = View all variables from all hosts in *hostsfile.yml*.
 - `ansible localhost -m setup -kK -u foo` = Print local host's facts by connecting to it with user *foo*.
 
 ### Ad-hoc commands
 
 - `ansible webserver01 -m debug -a 'msg={{ hostname | quote }}' -i inventories/my_inv/hosts.yml` = Run ad-hoc debug module on *webserver01* to test variable filter.
-- `ansible localhost -m debug -a msg="{{ lookup('env','HOME') }}"` = Run ad-hoc module on localhost to print user's home directory.
+- `ansible localhost -m debug -a msg="{{ lookup('env','HOME') }}"` = Run ad-hoc module on *localhost* to print user's home directory.
 
-Run ad-hoc command as root on target box:
 ```bash
 ansible 192.168.1.1       \
   -a "yum update"         \ # Run ad-hoc.
@@ -29,7 +28,7 @@ ansible 192.168.1.1       \
 
 ansible 192.168.1.1 -a "yum update" -u austin -kK –b –-become-user root –-become-method sudo -f 10
 ```
-Another ad-hoc command example:
+
 ```bash
 ansible -i inventories/my_inv/hosts.yml -m file -a "path=/etc/yum.repos.d/elasticsearch.repo state=absent" linux_group -kK
 ```
