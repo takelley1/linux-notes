@@ -1,5 +1,5 @@
 
-## GIT <sup>[1]</sup>
+## [GIT](https://education.github.com/git-cheat-sheet-education.pdf)
 
 **See also:**
   - [The git book](https://git-scm.com/book/en/v2)
@@ -9,18 +9,31 @@
 
 - `git push origin --delete feature-123` = Delete the *feature-123* branch remotely.
 - `git submodule update` = [Update submodules to remove from unstaged changes in parent repo](https://stackoverflow.com/a/6006919)
-- `git commit --amend -m 'Commit message'` = Amend most recent commit message (requires `git push --force` if commit
-                                             already pushed) <sup>[2]</sup>.
+- `git commit --amend -m 'Commit message'` = [Amend most recent commit message (requires `git push --force` if commit
+                                             already pushed).](https://linuxize.com/post/change-git-commit-message/)
 <br><br>
 - `git add -A` = Stage all modified files, including deleted files.
 - `git add -A ./*` = Stage all modified files, including deleted files, beneath the current path.
 - `git add -u` = Stage all modified files.
 
 ---
-### Tags
+### [Submodules](https://git-scm.com/book/en/v2/Git-Tools-Submodules)
 
-- **See also:**
-  - [Git basics - tagging](https://git-scm.com/book/en/v2/Git-Basics-Tagging)
+- `git submodule update --init --recursive` = Clone submodules in already-present repo.
+- `git clone --recurse-submodules` = Include submodules in repo clone.
+<br><br>
+- `git submodule add ssh://git@server.example.com:7999/ansible-zabbix-agent.git roles/ansible-zabbix-agent` = Add submodue to repo.
+
+Submodule configuration in *.gitmodules* to track the *develop* branch:
+```gitconfig
+[submodule "roles/ansible-zabbix-server"]
+  path = roles/ansible-zabbix-server
+  url = ssh://git@server.example.com:7999/ansible-zabbix-server.git
+  branch = develop
+```
+
+---
+### [Tags](https://git-scm.com/book/en/v2/Git-Basics-Tagging)
 
 *Tag specific commits to release your software.*
 
@@ -145,6 +158,3 @@ pattern*/
 - `git stash list` = List stack-order of stashed file changes.
 - `git stash pop`  = Write working from top of stash stack.
 - `git stash drop` = Discard the changes from top of stash stack.
-
-[1]: https://education.github.com/git-cheat-sheet-education.pdf
-[2]: https://linuxize.com/post/change-git-commit-message/
