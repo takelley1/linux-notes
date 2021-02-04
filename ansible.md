@@ -37,6 +37,8 @@ ansible -i inventories/my_inv/hosts.yml -m file -a "path=/etc/yum.repos.d/elasti
 ### Misc
 
 - `ansible-doc -F`                                 = List all available modules.
+- `ansible-doc -l -t become/cache/callback/cliconf/connection/httpapi/inventory/lookup/netconf/shell/vars/strategy` = List available plugins of a given type.
+<br><br>
 - `ansible-playbook --syntax-check ./playbook.yml` = Check syntax.
 - `ansible-lint ./playbook.yml`                    = Check best-practices.
 
