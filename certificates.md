@@ -92,6 +92,19 @@ certtool --generate-privkey --outfile key.pem
 certtool --generate-self-signed --load-privkey key.pem --outfile cert.pem
 ```
 
+### Add certificate to trust store
+
+#### FreeBSD
+`cat mycert.pem >> /etc/ssl/cert.pem`
+
+#### Debian-based Linux
+1. Add certificate name to `/etc/ca-certificates.conf`
+2. Place certificate in `/usr/share/ca-certificates/`
+3. Run `update-ca-certificates`
+
+#### Arch, RHEL-based Linux
+`trust anchor mycert.pem`
+
 ### Windows
 
 - **See also**
