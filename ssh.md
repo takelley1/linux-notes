@@ -24,6 +24,13 @@
    1. Client sends the MD5 digest to server.
    1. Server compares its MD5 digest to client's MD5 digest. If they match, the requested user is authenticated.
 
+### [Key generation best-practices](https://stribika.github.io/2015/01/04/secure-secure-shell.html)
+
+```
+ssh-keygen -t ed25519 -o -a 100
+ssh-keygen -t rsa -b 4096 -o -a 100
+```
+
 ### [Files](https://www.techrepublic.com/article/the-4-most-important-files-for-ssh-connections/)
 
 - `~/.ssh/id_rsa`
