@@ -20,6 +20,8 @@
 ### Other
 
 `mp4box -force-cat -cat video-part1.mp4 -cat video-part2.mp4 -cat video-part3.mp4 video.mp4` = Combine videos.
+<br><br>
+`mpv --input-test --idle --force-window` = Start mpv in xev-style mode that shows keybindings when keys are pressed.
 
 
 ---
