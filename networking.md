@@ -217,6 +217,9 @@ recipient@example.com                        # This is the 'to' field of the ema
 
 ```bash
 wget                            \
+  -A "*.pdf"                    \ # Only keep PDF files.
+  -e robots=off                 \ # Ignore robots.txt files.
+  --limit 100k                  \ # Limit download speed to 100 KB/s.
   --recursive                   \ # Descend into all subdirectories.
   --no-clobber                  \ # Don't overwrite existing files.
   --page-requisites             \ # Download all files required to display each page properly.
@@ -225,8 +228,9 @@ wget                            \
   --restrict-file-names=windows \ # Escape control characters in filenames.
   --no-parent                   \ # Don't include directories above the path provided.
   www.website.org/
+  www.website2.org/
 
-wget --recursive --no-clobber --page-requisites --html-extension --convert-links --restrict-file-names=windows --no-parent www.website.org
+wget -A "*.pdf" -e robots=off --limit 100k --recursive --no-clobber --page-requisites --html-extension --convert-links --restrict-file-names=windows --no-parent www.website.org www.website2.org
 ```
 
 
