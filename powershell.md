@@ -121,3 +121,4 @@ Remove-WindowsCapability -Name Rsat.CertificateServices.Tools~~~~0.0.1.0 –Onli
 ```
 
 - `netstat -np` = View open ports.
+- `repadmin /syncall /AdeP` = Force domain controllers to sync.
