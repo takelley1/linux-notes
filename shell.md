@@ -47,6 +47,9 @@ Remove prefix:
 ```bash
 ${parameter#word}  # Shortest matching pattern
 ${parameter##word} # Longest matching pattern
+
+num="     19"
+num="${num##* }" # num = "19"
 ```
 
 Remove suffix:
