@@ -195,9 +195,11 @@ sed \
   - `spam` = (Second string) This string will replace the start of the first line in file.txt.
 - `sed 's|spam|eggs|3' file.txt` = Replace the third occurrence of *spam* with *eggs* in file.txt.
 <br><br>
-- `sed -n 2p`   = Print second line of input.
-- `sed 10q`     = Print first ten lines of input, emulates `head`.
-- `sed '5,10d'` = Delete lines 5 through 10.
+- `sed -n 2p`     = Print second line of input.
+- `sed 10q`       = Print first ten lines of input, emulates `head`.
+- `sed '5,10d'`   = Delete lines 5 through 10.
+- `sed 's|.||2g'  = Remove all periods, skipping the first match on each line.
+<br><br>
 - `sed '$d'`      = Delete the last line.
 - `sed '/^$/d'`   = Delete all blank lines.
 - `sed '/./,$!d'` = Delete all leadig blank lines at top of file.
@@ -218,6 +220,8 @@ sed \
   - `a` (*append*)      = Insert input below match.
 
 - After patterns (`sed '/pattern1/pattern2/<FLAG>'`)
+  - `<NUMBER>`          = Only operate on \<NUMBER\>th match.
+  - `<NUMBER>g`         = Operate on all matches from the \<NUMBER\>th match onwards (GNU sed only).
   - `g` (*global*)      = Match pattern multiple times on the same line, if possible.
   - `p` (*print*)       = Force-print match to stdout. Usually used with `-n` to only print matching lines.
   - `q` (*quit*)        = Stop processing input.
