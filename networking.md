@@ -230,6 +230,8 @@ wget                            \
   www.website.org/
   www.website2.org/
 
+  --span-hosts                    # Let wget traverse multiple domains.
+
 wget -A "*.pdf" -e robots=off --limit 100k --recursive --no-clobber --page-requisites --html-extension --convert-links --restrict-file-names=windows --no-parent www.website.org www.website2.org
 ```
 
