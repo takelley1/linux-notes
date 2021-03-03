@@ -27,12 +27,27 @@
 ### Galera cluster
 
 - **See also**:
-  - [Galera node failure & recovery](https://www.symmcom.com/docs/how-tos/databases/how-to-recover-mariadb-galera-cluster-after-partial-or-full-crash)
-  - [Galera node monitoring](https://galeracluster.com/library/documentation/recovery.html)
+  - [Understanding Galera](https://mariadb.com/docs/multi-node/galera-cluster/understand-mariadb-galera-cluster)
+  - [Galera node monitoring](https://galeracluster.com/library/training/tutorials/galera-monitoring.html)
+  - Galera node failure & recovery: [1](https://www.symmcom.com/docs/how-tos/databases/how-to-recover-mariadb-galera-cluster-after-partial-or-full-crash) [2](https://galeracluster.com/library/documentation/recovery.html)
 <br><br>
-- `galera_new_cluster` = (from `bash`) re-bootstrap a failed cluster.
-- `show global status like 'wsrep_%';` = [Show Galera cluster status.](https://galeracluster.com/library/training/tutorials/galera-monitoring.html)
+> Quorum requires more than half of all nodes to be running!
 
+- `galera_new_cluster` =  Re-bootstrap a failed cluster. Run from `bash` on most up-to-date node.
+  - `show status like 'wsrep_last_committed';` = Show commit number. Compare across nodes to determine most up-to-date node.
+- `show status like 'wsrep%';` = Show cluster status.
+<br><br>
+Change `safe_to_bootstrap` to `1` to [forcibly allow bootstrapping node:](https://www.symmcom.com/docs/how-tos/databases/how-to-recover-mariadb-galera-cluster-after-partial-or-full-crash)
+```
+root@server # cat /var/lib/mysql/grastate.dat
+
+# GALERA saved state
+version: 2.1
+uuid:    00dbfde9-51d0-11eb-8b86-02d3d6f3051a
+seqno:   -1
+safe_to_bootstrap: 0
+```
+- If `show status like 'wsrep_cluster_size';` shows the incorrect node number, [reboot the node that doesn't agree with the others -- don't just restart the service.](https://www.symmcom.com/docs/how-tos/databases/how-to-recover-mariadb-galera-cluster-after-partial-or-full-crash)
 
 ---
 ## POSTGRES
