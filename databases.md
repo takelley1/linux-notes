@@ -30,7 +30,7 @@
   - [Understanding Galera](https://mariadb.com/docs/multi-node/galera-cluster/understand-mariadb-galera-cluster)
   - [Galera node monitoring](https://galeracluster.com/library/training/tutorials/galera-monitoring.html)
   - Galera node failure & recovery: [1](https://www.symmcom.com/docs/how-tos/databases/how-to-recover-mariadb-galera-cluster-after-partial-or-full-crash) [2](https://galeracluster.com/library/documentation/recovery.html)
-<br><br>
+
 > Quorum requires more than half of all nodes to be running!
 
 - `galera_new_cluster` =  Re-bootstrap a failed cluster. Run from `bash` on most up-to-date node.
