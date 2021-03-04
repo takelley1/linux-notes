@@ -1,3 +1,5 @@
+- merge tcp-ip-stack into networking.md
+<br><br>
 - length extension attacks
 - fill out table comparing compression algorithms, use last image from https://clearlinux.org/news-blogs/linux-os-data-compression-options-comparing-behavior
 - emphasize a large number of command examples over everything else
