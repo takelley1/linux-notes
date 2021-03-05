@@ -1,19 +1,32 @@
 
 ## NGINX
 
-SSL configuration example with HTTP redirect:
+- **See also:**
+  - [Nginx.org docs](http://nginx.org/en/docs/)
+  - [Nginx.com docs](https://docs.nginx.com/)
+
+Example with HTTP->HTTPS and IP->Domain redirects
 ```nginx
 server {
-    listen 80;
-    server_name 10.0.0.5;
-    return 301 https://10.0.0.5$request_uri;
+    # Redirect HTTP IP and HTTPS domain to HTTPS domain.
+    listen              80;
+    server_name         _;
+    return 301          https://domain.example.com$request_uri;
 }
 
 server {
-  listen 443;
-  server_name 10.0.0.5;
-  ssl on;
-  ssl_certificate /etc/opt/rh/rh-nginx116/nginx/cert.pem;
-  ssl_certificate_key /etc/opt/rh/rh-nginx116/nginx/certkey.pem;
+    # Redirect HTTPS IP to HTTPS domain.
+    listen              443 ssl;
+    server_name         10.0.0.5;
+    ssl_certificate     /etc/nginx/cert.pem;
+    ssl_certificate_key /etc/nginx/certkey.pem;
+    return 301          https://domain.example.com$request_uri;
 }
+
+server {
+    # HTTPS domain.
+    listen              443 ssl;
+    server_name         domain.example.com;
+    ssl_certificate     /etc/nginx/cert.pem;
+    ssl_certificate_key /etc/nginx/certkey.pem;
 ```
