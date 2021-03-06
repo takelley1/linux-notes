@@ -21,7 +21,8 @@
 
 ### Useful commands
 
-`bsdconfig` = Text-based GUI for general system configuration.
+- `bsdconfig` = Text-based GUI for general system configuration.
+- Set `sendmail_enable="NONE"` in `/etc/rc.conf` to fully disable sendmail.
 
 ### Misc <sup>[1]</sup>
 
