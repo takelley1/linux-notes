@@ -249,6 +249,16 @@ wget -A "*.pdf" -e robots=off --limit 100k --recursive --no-clobber --page-requi
 
 
 ---
+## TCP/IP STACK
+
+![tcp/ip-stack](images/tcp-ip-stack.png) <sup>[1], [2]</sup> 
+
+[1]: https://www.tummy.com/articles/networking-basics-how-arp-works/  
+[2]: https://www.cubrid.org/blog/understanding-tcp-ip-network-stack
+
+
+
+---
 [1]: https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/8/html-single/configuring_basic_system_settings/index#migrating-to-chrony_using-chrony-to-configure-ntp
 [2]: https://danielmiessler.com/study/tcpdump/
 [3]: https://danielmiessler.com/study/nmap/
