@@ -11,6 +11,10 @@
 
 ### Tips
 
+- **See also:**
+  - [Network tuning](https://calomel.org/freebsd_network_tuning.html)
+  - [Sysctl tuning](https://serverfault.com/questions/64356/freebsd-performance-tuning-sysctl-parameter-loader-conf-kernel)
+
 - Use `sudo -i` instead of `sudo su` to ensure root's environment variables are loaded properly.
 - If this is not done, running `crontab -e` as root won't invoke root's editor set by `$EDITOR`.
 
