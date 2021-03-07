@@ -31,9 +31,11 @@ zfs destroy tank/storage/videos@2020-07-11__19:00__tank%2020-07-16__22:00__tank
 - Set recordsize to match the typical size of files in the dataset.
   - Dataset with small text files = Small recordsize (128k or less).
   - Dataset with only videos = Large recordsize (1M).
-  - Dataset with VMs = Match recordsize to VM disk image's sector size (512B or 4k).*
+  - Dataset with VMs = Match recordsize to VM disk image's sector size (512B or 4k).
 
-* Use `fdisk -l` to determine a disk's sector size.
+- Determine a disk's sector size
+  - `fdisk -l <DISK>` on Linux
+  - `diskinfo -v <DISK>` on FreeBSD
 
 ### [Storage hierarchy](https://jrs-s.net/2018/04/11/primer-how-data-is-stored-on-disk-with-zfs/)
 
