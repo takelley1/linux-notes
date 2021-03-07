@@ -1,5 +1,5 @@
 
-## GIT <sup>[1]</sup>
+## [GIT](https://education.github.com/git-cheat-sheet-education.pdf)
 
 **See also:**
   - [The git book](https://git-scm.com/book/en/v2)
@@ -9,8 +9,8 @@
 
 - `git push origin --delete feature-123` = Delete the *feature-123* branch remotely.
 - `git submodule update` = [Update submodules to remove from unstaged changes in parent repo](https://stackoverflow.com/a/6006919)
-- `git commit --amend -m 'Commit message'` = Amend most recent commit message (requires `git push --force` if commit
-                                             already pushed) <sup>[2]</sup>.
+- `git commit --amend -m 'Commit message'` = [Amend most recent commit message](https://linuxize.com/post/change-git-commit-message/) (requires `git push --force` if commit
+                                             already pushed).
 <br><br>
 - `git add -A` = Stage all modified files, including deleted files.
 - `git add -A ./*` = Stage all modified files, including deleted files, beneath the current path.
@@ -42,23 +42,15 @@
 ---
 ### Init
 
-*Configuring user information, initializing and cloning repositories.*
-
 - `git init`        = Initialize an existing directory as a git repository.
 - `git clone <URL>` = Retrieve an entire repository from a hosted location via url.
 
 ---
 ### Staging
 
-*Reverting changes.*
-
 - `git checkout <COMMIT HASH> -- ./file1 ../file2` = Revert file1 and file2 to the specified commit.
 - `git checkout -- <FILE>`                         = Undo changes made to an unstaged file.
-
-*Working with snapshots and the staging area.*
-
-- `git status`                = Show modified files in working directory, staged for your next commit.
-- `git add <FILE>`            = Add a file as it looks now to your next commit (stage).
+<br><br>
 - `git reset <FILE>`          = Unstage a file while retaining the changes in working directory.
 <br><br>
 - `git diff`                  = Diff of what is changed but not staged.
@@ -70,20 +62,14 @@
 
 - **See also:**
   - [GitHub branching best-practices](https://nvie.com/posts/a-successful-git-branching-model/)
-
-*Isolating work in branches, changing context, and integrating changes.*
-
+<br><br>
 - `git branch`                 = List your branches, a `*` will appear next to the currently active branch.
 - `git branch <BRANCH-NAME>`   = Create a new branch at the current commit.
-- `git checkout <BRANCH-NAME>` = Switch to another branch and check it out into your working directory.
 - `git merge <BRANCH-NAME>`    = Merge the specified branch into the current one.
 
 ---
 ### History
 
-*Examining logs, diffs and object information.*
-
-- `git log`                    = Show the commit history for the active branch.
 - `git log branchB..branchA`   = Show the commits on branchA that are not on branchB.
 - `git log --follow <FILE>`    = Show the commits that changed file, even across renames.
 <br><br>
@@ -118,20 +104,15 @@ pattern*/
 ---
 ### Remotes
 
-*Retrieving updates from another repository and updating local repos.*
-
 - `git remote -v`                = Show remote repo info.
 - `git remote add <ALIAS> <URL>` = Add a git url as an alias.
 - `git fetch <ALIAS>`            = Fetch down all the branches from that git remote.
 - `git merge <ALIAS>/<BRANCH>`   = Merge a remote branch into your current branch to bring it up to date.
 <br><br>
 - `git push <ALIAS> <BRANCH>`    = Transmit local branch commits to the remote repository branch.
-- `git pull`                     = Fetch and merge any commits from the tracking remote branch.
 
 ---
 ### Rewriting history
-
-*Rewriting branches, updating commits and clearing history.*
 
 - `git rebase <BRANCH>`       = Apply any commits of current branch ahead of specified one.
 - `git reset --hard <COMMIT>` = Clear staging area, rewrite working tree from specified commit.
@@ -146,5 +127,3 @@ pattern*/
 - `git stash pop`  = Write working from top of stash stack.
 - `git stash drop` = Discard the changes from top of stash stack.
 
-[1]: https://education.github.com/git-cheat-sheet-education.pdf
-[2]: https://linuxize.com/post/change-git-commit-message/
