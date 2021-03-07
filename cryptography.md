@@ -5,8 +5,8 @@
 
 1. sender hashes document, encrypts hash with sender's private key, then attaches encrypted hash to document. This
    encrypted hash is the digital signature.
-1. receiver hashes document and decrypts the sender's signature containing the sender's hash using the sender's public key.
-1. If the receiver's own hash and the receiver's decrypted hash from the sender match, the signature is valid.
+2. receiver hashes document and decrypts the sender's signature containing the sender's hash using the sender's public key.
+3. If the receiver's own hash and the receiver's decrypted hash from the sender match, the signature is valid.
 
 - Provides Integrity, Non-Repudiation, and Authentication.
 
@@ -29,6 +29,10 @@
 - **Non-Repudiation**: Has this entity provided proof that this message actually came from them?
   - Non-Repudiation also provides Authentication as a byproduct.
 
+### FIPS
+
+- `cat /proc/sys/crypto/fips_enabled` = Check if FIPS is enabled.
+
 
 ---
 ## SYMMETRIC ENCRYPTION
@@ -44,7 +48,7 @@
 ---
 ## KDFs (Key Derivation Functions)
 
-> PBKDF2, scrypt
+> PBKDF2, scrypt, bcrypt
 
   - Used to derive a cryptographically-secure symmetric secret key from a less secure password or other input (like a
     shared secret created via a Diffie-Hellman exchange).
@@ -64,9 +68,9 @@
 
   1. The sender uses a MAC algorithm with a shared secret on a message's hash to create a cryptographic checksum, called
      a MAC.
-  1. The MAC is attached to the message and sent to the receiver.
-  1. The receiver uses the same shared secret with the same MAC algorithm on the message's hash.
-  1. The receiver compares his MAC with the sender's MAC. If they match, the message is good and has not been altered en
+  2. The MAC is attached to the message and sent to the receiver.
+  3. The receiver uses the same shared secret with the same MAC algorithm on the message's hash.
+  4. The receiver compares his MAC with the sender's MAC. If they match, the message is good and has not been altered en
      route. The receiver also knows that the message definitely came from the sender (and not a Man-in-the-Middle)
      because only the receiver and sender posess the shared secret.
 
@@ -150,7 +154,7 @@ HMAC-MD5(key="key", message="The quick brown fox jumps over the lazy dog") = 800
                            retrieve encryption keys stored in RAM from the previous boot. Exploits the fact that RAM is
                            unencrypted and remains readable seconds to minutes after losing power. Used to circumvent
                            full-disk encryption.
-  - **Cache side-channel attack** = (*ex. Meltdown & Spectre*) Attacker takes advantage of the way speculative execution
+  - **Cache side-channel attack** = (*e.g. Meltdown & Spectre*) Attacker takes advantage of the way speculative execution
                                     is performed on certain CPUs to gain access to protected areas of memory.
 - **Man-in-the-middle attack (MITM)** = Attacker relays or alters messages between two parties who believe they're
                                         communicating with each other.
@@ -169,13 +173,7 @@ HMAC-MD5(key="key", message="The quick brown fox jumps over the lazy dog") = 800
 ![time-complexity](images/time-complexity.jpg)
 
   - Classical brute-force time complexity of breaking a cryptographic hash = **O(2<sup>N</sup>)**
-    - A SHA256 hash has a search space of **2<sup>256</sup>** <sup>[3]</sup>
-
-  - Quantum brute-force time complexity of factoring an RSA key using Shor's algorithm = **O(72(logN)<sup>3</sup>)** <sup>[4]</sup>
+    - [A SHA256 hash has a search space of](https://www.youtube.com/watch?v=S9JGmA5_unY&t=1) **2<sup>256</sup>**
+  - [Quantum brute-force time complexity of factoring an RSA key using Shor's algorithm](https://cs.stackexchange.com/questions/16684/shors-algorithm-speed) = **O(72(logN)<sup>3</sup>)**
 
 ![shors-algorithm](images/time-complexity-shors-algorithm.jpg)
-
-[1]: https://strongarm.io/blog/how-https-works/
-[2]: https://www.codeproject.com/Articles/326574/An-Introduction-to-Mutual-SSL-Authentication
-[3]: https://www.youtube.com/watch?v=S9JGmA5_unY&t=1s
-[4]: https://cs.stackexchange.com/questions/16684/shors-algorithm-speed
