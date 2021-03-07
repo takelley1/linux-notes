@@ -196,9 +196,9 @@ recipient@example.com                        # This is the 'to' field of the ema
    ```bash
    mynetworks = /postfix-whitelist
    ```
-1. Populate */postfix-whitelist* with IPs.
-1. Run `postmap /postfix-whitelist && systemctl restart postfix`.
-1. Now only the IPs in */postfix-whitelist* will be permitted to use the postfix server as an smtp relay.
+2. Populate */postfix-whitelist* with IPs.
+3. Run `postmap /postfix-whitelist && systemctl restart postfix`.
+4. Now only the IPs in */postfix-whitelist* will be permitted to use the postfix server as an smtp relay.
 
 
 ---

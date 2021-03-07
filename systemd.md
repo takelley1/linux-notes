@@ -1,14 +1,22 @@
 
-## UNIT FILES
+## SYSTEMD
 
 - **See also:**
   - [systemd man pages](http://0pointer.de/public/systemd-man/)
+  - systemd service file examples:
+  [1](https://www.devdungeon.com/content/creating-systemd-service-files),
+  [2](https://www.shellhacks.com/systemd-service-file-example/),
+  [3](https://www.linode.com/docs/quick-answers/linux/start-service-at-boot/)
 
 ```bash
 man systemd.unit
 man systemd.service
 man systemd.target
 ```
+
+---
+## UNIT FILES
+
 - User service files can be placed in `$HOME/.config/systemd/user/my_daemon.service` or
   `/etc/systemd/system/my_daemon.service`.
 
@@ -66,30 +74,17 @@ WantedBy=multi-user.target
 ```
 <sup>[1], [2], [3]</sup> 
 
-Viewing service file logs:
-```bash
-# See if running, uptime, view latest logs:
-sudo systemctl status
-sudo systemctl status my_service
+---
+## COMMANDS
 
-# Or for a user service:
-systemctl --user status my_service
-
-# See all systemd logs:
-sudo journalctl
-
-# Tail logs:
-sudo journalctl -xef
-
-# Tail logs for the httpd service only:
-sudo journalctl -fu httpd
-
-# For user service:
-journalctl -f --user-unit my_user_daemon
-```
-<sup>[1]</sup> 
-
-`systemd-analyze time` = Show startup times by process.
+- `sudo systemctl status <SERVICE_NAME> = See if running, uptime, view latest logs.
+- `sudo journalctl -xef = Tail logs
+- `sudo journalctl -fu httpd = Tail logs for the *httpd* service only:
+<br><br>
+- systemctl --user status <SERVICE_NAME> = See status for user service.
+- journalctl -f --user-unit my_user_daemon = Tail logs for *my_user_daemon*.
+<br><br>
+- systemd-analyze time = Show startup times by process.
 
 
 ---
@@ -112,12 +107,7 @@ journalctl -f --user-unit my_user_daemon
 | Enter system rescue mode | `init 1`                    | `systemctl rescue` or `systemctl emergency` |
 
 
-#### Runlevel scripts
+### Runlevel scripts
 
 init:    Place script in `/etc/rc#.d/`, in which `#` corresponds to the desired runlevel in which you'd like the script to run.
 systemd: Place or symlink script in `/etc/systemd/system/` and enable service.
-
-[1]: https://www.devdungeon.com/content/creating-systemd-service-files  
-[2]: https://www.shellhacks.com/systemd-service-file-example/  
-[3]: https://www.linode.com/docs/quick-answers/linux/start-service-at-boot/ 
-

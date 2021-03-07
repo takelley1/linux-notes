@@ -41,8 +41,8 @@
 ### Copy and paste
 
 1. `CTRL-b [` = Enter scrollback mode.
-1. `SPACE`    = Enter text selection mode.
-1. `ENTER`    = Copy selected text to clipboard.
-1. `CTRL-b ]` = Paste text from clipboard.
+2. `SPACE`    = Enter text selection mode.
+3. `ENTER`    = Copy selected text to clipboard.
+4. `CTRL-b ]` = Paste text from clipboard.
 
 -. `CTRL-b =` = List paste buffers (clipboard history).

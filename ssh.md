@@ -11,18 +11,18 @@
 
 1. Server authentication
    1. Client initiates TCP connection to server.
-   1. Server provides client its public host key. This proves server is the same server that's been connected to before.
-   1. Diffie-Hellman is used to create a session key.
-   1. Server creates and signs challenge number with its own private host key, then sends it to client.
-   1. Client verifies challenge number signature to confirm server is in posession of its public host key.
+   2. Server provides client its public host key. This proves server is the same server that's been connected to before.
+   3. Diffie-Hellman is used to create a session key.
+   4. Server creates and signs challenge number with its own private host key, then sends it to client.
+   5. Client verifies challenge number signature to confirm server is in posession of its public host key.
 2. User authentication (using key pairs)
    1. Server checks requested server user's *authorized_keys* file for client user's public key.
-   1. Server sends client a challenge number encrypted with the client user's public key.
-   1. Client decrypts challenge number using the client user's private key.
-   1. Client MD5 hashes the *decrypted challenge number + session key* string.
-   1. Server MD5 also hashes the *original challenge number + session key* string.
-   1. Client sends the MD5 digest to server.
-   1. Server compares its MD5 digest to client's MD5 digest. If they match, the requested user is authenticated.
+   2. Server sends client a challenge number encrypted with the client user's public key.
+   3. Client decrypts challenge number using the client user's private key.
+   4. Client MD5 hashes the *decrypted challenge number + session key* string.
+   5. Server MD5 also hashes the *original challenge number + session key* string.
+   6. Client sends the MD5 digest to server.
+   7. Server compares its MD5 digest to client's MD5 digest. If they match, the requested user is authenticated.
 
 ### [Key generation best-practices](https://stribika.github.io/2015/01/04/secure-secure-shell.html)
 

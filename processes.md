@@ -10,7 +10,7 @@
   - `-e` = Everything.
   - `-f` = Full-format.
 
-### Signals <sup>[1]</sup>
+### [Signals](https://www.computerhope.com/unix/signals.htm)
 
 | Name      | ID | Hotkey | Description                                     |
 |-----------|----|--------|-------------------------------------------------|
@@ -103,5 +103,3 @@
 - `lsmod` = Show status of kernel modules.
 - `lspci` = List pci devices.
 - `lsblk` = List bock devices.
-
-[1]: https://www.computerhope.com/unix/signals.htm

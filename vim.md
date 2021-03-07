@@ -22,13 +22,13 @@
 - [Use `;` to repeat a single-line search made with `f` or `t`.](https://github.com/iggredible/Learn-Vim/blob/master/ch05_moving_in_file.md#current-line-navigation)
 - `:tabm 1`  = [Move current tab to position 1.](https://stackoverflow.com/questions/7961581/is-there-a-vim-command-to-relocate-a-tab)
 - `g+CTRL-g` = [Show word count of selection.](https://vim.fandom.com/wiki/Word_count)
-
+<br><br>
 - [Insert comments in bulk:](https://stackoverflow.com/questions/1676632/whats-a-quick-way-to-comment-uncomment-lines-in-vim/15588798#15588798)
   1. Enter visual block mode.
-  1. Select range.
-  1. `SHIFT-i` to enter insert mode.
-  1. Type a comment symbol.
-  1. Exit insert mode.
+  2. Select range.
+  3. `SHIFT-i` to enter insert mode.
+  4. Type a comment symbol.
+  5. Exit insert mode.
 
 ---
 ### Typed commands
@@ -50,10 +50,10 @@
 #### Find and replace
 
 1. Search for word using `/word` in normal mode.
-1. Use `ciw` to change first match of `word` and exit insert mode.
-1. Use `n` to jump to next match of `word`.
-1. Use `.` to repeat last action.
-1. Continue to use `n` and `.` to replace matches.
+2. Use `ciw` to change first match of `word` and exit insert mode.
+3. Use `n` to jump to next match of `word`.
+4. Use `.` to repeat last action.
+5. Continue to use `n` and `.` to replace matches.
 
 ---
 ### General
@@ -133,8 +133,8 @@
 - `"*y`           = Copy into PRIMARY register.
 - `"+y`           = Copy into CLIPBOARD register.
 
-> NOTE: The PRIMARY and CLIPBOARD registers are managed by X11 (not Vim), so data copied into these registers can be
-> used elsewhere in the X11 session <sup>[1]</sup>
+> The PRIMARY and CLIPBOARD registers are managed by X11 (not vim), so data copied into these registers can be
+> [used elsewhere in the X11 session](https://vi.stackexchange.com/questions/84/how-can-i-copy-text-to-the-system-clipboard-from-vim)
 
 - `“xy`         = Copy selection to register *x*.
 - `“xp`         = Paste from register *x*.
@@ -164,4 +164,3 @@
 <br><br>
 - `CTRL-c` (*close*) = Exit insert mode.
 
-[1]: https://vi.stackexchange.com/questions/84/how-can-i-copy-text-to-the-system-clipboard-from-vim

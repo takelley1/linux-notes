@@ -1,5 +1,5 @@
 
-## PARADIGMS <sup>[1]</sup>
+## [PARADIGMS](https://cs.lmu.edu/~ray/notes/paradigms/)
 
 - **Imperative:** Programming with an explicit sequence of commands that update state.
   - **Procedural:** Imperative programming with procedure calls.
@@ -270,7 +270,7 @@ end
 ```
 
 ---
-### Pascal <sup>[3]</sup>
+### [Pascal](https://www.britannica.com/technology/Pascal-computer-language)
 
 - Examples:
 - Paradigm: Procedural
@@ -308,7 +308,7 @@ end
 ### Python
 
 - Examples: Ansible, Openstack, Blender, Ranger file browser
-- Paradigm: Multi-paradigm, but leans towards object-oriented <sup>[2]</sup>
+- Paradigm: Multi-paradigm, but [leans towards object-oriented](https://www.coursereport.com/blog/ruby-vs-python-choosing-your-first-programming-language)
 - Released: 1991
 - Use: General-purpose, scripting, machine learning, data science
 <br><br>
@@ -337,7 +337,7 @@ print (fact)
 - Use: General-purpose, scripting
 <br><br>
 - Designed to be productive and fun, focused on humans rather than computers.
-- Follows the Principle of Least Astonishment and attempts to minimize programmer confusion<sup>[2]</sup>.
+- Follows the Principle of Least Astonishment and attempts to [minimize programmer confusion](https://www.coursereport.com/blog/ruby-vs-python-choosing-your-first-programming-language)
 
 ```ruby
 def factorial(n)
@@ -374,7 +374,3 @@ fn factorial(i: u64) -> u64 {
 - Examples:
 - Released:
 - Use:
-
-[1]: https://cs.lmu.edu/~ray/notes/paradigms/
-[2]: https://www.coursereport.com/blog/ruby-vs-python-choosing-your-first-programming-language
-[3]: https://www.britannica.com/technology/Pascal-computer-language

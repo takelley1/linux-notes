@@ -34,7 +34,7 @@ Context syntax: `user:role:type:level`
 <br><br>
 - `aureport -a` = Summarize audit logs and show failures.
 
-## Troubleshooting <sup>[1]</sup>
+## [Troubleshooting](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/6/html/security-enhanced_linux/sect-security-enhanced_linux-fixing_problems-allowing_access_audit2allow)
 
 - `audit2allow -w -a` or `audit2why -a` = Generate a list of policies triggering SELinux denials.
 - `audit2allow -a -M <POLICY>` = Create an SELinux module that would fix the current policy denial (see below).
@@ -48,10 +48,10 @@ type=AVC msg=audit(1226270358.848:238): avc:  denied  { write }
 for pid=13349 comm="certwatch" name="cache" dev=dm-0 ino=218171
 scontext=system_u:system_r:certwatch_t:s0
 tcontext=system_u:object_r:var_t:s0 tclass=dir
-	Was caused by:
-		Missing type enforcement (TE) allow rule.
+  Was caused by:
+    Missing type enforcement (TE) allow rule.
 
-	You can use audit2allow to generate a loadable module to
+  You can use audit2allow to generate a loadable module to
   allow this access.
 ```
 
@@ -69,12 +69,10 @@ You can also pipe the entire line containing the relevant ID into *audit2why*:
 grep 'msg=audit(1226270358.848:238)' /var/log/audit/audit.log | audit2why
 ```
 
-SELinux denial log example in */var/log/messages*: <sup>[1]</sup>
+SELinux denial log example in */var/log/messages*:
 ```
 Dec 16 16:28:22 [hostname] kernel: type=1400 audit(1576531702.010:97659712): avc:
 denied  { getattr } for pid=28583 comm="pidof" path="/usr/bin/su" dev="dm-0" ino=50444389.
 scontext=system_u:system_r:keepalived_t:s0 tcontext=system_u:object_r:su_exec_t:s0
 tclass=file permissive=0
 ```
-
-[1]: https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/6/html/security-enhanced_linux/sect-security-enhanced_linux-fixing_problems-allowing_access_audit2allow

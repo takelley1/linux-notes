@@ -58,4 +58,4 @@ unreachable: true
 ```
 - This means Kerberos is not allowed to connect over HTTP.
   - Either set `AllowUnencrypted` to *True* on the WinRM server,
-  - Or `ansible_winrm_port: 5986` on the Ansible controller to connect over HTTPS. 
+  - Or `ansible_winrm_port: 5986` on the Ansible controller to connect over HTTPS.

@@ -1,15 +1,15 @@
 
-## `find` COMMAND
+## FIND
 
 ### Examples
 
-Print all files with non-ASCII characters in their name: <sup>[1]</sup>
+[Print all files with non-ASCII characters in their name:](https://stackoverflow.com/questions/19146240/find-and-delete-files-with-non-ascii-names)
 ```bash
 find ./ -print0 | \
 perl -n0e 'chomp; print $_, "\n" if /[[:^ascii:][:cntrl:]]/'
 ```
 
-Remove all files with non-ASCII characters in their name: <sup>[1]</sup>
+[Remove all files with non-ASCII characters in their name:](https://stackoverflow.com/questions/19146240/find-and-delete-files-with-non-ascii-names)
 ```bash
 find ./ -print0 | \
 perl -MFile::Path=remove_tree -n0e \
@@ -68,7 +68,7 @@ find ./ | xargs ls -l     # Not recommended.
 - `-L`      = Follow symbolic links.
 
 ---
-## `locate` command
+## LOCATE
 
 ### Examples
 
@@ -79,5 +79,3 @@ find ./ | xargs ls -l     # Not recommended.
 
 > NOTE: locate is much faster than find, but locate searches a tabulated database instead of actively scrubbing your disk for a match.
         This means the data locate uses may be a few hours old
-
-[1]: https://stackoverflow.com/questions/19146240/find-and-delete-files-with-non-ascii-names

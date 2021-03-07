@@ -55,20 +55,20 @@ pacman -Qi | awk -F: '/^Name/ {name=$2} /^Installed/ {gsub(/ /,"");size=$2;print
 #### Add ISO repo to CentOS 6
 
 1. Go to centos.org.
-1. Click 'get centos now'.
-1. Click 'alternative downloads'.
-1. Click 'i386' in the row corresponding to CentOS version 6.
-1. Click any mirror link.
-1. Click the `.iso` you wish to download. It will likely be the largest one. Don't download the torrent.
-1. Save it anywhere.
-1. Launch the VM and in the top-left corner of VMWare, click VM -> Removable Devices -> CD/DVD -> Connect.
-1. Navigate to the `.iso` image file you downloaded.
-1. Inside the VM, run `sudo mount /dev/cdrom /[mount-location]`.
-1. The disk is now mounted and you can browse the packages.
-1. To turn the packages into a full repo, you need to add the disk ID to the yum configuration. you can do that as follows: `head -1 /[mount-location]/.discinfo`
-1. Copy that number.
-1. Run your favorite text editor to open `/etc/yum.repos.d/CentOS-Base.repo`.
-1. For each repo you'd like to add, next to `mediaid=` , enter the number you copied.
-1. Next to `baseurl=`, enter the path of the mounted disk. For example, if you mounted the disk on `/mnt`, the row would read `baseurl=file:///mnt`.
-1. Run `yum clean all`.
-1. Yum should now recognize the disk as a repository.
+2. Click 'get centos now'.
+3. Click 'alternative downloads'.
+4. Click 'i386' in the row corresponding to CentOS version 6.
+5. Click any mirror link.
+6. Click the `.iso` you wish to download. It will likely be the largest one. Don't download the torrent.
+7. Save it anywhere.
+8. Launch the VM and in the top-left corner of VMWare, click VM -> Removable Devices -> CD/DVD -> Connect.
+9. Navigate to the `.iso` image file you downloaded.
+10. Inside the VM, run `sudo mount /dev/cdrom /[mount-location]`.
+11. The disk is now mounted and you can browse the packages.
+12. To turn the packages into a full repo, you need to add the disk ID to the yum configuration. you can do that as follows: `head -1 /[mount-location]/.discinfo`
+13. Copy that number.
+14. Run your favorite text editor to open `/etc/yum.repos.d/CentOS-Base.repo`.
+15. For each repo you'd like to add, next to `mediaid=` , enter the number you copied.
+16. Next to `baseurl=`, enter the path of the mounted disk. For example, if you mounted the disk on `/mnt`, the row would read `baseurl=file:///mnt`.
+17. Run `yum clean all`.
+18. Yum should now recognize the disk as a repository.
