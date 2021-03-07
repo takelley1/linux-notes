@@ -88,6 +88,9 @@ Extending */var* XFS filesystem with LVM:
 ---
 ## DISKS & MOUNTS
 
+- **See also:**
+  - [Fixing 3.3v Pin issue in SATA drives](https://imgur.com/a/A0JXgrQ)
+<br><br>
 - `partprobe` = Scan for new disks.
 <br><br>
 - `lsblk -f` = Show disk tree layout, including logical volumes.
@@ -207,19 +210,19 @@ debug hires timestamp = yes
 ### Server
 
 1. `yum install nfs-utils`
-1. `systemctl enable nfs`
-1. `systemctl start nfs`
-1. create entry in `/etc/exports` (see examples at bottom of man page for `exports`)
+2. `systemctl enable nfs`
+3. `systemctl start nfs`
+4. create entry in `/etc/exports` (see examples at bottom of man page for `exports`)
 `/[mountpoint being shared] [authorized ips or fqdns]([mount options])`
 ex: `/mirror 192.168.1.1/24(rw)`
-1. `exportfs -a`
-1. `sync`
+5. `exportfs -a`
+6. `sync`
 
 ### Client
 
-1. `mount -t nfs [server ip or fqdn]:/[directory being shared] /[local mount location]`
-1. `showmount`
-1. create entry in `/etc/fstab`
+7. `mount -t nfs [server ip or fqdn]:/[directory being shared] /[local mount location]`
+8. `showmount`
+9. create entry in `/etc/fstab`
 `[server ip or fqdn]:/[directory being shared] /[local mount location] nfs defaults 0 0`
 ex: `10.0.0.10:/data  /mnt/data  nfs  defaults  0 0`
 
@@ -242,13 +245,13 @@ break if the location they're pointing to is deleted. Similar to Windows shortcu
 ### [Transfer root Linux installation to another drive:](https://askubuntu.com/questions/741723/moving-entire-linux-installation-to-another-drive)
 
 1. Boot from a live OS and use `gparted` to copy the source drive's boot and root partitions to the target drive.
-1. Right-click the new partitions on the target drive and generate a new UUID for each.
-1. Mount the target drive and bind mount `/dev`, `/run`, `/proc`, and `/sys` (`mount -o bind /src /dest`) from the currently booted live OS to the target drive.
-1. `chroot` into the target drive.
-1. Edit `fstab` and replace the copied partition's UUID with the new UUID.
-1. Make sure the target drive's `/boot` directory contains a Linux image. If not, copy the directory from the source drive manually.
-1. Run `grub-mkconfig -o /boot/grub/grub.cfg` or `update-grub` (if `update-grub` is installed).
-1. Reboot. if you're dropped into an emergency shell, try regenerating grub.
+2. Right-click the new partitions on the target drive and generate a new UUID for each.
+3. Mount the target drive and bind mount `/dev`, `/run`, `/proc`, and `/sys` (`mount -o bind /src /dest`) from the currently booted live OS to the target drive.
+4. `chroot` into the target drive.
+5. Edit `fstab` and replace the copied partition's UUID with the new UUID.
+6. Make sure the target drive's `/boot` directory contains a Linux image. If not, copy the directory from the source drive manually.
+7. Run `grub-mkconfig -o /boot/grub/grub.cfg` or `update-grub` (if `update-grub` is installed).
+8. Reboot. if you're dropped into an emergency shell, try regenerating grub.
 
 ### How VMWare snapshots work
 
