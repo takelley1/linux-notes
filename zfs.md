@@ -1,6 +1,9 @@
 
 ## ZFS
 
+- **See also:**
+  - [FreeBSD ZFS administration](https://docs.freebsd.org/en_US.ISO8859-1/books/handbook/zfs-zfs.html)
+
 ### Snapshots
 
 - `zfs list -t snapshot tank`  = List snapshots for the *tank* dataset.
