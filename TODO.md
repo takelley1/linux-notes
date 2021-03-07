@@ -1,15 +1,12 @@
-- merge tcp-ip-stack into networking.md
-- merge proxy-servers into webserver.md
-<br><br>
-- length extension attacks
-- fill out table comparing compression algorithms, use last image from https://clearlinux.org/news-blogs/linux-os-data-compression-options-comparing-behavior
-- emphasize a large number of command examples over everything else
-- add pam syntax
-- add info on ZFS snapshots, ARC, L2ARC, and ZIL
-- add info on ZFS vdev vs volume vs file system vs zpool vs dataset vs zvol, etc
-- add image for 'top' command
-- link bookmarked article describing htop 
-- add BSD pkg commands in the table with yum and apt and pacman
-- add info on RAM UDIMM vs RDIMM
-- add CIFS/SMB and Active Directory share mounting to storage.md
-- fill out MONITORING section of networking.md
+- cryptography: fill out FIDO U2F section
+- cryptography: length extension attacks
+- languages: Tcl, Vala, Crystal
+- networking: fill out MONITORING section
+- new file: add pam syntax
+- processes: add image for 'top' command
+- processes: link bookmarked article describing htop
+- solid-state-storage: add info on RAM UDIMM vs RDIMM
+- storage: add CIFS/SMB and Active Directory share mounting
+- storage: fill out table comparing compression algorithms, use last image from https://clearlinux.org/news-blogs/linux-os-data-compression-options-comparing-behavior
+- zfs: add info on ZFS ARC, L2ARC, and ZIL
+- zfs: add info on ZFS file system vs dataset vs zvol
