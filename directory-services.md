@@ -9,8 +9,10 @@ ldapsearch \
       -x \
       -w <PASSWORD> \
       -H ldaps://<SERVERNAME>.<DOMAIN> \
-      -D "<AUTHENTICATING_USER>.<DOMAIN>" \
+      -D "<AUTHENTICATING_USER>@<DOMAIN>" \
       "mail=<USER_EMAIL>"
+      
+ldapsearch -LLL -x -w ResidencePolitelySpongeSpouse -H ldaps://dc01.domain.example.com -D "jane.doe.sa@domain.example.com" "mail=jdoe@example.com"
 ```
 
 ### SSH key authentication
