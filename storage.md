@@ -207,7 +207,7 @@ debug hires timestamp = yes       # Add microsecond resolution to timestamp.
   - [Mapping Windows shares on Linux](https://linuxize.com/post/how-to-mount-cifs-windows-share-on-linux/)
   - [Configure Ubuntu for Samba + Winbind + Kerberos](https://serverfault.com/questions/135396/how-to-authenticate-linux-accounts-against-an-active-directory-and-mount-a-windo)
 <br><br>
-- `smbclient -U user -L 192.168.1.122` = Check Windows share availability.
+- `smbclient -U janedoe@domain.example.com -L 192.168.1.122` = Check Windows share availability.
 - `mount -t cifs -o credentials=/<CREDENTIALS_FILE> //WIN_SHARE_IP/<SHARE_NAME> /<MOUNT_PATH>` = Mount Windows share.
   - Create credentials file:
     ```
