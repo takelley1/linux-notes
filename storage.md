@@ -182,27 +182,40 @@ Extending */var* XFS filesystem with LVM:
 
 ---
 ## SAMBA
-`TODO`
-`smbclient`
-- Samba debug logging:
+
+- **See also:**
+  - [Samba wiki](https://wiki.samba.org/index.php/Main_Page)
+<br><br>
+- Enable debug logging:
 ```
-root@sambaserver:~# cat /etc/samba/smb.conf.client-debug
+/etc/samba/smb.conf.client-debug
+
 [global]
-# no log file size limitation
-max log size = 0
-# specific log file name
-log file = /var/log/samba/log.%I
-# set the debug level
-log level = 3
-# add the pid to the log
-debug pid = yes
-# add the uid to the log
-debug uid = yes
-# add the debug class to the log
-debug class = yes
-# add microsecond resolution to timestamp
-debug hires timestamp = yes
+max log size = 0                  # No log file size limitation.
+log file = /var/log/samba/log.%I  # Specific log file name.
+log level = 3                     # Set the debug level.
+debug pid = yes                   # Add the pid to the log.
+debug uid = yes                   # Add the uid to the log.
+debug class = yes                 # Add the debug class to the log.
+debug hires timestamp = yes       # Add microsecond resolution to timestamp.
 ```
+
+### Linux-Windows interoperability
+
+- **See also:**
+  - [Mapping shares between Windows and RHEL](https://www.redhat.com/sysadmin/samba-windows-linux)
+  - [Mapping Windows shares on Linux](https://linuxize.com/post/how-to-mount-cifs-windows-share-on-linux/)
+  - [Configure Ubuntu for Samba + Winbind + Kerberos](https://serverfault.com/questions/135396/how-to-authenticate-linux-accounts-against-an-active-directory-and-mount-a-windo)
+<br><br>
+- `smbclient -U user -L 192.168.1.122` = Check Windows share availability.
+- `mount -t cifs -o credentials=/<CREDENTIALS_FILE> //WIN_SHARE_IP/<SHARE_NAME> /<MOUNT_PATH>` = Mount Windows share.
+  - Create credentials file:
+    ```
+    username=<USERNAME>
+    password=<PASSWORD>
+    domain=<DOMAIN>
+    ```
+  - `chown root:root /<CREDENTIALS_FILE> && chmod 0600 /<CREDENTIALS_FILE>` = Secure credentials file.
 
 ---
 ## NFS
