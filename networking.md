@@ -113,6 +113,11 @@ iptables –A OUTPUT -o eth0 –p tcp --sport 80 –m state --state NEW,ESTABLIS
 <br><br>
 - `dig domain.com` or `nslookup domain.com` or `host domain.com` = Perform dns lookup on domain.
 
+### [ping](https://stackoverflow.com/questions/22110622/ping-response-request-timed-out-vs-destination-host-unreachable)
+
+- `Destination host unreachable` = Target host doesn't exist or router cannot reach it.
+- `Request timed out` = A firewall is dropping the ICMP packets.
+
 ### [tcpdump](https://danielmiessler.com/study/tcpdump/)
 
 - `tcpdump -tvv` = Dump all packets on all interfaces.
