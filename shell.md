@@ -102,13 +102,15 @@ replacement="${name/Johnson/Peterson}" # replacement = "Bob Peterson"
 2>&1 or &> = Stdout and stderr.
 ```
 
-- `cat /file.log 2>&1 | grep -i error` = Pass both stdout and stderr to grep through pipe, by default pipe only passes stdout.
+- `cat /file.log 2>&1 | grep -i error` = Pass both stdout and stderr to grep through pipe,
+                                         by default pipe only passes stdout.
 
 ### Misc
 
 - `sudo !!` = Execute last command with sudo privileges.
 - `history` = Print past commands to stdout, grep and use ![line_number] to repeat command without retyping.
 - `watch <COMMAND>` = Loop command indefinitely.
+- `"$(realpath "${0}")"` = Get full path of the current script.
 
 ### [Sourcing vs executing](https://superuser.com/questions/176783/what-is-the-difference-between-executing-a-bash-script-vs-sourcing-it/176788#176788)
 
