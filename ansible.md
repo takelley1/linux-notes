@@ -40,6 +40,7 @@ ansible -i inventories/my_inv/hosts.yml -m file -a "path=/etc/yum.repos.d/elasti
 - `ansible-playbook --syntax-check ./playbook.yml` = Check syntax.
 - `ansible-lint ./playbook.yml`                    = Check best-practices.
 
+---
 ## WINDOWS
 
 ### Kerberos
@@ -50,7 +51,6 @@ ansible -i inventories/my_inv/hosts.yml -m file -a "path=/etc/yum.repos.d/elasti
 - Set `ansible_winrm_server_cert_validation: ignore` on the Ansible controller.
 
 #### Troubleshooting
-
 ```
 fatal: [apgrw4fhaat1t01]: UNREACHABLE! => changed=false
 msg: 'kerberos: Bad HTTP response returned from server. Code 500'
@@ -59,3 +59,59 @@ unreachable: true
 - This means Kerberos is not allowed to connect over HTTP.
   - Either set `AllowUnencrypted` to *True* on the WinRM server,
   - Or `ansible_winrm_port: 5986` on the Ansible controller to connect over HTTPS.
+
+---
+## [MOLECULE](https://molecule.readthedocs.io/en/latest/)
+
+- `molecule converge -- -v --diff` = Run Molecule, pass *-v* and *--diff* to Ansible.
+- `molecule login -h ubuntu-host -s main` = Login to *ubuntu-host* using the *main* scenario.
+
+Example *molecule.yml* (create a new scenario with *molecule init*):
+```yaml
+dependency:
+  name: galaxy
+driver:
+  name: vagrant
+  provider:
+    name: virtualbox
+platforms:
+  # - name: freebsd-host
+  #   box: generic/freebsd12
+  #   memory: 2048
+  #   cpus: 2
+  - name: ubuntu-host
+    box: ubuntu/groovy64
+    memory: 2048
+    cpus: 2
+provisioner:
+  name: ansible
+  connection_options:
+    ansible_ssh_user: vagrant
+    ansible_ssh_common_args: -o StrictHostKeyChecking=no
+  inventory:
+    host_vars:
+      ubuntu-host:
+        hostname: ubuntu-host
+        common_include_debian_tasks: true
+        disable_suspend: true
+      freebsd-host:
+        hostname: freebsd-host
+    group_vars:
+      all:
+        use_proxy: true
+        proxy_url: http://10.0.0.15:8080
+        interactive_account:
+          username: alice
+          comment: Alice
+          home_dir: /home/alice
+          pubkeys:
+            - "{{ lookup('file', '../../keys/id_rsa.pub') }}"
+        service_account:
+          username: ansible
+          comment: Service account
+          home_dir: /var/lib/ansible
+          pubkeys:
+            - "{{ lookup('file', '../../keys/id_rsa.pub') }}"
+verifier:
+  name: ansible
+```
