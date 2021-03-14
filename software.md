@@ -98,6 +98,10 @@ Minimum XCCDF file for importing SCAP results to DISA STIG viewer:
 - \`<KEY>    = Jump to bookmark at <KEY>
 - `cd /path` = Jump to /path.
 - `gh`       = Jump to ~ (*go home.  *)
+<br><br>
+- `I` = Rename from beginning of file.
+- `A` = Rename from end of file (including extension).
+- `a` = Rename from end of file (excluding extension).
 
 
 ---
