@@ -14,14 +14,14 @@
 
 #### Sender:
 1. `gpg --gen-key`                                  = Create public and private key pair.
-1. `gpg --output file.sig --detatch-sign file.txt`  = Sign *file.txt* with private key, producing the signature file
+2. `gpg --output file.sig --detatch-sign file.txt`  = Sign *file.txt* with private key, producing the signature file
                                                       *file.sig*.
-1. `gpg --export --armor "pubkey.gpg" > public.asc` = Export binary public key to ASCII-encoded string.
-1. Transfer *file.sig*, *file.txt*, and *public.asc* to recipient.
+3. `gpg --export --armor "pubkey.gpg" > public.asc` = Export binary public key to ASCII-encoded string.
+4. Transfer *file.sig*, *file.txt*, and *public.asc* to recipient.
 
 #### Recipient:
-1. `gpg --import public.asc`                        = Import sender's public key.
-1. `gpg --verify file.sig file.txt`                 = Verify the *file.sig* signature of *file.txt* using sender's public
+5. `gpg --import public.asc`                        = Import sender's public key.
+6. `gpg --verify file.sig file.txt`                 = Verify the *file.sig* signature of *file.txt* using sender's public
                                                       key.
 
 ### Asymetrically encrypt/decrypt and sign a file
@@ -34,8 +34,8 @@
   ```
 2. This produces the encrypted and signed file `file.txt.asc`.
 
-#### Recipient: <sup>[2], [3]</sup>
-1. Decrypt *file.txt* using recipient's private key and verify sender's signature:
+#### Recipient: [[1]](https://www.networkworld.com/article/3293052/encypting-your-files-with-gpg.html), [[2]](https://www.howtogeek.com/427982/how-to-encrypt-and-decrypt-files-with-gpg-on-linux/)
+3. Decrypt *file.txt* using recipient's private key and verify sender's signature:
    ```bash
    gpg --decrypt file.txt.asc > file.txt
    ```
@@ -46,10 +46,7 @@
    ```bash
    gpg --output file.gpg --symmetric file.txt
    ```
-1. Decrypt *file.gpg* into *file.txt* using the same password used to encrypt file.txt:
+2. Decrypt *file.gpg* into *file.txt* using the same password used to encrypt file.txt:
    ```bash
    gpg --decrypt file.gpg
    ```
-
-[2]: https://www.networkworld.com/article/3293052/encypting-your-files-with-gpg.html
-[3]: https://www.howtogeek.com/427982/how-to-encrypt-and-decrypt-files-with-gpg-on-linux/

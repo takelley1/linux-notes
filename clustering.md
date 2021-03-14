@@ -23,4 +23,4 @@
 
 #### Constraints
 - `pcs constraint order zabbix_ip then zabbix_server` = Ensure the *zabbix_ip* resource starts before *zabbix_server*.
-- `pcs constraint colocation add zabbix_ip with zabbix_server INFINITY` = Ensure *zabbix_ip* resource is on the same node as *zabbix_server*. 
+- `pcs constraint colocation add zabbix_ip with zabbix_server INFINITY` = Ensure *zabbix_ip* resource is on the same node as *zabbix_server*.

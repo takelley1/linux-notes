@@ -1,16 +1,25 @@
 
 ## ZFS
 
+- **See also:**
+  - [FreeBSD ZFS administration](https://docs.freebsd.org/en_US.ISO8859-1/books/handbook/zfs-zfs.html)
+
 ### Snapshots
 
 - `zfs list -t snapshot tank`  = List snapshots for the *tank* dataset.
+- `zfs list -t snapshot -r tank | sort -h -k2` = Recursively list snapshots for *tank* dataset, sorting by snapshot size.
 <br><br>
-- `zfs destroy -nv <SNAPSHOT>`       = Do a "dry-run" snapshot deletion.
-- `zfs destroy tank/snap@1-15%12-20` = Delete all snapshots taken between those called *1-15* and *1-20*, inclusive.
+- `zfs destroy -nv <SNAPSHOT>` = Do a "dry-run" snapshot deletion.
 
-### Datasets
+Delete all snapshots taken between those called *2020-07-11__19:00__tank* and *2020-07-16__22:00__tank*, inclusive:
+```bash
+zfs destroy tank/storage/videos@2020-07-11__19:00__tank%2020-07-16__22:00__tank
+```
+
+### Datasets & Properties
 
 - `zfs list -r tank` = List all child datasets of the *tank* dataset.
+- `zfs list -o space tank/storage/videos` = Print usage info for the *tank/storage/videos* dataset.
 
 ### [Restoring data](https://www.linuxtopia.org/online_books/opensolaris_2008/ZFSADMIN/html/gbchx.html)
 
@@ -25,9 +34,11 @@
 - Set recordsize to match the typical size of files in the dataset.
   - Dataset with small text files = Small recordsize (128k or less).
   - Dataset with only videos = Large recordsize (1M).
-  - Dataset with VMs = Match recordsize to VM disk image's sector size (512B or 4k).*
+  - Dataset with VMs = Match recordsize to VM disk image's sector size (512B or 4k).
 
-* Use `fdisk -l` to determine a disk's sector size.
+- Determine a disk's sector size
+  - `fdisk -l <DISK>` on Linux
+  - `diskinfo -v <DISK>` on FreeBSD
 
 ### [Storage hierarchy](https://jrs-s.net/2018/04/11/primer-how-data-is-stored-on-disk-with-zfs/)
 

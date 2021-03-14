@@ -1,7 +1,7 @@
 
-### Desktop Environment
+### [Desktop Environment](https://wiki.archlinux.org/index.php/Desktop_environment)
 
-Implements the desktop metaphor and bundles together a variety of components, provides its own custom window manager. <sup>[1]</sup>
+Implements the desktop metaphor and bundles together a variety of components, provides its own custom window manager.
 - KDE Plasma (default in Kubuntu)
 - GNOME (default in Ubuntu, Fedora)
 - MATE
@@ -10,9 +10,9 @@ Implements the desktop metaphor and bundles together a variety of components, pr
 - Pantheon (used by ElementaryOS)
 
 ---
-### Display Manager
+### [Display Manager](https://wiki.archlinux.org/index.php/Display_manager)
 
-Manages the login screen. <sup>[2]</sup>
+Manages the login screen.
 - Console
   - CDM
   - Ly
@@ -24,9 +24,9 @@ Manages the login screen. <sup>[2]</sup>
   - XDM (X Display Manager)
 
 ---
-### Window Manager
+### [Window Manager](https://wiki.archlinux.org/index.php/Window_manager)
 
-Controls the placement of windows within the desktop environment, typically an X server client. <sup>[3]</sup>
+Controls the placement of windows within the desktop environment, typically an X server client.
 - Tiling: windows can't overlap
   - i3
   - Bspwm
@@ -44,7 +44,7 @@ Controls the placement of windows within the desktop environment, typically an X
 
 System-level interface between desktop GUI and hardware.
 - X / X11 Window System implementations
-  - X.Org Server / Xorg (most common display server) <sup>[4]</sup> 
+  - [X.Org Server / Xorg (most common display server)](https://wiki.archlinux.org/index.php/Xorg)
   - XQuartz
 <br><br>
 - Wayland Display Server implementations (called compositors)
@@ -54,8 +54,3 @@ System-level interface between desktop GUI and hardware.
 <br><br>
 - Mir implementations
   - libmir-server / libmir-client
-
-[1]: https://wiki.archlinux.org/index.php/Desktop_environment   
-[2]: https://wiki.archlinux.org/index.php/Display_manager   
-[3]: https://wiki.archlinux.org/index.php/Window_manager  
-[4]: https://wiki.archlinux.org/index.php/Xorg  

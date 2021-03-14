@@ -135,11 +135,11 @@ rhn-channel --list
 
 
 ---
-## TENABLE.SC (SECURITY CENTER) <sup>[1]</sup>
+## TENABLE.SC (SECURITY CENTER)
 
 Get new plugins: https://patches.csd.disa.mil
 
-Reset admin password to "password":
+[Reset admin password to "password"](https://community.tenable.com/s/article/Reset-admin-password-in-Tenable-sc-and-unlock-the-account-if-its-been-locked-Formerly-SecurityCenter)
 ```
 ## Versions 5.10 and earlier:
 /opt/sc/support/bin/sqlite3 /opt/sc/application.db "update userauth set password = 'bbd29bd33eb161d738536b59e37db31e' where username='admin';"
@@ -162,5 +162,3 @@ List users:
 ```
 # /opt/sc/support/bin/sqlite3 /opt/sc/application.db "select * from UserAuth"
 ```
-
-[1]: https://community.tenable.com/s/article/Reset-admin-password-in-Tenable-sc-and-unlock-the-account-if-its-been-locked-Formerly-SecurityCenter

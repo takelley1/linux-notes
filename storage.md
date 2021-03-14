@@ -88,6 +88,9 @@ Extending */var* XFS filesystem with LVM:
 ---
 ## DISKS & MOUNTS
 
+- **See also:**
+  - [Fixing 3.3v Pin issue in SATA drives](https://imgur.com/a/A0JXgrQ)
+<br><br>
 - `partprobe` = Scan for new disks.
 <br><br>
 - `lsblk -f` = Show disk tree layout, including logical volumes.
@@ -179,27 +182,40 @@ Extending */var* XFS filesystem with LVM:
 
 ---
 ## SAMBA
-`TODO`
-`smbclient`
-- Samba debug logging:
+
+- **See also:**
+  - [Samba wiki](https://wiki.samba.org/index.php/Main_Page)
+<br><br>
+- Enable debug logging:
 ```
-root@sambaserver:~# cat /etc/samba/smb.conf.client-debug
+/etc/samba/smb.conf.client-debug
+
 [global]
-# no log file size limitation
-max log size = 0
-# specific log file name
-log file = /var/log/samba/log.%I
-# set the debug level
-log level = 3
-# add the pid to the log
-debug pid = yes
-# add the uid to the log
-debug uid = yes
-# add the debug class to the log
-debug class = yes
-# add microsecond resolution to timestamp
-debug hires timestamp = yes
+max log size = 0                  # No log file size limitation.
+log file = /var/log/samba/log.%I  # Specific log file name.
+log level = 3                     # Set the debug level.
+debug pid = yes                   # Add the pid to the log.
+debug uid = yes                   # Add the uid to the log.
+debug class = yes                 # Add the debug class to the log.
+debug hires timestamp = yes       # Add microsecond resolution to timestamp.
 ```
+
+### Linux-Windows interoperability
+
+- **See also:**
+  - [Mapping shares between Windows and RHEL](https://www.redhat.com/sysadmin/samba-windows-linux)
+  - [Mapping Windows shares on Linux](https://linuxize.com/post/how-to-mount-cifs-windows-share-on-linux/)
+  - [Configure Ubuntu for Samba + Winbind + Kerberos](https://serverfault.com/questions/135396/how-to-authenticate-linux-accounts-against-an-active-directory-and-mount-a-windo)
+<br><br>
+- `smbclient -U janedoe@domain.example.com -L 192.168.1.122` = Check Windows share availability.
+- `mount -t cifs -o credentials=/<CREDENTIALS_FILE> //WIN_SHARE_IP/<SHARE_NAME> /<MOUNT_PATH>` = Mount Windows share.
+  - Create credentials file:
+    ```
+    username=<USERNAME>
+    password=<PASSWORD>
+    domain=<DOMAIN>
+    ```
+  - `chown root:root /<CREDENTIALS_FILE> && chmod 0600 /<CREDENTIALS_FILE>` = Secure credentials file.
 
 ---
 ## NFS
@@ -207,19 +223,19 @@ debug hires timestamp = yes
 ### Server
 
 1. `yum install nfs-utils`
-1. `systemctl enable nfs`
-1. `systemctl start nfs`
-1. create entry in `/etc/exports` (see examples at bottom of man page for `exports`)
+2. `systemctl enable nfs`
+3. `systemctl start nfs`
+4. create entry in `/etc/exports` (see examples at bottom of man page for `exports`)
 `/[mountpoint being shared] [authorized ips or fqdns]([mount options])`
 ex: `/mirror 192.168.1.1/24(rw)`
-1. `exportfs -a`
-1. `sync`
+5. `exportfs -a`
+6. `sync`
 
 ### Client
 
-1. `mount -t nfs [server ip or fqdn]:/[directory being shared] /[local mount location]`
-1. `showmount`
-1. create entry in `/etc/fstab`
+7. `mount -t nfs [server ip or fqdn]:/[directory being shared] /[local mount location]`
+8. `showmount`
+9. create entry in `/etc/fstab`
 `[server ip or fqdn]:/[directory being shared] /[local mount location] nfs defaults 0 0`
 ex: `10.0.0.10:/data  /mnt/data  nfs  defaults  0 0`
 
@@ -242,13 +258,13 @@ break if the location they're pointing to is deleted. Similar to Windows shortcu
 ### [Transfer root Linux installation to another drive:](https://askubuntu.com/questions/741723/moving-entire-linux-installation-to-another-drive)
 
 1. Boot from a live OS and use `gparted` to copy the source drive's boot and root partitions to the target drive.
-1. Right-click the new partitions on the target drive and generate a new UUID for each.
-1. Mount the target drive and bind mount `/dev`, `/run`, `/proc`, and `/sys` (`mount -o bind /src /dest`) from the currently booted live OS to the target drive.
-1. `chroot` into the target drive.
-1. Edit `fstab` and replace the copied partition's UUID with the new UUID.
-1. Make sure the target drive's `/boot` directory contains a Linux image. If not, copy the directory from the source drive manually.
-1. Run `grub-mkconfig -o /boot/grub/grub.cfg` or `update-grub` (if `update-grub` is installed).
-1. Reboot. if you're dropped into an emergency shell, try regenerating grub.
+2. Right-click the new partitions on the target drive and generate a new UUID for each.
+3. Mount the target drive and bind mount `/dev`, `/run`, `/proc`, and `/sys` (`mount -o bind /src /dest`) from the currently booted live OS to the target drive.
+4. `chroot` into the target drive.
+5. Edit `fstab` and replace the copied partition's UUID with the new UUID.
+6. Make sure the target drive's `/boot` directory contains a Linux image. If not, copy the directory from the source drive manually.
+7. Run `grub-mkconfig -o /boot/grub/grub.cfg` or `update-grub` (if `update-grub` is installed).
+8. Reboot. if you're dropped into an emergency shell, try regenerating grub.
 
 ### How VMWare snapshots work
 

@@ -11,7 +11,7 @@
 - `for f in *.mkv; do ffmpeg -i "$f" -vcodec copy -acodec aac "${f%.mkv}.mp4"; done` = Copy all mkv videos in ./ to mp4.
 - `for f in *; do ffmpeg -i "$f" -vcodec h264 -acodec aac "${f%.mkv}.mp4"; done` = Transcode all videos in ./ to mp4.
 <br><br>
-- `ffmpeg input.mp4 -vf select='eq(n\,864)' -frames:v 1 out.png` = Extract frame 864 from *input.mp4* and write it to *out.png*.
+- `ffmpeg -i input.mp4 -vf select='eq(n\,864)' -frames:v 1 out.png` = Extract frame 864 from *input.mp4* and write it to *out.png*.
 <br><br>
 - `ffmpeg -i input.mp4 -ss 00:00:30 output.mp4` = Trim the first 30 seconds of *input.mp4*.
 - `ffmpeg -i input.mp4 -ss 00:01:00 -to 00:02:00 output.mp4` = Extract minute 1 to minute 2 of *input.mp4*.
@@ -19,9 +19,11 @@
 
 ### Other
 
-`mp4box -force-cat -cat video-part1.mp4 -cat video-part2.mp4 -cat video-part3.mp4 video.mp4` = Combine videos.
+- `mp4box -force-cat -cat video-part1.mp4 -cat video-part2.mp4 -cat video-part3.mp4 video.mp4` = Combine mp4 videos.
+- `mkvmerge -o 2018-11-21 2018-11-21_17\:12.mkv +2018-11-21_18\:45.mkv` = Combine mkv videos (from mkvtoolnix).
+- `mkvmerge 2018-12-04_23\:35.mkv --split duration:00:28:06.000 -o 2018-12-04_new` = Split mkv videos.
 <br><br>
-`mpv --input-test --idle --force-window` = Start mpv in xev-style mode that shows keybindings when keys are pressed.
+- `mpv --input-test --idle --force-window` = Start mpv in xev-style mode that shows keybindings when keys are pressed.
 
 
 ---

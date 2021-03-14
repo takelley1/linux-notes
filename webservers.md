@@ -1,8 +1,55 @@
 
-## REVERSE PROXY <sup>[4]</sup> 
+## REST API
 
-Also known as a *gateway server*.
+Make POST API request to a Zabbix server:
+```bash
+curl -v -d \
+  '{"jsonrpc": "2.0", "method": "host.get", \
+    "params": {"startSearch": {"name": "BlaBlaBla"}}, \
+    "id": 1, "auth": "f0fe38b3994cd953403477016e"}' \
+    -H "Content-Type: application/json-rpc" \
+    http://zabbix-server.example.com/api_jsonrpc.php
+```
 
+---
+## NGINX
+
+- **See also:**
+  - [Nginx.org docs](http://nginx.org/en/docs/)
+  - [Nginx.com docs](https://docs.nginx.com/)
+
+Example with HTTP->HTTPS and IP->Domain redirects
+```nginx
+server {
+    # Redirect HTTP IP and HTTPS domain to HTTPS domain.
+    listen              80;
+    server_name         _;
+    return 301          https://domain.example.com$request_uri;
+}
+
+server {
+    # Redirect HTTPS IP to HTTPS domain.
+    listen              443 ssl;
+    server_name         10.0.0.5;
+    ssl_certificate     /etc/nginx/cert.pem;
+    ssl_certificate_key /etc/nginx/certkey.pem;
+    return 301          https://domain.example.com$request_uri;
+}
+
+server {
+    # HTTPS domain.
+    listen              443 ssl;
+    server_name         domain.example.com;
+    ssl_certificate     /etc/nginx/cert.pem;
+    ssl_certificate_key /etc/nginx/certkey.pem;
+```
+
+---
+## [REVERSE PROXY](https://en.wikipedia.org/wiki/Reverse_proxy)
+
+- **See also:**
+  - [Reverse proxy performance](https://www.imperva.com/learn/performance/reverse-proxy/)
+<br><br>
 - Used for security, high-availability, load-balancing, and centralized authentication/authorization.
 - Allows many different isolated servers to provide their services behind a single domain.
 - As far as the client is concerned, the reverse proxy server is the sole source of all content.
@@ -15,9 +62,9 @@ the request, generates the content and then sends this content back to httpd, wh
 actual HTTP response back to the client.
 ```
 
-<img src="/images/reverse-proxy.jpg" width="500"/> <sup>[2]</sup>
+<img src="images/reverse-proxy.jpg" width="500"/>
 
-### Configuration examples
+### [Apache](https://httpd.apache.org/docs/2.4/howto/reverse_proxy.html)
 
 ```xml
 # Full Apache reverse proxy config for a handful of apps.
@@ -154,15 +201,9 @@ actual HTTP response back to the client.
     BalancerMember https://jenkins-cluster-server1.example.com
     BalancerMember https://jenkins-cluster-server2.example.com
 </Proxy>
-```  
-<sup>[4]</sup> 
+```
 
+## [FORWARD PROXY](https://www.jscape.com/blog/bid/87783/forward-proxy-vs-reverse-proxy)
 
-## FORWARD PROXY
+<img src="images/forward-proxy.jpg" width="500"/>
 
-<img src="/images/forward-proxy.jpg" width="500"/> <sup>[2]</sup>
-
-[1]: https://en.wikipedia.org/wiki/Reverse_proxy  
-[2]: https://www.imperva.com/learn/performance/reverse-proxy/  
-[3]: https://www.jscape.com/blog/bid/87783/forward-proxy-vs-reverse-proxy  
-[4]: https://httpd.apache.org/docs/2.4/howto/reverse_proxy.html  

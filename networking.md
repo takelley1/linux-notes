@@ -1,11 +1,4 @@
 
-## CURL
-
-Make POST API request to a Zabbix server:
-```bash
-curl -v -d '{"jsonrpc": "2.0", "method": "host.get", "params": {"startSearch": {"name": "BlaBlaBla"}}, "id": 1, "auth": "f0fe38b3994cd953403477016e"}' -H "Content-Type: application/json-rpc" http://zabbix-server.example.com/api_jsonrpc.php
-```
-
 ## FIREWALLD
 
 - **See also:**
@@ -35,7 +28,7 @@ firewall-cmd --reload
 ---
 ## IPTABLES
 
-> NOTE: `iptables` has been deprecated in favor of `nftables` <sup>[4]</sup>
+> [NOTE: `iptables` has been deprecated in favor of `nftables`](https://wiki.debian.org/nftables)
 
 - `iptables -L` = Show firewall ruleset.
 
@@ -58,7 +51,7 @@ iptables –A OUTPUT -o eth0 –p tcp --sport 80 –m state --state NEW,ESTABLIS
 - `ip a del 10.0.0.10/24 dev enp12s0`          = Remove IP from device.
 - `ip route add DEFAULT via 10.0.0.1 dev eth0` = Add default gateway to device.
 <br><br>
-- `ip link set dev eth1 up` = Enable interface eth1.
+- `ip link set dev eth1 up` = Enable interface *eth1*.
 
 ### Configuration
 
@@ -76,7 +69,7 @@ iptables –A OUTPUT -o eth0 –p tcp --sport 80 –m state --state NEW,ESTABLIS
 ---
 ## PORTS
 
-### Remote ports
+### [Remote ports](https://danielmiessler.com/study/nmap/)
 
 - `nmap -p <PORT> <IP>` or `telnet <IP> <PORT>` = Ping specific TCP port on host.
 <br><br>
@@ -93,7 +86,7 @@ iptables –A OUTPUT -o eth0 –p tcp --sport 80 –m state --state NEW,ESTABLIS
 
 ### Local ports
 
-> NOTE: `netstat` has been deprecated in favor of `ss` <sup>[5]</sup>
+> [NOTE: `netstat` has been deprecated in favor of `ss`](https://dougvitale.wordpress.com/2011/12/21/deprecated-linux-networking-commands-and-their-replacements/#netstat)
 
 - `less /etc/services` = Show ports being used by specific services.
 <br><br>
@@ -120,7 +113,12 @@ iptables –A OUTPUT -o eth0 –p tcp --sport 80 –m state --state NEW,ESTABLIS
 <br><br>
 - `dig domain.com` or `nslookup domain.com` or `host domain.com` = Perform dns lookup on domain.
 
-### Tcpdump <sup>[2]</sup>
+### [ping](https://stackoverflow.com/questions/22110622/ping-response-request-timed-out-vs-destination-host-unreachable)
+
+- `Destination host unreachable` = Target host doesn't exist or router cannot reach it.
+- `Request timed out` = A firewall is dropping the ICMP packets.
+
+### [tcpdump](https://danielmiessler.com/study/tcpdump/)
 
 - `tcpdump -tvv` = Dump all packets on all interfaces.
   - `-v` or `-vv` = Extra packet information.
@@ -141,12 +139,10 @@ iptables –A OUTPUT -o eth0 –p tcp --sport 80 –m state --state NEW,ESTABLIS
 ---
 ## NTP
 
-> NOTE: `ntpd` has been deprecated in favor of `chrony` <sup>[1]</sup>
-
 - `date +%T –s "16:45:00"` = Manually set time in HH:mm:ss format.
 - `date`                   = View current time.
 
-### Chrony <sup>[1]</sup>
+### [Chrony](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/8/html-single/configuring_basic_system_settings/index#migrating-to-chrony_using-chrony-to-configure-ntp)
 
 Show timekeeping stats:
 ```
@@ -168,13 +164,11 @@ Leap status     : Normal                               # Whether a leap second i
                                                        # 1 ppm = 1.000001 seconds.
 ```
 
-Other useful commands: <sup>[7]</sup>
-```bash
-chronyc sources -v
-chronyc sourcestats
-chronyc activity
-timedatectl
-```
+- [Other useful commands](https://www.thegeekdiary.com/centos-rhel-7-tips-on-troubleshooting-ntp-chrony-issues/)
+  - `chronyc sources -v`
+  - `chronyc sourcestats`
+  - `chronyc activity`
+  - `timedatectl`
 
 
 ---
@@ -199,17 +193,17 @@ recipient@example.com                        # This is the 'to' field of the ema
 
 ### Mail filtering
 
-- `egrep -o 'from=<.*>' /var/log/maillog | sort -u` = Filter sending addresses from maillog.
+- `grep -Eo 'from=<.*>' /var/log/maillog | sort -u` = Filter sending addresses from maillog.
 
 ### Postfix whitelists
 
-1. Add line to `/etc/postfix/main.cf`:
+1. Add line to */etc/postfix/main.cf*:
    ```bash
    mynetworks = /postfix-whitelist
    ```
-1. Populate `/postfix-whitelist` with IPs.
-1. Run `postmap /postfix-whitelist && systemctl restart postfix`.
-1. Now only the IPs in `/postfix-whitelist` will be permitted to use the postfix server as an smtp relay.
+2. Populate */postfix-whitelist* with IPs.
+3. Run `postmap /postfix-whitelist && systemctl restart postfix`.
+4. Now only the IPs in */postfix-whitelist* will be permitted to use the postfix server as an smtp relay.
 
 
 ---
@@ -230,6 +224,8 @@ wget                            \
   www.website.org/
   www.website2.org/
 
+  --span-hosts                    # Let wget traverse multiple domains.
+
 wget -A "*.pdf" -e robots=off --limit 100k --recursive --no-clobber --page-requisites --html-extension --convert-links --restrict-file-names=windows --no-parent www.website.org www.website2.org
 ```
 
@@ -247,9 +243,10 @@ wget -A "*.pdf" -e robots=off --limit 100k --recursive --no-clobber --page-requi
 
 
 ---
-[1]: https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/8/html-single/configuring_basic_system_settings/index#migrating-to-chrony_using-chrony-to-configure-ntp
-[2]: https://danielmiessler.com/study/tcpdump/
-[3]: https://danielmiessler.com/study/nmap/
-[4]: https://wiki.debian.org/nftables
-[5]: https://dougvitale.wordpress.com/2011/12/21/deprecated-linux-networking-commands-and-their-replacements/#netstat
-[7]: https://www.thegeekdiary.com/centos-rhel-7-tips-on-troubleshooting-ntp-chrony-issues/
+## TCP/IP STACK
+
+- **See also:**
+  - [Understanding TCP/IP](https://www.cubrid.org/blog/understanding-tcp-ip-network-stack)
+  - [How ARP works](https://www.tummy.com/articles/networking-basics-how-arp-works/)
+
+![tcp/ip-stack](images/tcp-ip-stack.png)

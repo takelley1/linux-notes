@@ -5,7 +5,7 @@
   - [Google style guide](https://google.github.io/styleguide/shellguide.html)
   - [GNU coreutils decoded](https://www.maizure.org/projects/decoded-gnu-coreutils/index.html)
 
-## SHELL INITIALIZATION <sup>[6]</sup>
+## [SHELL INITIALIZATION](https://medium.com/@abhinavkorpal/bash-profile-vs-bashrc-c52534a787d3)
 
 - `~/.profile` = The place to put stuff that applies to your whole session, such as programs that you want to start when
    you log in, and environment variable definitions. */etc/profile* and scripts in */etc/profile.d/* apply to all user sessions.
@@ -19,7 +19,7 @@
 
 
 ---
-## SHELL TYPES <sup>[7]</sup>
+## [SHELL TYPES](https://askubuntu.com/questions/879364/differentiate-interactive-login-and-non-interactive-non-login-shell)
 
 - Interactive login shell
   - Logging in remotely via, for example, ssh.
@@ -40,6 +40,9 @@
 
 ---
 ## BASH
+  - [Bash guide](http://mywiki.wooledge.org/BashGuide)
+  - [Bash pitfalls](https://mywiki.wooledge.org/BashPitfalls)
+  - [Bash GNU manual](https://www.gnu.org/software/bash/manual/)
 
 ### String manipulation
 
@@ -107,7 +110,7 @@ replacement="${name/Johnson/Peterson}" # replacement = "Bob Peterson"
 - `history` = Print past commands to stdout, grep and use ![line_number] to repeat command without retyping.
 - `watch <COMMAND>` = Loop command indefinitely.
 
-### Sourcing vs executing <sup>[5]</sup>
+### [Sourcing vs executing](https://superuser.com/questions/176783/what-is-the-difference-between-executing-a-bash-script-vs-sourcing-it/176788#176788)
 
 - `bash script.sh` or `source script.sh`?
 - **Sourcing** a script runs in the current shell process, preserving all environment variables of the current shell.
@@ -115,16 +118,19 @@ replacement="${name/Johnson/Peterson}" # replacement = "Bob Peterson"
 
 ### Escape characters
 
+- **See also:**
+  - [Bash beginner's guide](http://tldp.org/LDP/Bash-Beginners-Guide/html/sect_03_03.html)
+
 `'single quotes'`
 
-- When in doubt, put the whole string in single quotes <sup>[1]</sup>
-  - **Single quotes preserve the literal value of every character enclosed within the quotes.** <sup>[3]</sup>
-  - A single quote *cannot* occur between single quotes, even when escaped by a backslash. <sup>[3]</sup>
+- [When in doubt, put the whole string in single quotes.](https://stackoverflow.com/questions/15783701/which-characters-need-to-be-escaped-when-using-bash#20053121)
+  - **Single quotes preserve the literal value of every character enclosed within the quotes.**
+  - A single quote *cannot* occur between single quotes, even when escaped by a backslash.
 
 `"double quotes"`
 
-- Double quotes preserve literal value of every character except the dollar sign, backtick, and backslash. <sup>[3]</sup>
-- Characters that need to be escaped: `"`, `$`, `\`, ` ` <sup>[2]</sup>
+- [Double quotes preserve literal value of every character except the dollar sign, backtick, and backslash.](https://www.shellscript.sh/escape.html)
+- Characters that need to be escaped: `"`, `$`, `\`, ` `
 
 ### Hotkeys
 
@@ -142,12 +148,11 @@ replacement="${name/Johnson/Peterson}" # replacement = "Bob Peterson"
 - `ALT-f` = Jump forward one word  (when editing a command).
 - `ALT-b` = Jump backward one word (when editing a command).
 
-### If-statement conditional tests <sup>[4]</sup>
-
+### [If-statement conditional tests](https://linuxacademy.com/blog/linux/conditions-in-bash-scripting-if-statements/)
 - **See also:**
   - [Bash beginners guide](http://tldp.org/LDP/Bash-Beginners-Guide/html/sect_07_01.html)
 
-#### File-based conditions <sup>[8]</sup>
+#### File-based conditions
 
 | Syntax          | Meaning                                                       |
 |-----------------|---------------------------------------------------------------|
@@ -167,7 +172,7 @@ replacement="${name/Johnson/Peterson}" # replacement = "Bob Peterson"
 | FILE1 -ot FILE2 | FILE1 is older than FILE2, or FILE2 exists and FILE1 doesn't. |
 | -o OPTIONNAME   | Shell option "OPTIONNAME" is enabled.                         |
 
-#### String-based conditions <sup>[8]</sup>
+#### String-based conditions
 
 | Syntax             | Meaning                          |
 |--------------------|----------------------------------|
@@ -176,7 +181,7 @@ replacement="${name/Johnson/Peterson}" # replacement = "Bob Peterson"
 | STRING1 == STRING2 | STRING1 is equal to STRING2.     |
 | STRING1 != STRING2 | STRING1 is NOT equal to STRING2. |
 
-#### Number-based conditions <sup>[8]</sup>
+#### Number-based conditions
 
 | Syntax             | Meaning                                |
 |--------------------|----------------------------------------|
@@ -212,13 +217,3 @@ replacement="${name/Johnson/Peterson}" # replacement = "Bob Peterson"
 
 - `dpkg-reconfigure console-setup`    = Change console font size (Debian-based distros).
 - `/etc/default/console-setup`        = Change console font size.
-
-
-[1]: https://stackoverflow.com/questions/15783701/which-characters-need-to-be-escaped-when-using-bash#20053121
-[2]: https://www.shellscript.sh/escape.html
-[3]: http://tldp.org/LDP/Bash-Beginners-Guide/html/sect_03_03.html
-[4]: http://tldp.org/LDP/Bash-Beginners-Guide/html/sect_07_01.html
-[5]: https://superuser.com/questions/176783/what-is-the-difference-between-executing-a-bash-script-vs-sourcing-it/176788#176788
-[6]: https://medium.com/@abhinavkorpal/bash-profile-vs-bashrc-c52534a787d3
-[7]: https://askubuntu.com/questions/879364/differentiate-interactive-login-and-non-interactive-non-login-shell
-[8]: https://linuxacademy.com/blog/linux/conditions-in-bash-scripting-if-statements/

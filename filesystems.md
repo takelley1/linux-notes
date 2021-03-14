@@ -16,13 +16,13 @@
 ### XFS
 
 - `xfs_growfs /dev/centos/var` = Expand mounted XFS filesystem (must be mounted).
- 
+
 > NOTE: XFS filesystems cannot be shrunk.
 
 #### [ext4 vs XFS](https://unix.stackexchange.com/questions/467385/should-i-use-xfs-or-ext4)
 
-> ext4 is faster on single-threaded IO and when working with many small files.
-> XFS is faster on multi-threaded IO, performs better with large files (>100MB).
+- ext4 is faster on single-threaded IO and when working with many small files.
+- XFS is faster on multi-threaded IO, performs better with large files (>100MB).
 
 
 | Filesystem features <sup>[1]</sup> | ext4 | XFS  | Btrfs | ZFS  | UFS2 | F2FS | NTFS | bcachefs | FAT32 | exFAT |

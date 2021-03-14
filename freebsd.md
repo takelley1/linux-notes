@@ -1,32 +1,40 @@
 
 ## FREEBSD
 
-| Linux command    | FreeBSD equivalent  |
-|------------------|---------------------|
-| useradd          | adduser             |
-| userdel          | rmuser              |
-| chage            | chpass              |
-| usermod -a -G    | pw groupmod         |
-| apt/yum/pacman   | pkg                 |
-| yay (Arch Linux) | portsnap/portmaster |
-
-### Jails
-
-- Use devfs_ruleset `2` to give the jail access to all the /dev devices that are on the host.
+| Linux command      | FreeBSD equivalent    |
+|--------------------|-----------------------|
+| `useradd`          | `adduser`             |
+| `userdel`          | `rmuser`              |
+| `chage`            | `chpass`              |
+| `usermod -a -G`    | `pw groupmod`         |
+| `yay (Arch Linux)` | `portsnap/portmaster` |
 
 ### Tips
+
+- **See also:**
+  - [Network tuning](https://calomel.org/freebsd_network_tuning.html)
+  - [Sysctl tuning](https://serverfault.com/questions/64356/freebsd-performance-tuning-sysctl-parameter-loader-conf-kernel)
 
 - Use `sudo -i` instead of `sudo su` to ensure root's environment variables are loaded properly.
 - If this is not done, running `crontab -e` as root won't invoke root's editor set by `$EDITOR`.
 
+#### Jails
+
+- Set `devfs_ruleset` to `2` to give the jail access to all the */dev* devices that are on the host.
+
+#### `/etc/rc.conf`
+
+- `sendmail_enable="NONE"` = fully disable sendmail.
+- `moused_nondefault_enable="NO"` = Disable moused daemon.
+
 ### Useful commands
 
-`bsdconfig` = Text-based GUI for general system configuration.
+- `bsdconfig` = Text-based GUI for general system configuration.
 
-### Misc <sup>[1]</sup>
+### Misc
+
+#### [BSDs compared](https://jameshoward.us/archive/the-bsd-family-tree/)
 
 - FreeBSD is focused on robustness and stablility
 - NetBSD is focused on portability
 - OpenBSD is focused on security
-
-[1]: https://jameshoward.us/archive/the-bsd-family-tree/
