@@ -17,6 +17,7 @@ curl -v -d \
 - **See also:**
   - [Nginx.org docs](http://nginx.org/en/docs/)
   - [Nginx.com docs](https://docs.nginx.com/)
+  - [Nginx wiki](https://www.nginx.com/resources/wiki/)
 
 Example with HTTP->HTTPS and IP->Domain redirects
 ```nginx
@@ -44,6 +45,33 @@ server {
     ssl_certificate_key /etc/nginx/certkey.pem;
 ```
 
+Minimal static HTTP webserver
+```nginx
+user              www-data;
+worker_processes      auto;
+
+events {
+  worker_connections  1024;
+}
+
+http {
+  index    index.html;
+
+  log_format   main '$remote_addr - $remote_user [$time_local]  $status '
+    '"$request" $body_bytes_sent "$http_referer" '
+    '"$http_user_agent" "$http_x_forwarded_for"';
+
+  server {
+    listen       80;
+    server_name  10.0.0.15;
+    root         /var/www/mywebsite;
+    access_log   /var/log/nginx/access.log  main;
+    # [ debug | info | notice | warn | error | crit ]
+    error_log    /var/log/nginx/error.log   error;
+    }
+  }
+```
+
 ---
 ## [REVERSE PROXY](https://en.wikipedia.org/wiki/Reverse_proxy)
 
@@ -66,7 +94,7 @@ actual HTTP response back to the client.
 
 ### [Apache](https://httpd.apache.org/docs/2.4/howto/reverse_proxy.html)
 
-```xml
+```apache
 # Full Apache reverse proxy config for a handful of apps.
   # Requires creating a separate DNS domain for admin.example.com.
     # 1 DNS A record pointing admin.example.com to the IP of the reverse proxy.
