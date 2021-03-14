@@ -87,11 +87,20 @@ curl -s wttr.in | \
 
 ### Variables
 
+- **See also:**
+  - [Shell variables in an awk script](https://stackoverflow.com/questions/19075671/how-do-i-use-shell-variables-in-an-awk-script)
+<br><br>
 - `FS`  = Input field separator regular expression, a \<SPACE\> by default.
 - `NF`  = The number of fields in the current record.
 - `NR`  = The ordinal number of the current record from the start of input.
 - `OFS` = The print statement output field separator, \<SPACE\> by default.
 - `ORS` = The print statement output record separator, a \<NEWLINE\> by default.
+<br><br>
+- Pass shell variable to awk:
+```
+myvar="Hello world!"
+awk -v myvar="${myvar}" 'BEGIN {print myvar}'`
+```
 
 ### Regex
 *(See `man 7 regex` for more info.)*
