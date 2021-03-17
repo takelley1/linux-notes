@@ -27,12 +27,12 @@
 pacman -Qi | awk -F: '/^Name/ {name=$2} /^Installed/ {gsub(/ /,"");size=$2;print size,name}' | sort -h
 ```
 
-| Repo actions compared   | yum/dnf               | apt                        | pacman                    | pkg |
-|-------------------------|-----------------------|----------------------------|---------------------------|-----|
-| Add repo x              | `yum --enablerepo=x`  | `add-apt-repository x`     | `/etc/pacman.conf`        | ?   |
-| Add third-party repo x  | `/etc/yum.repos.d/`   | `add-apt-repository ppa:x` | ?                         | ?   |
-| Show available repos    | `yum repolist all`    | `/etc/apt.sources.list`    | ?                         | ?   |
-| Show installed repos    | `yum repolist`        | `/etc/apt.sources.list`    | `/etc/pacman.conf`        | ?   |
+| Repo actions compared  | yum/dnf              | apt                        | pacman             | pkg |
+|------------------------|----------------------|----------------------------|--------------------|-----|
+| Add repo x             | `yum --enablerepo=x` | `add-apt-repository x`     | `/etc/pacman.conf` | ?   |
+| Add third-party repo x | `/etc/yum.repos.d/`  | `add-apt-repository ppa:x` | ?                  | ?   |
+| Show available repos   | `yum repolist all`   | `/etc/apt.sources.list`    | ?                  | ?   |
+| Show installed repos   | `yum repolist`       | `/etc/apt.sources.list`    | `/etc/pacman.conf` | ?   |
 
 - `-` = Not supported.
 - `?` = Unkown.

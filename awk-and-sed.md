@@ -206,7 +206,7 @@ sed \
 - `sed -n 2p`     = Print second line of input.
 - `sed 10q`       = Print first ten lines of input, emulates `head`.
 - `sed '5,10d'`   = Delete lines 5 through 10.
-- `sed 's|.||2g'  = Remove all periods, skipping the first match on each line.
+- `sed 's|.||2g'`  = Remove all periods, skipping the first match on each line.
 <br><br>
 - `sed '$d'`      = Delete the last line.
 - `sed '/^$/d'`   = Delete all blank lines.

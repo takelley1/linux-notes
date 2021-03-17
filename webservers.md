@@ -209,7 +209,7 @@ actual HTTP response back to the client.
 </VirtualHost>
 ```
 
-```xml
+```apache
 # Genric reverse proxy config using paths and load balancer.
 
 # Requests to the /bitbucket directory are proxied to a different server.

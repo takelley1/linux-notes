@@ -84,7 +84,7 @@ zfs destroy tank/storage/videos@2020-07-11__19:00__tank%2020-07-16__22:00__tank
 | `zpool add datapool mirror`      | Add new mirrored vdev to datapool                   |
 | `zpool add datapool spare`       | Add spare device to datapool                        |
 | `zpool create -n geekpool`       | Do dry run on pool creation                         |
- 
+
 | POOL INFO                  |                                             |
 |----------------------------|---------------------------------------------|
 | `zpool status -x`          | Show pool status                            |
