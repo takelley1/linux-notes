@@ -8,9 +8,10 @@
   - **Functional:** Programming with function calls that avoid any global state.
 
 
+---
 ## FRAMEWORKS AND RUNTIMES
 
-### Node.js
+### [Node.js](https://nodejs.org/en/docs/)
 
 - Released: 2009
 - Type: Runtime environment
@@ -18,7 +19,7 @@
 <br><br>
 - Runs JavaScript outside of a browser.
 
-### .NET
+### [.NET](https://dotnet.microsoft.com/)
 
 - Released:
 - Type: Framework
@@ -27,9 +28,13 @@
 
 ![comparison-of-programming-languages](images/comparison-of-programming-languages.png)
 
+---
 ## LANGUAGES
 
-### C
+- **See also**
+  - [Rosetta code](http://rosettacode.org/wiki/Rosetta_Code)
+
+### [C](https://docs.microsoft.com/en-us/cpp/c-language/?view=msvc-160)
 
 - Examples: Linux kernel
 - Paradigm:
@@ -37,15 +42,34 @@
 - Use: Systems, apps, general-purpose
 <br><br>
 
----
-### C++
+```C
+int factorial(int n) {
+    int result = 1;
+    for (int i = 1; i <= n; ++i)
+        result *= i;
+    return result;
+}
+```
 
-- Examples:
+---
+### [C++](https://docs.microsoft.com/en-us/cpp/cpp/cpp-language-reference?view=msvc-160)
+
+- Examples: Godot engine
 - Released: 1985
 - Use: Systems, apps, games
 <br><br>
 - Most 3D games are written in C++.
 - Strong focus on performance and efficiency.
+
+```C++
+long long int factorial(long long int n)
+{
+   long long int r = 1;
+   while(1<n)
+       r *= n--;
+   return r;
+}
+```
 
 ---
 ### C#
@@ -58,7 +82,7 @@
 - Heavily object-oriented compared to C or C++.
 
 ---
-### COBOL
+### [COBOL](https://www.wikiwand.com/en/COBOL)
 
 *Common Business-Oriented Language*
 
@@ -69,26 +93,26 @@
 - Mostly dead, all current work in COBOL is to maintain older apps.
 
 ```cobol
-  OPEN INPUT sales, OUTPUT report-out
-  INITIATE sales-report
+       IDENTIFICATION DIVISION.
+       FUNCTION-ID. factorial.
 
-  PERFORM UNTIL 1 <> 1
-      READ sales
-          AT END
-              EXIT PERFORM
-      END-READ
+       DATA DIVISION.
+       LOCAL-STORAGE SECTION.
+       01  i      PIC 9(10).
 
-      VALIDATE sales-record
-      IF valid-record
-          GENERATE sales-on-day
-      ELSE
-          GENERATE invalid-sales
-      END-IF
-  END-PERFORM
+       LINKAGE SECTION.
+       01  n      PIC 9(10).
+       01  ret    PIC 9(10).
 
-  TERMINATE sales-report
-  CLOSE sales, report-out
-  .
+       PROCEDURE DIVISION USING BY VALUE n RETURNING ret.
+           MOVE 1 TO ret
+
+           PERFORM VARYING i FROM 2 BY 1 UNTIL n < i
+               MULTIPLY i BY ret
+           END-PERFORM
+
+           GOBACK
+           .
 ```
 
 ---
@@ -96,7 +120,6 @@
 
 *Cascading Style Sheets*
 
-- Examples:
 - Released: 1996
 - Use: Style sheet for presentation
 <br><br>
@@ -123,17 +146,16 @@ body {
 - Oldest high-level language.
 
 ```fortran
-C     AREA OF A TRIANGLE
-      READ*,A,B,C
-      S=(A+B+C)/2
-      A=SQRT(S*(S-A)*(S-B)*(S-C))
-      PRINT*,"AREA=",A
-      STOP
-      END
+     FUNCTION FACT(N)
+     INTEGER N,I,FACT
+     FACT=1
+     DO 10 I=1,N
+  10 FACT=FACT*I
+     END
 ```
 
 ---
-### Go
+### [Go](https://golang.org/)
 
 - Examples: Docker, Ethereum, OpenShift, Kubernetes, Terraform
 - Released: 2009
@@ -144,15 +166,30 @@ C     AREA OF A TRIANGLE
 ```go
 package main
 
-import "fmt"
+import (
+    "fmt"
+    "math/big"
+)
 
 func main() {
-    fmt.Println("Hello, world!")
+    fmt.Println(factorial(800))
+}
+
+func factorial(n int64) *big.Int {
+    if n < 0 {
+        return nil
+    }
+    r := big.NewInt(1)
+    var f big.Int
+    for i := int64(2); i <= n; i++ {
+        r.Mul(r, f.SetInt64(i))
+    }
+    return r
 }
 ```
 
 ---
-### Haskell
+### [Haskell](https://www.haskell.org/)
 
 - Examples: Xmonad window manager, Git-annex
 - Released: 1990
@@ -168,7 +205,6 @@ factorial n = if n < 2
 ---
 ### HTML
 
-- Examples:
 - Released:
 - Use:
 <br><br>
@@ -208,7 +244,7 @@ public class HelloWorldApp {
 ```
 
 ---
-### JavaScript
+### [JavaScript](https://www.javascript.com/)
 
 - Examples:
 - Released: 1995
@@ -228,7 +264,7 @@ factorial(3); // returns 6
 ```
 
 ---
-### Lua
+### [Lua](https://www.lua.org/)
 
 - Examples:
 - Released: 1993
@@ -282,6 +318,18 @@ end
 - Popular in the 1970s and 80s.
 - Replaced by C and C++
 
+```pascal
+function factorial(n: integer): integer;
+ var
+  i, result: integer;
+ begin
+  result := 1;
+  for i := 2 to n do
+   result := result * i;
+  factorial := result
+ end;
+```
+
 ---
 ### Perl and Raku
 
@@ -297,15 +345,28 @@ end
 - Popular as a "glue language".
 - Perceived to be inelegant due to its unplanned development.
 
+```perl
+sub factorial
+{
+  my $n = shift;
+  my $result = 1;
+  for (my $i = 1; $i <= $n; ++$i)
+  {
+    $result *= $i;
+  };
+  $result;
+}
+```
+
 ---
 ### PHP
 
-- Examples:
+- Examples: Zabbix, PfSense, OPNSense
 - Released:
 - Use:
 
 ---
-### Python
+### [Python](https://www.python.org/)
 
 - Examples: Ansible, Openstack, Blender, Ranger file browser
 - Paradigm: Multi-paradigm, but [leans towards object-oriented](https://www.coursereport.com/blog/ruby-vs-python-choosing-your-first-programming-language)
@@ -317,21 +378,19 @@ end
 - Good first language.
 
 ```python
-# computing a factorial
 n = 23
 fact = 1
 
 for i in range(1,n+1):
     fact = fact * i
 
-print ("The factorial of 23 is : ",end="")
 print (fact)
 ```
 
 ---
-### Ruby
+### [Ruby](https://www.ruby-lang.org/en/)
 
-- Examples: Puppet, Chef, Ruby on Rails, Homebrew, Metasploit
+- Examples: Puppet, Chef, Ruby on Rails, Homebrew, Metasploit, Vagrant
 - Paradigm: Strictly object-oriented
 - Released: 1995
 - Use: General-purpose, scripting
@@ -350,9 +409,9 @@ end
 ```
 
 ---
-### Rust
+### [Rust](https://www.rust-lang.org/)
 
-- Examples: Alacritty terminal, Firefox's Servo engine
+- Examples: Ripgrep, Alacritty terminal, Firefox's Servo engine
 - Released: 2010
 - Use:
 <br><br>
@@ -360,16 +419,29 @@ end
 - One of the most loved languages in StackOverflow's developer survey.
 
 ```rust
-fn factorial(i: u64) -> u64 {
-    match i {
+fn factorial_recursive (n: u64) -> u64 {
+    match n {
         0 => 1,
-        n => n * factorial(n-1)
+        _ => n * factorial_recursive(n-1)
+    }
+}
+
+fn factorial_iterative(n: u64) -> u64 {
+    (1..=n).product()
+}
+
+fn main () {
+    for i in 1..10 {
+        println!("{}", factorial_recursive(i))
+    }
+    for i in 1..10 {
+        println!("{}", factorial_iterative(i))
     }
 }
 ```
 
 ---
-### Scala
+### [Scala](https://scala-lang.org/)
 
 - Examples:
 - Released:
