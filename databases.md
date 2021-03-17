@@ -1,8 +1,5 @@
 
-## MARIADB / MYSQL
-
-- **See also**:
-  - [MariaDB docs](https://mariadb.com/kb/en/training-tutorials/)
+## [MARIADB](https://mariadb.com/kb/en/training-tutorials/)
 
 ### Shell
 
@@ -50,10 +47,7 @@ safe_to_bootstrap: 0
 - If `show status like 'wsrep_cluster_size';` shows the incorrect node number, [reboot the node that doesn't agree with the others -- don't just restart the service.](https://www.symmcom.com/docs/how-tos/databases/how-to-recover-mariadb-galera-cluster-after-partial-or-full-crash)
 
 ---
-## POSTGRES
-
-- **See also**:
-  - [Postgres docs](https://www.postgresql.org/docs/)
+## POSTGRES(https://www.postgresql.org/docs/)
 
 ### Shell
 

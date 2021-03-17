@@ -1,5 +1,5 @@
 
-## DOCKER
+## [DOCKER](https://docs.docker.com/)
 
 ### Building
 
@@ -30,9 +30,8 @@
 ```
 
 ---
-## PODMAN
+## [PODMAN](https://docs.podman.io/en/latest/#)
 
 - **See also:**
-  - [Podman docs](https://docs.podman.io/en/latest/#)
   - [Podman networking](https://www.redhat.com/sysadmin/container-networking-podman)
   - [Moving from Docker to Podman](https://www.redhat.com/sysadmin/compose-podman-pods)

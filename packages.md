@@ -2,6 +2,7 @@
 ## PACKAGE MANAGERS
 
 - **See also**:
+  - [Pacman rosetta](https://wiki.archlinux.org/index.php/Pacman/Rosetta)
   - [Comparison of package managers](https://fusion809.github.io/comparison-of-package-managers/)
 
 | Package managers compared         | yum/dnf (rpm files)            | apt (deb files)             | pacman (tgz, ztd files)       | pkg                             |

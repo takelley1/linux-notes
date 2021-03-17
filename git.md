@@ -1,9 +1,9 @@
 
-## [GIT](https://education.github.com/git-cheat-sheet-education.pdf)
+## [Git](https://git-scm.com/docs)
 
 **See also:**
-  - [The git book](https://git-scm.com/book/en/v2)
-  - [Git fundamentals](https://git-scm.com/docs)
+  - [The Git book](https://git-scm.com/book/en/v2)
+  - [Git cheat sheet](https://education.github.com/git-cheat-sheet-education.pdf)
 
 ### Tips
 
@@ -17,10 +17,7 @@
 - `git add -u` = Stage all modified files.
 
 ---
-### Tags
-
-- **See also:**
-  - [Git basics - tagging](https://git-scm.com/book/en/v2/Git-Basics-Tagging)
+### [Tags](https://git-scm.com/book/en/v2/Git-Basics-Tagging)
 
 *Tag specific commits to release your software.*
 

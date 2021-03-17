@@ -41,7 +41,7 @@ ldapsearch -u \
 ### Integration
 
 - **See also:**
-  - [inux integration with windows](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/7/html-single/windows_integration_guide/#sssd-ad-proc)
+  - [Linux integration with windows](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/7/html-single/windows_integration_guide/#sssd-ad-proc)
 
 ```bash
 net ads testjoin

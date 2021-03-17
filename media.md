@@ -1,10 +1,7 @@
 
 ## VIDEO
 
--**See also:**
-  - [ffmpeg docs](https://ffmpeg.org/ffmpeg.html)
-
-### ffmpeg
+### [ffmpeg](https://ffmpeg.org/ffmpeg.html)
 
 - `mediainfo input.mp4` or `ffprobe input.mp4` = Get info on video.
 <br><br>

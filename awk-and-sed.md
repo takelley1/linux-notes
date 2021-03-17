@@ -1,9 +1,8 @@
 
-## AWK
+## [AWK](https://www.gnu.org/software/gawk/manual/gawk.html)
 
 - **See also**:
   - [AWK one-liners explained](https://catonmat.net/awk-one-liners-explained-part-one)
-  - [GAWK manual](https://www.gnu.org/software/gawk/manual/)
   - [AWK cheat sheet](https://catonmat.net/ftp/awk.cheat.sheet.pdf)
 
 ### Examples
@@ -157,7 +156,7 @@ awk -v myvar="${myvar}" 'BEGIN {print myvar}'`
 
 
 ---
-## SED
+## [SED](https://www.gnu.org/software/sed/manual/sed.html)
 
 - **See also**:
   - [Sed introduction](https://www.grymoire.com/Unix/Sed.html)
@@ -275,7 +274,7 @@ ifconfig ens32 | grep "inet" | grep –v "inet6" | tr –s " " ":" | cut –f 3 
 - `[!xyz]` = Negation of xyz (any characters NOT in the set of *xyz*).
 
 ---
-## GREP
+## [GREP](https://www.gnu.org/software/grep/manual/grep.html)
 
 ### Examples
 

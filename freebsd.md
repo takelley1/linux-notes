@@ -1,6 +1,10 @@
 
-## FREEBSD
+## [FREEBSD](https://www.freebsd.org/)
 
+- **See also:**
+  - [FreeBSD handbook](https://docs.freebsd.org/en/books/handbook/)
+  - [FreeBSD wiki](https://wiki.freebsd.org/FrontPage)
+  - [Recommended steps for new FreeBSD servers](https://www.digitalocean.com/community/tutorials/recommended-steps-for-new-freebsd-12-0-servers)
 | Linux command      | FreeBSD equivalent    |
 |--------------------|-----------------------|
 | `useradd`          | `adduser`             |
@@ -18,11 +22,11 @@
 - Use `sudo -i` instead of `sudo su` to ensure root's environment variables are loaded properly.
 - If this is not done, running `crontab -e` as root won't invoke root's editor set by `$EDITOR`.
 
-#### Jails
+#### [Jails](https://docs.freebsd.org/en/books/handbook/jails/)
 
 - Set `devfs_ruleset` to `2` to give the jail access to all the */dev* devices that are on the host.
 
-#### `/etc/rc.conf`
+#### /etc/rc.conf
 
 - `sendmail_enable="NONE"` = fully disable sendmail.
 - `moused_nondefault_enable="NO"` = Disable moused daemon.

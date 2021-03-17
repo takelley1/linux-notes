@@ -1,5 +1,5 @@
 
-## FIREWALLD
+## [FIREWALLD](https://firewalld.org/documentation/)
 
 - **See also:**
   - [Using Firewalld on CentOS 7](https://www.digitalocean.com/community/tutorials/how-to-set-up-a-firewall-using-firewalld-on-centos-7)
@@ -207,7 +207,7 @@ recipient@example.com                        # This is the 'to' field of the ema
 
 
 ---
-## WGET
+## [WGET](https://www.gnu.org/software/wget/manual/wget.html)
 
 ```bash
 wget                            \
