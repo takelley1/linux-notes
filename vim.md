@@ -3,7 +3,8 @@
 
 **See also:**
   - [Learn Vimscript the hard way](https://learnvimscriptthehardway.stevelosh.com/)
-  - [Daniel Messler on vim](https://danielmiessler.com/study/vim/)
+  - [Daniel Messler on vim](https://danielmiessler.com/study/vim
+  - [Vimdiff cheat sheet](https://gist.github.com/mattratleph/4026987)
 
 ### Tips
 - `:put =execute('highlight')` = Place the output of *highlight* in the current buffer, making searching easier.
