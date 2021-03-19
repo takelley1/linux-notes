@@ -6,6 +6,7 @@
   - [Daniel Messler on vim](https://danielmiessler.com/study/vim/)
 
 ### Tips
+- `syntime on`, `syntime report` = Debug syntax highlighting slowness.
 - `:put =execute('highlight')` = Place the output of *highlight* in the current buffer, making searching easier.
 - `@@` = Repeat last macro.
 - `nvim -S /path/to/session.vim` = Start with session file.
