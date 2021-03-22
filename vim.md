@@ -3,10 +3,15 @@
 
 **See also:**
   - [Learn Vimscript the hard way](https://learnvimscriptthehardway.stevelosh.com/)
-  - [Daniel Messler on vim](https://danielmiessler.com/study/vim
+  - [Daniel Messler on vim](https://danielmiessler.com/study/vim)
   - [Vimdiff cheat sheet](https://gist.github.com/mattratleph/4026987)
 
 ### Tips
+
+- `:%s/xxx/yyy/g`       = [Replace *xxx* with *yyy* in entire file.](https://vim.fandom.com/wiki/Search_and_replace)
+- `:'<,'>s/xxx/yyy/g`   = Replace *xxx* with *yyy* within the selection.
+- `:g/^x/d`             = [Delete all lines beginning with *x* (remove */d* to show lines it will delete).](https://vim.fandom.com/wiki/Delete_all_lines_containing_a_pattern)
+<br><br>
 - `:put =execute('highlight')` = Place the output of *highlight* in the current buffer, making searching easier.
 - `@@` = Repeat last macro.
 - `nvim -S /path/to/session.vim` = Start with session file.
@@ -19,7 +24,7 @@
 - `zA`         = Open all folds.
 - `za`         = Toggle current fold.
 <br><br>
-- :!sed '/$^d/' = Delete blank lines from selection.
+- `:!sed '/$^/d'` = Delete blank lines from selection.
 - [Use `;` to repeat a single-line search made with `f` or `t`.](https://github.com/iggredible/Learn-Vim/blob/master/ch05_moving_in_file.md#current-line-navigation)
 - `:tabm 1`  = [Move current tab to position 1.](https://stackoverflow.com/questions/7961581/is-there-a-vim-command-to-relocate-a-tab)
 - `g+CTRL-g` = [Show word count of selection.](https://vim.fandom.com/wiki/Word_count)
@@ -37,10 +42,6 @@
 - `:nohl`               = Turn off match highlighting (after string search).
 - `:sort`               = Sort text.
 - `:retab`              = Replace tabs with spaces in file.
-<br><br>
-- `:%s/xxx/yyy/g`       = Replace *xxx* with *yyy* in entire file.
-- `:'<,'>s/xxx/yyy/g`   = Replace *xxx* with *yyy* within the selection.
-- `:g/^x/d`             = Delete all lines beginning with *x*.
 <br><br>
 - `:q` (*quit*)         = Exit file.
 - `:q!`                 = Force exit file.
