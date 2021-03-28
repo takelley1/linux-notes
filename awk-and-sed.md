@@ -7,25 +7,19 @@
 
 ### Examples
 
-Print all interactive users.
+Print all interactive users from */etc/passwd*:
 ```bash
 awk -F: \
   '
-  # Look for lines that don't contain the following:
-  # Contains "nologin"
-  # First non-whitespace character is a "#" (^\s*#)
-  # Last non-whitespace character is a ":" (:\s*$)
-  ! /nologin|^\s*#|:\s*$/
-
-  # If the user's UID is over 1000, print the username.
-  {if($3>1000) print $1
-
-  # Otherwise if the user's UID is 0 (i.e. root), print the username.
-  else if($3==0) print $1}
-  ' \
+  # Look for lines that do NOT contain the following:
+    # "nologin"
+    # First non-whitespace character is a "#" (^\s*#)
+    # Last non-whitespace character is a ":" (:\s*$)
+  # If the user UID is 0 (i.e. root) or over 1000, print the username.
+  !/nologin|^\s*#|:\s*$/ && ($3==0||$3>1000) \
+  {print $1}' \
   /etc/passwd
 
-awk -F: '!/nologin|^\s*#|:$/ {if($3>1000)print $1;else if($3==0)print $1}' /etc/passwd
 ```
 
 Create SSH aliases from Ansible inventory file:
@@ -46,6 +40,7 @@ awk \
   # Put it all together.
   {ip=$2;print "Host " host "\n\t HostName " ip}'
   ./ansible/hosts.yml >> ~/.ssh/config
+awk -F: '!/nologin|^\s*#|:$/ && ($3==0||$3>1000){print $1}' /etc/passwd
 ```
 
 List pacman packages by size:
@@ -53,8 +48,7 @@ List pacman packages by size:
 pacman -Qi | \
   awk -F: \
     '/^Name/ {name=$2}
-     /^Installed/ {gsub(/ /,"");size=$2;
-     print size,name}' \
+     /^Installed/ {gsub(/ /,"");size=$2; print size,name}' \
   | sort -h`
 
 pacman -Qi | awk -F: '/^Name/ {name=$2} /^Installed/ {gsub(/ /,"");size=$2; print size,name}' | sort -h`
@@ -69,14 +63,14 @@ curl -s wttr.in | \
      /\.\./ {if(NR==4) print weather1, weather2, "("$5, $6")"}' \
 ```
 
-- `awk 'NF > 0 {blank=0} NF == 0 {blank++} blank < 2'`       = Remove consecutive blank lines, emulates `cat -s`.
+- `awk 'NF>0 {blank=0} NF==0 {blank++} blank < 2'`           = Remove consecutive blank lines, emulates `cat -s`.
 <br><br>
 - `awk '/foo/ {gsub(/abc/,""); gsub(/[0-9]/,""); print $1}'` = Print 1st field of lines that contain *foo*, remove *abc* and all numbers from output.
 - `awk '/([0-9]{1,3}\.){1,3}[0-9]{1,3}/ {print $3}'`         = Print 3rd field of lines that contain IP-address-like strings in input.
-- `ip -4 -br a | awk '! /127\.0\.0/ {gsub(/\/[0-9]{1,2}/,""); print $3}'` = Print the primary IP address, without the subnet mask.
+- `ip -4 -br a | awk '!/127\.0\.0/ {gsub(/\/[0-9]{1,2}/,""); print $3}'` = Print the primary IP address, without the subnet mask.
 <br><br>
-- `awk -F: '/:[1-4][0-9]{3}/ {print $6}' /etc/passwd`      = Print the home directories of all interactive users.
-- `awk -F: '! /\/sbin\/nologin/ {print $1}' /etc/passwd`   = Print users who don't use */sbin/nologin* as their shell.
+- `awk -F: '/:[1-4][0-9]{3}/ {print $6}' /etc/passwd`     = Print the home directories of all interactive users.
+- `awk -F: '!/\/sbin\/nologin/ {print $1}' /etc/passwd`   = Print users who don't use */sbin/nologin* as their shell.
 <br><br>
 - `awk '{if(NR>2) print $0}'`  = Print all but the first two lines.
 - `awk 'END{print $0}'`        = Print the last line, emaultes `tail -1`.
@@ -257,7 +251,7 @@ sed \
 Filter out only the host's primary IPv4 address:
 ```bash
 # Good:
-ip -4 -br a | awk '! /127\.0\.0/ {gsub(/\/[0-9]{1,2}/,""); print $3}'
+ip -4 -br a | awk '!/127\.0\.0/ {gsub(/\/[0-9]{1,2}/,""); print $3}'
 # Bad:
 ifconfig ens32 | grep "inet" | grep –v "inet6" | tr –s " " ":" | cut –f 3 –d ":"
 ```
