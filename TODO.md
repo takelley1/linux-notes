@@ -1,6 +1,7 @@
+- all: add links to documentation on each section's header
 - cryptography: fill out FIDO U2F section
 - cryptography: length extension attacks
-- languages: Tcl, Vala, Crystal
+- languages: Tcl, Vala, Crystal, Nim, Elm
 - networking: fill out MONITORING section
 - new file: add pam syntax
 - processes: add image for 'top' command
