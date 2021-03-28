@@ -20,26 +20,6 @@ awk -F: \
   {print $1}' \
   /etc/passwd
 
-```
-
-Create SSH aliases from Ansible inventory file:
-```bash
-awk \
-  '
-  # Look for hostname-like strings.
-  /[a-zA-Z]*:$/
-
-  # Chop off the domain suffix, remove extraneous characters.
-  # Force lowercase names, change the field separator back to default.
-  {FS=".";gsub(/[\t| |:]/,"");
-  host=tolower($1);FS=" "}
-
-  # Look for the host IP, Ignore commented-out lines.
-  /^\s*[^#]*ansible_host/
-
-  # Put it all together.
-  {ip=$2;print "Host " host "\n\t HostName " ip}'
-  ./ansible/hosts.yml >> ~/.ssh/config
 awk -F: '!/nologin|^\s*#|:$/ && ($3==0||$3>1000){print $1}' /etc/passwd
 ```
 
