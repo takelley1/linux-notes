@@ -1,11 +1,9 @@
 
-## SSH
+## [SSH](https://www.openssh.com/manual.html)
 
 - **See also:**
   - [SSH essentials](https://www.digitalocean.com/community/tutorials/ssh-essentials-working-with-ssh-servers-clients-and-keys)
-  - [authorized_keys vs known_hosts](https://security.stackexchange.com/questions/20706/what-is-the-difference-between-authorized-keys-and-known-hosts-file-for-ssh)
-  - [sshd_config man page](https://www.freebsd.org/cgi/man.cgi?sshd_config(5))
-  - [ssh-keygen best practices](https://security.stackexchange.com/questions/143442/what-are-ssh-keygen-best-practices)
+  - [sshd_config man page](https://www.freebsd.org/cgi/man.cgi?sshd_config(5)
 
 ### [Connection process](https://www.digitalocean.com/community/tutorials/understanding-the-ssh-encryption-and-connection-process)
 
@@ -24,7 +22,7 @@
    6. Client sends the MD5 digest to server.
    7. Server compares its MD5 digest to client's MD5 digest. If they match, the requested user is authenticated.
 
-### [Key generation best-practices](https://stribika.github.io/2015/01/04/secure-secure-shell.html)
+### [Key generation best-practices](https://security.stackexchange.com/questions/143442/what-are-ssh-keygen-best-practices)
 
 ```
 ssh-keygen -t ed25519 -o -a 100
@@ -33,6 +31,9 @@ ssh-keygen -t rsa -b 4096 -o -a 100
 
 ### [Files](https://www.techrepublic.com/article/the-4-most-important-files-for-ssh-connections/)
 
+- **See also:**
+  - [authorized_keys vs known_hosts](https://security.stackexchange.com/questions/20706/what-is-the-difference-between-authorized-keys-and-known-hosts-file-for-ssh)
+<br><br>
 - `~/.ssh/id_rsa`
   - Kept on the client.
   - This is the private key of the client. It is *always* kept on the client and is used to decrypt authentication
