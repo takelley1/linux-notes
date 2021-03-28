@@ -40,7 +40,9 @@ curl -s wttr.in | \
   awk \
     '{if(NR==3) weather1=$4}
      {if(NR==3) weather2=$5}
-     /\.\./ {if(NR==4) print weather1, weather2, "("$5, $6")"}' \
+     /\.\./ {if(NR==4) print weather1, weather2, "("$5, $6")"}'
+```
+
 Reformat a log file:
 ```bash
 gawk -F$'\t' \
@@ -69,11 +71,12 @@ printf ("%s | %s %s | %-7s %-3s | %s | %s\n", time, group, source, http_method, 
 - `awk -F: '/:[1-4][0-9]{3}/ {print $6}' /etc/passwd`     = Print the home directories of all interactive users.
 - `awk -F: '!/\/sbin\/nologin/ {print $1}' /etc/passwd`   = Print users who don't use */sbin/nologin* as their shell.
 <br><br>
-- `awk '{if(NR>2) print $0}'`  = Print all but the first two lines.
-- `awk 'END{print $0}'`        = Print the last line, emaultes `tail -1`.
-- `awk '{if(NR==1) print $0}'` = Print the first two lines, emulates `head -1`.
-- `awk 'NF > 0'`               = Remove blank lines quickly.
-- `awk '!/^$/ {print $1}'`     = Remove blank lines while using print statement.
+- `awk 'NR>2'`          = Print all but the first two lines.
+- `awk 'NR==1'`         = Print the first line, emulates `head -1`.
+- `awk 'NF>0'`          = Remove blank lines quickly (i.e. print lines with at least one field).
+- `awk 'END{print}'`    = Print the last line, emaultes `tail -1` (*{print}* is the same as *{print $0}*).
+- `awk 'END{print NR}'` = Print the number of lines, emaultes `wc -l`.
+- `awk 'length($0)>80'` = Print lines longer than 80 characters.
 
 ### Variables
 
