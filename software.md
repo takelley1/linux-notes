@@ -1,5 +1,8 @@
+## ZABBIX
 
-## VSPHERE
+- `zabbix_proxy -R config_cache_reload` = Reload Zabbix proxy configuration without restarting service.
+
+## VSPHERE / VMWARE
 
 `Actions -> Edit Settings -> VM Options -> VMWare Remote Console Options` = Edit max number of connected console sessions for a guest.
 
