@@ -11,7 +11,7 @@
 
 ### Examples
 
-Extending */var* XFS filesystem with LVM:
+Extending */var* XFS filesystem by 127,999 extents with LVM:
 ```bash
 1. fdisk /dev/sdb                      # Create partition from new disk.
 2. pvcreate /dev/sdb1                  # Create a physical volume from the new partition.
@@ -90,7 +90,14 @@ Extending */var* XFS filesystem with LVM:
 - `7za x myarchive.7z` = Extract *myarchive.7z* to current path (DO NOT USE THE 'e' SWITCH, USE 'x' INSTEAD TO PRESERVE FILEPATHS).
 <br><br>
 - `7za a -mx=10 myarchive.7z dir1/ dir2/` = Create *myarchive.7z* from *dir1* and *dir2*.
-  - `-mx=10` = Use compression lvl 10.
+  - `-mx=9` = Use max compression level.
+  - `-myx=9` = Use max analysis level.
+
+[Settings for maximum compression:](https://superuser.com/a/1449735)
+```bash
+7z a -t7z -mx=9 -mfb=273 -ms -md=31 -myx=9 -mtm=- -mmt -mmtf -md=1536m -mmf=bt3 -mmc=10000 -mpb=0 -mlc=0 \
+archive.7z dir/
+```
 
 
 ---
