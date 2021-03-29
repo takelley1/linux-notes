@@ -77,7 +77,7 @@ Computer Configuration > Windows Settings > Security Settings > Local Policies >
 - `winrm set winrm/config/service '@{AllowUnencrypted="true"}'` = Allow transfer of unencrypted data on the WinRM service.
 - `winrm set winrm/config/service/auth '@{CbtHardeningLevel="relaxed"}'` = Change challenge binding.
 <br><br>
-- `winrm delete winrm/config/Listener?Address=*+Transport=HTTPS` = [Delete HTTPS listener.](https://www.nicovs.be/?p=399)
+- `winrm delete winrm/config/listener?address=*+transport=https` = [Delete HTTPS listener.](https://www.nicovs.be/?p=399)
 
 ### WinRM Client
 
