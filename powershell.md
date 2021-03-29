@@ -63,6 +63,7 @@ Computer Configuration > Windows Settings > Security Settings > Local Policies >
 4. Is Basic Authentication allowed? `winrm set winrm/config/service/auth '@{Basic="true"}'`
 5. Is encryption disabled? `winrm set winrm/config/service '@{AllowUnencrypted="true"}'`
 6. Is the Windows Defender firewall disabled? Does it allow WinRM?
+7. Does the HTTPS listener's certificate match the server's hostname?
 
 #### Query
 - `winrm e winrm/config/listener` = Check if running, get ports.
@@ -75,6 +76,8 @@ Computer Configuration > Windows Settings > Security Settings > Local Policies >
 - `winrm set winrm/config/service/auth '@{Basic="true"}'` =  Enable basic authentication on the WinRM service.
 - `winrm set winrm/config/service '@{AllowUnencrypted="true"}'` = Allow transfer of unencrypted data on the WinRM service.
 - `winrm set winrm/config/service/auth '@{CbtHardeningLevel="relaxed"}'` = Change challenge binding.
+<br><br>
+- `winrm delete winrm/config/Listener?Address=*+Transport=HTTPS` = [Delete HTTPS listener.](https://www.nicovs.be/?p=399)
 
 ### WinRM Client
 
