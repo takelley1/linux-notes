@@ -3,7 +3,8 @@
 
 - **See also:**
   - [SSH essentials](https://www.digitalocean.com/community/tutorials/ssh-essentials-working-with-ssh-servers-clients-and-keys)
-  - [sshd_config man page](https://www.freebsd.org/cgi/man.cgi?sshd_config(5)
+  - [sshd_config man page](https://www.freebsd.org/cgi/man.cgi?sshd_config(5))
+  - [SSH jump hosts](https://wiki.gentoo.org/wiki/SSH_jump_host)
 
 ### [Connection process](https://www.digitalocean.com/community/tutorials/understanding-the-ssh-encryption-and-connection-process)
 
