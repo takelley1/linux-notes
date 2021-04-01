@@ -14,7 +14,7 @@
 | Show package x info               | `yum info x`                   | `apt-cache show x`          | `pacman -Qi x`                | `pkg info x`                    |
 | Show package x's dependencies     | ?                              | ?                           | `pacman -Qi x`                | `pkg query %do x`               |
 | Show packages that depend on x    | ?                              | ?                           | `pacman -Qi x`                | `pkg query %ro x`               |
-| Install package group x           | `yum groupinstall x`           | ?                           | `pacman -S x`                 | -                               |
+| Install package group x           | `yum groupinstall 'x'`         | ?                           | `pacman -S x`                 | -                               |
 | Show package groups               | `yum group list`               | ?                           | `pacman -Qg`                  | -                               |
 | Remove orphaned packages          | -                              | `apt autoremove`            | `pacman -Rns $(pacman -Qdtq)` | `pkg autoremove`                |
 | Show update history               | `yum history list all`         | `/var/log/apt/history.log`  | `/var/log/pacman.log`         | `/var/log/messages`             |
