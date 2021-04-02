@@ -1,5 +1,8 @@
 
 ## [MARIADB](https://mariadb.com/kb/en/training-tutorials/)
+- **See also**
+  - [MariaDB performance tuning](https://mariadb.com/kb/en/server-system-variables/)
+  - [MySQLTuner script](https://github.com/major/MySQLTuner-perl)
 
 ### Shell
 
