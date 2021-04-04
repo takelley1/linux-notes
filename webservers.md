@@ -30,8 +30,8 @@ curl -v -d \
     - [error_log](http://nginx.org/en/docs/ngx_core_module.html#error_log)
     - [autoindex](http://nginx.org/en/docs/http/ngx_http_autoindex_module.html)
     - [log_format](http://nginx.org/en/docs/http/ngx_http_log_module.html#log_format)
-    - [listen](http://nginx.org/en/docs/http/ngx_http_core_module.html#listen)
     - [server_name](http://nginx.org/en/docs/http/ngx_http_core_module.html#server_name)
+    - [root](http://nginx.org/en/docs/http/ngx_http_core_module.html#root)
 ```nginx
 user              www-data;
 worker_processes      auto;
@@ -46,7 +46,6 @@ http {
                       '"$request" $body_bytes_sent "$http_referer" '
                       '"$http_user_agent" "$http_x_forwarded_for"';
   server {
-    listen       80;
     server_name  10.0.0.15;
     root         /var/www/mywebsite;
   }
@@ -55,6 +54,7 @@ http {
 
 - Server with *HTTP->HTTPS* and *IP->Domain* redirects
   - Configration directives used:
+    - [listen](http://nginx.org/en/docs/http/ngx_http_core_module.html#listen)
     - [return](http://nginx.org/en/docs/http/ngx_http_rewrite_module.html#return)
     - [ssl_certificate](http://nginx.org/en/docs/http/ngx_http_ssl_module.html#ssl_certificate)
 ```nginx
