@@ -18,6 +18,7 @@ curl -v -d \
   - [Nginx.org docs](http://nginx.org/en/docs/)
   - [Nginx.com docs](https://docs.nginx.com/)
   - [Nginx wiki](https://www.nginx.com/resources/wiki/)
+  - [Nginx file structure](https://www.digitalocean.com/community/tutorials/understanding-the-nginx-configuration-file-structure-and-configuration-contexts)
 
 Example with HTTP->HTTPS and IP->Domain redirects
 ```nginx
