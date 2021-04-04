@@ -36,15 +36,18 @@ curl -v -d \
 user              www-data;
 worker_processes      auto;
 
+events {}
+
 http {
+  log_format     main '$remote_addr - $remote_user [$time_local]  $status '
+                      '"$request" $body_bytes_sent "$http_referer" '
+                      '"$http_user_agent" "$http_x_forwarded_for"';
+
   access_log          /var/log/nginx/access.log  main;
   error_log           /var/log/nginx/error.log   error;
   autoindex           on;
   autoindex_localtime on;
 
-  log_format     main '$remote_addr - $remote_user [$time_local]  $status '
-                      '"$request" $body_bytes_sent "$http_referer" '
-                      '"$http_user_agent" "$http_x_forwarded_for"';
   server {
     server_name  10.0.0.15;
     root         /var/www/mywebsite;
