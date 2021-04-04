@@ -19,18 +19,50 @@ curl -v -d \
   - [Nginx.com docs](https://docs.nginx.com/)
   - [Nginx wiki](https://www.nginx.com/resources/wiki/)
   - [Nginx file structure](https://www.digitalocean.com/community/tutorials/understanding-the-nginx-configuration-file-structure-and-configuration-contexts)
-
-Example with HTTP->HTTPS and IP->Domain redirects
+<br><br>
+- Minimal static HTTP webserver
+  - Configration directives used:
+    - [user](http://nginx.org/en/docs/ngx_core_module.html#user)
+    - [worker_processes](http://nginx.org/en/docs/ngx_core_module.html#worker_processes)
+    - [access_log](http://nginx.org/en/docs/http/ngx_http_log_module.html#access_log)
+    - [error_log](http://nginx.org/en/docs/ngx_core_module.html#error_log)
+    - [autoindex](http://nginx.org/en/docs/http/ngx_http_autoindex_module.html)
+    - [log_format](http://nginx.org/en/docs/http/ngx_http_log_module.html#log_format)
+    - [listen](http://nginx.org/en/docs/http/ngx_http_core_module.html#listen)
+    - [server_name](http://nginx.org/en/docs/http/ngx_http_core_module.html#server_name)
 ```nginx
-server {
-    # Redirect HTTP IP and HTTPS domain to HTTPS domain.
+user              www-data;
+worker_processes      auto;
+
+http {
+  access_log          /var/log/nginx/access.log  main;
+  error_log           /var/log/nginx/error.log   error;
+  autoindex           on;
+  autoindex_localtime on;
+
+  log_format     main '$remote_addr - $remote_user [$time_local]  $status '
+                      '"$request" $body_bytes_sent "$http_referer" '
+                      '"$http_user_agent" "$http_x_forwarded_for"';
+  server {
+    listen       80;
+    server_name  10.0.0.15;
+    root         /var/www/mywebsite;
+  }
+}
+```
+
+- Server with *HTTP->HTTPS* and *IP->Domain* redirects
+  - Configration directives used:
+    - [return](http://nginx.org/en/docs/http/ngx_http_rewrite_module.html#return)
+    - [ssl_certificate](http://nginx.org/en/docs/http/ngx_http_ssl_module.html#ssl_certificate)
+```nginx
+server { # Redirect HTTP IP and HTTPS domain to HTTPS domain.
     listen               80;
     server_name          _;
     return 301           https://domain.example.com$request_uri;
 }
 
-server {
-    # Redirect HTTPS IP to HTTPS domain.
+server { # Redirect HTTPS IP to HTTPS domain.
     listen               443 ssl;
     server_name          10.0.0.5;
     ssl_certificate      /etc/nginx/cert.pem;
@@ -38,48 +70,11 @@ server {
     return 301           https://domain.example.com$request_uri;
 }
 
-server {
-    # HTTPS domain.
+server { # HTTPS domain.
     listen               443 ssl;
     server_name          domain.example.com;
     ssl_certificate      /etc/nginx/cert.pem;
     ssl_certificate_key  /etc/nginx/certkey.pem;
-}
-```
-
-- Minimal static HTTP webserver
-  - Configration directives used:
-    - [user](http://nginx.org/en/docs/ngx_core_module.html#user)
-    - [worker_processes](http://nginx.org/en/docs/ngx_core_module.html#worker_processes)
-    - [worker_connections](http://nginx.org/en/docs/ngx_core_module.html#worker_connections)
-    - [access_log](http://nginx.org/en/docs/http/ngx_http_log_module.html#access_log)
-    - [error_log](http://nginx.org/en/docs/ngx_core_module.html#error_log)
-    - [autoindex](http://nginx.org/en/docs/http/ngx_http_autoindex_module.html)
-    - [log_format](http://nginx.org/en/docs/http/ngx_http_log_module.html#log_format)
-```nginx
-user              www-data;
-worker_processes      auto;
-
-events {
-  worker_connections  1024;
-}
-
-http {
-  index               index.html;
-  access_log          /var/log/nginx/access.log  main;
-  # debug, info, notice, warn, error, crit, alert, or emerg.
-  error_log           /var/log/nginx/error.log   error;
-  autoindex           on;
- 	autoindex_localtime on;
-
-  log_format   main '$remote_addr - $remote_user [$time_local]  $status '
-                    '"$request" $body_bytes_sent "$http_referer" '
-                    '"$http_user_agent" "$http_x_forwarded_for"';
-  server {
-    listen       80;
-    server_name  10.0.0.15;
-    root         /var/www/mywebsite;
-  }
 }
 ```
 
