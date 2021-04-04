@@ -19,6 +19,8 @@ curl -v -d \
   - [Nginx.com docs](https://docs.nginx.com/)
   - [Nginx wiki](https://www.nginx.com/resources/wiki/)
   - [Nginx file structure](https://www.digitalocean.com/community/tutorials/understanding-the-nginx-configuration-file-structure-and-configuration-contexts)
+  - [Nginx performance tuning](https://www.digitalocean.com/community/tutorials/how-to-optimize-nginx-configuration)
+  - [Nginx security tuning](https://www.upguard.com/blog/how-to-build-a-tough-nginx-server-in-15-steps)
 <br><br>
 - Minimal static HTTP webserver
   - Configration directives used:
@@ -56,7 +58,7 @@ http {
     - [return](http://nginx.org/en/docs/http/ngx_http_rewrite_module.html#return)
     - [ssl_certificate](http://nginx.org/en/docs/http/ngx_http_ssl_module.html#ssl_certificate)
 ```nginx
-server { # Redirect HTTP IP and HTTPS domain to HTTPS domain.
+server { # Redirect HTTP IP/domain to HTTPS domain.
     listen               80;
     server_name          _;
     return 301           https://domain.example.com$request_uri;
