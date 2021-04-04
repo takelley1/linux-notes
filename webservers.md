@@ -65,24 +65,20 @@ events {
 }
 
 http {
-  index    index.html;
+  index               index.html;
+  access_log          /var/log/nginx/access.log  main;
+  # debug, info, notice, warn, error, crit, alert, or emerg.
+  error_log           /var/log/nginx/error.log   error;
+  autoindex           on;
+ 	autoindex_localtime on;
 
   log_format   main '$remote_addr - $remote_user [$time_local]  $status '
-    '"$request" $body_bytes_sent "$http_referer" '
-    '"$http_user_agent" "$http_x_forwarded_for"';
-
+                    '"$request" $body_bytes_sent "$http_referer" '
+                    '"$http_user_agent" "$http_x_forwarded_for"';
   server {
     listen       80;
     server_name  10.0.0.15;
     root         /var/www/mywebsite;
-    access_log   /var/log/nginx/access.log  main;
-    # debug, info, notice, warn, error, or crit
-    error_log    /var/log/nginx/error.log   error;
-
-    # Enable indexing for directory paths.
-    location / {
-      autoindex on;
-    }
   }
 }
 ```
@@ -249,4 +245,3 @@ actual HTTP response back to the client.
 ## [FORWARD PROXY](https://www.jscape.com/blog/bid/87783/forward-proxy-vs-reverse-proxy)
 
 <img src="images/forward-proxy.jpg" width="500"/>
-
