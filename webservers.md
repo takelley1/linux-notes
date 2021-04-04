@@ -63,7 +63,7 @@ http {
 ```nginx
 server { # Redirect HTTP IP/domain to HTTPS domain.
     listen               80;
-    server_name          _;
+    server_name          _; # Matches everything (both IPs and domains).
     return 301           https://domain.example.com$request_uri;
 }
 
