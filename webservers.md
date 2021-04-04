@@ -68,7 +68,12 @@ http {
     access_log   /var/log/nginx/access.log  main;
     # [ debug | info | notice | warn | error | crit ]
     error_log    /var/log/nginx/error.log   error;
+
+    # Enable indexing for directory paths.
+    location / {
+      autoindex on;
     }
+
   }
 ```
 
