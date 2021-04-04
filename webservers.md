@@ -46,7 +46,15 @@ server {
 }
 ```
 
-Minimal static HTTP webserver
+- Minimal static HTTP webserver
+  - Configration directives used:
+    - [user](http://nginx.org/en/docs/ngx_core_module.html#user)
+    - [worker_processes](http://nginx.org/en/docs/ngx_core_module.html#worker_processes)
+    - [worker_connections](http://nginx.org/en/docs/ngx_core_module.html#worker_connections)
+    - [access_log](http://nginx.org/en/docs/http/ngx_http_log_module.html#access_log)
+    - [error_log](http://nginx.org/en/docs/ngx_core_module.html#error_log)
+    - [autoindex](http://nginx.org/en/docs/http/ngx_http_autoindex_module.html)
+    - [log_format](http://nginx.org/en/docs/http/ngx_http_log_module.html#log_format)
 ```nginx
 user              www-data;
 worker_processes      auto;
