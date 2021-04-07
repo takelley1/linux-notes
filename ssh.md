@@ -6,6 +6,17 @@
   - [sshd_config man page](https://www.freebsd.org/cgi/man.cgi?sshd_config(5))
   - [SSH jump hosts](https://wiki.gentoo.org/wiki/SSH_jump_host)
 
+### Examples
+
+- `ssh ansible@10.0.0.5 'bash -s' < myscript.sh` = [Run a local script remotely](https://stackoverflow.com/questions/305035/how-to-use-ssh-to-run-a-local-shell-script-on-a-remote-machine)
+
+### [Key generation best-practices](https://security.stackexchange.com/questions/143442/what-are-ssh-keygen-best-practices)
+
+```
+ssh-keygen -t ed25519 -o -a 100
+ssh-keygen -t rsa -b 4096 -o -a 100
+```
+
 ### [Connection process](https://www.digitalocean.com/community/tutorials/understanding-the-ssh-encryption-and-connection-process)
 
 1. Server authentication
@@ -22,13 +33,6 @@
    5. Server MD5 also hashes the *original challenge number + session key* string.
    6. Client sends the MD5 digest to server.
    7. Server compares its MD5 digest to client's MD5 digest. If they match, the requested user is authenticated.
-
-### [Key generation best-practices](https://security.stackexchange.com/questions/143442/what-are-ssh-keygen-best-practices)
-
-```
-ssh-keygen -t ed25519 -o -a 100
-ssh-keygen -t rsa -b 4096 -o -a 100
-```
 
 ### [Files](https://www.techrepublic.com/article/the-4-most-important-files-for-ssh-connections/)
 
