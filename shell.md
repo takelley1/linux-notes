@@ -4,6 +4,8 @@
 - **See also**
   - [Google style guide](https://google.github.io/styleguide/shellguide.html)
   - [GNU coreutils decoded](https://www.maizure.org/projects/decoded-gnu-coreutils/index.html)
+  - [How to do things safely in Bash](https://github.com/anordal/shellharden/blob/master/how_to_do_things_safely_in_bash.md)
+  - [Bash pitfalls](https://mywiki.wooledge.org/BashPitfalls)
 
 ## [SHELL INITIALIZATION](https://medium.com/@abhinavkorpal/bash-profile-vs-bashrc-c52534a787d3)
 
@@ -41,7 +43,6 @@
 ---
 ## BASH
   - [Bash guide](http://mywiki.wooledge.org/BashGuide)
-  - [Bash pitfalls](https://mywiki.wooledge.org/BashPitfalls)
   - [Bash GNU manual](https://www.gnu.org/software/bash/manual/)
 
 ### String manipulation
