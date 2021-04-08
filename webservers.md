@@ -22,6 +22,8 @@ curl -v -d \
   - [Nginx performance tuning](https://www.digitalocean.com/community/tutorials/how-to-optimize-nginx-configuration)
   - [Nginx security tuning](https://www.upguard.com/blog/how-to-build-a-tough-nginx-server-in-15-steps)
 <br><br>
+- `nginx -t` = Test server confiuration.
+<br><br>
 - Minimal static HTTP webserver
   - Configration directives used:
     - [user](http://nginx.org/en/docs/ngx_core_module.html#user)
