@@ -89,7 +89,7 @@ zfs destroy tank/storage/videos@2020-07-11__19:00__tank%2020-07-16__22:00__tank
 |----------------------------|---------------------------------------------|
 | `zpool status -x`          | Show pool status                            |
 | `zpool status -v datapool` | Show individual pool status in verbose mode |
-| `zpool list` 	             | Show all pools                              |
+| `zpool list` 	             | Show all pools' usage + dedup info          |
 | `zpool list -o name,size`  | Show particular properties of all pools     |
 | `zpool list -Ho name`      | Show all pools without headers and columns  |
 
