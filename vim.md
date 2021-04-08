@@ -8,10 +8,11 @@
 
 ### Tips
 - `syntime on`, `syntime report` = Debug syntax highlighting slowness.
-
-- `:%s/xxx/yyy/g`       = [Replace *xxx* with *yyy* in entire file.](https://vim.fandom.com/wiki/Search_and_replace)
-- `:'<,'>s/xxx/yyy/g`   = Replace *xxx* with *yyy* within the selection.
-- `:g/^x/d`             = [Delete all lines beginning with *x* (remove */d* to show lines it will delete).](https://vim.fandom.com/wiki/Delete_all_lines_containing_a_pattern)
+<br><br>
+- `:%s/\\r\\n/^M/g`   = Replace *\r\n* with an actual newline. To get the *^M* character, type *CTRL-V* and press enter.
+- `:%s/xxx/yyy/g`     = [Replace *xxx* with *yyy* in entire file.](https://vim.fandom.com/wiki/Search_and_replace)
+- `:'<,'>s/xxx/yyy/g` = Replace *xxx* with *yyy* within the selection.
+- `:g/^x/d`           = [Delete all lines beginning with *x* (remove */d* to show lines it will delete).](https://vim.fandom.com/wiki/Delete_all_lines_containing_a_pattern)
 <br><br>
 - `:put =execute('highlight')` = Place the output of *highlight* in the current buffer, making searching easier.
 - `@@` = Repeat last macro.
