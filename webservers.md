@@ -85,6 +85,32 @@ server { # HTTPS domain.
 }
 ```
 
+- [Server with HTTP authentication](https://docs.nginx.com/nginx/admin-guide/security-controls/configuring-http-basic-authentication/)
+  - [Using basic auth over HTTPS](https://security.stackexchange.com/a/17216)
+  - Configration directives used:
+    - [satisfy](https://nginx.org/en/docs/http/ngx_http_core_module.html#satisfy)
+    - [deny](https://nginx.org/en/docs/http/ngx_http_access_module.html#deny)
+    - [allow](https://nginx.org/en/docs/http/ngx_http_access_module.html#allow)
+    - [auth_basic](https://nginx.org/en/docs/http/ngx_http_auth_basic_module.html#auth_basic)
+    - [auth_basic_user_file](https://nginx.org/en/docs/http/ngx_http_auth_basic_module.html#auth_basic_user_file)
+```nginx
+http {
+    server {
+        listen 192.168.1.23:8080;
+        root   /usr/share/nginx/html;
+        satisfy all;
+
+        deny  192.168.1.2;
+        allow 192.168.1.1/24;
+        allow 127.0.0.1;
+        deny  all;
+
+        auth_basic           "Administrator’s Area";
+        auth_basic_user_file /etc/apache2/.htpasswd; 
+    }
+}
+```
+
 ---
 ## [REVERSE PROXY](https://en.wikipedia.org/wiki/Reverse_proxy)
 
