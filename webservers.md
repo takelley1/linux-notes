@@ -106,7 +106,34 @@ http {
         deny  all;
 
         auth_basic           "Administrator’s Area";
-        auth_basic_user_file /etc/apache2/.htpasswd; 
+        auth_basic_user_file /etc/apache2/.htpasswd;
+    }
+}
+```
+
+- [Context path-based reverse proxy server](https://docs.nginx.com/nginx/admin-guide/web-server/reverse-proxy/)
+  - Configration directives used:
+    - [proxy_buffers](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_buffers)
+    - [proxy_buffers_size](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_buffer_size)
+    - [proxy_pass](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_pass)
+```nginx
+http {
+    server {
+        listen 80;
+        root   /usr/share/nginx/html;
+        proxy_buffers     16 4k;
+        proxy_buffer_size    2k;
+
+        location /some/path/ {
+            proxy_pass https://10.0.0.10:8000;
+
+            # This location requires authentication.
+            auth_basic           "Administrator’s Area";
+            auth_basic_user_file /etc/apache2/.htpasswd;
+        }
+        location /some/other/path/ {
+            proxy_pass http://10.0.0.15:80;
+        }
     }
 }
 ```
