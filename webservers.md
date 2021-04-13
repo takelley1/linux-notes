@@ -1,17 +1,3 @@
-
-## REST API
-
-Make POST API request to a Zabbix server:
-```bash
-curl -v -d \
-  '{"jsonrpc": "2.0", "method": "host.get", \
-    "params": {"startSearch": {"name": "BlaBlaBla"}}, \
-    "id": 1, "auth": "f0fe38b3994cd953403477016e"}' \
-    -H "Content-Type: application/json-rpc" \
-    http://zabbix-server.example.com/api_jsonrpc.php
-```
-
----
 ## NGINX
 
 - **See also:**
@@ -22,7 +8,7 @@ curl -v -d \
   - [Nginx performance tuning](https://www.digitalocean.com/community/tutorials/how-to-optimize-nginx-configuration)
   - [Nginx security tuning](https://www.upguard.com/blog/how-to-build-a-tough-nginx-server-in-15-steps)
 <br><br>
-- `nginx -t` = Test server confiuration.
+- `nginx -t` = Test server configuration.
 <br><br>
 - Minimal static HTTP webserver
   - Configration directives used:
@@ -127,7 +113,7 @@ http {
         location /some/path/ {
             proxy_pass https://10.0.0.10:8000;
 
-            # This location requires authentication.
+            # Require authentication for this path.
             auth_basic           "Administrator’s Area";
             auth_basic_user_file /etc/apache2/.htpasswd;
         }
@@ -139,36 +125,22 @@ http {
 ```
 
 ---
-## [REVERSE PROXY](https://en.wikipedia.org/wiki/Reverse_proxy)
 
-- **See also:**
-  - [Reverse proxy performance](https://www.imperva.com/learn/performance/reverse-proxy/)
 <br><br>
-- Used for security, high-availability, load-balancing, and centralized authentication/authorization.
-- Allows many different isolated servers to provide their services behind a single domain.
-- As far as the client is concerned, the reverse proxy server is the sole source of all content.
-
-```
-Httpd itself does not generate or host the data, but rather the content is obtained by one or several
-backend servers,vwhich normally have no direct connection to the external network. As httpd receives a
-request from a client, the request itself is proxied to one of these backend servers, which then handles
-the request, generates the content and then sends this content back to httpd, which then generates the
-actual HTTP response back to the client.
 ```
 
-<img src="images/reverse-proxy.jpg" width="500"/>
 
-### [Apache](https://httpd.apache.org/docs/2.4/howto/reverse_proxy.html)
 
+---
+## [APACHE](https://httpd.apache.org/docs/2.4/howto/reverse_proxy.html)
+
+- Subdomain-based reverse proxy config.
+  - Requires creating a separate DNS domain for admin.example.com.
+    - 1 DNS A record pointing admin.example.com to the IP of the reverse proxy.
+    - 1 DNS CNAME wildcard record pointing *.admin.example.com to the A record.
+  - Requires a wildcard certificate for *.admin.example.com.
 ```apache
-# Full Apache reverse proxy config for a handful of apps.
-  # Requires creating a separate DNS domain for admin.example.com.
-    # 1 DNS A record pointing admin.example.com to the IP of the reverse proxy.
-    # 1 DNS CNAME wildcard record pointing *.admin.example.com to the A record.
-  # Requires a wildcard certificate for *.admin.example.com.
-
-# Force upgrade from http to https.
-<VirtualHost admin.example.com:80>
+<VirtualHost admin.example.com:80> # Force upgrade from http to https.
     ServerName admin.example.com
     Redirect permanent / https://admin.example.com/
 </VirtualHost>
@@ -190,16 +162,14 @@ actual HTTP response back to the client.
     ProxyRequests off
     ProxyPreserveHost on
 
-    # Heimdall
-    <Location />
+    <Location /> # Heimdall
         ProxyPass "https://127.0.0.1:8443/"
         ProxyPassReverse "https://127.0.0.1:8443/"
         Order deny,allow
         Allow from all
     </Location>
 
-    # Rocket.Chat
-    <Location /chat>
+    <Location /chat> # Rocket.Chat
         Order allow,deny
         Allow from all
         RewriteEngine on
@@ -275,10 +245,8 @@ actual HTTP response back to the client.
 </VirtualHost>
 ```
 
+- Genric reverse proxy config using context paths and load balancer.
 ```apache
-# Genric reverse proxy config using paths and load balancer.
-
-# Requests to the /bitbucket directory are proxied to a different server.
 <Location /bitbucket>
     ProxyPass https://10.0.0.50:443
     ProxyPassReverse https://10.0.0.50:443
@@ -296,6 +264,38 @@ actual HTTP response back to the client.
     BalancerMember https://jenkins-cluster-server2.example.com
 </Proxy>
 ```
+
+---
+## REST API
+
+Make POST API request to a Zabbix server:
+```bash
+curl -v -d \
+  '{"jsonrpc": "2.0", "method": "host.get", \
+    "params": {"startSearch": {"name": "BlaBlaBla"}}, \
+    "id": 1, "auth": "f0fe38b3994cd953403477016e"}' \
+    -H "Content-Type: application/json-rpc" \
+    http://zabbix-server.example.com/api_jsonrpc.php
+```
+
+---
+## [REVERSE PROXY](https://en.wikipedia.org/wiki/Reverse_proxy)
+
+- **See also:**
+  - [Reverse proxy performance](https://www.imperva.com/learn/performance/reverse-proxy/)
+<br><br>
+- Used for security, high-availability, load-balancing, and centralized authentication/authorization.
+- Allows many different isolated servers to provide their services behind a single domain.
+- As far as the client is concerned, the reverse proxy server is the sole source of all content.
+
+> Httpd itself does not generate or host the data, but rather the content is obtained by one or several
+> backend servers,vwhich normally have no direct connection to the external network. As httpd receives a
+> request from a client, the request itself is proxied to one of these backend servers, which then handles
+> the request, generates the content and then sends this content back to httpd, which then generates the
+> actual HTTP response back to the client.
+
+<img src="images/reverse-proxy.jpg" width="500"/>
+
 
 ## [FORWARD PROXY](https://www.jscape.com/blog/bid/87783/forward-proxy-vs-reverse-proxy)
 
