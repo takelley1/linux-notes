@@ -1,3 +1,5 @@
+- **See also**
+  - [Jinja2 reference](https://jinja2docs.readthedocs.io/en/stable/)
 
 ### Crypto
 
