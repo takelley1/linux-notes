@@ -4,7 +4,16 @@
 - **See also:**
   - [FreeBSD ZFS administration](https://docs.freebsd.org/en_US.ISO8859-1/books/handbook/zfs-zfs.html)
 
-### Snapshots
+### Commands
+
+#### Datasets & Properties
+
+- `zfs list -r tank` = List all child datasets of the *tank* dataset.
+- `zfs list -o space tank/storage/videos` = Print usage info for the *tank/storage/videos* dataset.
+- `zfs set mountpoint=/mount/path mydataset` = Set mountpoint and mount dataset. Mountpoint path is relative to the root
+                                               of the ZFS pool, not the root of the filesystem.
+
+#### Snapshots
 
 - `zfs list -t snapshot tank`  = List snapshots for the *tank* dataset.
 - `zfs list -t snapshot -r tank | sort -h -k2` = Recursively list snapshots for *tank* dataset, sorting by snapshot size.
@@ -16,17 +25,33 @@ Delete all snapshots taken between those called *2020-07-11__19:00__tank* and *2
 zfs destroy tank/storage/videos@2020-07-11__19:00__tank%2020-07-16__22:00__tank
 ```
 
-### Datasets & Properties
-
-- `zfs list -r tank` = List all child datasets of the *tank* dataset.
-- `zfs list -o space tank/storage/videos` = Print usage info for the *tank/storage/videos* dataset.
-
-### [Restoring data](https://www.linuxtopia.org/online_books/opensolaris_2008/ZFSADMIN/html/gbchx.html)
+#### [Restoring data](https://www.linuxtopia.org/online_books/opensolaris_2008/ZFSADMIN/html/gbchx.html)
 
 - `zfs send tank/alice@snapshot1 | zfs receive newtank/alice` = Create a *newtank/alice* dataset from *snapshot1* in the
                                                               *tank/alice* dataset.
 - `zfs send -nv tank/alice@snap1` = Do a "dry-run" ZFS send.
 - `zfs send tank/test@tuesday | xz > /backup/test-tuesday.img.xz` = Create a compressed image backup of *tank/test@tuesday*.
+
+#### [Zpool Commands](https://www.thegeekdiary.com/solaris-zfs-command-line-reference-cheat-sheet/)
+
+| POOL CREATION                    |                                                     |
+|----------------------------------|-----------------------------------------------------|
+| `zpool create datapool1`         | Create basic pool named datapool                    |
+| `zpool create -m /data datapool` | Create pool with different mount point than default |
+| `zpool create datapool raidz`    | Create RAID-Z vdev pool                             |
+| `zpool add datapool raidz`       | Add RAID-Z vdev to pool datapool                    |
+| `zpool create datapool raidz2`   | Create RAID-Z2 pool                                 |
+| `zpool add datapool mirror`      | Add new mirrored vdev to datapool                   |
+| `zpool add datapool spare`       | Add spare device to datapool                        |
+| `zpool create -n geekpool`       | Do dry run on pool creation                         |
+
+| POOL INFO                  |                                             |
+|----------------------------|---------------------------------------------|
+| `zpool status -x`          | Show pool status                            |
+| `zpool status -v datapool` | Show individual pool status in verbose mode |
+| `zpool list` 	             | Show all pools' usage + dedup info          |
+| `zpool list -o name,size`  | Show particular properties of all pools     |
+| `zpool list -Ho name`      | Show all pools without headers and columns  |
 
 ### [Recordsize](https://jrs-s.net/2019/04/03/on-zfs-recordsize/)
 
@@ -72,30 +97,7 @@ zfs destroy tank/storage/videos@2020-07-11__19:00__tank%2020-07-16__22:00__tank
   - Equal to the underlying hardware's physical sector size (usually 512B, 4K, or 8K).
   - Immutable, automatically set per-vdev by the ashift property.
 
-[Commands:](https://www.thegeekdiary.com/solaris-zfs-command-line-reference-cheat-sheet/)
-
-| POOL CREATION                    |                                                     |
-|----------------------------------|-----------------------------------------------------|
-| `zpool create datapool1`         | Create basic pool named datapool                    |
-| `zpool create -m /data datapool` | Create pool with different mount point than default |
-| `zpool create datapool raidz`    | Create RAID-Z vdev pool                             |
-| `zpool add datapool raidz`       | Add RAID-Z vdev to pool datapool                    |
-| `zpool create datapool raidz2`   | Create RAID-Z2 pool                                 |
-| `zpool add datapool mirror`      | Add new mirrored vdev to datapool                   |
-| `zpool add datapool spare`       | Add spare device to datapool                        |
-| `zpool create -n geekpool`       | Do dry run on pool creation                         |
-
-| POOL INFO                  |                                             |
-|----------------------------|---------------------------------------------|
-| `zpool status -x`          | Show pool status                            |
-| `zpool status -v datapool` | Show individual pool status in verbose mode |
-| `zpool list` 	             | Show all pools' usage + dedup info          |
-| `zpool list -o name,size`  | Show particular properties of all pools     |
-| `zpool list -Ho name`      | Show all pools without headers and columns  |
-
-
 ### [ZFS benchmarks](https://calomel.org/zfs_raid_speed_capacity.html)
-
 ```
          ZFS Raid Speed Capacity and Performance Benchmarks
 =============================================================================
@@ -157,4 +159,3 @@ zfs destroy tank/storage/videos@2020-07-11__19:00__tank%2020-07-16__22:00__tank
 
 24x 256GB raid0 striped   5.5 terabytes ( w=1620MB/s , rw=796MB/s , r=2043MB/s )
 ```
-
