@@ -4,7 +4,7 @@
 - `strace`           = Trace system call.
   - `strace ls`   = Find out why *ls* is hanging.
 
-### Rsyslog
+### [Rsyslog](https://www.rsyslog.com/)
 
 - **See also:**
   - [Rsyslog aggregation](https://www.redhat.com/sysadmin/log-aggregation-rsyslog)
@@ -14,8 +14,13 @@
 `/etc/rsyslog.conf` example for a remote syslog server:
 ```
 # Run a TCP syslog listener on port 514.
-$ModLoad imtcp         
-$InputTCPServerRun 514
+Module (load="imtcp")
+Input (type="imtcp" port="514")
+
+
+Module (load="imuxsock")
+Module (load="imklog")
+
 
 # Allow logging to local system socket. Don't remove this!
 $ModLoad imuxsock  
