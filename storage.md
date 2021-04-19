@@ -49,6 +49,7 @@ Extending */var* XFS filesystem by 127,999 extents with LVM:
 
 - **See also:**
   - [Squash compression benchmark](https://quixdb.github.io/squash-benchmark/#results)
+  - [ZFS zstd compression comparison](https://docs.google.com/spreadsheets/d/1TvCAIDzFsjuLuea7124q-1UtMd0C9amTgnXm2yPtiUQ/edit#gid=1215810192)
 
 [BtrFS compression benchmarks](https://git.kernel.org/pub/scm/linux/kernel/git/mason/linux-btrfs.git/commit/?h=next&id=5c1aab1dd5445ed8bdcdbb575abc1b0d7ee5b2e7)
 | Method  | Ratio | Compress MB/s | Decompress |
