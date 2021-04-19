@@ -7,6 +7,18 @@
 
 ### Examples
 
+Comment out all lines in which the first non-whitespace string is "alias".
+```bash
+awk
+  '{
+    if ($0 ~ /^[[:space:]]*alias/)
+      print "#",$0
+    else
+      print $0
+  }' \
+  file.sh
+```
+
 Print all interactive users from */etc/passwd*:
 ```bash
 awk -F: \
@@ -46,20 +58,20 @@ curl -s wttr.in | \
 Reformat a log file:
 ```bash
 gawk -F$'\t' \
-'{
-# Convert Unix epoch to a human-readable timestamp.
-# This function is available only in GNU awk.
-time=strftime("%m-%d-%Y %H:%M:%S", $1)
-source=$3
-url=$6
-http_method=$7
-http_code=$8
-access=$16
-group=$19
+  '{
+    # Convert Unix epoch to a human-readable timestamp.
+    # This function is available only in GNU awk.
+    time=strftime("%m-%d-%Y %H:%M:%S", $1)
+    source=$3
+    url=$6
+    http_method=$7
+    http_code=$8
+    access=$16
+    group=$19
 
-# Use the printf function so the field alignment can be adjusted.
-printf ("%s | %s %s | %-7s %-3s | %s | %s\n", time, group, source, http_method, http_code, access, url)
-}' access.log
+    # Use the printf function so the field alignment can be adjusted.
+    printf ("%s | %s %s | %-7s %-3s | %s | %s\n", time, group, source, http_method, http_code, access, url)
+  }' access.log
 ```
 
 - `awk 'NF>0 {blank=0} NF==0 {blank++} blank < 2'`           = Remove consecutive blank lines, emulates `cat -s`.
