@@ -1,5 +1,5 @@
 
-## ZFS
+## [ZFS](https://openzfs.github.io/openzfs-docs/index.html)
 
 - **See also:**
   - [FreeBSD ZFS administration](https://docs.freebsd.org/en_US.ISO8859-1/books/handbook/zfs-zfs.html)
