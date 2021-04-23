@@ -140,6 +140,13 @@ systemctl enable osad --now
 rhn-channel --list
 ```
 
+---
+## TENABLE NESSUS
+
+[Reset user password](https://docs.tenable.com/nessus/commandlinereference/Content/ChangeAUsersPassword.htm)
+```bash
+/opt/nessus/sbin/nessuscli chpasswd <USERNAME>
+```
 
 ---
 ## TENABLE.SC (SECURITY CENTER)
