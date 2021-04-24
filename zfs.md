@@ -6,6 +6,12 @@
 
 ### Commands
 
+#### Disks
+
+- The ZFS GUID output of `zpool list` can make it difficult to identify disks.
+- `camcontrol devlist` = Show disk model numbers mapped to device ports.
+- `glabel status`      = Show ZFS GUID numbers mapped to /dev/ block devices.
+
 #### Datasets & Properties
 
 - `zfs list -r tank` = List all child datasets of the *tank* dataset.
