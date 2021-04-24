@@ -18,6 +18,12 @@
 - `zfs list -o space tank/storage/videos` = Print usage info for the *tank/storage/videos* dataset.
 - `zfs set mountpoint=/mount/path mydataset` = Set mountpoint and mount dataset. Mountpoint path is relative to the root
                                                of the ZFS pool, not the root of the filesystem.
+<br><br>
+- `zpool status -x`         = Show pool status.
+- `zpool status -v datapool`= Show individual pool status in verbose mode.
+- `zpool list` 	            = Show all pools' usage + dedup info.
+- `zpool list -o name,size` = Show particular properties of all pools.
+- `zpool list -Ho name`     = Show all pools without headers and columns.
 
 #### Snapshots
 
@@ -50,14 +56,6 @@ zfs destroy tank/storage/videos@2020-07-11__19:00__tank%2020-07-16__22:00__tank
 | `zpool add datapool mirror`      | Add new mirrored vdev to datapool                   |
 | `zpool add datapool spare`       | Add spare device to datapool                        |
 | `zpool create -n geekpool`       | Do dry run on pool creation                         |
-
-| POOL INFO                  |                                             |
-|----------------------------|---------------------------------------------|
-| `zpool status -x`          | Show pool status                            |
-| `zpool status -v datapool` | Show individual pool status in verbose mode |
-| `zpool list` 	             | Show all pools' usage + dedup info          |
-| `zpool list -o name,size`  | Show particular properties of all pools     |
-| `zpool list -Ho name`      | Show all pools without headers and columns  |
 
 ### [Recordsize](https://jrs-s.net/2019/04/03/on-zfs-recordsize/)
 
