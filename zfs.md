@@ -57,14 +57,14 @@ zfs destroy tank/storage/videos@2020-07-11__19:00__tank%2020-07-16__22:00__tank
 | `zpool add datapool spare`       | Add spare device to datapool                        |
 | `zpool create -n geekpool`       | Do dry run on pool creation                         |
 
-### [Recordsize](https://jrs-s.net/2019/04/03/on-zfs-recordsize/)
+### [Record size](https://jrs-s.net/2019/04/03/on-zfs-recordsize/)
 
 - Default is 128k.
 - Set recordsize to match the typical size of files in the dataset.
   - Dataset with small text files = Small recordsize (128k or less).
   - Dataset with only videos = Large recordsize (1M).
   - Dataset with VMs = Match recordsize to VM disk image's sector size (512B or 4k).
-
+<br><br>
 - Determine a disk's sector size
   - `fdisk -l <DISK>` on Linux
   - `diskinfo -v <DISK>` on FreeBSD
