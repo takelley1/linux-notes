@@ -44,6 +44,10 @@ zfs destroy tank/storage/videos@2020-07-11__19:00__tank%2020-07-16__22:00__tank
 - `zfs send -nv tank/alice@snap1` = Do a "dry-run" ZFS send.
 - `zfs send tank/test@tuesday | xz > /backup/test-tuesday.img.xz` = Create a compressed image backup of *tank/test@tuesday*.
 
+#### [Performance](https://klarasystems.com/articles/openzfs-using-zpool-iostat-to-monitor-pool-perfomance-and-health/)
+
+- `zpool iostat -vl` = List read/write latency statistics for each drive.
+
 #### [Zpool Commands](https://www.thegeekdiary.com/solaris-zfs-command-line-reference-cheat-sheet/)
 
 | POOL CREATION                    |                                                     |
