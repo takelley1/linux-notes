@@ -84,6 +84,7 @@ basicConstraints       = critical, CA:true
 keyUsage               = keyCertSign, cRLSign
 ```
 </details>
+
 `openssl req -x509 -config openssl-ca.cnf -newkey rsa -nodes -out cacert.pem -outform PEM` = Generate CA cert using above file.
 
 ### [GNU CertTool](https://gnutls.org/manual/html_node/certtool-Invocation.html)
