@@ -1,6 +1,7 @@
 
 ## [MARIADB](https://mariadb.com/kb/en/training-tutorials/)
 - **See also**
+  - [Troubleshooting connection issues](https://mariadb.com/kb/en/troubleshooting-connection-issues/)
   - [MariaDB performance tuning](https://mariadb.com/kb/en/server-system-variables/)
   - [MySQLTuner script](https://github.com/major/MySQLTuner-perl)
 
@@ -16,7 +17,6 @@
 - `show databases;` = Print all databases.
 - `use my_database;` = Connect to the database called *my_database*.
 - `show tables;` = Print tables of the current database.
-<br><br>
 
 ### Users
 
@@ -43,7 +43,7 @@
 <br><br>
 Change `safe_to_bootstrap` to `1` to [forcibly allow bootstrapping node:](https://www.symmcom.com/docs/how-tos/databases/how-to-recover-mariadb-galera-cluster-after-partial-or-full-crash)
 ```
-root@server # cat /var/lib/mysql/grastate.dat
+root@server# cat /var/lib/mysql/grastate.dat
 
 # GALERA saved state
 version: 2.1
@@ -74,7 +74,9 @@ safe_to_bootstrap: 0
 
 ### pg_hba.conf
 
-- Manage client authentication to the db host:
+<details>
+<summary>Manage client authentication to the db host:</summary>
+
 ```
 # Allow any user on the local system to connect to any database with
 # any database user name using Unix-domain sockets (the default for local
@@ -159,4 +161,4 @@ local   all             @admins,+support                        md5
 # The database column can also use lists and file names:
 local   db1,db2,@demodbs  all                                   md5
 ```
-
+</details>
