@@ -10,7 +10,7 @@
 | List installed packages by size   | ?                              | ?                           | \*                            | `pkg query '%sh %n' \| sort -h` |
 | Show installed packages           | `rpm -qa`                      | `dpkg --list`               | `pacman -Q`                   | `pkg info`                      |
 | Show package that provides file x | `yum whatprovides x`           | `dpkg -S x`                 | `pacman -F x`                 | `pkg which x`                   |
-| Show files from package x         | `repoquery --list x`           | ?                           | `pacman -Ql x`                | `pkg query %Fp x`               |
+| Show files from package x         | `repoquery --list x`           | `dpkg -L x`                 | `pacman -Ql x`                | `pkg query %Fp x`               |
 | Show package x info               | `yum info x`                   | `apt-cache show x`          | `pacman -Qi x`                | `pkg info x`                    |
 | Show package x's dependencies     | ?                              | ?                           | `pacman -Qi x`                | `pkg query %do x`               |
 | Show packages that depend on x    | ?                              | ?                           | `pacman -Qi x`                | `pkg query %ro x`               |
