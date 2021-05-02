@@ -3,12 +3,14 @@
 
 - **See also:**
   - [FreeBSD ZFS administration](https://docs.freebsd.org/en_US.ISO8859-1/books/handbook/zfs-zfs.html)
+  - [zfsconcepts(8)](https://openzfs.github.io/openzfs-docs/man/8/zfsconcepts.8.html)
+  - [zpoolconcepts(8)](https://openzfs.github.io/openzfs-docs/man/8/zpoolconcepts.8.html)
 
 ### Commands
 
 #### Disks
 
-- The ZFS GUID output of `zpool list` can make it difficult to identify disks.
+- The output of `zpool list` can make it difficult to identify disks.
 - `camcontrol devlist` = Show disk model numbers mapped to device ports.
 - `glabel status`      = Show ZFS GUID numbers mapped to /dev/ block devices.
 
@@ -39,10 +41,19 @@ zfs destroy tank/storage/videos@2020-07-11__19:00__tank%2020-07-16__22:00__tank
 
 #### [Restoring data](https://www.linuxtopia.org/online_books/opensolaris_2008/ZFSADMIN/html/gbchx.html)
 
+- **See also**
+  - [Oracle docs: Sending and receiving ZFS data](https://docs.oracle.com/cd/E23824_01/html/821-1448/gbchx.html)
+
 - `zfs send tank/alice@snapshot1 | zfs receive newtank/alice` = Create a *newtank/alice* dataset from *snapshot1* in the
                                                               *tank/alice* dataset.
 - `zfs send -nv tank/alice@snap1` = Do a "dry-run" ZFS send.
 - `zfs send tank/test@tuesday | xz > /backup/test-tuesday.img.xz` = Create a compressed image backup of *tank/test@tuesday*.
+
+[Replicate all descendant snapshots and properties:](https://www.truenas.com/community/threads/copy-move-dataset.28876/post-189799)
+```bash
+zfs snapshot -r Data1/Storage@copy
+zfs send -Rv Data1/Storage@copy | zfs receive -F Data2/Storage
+```
 
 #### [Performance](https://klarasystems.com/articles/openzfs-using-zpool-iostat-to-monitor-pool-perfomance-and-health/)
 
