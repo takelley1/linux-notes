@@ -29,9 +29,17 @@
    - ./env/var/lib/mysql:/var/lib/mysql:z
 ```
 
+
 ---
 ## [PODMAN](https://docs.podman.io/en/latest/#)
 
 - **See also:**
   - [Podman networking](https://www.redhat.com/sysadmin/container-networking-podman)
   - [Moving from Docker to Podman](https://www.redhat.com/sysadmin/compose-podman-pods)
+
+
+---
+### [LXC](https://linuxcontainers.org/lxc/introduction/)
+
+
+![image](images/lxc-vs-docker.png)
