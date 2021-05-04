@@ -35,3 +35,30 @@
 - **See also:**
   - [Podman networking](https://www.redhat.com/sysadmin/container-networking-podman)
   - [Moving from Docker to Podman](https://www.redhat.com/sysadmin/compose-podman-pods)
+
+
+---
+```
+ App Container (Docker/Podman)
+┌─────────────┐
+│ Application │
+├─────────────┤
+│  User space │
+└─────────────┘
+
+ OS Container (LXC/Jails)
+┌────┐   ┌────┐
+│App1│...│App5│
+├────┴───┴────┤
+│  User space │
+└─────────────┘
+
+ Virtual Machine
+┌────┐   ┌────┐
+│App1│...│App5│
+├────┴───┴────┤
+│  User space │
+├─────────────┤
+│    Kernel   │
+└─────────────┘
+```
