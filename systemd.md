@@ -7,6 +7,7 @@
   [1,](https://www.devdungeon.com/content/creating-systemd-service-files)
   [2,](https://www.shellhacks.com/systemd-service-file-example/)
   [3](https://www.linode.com/docs/quick-answers/linux/start-service-at-boot/)
+  - [cgroups](https://www.redhat.com/sysadmin/cgroups-part-one)
 
 ```bash
 man systemd.unit
@@ -20,7 +21,9 @@ man systemd.target
 - User service files can be placed in `$HOME/.config/systemd/user/my_daemon.service` or
   `/etc/systemd/system/my_daemon.service`.
 
-Example 1:
+<details>
+  <summary>Example 1</summary>
+
 ```systemd
 [Unit]
 Description=My Miscellaneous Service
@@ -28,13 +31,14 @@ After=network.target
 
 [Service]
 # Systemd forks "simple"-type services immediately into the background without
-# waiting to see if the service encountered an error for
+#   waiting to see if the service encountered an error.
 
 Type=simple
 User=austin
 WorkingDirectory=/home/austin
 ExecStart=/home/austin/my_daemon --option=123
-Restart=on-failure # Other restart options: always, on-abort
+# Other restart options: always, on-abort
+Restart=on-failure
 
 # The install section is needed to use `systemctl enable` to start on boot.
 # For a user service that you want to enable and start automatically,
@@ -42,8 +46,11 @@ Restart=on-failure # Other restart options: always, on-abort
 [Install]
 WantedBy=multi-user.target
 ```
+</details>
 
-Example 2:
+<details>
+  <summary>Example 2</summary>
+
 ```systemd
 [Unit]
 Description=The NGINX HTTP and reverse proxy server
@@ -61,20 +68,24 @@ PrivateTmp=true
 [Install]
 WantedBy=multi-user.target
 ```
+</details>
 
-Example 3:
-```systemd
-[Unit]
-Description=Example systemd service.
+### Overriding unit files
 
-[Service]
-Type=simple
-ExecStart=/bin/bash /usr/bin/test_service.sh
-
-[Install]
-WantedBy=multi-user.target
+- Allows easily overriding the options in a a systemd unit file without editing the unit file itself.
+- Search for "drop-in" in `systemd.unit(5)` for more information.
+- Use `systemctl edit <SERVICE>` to automatically create an override file.
 ```
-<sup>[1], [2], [3]</sup>
+/etc/systemd/system/myservice.service.d/override.conf
+```
+```systemd
+[Service]
+# If the entry is parsed as a list (like ExecStart), it first must be "cleared".
+ExecStart=
+ExecStart=nice -n 5 /sbin/myservice
+ExecReload=
+ExecReload=nice -n 5 /sbin/myservice -r
+```
 
 ---
 ## COMMANDS
