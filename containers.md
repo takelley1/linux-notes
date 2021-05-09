@@ -43,3 +43,27 @@
 
 
 ![image](images/lxc-vs-docker.png)
+```
+ App Container (Docker/Podman)
+┌─────────────┐
+│ Application │
+├─────────────┤
+│  User space │
+└─────────────┘
+
+ OS Container (LXC/Jails)
+┌────┐   ┌────┐
+│App1│...│App5│
+├────┴───┴────┤
+│  User space │
+└─────────────┘
+
+ Virtual Machine
+┌────┐   ┌────┐
+│App1│...│App5│
+├────┴───┴────┤
+│  User space │
+├─────────────┤
+│    Kernel   │
+└─────────────┘
+```
