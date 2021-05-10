@@ -1,3 +1,7 @@
+## VIRTUALBOX
+
+- `VBoxManage list runningvms` = List currently running VMs using headless VirtualBox.
+
 ## ZABBIX
 
 - `zabbix_proxy -R config_cache_reload` = Reload Zabbix proxy configuration without restarting service.
