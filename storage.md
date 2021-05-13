@@ -96,8 +96,7 @@ Extending */var* XFS filesystem by 127,999 extents with LVM:
 
 [Settings for maximum compression:](https://superuser.com/a/1449735)
 ```bash
-7z a -t7z -mx=9 -mfb=273 -ms -md=31 -myx=9 -mtm=- -mmt -mmtf -md=1536m -mmf=bt3 -mmc=10000 -mpb=0 -mlc=0 \
-archive.7z dir/
+7z a -t7z -mx=9 -mfb=273 -ms -md=31 -myx=9 -mtm=- -mmt -mmtf -md=1536m -mmf=bt3 -mmc=10000 -mpb=0 -mlc=0 archive.7z dir/
 ```
 
 
