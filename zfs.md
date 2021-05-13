@@ -17,6 +17,7 @@
 #### Datasets & Properties
 
 - `zfs list -r tank` = List all child datasets of the *tank* dataset.
+- `zfs list -t filesystem -o space -r tank` = Recursively print filesystem space info for the *tank* dataset.
 - `zfs list -o space tank/storage/videos` = Print usage info for the *tank/storage/videos* dataset.
 - `zfs set mountpoint=/mount/path mydataset` = Set mountpoint and mount dataset. Mountpoint path is relative to the root
                                                of the ZFS pool, not the root of the filesystem.
