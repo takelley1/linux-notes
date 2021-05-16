@@ -21,23 +21,85 @@
   - [shutil - high-level file operations](https://docs.python.org/3/library/shutil.html)
   - [tempfile - create temporary files](https://docs.python.org/3/library/tempfile.html)
 
+### Tips
+
+[Regex search.](https://www.w3schools.com/python/python_regex.asp)
+```python
+import re
+http_proxy = "https://10.0.0.15:8080"
+http_proxy_server = re.search(
+    "https?://([0-9]{1,3}.){3}[0-9]{1,3}", http_proxy
+)
+print(http_proxy_server.group())
+# https://10.0.0.15
+```
+
+[Format string.](https://www.w3schools.com/python/ref_string_format.asp)
+```python
+my_number = 123000
+print("{:,}".format(my_number))
+# 123,000
+```
+
+[Format time.](https://www.w3schools.com/python/python_datetime.asp)
+```python
+import datetime
+print(datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S"))
+```
+
+[Print substring by index.](https://www.w3schools.com/python/python_strings_slicing.asp)
+```python
+my_string = "Green eggs and ham."
+print(my_string[6:10])
+# eggs
+print(my_string[6:-4])
+# eggs and
+print(my_string[6:])
+# eggs and ham.
+print(my_string[::-1])
+# .mah dna sgge neerG
+```
+
+Join list items into string.
+```python
+my_list = ['1', '2', '3']
+print(" ".join(my_list))
+# 1 2 3
+print("\n".join(my_list))
+# 1
+# 2
+# 3
+```
+
+Pad string with hyphens until it's 10 characters long.
+```python
+my_string = "test "
+print(my_string.ljust(10, "-"))
+# test -----
+```
+
+[Use `_` to define an unused variable in a loop.](https://www.geeksforgeeks.org/unused-variable-in-for-loop-in-python/)
+```python
+for _ in range(10):
+  print("*", end="")
+```
+
 ### File operations
 
-Loop through directories
+Loop through directories.
 ```python
 for rootpath, dirs, files in os.walk("/path/to/directory"):
     for dirname in dirs:
         print(os.path.join(rootpath, dirname))
 ```
 
-Read a file:
+Read a file.
 ```python
-# Read
-with open(filename) as f:
+with open("/path/to/file") as f:
     content = f.readlines()
 ```
 
-Get path depth
+Get path depth.
 ```python
 for path, dirs, files in os.walk(auto_screenshots_dir):
     print(path.count)
@@ -47,7 +109,7 @@ for path, dirs, files in os.walk(auto_screenshots_dir):
 
 ### Web
 
-- [Write URL content to a file](https://docs.python.org/3.3/library/urllib.request.html#urllib.request.urlretrieve)
+- [Write URL content to a file.](https://docs.python.org/3.3/library/urllib.request.html#urllib.request.urlretrieve)
 
 ### Pip
 
