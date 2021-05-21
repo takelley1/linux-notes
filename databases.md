@@ -3,6 +3,7 @@
 - **See also**
   - [Troubleshooting connection issues](https://mariadb.com/kb/en/troubleshooting-connection-issues/)
   - [MariaDB performance tuning](https://mariadb.com/kb/en/server-system-variables/)
+    - [InnoDB Buffer Pool](https://mariadb.com/kb/en/innodb-buffer-pool/)
   - [MySQLTuner script](https://github.com/major/MySQLTuner-perl)
 
 ### Shell
