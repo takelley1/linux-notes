@@ -1,11 +1,11 @@
 
 ## FILESYSTEMS
 
-### Btrfs
+### [Btrfs](https://btrfs.wiki.kernel.org/index.php/Main_Page)
 
 - `btrfs -v filesystem defrag -r -czstd /` = Recursively compress filesystem with zstd.
 
-### ext4
+### [Ext4](https://ext4.wiki.kernel.org/index.php/Main_Page)
 
 - `mkfs.ext4 /dev/mapper/LV1` or `mkfs -t ext4 /dev/mapper/LV1` = Create ext4 filesystem on logical volume *LV1*.
 <br><br>
@@ -13,13 +13,13 @@
 - `e4degrag /`     = Defragment all partitions.
 - `fsck /dev/sda2` = Check *sda2* for errors.
 
-### XFS
+### [XFS](https://wiki.archlinux.org/index.php/XFS)
 
 - `xfs_growfs /dev/centos/var` = Expand mounted XFS filesystem (must be mounted).
 
 > NOTE: XFS filesystems cannot be shrunk.
 
-#### [ext4 vs XFS](https://unix.stackexchange.com/questions/467385/should-i-use-xfs-or-ext4)
+#### [Ext4 vs XFS](https://unix.stackexchange.com/questions/467385/should-i-use-xfs-or-ext4)
 
 - ext4 is faster on single-threaded IO and when working with many small files.
 - XFS is faster on multi-threaded IO, performs better with large files (>100MB).

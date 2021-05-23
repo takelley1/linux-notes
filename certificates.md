@@ -1,7 +1,7 @@
 
 ## CERTIFICATE MANAGEMENT
 
-### OpenSSL
+### [OpenSSL](https://www.openssl.org/docs/)
 
 - **See also**
   - [OpenSSL certificate generation and signing](https://stackoverflow.com/questions/21297139/how-do-you-sign-a-certificate-signing-request-with-your-certification-authority)
@@ -43,8 +43,10 @@ openssl pkcs12 -export -out cert.pfx -inkey private.key -in cert.crt -certfile C
 
 #### Files
 
-Example OpenSSL CA config file:
-```
+<details>
+  <summary>Example OpenSSL CA config file</summary>
+  
+```ini
 HOME            = .
 RANDFILE        = $ENV::HOME/.rnd
 
@@ -81,10 +83,11 @@ authorityKeyIdentifier = keyid:always, issuer
 basicConstraints       = critical, CA:true
 keyUsage               = keyCertSign, cRLSign
 ```
+</details>
 
 `openssl req -x509 -config openssl-ca.cnf -newkey rsa -nodes -out cacert.pem -outform PEM` = Generate CA cert using above file.
 
-### GNU CertTool
+### [GNU CertTool](https://gnutls.org/manual/html_node/certtool-Invocation.html)
 
 - Generate self-signed certificate:
 ```bash

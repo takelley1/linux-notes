@@ -1,5 +1,12 @@
+## VIRTUALBOX
 
-## VSPHERE
+- `VBoxManage list runningvms` = List currently running VMs using headless VirtualBox.
+
+## ZABBIX
+
+- `zabbix_proxy -R config_cache_reload` = Reload Zabbix proxy configuration without restarting service.
+
+## VSPHERE / VMWARE
 
 `Actions -> Edit Settings -> VM Options -> VMWare Remote Console Options` = Edit max number of connected console sessions for a guest.
 
@@ -94,10 +101,14 @@ Minimum XCCDF file for importing SCAP results to DISA STIG viewer:
 ---
 ## RANGER
 
-- `m<KEY>`   = Bookmark path at <KEY>
-- \`<KEY>    = Jump to bookmark at <KEY>
-- `cd /path` = Jump to /path.
-- `gh`       = Jump to ~ (*go home.  *)
+- `m<KEY>`         = Bookmark path at *\<KEY\>*.
+- `` `<KEY> ``     = Jump to bookmark at *\<KEY\>*.
+- `cd /path`       = Jump to /path.
+- `gh` *(go home)* = Jump to ~ 
+<br><br>
+- `I` = Rename from beginning of file.
+- `A` = Rename from end of file (including extension).
+- `a` = Rename from end of file (excluding extension).
 
 
 ---
@@ -133,6 +144,13 @@ systemctl enable osad --now
 rhn-channel --list
 ```
 
+---
+## TENABLE NESSUS
+
+[Reset user password](https://docs.tenable.com/nessus/commandlinereference/Content/ChangeAUsersPassword.htm)
+```bash
+/opt/nessus/sbin/nessuscli chpasswd <USERNAME>
+```
 
 ---
 ## TENABLE.SC (SECURITY CENTER)

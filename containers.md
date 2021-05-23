@@ -1,5 +1,5 @@
 
-## DOCKER
+## [DOCKER](https://docs.docker.com/)
 
 ### Building
 
@@ -29,10 +29,41 @@
    - ./env/var/lib/mysql:/var/lib/mysql:z
 ```
 
+
 ---
-## PODMAN
+## [PODMAN](https://docs.podman.io/en/latest/#)
 
 - **See also:**
-  - [Podman docs](https://docs.podman.io/en/latest/#)
   - [Podman networking](https://www.redhat.com/sysadmin/container-networking-podman)
   - [Moving from Docker to Podman](https://www.redhat.com/sysadmin/compose-podman-pods)
+
+
+---
+### [LXC](https://linuxcontainers.org/lxc/introduction/)
+
+
+![image](images/lxc-vs-docker.png)
+```
+ App Container (Docker/Podman)
+┌─────────────┐
+│ Application │
+├─────────────┤
+│  User space │
+└─────────────┘
+
+ OS Container (LXC/Jails)
+┌────┐   ┌────┐
+│App1│...│App5│
+├────┴───┴────┤
+│  User space │
+└─────────────┘
+
+ Virtual Machine
+┌────┐   ┌────┐
+│App1│...│App5│
+├────┴───┴────┤
+│  User space │
+├─────────────┤
+│    Kernel   │
+└─────────────┘
+```

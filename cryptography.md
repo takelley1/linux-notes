@@ -1,11 +1,12 @@
 
 ## DIGITAL SIGNATURES
 
+- A digital signature is just an encrypted hash of a file.
 - Two keys are used, private key is used for signing, public key is used for verifying signatures.
 
-1. sender hashes document, encrypts hash with sender's private key, then attaches encrypted hash to document. This
+1. Sender hashes document, encrypts hash with sender's private key, then attaches encrypted hash to file. This
    encrypted hash is the digital signature.
-2. receiver hashes document and decrypts the sender's signature containing the sender's hash using the sender's public key.
+2. Receiver hashes file and decrypts the sender's signature containing the sender's hash using the sender's public key.
 3. If the receiver's own hash and the receiver's decrypted hash from the sender match, the signature is valid.
 
 - Provides Integrity, Non-Repudiation, and Authentication.

@@ -4,6 +4,8 @@
 - **See also**
   - [Google style guide](https://google.github.io/styleguide/shellguide.html)
   - [GNU coreutils decoded](https://www.maizure.org/projects/decoded-gnu-coreutils/index.html)
+  - [How to do things safely in Bash](https://github.com/anordal/shellharden/blob/master/how_to_do_things_safely_in_bash.md)
+  - [Bash pitfalls](https://mywiki.wooledge.org/BashPitfalls)
 
 ## [SHELL INITIALIZATION](https://medium.com/@abhinavkorpal/bash-profile-vs-bashrc-c52534a787d3)
 
@@ -41,7 +43,6 @@
 ---
 ## BASH
   - [Bash guide](http://mywiki.wooledge.org/BashGuide)
-  - [Bash pitfalls](https://mywiki.wooledge.org/BashPitfalls)
   - [Bash GNU manual](https://www.gnu.org/software/bash/manual/)
 
 ### String manipulation
@@ -102,13 +103,15 @@ replacement="${name/Johnson/Peterson}" # replacement = "Bob Peterson"
 2>&1 or &> = Stdout and stderr.
 ```
 
-- `cat /file.log 2>&1 | grep -i error` = Pass both stdout and stderr to grep through pipe, by default pipe only passes stdout.
+- `cat /file.log 2>&1 | grep -i error` = Pass both stdout and stderr to grep through pipe,
+                                         by default pipe only passes stdout.
 
 ### Misc
 
 - `sudo !!` = Execute last command with sudo privileges.
 - `history` = Print past commands to stdout, grep and use ![line_number] to repeat command without retyping.
 - `watch <COMMAND>` = Loop command indefinitely.
+- `"$(realpath "${0}")"` = Get full path of the current script.
 
 ### [Sourcing vs executing](https://superuser.com/questions/176783/what-is-the-difference-between-executing-a-bash-script-vs-sourcing-it/176788#176788)
 

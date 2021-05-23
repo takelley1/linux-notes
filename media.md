@@ -1,10 +1,7 @@
 
 ## VIDEO
 
--**See also:**
-  - [ffmpeg docs](https://ffmpeg.org/ffmpeg.html)
-
-### ffmpeg
+### [ffmpeg](https://ffmpeg.org/ffmpeg.html)
 
 - `mediainfo input.mp4` or `ffprobe input.mp4` = Get info on video.
 <br><br>
@@ -19,7 +16,7 @@
 
 ### Other
 
-- `mp4box -force-cat -cat video-part1.mp4 -cat video-part2.mp4 -cat video-part3.mp4 video.mp4` = Combine mp4 videos.
+- `mp4box -force-cat -cat video-part1.mp4 -cat video-part2.mp4 -cat video-part3.mp4 combined-video.mp4` = Combine mp4 videos.
 - `mkvmerge -o 2018-11-21 2018-11-21_17\:12.mkv +2018-11-21_18\:45.mkv` = Combine mkv videos (from mkvtoolnix).
 - `mkvmerge 2018-12-04_23\:35.mkv --split duration:00:28:06.000 -o 2018-12-04_new` = Split mkv videos.
 <br><br>
@@ -32,7 +29,7 @@
 - **See also:**
   - [GNU parallel](http://www.gnu.org/software/parallel/)
 
-### Image Magick
+### [Image Magick](https://imagemagick.org/script/command-line-processing.php)
 
 - `ls *.jpg | parallel convert -geometry 120 {} thumb_{}` = Convert images in parallel.
 
@@ -50,3 +47,10 @@ import \
 ### Other
 
 `pngcrush -s "./screenshot.png" "./$(date +%Y-%m-%d)_${HOSTNAME}.png"` = Compress and rename *screenshot.png*.
+
+---
+## AUDIO
+
+### ALSA
+
+- `alsamixer` = Open mixing interface, use `b` to balance L and R channel volumes.

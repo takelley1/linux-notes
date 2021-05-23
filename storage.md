@@ -1,9 +1,17 @@
 
+## STORAGE
+
+- **See also:**
+  - [File vs block vs object storage](https://www.redhat.com/en/topics/data-storage/file-block-object-storage)
+  - [Synchronous vs asynchronous I/O](https://stackoverflow.com/questions/35012494/difference-between-synchronous-and-asychnchronus-i-o)
+
+
+---
 ## LOGICAL VOLUME MANAGEMENT (LVM)
 
 ### Examples
 
-Extending */var* XFS filesystem with LVM:
+Extending */var* XFS filesystem by 127,999 extents with LVM:
 ```bash
 1. fdisk /dev/sdb                      # Create partition from new disk.
 2. pvcreate /dev/sdb1                  # Create a physical volume from the new partition.
@@ -41,8 +49,9 @@ Extending */var* XFS filesystem with LVM:
 
 - **See also:**
   - [Squash compression benchmark](https://quixdb.github.io/squash-benchmark/#results)
+  - [ZFS zstd compression comparison](https://docs.google.com/spreadsheets/d/1TvCAIDzFsjuLuea7124q-1UtMd0C9amTgnXm2yPtiUQ/edit#gid=1215810192)
 
-[BtrFS compression benchmarks:](https://git.kernel.org/pub/scm/linux/kernel/git/mason/linux-btrfs.git/commit/?h=next&id=5c1aab1dd5445ed8bdcdbb575abc1b0d7ee5b2e7)
+[BtrFS compression benchmarks](https://git.kernel.org/pub/scm/linux/kernel/git/mason/linux-btrfs.git/commit/?h=next&id=5c1aab1dd5445ed8bdcdbb575abc1b0d7ee5b2e7)
 | Method  | Ratio | Compress MB/s | Decompress |
 |---------|-------|---------------|------------|
 | None    |  0.99 |           504 |        686 |
@@ -77,12 +86,18 @@ Extending */var* XFS filesystem with LVM:
 - `tar czvf myarchive.tar.gz dir1/ dir2/` = Create *myarchive.tar.gz* from *dir1* and *dir2*
                                             (*create ze v'ing files*).
 
-### 7zip
+### [7zip](https://sevenzip.osdn.jp/chm/cmdline/index.htm)
 
 - `7za x myarchive.7z` = Extract *myarchive.7z* to current path (DO NOT USE THE 'e' SWITCH, USE 'x' INSTEAD TO PRESERVE FILEPATHS).
 <br><br>
 - `7za a -mx=10 myarchive.7z dir1/ dir2/` = Create *myarchive.7z* from *dir1* and *dir2*.
-  - `-mx=10` = Use compression lvl 10.
+  - `-mx=9` = Use max compression level.
+  - `-myx=9` = Use max analysis level.
+
+[Settings for maximum compression:](https://superuser.com/a/1449735)
+```bash
+7z a -t7z -mx=9 -mfb=273 -ms -md=31 -myx=9 -mtm=- -mmt -mmtf -md=1536m -mmf=bt3 -mmc=10000 -mpb=0 -mlc=0 archive.7z dir/
+```
 
 
 ---
@@ -114,7 +129,6 @@ Extending */var* XFS filesystem with LVM:
 - `bonnie++`
 - `dd if=/dev/zero of=./test1.img bs=1G count=1 oflag=dsync` = [Test disk write speed.](https://www.cyberciti.biz/faq/howto-linux-unix-test-disk-performance-with-dd-command/)
 
----
 ### SMART
 
 #### SMART testing
@@ -181,11 +195,8 @@ Extending */var* XFS filesystem with LVM:
   - `d 1` (*depth*) = Recurse at a depth of 1 directory.
 
 ---
-## SAMBA
+## [SAMBA](https://wiki.samba.org/index.php/Main_Page)
 
-- **See also:**
-  - [Samba wiki](https://wiki.samba.org/index.php/Main_Page)
-<br><br>
 - Enable debug logging:
 ```
 /etc/samba/smb.conf.client-debug
@@ -219,6 +230,15 @@ debug hires timestamp = yes       # Add microsecond resolution to timestamp.
 
 ---
 ## NFS
+
+- **See also:**
+  - [Troubleshooting NFS performance](https://www.redhat.com/sysadmin/using-nfsstat-nfsiostat)
+  - [NFS performance benchmarks](https://blog.ja-ke.tech/2019/08/27/nas-performance-sshfs-nfs-smb.html)
+  - [NFS performance tuning](https://docstore.mik.ua/orelly/networking_2ndEd/nfs/ch18_01.htm)
+
+`nfsstat`
+`nfsiostat`
+`mountstats`
 
 ### Server
 
@@ -292,7 +312,7 @@ L1 cache reference                           0.5 ns
 Branch mispredict                            5   ns
 L2 cache reference                           7   ns .................... 14x slower than L1 cache
 Mutex lock/unlock                           25   ns
-Main memory reference                      100   ns .................... 20x slower than L2 cache, 200x L1 cache
+Main memory reference                      100   ns .................... 20x slower than L2 cache, 200x slower than L1 cache
 Compress 1K bytes with Zippy             3,000   ns        3 us
 Send 1K bytes over 1 Gbps network       10,000   ns       10 us
 Read 4K randomly from SSD              150,000   ns      150 us ........ ~1GB/sec SSD

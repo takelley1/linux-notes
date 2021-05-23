@@ -1,12 +1,13 @@
 
-## SYSTEMD
+## [SYSTEMD](https://systemd.io/)
 
 - **See also:**
   - [systemd man pages](http://0pointer.de/public/systemd-man/)
   - systemd service file examples:
-  [1](https://www.devdungeon.com/content/creating-systemd-service-files),
-  [2](https://www.shellhacks.com/systemd-service-file-example/),
+  [1,](https://www.devdungeon.com/content/creating-systemd-service-files)
+  [2,](https://www.shellhacks.com/systemd-service-file-example/)
   [3](https://www.linode.com/docs/quick-answers/linux/start-service-at-boot/)
+  - [cgroups](https://www.redhat.com/sysadmin/cgroups-part-one)
 
 ```bash
 man systemd.unit
@@ -15,26 +16,29 @@ man systemd.target
 ```
 
 ---
-## UNIT FILES
+## [UNIT FILES](https://www.freedesktop.org/software/systemd/man/systemd.unit.html#)
 
 - User service files can be placed in `$HOME/.config/systemd/user/my_daemon.service` or
   `/etc/systemd/system/my_daemon.service`.
 
-Example syntax:
-```
+<details>
+  <summary>Example 1</summary>
+
+```systemd
 [Unit]
 Description=My Miscellaneous Service
 After=network.target
 
 [Service]
 # Systemd forks "simple"-type services immediately into the background without
-# waiting to see if the service encountered an error for 
+#   waiting to see if the service encountered an error.
 
 Type=simple
 User=austin
 WorkingDirectory=/home/austin
 ExecStart=/home/austin/my_daemon --option=123
-Restart=on-failure # Other restart options: always, on-abort
+# Other restart options: always, on-abort
+Restart=on-failure
 
 # The install section is needed to use `systemctl enable` to start on boot.
 # For a user service that you want to enable and start automatically,
@@ -42,8 +46,12 @@ Restart=on-failure # Other restart options: always, on-abort
 [Install]
 WantedBy=multi-user.target
 ```
+</details>
 
-```
+<details>
+  <summary>Example 2</summary>
+
+```systemd
 [Unit]
 Description=The NGINX HTTP and reverse proxy server
 After=syslog.target network.target remote-fs.target nss-lookup.target
@@ -60,31 +68,36 @@ PrivateTmp=true
 [Install]
 WantedBy=multi-user.target
 ```
+</details>
 
+### Overriding unit files
+
+- Allows easily overriding the options in a a systemd unit file without editing the unit file itself.
+- Search for "drop-in" in `systemd.unit(5)` for more information.
+- Use `systemctl edit <SERVICE>` to automatically create an override file.
 ```
-[Unit]
-Description=Example systemd service.
-
+/etc/systemd/system/myservice.service.d/override.conf
+```
+```systemd
 [Service]
-Type=simple
-ExecStart=/bin/bash /usr/bin/test_service.sh
-
-[Install]
-WantedBy=multi-user.target
+# If the entry is parsed as a list (like ExecStart), it first must be "cleared".
+ExecStart=
+ExecStart=nice -n 5 /sbin/myservice
+ExecReload=
+ExecReload=nice -n 5 /sbin/myservice -r
 ```
-<sup>[1], [2], [3]</sup> 
 
 ---
 ## COMMANDS
 
-- `sudo systemctl status <SERVICE_NAME> = See if running, uptime, view latest logs.
-- `sudo journalctl -xef = Tail logs
-- `sudo journalctl -fu httpd = Tail logs for the *httpd* service only:
+- `sudo systemctl status <SERVICE_NAME>` = See if running, uptime, view latest logs.
+- `sudo journalctl -xef` = Tail logs
+- `sudo journalctl -fu httpd` = Tail logs for the *httpd* service only:
 <br><br>
-- systemctl --user status <SERVICE_NAME> = See status for user service.
-- journalctl -f --user-unit my_user_daemon = Tail logs for *my_user_daemon*.
+- `systemctl --user status <SERVICE_NAME>` = See status for user service.
+- `journalctl -f --user-unit my_user_daemon` = Tail logs for *my_user_daemon*.
 <br><br>
-- systemd-analyze time = Show startup times by process.
+- `systemd-analyze time` = Show startup times by process.
 
 
 ---
@@ -109,5 +122,5 @@ WantedBy=multi-user.target
 
 ### Runlevel scripts
 
-init:    Place script in `/etc/rc#.d/`, in which `#` corresponds to the desired runlevel in which you'd like the script to run.
-systemd: Place or symlink script in `/etc/systemd/system/` and enable service.
+- init:    Place script in `/etc/rc#.d/`, in which `#` corresponds to the desired runlevel in which you'd like the script to run.
+- systemd: Place or symlink script in `/etc/systemd/system/` and enable service.

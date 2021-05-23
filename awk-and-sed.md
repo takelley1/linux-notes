@@ -1,52 +1,38 @@
 
-## AWK
+## [AWK](https://www.gnu.org/software/gawk/manual/gawk.html)
 
 - **See also**:
   - [AWK one-liners explained](https://catonmat.net/awk-one-liners-explained-part-one)
-  - [GAWK manual](https://www.gnu.org/software/gawk/manual/)
   - [AWK cheat sheet](https://catonmat.net/ftp/awk.cheat.sheet.pdf)
 
 ### Examples
 
-Print all interactive users.
+Comment out all lines in which the first non-whitespace string is "alias".
+```bash
+awk
+  '{
+    if ($0 ~ /^[[:space:]]*alias/)
+      print "#",$0
+    else
+      print $0
+  }' \
+  file.sh
+```
+
+Print all interactive users from */etc/passwd*:
 ```bash
 awk -F: \
   '
-  # Look for lines that don't contain the following:
-  # Contains "nologin"
-  # First non-whitespace character is a "#" (^\s*#)
-  # Last non-whitespace character is a ":" (:\s*$)
-  ! /nologin|^\s*#|:\s*$/
-
-  # If the user's UID is over 1000, print the username.
-  {if($3>1000) print $1
-
-  # Otherwise if the user's UID is 0 (i.e. root), print the username.
-  else if($3==0) print $1}
-  ' \
+  # Look for lines that do NOT contain the following:
+    # "nologin"
+    # First non-whitespace character is a "#" (^\s*#)
+    # Last non-whitespace character is a ":" (:\s*$)
+  # If the user UID is 0 (i.e. root) or over 1000, print the username.
+  !/nologin|^\s*#|:\s*$/ && ($3==0||$3>1000) \
+  {print $1}' \
   /etc/passwd
 
-awk -F: '!/nologin|^\s*#|:$/ {if($3>1000)print $1;else if($3==0)print $1}' /etc/passwd
-```
-
-Create SSH aliases from Ansible inventory file:
-```bash
-awk \
-  '
-  # Look for hostname-like strings.
-  /[a-zA-Z]*:$/
-
-  # Chop off the domain suffix, remove extraneous characters.
-  # Force lowercase names, change the field separator back to default.
-  {FS=".";gsub(/[\t| |:]/,"");
-  host=tolower($1);FS=" "}
-
-  # Look for the host IP, Ignore commented-out lines.
-  /^\s*[^#]*ansible_host/
-
-  # Put it all together.
-  {ip=$2;print "Host " host "\n\t HostName " ip}'
-  ./ansible/hosts.yml >> ~/.ssh/config
+awk -F: '!/nologin|^\s*#|:$/ && ($3==0||$3>1000){print $1}' /etc/passwd
 ```
 
 List pacman packages by size:
@@ -54,8 +40,7 @@ List pacman packages by size:
 pacman -Qi | \
   awk -F: \
     '/^Name/ {name=$2}
-     /^Installed/ {gsub(/ /,"");size=$2;
-     print size,name}' \
+     /^Installed/ {gsub(/ /,"");size=$2; print size,name}' \
   | sort -h`
 
 pacman -Qi | awk -F: '/^Name/ {name=$2} /^Installed/ {gsub(/ /,"");size=$2; print size,name}' | sort -h`
@@ -67,31 +52,60 @@ curl -s wttr.in | \
   awk \
     '{if(NR==3) weather1=$4}
      {if(NR==3) weather2=$5}
-     /\.\./ {if(NR==4) print weather1, weather2, "("$5, $6")"}' \
+     /\.\./ {if(NR==4) print weather1, weather2, "("$5, $6")"}'
 ```
 
-- `awk 'NF > 0 {blank=0} NF == 0 {blank++} blank < 2'`       = Remove consecutive blank lines, emulates `cat -s`.
+Reformat a log file:
+```bash
+gawk -F$'\t' \
+  '{
+    # Convert Unix epoch to a human-readable timestamp.
+    # This function is available only in GNU awk.
+    time=strftime("%m-%d-%Y %H:%M:%S", $1)
+    source=$3
+    url=$6
+    http_method=$7
+    http_code=$8
+    access=$16
+    group=$19
+
+    # Use the printf function so the field alignment can be adjusted.
+    printf ("%s | %s %s | %-7s %-3s | %s | %s\n", time, group, source, http_method, http_code, access, url)
+  }' access.log
+```
+
+- `awk 'NF>0 {blank=0} NF==0 {blank++} blank < 2'`           = Remove consecutive blank lines, emulates `cat -s`.
 <br><br>
 - `awk '/foo/ {gsub(/abc/,""); gsub(/[0-9]/,""); print $1}'` = Print 1st field of lines that contain *foo*, remove *abc* and all numbers from output.
 - `awk '/([0-9]{1,3}\.){1,3}[0-9]{1,3}/ {print $3}'`         = Print 3rd field of lines that contain IP-address-like strings in input.
-- `ip -4 -br a | awk '! /127\.0\.0/ {gsub(/\/[0-9]{1,2}/,""); print $3}'` = Print the primary IP address, without the subnet mask.
+- `ip -4 -br a | awk '!/127\.0\.0/ {gsub(/\/[0-9]{1,2}/,""); print $3}'` = Print the primary IP address, without the subnet mask.
 <br><br>
-- `awk -F: '/:[1-4][0-9]{3}/ {print $6}' /etc/passwd`      = Print the home directories of all interactive users.
-- `awk -F: '! /\/sbin\/nologin/ {print $1}' /etc/passwd`   = Print users who don't use */sbin/nologin* as their shell.
+- `awk -F: '/:[1-4][0-9]{3}/ {print $6}' /etc/passwd`     = Print the home directories of all interactive users.
+- `awk -F: '!/\/sbin\/nologin/ {print $1}' /etc/passwd`   = Print users who don't use */sbin/nologin* as their shell.
 <br><br>
-- `awk '{if(NR>2) print $0}'`  = Print all but the first two lines.
-- `awk 'END{print $0}'`        = Print the last line, emaultes `tail -1`.
-- `awk '{if(NR==1) print $0}'` = Print the first two lines, emulates `head -1`.
-- `awk 'NF > 0'`               = Remove blank lines quickly.
-- `awk '!/^$/ {print $1}'`     = Remove blank lines while using print statement.
+- `awk 'NR>2'`          = Print all but the first two lines.
+- `awk 'NR==1'`         = Print the first line, emulates `head -1`.
+- `awk 'NF>0'`          = Remove blank lines quickly (i.e. print lines with at least one field).
+- `awk 'END{print}'`    = Print the last line, emaultes `tail -1` (*{print}* is the same as *{print $0}*).
+- `awk 'END{print NR}'` = Print the number of lines, emaultes `wc -l`.
+- `awk 'length($0)>80'` = Print lines longer than 80 characters.
 
 ### Variables
 
+- **See also:**
+  - [Shell variables in an awk script](https://stackoverflow.com/questions/19075671/how-do-i-use-shell-variables-in-an-awk-script)
+<br><br>
 - `FS`  = Input field separator regular expression, a \<SPACE\> by default.
 - `NF`  = The number of fields in the current record.
 - `NR`  = The ordinal number of the current record from the start of input.
 - `OFS` = The print statement output field separator, \<SPACE\> by default.
 - `ORS` = The print statement output record separator, a \<NEWLINE\> by default.
+<br><br>
+- Pass shell variable to awk:
+```
+myvar="Hello world!"
+awk -v myvar="${myvar}" 'BEGIN {print myvar}'`
+```
 
 ### Regex
 *(See `man 7 regex` for more info.)*
@@ -148,7 +162,7 @@ curl -s wttr.in | \
 
 
 ---
-## SED
+## [SED](https://www.gnu.org/software/sed/manual/sed.html)
 
 - **See also**:
   - [Sed introduction](https://www.grymoire.com/Unix/Sed.html)
@@ -198,7 +212,7 @@ sed \
 - `sed -n 2p`     = Print second line of input.
 - `sed 10q`       = Print first ten lines of input, emulates `head`.
 - `sed '5,10d'`   = Delete lines 5 through 10.
-- `sed 's|.||2g'  = Remove all periods, skipping the first match on each line.
+- `sed 's|.||2g'`  = Remove all periods, skipping the first match on each line.
 <br><br>
 - `sed '$d'`      = Delete the last line.
 - `sed '/^$/d'`   = Delete all blank lines.
@@ -249,7 +263,7 @@ sed \
 Filter out only the host's primary IPv4 address:
 ```bash
 # Good:
-ip -4 -br a | awk '! /127\.0\.0/ {gsub(/\/[0-9]{1,2}/,""); print $3}'
+ip -4 -br a | awk '!/127\.0\.0/ {gsub(/\/[0-9]{1,2}/,""); print $3}'
 # Bad:
 ifconfig ens32 | grep "inet" | grep –v "inet6" | tr –s " " ":" | cut –f 3 –d ":"
 ```
@@ -266,7 +280,7 @@ ifconfig ens32 | grep "inet" | grep –v "inet6" | tr –s " " ":" | cut –f 3 
 - `[!xyz]` = Negation of xyz (any characters NOT in the set of *xyz*).
 
 ---
-## GREP
+## [GREP](https://www.gnu.org/software/grep/manual/grep.html)
 
 ### Examples
 

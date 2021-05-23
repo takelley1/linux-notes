@@ -2,7 +2,7 @@
 USEFUL ONE-LINE SCRIPTS FOR SED (Unix stream editor)        Dec. 29, 2005
 Compiled by Eric Pement - pemente[at]northpark[dot]edu        version 5.5
 
-Latest version of this file (in English) is usually at:
+Latest version of this file is usually at:
    http://sed.sourceforge.net/sed1line.txt
    http://www.pement.org/sed/sed1line.txt
 
@@ -420,21 +420,3 @@ will drastically reduce processing time for large files. Thus:
 
    sed -n '45,50p' filename           # print line nos. 45-50 of a file
    sed -n '51q;45,50p' filename       # same, but executes much faster
-
-If you have any additional scripts to contribute or if you find errors
-in this document, please send e-mail to the compiler. Indicate the
-version of sed you used, the operating system it was compiled for, and
-the nature of the problem. To qualify as a one-liner, the command line
-must be 65 characters or less. Various scripts in this file have been
-written or contributed by:
-
- Al Aab                   # founder of "seders" list
- Edgar Allen              # various
- Yiorgos Adamopoulos      # various
- Dale Dougherty           # author of "sed & awk"
- Carlos Duarte            # author of "do it with sed"
- Eric Pement              # author of this document
- Ken Pizzini              # author of GNU sed v3.02
- S.G. Ravenhall           # great de-html script
- Greg Ubben               # many contributions & much help
--------------------------------------------------------------------------

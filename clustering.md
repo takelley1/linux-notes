@@ -1,7 +1,7 @@
 
 ## Clustering
 
-### Pacemaker
+### [Pacemaker](https://clusterlabs.org/pacemaker/doc/)
 
 - `pcs status --full` = Show general cluster status.
 - `pcs config` = Show entire cluster configuration.
