@@ -20,6 +20,7 @@
 - [Python standard library](https://docs.python.org/3/library/index.html)
   - [shutil - high-level file operations](https://docs.python.org/3/library/shutil.html)
   - [tempfile - create temporary files](https://docs.python.org/3/library/tempfile.html)
+  - [pathlib - object-oriented path operations](https://docs.python.org/3/library/pathlib.html)
 
 ### Tips
 
