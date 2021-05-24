@@ -213,6 +213,7 @@ recipient@example.com                        # This is the 'to' field of the ema
 wget                            \
   -A "*.pdf"                    \ # Only keep PDF files.
   -e robots=off                 \ # Ignore robots.txt files.
+  --no-check-certificate        \ # Ignore HTTPS cert errors.
   --limit 100k                  \ # Limit download speed to 100 KB/s.
   --recursive                   \ # Descend into all subdirectories.
   --no-clobber                  \ # Don't overwrite existing files.
@@ -225,8 +226,9 @@ wget                            \
   www.website2.org/
 
   --span-hosts                    # Let wget traverse multiple domains.
+  -nv                             # Non-verbose.
 
-wget -A "*.pdf" -e robots=off --limit 100k --recursive --no-clobber --page-requisites --html-extension --convert-links --restrict-file-names=windows --no-parent www.website.org www.website2.org
+wget -A "*.pdf" -e robots=off --no-check-certificate --limit 100k --recursive --no-clobber --page-requisites --html-extension --convert-links --restrict-file-names=windows --no-parent www.website.org www.website2.org
 ```
 
 
