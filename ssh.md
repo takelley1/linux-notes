@@ -4,7 +4,6 @@
 - **See also:**
   - [SSH essentials](https://www.digitalocean.com/community/tutorials/ssh-essentials-working-with-ssh-servers-clients-and-keys)
   - [sshd_config man page](https://www.freebsd.org/cgi/man.cgi?sshd_config(5))
-  - [SSH jump hosts](https://wiki.gentoo.org/wiki/SSH_jump_host)
 
 ### Examples
 
@@ -57,18 +56,20 @@ ssh-keygen -t rsa -b 4096 -o -a 100
 - `~/.ssh/authorized_keys`
   - Kept on the server.
   - Contains the public keys of users (user keys) allowed to login to the requested account.
-
-- `~/.ssh/config`
+<br><br>
+- [`~/.ssh/config`](https://linuxize.com/post/using-the-ssh-config-file/)
   - Kept on the client.
   - Contains personal configuration settings for SSH, such as host aliases.
 
+Example *~/.ssh/config* using an [SSH jump host](https://wiki.gentoo.org/wiki/SSH_jump_host):
 ```
-# Sample ~/.ssh/config
-
-Host mywebserver
-  Hostname 10.1.0.1
+Host foo
+  Hostname 10.1.0.3
   Proxyjump 10.0.0.15
 
-Host another_server
+Host bar
+  Hostname server.domain.example.com
+  
+Host baz
   Hostname 10.0.0.20
 ```
