@@ -55,5 +55,20 @@ ssh-keygen -t rsa -b 4096 -o -a 100
       (because the server can prove it has posession of the matching private key).
 <br><br>
 - `~/.ssh/authorized_keys`
-    - Kept on the server.
-    - Contains the public keys of users (user keys) allowed to login to the requested account.
+  - Kept on the server.
+  - Contains the public keys of users (user keys) allowed to login to the requested account.
+
+- `~/.ssh/config`
+  - Kept on the client.
+  - Contains personal configuration settings for SSH, such as host aliases.
+
+```
+# Sample ~/.ssh/config
+
+Host mywebserver
+  Hostname 10.1.0.1
+  Proxyjump 10.0.0.15
+
+Host another_server
+  Hostname 10.0.0.20
+```
