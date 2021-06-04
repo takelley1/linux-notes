@@ -28,7 +28,7 @@ $ModLoad imuxsock
 # Template format for log messages. Since this is a remote server, each
 #   host is placed in its own directory.
 $template remote-incoming-logs, "/var/log/%HOSTNAME%/%PROGRAMNAME%.log"
-*.* ?remote-incoming-logs
+*.* -?remote-incoming-logs
 
 
 $OmitLocalLogging off
