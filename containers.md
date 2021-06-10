@@ -44,26 +44,39 @@
 
 ![image](images/lxc-vs-docker.png)
 ```
- App Container (Docker/Podman)
-┌─────────────┐
-│ Application │
-├─────────────┤
-│  User space │
-└─────────────┘
+ Application Containers (Docker, Podman)
+┌───────────────┐   ┌───────────────┐
+│  Application  │   │  Application  │
+├───────────────┤   ├───────────────┤
+│   Container   │   │   Container   │
+├───────────────┴───┴───────────────┤
+│            OS + Kernel            │
+└───────────────────────────────────┘
 
- OS Container (LXC/Jails)
-┌────┐   ┌────┐
-│App1│...│App5│
-├────┴───┴────┤
-│  User space │
-└─────────────┘
+ OS Containers (LXC/LXD, FreeBSD Jails)
+┌─────┐   ┌──────┐ ┌─────┐   ┌──────┐
+│App 1│...│App 99│ │App 1│...│App 99│
+├─────┴───┴──────┤ ├─────┴───┴──────┤
+│ OS + Container │ │ OS + Container │
+├────────────────┴─┴────────────────┤
+│            OS + Kernel            │
+└───────────────────────────────────┘
 
- Virtual Machine
-┌────┐   ┌────┐
-│App1│...│App5│
-├────┴───┴────┤
-│  User space │
-├─────────────┤
-│    Kernel   │
-└─────────────┘
+ Unikernels (ClickOS, IncludeOS)
+┌───────────────┐   ┌───────────────┐
+│  Application  │   │  Application  │
+├───────────────┤   ├───────────────┤
+│    Kernel     │   │    Kernel     │
+├───────────────┴───┴───────────────┤
+│            Hypervisor             │
+└───────────────────────────────────┘
+
+ Virtual Machines (KVM, QEMU, Xen, Bhyve)
+┌─────┐   ┌──────┐ ┌─────┐   ┌──────┐
+│App 1│...│App 99│ │App 1│...│App 99│
+├─────┴───┴──────┤ ├─────┴───┴──────┤
+│  OS + Kernel   │ │  OS + Kernel   │
+├────────────────┴─┴────────────────┤
+│            Hypervisor             │
+└───────────────────────────────────┘
 ```
