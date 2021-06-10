@@ -39,10 +39,21 @@
 
 
 ---
-### [LXC](https://linuxcontainers.org/lxc/introduction/)
+## [LXC](https://linuxcontainers.org/lxc/introduction/)
 
 
 ![image](images/lxc-vs-docker.png)
+
+---
+## [KUBERNETES](https://kubernetes.io/docs/home/)
+
+- **See also:**
+  - [Helm - K8s package manager](https://helm.sh/docs/)
+  - [Kubespray - Create and manage a K8s cluster with Ansible](https://github.com/kubernetes-sigs/kubespray)
+  - [Minikube - Local K8s](https://minikube.sigs.k8s.io/docs/start/)
+  - [K0s - Lightweight K8s distro](https://github.com/k0sproject/k0s)
+
+### Container stack comparison
 ```
  Application Containers (Docker, Podman)
 ┌───────────────┐   ┌───────────────┐
