@@ -1,3 +1,5 @@
+- **See also:**
+  - [CNCF landscape](https://landscape.cncf.io/)
 
 ## [DOCKER](https://docs.docker.com/)
 
@@ -53,6 +55,7 @@
   - [Minikube - Local K8s](https://minikube.sigs.k8s.io/docs/start/)
   - [K0s - Lightweight K8s distro](https://github.com/k0sproject/k0s)
 
+---
 ### Container stack comparison
 ```
  Application Containers (Docker, Podman)
