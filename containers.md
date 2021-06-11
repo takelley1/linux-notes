@@ -49,7 +49,8 @@
 ---
 ## [KUBERNETES](https://kubernetes.io/docs/home/)
 
-- **See also:**
+- **See also:**yeah 
+  - [Kubectl](https://kubernetes.io/docs/reference/kubectl/overview/)
   - [Helm - K8s package manager](https://helm.sh/docs/)
   - [Kubespray - Create and manage a K8s cluster with Ansible](https://github.com/kubernetes-sigs/kubespray)
   - [Minikube - Local K8s](https://minikube.sigs.k8s.io/docs/start/)
