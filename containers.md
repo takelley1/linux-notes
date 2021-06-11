@@ -49,7 +49,7 @@
 ---
 ## [KUBERNETES](https://kubernetes.io/docs/home/)
 
-- **See also:**yeah 
+- **See also:** 
   - [Kubectl](https://kubernetes.io/docs/reference/kubectl/overview/)
   - [Helm - K8s package manager](https://helm.sh/docs/)
   - [Kubespray - Create and manage a K8s cluster with Ansible](https://github.com/kubernetes-sigs/kubespray)
@@ -57,7 +57,7 @@
   - [K0s - Lightweight K8s distro](https://github.com/k0sproject/k0s)
 
 ---
-### Container stack comparison
+### Container implementations comparison
 ```
  Application Containers (Docker, Podman)
 ┌───────────────┐   ┌───────────────┐
