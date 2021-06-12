@@ -91,11 +91,8 @@ ExecReload=nice -n 5 /sbin/myservice -r
 ## COMMANDS
 
 - `sudo systemctl status <SERVICE_NAME>` = See if running, uptime, view latest logs.
-- `sudo journalctl -xef` = Tail logs
-- `sudo journalctl -fu httpd` = Tail logs for the *httpd* service only:
 <br><br>
 - `systemctl --user status <SERVICE_NAME>` = See status for user service.
-- `journalctl -f --user-unit my_user_daemon` = Tail logs for *my_user_daemon*.
 <br><br>
 - `systemd-analyze time` = Show startup times by process.
 
