@@ -15,7 +15,7 @@
 - `ansible -i inventories/hostsfile.yml -m debug -a "var=hostvars" all` = View all variables from all hosts in *hostsfile.yml*.
 - `ansible localhost -m setup -kK -u foo` = Print local host's facts by connecting to it with user *foo*.
 
-- `packages_list_new: "{{ packages_list | reject('equalto', 'p7zip') | list }}"` = [Remove *p7zip* from *packages_list*.](https://docs.ansible.com/ansible/latest/user_guide/complex_data_manipulation.html#omit-elements-from-a-list)
+- `packages_list_new: "{{ packages_list | reject('eq', 'p7zip') | list }}"` = [Remove *p7zip* from *packages_list*.](https://docs.ansible.com/ansible/latest/user_guide/complex_data_manipulation.html#omit-elements-from-a-list)
 - `packages_list_new: "{{ packages_list + ['p7zip', 'htop'] }}"` = Add *p7zip* and *htop* to *packages_list*.
 
 ### Ad-hoc commands
