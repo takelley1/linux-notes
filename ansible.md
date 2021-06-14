@@ -1,5 +1,7 @@
 - **See also**
   - [Jinja2 reference](https://jinja2docs.readthedocs.io/en/stable/)
+  - [Jinja2 filters](https://jinja.palletsprojects.com/en/3.0.x/templates/#builtin-filters)
+  - [Jinja2 tests](https://jinja.palletsprojects.com/en/3.0.x/templates/#builtin-tests)
 
 ### Crypto
 
