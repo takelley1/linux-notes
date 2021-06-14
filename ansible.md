@@ -42,6 +42,13 @@ ansible -i inventories/my_inv/hosts.yml -m file -a "path=/etc/yum.repos.d/elasti
 
 ### Misc
 
+> Tags attached to `import_tasks` statements will run every task inside the taskfile being imported, but tags attached
+>   to `include_task` statements WILL NOT run every task. You must tag every individual task within the taskfile being
+>   imported by the `include_task` statement to run them. This is called tag inheritance. In other words, tag inheritance
+>   works on static `import` statements, but NOT on dynamic `include` statements. See
+>   [this](https://docs.ansible.com/ansible/latest/user_guide/playbooks_tags.html#adding-tags-to-imports) link for
+>   more info.
+
 - `ansible-doc -F`                                 = List all available modules.
 - `ansible-doc -l -t become/cache/callback/cliconf/connection/httpapi/inventory/lookup/netconf/shell/vars/strategy` = List available plugins of a given type.
 <br><br>
