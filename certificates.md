@@ -45,7 +45,7 @@ openssl pkcs12 -export -out cert.pfx -inkey private.key -in cert.crt -certfile C
 
 <details>
   <summary>Example OpenSSL CA config file</summary>
-  
+
 ```ini
 HOME            = .
 RANDFILE        = $ENV::HOME/.rnd
