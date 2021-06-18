@@ -21,6 +21,7 @@
 - `zfs list -r tank` = List all child datasets of the *tank* dataset.
 - `zfs list -t filesystem -o space -r tank` = Recursively print filesystem space info for the *tank* dataset.
 - `zfs list -o space tank/storage/videos` = Print usage info for the *tank/storage/videos* dataset.
+- `zfs get all tank` = Print all properties for the *tank* dataset.
 - `zfs set mountpoint=/mount/path mydataset` = Set mountpoint and mount dataset. Mountpoint path is relative to the root
                                                of the ZFS pool, not the root of the filesystem.
 <br><br>
@@ -29,6 +30,37 @@
 - `zpool list` 	            = Show all pools' usage + dedup info.
 - `zpool list -o name,size` = Show particular properties of all pools.
 - `zpool list -Ho name`     = Show all pools without headers and columns.
+
+```
+root@server$ zfs list -o space tank
+NAME  AVAIL   USED  USEDSNAP  USEDDS  USEDREFRESERV  USEDCHILD
+tank  1.42T  1.17T      128K    682K             0B      1.17T
+
+root@server$ zfs list -o space tank/storage/videos
+NAME                 AVAIL   USED  USEDSNAP  USEDDS  USEDREFRESERV  USEDCHILD
+tank/storage/videos  1.42T   583G      247G    337G             0B         0B
+-----------------------------------------------------------------------------
+
+AVAIL: Amount of disk space available to dataset and its children.
+
+USED: Space used by the dataset, the dataset's snapshots, and all its
+      chilren combined.
+
+USEDSNAP: (usedbysnapshots) Space used by the dataset's snapshots. This
+          value is not the sum of the snapshots' USED properties because
+          space can be shared by multiple snapshots.
+
+USEDDS: (usedbydataset) Space used by the dataset.
+
+USEDREFRESERV: Space used by refreservation on the dataset.
+
+USEDCHILD: (usedbychildren) Space used by the dataset's children
+           combined.
+
+dataset ...................... = USEDDS
+children ..................... = USEDCHILD
+dataset + snapshots + children = USED
+```
 
 #### Snapshots
 
@@ -40,6 +72,19 @@
 Delete all snapshots taken between those called *2020-07-11__19:00__tank* and *2020-07-16__22:00__tank*, inclusive:
 ```bash
 zfs destroy tank/storage/videos@2020-07-11__19:00__tank%2020-07-16__22:00__tank
+```
+
+```
+root@server$ zfs list -t snapshot tank
+NAME                                   USED  AVAIL     REFER  MOUNTPOINT
+tank@2021-04-09__11:00__tank__daily    220K      -      248G  -
+tank@2021-04-12__11:00__tank__daily      0B      -      250G  -
+------------------------------------------------------------------------
+
+USED: The amount of data consumed by the snapshot.
+
+REFER: The amount of data accessible by the snapshot. This is the size
+       the dataset was when the snapshot was created.
 ```
 
 #### [Restoring data](https://www.linuxtopia.org/online_books/opensolaris_2008/ZFSADMIN/html/gbchx.html)
