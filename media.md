@@ -16,9 +16,12 @@
 
 ### Other
 
-- `mp4box -force-cat -cat video-part1.mp4 -cat video-part2.mp4 -cat video-part3.mp4 combined-video.mp4` = Combine mp4 videos.
-- `mkvmerge -o 2018-11-21 2018-11-21_17\:12.mkv +2018-11-21_18\:45.mkv` = Combine mkv videos (from mkvtoolnix).
-- `mkvmerge 2018-12-04_23\:35.mkv --split duration:00:28:06.000 -o 2018-12-04_new` = Split mkv videos.
+- `mp4box -force-cat -cat infile-1.mp4 -cat infile-2.mp4 -cat infile-3.mp4 outfile.mp4` = Combine mp4 videos.
+- `mp4box infile.mp4 -split-chunk 0:end-10` = Split mp4 video from second 0 to 10 seconds before video end.
+- `mp4box infile.mp4 -split-chunk 0:523` = Split mp4 video from second 0 to second 523.
+<br><br>
+- `mkvmerge -o outfile.mkv infile-1.mkv +infile-2.mkv` = Combine mkv videos (from mkvtoolnix).
+- `mkvmerge infile.mkv --split duration:00:28:06.000 -o outfile.mkv` = Split mkv videos.
 <br><br>
 - `mpv --input-test --idle --force-window` = Start mpv in xev-style mode that shows keybindings when keys are pressed.
 
