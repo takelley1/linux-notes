@@ -3,6 +3,7 @@
 
 - **See also**
   - [Google style guide for Python](https://google.github.io/styleguide/pyguide.html)
+  - [Replacing Bash scripts with Python](https://github.com/ninjaaron/replacing-bash-scripting-with-python)
 
 ### Reference
 
@@ -28,9 +29,7 @@
 ```python
 import re
 http_proxy = "https://10.0.0.15:8080"
-http_proxy_server = re.search(
-    "https?://([0-9]{1,3}.){3}[0-9]{1,3}", http_proxy
-)
+http_proxy_server = re.search("https?://([0-9]{1,3}.){3}[0-9]{1,3}", http_proxy)
 print(http_proxy_server.group())
 # https://10.0.0.15
 ```
