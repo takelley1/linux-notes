@@ -69,7 +69,7 @@ Host foo
 
 Host bar
   Hostname server.domain.example.com
-  
+
 Host baz
   Hostname 10.0.0.20
 ```
