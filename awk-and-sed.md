@@ -282,6 +282,9 @@ ifconfig ens32 | grep "inet" | grep –v "inet6" | tr –s " " ":" | cut –f 3 
 ---
 ## [GREP](https://www.gnu.org/software/grep/manual/grep.html)
 
+- **See also**:
+  - [Ripgrep](https://blog.burntsushi.net/ripgrep/)
+
 ### Examples
 
 - `egrep -h -o '([0-9]{1,3}\.){1,3}[0-9]{1,3}' /var/log/maillog* | sort -u` = Extract IPs.
