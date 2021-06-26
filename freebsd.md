@@ -5,6 +5,8 @@
   - [FreeBSD handbook](https://docs.freebsd.org/en/books/handbook/)
   - [FreeBSD wiki](https://wiki.freebsd.org/FrontPage)
   - [Recommended steps for new FreeBSD servers](https://www.digitalocean.com/community/tutorials/recommended-steps-for-new-freebsd-12-0-servers)
+  - [Swap on FreeBSD](https://klarasystems.com/articles/exploring-swap-on-freebsd/)
+  - [Network troubleshooting](https://klarasystems.com/articles/freebsd-network-troubleshooting-understanding-network-performance/)
 
 | Linux command      | FreeBSD equivalent    |
 |--------------------|-----------------------|
