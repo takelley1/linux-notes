@@ -7,10 +7,12 @@
 
 ### Tips
 
+- `git grep "mystring" $(git rev-list --all) | cut -d: -f2-4 | sort -u` = [Search entire repo history for string *mystring*.](https://stackoverflow.com/a/2929502)
+<br><br>
 - `git push origin --delete feature-123` = Delete the *feature-123* branch remotely.
 - `git submodule update` = [Update submodules to remove from unstaged changes in parent repo](https://stackoverflow.com/a/6006919)
-- `git commit --amend -m 'Commit message'` = [Amend most recent commit message](https://linuxize.com/post/change-git-commit-message/) (requires `git push --force` if commit
-                                             already pushed).
+- `git commit --amend -m 'Commit message'` = [Amend most recent commit message](https://linuxize.com/post/change-git-commit-message/)
+                                             (requires `git push --force` if commit already pushed).
 <br><br>
 - `git add -A` = Stage all modified files, including deleted files.
 - `git add -A ./*` = Stage all modified files, including deleted files, beneath the current path.
