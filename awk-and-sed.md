@@ -74,6 +74,7 @@ gawk -F$'\t' \
   }' access.log
 ```
 
+- `yum history | awk -F"|" '($2~"<ansible>" && $4~"U"){print $0}'` = Print lines that contain *\<ansible\>* in column 2 and *U* in column 4
 - `awk 'NF>0 {blank=0} NF==0 {blank++} blank < 2'`           = Remove consecutive blank lines, emulates `cat -s`.
 <br><br>
 - `awk '/foo/ {gsub(/abc/,""); gsub(/[0-9]/,""); print $1}'` = Print 1st field of lines that contain *foo*, remove *abc* and all numbers from output.
