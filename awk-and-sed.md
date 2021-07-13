@@ -108,8 +108,22 @@ myvar="Hello world!"
 awk -v myvar="${myvar}" 'BEGIN {print myvar}'`
 ```
 
+
+---
+## PATTERN MATCHING
+
+### Globbing
+
+- `*`      = Zero or more of any character.
+- `?`      = Exactly one of any character.
+- `[xyz]`  = Any characters within set or within range.
+- `[!xyz]` = Negation of xyz (any characters NOT in the set of *xyz*).
+
 ### Regex
-*(See `man 7 regex` for more info.)*
+- **See also:**
+  - `man 7 regex`
+  - [Regex tester](https://www.regextester.com/)
+  - [RexEgg](http://www.rexegg.com)
 
 #### Operators
 
@@ -118,11 +132,15 @@ awk -v myvar="${myvar}" 'BEGIN {print myvar}'`
 
 #### Patterns
 - `.`       = Any character.
-- `[abc…]`  = Anything within brackets (called a *bracket expression*).
+- `[abc…]`  = Anything within brackets (*a*, *b*, or *c*).
+- `[0-9]`   = Range within brackets (digits *0* through *9*, inclusive).
 - `[^123…]` = Anything NOT within brackets.
 - `\`       = Escape next character.
-- `(   )`   = Pattern grouping (groups multiple *pieces* into a single *atom*).
-- `([0-9]{1,3}\.){5}` = 5 instances of ( 1-3 of any digit, followed by a period ).
+- `(   )`   = Pattern grouping (`([0-9]{1,3}\.){5}` = 5 instances of 1-3 of any digit, followed by a period.).
+- `\1`      = Backreference to group #1.
+<br><br>
+- `(?!foo)`  = Negative lookahead, matches any subsequent string that is NOT *foo* (similar to `[^ ]`, except for a string rather than a range).
+  - `grep -P '/documents/github-repos/(?!my-repos)'` = Matches all directories under *github-repos* EXCEPT *my-repos*.
 
 #### Quantifiers
 - `^`     = Match pattern at start.
@@ -135,6 +153,7 @@ awk -v myvar="${myvar}" 'BEGIN {print myvar}'`
   - `{1,5}` = One to five of pattern.
   - `{3,}`  = At least three of pattern.
   - `{,2}`  = At most three of pattern.
+  - `{1}`   = Exactly one of pattern.
 
 | Character classes | Similar to      | GNU synonym | *Only valid within brackets e.g [[:xyz:]]*        |
 |-------------------|-----------------|-------------|---------------------------------------------------|
@@ -269,16 +288,6 @@ ip -4 -br a | awk '!/127\.0\.0/ {gsub(/\/[0-9]{1,2}/,""); print $3}'
 ifconfig ens32 | grep "inet" | grep –v "inet6" | tr –s " " ":" | cut –f 3 –d ":"
 ```
 
-
----
-## WILDCARDS
-
-### globbing
-
-- `*`      = Zero or more of any character.
-- `?`      = Exactly one of any character.
-- `[xyz]`  = Any characters within set or within range.
-- `[!xyz]` = Negation of xyz (any characters NOT in the set of *xyz*).
 
 ---
 ## [GREP](https://www.gnu.org/software/grep/manual/grep.html)
