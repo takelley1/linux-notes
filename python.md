@@ -19,6 +19,7 @@
 ### Useful modules
 
 - [Python standard library](https://docs.python.org/3/library/index.html)
+  - [argparse - parse command-line options](https://www.pythonforbeginners.com/argparse/argparse-tutorial)
   - [shutil - high-level file operations](https://docs.python.org/3/library/shutil.html)
   - [tempfile - create temporary files](https://docs.python.org/3/library/tempfile.html)
   - [pathlib - object-oriented path operations](https://docs.python.org/3/library/pathlib.html)
