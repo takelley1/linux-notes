@@ -248,6 +248,7 @@ wget -A "*.pdf" -e robots=off --no-check-certificate --limit 100k --recursive --
 ## TCP/IP STACK
 
 - **See also:**
+  - [The actual OSI model](https://computer.rip/2021-03-27-the-actual-osi-model.html)
   - [Understanding TCP/IP](https://www.cubrid.org/blog/understanding-tcp-ip-network-stack)
   - [How ARP works](https://www.tummy.com/articles/networking-basics-how-arp-works/)
 
