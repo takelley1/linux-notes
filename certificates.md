@@ -37,6 +37,7 @@ openssl pkcs12 -export -out cert.pfx -inkey private.key -in cert.crt -certfile C
 
 #### Conversion
 
+> The *.pem* format is simply a Base64-encoded certificate.
 - `openssl x509 -outform der -in cert.pem -out cert.crt` = Convert *.pem* to *.crt* format.
 - `openssl x509 -outform pem -in cert.crt -out cert.pem` = Convert *.crt* to *.pem* format.
 
