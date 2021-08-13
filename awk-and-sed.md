@@ -120,10 +120,15 @@ awk -v myvar="${myvar}" 'BEGIN {print myvar}'`
 - `[!xyz]` = Negation of xyz (any characters NOT in the set of *xyz*).
 
 ### Regex
+
 - **See also:**
   - `man 7 regex`
   - [Regex tester](https://www.regextester.com/)
   - [RexEgg](http://www.rexegg.com)
+
+#### Examples
+
+- `^[^#]*foobar.*` = Match lines containing *foobar*, exclude commented lines 
 
 #### Operators
 
@@ -131,6 +136,7 @@ awk -v myvar="${myvar}" 'BEGIN {print myvar}'`
 - `!~` = Negation regex matching operator. (`awk '$1 !~ /J/'` = Print field *1* if it doesn't contain a *J*.).
 
 #### Patterns
+
 - `.`       = Any character.
 - `[abc…]`  = Anything within brackets (*a*, *b*, or *c*).
 - `[0-9]`   = Range within brackets (digits *0* through *9*, inclusive).
@@ -143,6 +149,7 @@ awk -v myvar="${myvar}" 'BEGIN {print myvar}'`
   - `grep -P '/documents/github-repos/(?!my-repos)'` = Matches all directories under *github-repos* EXCEPT *my-repos*.
 
 #### Quantifiers
+
 - `^`     = Match pattern at start.
 - `$`     = Match pattern at end.
 - `a|b`   = Alternation of patterns (*a* or *b*).
