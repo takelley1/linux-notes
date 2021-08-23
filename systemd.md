@@ -22,7 +22,7 @@ man systemd.target
   `/etc/systemd/system/my_daemon.service`.
 
 <details>
-  <summary>Example 1</summary>
+  <summary>Example 1: simple service</summary>
 
 ```systemd
 [Unit]
@@ -49,7 +49,7 @@ WantedBy=multi-user.target
 </details>
 
 <details>
-  <summary>Example 2</summary>
+  <summary>Example 2: daemon</summary>
 
 ```systemd
 [Unit]
@@ -68,6 +68,39 @@ PrivateTmp=true
 [Install]
 WantedBy=multi-user.target
 ```
+</details>
+
+<details>
+  <summary>Example 2: simple service activated by timer</summary>
+  
+```systemd
+[Unit]
+Description=My backup script service
+After=network.target multi-user.target
+
+[Service]
+Type=simple
+User=root
+Group=root
+ExecStart=/backup.sh
+
+[Install]
+WantedBy=network.target multi-user.target
+```
+
+```systemd
+[Unit]
+Description=My backup script service timer
+After=network-online.target multi-user.target
+
+[Timer]
+OnCalendar=06:00:00
+RandomizedDelaySec=120
+
+[Install]
+WantedBy=timers.target
+```
+
 </details>
 
 ### Overriding unit files
