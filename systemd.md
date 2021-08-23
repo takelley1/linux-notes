@@ -49,7 +49,7 @@ WantedBy=multi-user.target
 </details>
 
 <details>
-  <summary>Example 2: daemon</summary>
+  <summary>Example 2: nginx daemon</summary>
 
 ```systemd
 [Unit]
@@ -71,7 +71,7 @@ WantedBy=multi-user.target
 </details>
 
 <details>
-  <summary>Example 2: simple service activated by timer</summary>
+  <summary>Example 3: simple service activated by a timer</summary>
   
 ```systemd
 [Unit]
