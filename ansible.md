@@ -13,6 +13,8 @@
 ### Variables
 
 - `ansible -i inventories/hostsfile.yml -m debug -a "var=hostvars" all` = View all variables from all hosts in *hostsfile.yml*.
+- `ansible webserver01 -m debug -a 'msg={{ hostname | quote }}' -i inventories/my_inv/hosts.yml` = Run ad-hoc debug module on *webserver01* to test variable filter.
+- `ansible localhost -m debug -a msg="{{ lookup('env','HOME') }}"` = Run ad-hoc module on *localhost* to print user's home directory.
 - `ansible localhost -m setup -kK -u foo` = Print local host's facts by connecting to it with user *foo*.
 <br><br>
 - `packages_list_new: "{{ packages_list | reject('eq', 'p7zip') | list }}"` = [Remove p7zip from packages_list.](https://docs.ansible.com/ansible/latest/user_guide/complex_data_manipulation.html#omit-elements-from-a-list)
@@ -29,11 +31,6 @@ foo: >-
   reject('eq', 'ham') |
   list }}
 ```
-
-### Ad-hoc commands
-
-- `ansible webserver01 -m debug -a 'msg={{ hostname | quote }}' -i inventories/my_inv/hosts.yml` = Run ad-hoc debug module on *webserver01* to test variable filter.
-- `ansible localhost -m debug -a msg="{{ lookup('env','HOME') }}"` = Run ad-hoc module on *localhost* to print user's home directory.
 
 ```bash
 ansible 192.168.1.1       \
@@ -53,6 +50,12 @@ ansible -i inventories/my_inv/hosts.yml -m file -a "path=/etc/yum.repos.d/elasti
 ```
 
 ### Misc
+
+Use *192.168.1.20* as proxyjump/bastion host for *my_host*:
+```
+my_host:
+  ansible_ssh_common_args: '-o ProxyCommand="ssh -W %h:%p -q ansible@192.168.1.20"'
+```
 
 > Tags attached to `import_tasks` statements will run every task inside the taskfile being imported, but tags attached
 >   to `include_task` statements WILL NOT run every task. You must tag every individual task within the taskfile being
