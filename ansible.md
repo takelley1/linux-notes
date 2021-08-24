@@ -54,7 +54,9 @@ ansible -i inventories/my_inv/hosts.yml -m file -a "path=/etc/yum.repos.d/elasti
 Use *192.168.1.20* as proxyjump/bastion host for *my_host*:
 ```
 my_host:
-  ansible_ssh_common_args: '-o ProxyCommand="ssh -W %h:%p -q ansible@192.168.1.20"'
+  ansible_ssh_common_args: -o ProxyCommand="ssh -W %h:%p -q 192.168.1.20"
+  
+# NOTE: Don't use a username in your SSH command! (e.g. -o ProxyCommand="ssh -W %h:%p -q ansible@192.168.1.20")
 ```
 
 > Tags attached to `import_tasks` statements will run every task inside the taskfile being imported, but tags attached
