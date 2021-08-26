@@ -8,6 +8,7 @@
 ### Tips
 
 - `git grep "mystring" $(git rev-list --all) | cut -d: -f2-4 | sort -u` = [Search entire repo history for string *mystring*.](https://stackoverflow.com/a/2929502)
+  - `git grep "mystring" $(git rev-list --all -- lib/util) -- lib/util` = Search only under the *lib/util* path
 <br><br>
 - `git push origin --delete feature-123` = Delete the *feature-123* branch remotely.
 - `git submodule update` = [Update submodules to remove from unstaged changes in parent repo](https://stackoverflow.com/a/6006919)
