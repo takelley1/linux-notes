@@ -93,14 +93,16 @@ REFER: The amount of data accessible by the snapshot. This is the size
   - [Oracle docs: Sending and receiving ZFS data](https://docs.oracle.com/cd/E23824_01/html/821-1448/gbchx.html)
 
 - `zfs send tank/alice@snapshot1 | zfs receive newtank/alice` = Create a *newtank/alice* dataset from *snapshot1* in the
-                                                              *tank/alice* dataset.
+                                                                *tank/alice* dataset.
 - `zfs send -nv tank/alice@snap1` = Do a "dry-run" ZFS send.
 - `zfs send tank/test@tuesday | xz > /backup/test-tuesday.img.xz` = Create a compressed image backup of *tank/test@tuesday*.
 
 [Replicate all descendant snapshots and properties:](https://www.truenas.com/community/threads/copy-move-dataset.28876/post-189799)
 ```bash
-zfs snapshot -r Data1/Storage@copy
-zfs send -Rv Data1/Storage@copy | zfs receive -F Data2/Storage
+# Recursively snapshot all datasets in Data1/Storage.
+zfs snapshot -r Data1/Storage@mysnapshot
+# Send all snapshots, clones, and datasets from Data1/Storage to Data2/Storage.
+zfs send -Rv Data1/Storage@mysnapshot | zfs receive -F Data2/Storage
 ```
 
 #### [Performance](https://klarasystems.com/articles/openzfs-using-zpool-iostat-to-monitor-pool-perfomance-and-health/)
@@ -134,35 +136,35 @@ zfs send -Rv Data1/Storage@copy | zfs receive -F Data2/Storage
 
 ### [Storage hierarchy](https://jrs-s.net/2018/04/11/primer-how-data-is-stored-on-disk-with-zfs/)
 
-- zpool
-  - Stripes data across one or more vdevs.
-  - vdevs can easily be added, not not removed.
-  - IOPS scales with the number of vdevs.
-  - If you lose a vdev, you lose the entire pool.
-- vdev
-  - IOPS limited to the IOPS of the slowest disk in the vdev.
-  - Single-disk vdev
-    - Run `zpool attach` with another drive to create a 2-way mirror vdev.
-    - Can detect but not repair data corruption.
-  - N-way mirror vdev
-    - Run `zpool attach` with another drive to create an (N+1)-way mirror vdev.
-    - Write IOPS limited by slowest drive.
-    - Read IOPS are multiplied by N.
-    - A zpool with mirror vdevs is equivalent to RAID10
-  - RAIDZ(1-3) vdev
-    - To increase total capacity, each drive must be individually replaced and resilvered with a larger drive.
-    - Takes much longer than mirror vdevs to resilver due to recalculating parity.
-    - Read IOPS lower than equivalent mirror vdev.
-- metaslab
-  - Each vdev organized into 200 metaslabs.
-- record
-  - Each write to a pool is broken into records of variable size, depending on size of data.
-  - Checksums for data integrity are calculated per-record.
-  - Maximum recordsize can be tuned per-dataset (512B-1M, default is 128K).
-- block
-  - Multiple blocks create a record, up to the maximum recordsize.
-  - Equal to the underlying hardware's physical sector size (usually 512B, 4K, or 8K).
-  - Immutable, automatically set per-vdev by the ashift property.
+1. zpool
+   - Stripes data across one or more vdevs.
+   - vdevs can easily be added, not not removed.
+   - IOPS scales with the number of vdevs.
+   - If you lose a vdev, you lose the entire pool.
+2. vdev
+   - IOPS limited to the IOPS of the slowest disk in the vdev.
+   - Option 1: Single-disk vdev
+     - Run `zpool attach` with another drive to create a 2-way mirror vdev.
+     - Can detect but not repair data corruption.
+   - Option 2: N-way mirror vdev
+     - Run `zpool attach` with another drive to create an (N+1)-way mirror vdev.
+     - Write IOPS limited by slowest drive.
+     - Read IOPS are multiplied by N.
+     - A zpool with mirror vdevs is equivalent to RAID10
+   - Option 3: RAIDZ(1-3) vdev
+     - To increase total capacity, each drive must be individually replaced and resilvered with a larger drive.
+     - Takes much longer than mirror vdevs to resilver due to recalculating parity.
+     - Read IOPS lower than equivalent mirror vdev.
+3. metaslab
+   - Each vdev organized into 200 metaslabs.
+5. record
+   - Each write to a pool is broken into records of variable size, depending on size of data.
+   - Checksums for data integrity are calculated per-record.
+   - Maximum recordsize can be tuned per-dataset (512B-1M, default is 128K).
+5. block
+   - Multiple blocks create a record, up to the maximum recordsize.
+   - Equal to the underlying hardware's physical sector size (usually 512B, 4K, or 8K).
+   - Immutable, automatically set per-vdev by the ashift property.
 
 ### [ZFS benchmarks](https://calomel.org/zfs_raid_speed_capacity.html)
 ```
