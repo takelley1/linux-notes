@@ -3,16 +3,51 @@
 
 ### [ffmpeg](https://ffmpeg.org/ffmpeg.html)
 
-- `mediainfo input.mp4` or `ffprobe input.mp4` = Get info on video.
+- `mediainfo in.mp4` or `ffprobe in.mp4` = Get info on video.
 <br><br>
-- `for f in *.mkv; do ffmpeg -i "$f" -vcodec copy -acodec aac "${f%.mkv}.mp4"; done` = Copy all mkv videos in ./ to mp4.
-- `for f in *; do ffmpeg -i "$f" -vcodec h264 -acodec aac "${f%.mkv}.mp4"; done` = Transcode all videos in ./ to mp4.
+- `for f in *.mkv; do ffmpeg -i "$f" -vcodec copy -acodec copy "${f%.mkv}.mp4"; done` = Copy all mkv videos in ./ to mp4.
+- `for f in *; do ffmpeg -i "$f" -vcodec h264 -acodec copy "${f%.mkv}.mp4"; done` = Transcode all videos in ./ to mp4.
 <br><br>
-- `ffmpeg -i input.mp4 -vf select='eq(n\,864)' -frames:v 1 out.png` = Extract frame 864 from *input.mp4* and write it to *out.png*.
+- `ffmpeg -i in.mp4 -vf select='eq(n\,864)' -frames:v 1 out.png` = Extract frame 864 from *in.mp4* and write it to *out.png*.
 <br><br>
-- `ffmpeg -i input.mp4 -ss 00:00:30 output.mp4` = Trim the first 30 seconds of *input.mp4*.
-- `ffmpeg -i input.mp4 -ss 00:01:00 -to 00:02:00 output.mp4` = Extract minute 1 to minute 2 of *input.mp4*.
-- `ffmpeg -i input.mp4 -filter:v "crop=width:height:start_x:start_y" output.mp4` = Crop video.
+- `ffmpeg -i in.mp4 -ss 00:00:30 out.mp4` = Trim the first 30 seconds of *in.mp4*.
+- `ffmpeg -i in.mp4 -ss 00:01:00 -to 00:02:00 out.mp4` = Extract minute 1 to minute 2 of *in.mp4*.
+- `ffmpeg -i in.mp4 -filter:v "crop=width:height:start_x:start_y" out.mp4` = Crop video.
+<br><br>
+`ffmpeg -i in.mp4 -i thumbnail.jpg -map 0 -map 1 -c copy -c:v:1 png -disposition:v:1 attached_pic out.mp4` = Add *thumbnail.jpg* to *in.mp4*.
+<br><br>
+- [ffmpeg file concatenation of equal codecs](https://trac.ffmpeg.org/wiki/Concatenate)
+  - All input videos must use the same encoding. Use `mediainfo file1.mp4 | grep 'Codec ID'` to determine encoding.
+  - The file concatenation of ffmpeg appears to work better than mp4box.
+```
+$ printf "file '%s'\n" *.mp4 > mylist.txt
+
+$ cat mylist.txt
+file '/path/to/in1.mp4'
+file '/path/to/in2.mp4'
+file '/path/to/in3.mp4'
+
+$ ffmpeg -f concat -safe 0 -i mylist.txt -c copy out.mp4
+```
+- [ffmpeg file concatenation of different codecs](https://ffmpeg.org/ffmpeg-filters.html#concat)
+```
+ffmpeg -i in1.mkv -i in2.mkv -i in3.mkv -filter_complex "concat=n=3:v=1:a=1" out.mkv
+```
+- [ffmpeg concatenation with resolution correction](https://stackoverflow.com/a/48853654)
+```
+ffmpeg \
+-i in1.mp4 \
+-i in2.mp4 \
+-i in3.mp4 \
+-i in4.mp4 \
+-filter_complex \
+"[0:v]scale=1920:1080:force_original_aspect_ratio=1[v0]; \
+[1:v]scale=1920:1080:force_original_aspect_ratio=1[v1]; \
+[2:v]scale=1920:1080:force_original_aspect_ratio=1[v2]; \
+[3:v]scale=1920:1080:force_original_aspect_ratio=1[v3]; \
+[v0][0:a][v1][1:a][v2][2:a][v3][3:a]concat=n=4:v=1:a=1[v][a]" -map '[v]' -map '[a]' \
+out.mp4
+```
 
 ### Other
 
