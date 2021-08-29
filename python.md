@@ -23,6 +23,7 @@
   - [shutil - high-level file operations](https://docs.python.org/3/library/shutil.html)
   - [tempfile - create temporary files](https://docs.python.org/3/library/tempfile.html)
   - [pathlib - object-oriented path operations](https://docs.python.org/3/library/pathlib.html)
+  - [glob - unix-style path expansion](https://docs.python.org/3/library/glob.html)
 
 ### Tips
 
@@ -86,6 +87,14 @@ for _ in range(10):
 ```
 
 ### File operations
+
+Move files to a different directory using a glob.
+```python
+glob_string = ("/path/to/files" + "/*.mp4")
+mp4_files_destination = os.path.join("/path/to/files", "destination")
+for filepath in glob.glob(glob_string):
+    shutil.move(filepath, mp4_files_destination)
+```
 
 Loop through directories.
 ```python
