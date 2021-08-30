@@ -15,7 +15,6 @@
   - [Path methods](https://www.tutorialspoint.com/python/os_path_methods.htm)
 - [Regex](https://www.w3schools.com/python/python_regex.asp)
 
-
 ### Useful modules
 
 - [Python standard library](https://docs.python.org/3/library/index.html)
@@ -96,7 +95,12 @@ for filepath in glob.glob(glob_string):
     shutil.move(filepath, mp4_files_destination)
 ```
 
-Loop through directories.
+List directory.
+```python
+os.listdir("/path/to/directory")
+```
+
+List directories recursively.
 ```python
 for rootpath, dirs, files in os.walk("/path/to/directory"):
     for dirname in dirs:
