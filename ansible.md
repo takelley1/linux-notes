@@ -55,7 +55,7 @@ Use *192.168.1.20* as proxyjump/bastion host for *my_host*:
 ```
 my_host:
   ansible_ssh_common_args: -o ProxyCommand="ssh -W %h:%p -q 192.168.1.20"
-  
+
 # NOTE: Don't use a username in your SSH command! (e.g. -o ProxyCommand="ssh -W %h:%p -q ansible@192.168.1.20")
 ```
 

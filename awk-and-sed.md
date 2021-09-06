@@ -128,7 +128,7 @@ awk -v myvar="${myvar}" 'BEGIN {print myvar}'`
 
 #### Examples
 
-- `^[^#]*foobar.*` = Match lines containing *foobar*, exclude commented lines 
+- `^[^#]*foobar.*` = Match lines containing *foobar*, exclude commented lines
 
 #### Operators
 
