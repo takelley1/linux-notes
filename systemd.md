@@ -40,9 +40,11 @@ ExecStart=/home/austin/my_daemon --option=123
 # Other restart options: always, on-abort
 Restart=on-failure
 
-# The install section is needed to use `systemctl enable` to start on boot.
-# For a user service that you want to enable and start automatically,
-# use `default.target`. For system level services, use `multi-user.target`.
+# The [Install] section is needed to use `systemctl enable` in order to start
+#   the service on boot. For a user service that you want to enable and start
+#   automatically, use `default.target`. For system level services, use
+#   `multi-user.target`.
+# See systemd.special(7) for details on each target.
 [Install]
 WantedBy=multi-user.target
 ```
@@ -71,12 +73,12 @@ WantedBy=multi-user.target
 </details>
 
 <details>
-  <summary>Example 3: simple service activated by a timer</summary>
-  
+  <summary>Example 3: service activated by a timer</summary>
+
 ```systemd
 [Unit]
 Description=My backup script service
-After=network.target multi-user.target
+After=network-online.target multi-user.target
 
 [Service]
 Type=simple
@@ -84,8 +86,8 @@ User=root
 Group=root
 ExecStart=/backup.sh
 
-[Install]
-WantedBy=network.target multi-user.target
+# The [Install] section isn't used here because this unit isn't started on boot.
+#   Rather, this unit is started by a timer.
 ```
 
 ```systemd
@@ -96,9 +98,6 @@ After=network-online.target multi-user.target
 [Timer]
 OnCalendar=06:00:00
 RandomizedDelaySec=120
-
-[Install]
-WantedBy=timers.target
 ```
 
 </details>
