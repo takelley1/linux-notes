@@ -14,6 +14,8 @@
 ---
 ## MCAFEE
 
+- Logs: `/var/McAfee/agent/logs`
+
 Uninstall McAfee Agent:
 ```bash
 rpm -e MFEdx
