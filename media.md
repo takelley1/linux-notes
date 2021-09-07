@@ -13,6 +13,7 @@
 - `ffmpeg -i in.mp4 -ss 00:00:30 out.mp4` = Trim the first 30 seconds of *in.mp4*.
 - `ffmpeg -i in.mp4 -ss 00:01:00 -to 00:02:00 out.mp4` = Extract minute 1 to minute 2 of *in.mp4*.
 - `ffmpeg -i in.mp4 -filter:v "crop=width:height:start_x:start_y" out.mp4` = Crop video.
+- `ffmpeg -i in.mp4 -crf 25 -filter:v fps=30 out.mp4` = Transcode to 30 fps.
 <br><br>
 `ffmpeg -i in.mp4 -i thumbnail.jpg -map 0 -map 1 -c copy -c:v:1 png -disposition:v:1 attached_pic out.mp4` = Add *thumbnail.jpg* to *in.mp4*.
 <br><br>
