@@ -7,6 +7,8 @@
 
 ### Tips
 
+- `git fetch --all && git reset --hard origin/master` = Force pull -- force local tree to match remote tree
+<br><br>
 - `git grep "mystring" $(git rev-list --all) | cut -d: -f2-4 | sort -u` = [Search entire repo history for string *mystring*.](https://stackoverflow.com/a/2929502)
   - `git grep "mystring" $(git rev-list --all -- lib/util) -- lib/util` = Search only under the *lib/util* path
 <br><br>
@@ -142,4 +144,3 @@ pattern*/
 - `git stash list` = List stack-order of stashed file changes.
 - `git stash pop`  = Write working from top of stash stack.
 - `git stash drop` = Discard the changes from top of stash stack.
-
