@@ -198,6 +198,14 @@ sed `-<PARAMETER> '<RESTRICTION> <FLAG1>/<PATTERN1>/<PATTERN2>/<FLAG2>' <FILE1> 
 
 ### Examples
 
+Recursive find and replace:
+```bash
+shopt -s globstar && sed -E -i 's/foo/bar/g' ./**/*.yml
+
+# Use this to test matching.
+shopt -s globstar && sed -E -n 's/foo/p' ./**/*.yml
+```
+
 Sed example using comments:
 ```bash
 sed \
