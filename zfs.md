@@ -47,8 +47,9 @@ USED: Space used by the dataset, the dataset's snapshots, and all its
       chilren combined.
 
 USEDSNAP: (usedbysnapshots) Space used by the dataset's snapshots. This
-          value is not the sum of the snapshots' USED properties because
-          space can be shared by multiple snapshots.
+          value IS NOT the sum of the snapshots' USED values because
+          space can be shared by multiple snapshots. See the footnote
+          at the bottom of this page.
 
 USEDDS: (usedbydataset) Space used by the dataset.
 
@@ -228,3 +229,20 @@ zfs send -Rv Data1/Storage@mysnapshot | zfs receive -F Data2/Storage
 
 24x 256GB raid0 striped   5.5 terabytes ( w=1620MB/s , rw=796MB/s , r=2043MB/s )
 ```
+
+[Footnote on shared snapshot space:](https://docs.oracle.com/cd/E78901_01/html/E78912/gprhr.html#scrolltoc)
+> Note that the amount of space consumed by all snapshots is not equivalent to the
+> sum of unique space across all snapshots. With a share and a single snapshot,
+> all blocks must be referenced by one or both of the snapshot or the share. With
+> multiple snapshots, however, it's possible for a block to be referenced by some
+> subset of snapshots, and not any particular snapshot. For example, if a file is
+> created, two snapshots X and Y are taken, the file is deleted, and another
+> snapshot Z is taken, the blocks within the file are held by X and Y, but not by
+> Z. In this case, destroying Z will not free up the space, but destroying both X
+> and Y will. Because of this, destroying any snapshot can affect the unique space
+> referenced by neighboring snapshots, though the total amount of space consumed
+> by snapshots will always decrease.
+>
+> Also see:
+> - [1] https://github.com/mafm/zfs-snapshot-disk-usage-matrix
+> - [2] https://www.delphix.com/blog/delphix-engineering/what-shared-snapshot-space
