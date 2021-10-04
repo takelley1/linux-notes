@@ -146,14 +146,14 @@ iptables –A OUTPUT -o eth0 –p tcp --dport 80 –m state --state NEW,ESTABLIS
 <br><br>
 - `tcpdump -i ens32` = Packets on interface ens32.
 <br><br>
-- `tcpdump host 1.1.1.1`     = Packets going to or from 1.1.1.1.
-- `tcpdump src 10.0.0.5`     = Packets coming from 10.0.0.5.
-- `tcpdump dst 192.168.1.10` = Packets going to 192.168.1.10.
+- `tcpdump -i ens32 host 1.1.1.1`     = Packets going to or from 1.1.1.1.
+- `tcpdump -i ens32 src 10.0.0.5`     = Packets coming from 10.0.0.5.
+- `tcpdump -i ens32 dst 192.168.1.10` = Packets going to 192.168.1.10.
 <br><br>
-- `tcpdump -v port 3389`  = Packets on port 3389.
-- `tcpdump src port 1025` = Packets coming from port 1025.
+- `tcpdump -v -i ens32 port 3389`  = Packets on port 3389.
+- `tcpdump -i ens32 src port 1025` = Packets coming from port 1025.
 <br><br>
-- `tcpdump -vvt src 10.0.0.5 and dst port 22` = Packets coming from 10.0.0.5 to port 22.
+- `tcpdump -vvt -i ens32 src 10.0.0.5 and dst port 22` = Packets coming from 10.0.0.5 to port 22.
 
 
 ---
