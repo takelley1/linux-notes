@@ -31,7 +31,7 @@
   - *alice@localhost* and *alice@%* are DIFFERENT users.
 - `grant all privileges on my_database.* to 'alice'@'localhost';` = [Give *alice* full permissions to *my_database*.](https://chartio.com/resources/tutorials/how-to-grant-all-privileges-on-a-database-in-mysql/)
 - `set password for 'alice'@'localhost' = password('CorrectHorseBatteryStaple');` = [Change password for *alice*.](https://mariadb.com/kb/en/set-password/)
-- `drop user 'alice'@'localhost'` = [Delete user *alice*.](https://mariadb.com/kb/en/drop-user/)
+- `drop user 'alice'@'localhost';` = [Delete user *alice*.](https://mariadb.com/kb/en/drop-user/)
 
 ### Galera cluster
 
