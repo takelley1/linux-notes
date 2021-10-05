@@ -21,6 +21,9 @@
 
 ### Users
 
+- **See also:**
+  - [Account management commands](https://mariadb.com/kb/en/account-management-sql-commands/)
+<br><br>
 - `use mysql; select user,host from user;` = [Print all users.](https://www.mysqltutorial.org/mysql-show-users/)
 - `create user alice@localhost identified by 'password123';` = [Create user *alice* with password *password123*.](https://mariadb.com/kb/en/create-user/)
   - *localhost* is the server *alice* is allowed to connect from.
@@ -28,6 +31,7 @@
   - *alice@localhost* and *alice@%* are DIFFERENT users.
 - `grant all privileges on my_database.* to 'alice'@'localhost';` = [Give *alice* full permissions to *my_database*.](https://chartio.com/resources/tutorials/how-to-grant-all-privileges-on-a-database-in-mysql/)
 - `set password for 'alice'@'localhost' = password('CorrectHorseBatteryStaple');` = [Change password for *alice*.](https://mariadb.com/kb/en/set-password/)
+- `drop user 'alice'@'localhost'` = [Delete user *alice*.](https://mariadb.com/kb/en/drop-user/)
 
 ### Galera cluster
 
