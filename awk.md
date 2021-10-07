@@ -7,6 +7,34 @@
 
 ### Examples
 
+Parse the output of `git status` for use in bash $PS1 prompt.
+```bash
+git status --short -b 2>/dev/null |
+awk -F'[][]' \
+    '{
+    # Operate on 1st line only.
+    if(NR==1)
+        {
+        # Replace ahead/behind with arrows.
+        sub(/ahead/,"▲")
+        sub(/behind/,"▼")
+
+        # Remove comma and spaces.
+        gsub(/(\s|,)/,"")
+
+        # Store 2nd field in a variable.
+        ahead_behind_count=$2
+        }
+    # If theres more than 1 line, then the repo has unstaged changes.
+    if(NR>1)
+        changed="(+)"
+    }
+    # Use END so we only print once and not once for each record.
+    # Use printf instead of print so fields are not separated by spaces.
+    END {printf "%s%s",ahead_behind_count,changed}
+    '
+```
+
 Comment out all lines in which the first non-whitespace string is "alias".
 ```bash
 awk
