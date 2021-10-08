@@ -8,9 +8,7 @@
   - [zfsconcepts(8)](https://openzfs.github.io/openzfs-docs/man/8/zfsconcepts.8.html)
   - [zpoolconcepts(8)](https://openzfs.github.io/openzfs-docs/man/8/zpoolconcepts.8.html)
 
-### Commands
-
-#### Disks
+### Disks
 
 - The output of `zpool list` can make it difficult to identify disks.
 - `camcontrol devlist` = Show disk model numbers mapped to device ports.
@@ -63,7 +61,7 @@ children ..................... = USEDCHILD
 dataset + snapshots + children = USED
 ```
 
-#### Snapshots
+### Snapshots
 
 - `zfs list -t snapshot tank`  = List snapshots for the *tank* dataset.
 - `zfs list -t snapshot -r tank | sort -h -k2` = Recursively list snapshots for *tank* dataset, sorting by snapshot size.
@@ -88,7 +86,7 @@ REFER: The amount of data accessible by the snapshot. This is the size
        the dataset was when the snapshot was created.
 ```
 
-#### [Restoring data](https://www.linuxtopia.org/online_books/opensolaris_2008/ZFSADMIN/html/gbchx.html)
+### [Restoring data](https://www.linuxtopia.org/online_books/opensolaris_2008/ZFSADMIN/html/gbchx.html)
 
 - **See also**
   - [Oracle docs: Sending and receiving ZFS data](https://docs.oracle.com/cd/E23824_01/html/821-1448/gbchx.html)
@@ -106,11 +104,11 @@ zfs snapshot -r Data1/Storage@mysnapshot
 zfs send -Rv Data1/Storage@mysnapshot | zfs receive -F Data2/Storage
 ```
 
-#### [Performance](https://klarasystems.com/articles/openzfs-using-zpool-iostat-to-monitor-pool-perfomance-and-health/)
+### [Performance](https://klarasystems.com/articles/openzfs-using-zpool-iostat-to-monitor-pool-perfomance-and-health/)
 
 - `zpool iostat -vl` = List read/write latency statistics for each drive.
 
-#### [Zpool Commands](https://www.thegeekdiary.com/solaris-zfs-command-line-reference-cheat-sheet/)
+### [Zpool Commands](https://www.thegeekdiary.com/solaris-zfs-command-line-reference-cheat-sheet/)
 
 | POOL CREATION                    |                                                     |
 |----------------------------------|-----------------------------------------------------|
