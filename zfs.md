@@ -108,6 +108,18 @@ zfs send -Rv Data1/Storage@mysnapshot | zfs receive -F Data2/Storage
 
 - `zpool iostat -vl` = List read/write latency statistics for each drive.
 
+#### [Deduplication](https://www.truenas.com/docs/references/zfsdeduplication/)
+
+- `zpool list` = Show dedup ratio of all pools.
+<br><br>
+- [To determine current RAM usage of dedup table:](https://serverfault.com/a/533880)
+  1. Run `zpool status -D tank` to show dedup table for the *tank* pool
+  2. See line that says:
+  ```
+   dedup: DDT entries 23666783, size 648B on disk, 209B in core
+  ```
+  3. `23666783*209/1024/1024` = Dedup table usage in MB (in this example it's 4717 MB)
+
 ### [Zpool Commands](https://www.thegeekdiary.com/solaris-zfs-command-line-reference-cheat-sheet/)
 
 | POOL CREATION                    |                                                     |
