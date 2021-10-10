@@ -2,6 +2,7 @@
 ## STORAGE
 
 - **See also:**
+  - [Storage 101 blog series](https://www.red-gate.com/simple-talk/homepage/storage-101-welcome-to-the-wonderful-world-of-storage/)
   - [File vs block vs object storage](https://www.redhat.com/en/topics/data-storage/file-block-object-storage)
   - [Synchronous vs asynchronous I/O](https://stackoverflow.com/questions/35012494/difference-between-synchronous-and-asychnchronus-i-o)
 
@@ -300,11 +301,14 @@ to its original disk.
 Snapshots are not backups because if the original disk's data is lost, the delta .vmdk becomes useless as it only
 contains the changes to the original data, not the data itself.
 
-### Storage latency
+### Storage latency and performance
 
 - **See also:**
   - [Interactive latency](https://colin-scott.github.io/personal_website/research/interactive_latency.html)
   - [How much faster is memory than flash?](https://stackoverflow.com/questions/1371400/how-much-faster-is-the-memory-usually-than-the-disk)
+  - [Drive performance metrics](https://www.red-gate.com/simple-talk/databases/sql-server/database-administration-sql-server/storage-101-monitoring-storage-metrics/)
+  - [Drive benchmarks - 4K IOPS at queue depth 1](https://www.harddrivebenchmark.net/iops-4kqd1.html)
+
 ```
 Latency Comparison Numbers (~2012)
 ----------------------------------
