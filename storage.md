@@ -318,10 +318,10 @@ Send 1K bytes over 1 Gbps network       10,000   ns       10 us
 Read 4K randomly from SSD              150,000   ns      150 us ........ ~1GB/sec SSD
 Read 1 MB sequentially from memory     250,000   ns      250 us
 Round trip within same datacenter      500,000   ns      500 us
-Read 1 MB sequentially from SSD      1,000,000   ns    1,000 us    1 ms  ~1GB/sec SSD, (4x slower than memory)
-Disk seek                           10,000,000   ns   10,000 us   10 ms  20x datacenter roundtrip
+Read 1 MB sequentially from SSD      1,000,000   ns    1,000 us    1 ms  ~1GB/sec SSD, 4x slower than memory
+Disk seek                           10,000,000   ns   10,000 us   10 ms
 Read 1 MB sequentially from disk    20,000,000   ns   20,000 us   20 ms  80x slower than memory, 20x slower than SSD
-Send packet CA->Netherlands->CA    150,000,000   ns  150,000 us  150 ms  .150 seconds
+Send packet CA->Netherlands->CA    150,000,000   ns  150,000 us  150 ms  .150 s
 ```
 
 <img src="images/raid10.png" width="300"/> <sup>[9]</sup>
