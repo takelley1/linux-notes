@@ -2,6 +2,7 @@
 ## [ZFS](https://openzfs.github.io/openzfs-docs/index.html)
 
 - **See also:**
+  - [TrueNAS ZFS primer](https://www.truenas.com/docs/references/zfsprimer/)
   - [Oracle ZFS docs](https://docs.oracle.com/cd/E23824_01/html/821-1448/zfsover-1.html#scrolltoc)
   - [FreeBSD ZFS administration](https://docs.freebsd.org/en_US.ISO8859-1/books/handbook/zfs-zfs.html)
   - [ZFS properties](https://docs.oracle.com/cd/E23824_01/html/821-1448/gazss.html#scrolltoc)
