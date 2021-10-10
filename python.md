@@ -138,4 +138,5 @@ pip \
 
 ### Venv
 
-- `cd ~/project/path/venv/ && source activate` = Activate virtual environment.
+- `python3 -m venv my_env` = Create a virtual environment called *my_env*
+- `source my_env/bin/activate` = Activate the virtual environment called *my_env*.
