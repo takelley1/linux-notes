@@ -7,36 +7,36 @@ crt_print_conf() {
     CN="$1.  "
     ALT_NAMES="$2.  "
 
-   cat <<EOF
+    cat <<EOF
 [req]
-distinguished_name = req_distinguished_name.  
-x509_extensions = v3_req.  
-prompt = no.  
+distinguished_name = req_distinguished_name.
+x509_extensions = v3_req.
+prompt = no.
 
 [v3_req]
-subjectKeyIdentifier = hash.  
-authorityKeyIdentifier = keyid,issuer.  
+subjectKeyIdentifier = hash.
+authorityKeyIdentifier = keyid,issuer.
 basicConstraints = CA:TRUE
 EOF
 
-[ -z "${ALT_NAMES}" ] || echo "subjectAltName = DNS:${CN},${ALT_NAMES}"
-[ -n "${ALT_NAMES}" ] || echo "subjectAltName = DNS:${CN}"
-echo ""
-echo "[CSR]"
-[ -z "${ALT_NAMES}" ] || echo "subjectAltName = DNS:${CN},${ALT_NAMES}"
-[ -n "${ALT_NAMES}" ] || echo "subjectAltName = DNS:${CN}"
+    [ -z "${ALT_NAMES}" ] || echo "subjectAltName = DNS:${CN},${ALT_NAMES}"
+    [ -n "${ALT_NAMES}" ] || echo "subjectAltName = DNS:${CN}"
+    echo ""
+    echo "[CSR]"
+    [ -z "${ALT_NAMES}" ] || echo "subjectAltName = DNS:${CN},${ALT_NAMES}"
+    [ -n "${ALT_NAMES}" ] || echo "subjectAltName = DNS:${CN}"
 
-cat <<EOF
+    cat <<EOF
 
 [req_distinguished_name]
 CN = ${CN}
 EOF
 
-[ -z "${DN_C}"  ] || echo "C  = ${DN_C}"
-[ -z "${DN_ST}" ] || echo "ST = ${DN_ST}"
-[ -z "${DN_L}"  ] || echo "L  = ${DN_L}"
-[ -z "${DN_O}"  ] || echo "O  = ${DN_O}"
-[ -z "${DN_OU}" ] || echo "OU = ${DN_OU}"
+    [ -z "${DN_C}" ] || echo "C  = ${DN_C}"
+    [ -z "${DN_ST}" ] || echo "ST = ${DN_ST}"
+    [ -z "${DN_L}" ] || echo "L  = ${DN_L}"
+    [ -z "${DN_O}" ] || echo "O  = ${DN_O}"
+    [ -z "${DN_OU}" ] || echo "OU = ${DN_OU}"
 
 }
 
@@ -47,36 +47,36 @@ crt_generate() {
     CN=$1.
     ALT_NAMES=$2.
 
-    if [ -e "${CN}.key" ] ; then
+    if [ -e "${CN}.key" ]; then
         echo "File already exists: ${CN}.key -- Aborting"
         exit 1
     fi
 
     CFG="${CN}.cnf.  "
 
-    crt_print_conf "${CN}" "${ALT_NAMES}" > "${CFG}"
+    crt_print_conf "${CN}" "${ALT_NAMES}" >"${CFG}"
 
     # create cert
     openssl req -x509 \
-            -nodes -sha256 \
-            -config "${CFG}" \
-            -days "${DAYS}" \
-            -newkey rsa:"${BITS}" \
-            -keyout "${CN}.key" \
-            -out "${CN}.crt"
+        -nodes -sha256 \
+        -config "${CFG}" \
+        -days "${DAYS}" \
+        -newkey rsa:"${BITS}" \
+        -keyout "${CN}.key" \
+        -out "${CN}.crt"
 
     # create csr
     openssl req \
-            -new -sha256 \
-            -config "${CFG}" \
-            -reqexts CSR \
-            -key "${CN}.key" \
-            -out "${CN}.csr"
+        -new -sha256 \
+        -config "${CFG}" \
+        -reqexts CSR \
+        -key "${CN}.key" \
+        -out "${CN}.csr"
 
-  #rm "${CFG}"
-  # -subj "/C=${DN_C}/ST=${DN_ST}/L=${CN_L}/O=${DN_O}/OU=${DN_OU}/CN=${CN}" \
+    #rm "${CFG}"
+    # -subj "/C=${DN_C}/ST=${DN_ST}/L=${CN_L}/O=${DN_O}/OU=${DN_OU}/CN=${CN}" \
 
-    openssl x509 -text < "${CN}.crt" > "${CN}.about.txt"
+    openssl x509 -text <"${CN}.crt" >"${CN}.about.txt"
     echo "
 
 Generated following files:
@@ -87,7 +87,7 @@ Generated following files:
 "
 }
 
-if [ -z "$1" ] ; then
+if [ -z "$1" ]; then
     echo "
 Usage: $0 hostname <altnames>
         where altnames is an optional comma separated list of alternative names
