@@ -25,20 +25,19 @@
 - XFS is faster on multi-threaded IO, performs better with large files (>100MB).
 
 
-| Filesystem features <sup>[1]</sup> | ext4 | XFS  | Btrfs | ZFS  | UFS2 | F2FS | NTFS | bcachefs | FAT32 | exFAT |
-|------------------------------------|------|------|-------|------|------|------|------|----------|-------|-------|
-| Online/offline growing             | yes  |online| yes   |online| yes  |offline| yes | ?        | no    | no    |
-| Online/offline shrinking          |offline| no   | yes   | no   | no   | no   |  yes | ?        | no    | no    |
-| Transparent compression            | no   | no   | yes   | yes  | ?    | yes  | yes  | yes      | no    | no    |
-| Encryption                         | LUKS | LUKS | yes   | yes  | ?    | yes  | yes  | yes      | no    | no    |
-| Data deduplication                 | no   | no   | yes   | yes  | no   | no   | yes  | yes      | no    | no    |
-| Snapshots                          | LVM  | LVM  | yes   | yes  | ?    | no   | no   | yes      | no    | no    |
-| Block + metadata checksums         | no   | no   | yes   | yes  | no   | no   | no   | yes      | no    | no    |
-| Block + metadata journaling        | yes  | yes  | CoW   | CoW |metadata|CoW |metadata| CoW     | no    | no    |
-| RAID                               | LVM  | LVM  | yes   | yes  | no   |      | yes  | yes      | no    | no    |
-| File change log                    | no   | yes  | no    | no   | no   | no   | yes  | no       | no    | no    |
-| Maximum file size                  | -    | -    | -     | -    | -    | -    | -    | -        | 4GB   | -     |
-| Maximum filesystem size            | -    | -    | -     | -    | -    | -    |2TB(Windows)| -  | -     | -     |
+| Filesystem features <sup>[1]</sup> | ext4  | XFS  | Btrfs | ZFS  | UFS2   | F2FS  | NTFS   | bcachefs | FAT32 | exFAT |
+|------------------------------------|-------|------|-------|------|--------|-------|------  |----------|-------|-------|
+| Online/offline growing             | yes   |online| yes   |online| yes    |offline| yes    | ?        | no    | no    |
+| Online/offline shrinking           |offline| no   | yes   | no   | no     | no    | yes    | ?        | no    | no    |
+| Transparent compression            | no    | no   | yes   | yes  | ?      | yes   | yes    | yes      | no    | no    |
+| Encryption                         | LUKS  | LUKS | yes   | yes  | ?      | yes   | yes    | yes      | no    | no    |
+| Data deduplication                 | no    | no   | yes   | yes  | no     | no    | yes    | yes      | no    | no    |
+| Snapshots                          | LVM   | LVM  | yes   | yes  | ?      | no    | no     | yes      | no    | no    |
+| Block + metadata checksums         | no    | no   | yes   | yes  | no     | no    | no     | yes      | no    | no    |
+| Block + metadata journaling        | yes   | yes  | CoW   | CoW  |metadata| CoW   |metadata| CoW      | no    | no    |
+| Built-in RAID support              | LVM   | LVM  | yes   | yes  | no     | ?     | yes    | yes      | no    | no    |
+| File change log                    | no    | yes  | no    | no   | no     | no    | yes    | no       | no    | no    |
+| Maximum file size                  | -     | -    | -     | -    | -      | -     | -      | -        | 4GB   | -     |
 
 - LUKS = Encrypting these filesystems is usually handled through LUKS and/or dm-crypt.
 - LVM  = This feature is traditionally provided through LVM.
