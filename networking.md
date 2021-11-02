@@ -103,6 +103,9 @@ iptables –A OUTPUT -o eth0 –p tcp --dport 80 –m state --state NEW,ESTABLIS
 - `nmap -sU localhost`             = Scan localhost for open UDP ports.
 <br><br>
 - `nmap -sP 10.0.0.0/8` = Attempt to ping all hosts on the 10.0.0.0/8 subnet and list responses.
+<br><br>
+- Windows
+  - `Test-NetConnection 10.0.0.15 -port 9000`
 
 ### Local ports
 
