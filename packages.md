@@ -12,8 +12,8 @@
 | Show package that provides file x | `yum whatprovides x`           | `dpkg -S x`                 | `pacman -F x`                 | `pkg which x`                   |
 | Show files from package x         | `repoquery --list x`           | `dpkg -L x`                 | `pacman -Ql x`                | `pkg query %Fp x`               |
 | Show package x info               | `yum info x`                   | `apt info x`                | `pacman -Qi x`                | `pkg info x`                    |
-| Show package x's dependencies     | ?                              | `apt-rdepends x`            | `pacman -Qi x`                | `pkg query %do x`               |
-| Show packages that depend on x    | ?                              | `apt depends x`             | `pacman -Qi x`                | `pkg query %ro x`               |
+| Show package x's dependencies     | `yum deplist x`                | `apt-rdepends x`            | `pacman -Qi x`                | `pkg query %do x`               |
+| Show packages that depend on x    | `rpm -q --whatrequires x`      | `apt depends x`             | `pacman -Qi x`                | `pkg query %ro x`               |
 | Install package group x           | `yum groupinstall 'x'`         | ?                           | `pacman -S x`                 | -                               |
 | Show package groups               | `yum group list`               | ?                           | `pacman -Qg`                  | -                               |
 | Remove orphaned packages          | -                              | `apt autoremove`            | `pacman -Rns $(pacman -Qdtq)` | `pkg autoremove`                |
