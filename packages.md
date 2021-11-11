@@ -35,6 +35,16 @@
 - `-` = Not supported.
 - `?` = Unkown.
 
+#### pacman
+
+- Issue: `invalud or corrupted database (PGP signature)`
+- Solution:
+  ```
+  1. Comment out the top mirror in `/etc/pacman.d/mirrorlist`
+  2. rm /var/lib/pacman/sync/*
+  3. pacman -Syu
+  ```
+
 #### rpm
 
 - `rpm -ivh file.rpm` = Install rpm file as package.
