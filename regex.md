@@ -10,6 +10,14 @@
 ### Examples
 
 - `^[^#]*foobar.*` = Match lines containing *foobar*, exclude commented lines
+- Match most non-English characters:
+  ```
+  [^()[\]*+$?¿\/\-. \\~!@#$%^&*=_{}|;:․‥…·¨`‛''"‟’´‘’“”′‵″‶‴‷⁗„,<>—‒―¯–℃℉°№¹²³µ£¥¢©®℗™§¶ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789]
+  ```
+- Match all *duckduckgo* subdomains except *safe* and *help*:
+  ```
+  (?<!(safe|help))\.duckduckgo\.com
+  ```
 
 ### Patterns
 
