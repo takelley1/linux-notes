@@ -27,6 +27,7 @@
 - `[^123…]` = Anything NOT within brackets.
 - `\`       = Escape next character.
 - `(   )`   = Pattern grouping (`([0-9]{1,3}\.){5}` = 5 instances of 1-3 of any digit, followed by a period.).
+  - `(?:   )` = Non-capturing group. Use this when backreferences to a group aren't needed.
 - `\1`      = Backreference to group #1.
 <br><br>
 - `(?!foo)`  = Negative lookahead, matches any subsequent string that is NOT *foo* (similar to `[^ ]`, except for a string rather than a range).
@@ -38,6 +39,7 @@
 - `$`     = Match pattern at end.
 - `a|b`   = Alternation of patterns (*a* or *b*).
 - `*`     = Zero or more of pattern.
+  - `*?`  = Zer or more of pattern (lazy).
 - `+`     = One or more of pattern.
 - `?`     = Zero or one of pattern.
 - Bounds: basic regex uses `\{ \}`, extended regex uses `{ }`
