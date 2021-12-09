@@ -21,6 +21,7 @@
 <br><br>
 - `get` = Get info for a resource TYPE
   - `kubectl get pods -A` = List running pods in all (`-A`) namespaces.
+  - `kubectl get pods -w` = Continuously watch (`-w`) pods as they update in the default namespace.
   - `kubectl get nodes -o wide` = List nodes with extra (`-o wide`) information.
 - `describe` = Get info for a SPECIFIC resource
   - `kubectl describe nodes node1` = Describe `node1`.
@@ -30,3 +31,7 @@
   - `kubectl create -f file.yaml` = Create resources in `file.yaml`
 - `apply` = *declaratively* create resources.
   - `kubectl apply -f file.yaml` =  Create resources in `file.yaml`
+- `scale` = Manually scale a deployment.
+  - `kubectl scale deployment myapp-deployment --replicas=5`
+<br><br>
+- `kubectl rollout undo deployment myapp-deployment` = Revert `myapp-deployment` to its previous version.
