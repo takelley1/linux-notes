@@ -13,6 +13,7 @@
 - `ffmpeg -i in.mp4 -ss 00:00:30 out.mp4` = Trim the first 30 seconds of *in.mp4*.
 - `ffmpeg -i in.mp4 -ss 00:01:00 -to 00:02:00 out.mp4` = Extract minute 1 to minute 2 of *in.mp4*.
 - `ffmpeg -i in.mp4 -filter:v "crop=width:height:start_x:start_y" out.mp4` = Crop video.
+- `ffmpeg -i in.mp4 -filter:v "transpose=1" -codec:v libx265 -codec:a copy out.mp4` = Rotate video 90 degrees clockwise.
 - `ffmpeg -i in.mp4 -preset slow -vcodec libx265 -acodec copy -crf 25 -filter:v fps=30 out.mp4` = Transcode to 30 fps.
 - `ffmpeg -i in.mp4 -preset slow -vcodec libx265 -acodec copy -vf scale=-1:1080 out.mp4` = Transcode to 1080p.
 <br><br>
