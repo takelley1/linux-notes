@@ -1,4 +1,6 @@
 
+- `export PAGER="less -XRFS"` = Don't wrap table output in the SQL shell.
+
 ## [MARIADB](https://mariadb.com/kb/en/training-tutorials/)
 - **See also**
   - [Troubleshooting connection issues](https://mariadb.com/kb/en/troubleshooting-connection-issues/)
