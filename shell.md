@@ -45,6 +45,31 @@
   - [Bash guide](http://mywiki.wooledge.org/BashGuide)
   - [Bash GNU manual](https://www.gnu.org/software/bash/manual/)
 
+### Case statement
+
+- See line ~3008 in `bash(1)` man page for more info.
+```bash
+myfunc() {
+    read -r -p 'Are you a human [y/n]: ' response
+    case "${response}" in
+    [yY])
+        echo "Okay, you're a human."
+        return
+        ;;
+
+    [nN])
+        echo "Okay, you must be a robot."
+        return
+        ;;
+
+    *)
+        echo "Enter 'y' or 'n'."
+        myfunc
+        ;;
+    esac
+}
+```
+
 ### String manipulation
 
 Remove prefix:
