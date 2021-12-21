@@ -8,7 +8,7 @@
 | Package managers compared         | yum/dnf (rpm files)            | apt (deb files)             | pacman (tgz, ztsd files)      | pkg                             |
 |-----------------------------------|--------------------------------|-----------------------------|-------------------------------|---------------------------------|
 | List installed packages by size   | ?                              | [1]                         | [2]                           | `pkg query '%sh %n' \| sort -h` |
-| Show installed packages           | `rpm -qa`                      | `dpkg --list`               | `pacman -Q`                   | `pkg info`                      |
+| Show installed packages           | `rpm -qa`                      | `dpkg -l`                   | `pacman -Q`                   | `pkg info`                      |
 | Show package that provides file x | `yum whatprovides x`           | `dpkg -S x`                 | `pacman -F x`                 | `pkg which x`                   |
 | Show files from package x         | `repoquery --list x`           | `dpkg -L x`                 | `pacman -Ql x`                | `pkg query %Fp x`               |
 | Show package x info               | `yum info x`                   | `apt info x`                | `pacman -Qi x`                | `pkg info x`                    |
@@ -22,7 +22,7 @@
 | Show info from recent transaction | `yum history info <ID>`        | -                           | -                             | -                               |
 | Remove duplicate packages         | `package-cleanup --cleandupes` | -                           | -                             | -                               |
 
-- [1] `dpkg-query --show --showformat='${Installed-Size}\t${Package}\n'`
+- [1] `dpkg-query --show --showformat='${Installed-Size}\t${Package}\n' | sort -n`
 - [2] `pacman -Qi | awk -F: '/^Name/ {name=$2} /^Installed/ {gsub(/ /,"");size=$2;print size,name}'`
 
 | Repo actions compared  | yum/dnf              | apt                        | pacman             | pkg |
