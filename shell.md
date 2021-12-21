@@ -45,9 +45,40 @@
   - [Bash guide](http://mywiki.wooledge.org/BashGuide)
   - [Bash GNU manual](https://www.gnu.org/software/bash/manual/)
 
+### Read user input
+
+- See line ~3008 in `bash(1)` man page for more info on `read`.
+```bash
+myfunc() {
+    read -r -p 'Are you a human? [y/n]: ' human_response
+    if [[ "${human_response}" =~ [yY] ]]; then
+        echo "Good"
+    elif [[ "${human_response}" =~ [nN] ]]; then
+        echo "You must be a robot then"
+    else
+        echo "Enter y or n"
+        myfunc
+    fi
+}
+
+# Alternate method
+while :; do
+    read -r -p 'Enter URL from which to download proxy certificate: ' proxy_cert_url
+    if [[ "${proxy_cert_url}" =~ ^(http|ftp)s?:\/\/.+\. ]]; then
+        proxy_dir="/usr/local/share/ca-certificates/proxy_${proxy_ip_and_port}"
+        # User-added certs must be kept in their own directory.
+        [[ ! -d "${proxy_dir}" ]] && sudo mkdir "${proxy_dir}"
+        sudo wget -v "${proxy_cert_url}" --output-document="${proxy_dir}/proxy_${proxy_ip_and_port}_cert.crt"
+        sudo update-ca-certificates
+        break
+    else
+        echo 'Must use a format of ^(http|ftp)s?:\/\/.+\. (e.g. http://myserver.domain/certp.pem)'
+    fi
+done
+```
+
 ### Case statement
 
-- See line ~3008 in `bash(1)` man page for more info.
 ```bash
 myfunc() {
     read -r -p 'Are you a human [y/n]: ' response
