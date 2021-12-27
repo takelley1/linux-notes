@@ -45,6 +45,18 @@
   - [Bash guide](http://mywiki.wooledge.org/BashGuide)
   - [Bash GNU manual](https://www.gnu.org/software/bash/manual/)
 
+### Have a script replace copies of itself
+```bash
+number_of_instances="$(pgrep -f "${0//*\//}" | wc -l)"
+# For some reason this only works if we check if the number of processes is over
+#   2 instead of over 1.
+if [[ ${number_of_instances} -gt 2 ]]; then
+# Kill all processes with the same name as the script, except the
+#   highest-numbered PID, which is likely the current instance of the script.
+    pgrep -f "${0//*\//}" | sort -n -r | tail -n +2 | xargs kill -s 9
+fi
+```
+
 ### Read user input
 
 - See line ~3008 in `bash(1)` man page for more info on `read`.
