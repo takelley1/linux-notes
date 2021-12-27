@@ -139,6 +139,9 @@ ${parameter/pattern/string}
 
 name="Bob Johnson"
 replacement="${name/Johnson/Peterson}" # replacement = "Bob Peterson"
+
+path=/path/to/script.sh
+replacement="${path//*\//}" # replacement = "script.sh"
 ```
 
 ### printf
