@@ -46,8 +46,12 @@ ansible 192.168.1.1       \
 ansible 192.168.1.1 -a "yum update" -u austin -kK –b –-become-user root –-become-method sudo -f 10
 ```
 
+Run Ad-hoc Ansible module from an interactive shell:
 ```bash
+# On remote host using inventory file
 ansible -i inventories/my_inv/hosts.yml -m file -a "path=/etc/yum.repos.d/elasticsearch.repo state=absent" linux_group -kK
+# On the local host
+ansible localhost -m uri -a "http://localhost:80 status_code=200"
 ```
 
 ### Misc
