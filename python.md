@@ -26,6 +26,8 @@
 
 ### Tips
 
+`python3 -i script.py` = Run *script.py*, then launch an interactive REPL for debugging afterwards.
+
 [Regex search.](https://www.w3schools.com/python/python_regex.asp)
 ```python
 import re
