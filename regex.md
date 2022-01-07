@@ -39,7 +39,7 @@
 - `$`     = Match pattern at end.
 - `a|b`   = Alternation of patterns (*a* or *b*).
 - `*`     = Zero or more of pattern.
-  - `*?`  = Zer or more of pattern (lazy).
+  - `*?`  = Zero or more of pattern (lazy).
 - `+`     = One or more of pattern.
 - `?`     = Zero or one of pattern.
 - Bounds: basic regex uses `\{ \}`, extended regex uses `{ }`
