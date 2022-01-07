@@ -6,6 +6,7 @@
   - [Regex101](https://www.regex101.com/)
   - [Regex tester](https://www.regextester.com/)
   - [RexEgg](http://www.rexegg.com)
+  - [Regex for IP addresses](https://www.regular-expressions.info/ip.html)
 
 ### Examples
 
