@@ -7,6 +7,7 @@
   - [Vimdiff cheat sheet](https://gist.github.com/mattratleph/4026987)
 
 ### Tips
+- `# vim:syntax=none:` = Set at beginning or end of file (as a modeline) to disable syntax highlighting for that file.
 - `syntime on`, `syntime report` = Debug syntax highlighting slowness.
 <br><br>
 - `:%s/\\r\\n/^M/g`   = Replace *\r\n* with an actual newline. To get the *^M* character, type *CTRL-V* and press enter.
