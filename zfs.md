@@ -12,8 +12,9 @@
 ### Disks
 
 - The output of `zpool list` can make it difficult to identify disks.
-- `camcontrol devlist` = Show disk model numbers mapped to device ports.
-- `glabel status`      = Show ZFS GUID numbers mapped to /dev/ block devices.
+- `camcontrol devlist`   = Show disk model numbers mapped to device ports.
+- `glabel status`        = Show ZFS GUID numbers mapped to /dev/ block devices.
+- `smartctl -a /dev/da1` = Get serial number for disk attached at /dev/sda1.
 
 #### [Datasets & Properties](https://docs.oracle.com/cd/E23824_01/html/821-1448/gazss.html#scrolltoc)
 
