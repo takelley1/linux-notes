@@ -16,6 +16,16 @@
 - `glabel status`        = Show ZFS GUID numbers mapped to /dev/ block devices.
 - `smartctl -a /dev/da1` = Get serial number for disk attached at /dev/sda1.
 
+#### Handling disk failure:
+
+1. `zpool status -v <POOL_NAME>` = Get detailed info on pool.
+2. `glabel status` = Determine /dev/ path from the gptid given in `zpool status` output.
+3. `smartctl -a /dev/<DISK>` = Determine disk serial number from the /dev/ path given in the `glabel status` output.
+4. Power off server.
+5. Physically replace faulted disk with new disk (identify the disk using its serial number).
+6. Power on server.
+7. `zpool replace <POOL_NAME> <DEVICE_NAME>` = Replace the disk, assuming the new disk's /dev/ path is the same.
+
 #### [Datasets & Properties](https://docs.oracle.com/cd/E23824_01/html/821-1448/gazss.html#scrolltoc)
 
 - `zfs list -r tank` = List all child datasets of the *tank* dataset.
@@ -93,9 +103,13 @@ REFER: The amount of data accessible by the snapshot. This is the size
 - **See also**
   - [Oracle docs: Sending and receiving ZFS data](https://docs.oracle.com/cd/E23824_01/html/821-1448/gbchx.html)
 
-- `zfs send tank/alice@snapshot1 | zfs receive newtank/alice` = Create a *newtank/alice* dataset from *snapshot1* in the
-                                                                *tank/alice* dataset.
+- `zfs send tank/alice@snapshot1 | zfs receive -v newtank/alice` = Create a *newtank/alice* dataset from *snapshot1* in the
+                                                                   *tank/alice* dataset.
+- `zfs send -R jails@snapshot1 | zfs receive -v tank/jails` = Move *jails* dataset and its descendants to *tank/jails*.
+<br><br>
 - `zfs send -nv tank/alice@snap1` = Do a "dry-run" ZFS send.
+- `zfs send tank/alice@snap1 | zfs receive -nv newtank/alice` = Do a "dry-run" ZFS receive.
+<br><br>
 - `zfs send tank/test@tuesday | xz > /backup/test-tuesday.img.xz` = Create a compressed image backup of *tank/test@tuesday*.
 
 [Replicate all descendant snapshots and properties:](https://www.truenas.com/community/threads/copy-move-dataset.28876/post-189799)
