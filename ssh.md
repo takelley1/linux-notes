@@ -73,3 +73,17 @@ Host bar
 Host baz
   Hostname 10.0.0.20
 ```
+
+Example *~/.ssh/config* demonstrating the use of a jump host without keeping the private key on the jump host:
+```
+Host ansible
+  Hostname ansible.example.com
+  ProxyJump jumpy
+  User ec2-user
+  IdentityFile ~/keys/aws-devops # This key is kept on the local host, not the jump host
+
+Host jump
+  Hostname 10.0.0.15
+  User ec2-user
+  IdentityFile ~/keys/aws-devops # This key is kept on the local host, not the jump host
+```
