@@ -1,9 +1,11 @@
 
 - [Helm configuration for a GitLab runner:](https://docs.gitlab.com/runner/install/kubernetes.html)
 ```bash
+# Create namespace for gitlab.
+kubectl create namespace gitlab
 # To add 2 runner pods to the cluster:
-helm upgrade --install --namespace default gitlab-runner -f values.yml gitlab/gitlab-runner
-helm upgrade --install --namespace default gitlab-runner2 -f values.yml gitlab/gitlab-runner
+helm upgrade --install --namespace gitlab gitlab-runner -f values.yml gitlab/gitlab-runner
+helm upgrade --install --namespace gitlab gitlab-runner2 -f values.yml gitlab/gitlab-runner
 ```
 ```yaml
 gitlabUrl: http://gitlab.example.com
