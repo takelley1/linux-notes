@@ -25,6 +25,7 @@
   - `kubectl get nodes -o wide` = List nodes with extra (`-o wide`) information.
 - `describe` = Get info for a SPECIFIC resource
   - `kubectl describe nodes node1` = Describe `node1`.
+  - `kubectl describe -n gitlab pods gitlab-runner-678dd89fd9 | grep Node:` = Show the node running a specific pod in the gitlab namespace.
 <br><br>
 - `logs` = Get pod logs.
   - `kubectl logs -f -n kube-system coredns-694675dfcd-dqg69` = Tail CoreDNS pod logs in the kube-system namespace.
