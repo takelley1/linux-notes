@@ -6,7 +6,7 @@ kubectl create namespace gitlab
 # Create a runner pod for the cluster:
 helm upgrade --install --namespace gitlab gitlab-runner -f values.yml gitlab/gitlab-runner
 ```
-- The runner pod will listen for pipelines, then create a pod in the cluster to run each job in the pipeline.
+- The runner pod will listen for pipelines, then create a pod in the cluster to run each job in each pipeline.
   - A single kubernetes runner can handle multiple submitted pipelines in parallel
 - See [here](https://docs.gitlab.com/runner/executors/kubernetes.html) for more info.
 ```yaml
@@ -21,7 +21,7 @@ rbac:
   serviceAccountName: gitlab-runner
 
 check_interval: 0
-concurrent: 2  # At most this runner can dispatch 2 pipelines at once.
+concurrent: 20  # At most this runner can dispatch 20 individual jobs at once.
 
 runners:
   name: eks_runner  # Name of the runner when it registers with GitLab.
