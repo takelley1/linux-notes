@@ -17,6 +17,9 @@
 
 ### [Kubectl](https://kubernetes.io/docs/reference/kubectl/overview/)
 
+- **See also:**
+  - [Kubectl cheat sheet](https://kubernetes.io/docs/reference/kubectl/cheatsheet/)
+<br><br>
 - `cluster-info` = Print IPs of services and where they're running.
 <br><br>
 - `get` = Get info for a resource TYPE
