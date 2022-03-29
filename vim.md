@@ -24,7 +24,7 @@
 - `'[a-z]` = Jump to bound mark.
 <br><br>
 - `zC` or `zM` = Close all folds.
-- `zA`         = Open all folds.
+- `zR`         = Open all folds.
 - `za`         = Toggle current fold.
 <br><br>
 - `:!sed '/$^/d'` = Delete blank lines from selection.
