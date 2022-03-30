@@ -4,6 +4,10 @@
 
 ## [DOCKER](https://docs.docker.com/)
 
+### Permissions
+
+- `usermod -a -G docker akelley && newgrp docker` = Add user to *docker* group, reload group membership
+
 ### Building
 
 - `docker build -t mycontainer:latest .` = Build container in current context with name *mycontainer*.
