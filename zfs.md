@@ -156,6 +156,13 @@ zfs send -Rv Data1/Storage@mysnapshot | zfs receive -F Data2/Storage
   - Dataset with small text files = Small recordsize (128k or less).
   - Dataset with only videos = Large recordsize (1M).
   - Dataset with VMs = Match recordsize to VM disk image's sector size (512B or 4k).
+```
+General rules of thumb (from https://klarasystems.com/articles/tuning-recordsize-in-openzfs/):
+    1MiB for general-purpose file sharing/storage
+    64KiB for KVM virtual machines using Qcow2 file-based storage
+    16KiB for MySQL InnoDB
+    8KiB for PostgreSQL
+```
 <br><br>
 - Determine a disk's sector size
   - `fdisk -l <DISK>` on Linux
