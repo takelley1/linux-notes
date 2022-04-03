@@ -122,6 +122,7 @@ zfs send -Rv Data1/Storage@mysnapshot | zfs receive -F Data2/Storage
 
 ### [Performance](https://klarasystems.com/articles/openzfs-using-zpool-iostat-to-monitor-pool-perfomance-and-health/)
 
+- `zpool iostat -l tank 5` = Print read/write latency statistics for the *tank* pool every 5 seconds.
 - `zpool iostat -vl` = List read/write latency statistics for each drive.
 
 #### [Deduplication](https://www.truenas.com/docs/references/zfsdeduplication/)
