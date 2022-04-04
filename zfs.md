@@ -81,7 +81,7 @@ dataset + snapshots + children = USED
 - `zfs destroy -nv <SNAPSHOT>` = Do a "dry-run" snapshot deletion.
 
 Delete all snapshots taken between those called *2020-07-11__19:00__tank* and *2020-07-16__22:00__tank*, inclusive:
-```bash
+```
 zfs destroy tank/storage/videos@2020-07-11__19:00__tank%2020-07-16__22:00__tank
 ```
 
