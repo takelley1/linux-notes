@@ -46,6 +46,9 @@
 <br><br>
 - `kubectl rollout undo deployment myapp-deployment` = Revert `myapp-deployment` to its previous version.
 
+### Troubleshooting
+
+- `kubectl run curl-test --image=radial/busyboxplus:curl -i --tty --rm` = Run pod with *curl* and *nslookup* for testing.
 
 ### [CoreDNS](https://coredns.io/plugins/)
 
