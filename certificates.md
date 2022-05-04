@@ -22,6 +22,8 @@
   - `-nodes` (*No DES*) = Don't encrypt the private key (DANGEROUS!).
   - `-keyout certkey.pem` = Write the private key to *csrkey.pem*.
   - `-out cert.pem` = Write the CSR to *csr.pem*.
+<br><br>
+- `cat root.pem intermediate.pem server.pem > chain.pem` = Create certificate chain.
 
 Generate self-signed certs
 ```
