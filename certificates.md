@@ -22,10 +22,14 @@
   - `-nodes` (*No DES*) = Don't encrypt the private key (DANGEROUS!).
   - `-keyout certkey.pem` = Write the private key to *csrkey.pem*.
   - `-out cert.pem` = Write the CSR to *csr.pem*.
-<br><br>
-- `openssl req -x509 -newkey rsa:2048 -nodes -keyout certkey.pem -out cert.pem -subj "/C=US/ST=/L=/O=/CN=example.com"` = Generate self-signed cert.
-  - `-x509` = Create a self-signed cert instead of a CSR.
-  - `-subj "..."` = Add information to cert without OpenSSL prompting for it.
+
+Generate self-signed certs
+```
+openssl req -x509 -newkey rsa:4096 -nodes -keyout certkey.pem -out cert.pem -subj "/C=US/ST=California/L=San Diego/O=Apple, Inc./CN=grafana.example.com/CN=www.grafana.example.com"
+openssl req -x509 -newkey rsa:2048 -nodes -keyout certkey.pem -out cert.pem -subj "/C=US/ST=/L=/O=/CN=example.com"
+```
+- `-x509` = Create a self-signed cert instead of a CSR.
+- `-subj "..."` = Add information to cert without OpenSSL prompting for it.
 <br><br>
 - `sh ./certgen.sh domain.example.com 'DNS:*.domain.example.com,IP:10.0.0.10'` = Generate CSR with Subject Alternate Names
                                                                                (See [certgen.sh](certgen.sh) for script).
