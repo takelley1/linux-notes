@@ -3,6 +3,8 @@
 
 ### `ldapsearch` command
 
+`ldapsearch -LLL -x "(uid=john.doe)" '*' '+'` = Print all info for a specific UID.
+
 ```bash
 ldapsearch \
       -LLL \
