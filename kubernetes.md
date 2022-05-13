@@ -48,6 +48,7 @@
 
 ### Troubleshooting
 
+- `kubectl cp myscript.sh keycloak-0:/tmp/myscript.sh -n keycloak` = Copy *myscript.sh* into the *keycloak-0* pod.
 - `kubectl run curl-test --image=radial/busyboxplus:curl -i --tty --rm` = Run pod with *curl* and *nslookup* for testing.
 
 ### [CoreDNS](https://coredns.io/plugins/)
