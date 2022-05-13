@@ -1,5 +1,5 @@
 
-## ACTIVE DIRECTORY
+## LDAP
 
 ### `ldapsearch` command
 
@@ -38,6 +38,10 @@ ldapsearch -u \
            '(sAMAccountName='"$USER"')' 'comment' | \
            sed -n '/^ /{H;d};/comment:/x;$g;s/\n *//g;s/comment: //gp'
 ```
+
+### FreeIPA
+
+`ipa user-find --all --raw` = Print all FreeIPA users with their raw attribute names.
 
 ---
 ### Integration
