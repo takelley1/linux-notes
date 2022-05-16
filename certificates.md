@@ -125,7 +125,8 @@ certtool --generate-self-signed --load-privkey key.pem --outfile cert.pem
 - Run window (WIN-r)
   - `certlm.msc` = Local computer certificates.
   - `certmgr.msc` = Current user certificates.
-
+<br><br>
+- `Control Panel -> Manage User Certificates -> Personal -> Certificates -> Open Smartcard Login Certificate -> Subject Alternate Name Field` = Get smartcard PIV (16 digit string, ending with `@mil`).
 
 ---
 ## [PUBLIC KEY CERTIFICATES (1-way SSL Authentication)](https://strongarm.io/blog/how-https-works/)
