@@ -37,6 +37,20 @@
   ```
   /opt/keycloak/keycloak-18.0.0/bin/kc.sh --verbose start --https-trust-store-file=./keystore.jks --https-trust-store-password=test123 --https-client-auth=request
   ```
+- systemd service
+  ```ini
+  [Unit]
+  Description=Keycloak server
+  After=network.target
+
+  [Service]
+  User=root
+  Group=root
+  ExecStart=/opt/keycloak/keycloak-18.0.0/bin/kc.sh --verbose start --https-trust-store-file=/opt/keycloak/keycloak-18.0.0/certs/cac_certs.jks --https-trust-store-password=SuperSecretPassword --https-client-auth=request --https-port=443
+
+  [Install]
+  WantedBy=multi-user.target
+  ```
 <br><br>
 - keycloak api
   -  `../bin/kcadm.sh config truststore --trustpass test1234 ./cac_certs.jks`
