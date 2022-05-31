@@ -21,7 +21,7 @@
 ### Shell
 
 - `mysql -u <USERNAME> -p<PASSWORD>` = Connect to a local MariaDB instance.
-- `mysql -h <SERVER> -u <USERNAME> -p<PASSWORD> <DATABASE_NAME>` = [Connect to a remote MariaDB instance.](https://mariadb.com/kb/en/connecting-to-mariadb/)
+- `mysql -h <SERVER> -u <USERNAME> -P <PORT> -p<PASSWORD> <DATABASE_NAME>` = [Connect to a remote MariaDB instance.](https://mariadb.com/kb/en/connecting-to-mariadb/)
 - `mysqldump -u <USERNAME> -p -x -A >dbs.sql` = [Create database dump.](https://mariadb.com/kb/en/making-backups-with-mysqldump/#backing-up-everything)
 - `mysqld_safe --skip-grant tables &` = [Launch MySQL to reset the root password.](https://www.digitalocean.com/community/tutorials/how-to-reset-your-mysql-or-mariadb-root-password)
 
