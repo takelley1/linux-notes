@@ -1,4 +1,15 @@
+## APACHE TOMCAT
 
+SSL configuration (in `conf/server.xml`):
+```xml
+    <Connector port="443" protocol="org.apache.coyote.http11.Http11NioProtocol"
+               maxThreads="150" SSLEnabled="true">
+        <SSLHostConfig>
+                <Certificate certificateFile="/opt/tomcat_certs/cert.pem" certificateKeyFile="/opt/tomcat_certs/certkey.pem"
+                             type="RSA" />
+        </SSLHostConfig>
+    </Connector>
+```
 ## VIRTUALBOX
 
 - `VBoxManage list runningvms` = List currently running VMs using headless VirtualBox.
