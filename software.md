@@ -10,7 +10,11 @@ Installation
 7. Start Tomcat
 8. Copy the `ssc.war` file from the `Fortify_*_Server_WAR_Tomcat.zip` to Tomcat's `webapps/` directory
 9. Wait for Tomcat to automatically extract the `ssc.war` file to `ssc/`
-10. `mv webapps/ROOT webapps/ROOT.old && ln -s ssc ROOT` = Ensure Tomcat's root path redirects to `/ssc`
+10. Ensure Tomcat's root path redirects to `/ssc`:
+  - Ensure that `ROOT/index.jsp` has the below content:
+  ```jsp
+  <% response.sendRedirect("https://fortifydomain.example.com/ssc"); %>
+  ```
 
 ## APACHE TOMCAT
 
