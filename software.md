@@ -1,3 +1,17 @@
+## FORTIFY SSC
+
+Installation
+1. Install Java OpenJDK
+2. Extract the Fortify SSC installation archive
+3. Extract the `apache-tomcat-*.zip` in the Fortify SSC archive to `/opt`
+4. Edit Tomcat's `conf/server.xml` file accordingly (see below)
+5. Ensure Tomcat's `bin/*.sh` files are executable
+6. Add `@reboot root bash -c /opt/tomcat/bin/startup.sh` to `/etc/crontab`
+7. Start Tomcat
+8. Copy the `ssc.war` file from the `Fortify_*_Server_WAR_Tomcat.zip` to Tomcat's `webapps/` directory
+9. Wait for Tomcat to automatically extract the `ssc.war` file to `ssc/`
+10. `mv webapps/ROOT webapps/ROOT.old && ln -s ssc ROOT` = Ensure Tomcat's root path redirects to `/ssc`
+
 ## APACHE TOMCAT
 
 SSL configuration (in `conf/server.xml`):
