@@ -27,8 +27,8 @@
 
 Generate self-signed certs
 ```
-openssl req -x509 -newkey rsa:4096 -nodes -keyout certkey.pem -out cert.pem -subj "/C=US/ST=California/L=San Diego/O=Apple, Inc./CN=grafana.example.com/CN=www.grafana.example.com"
-openssl req -x509 -newkey rsa:2048 -nodes -keyout certkey.pem -out cert.pem -subj "/C=US/ST=/L=/O=/CN=example.com"
+openssl req -x509 -days 3650 -newkey rsa:4096 -nodes -keyout certkey.pem -out cert.pem -subj "/C=US/ST=California/L=San Diego/O=Apple, Inc./CN=grafana.example.com/CN=www.grafana.example.com"
+openssl req -x509 -days 3650 -newkey rsa:2048 -nodes -keyout certkey.pem -out cert.pem -subj "/C=US/ST=/L=/O=/CN=example.com"
 ```
 - `req -x509`   = Create a self-signed cert instead of a CSR.
 - `-subj "..."` = Add information to cert without OpenSSL prompting for it.
