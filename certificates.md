@@ -107,6 +107,7 @@ certtool --generate-self-signed --load-privkey key.pem --outfile cert.pem
 #### Keytool (Java trust store)
 - `keytool -import -alias MyCert -keystore keystore.jks -file cert.pem`
 - `keytool -list -keystore keystore.jks`
+- `echo PASSWORD|keytool -import -alias cert-01 -keystore certs.jks -file cert-01 -noprompt` = Import cert without a prompt (notice no space between password and pipe)
 
 #### FreeBSD
 `cat mycert.pem >> /etc/ssl/cert.pem`
