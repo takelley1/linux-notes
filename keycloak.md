@@ -63,6 +63,7 @@
   ```
 <br><br>
 - keycloak api
+  - [kcadm guide](https://github.com/keycloak/keycloak-documentation/blob/main/server_admin/topics/admin-cli.adoc)
   -  `../bin/kcadm.sh config truststore --trustpass test1234 ./cac_certs.jks`
   -  `../bin/kcadm.sh config credentials --server https://keycloak.gmcsde.com --realm master --user admin`
   - scripting
