@@ -246,6 +246,9 @@ backend heimdall
 ---
 ## [APACHE](https://httpd.apache.org/docs/2.4/howto/reverse_proxy.html)
 
+- SSL configuration:
+  - Install the `mod_ssl` package. A file in `/etc/httpd/conf.d/ssl.conf` will be automatically added along with self-signed certs.
+<br><br>
 - Subdomain-based reverse proxy config.
   - Requires creating a separate DNS domain for admin.example.com.
     - 1 DNS A record pointing admin.example.com to the IP of the reverse proxy.
