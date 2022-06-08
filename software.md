@@ -8,19 +8,6 @@
 5. Click `Headers` tab in right side-bar
 6. Click `Resend` -> `Edit and Resend`
 
-## SHIBBOLETH SERVICE PROVIDER (SP)
-
-[Installation](https://www.switch.ch/aai/guides/sp/installation/?os=centos7)
-> NOTE: [SELinux must be disabled!](https://shibboleth.atlassian.net/wiki/spaces/SP3/pages/2065335559/SELinux)
-1. Go to https://shibboleth.net/downloads/service-provider/RPMS/ and generate the correct .repo file for your distribution
-2. Create `/etc/yum.repos.d/shibboleth.repo` with the content from the previous step
-3. `yum update -y && yum install -y shibboleth httpd mod_ssl`
-4. `apachectl configtest && shibd -t` = Validate configuration
-5. `systemctl enable httpd --now`
-6. `systemctl enable shibd --now`
-7. `curl -vkL https://localhost/Shibboleth.sso/Status`
-8. `curl -vkL https://localhost/Shibboleth.sso/Session`
-
 ## FORTIFY SSC
 
 Installation
