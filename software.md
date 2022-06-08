@@ -1,6 +1,6 @@
 ## BROWSERS
 
-### Header Manipulation
+### Header Manipulation (Firefox only)
 1. F12 or right-click -> `Inspect`
 2. Open `Network` tab
 3. Request the desired URL in your browser
