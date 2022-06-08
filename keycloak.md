@@ -1,4 +1,4 @@
-## KEYCLOAK / REDHAT IDM
+## KEYCLOAK / REDHAT IDENTITY MANAGER (IDM)
 
 - Configuring keycloak for CAC authentication (also called mTLS or X509 client authentication)
 <br><br>
