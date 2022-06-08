@@ -6,27 +6,26 @@
 
 > NOTE: [SELinux must be disabled!](https://shibboleth.atlassian.net/wiki/spaces/SP3/pages/2065335559/SELinux)
 
-1. Go to https://shibboleth.net/downloads/service-provider/RPMS/ and generate the correct .repo file for your
+- Go to https://shibboleth.net/downloads/service-provider/RPMS/ and generate the correct .repo file for your
    distribution
-1. Create `/etc/yum.repos.d/shibboleth.repo` with the content from the previous step
-1. `yum update -y && yum install -y shibboleth httpd mod_ssl php`
-1. Follow steps recommended [here](https://shibboleth.atlassian.net/wiki/spaces/SP3/pages/2065335062/Apache) to
+- Create `/etc/yum.repos.d/shibboleth.repo` with the content from the previous step
+- `yum update -y && yum install -y shibboleth httpd mod_ssl php`
+- Follow steps recommended [here](https://shibboleth.atlassian.net/wiki/spaces/SP3/pages/2065335062/Apache) to
    configure Apache:
-  1. Set `ServerName` in the `VirtualHost` section of `/etc/httpd/conf.d/ssl.conf`
-  1. Set `UseCanonicalName On` in the `VirtualHost` section of `/etc/httpd/conf.d/ssl.conf`
-  1. IF NOT USING PHP: Unset `LoadModule mpm_prefork_module modules/mod_mpm_prefork.so` and set
+  - Set `ServerName` in the `VirtualHost` section of `/etc/httpd/conf.d/ssl.conf`
+  - Set `UseCanonicalName On` in the `VirtualHost` section of `/etc/httpd/conf.d/ssl.conf`
+  - IF NOT USING PHP: Unset `LoadModule mpm_prefork_module modules/mod_mpm_prefork.so` and set
      `LoadModule mpm_worker_module modules/mod_mpm_worker.so` in `/etc/httpd/conf.modules.d/00-mpm.conf`. Use `httpd -V`
      to verify MPM mode.
-1. `apachectl configtest && shibd -t` = Validate configuration
-1. `systemctl enable httpd --now`
-1. `systemctl enable shibd --now`
-1. Test endpoints to ensure a 500 error doesn't occur:
+- `apachectl configtest && shibd -t` = Validate configuration
+- `systemctl enable httpd --now`
+- `systemctl enable shibd --now`
+- Test endpoints to ensure a 500 error doesn't occur:
    ```
    curl -vkL https://localhost/Shibboleth.sso/Status
    curl -vkL https://localhost/Shibboleth.sso/Session
    ```
-<br><br>
-1. Add Shibboleth as a client to Keycloak:
+- Add Shibboleth as a client to Keycloak:
   - The Shibboleth client's `client ID` must be equal to the `entityID` set in the `ApplicationDefaults` section of
     `shibboleth2.xml`
   - Example Keycloak configuration (generated via Clients -> Export):
@@ -120,19 +119,18 @@
     for another example Keycloak client configuration
   - Configure the Shibboleth client's Mappers to allow Shibboleth to receive the intended user attributes from Keycloak
 <br><br>
-1. Configure `/etc/shibboleth/shibboleth2.xml` to add Keycloak as an IdP and metadata provider:
+- Configure `/etc/shibboleth/shibboleth2.xml` to add Keycloak as an IdP and metadata provider:
    ```xml
    <SSO entityID="https://keycloak.example.com/realms/devops"
         discoveryProtocol="SAMLDS" discoveryURL="https://keycloak.example.com/realms/devops">
         SAML2 SAML1
-  </SSO>
-  <MetadataProvider type="XML" validate="false"
+   </SSO>
+   <MetadataProvider type="XML" validate="false"
         url="https://keycloak.example.com/realms/devops/protocol/saml/descriptor"
         backingFilePath="federation-metadata.xml" maxRefreshDelay="7200">
-  </MetadataProvider> 
+   </MetadataProvider> 
    ```
-<br><br>
-1. Configure `/etc/shibboleth/attribute-map.xml` to map the attributes that Keycloak provides. See
+- Configure `/etc/shibboleth/attribute-map.xml` to map the attributes that Keycloak provides. See
    `/var/log/shibboleth/shibd.log` for attributes that are left out
    - Map keycloak's `USER` attribute to the `USER` variable:
      ```xml
@@ -144,7 +142,7 @@
      ```
    - Shibboleth makes these attributes available to its web server (Apache) as a variable (see next step)
 <br><br>
-1. If your app needs to authenticate users based on the HTTP request headers, the Shibboleth module in Apache makes
+- If your app needs to authenticate users based on the HTTP request headers, the Shibboleth module in Apache makes
    extracted use attributes available as variables
    - Shibboleth 'protects' the URLs defined at the bottom of `/etc/httpd/conf.d/shib.conf`. Shibboleth redirects these
      URLs to the Identity Provider (IdP) for authentication
