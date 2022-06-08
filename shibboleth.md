@@ -145,7 +145,8 @@
 - If your app needs to authenticate users based on the HTTP request headers, the Shibboleth module in Apache makes
    extracted use attributes available as variables
    - Shibboleth 'protects' the URLs defined at the bottom of `/etc/httpd/conf.d/shib.conf`. Shibboleth redirects these
-     URLs to the Identity Provider (IdP) for authentication
+     URLs to the Identity Provider (IdP) for authentication. After the user has been authenticated, the content at the
+     protected URL is loaded.
    - Example block in `/etc/httpd/conf.d/shib.conf`:
      ```xml
      <Location />
@@ -161,6 +162,6 @@
    - Following the above example block, ensure PHP is enabled in Apache and place a file called `index.php` at the location of `/` (usually `/var/www/html/index.php`)
      - Ensure the file has the below content:
        ```php
-      <?php header("Location: https://myapp.example.com"); ?>
+       <?php header("Location: https://myapp.example.com"); ?>
        ```
-     - This will redirect the browser to `myapp.example.com` after authenticating with Shibboleth.
+     - The above PHP block will redirect the browser to `myapp.example.com` after authenticating with Shibboleth.
