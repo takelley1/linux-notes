@@ -4,17 +4,22 @@
 
 ### [Installation](https://www.switch.ch/aai/guides/sp/installation/?os=centos7)
 
+- Notes:
+  - [Shibboleth *must* be installed on the *same host* as the app it's protecting](https://shibboleth.atlassian.net/wiki/spaces/SP3/pages/2065334314/ApplicationModel)
+    - This means you must have a separate Shibboleth installation for every app that Shibboleth protects
+  - The web server Shibboleth is running on *must* be configured for SSL/TLS
+
 > NOTE: [SELinux must be disabled!](https://shibboleth.atlassian.net/wiki/spaces/SP3/pages/2065335559/SELinux)
 
 - Go to https://shibboleth.net/downloads/service-provider/RPMS/ and generate the correct .repo file for your
    distribution
 - Create `/etc/yum.repos.d/shibboleth.repo` with the content from the previous step
-- `yum update -y && yum install -y shibboleth httpd mod_ssl php`
+- `yum update -y && yum install -y shibboleth httpd mod_ssl`
 - Follow steps recommended [here](https://shibboleth.atlassian.net/wiki/spaces/SP3/pages/2065335062/Apache) to
    configure Apache:
   - Set `ServerName` in the `VirtualHost` section of `/etc/httpd/conf.d/ssl.conf`
   - Set `UseCanonicalName On` in the `VirtualHost` section of `/etc/httpd/conf.d/ssl.conf`
-  - IF NOT USING PHP: Unset `LoadModule mpm_prefork_module modules/mod_mpm_prefork.so` and set
+  - Unset `LoadModule mpm_prefork_module modules/mod_mpm_prefork.so` and set
      `LoadModule mpm_worker_module modules/mod_mpm_worker.so` in `/etc/httpd/conf.modules.d/00-mpm.conf`. Use `httpd -V`
      to verify MPM mode.
 - `apachectl configtest && shibd -t` = Validate configuration
@@ -29,9 +34,10 @@
   - The Shibboleth client's `client ID` must be equal to the `entityID` set in the `ApplicationDefaults` section of
     `shibboleth2.xml`
   - Example Keycloak configuration (generated via Clients -> Export):
+    - Note: When using Shibboleth to protect Digital.ai's Agility, Keycloak doesn't need to have any client mappers. You simply need to configure HTTP_USER in Shibboleth's `attribute-map.xml` file (see below). Agility itself must also be configured for [SSO](https://docs.digital.ai/bundle/agility-onlinehelp/page/Content/Digital.ai_Agility/On-Premise_Single_Sign-On.htm)
     ```json
     {
-        "clientId": "shibboleth.gmcsde.com",
+        "clientId": "shibboleth.example.com",
         "name": "Apache test app",
         "rootUrl": "",
         "adminUrl": "",
@@ -90,19 +96,7 @@
         },
         "fullScopeAllowed": true,
         "nodeReRegistrationTimeout": -1,
-        "protocolMappers": [
-            {
-                "name": "USER",
-                "protocol": "saml",
-                "protocolMapper": "saml-user-property-mapper",
-                "consentRequired": false,
-                "config": {
-                    "user.attribute": "Username",
-                    "friendly.name": "User",
-                    "attribute.name": "USER"
-                }
-            }
-        ],
+        "protocolMappers": [],
         "defaultClientScopes": [
             "role_list",
             "agility-saml-test"
@@ -128,13 +122,13 @@
    <MetadataProvider type="XML" validate="false"
         url="https://keycloak.example.com/realms/devops/protocol/saml/descriptor"
         backingFilePath="federation-metadata.xml" maxRefreshDelay="7200">
-   </MetadataProvider> 
+   </MetadataProvider>
    ```
 - Configure `/etc/shibboleth/attribute-map.xml` to map the attributes that Keycloak provides. See
    `/var/log/shibboleth/shibd.log` for attributes that are left out
-   - Map keycloak's `USER` attribute to the `USER` variable:
+   - Map keycloak's `HTTP_USER` attribute to the `HTTP_USER` variable:
      ```xml
-     <Attribute name="USER" nameFormat="urn:oasis:names:tc:SAML:2.0:attrname-format:basic" id="USER"/>
+     <Attribute name="HTTP_USER" nameFormat="urn:oasis:names:tc:SAML:2.0:attrname-format:basic" id="HTTP_USER"/>
      ```
    - Log example:
      ```
@@ -159,9 +153,3 @@
    - The above block forces the user to authenticate with Shibboleth whenever they navigate to `/` on the server.
      Additionally, Apache will add a header called `HTTP_USER` to the request with the value of the `USER` variable. The
      `USER` variable is set by Shibboleth's `attribute-map.xml` when it receives the `USER` attribute back from Keycloak.
-   - Following the above example block, ensure PHP is enabled in Apache and place a file called `index.php` at the location of `/` (usually `/var/www/html/index.php`)
-     - Ensure the file has the below content:
-       ```php
-       <?php header("Location: https://myapp.example.com"); ?>
-       ```
-     - The above PHP block will redirect the browser to `myapp.example.com` after authenticating with Shibboleth.
