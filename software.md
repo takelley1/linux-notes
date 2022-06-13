@@ -27,9 +27,9 @@ Installation
   ```
 
 SSO configuration
-- Create local users in the Fortify web GUI with usernames matching their email address in Keycloak
+- Create local users in the Fortify Web GUI with usernames matching their email address in Keycloak
 - Fortify server backend
-  1. Create a cert with private key password
+  1. Create a self-signed cert with password-protected private key
   ```
   openssl req -x509 -sha256 -days 3650 -newkey rsa:4096 -keyout private_key.pem -out certificate.pem
   ```
