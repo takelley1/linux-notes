@@ -26,6 +26,61 @@ Installation
   <% response.sendRedirect("https://fortifydomain.example.com/ssc"); %>
   ```
 
+SSO configuration
+- Create local users in the Fortify web GUI with usernames matching their email address in Keycloak
+- Fortify server backend
+  1. Create a cert with private key password
+  ```
+  openssl req -x509 -sha256 -days 3650 -newkey rsa:4096 -keyout private_key.pem -out certificate.pem
+  ```
+  1. Export the certs to a pkcs12 bundle
+  ```
+  openssl pkcs12 -export -in certificate.pem -inkey private_key.pem -name saml > saml.p12
+  ```
+  1. Create a Java keystore with the cert bundle
+  ```
+  keytool -importkeystore -srckeystore saml.p12 -destkeystore store.keys -srcstoretype pkcs12 -alias SAML
+  ```
+- Fortify Web GUI
+  ```
+  Configuration -> SSO -> SAML:
+
+  # Download the metadata from your IdP manually
+  IDP metadata location: file:///opt/fortify_certs/keycloak-metadata.xml
+  
+  # This can be found in the IdP metadata
+  default IDP: https://keycloak.example.com/realms/devops
+  
+  # The public URL of the Fortify instance
+  SP entity ID: https://fortify.example.com/ssc/
+  
+  SP alias: fortify_ssc
+  
+  # Location of the Java keystore with the cert bundle. Preceed path with file://
+  Keystore location: file:///opt/store.keys
+  
+  # Password of the Java keystore with the cert bundle
+  Keystore password: ****************
+  
+  # Alias of the cert bundle you imported into the Java keystore
+  Signing and encryption key: SAML
+  
+  # Password of the private key in the cert bundle
+  Signing and encryption key password: ****************
+  
+  SAML name identifier: NameID
+  ```
+- Keycloak web GUI
+  - Go to `https://fortify.example.com/ssc/saml/metadata` to download metadata file
+  - Import metadata file into Keycloak as a client configuration
+
+Disabling SSO from the backend
+1. Login to Fortify's database
+2. `use fortify;`
+3. `select * from configproperty where propertyName = 'saml.enabled'`
+4. `update configproperty set propertyValue = 'false' where propertyName = 'saml.enabled'`;
+5. Restart Fortify's webserver
+
 ## APACHE TOMCAT
 
 SSL configuration (in `conf/server.xml`):
