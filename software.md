@@ -1,5 +1,19 @@
 ## BROWSERS
 
+### Splunk
+#### SSO w/ Keycloak
+- See also: https://keycloak.discourse.group/t/using-keycloak-as-the-idp-for-spunk-via-saml/1583/3
+- Issue: Keycloak returning 'invalid requester' error
+  - Solution: Disable 'client signature required' field in the Splunk client configuration within Keycloak
+- Issue: Keycloak authentication works successfully and redirects to Splunk, but Splunk returns a 'SAML response does
+  not contain group information'
+  - Solution: In Keycloak GUI -> Client Scopes -> role_list -> Mappers -> role list -> Change 'role attribute name' from
+    'Role' to 'role'
+- Issue: Keycloak returning 'invalid redirect uri' error
+  - Solution: In Splunk GUI -> Settings -> Authentication Methods -> SAML Settings -> SAML Configuration -> Redirect to
+    URL after logout, ensure value is "443" instead of "8000" if Splunk is behind a loadbalancer that redirects from
+    443.
+
 ### Header Manipulation (Firefox only)
 1. F12 or right-click -> `Inspect`
 2. Open `Network` tab
