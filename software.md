@@ -14,6 +14,40 @@
     URL after logout, ensure value is "443" instead of "8000" if Splunk is behind a loadbalancer that redirects from
     443.
 
+#### Universal Forwarder setup
+```
+export SPLUNK_HOME="/opt/splunkforwarder"
+mkdir $SPLUNK_HOME
+cd $SPLUNK_HOME
+```
+- Download and install
+```
+wget -O splunkforwarder-9.0.0-6818ac46f2ec-linux-2.6-x86_64.rpm "https://download.splunk.com/products/universalforwarder/releases/9.0.0/linux/splunkforwarder-9.0.0-6818ac46f2ec-linux-2.6-x86_64.rpm"
+rpm -i ./splunkforwarder-9.0.0-6818ac46f2ec-linux-2.6-x86_64.rpm
+```
+- Run initial setup (test:password)
+```
+/opt/splunkforwarder/bin/splunk start --accept-license
+```
+- Stop daemon, then enable at boot
+```
+/opt/splunkforwarder/bin/splunk stop
+/opt/splunkforwarder/bin/splunk enable boot-start
+/opt/splunkforwarder/bin/splunk start
+```
+- Add a forwarder
+```
+/opt/splunkforwarder/bin/splunk add forward-server <IP>:<PORT>
+```
+- Begin monitoring a log file
+```
+/opt/splunkforwarder/bin/splunk add monitor /var/log/messages
+```
+
+Files for universal forwarder:
+  - Target server: `/opt/splunkforwarder/etc/system/local/outputs.conf`
+  - Files to monitor: `/opt/splunkforwarder/etc/apps/search/local/inputs.conf`
+
 ### Header Manipulation (Firefox only)
 1. F12 or right-click -> `Inspect`
 2. Open `Network` tab
