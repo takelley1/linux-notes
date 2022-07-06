@@ -1,7 +1,7 @@
-## BROWSERS
+## Splunk
 
-### Splunk
-#### SSO w/ Keycloak
+### SSO w/ Keycloak
+
 - See also: https://keycloak.discourse.group/t/using-keycloak-as-the-idp-for-spunk-via-saml/1583/3
 - Issue: Keycloak returning 'invalid requester' error
   - Solution: Disable 'client signature required' field in the Splunk client configuration within Keycloak
@@ -14,7 +14,8 @@
     URL after logout, ensure value is "443" instead of "8000" if Splunk is behind a loadbalancer that redirects from
     443.
 
-#### Universal Forwarder setup
+### Universal Forwarder setup
+
 ```
 export SPLUNK_HOME="/opt/splunkforwarder"
 mkdir $SPLUNK_HOME
@@ -48,7 +49,8 @@ Files for universal forwarder:
   - Target server: `/opt/splunkforwarder/etc/system/local/outputs.conf`
   - Files to monitor: `/opt/splunkforwarder/etc/apps/search/local/inputs.conf`
 
-### Header Manipulation (Firefox only)
+## Browser Header Manipulation (Firefox only)
+
 1. F12 or right-click -> `Inspect`
 2. Open `Network` tab
 3. Request the desired URL in your browser
@@ -56,7 +58,7 @@ Files for universal forwarder:
 5. Click `Headers` tab in right side-bar
 6. Click `Resend` -> `Edit and Resend`
 
-## FORTIFY SSC
+## Fortify SSC
 
 Installation
 1. Install Java OpenJDK
@@ -129,7 +131,7 @@ Disabling SSO from the backend
 4. `update configproperty set propertyValue = 'false' where propertyName = 'saml.enabled'`;
 5. Restart Fortify's webserver
 
-## APACHE TOMCAT
+## Apache Tomcat
 
 - SSL:
   - See also: https://crunchify.com/step-by-step-guide-to-enable-https-or-ssl-correct-way-on-apache-tomcat-server-port-8443/
@@ -143,11 +145,12 @@ Disabling SSO from the backend
             </SSLHostConfig>
         </Connector>
     ```
-## VIRTUALBOX
+
+## VirtualBox
 
 - `VBoxManage list runningvms` = List currently running VMs using headless VirtualBox.
 
-## ZABBIX
+## Zabbix
 
 - `zabbix_proxy -R config_cache_reload` = Reload Zabbix proxy configuration without restarting service.
 
@@ -166,13 +169,11 @@ curl -L -s -X POST -H 'Content-Type: application/json-rpc' \
 https://zabbix.example.mil/api_jsonrpc.php
 ```
 
-## VSPHERE / VMWARE
+## vSphere / VMWare
 
 `Actions -> Edit Settings -> VM Options -> VMWare Remote Console Options` = Edit max number of connected console sessions for a guest.
 
-
----
-## MCAFEE
+## McAfee
 
 - Logs: `/var/McAfee/agent/logs`
 
@@ -188,9 +189,7 @@ rpm -e MFEcma --nodeps --noscripts
 rpm -e MFErt --nodeps --noscripts
 ```
 
-
----
-## PFSENSE
+## pfSense
 
 - [Place firewall rules on the interface where the traffic originates](https://blog.monstermuffin.org/pfsense-guide-nat-firewall-rules-networking-101/)
 
@@ -201,8 +200,7 @@ rpm -e MFErt --nodeps --noscripts
   - Interface Address
     - These macros specify the IP address configured on that interface.
 
----
-## BORG BACKUP
+## Borg Backup
 
 Extract */mnt/tank/share/pictures* in repo *backup-2020-01-19-01-00* to current path:
 ```bash
@@ -213,9 +211,7 @@ borg extract \
 /mnt/backup/borgrepo::backup-2020-01-19-01-00 mnt/tank/share/pictures/
 ```
 
-
----
-## GRAYLOG
+## Graylog
 
 Change Graylog from RO to RW mode:
 ```bash
@@ -226,9 +222,7 @@ https://localhost:9200/_all/_settings \
 -d '{"index.blocks.read_only_allow_delete": null}'
 ```
 
-
----
-## OPENSCAP
+## OpenSCAP
 
 Run SCAP scan:
 ```
@@ -259,9 +253,7 @@ Minimum XCCDF file for importing SCAP results to DISA STIG viewer:
 </TestResult>
 ```
 
-
----
-## RANGER
+## Ranger
 
 - `m<KEY>`         = Bookmark path at *\<KEY\>*.
 - `` `<KEY> ``     = Jump to bookmark at *\<KEY\>*.
@@ -272,9 +264,7 @@ Minimum XCCDF file for importing SCAP results to DISA STIG viewer:
 - `A` = Rename from end of file (including extension).
 - `a` = Rename from end of file (excluding extension).
 
-
----
-## SPACEWALK / RED HAT SATELLITE
+## Spacewalk / Red Hat Satellite
 
 - `rhncfg-client get` = Force spacewalk client to pull configuration files.
 
@@ -306,16 +296,14 @@ systemctl enable osad --now
 rhn-channel --list
 ```
 
----
-## TENABLE NESSUS
+## Tenable Nessus
 
 [Reset user password](https://docs.tenable.com/nessus/commandlinereference/Content/ChangeAUsersPassword.htm)
 ```bash
 /opt/nessus/sbin/nessuscli chpasswd <USERNAME>
 ```
 
----
-## TENABLE.SC (SECURITY CENTER)
+## Tenable.SC (SecurityCenter)
 
 Get new plugins: https://patches.csd.disa.mil
 
