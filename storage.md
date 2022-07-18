@@ -124,7 +124,7 @@ Extending */var* XFS filesystem by 127,999 extents with LVM:
 - `mount`                                     = Show mounted volumes and their mount locations.
 - `mount –o remount,rw /dev/sda1 /mountpoint` = Remount drive with read-write permissions.
 
-Creating a swapfile on btrfs
+Creating swap and/or a swapfile on btrfs
 ```bash
 1. touch /swapfile
 2. chmod 0600 /swapfile
