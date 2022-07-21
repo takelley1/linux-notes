@@ -13,6 +13,7 @@
 
 ### Variables
 
+- `when: result.stdout is search("already installed")` = [Test string for substring](https://docs.ansible.com/ansible/latest/user_guide/playbooks_tests.html#testing-strings)
 - `ansible -i inventories/hostsfile.yml -m debug -a "var=hostvars" all` = View all variables from all hosts in *hostsfile.yml*.
 - `ansible webserver01 -m debug -a 'msg={{ hostname | quote }}' -i inventories/my_inv/hosts.yml` = Run ad-hoc debug module on *webserver01* to test variable filter.
 - `ansible localhost -m debug -a msg="{{ lookup('env','HOME') }}"` = Run ad-hoc module on *localhost* to print user's home directory.
