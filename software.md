@@ -35,22 +35,6 @@ https://zabbix.example.mil/api_jsonrpc.php
 
 `Actions -> Edit Settings -> VM Options -> VMWare Remote Console Options` = Edit max number of connected console sessions for a guest.
 
-## McAfee
-
-- Logs: `/var/McAfee/agent/logs`
-
-Uninstall McAfee Agent:
-```bash
-rpm -e MFEdx
-rpm -e MFEcma
-rpm -e MFErt
-
-# If the above fails:
-rpm -e MFEdx --nodeps --noscripts
-rpm -e MFEcma --nodeps --noscripts
-rpm -e MFErt --nodeps --noscripts
-```
-
 ## Borg Backup
 
 Extract */mnt/tank/share/pictures* in repo *backup-2020-01-19-01-00* to current path:
