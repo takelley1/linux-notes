@@ -18,6 +18,7 @@
 - `ansible webserver01 -m debug -a 'msg={{ hostname | quote }}' -i inventories/my_inv/hosts.yml` = Run ad-hoc debug module on *webserver01* to test variable filter.
 - `ansible localhost -m debug -a msg="{{ lookup('env','HOME') }}"` = Run ad-hoc module on *localhost* to print user's home directory.
 - `ansible localhost -m setup -kK -u foo` = Print local host's facts by connecting to it with user *foo*.
+- `ansible -v localhost -m aws_s3 -a "bucket=my-bucket object=/repos/fortify/fortify.license dest=/home/akelley/fortify.license mode=get overwrite=different"` = Run local module with multiple arguments.
 <br><br>
 - `packages_list_new: "{{ packages_list | reject('eq', 'p7zip') | list }}"` = [Remove p7zip from packages_list.](https://docs.ansible.com/ansible/latest/user_guide/complex_data_manipulation.html#omit-elements-from-a-list)
 - `packages_list_new: "{{ packages_list + ['p7zip', 'htop'] }}"` = Add *p7zip* and *htop* to *packages_list*.
