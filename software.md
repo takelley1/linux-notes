@@ -1,4 +1,3 @@
-
 ## vSphere / VMWare
 
 `Actions -> Edit Settings -> VM Options -> VMWare Remote Console Options` = Edit max number of connected console sessions for a guest.
@@ -24,15 +23,4 @@ curl \
 https://localhost:9200/_all/_settings \
 -d '{"index.blocks.read_only_allow_delete": null}'
 ```
-
-## Ranger
-
-- `m<KEY>`         = Bookmark path at *\<KEY\>*.
-- `` `<KEY> ``     = Jump to bookmark at *\<KEY\>*.
-- `cd /path`       = Jump to /path.
-- `gh` *(go home)* = Jump to ~
-<br><br>
-- `I` = Rename from beginning of file.
-- `A` = Rename from end of file (including extension).
-- `a` = Rename from end of file (excluding extension).
 
