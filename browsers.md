@@ -15,3 +15,4 @@
 2. Open `Network` tab
 3. Request the desired URL in your browser
 4. Right click desired request in inspector -> Copy -> Copy as cURL (POSIX)
+5. (Optional) Use [this site](https://curlconverter.com/) to convert to Python-style request
