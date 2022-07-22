@@ -1,9 +1,3 @@
-## VirtualBox
-
-- `VBoxManage list runningvms` = List currently running VMs using headless VirtualBox.
-- Fix freezing Ubuntu system:
-  - VM Settings -> System -> Acceleration -> Paravirtualization Interface -> Change from 'Default' to 'Minimal'
-
 ## Zabbix
 
 - `zabbix_proxy -R config_cache_reload` = Reload Zabbix proxy configuration without restarting service.
