@@ -37,13 +37,19 @@
 
 #### pacman
 
+- Issue: `package is marginal trust`
+  - Solution:
+    ```
+    pacman -Sy archlinux-keyring && pacman -Syu
+    ```
+<br><br>
 - Issue: `invalud or corrupted database (PGP signature)`
-- Solution:
-  ```
-  1. Comment out the top mirror in `/etc/pacman.d/mirrorlist`
-  2. rm /var/lib/pacman/sync/*
-  3. pacman -Syu
-  ```
+  - Solution:
+    ```
+    1. Comment out the top mirror in `/etc/pacman.d/mirrorlist`
+    2. rm /var/lib/pacman/sync/*
+    3. pacman -Syu
+    ```
 
 #### rpm
 
