@@ -1,4 +1,4 @@
-## McAfee
+## MCAFEE
 
 - Logs: `/var/McAfee/agent/logs`
 

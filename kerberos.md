@@ -1,4 +1,3 @@
-
 ## KERBEROS
 
 Used to authenticate users to services over an untrusted network, without sending credentials in plaintext. This is done

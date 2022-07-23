@@ -1,4 +1,4 @@
-## SonarQube
+## SONARQUBE
 
 ### SSO w/ Keycloak
 

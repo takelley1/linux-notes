@@ -1,4 +1,3 @@
-
 ## TMUX
 
 | Action                           | Default binding (Preceed with `CTRL-b`)  |

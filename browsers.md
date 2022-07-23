@@ -1,3 +1,5 @@
+## BROWSERS
+
 ## Firefox Debug tools / Inspector menu
 
 1. F12 or right-click -> `Inspect`

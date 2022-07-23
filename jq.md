@@ -1,4 +1,3 @@
-
 ## [JQ](https://stedolan.github.io/jq/manual/)
 
 - **See also**:

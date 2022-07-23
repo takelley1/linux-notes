@@ -1,4 +1,4 @@
-## Spacewalk / Red Hat Satellite
+## SPACEWALK / RED HAT SATELLITE
 
 - `rhncfg-client get` = Force spacewalk client to pull configuration files.
 

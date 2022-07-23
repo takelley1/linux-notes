@@ -1,4 +1,4 @@
-## Fortify SSC
+## FORTIFY SSC
 
 Installation
 1. Install Java OpenJDK

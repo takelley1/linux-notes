@@ -1,4 +1,4 @@
-## Zabbix
+## ZABBIX
 
 - `zabbix_proxy -R config_cache_reload` = Reload Zabbix proxy configuration without restarting service.
 

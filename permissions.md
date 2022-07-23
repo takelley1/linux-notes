@@ -1,4 +1,3 @@
-
 ## ACLs
 
 - `setfacl –R –m u:alice:rw /photos` = Grant user *alice* read and write access to all files in */photos*, regardless of

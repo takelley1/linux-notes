@@ -1,3 +1,4 @@
+## GRAPHICS
 
 ### Anisotropic Filtering
 

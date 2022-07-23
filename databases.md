@@ -1,3 +1,4 @@
+## DATABASES
 
 - `export PAGER="less -XRFS"` = Don't wrap table output in the SQL shell.
 

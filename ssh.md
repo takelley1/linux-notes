@@ -1,4 +1,3 @@
-
 ## [SSH](https://www.openssh.com/manual.html)
 
 - **See also:**

@@ -1,4 +1,3 @@
-
 ## [PARADIGMS](https://cs.lmu.edu/~ray/notes/paradigms/)
 
 - **Imperative:** Programming with an explicit sequence of commands that update state.

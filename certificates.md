@@ -1,4 +1,3 @@
-
 ## CERTIFICATE MANAGEMENT
 
 ### [OpenSSL](https://www.openssl.org/docs/)

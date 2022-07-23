@@ -1,4 +1,3 @@
-
 ## SOLID-STATE STORAGE
 
 - Non-volatile - Memory that retains its data after power loss.

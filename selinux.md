@@ -1,4 +1,3 @@
-
 ## SELINUX
 
 - **See also:**

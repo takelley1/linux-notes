@@ -1,4 +1,3 @@
-
 ## REGEX
 
 - **See also:**

@@ -1,4 +1,4 @@
-## Programming
+## PROGRAMMING
 
 - [Functions should be extremely small, like under 10 lines if possible](https://youtu.be/7EmboKQH8lM?list=PLmmYSbUCWJ4x1GO839azG_BBw8rkh-zOj&t=3341)
   - Continue extracting out functions until you can't reasonably extract any more

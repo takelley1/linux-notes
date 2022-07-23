@@ -1,4 +1,4 @@
-## WiFi
+## WIFI
 
 ### Arch Linux
 

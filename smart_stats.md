@@ -1,4 +1,3 @@
-
 ## SMART
 
 ### Testing

@@ -1,4 +1,3 @@
-
 ## VNC
 
 ### How to set up encrypted VNC user sessions with virtual X displays

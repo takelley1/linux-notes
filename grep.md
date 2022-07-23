@@ -1,4 +1,3 @@
-
 ## [GREP](https://www.gnu.org/software/grep/manual/grep.html)
 
 - **See also**:

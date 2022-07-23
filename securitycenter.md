@@ -1,4 +1,4 @@
-## Tenable.SC (SecurityCenter)
+## TENABLE.SC (SecurityCenter)
 
 Get new plugins: https://patches.csd.disa.mil
 

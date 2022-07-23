@@ -1,6 +1,6 @@
-# AWS
+## AWS
 
-## EKS
+### EKS
 
 - **See also:**
   - [EKS creation tutorial](https://www.bluematador.com/blog/my-first-kubernetes-cluster-a-review-of-amazon-eks)

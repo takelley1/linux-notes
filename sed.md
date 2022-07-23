@@ -1,4 +1,3 @@
-
 ## [SED](https://www.gnu.org/software/sed/manual/sed.html)
 
 - **See also**:

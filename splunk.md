@@ -1,4 +1,4 @@
-## Splunk
+## SPLUNK
 
 ### SSO w/ Keycloak
 

@@ -1,4 +1,4 @@
-## Apache Tomcat
+## APACHE TOMCAT
 
 - SSL:
   - See also: https://crunchify.com/step-by-step-guide-to-enable-https-or-ssl-correct-way-on-apache-tomcat-server-port-8443/

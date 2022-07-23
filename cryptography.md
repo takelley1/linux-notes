@@ -1,4 +1,3 @@
-
 ## DIGITAL SIGNATURES
 
 - A digital signature is just an encrypted hash of a file.

@@ -1,4 +1,4 @@
-## Graylog
+## GRAYLOG
 
 Change Graylog from RO to RW mode:
 ```bash

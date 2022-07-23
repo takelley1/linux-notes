@@ -1,4 +1,3 @@
-
 ## VIM
 
 **See also:**

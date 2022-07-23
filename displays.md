@@ -1,4 +1,3 @@
-
 ## LCD / TFT LCD <sup>[1], [2]</sup>
 
 *Liquid Crystal Display*
