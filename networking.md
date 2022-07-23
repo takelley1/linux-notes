@@ -1,68 +1,3 @@
-
-## [FIREWALLD](https://firewalld.org/documentation/)
-
-- **See also:**
-  - [Using Firewalld on CentOS 7](https://www.digitalocean.com/community/tutorials/how-to-set-up-a-firewall-using-firewalld-on-centos-7)
-
-Allow HTTPS traffic in the public zone:
-```bash
-firewall-cmd --zone=public --permanent --add-service=https
-firewall-cmd --reload
-```
-
-Disallow port 123 TCP traffic in the block zone.
-```bash
-firewall-cmd --zone=block --permanent --remove-port 123/tcp
-firewall-cmd --reload
-```
-
-### firewall-cmd options
-
-- `--list-ports` or `--list-services` = Show allowed ports/services.
-- `--list-all-zones` = Show firewalld rules for both public and private zones.
-<br><br>
-- `--state` = Check if firewalld is running.
-- `--zone=private --add-interface=ens32` = Attach zone to network interface.
-
-
----
-## IPTABLES
-
-- **See also:**
-  - [iptables guide](https://phoenixnap.com/kb/iptables-tutorial-linux-firewall)
-
-> [NOTE: `iptables` has been deprecated in favor of `nftables`](https://wiki.debian.org/nftables)
-
-```
-Tables: Tables are files that join similar actions. A table consists of several chains.
-Chains: A chain is a string of rules. When a packet is received, iptables finds the appropriate table, then runs it through
-        the chain of rules until it finds a match.
-Rules: A rule is a statement that tells the system what to do with a packet. Rules can block one type of packet, or forward
-       another type of packet. The outcome, where a packet is sent, is called a target.
-Targets: A target is a decision of what to do with a packet. Typically, this is to accept it, drop it, or reject it (which
-         sends an error back to the sender).
-```
-
-`iptables -A <CHAIN> -i <INTERFACE> -p <TCP/UDP> -s <SOURCE> --dport <DEST_PORT> -j <TARGET>`
-
-- `iptables -L -v` = Show firewall ruleset (-L) with traffic on each chain (-v).
-- `iptables-save` = Save current ruleset (unsaved changes are flushed upon reboot).
-- `iptables -D INPUT 3` = Delete rule *3* from the *INPUT* chain (use `iptables -L --line-numbers` to get rule numbers).
-- `iptables -F` = Delete all rules (*flush*).
-<br><br>
-- `iptables -A INPUT -p tcp --dport 22 -j ACCEPT` = Accept packets to port *22*.
-- `iptables -A INPUT -s 192.168.1.3 -j ACCEPT` = Accept packets from *192.168.1.3*.
-- `iptables -A INPUT -m iprange --src-range 192.168.1.100-192.168.1.200 -j DROP` = Drop all packets from *192.168.1.100-200*.
-- `iptables -A INPUT -j DROP` = Drop all other traffic.
-
-Add new rule to allow port 80 traffic on interface eth0 both to and from host:
-```bash
-iptables -A INPUT -i eth0 –p tcp --dport 80 –m state --state NEW,ESTABLISHED –j ACCEPT
-iptables –A OUTPUT -o eth0 –p tcp --dport 80 –m state --state NEW,ESTABLISHED –j ACCEPT
-```
-
-
----
 ## IP
 
 ### Interfaces
@@ -158,42 +93,6 @@ iptables –A OUTPUT -o eth0 –p tcp --dport 80 –m state --state NEW,ESTABLIS
 <br><br>
 - `tcpdump -vvt -i ens32 src 10.0.0.5 and dst port 22` = Packets coming from 10.0.0.5 to port 22.
 
-
----
-## NTP
-
-- `date +%T –s "16:45:00"` = Manually set time in HH:mm:ss format.
-- `date`                   = View current time.
-
-### [Chrony](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/8/html-single/configuring_basic_system_settings/index#migrating-to-chrony_using-chrony-to-configure-ntp)
-
-Show timekeeping stats:
-```
-[root@host]# chronyc tracking
-
-Reference ID    : 9B1D9843 (hostname.domain)           # Source NTP server.
-Stratum         : 4                                    # Number of NTP server hops to a root NTP server.
-Ref time (UTC)  : Wed Dec 11 20:42:51 2019             # UTC time of NTP server.
-System time     : 0.000126482 seconds slow of NTP time # Difference between host time and NTP server time.
-Last offset     : -0.000039551 seconds                 # Changes made during chrony's last modification.
-RMS offset      : 0.001020088 seconds                  # Long-term average offset.
-Frequency       : 2.941 ppm fast                       # How much faster/slower the default system clock is from NTP server.
-Residual freq   : -0.001 ppm                           # Difference between reference frequency and current frequency.
-Skew            : 0.135 ppm                            # Margin of error on frequency.
-Root delay      : 0.014488510 seconds                  # Network delay for packets to reach NTP server.
-Root dispersion : 0.079814211 seconds
-Update interval : 64.3 seconds                         # How frequently chrony modifies the system clock.
-Leap status     : Normal                               # Whether a leap second is pending to be added/removed.
-                                                       # 1 ppm = 1.000001 seconds.
-```
-
-- [Other useful commands](https://www.thegeekdiary.com/centos-rhel-7-tips-on-troubleshooting-ntp-chrony-issues/)
-  - `chronyc sources -v`
-  - `chronyc sourcestats`
-  - `chronyc activity`
-  - `timedatectl`
-
-
 ---
 ## EMAIL
 
@@ -227,34 +126,6 @@ recipient@example.com                        # This is the 'to' field of the ema
 2. Populate */postfix-whitelist* with IPs.
 3. Run `postmap /postfix-whitelist && systemctl restart postfix`.
 4. Now only the IPs in */postfix-whitelist* will be permitted to use the postfix server as an smtp relay.
-
-
----
-## [WGET](https://www.gnu.org/software/wget/manual/wget.html)
-
-```bash
-wget                            \
-  -A "*.pdf"                    \ # Only keep PDF files.
-  -e robots=off                 \ # Ignore robots.txt files.
-  --no-check-certificate        \ # Ignore HTTPS cert errors.
-  --limit-rate=100k             \ # Limit download speed to 100 KB/s.
-  --recursive                   \ # Descend into all subdirectories.
-  --level=25                    \ # Descend into a maximum of 25 subdirectories.
-  --no-clobber                  \ # Don't overwrite existing files.
-  --page-requisites             \ # Download all files required to display each page properly.
-  --html-extension              \ # Explicitly add .html extensions to relevant files.
-  --convert-links               \ # Convert http:// to file:// links for offline browsing.
-  --restrict-file-names=windows \ # Escape control characters in filenames.
-  --no-parent                   \ # Don't include directories above the path provided.
-  www.website.org/
-  www.website2.org/
-
-  --span-hosts                    # Let wget traverse multiple domains.
-  -nv                             # Non-verbose.
-  --wait=1                        # Wait 1 second after each request.
-
-wget -A "*.pdf" -e robots=off --no-check-certificate --level=25 --limit-rate=100k --recursive --no-clobber --page-requisites --html-extension --convert-links --restrict-file-names=windows --no-parent www.website.org www.website2.org
-```
 
 
 ---
