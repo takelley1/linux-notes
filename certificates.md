@@ -155,7 +155,7 @@ came built-in on Bob's web browser when he downloaded it, along with the Public 
 Bob trusts the Root CA because it has established its reputation through the Web of Trust, along with the fact that
 the Root CA's Public Key came with his browser.
 
-<img src="images/session-keys.jpg" width="400"/>
+<img src="images/session_keys.jpg" width="400"/>
 
 
 ---
@@ -169,4 +169,4 @@ the Root CA's Public Key came with his browser.
   5. The Server verifies the Client’s credentials using the Client's Certificate issuer's Public Key.
   6. If successful, the Server grants access to the protected resource requested by the Client.
 
-![mutual-ssl-authentication](images/mutual-ssl-auth.png)
+![mutual-ssl-authentication](images/mutual_ssl_auth.png)

@@ -19,7 +19,7 @@
       charge to store bits.
     - FeRAM (Ferroelectric RAM)
 
-![nand-vs-nor-flash](images/nand-vs-nor-flash.jpg) <sup>[1]</sup>
+![nand-vs-nor-flash](images/nand_vs_nor_flash.jpg) <sup>[1]</sup>
 
 - Volatile - Memory that loses its data after power loss, used as a working cache to store frequently-accessed data.
   - **RAM** (Random Access Memory) - Fast memory for storing running programs.

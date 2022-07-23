@@ -49,7 +49,7 @@
 ## [LXC](https://linuxcontainers.org/lxc/introduction/)
 
 
-![image](images/lxc-vs-docker.png)
+![image](images/lxc_vs_docker.png)
 
 ---
 ### Container implementations comparison

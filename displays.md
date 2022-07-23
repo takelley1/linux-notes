@@ -26,7 +26,7 @@
   - Mini-LED local dimming - Ultra-high resolution local dimming created by extremely small individual white LED
     backlights, reducing backlight glow and increasing contrast. <sup>[3]</sup>
 
-![local-dimming](images/local-dimming.webp) <sup>[3]</sup>
+![local-dimming](images/local_dimming.webp) <sup>[3]</sup>
 
 ---
 ## OLED <sup>[1], [2]</sup>

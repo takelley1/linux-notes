@@ -36,7 +36,7 @@
 - `exec bash`        = Restart bash shell.
 - `strace [command]` = Trace system call.
 
-![performance-observation-tools](images/performance-observation-tools.png)
+![performance-observation-tools](images/performance_observation_tools.png)
 
 ## `top` COMMAND
 

@@ -422,9 +422,9 @@ curl -v -d \
 > the request, generates the content and then sends this content back to httpd, which then generates the
 > actual HTTP response back to the client.
 
-<img src="images/reverse-proxy.jpg" width="500"/>
+<img src="images/reverse_proxy.jpg" width="500"/>
 
 
 ## [FORWARD PROXY](https://www.jscape.com/blog/bid/87783/forward-proxy-vs-reverse-proxy)
 
-<img src="images/forward-proxy.jpg" width="500"/>
+<img src="images/forward_proxy.jpg" width="500"/>

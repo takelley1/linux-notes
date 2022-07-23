@@ -11,7 +11,7 @@
 
 - Provides Integrity, Non-Repudiation, and Authentication.
 
-![digital-signatures](images/digital-signatures.png)
+![digital-signatures](images/digital_signatures.png)
 
 ---
 ## Data security
@@ -119,7 +119,7 @@ HMAC-MD5(key="key", message="The quick brown fox jumps over the lazy dog") = 800
 | Reused between messages            | No                        | Yes                   |
 | Relative speed                     | Slow                      | Fast                  |
 
-<img src="images/salted-hash.png" width="600"/>
+<img src="images/salted_hash.png" width="600"/>
 
 
 ---
@@ -147,7 +147,7 @@ HMAC-MD5(key="key", message="The quick brown fox jumps over the lazy dog") = 800
   - Alice verifies Bob's signature using his RSA public key to ensure the DH public key is actually from Bob and there
     is no man in the middle.
 
-<img src="images/dh-exchange.png" width="600"/>
+<img src="images/dh_exchange.png" width="600"/>
 
 
 ## ATTACKS
@@ -168,16 +168,16 @@ HMAC-MD5(key="key", message="The quick brown fox jumps over the lazy dog") = 800
                                        by intercepting and relaying traffic.
   - **Replay attack** = Attacker repeats or delays a valid message, fooling a party into believing the attacker is legitimate.
 
-<img src="images/replay-attack.png" width="300"/>
+<img src="images/replay_attack.png" width="300"/>
 
 
 ### Breaking encryption
   "Big O" time complexity
 
-![time-complexity](images/time-complexity.jpg)
+![time-complexity](images/time_complexity.jpg)
 
   - Classical brute-force time complexity of breaking a cryptographic hash = **O(2<sup>N</sup>)**
     - [A SHA256 hash has a search space of](https://www.youtube.com/watch?v=S9JGmA5_unY&t=1) **2<sup>256</sup>**
   - [Quantum brute-force time complexity of factoring an RSA key using Shor's algorithm](https://cs.stackexchange.com/questions/16684/shors-algorithm-speed) = **O(72(logN)<sup>3</sup>)**
 
-![shors-algorithm](images/time-complexity-shors-algorithm.jpg)
+![shors-algorithm](images/time_complexity_shors_algorithm.jpg)

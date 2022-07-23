@@ -26,7 +26,7 @@
 - Use:
 <br><br>
 
-![comparison-of-programming-languages](images/comparison-of-programming-languages.png)
+![comparison-of-programming-languages](images/comparison_of_programming_languages.png)
 
 ---
 ## LANGUAGES

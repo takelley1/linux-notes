@@ -277,4 +277,4 @@ wget -A "*.pdf" -e robots=off --no-check-certificate --level=25 --limit-rate=100
   - [Understanding TCP/IP](https://www.cubrid.org/blog/understanding-tcp-ip-network-stack)
   - [How ARP works](https://www.tummy.com/articles/networking-basics-how-arp-works/)
 
-![tcp/ip-stack](images/tcp-ip-stack.png)
+![tcp/ip-stack](images/tcp_ip_stack.png)
