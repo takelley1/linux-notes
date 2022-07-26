@@ -12,10 +12,14 @@
   mv download.rpm gitlab_runner.rpm
   # Copy runner package to remote server
   scp gitlab_runner.rpm remote_server:~/
-  # SSH onto server and Install runner
+  # SSH onto server and Install runner.
   ssh remote_server
   yum install -y --nogpgcheck gitlab_runner.rpm
-  # Edit configuration
-  vi /etc/gitlab-runner/config.toml
-  # Start runner
+  # Install runner as different user if needed
+  gitlab-runner uninstall
+  gitlab-runner install --user myuser --working-directory /home/myuser
+  systemctl restart gitlab-runner
+  # Register and configure runner.
+  gitlab-runner register
+  # Start runner.
   gitlab-runner start && journalctl -fu gitlab-runner
