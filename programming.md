@@ -27,3 +27,5 @@
   - When following these rules, all the code you're working on was fully-functional 1 minute ago
   - The unit-tests also function as low-level documentation for the code
   - [Test-drive development demo](https://youtu.be/58jGpV2Cg50?list=PLmmYSbUCWJ4x1GO839azG_BBw8rkh-zOj&t=2647)
+
+- [Having a good application architecture allows you to defer major decisions](https://youtu.be/sn0aFEMVTpA?list=PLmmYSbUCWJ4x1GO839azG_BBw8rkh-zOj&t=6486)
