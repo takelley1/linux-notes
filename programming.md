@@ -1,5 +1,7 @@
 ## PROGRAMMING
 
+### Uncle Bob - The only way to go fast is to go well! - https://www.youtube.com/watch?v=7EmboKQH8lM&list=PLmmYSbUCWJ4x1GO839azG_BBw8rkh-zOj&index=1
+
 - [Functions should be extremely small, like under 10 lines if possible](https://youtu.be/7EmboKQH8lM?list=PLmmYSbUCWJ4x1GO839azG_BBw8rkh-zOj&t=3341)
   - Continue extracting out functions until you can't reasonably extract any more
     - Code should read like prose
@@ -21,7 +23,7 @@
 - [Function names are the opposite - SHORTER function names in wider scopes, LONGER function names in narrower scopes](https://youtu.be/2a_ytyt9sf8?list=PLmmYSbUCWJ4x1GO839azG_BBw8rkh-zOj&t=3258)
 
 - Rules of [Test-driven Development](https://youtu.be/58jGpV2Cg50?list=PLmmYSbUCWJ4x1GO839azG_BBw8rkh-zOj&t=1436)
-  1. You're not allowed to write any production code until you've first written a test that fails, because the production code doesn't exist
+  1. You're not allowed to write any production code until you've first written a test that fails (the test fails because the production code doesn't exist)
   2. You're not allowed to write more of a test than what is sufficient for it to fail
   3. You're not allowed to write any more production code than what is sufficient to pass the failing test
   - When following these rules, all the code you're working on was fully-functional 1 minute ago
