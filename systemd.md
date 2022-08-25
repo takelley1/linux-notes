@@ -1,4 +1,4 @@
-## [SYSTEMD](https://systemd.io/)
+## [Systemd](https://systemd.io/)
 
 - **See also:**
   - [systemd man pages](http://0pointer.de/public/systemd-man/)
@@ -15,7 +15,7 @@ man systemd.target
 ```
 
 ---
-## [UNIT FILES](https://www.freedesktop.org/software/systemd/man/systemd.unit.html#)
+## [Unit Files](https://www.freedesktop.org/software/systemd/man/systemd.unit.html#)
 
 - User service files can be placed in `$HOME/.config/systemd/user/my_daemon.service` or
   `/etc/systemd/system/my_daemon.service`.
@@ -119,7 +119,7 @@ ExecReload=nice -n 5 /sbin/myservice -r
 ```
 
 ---
-## COMMANDS
+## Commands
 
 - `sudo systemctl status <SERVICE_NAME>` = See if running, uptime, view latest logs.
 <br><br>
@@ -129,7 +129,7 @@ ExecReload=nice -n 5 /sbin/myservice -r
 
 
 ---
-## RUNLEVELS
+## Runlevels
 
 | Init runlevel | Systemd target      | Result                          |
 |---------------|---------------------|---------------------------------|

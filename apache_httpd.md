@@ -1,4 +1,4 @@
-## [APACHE](https://httpd.apache.org/docs/2.4/howto/reverse_proxy.html)
+## [Apache HTTP server](https://httpd.apache.org/docs/)
 
 - SSL configuration:
   - Install the `mod_ssl` package. A file in `/etc/httpd/conf.d/ssl.conf` will be automatically added along with self-signed certs.
@@ -114,7 +114,7 @@
 </VirtualHost>
 ```
 
-- Genric reverse proxy config using context paths and load balancer.
+- Generic reverse proxy config using context paths and load balancer.
 ```apache
 <Location /bitbucket>
     ProxyPass https://10.0.0.50:443

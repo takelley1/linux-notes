@@ -1,4 +1,4 @@
-## CERTIFICATE MANAGEMENT
+## Certificates
 
 ### [OpenSSL](https://www.openssl.org/docs/)
 
@@ -122,7 +122,6 @@ certtool --generate-self-signed --load-privkey key.pem --outfile cert.pem
 `trust anchor mycert.pem`
 
 ### Windows
-
 - **See also**
   - [How to sign a CSR on Windows](https://docs.aws.amazon.com/cloudhsm/latest/userguide/win-ca-sign-csr.html)
 <br><br>
@@ -135,7 +134,7 @@ certtool --generate-self-signed --load-privkey key.pem --outfile cert.pem
 - `Control Panel -> Manage User Certificates -> Personal -> Certificates -> Open Smartcard Login Certificate -> Subject Alternate Name Field` = Get smartcard PIV (16 digit string, ending with `@mil`).
 
 ---
-## [PUBLIC KEY CERTIFICATES (1-way SSL Authentication)](https://strongarm.io/blog/how-https-works/)
+## [Public Key Certificates (1-way SSL Authentication)](https://strongarm.io/blog/how-https-works/)
 
 Before Bob sends Alice data that's been encrypted with ker Public Key, it is important for Bob to verify Alice's
 Public Key belongs to her and not a malicious third party impersonating Alice by giving Bob the wrong Public Key.
@@ -158,7 +157,7 @@ the Root CA's Public Key came with his browser.
 
 
 ---
-## [MUTUAL PUBLIC KEY AUTHENTICATION (2-way SSL Authentication)](https://www.codeproject.com/Articles/326574/An-Introduction-to-Mutual-SSL-Authentication)
+## [Mutual Public Key Authentication (2-way SSL Authentication)](https://www.codeproject.com/articles/326574/an-introduction-to-mutual-ssl-authentication)
 
 - In Mutual Authentication, the Client must trust the Server, but the Server must also trust the Client.
   1. The Client requests access to a protected resource.

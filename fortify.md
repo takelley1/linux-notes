@@ -1,10 +1,10 @@
-## FORTIFY SSC
+## Fortify SSC
 
 Installation
 1. Install Java OpenJDK
 2. Extract the Fortify SSC installation archive
 3. Extract the `apache-tomcat-*.zip` in the Fortify SSC archive to `/opt`
-4. Edit Tomcat's `conf/server.xml` file accordingly (see the `Apache Tomcat` section of this file)
+4. Edit Tomcat's `conf/server.xml` file accordingly (see the `tomcat.md` file)
 5. Ensure Tomcat's `bin/*.sh` files are executable
 6. Add `@reboot root bash -c /opt/tomcat/bin/startup.sh` to `/etc/crontab`
 7. Start Tomcat

@@ -1,11 +1,12 @@
-## [GREP](https://www.gnu.org/software/grep/manual/grep.html)
+## [Grep](https://www.gnu.org/software/grep/manual/grep.html)
 
 - **See also**:
   - [Ripgrep](https://blog.burntsushi.net/ripgrep/)
 
 ### Examples
 
-- `egrep -h -o '([0-9]{1,3}\.){1,3}[0-9]{1,3}' /var/log/maillog* | sort -u` = Extract IPs.
+- `grep -Eho '([0-9]{1,3}\.){1,3}[0-9]{1,3}' /var/log/maillog* | sort -u` = Extract IPs.
+  - `-E` = Use regex.
   - `-h` = Don't print filenames (used only when grep is searching through multiple files).
   - `-o` = Print only the matching part of the line, instead of the whole line.
   - `sort -u` = Remove duplicates.

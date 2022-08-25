@@ -1,4 +1,4 @@
-## SOLID-STATE STORAGE
+## Solid-State Storage
 
 - Non-volatile - Memory that retains its data after power loss.
   - **ROM** (Read Only Memory) - Data not rewritable after manufacture, used in BIOS chips and embedded devices.
@@ -36,14 +36,14 @@
   - Factory-set OP is free space set by the manufacturer that cannot be partitioned by the OS
   - Dynamic OP is partitioned space that has not yet been used by the filesystem
 
-### Data protocols
+### Data Protocols
 
 | Storage spec | Data bus             | Connector / form factor                          |
 |--------------|----------------------|--------------------------------------------------|
 | NVMe         | PCIe                 | M.2, mPCIe, U.2, PCIe                            |
 | AHCI         | SATA, PATA, SAS, IDE | M.2, mPCIe, U.2, mSATA, 2.5in/3.5in SATA/SAS/IDE |
 
-### Units of measurement
+### Units of Measurement
 
 | Name           | Mathematical equivalent | # of bytes                  |
 |:---------------|:-----------------------:|:----------------------------|

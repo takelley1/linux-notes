@@ -1,4 +1,4 @@
-## SELINUX
+## SELinux
 
 - **See also:**
   - [SELinux Howto](https://wiki.centos.org/HowTos/SELinux)

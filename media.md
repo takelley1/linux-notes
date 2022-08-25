@@ -1,4 +1,4 @@
-## VIDEO
+## Video
 
 ### [ffmpeg](https://ffmpeg.org/ffmpeg.html)
 
@@ -66,7 +66,7 @@ out.mp4
 
 
 ---
-## IMAGES
+## Images
 
 - **See also:**
   - [GNU parallel](http://www.gnu.org/software/parallel/)
@@ -91,7 +91,7 @@ import \
 `pngcrush -s "./screenshot.png" "./$(date +%Y-%m-%d)_${HOSTNAME}.png"` = Compress and rename *screenshot.png*.
 
 ---
-## AUDIO
+## Audio
 
 ### ALSA
 

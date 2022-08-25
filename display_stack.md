@@ -1,4 +1,4 @@
-## DISPLAY STACK
+## Display Stack
 
 ### [Desktop Environment](https://wiki.archlinux.org/index.php/Desktop_environment)
 

@@ -1,4 +1,4 @@
-## VIM
+## Vim
 
 **See also:**
   - [Learn Vimscript the hard way](https://learnvimscriptthehardway.stevelosh.com/)
@@ -39,7 +39,7 @@
   5. Exit insert mode.
 
 ---
-### Typed commands
+### Typed Commands
 
 - `:nohl`               = Turn off match highlighting (after string search).
 - `:sort`               = Sort text.
@@ -51,7 +51,7 @@
 - `:wq` or `:x` or `ZZ` = Save and quit.
 - `:qa!`                = Close and quit everything.
 
-#### Find and replace
+#### Find and Replace
 
 1. Search for word using `/word` in normal mode.
 2. Use `ciw` to change first match of `word` and exit insert mode.
@@ -147,7 +147,7 @@
 - `p`           = Paste after cursor.
 
 ---
-### Inserting text (Actions that switch to insert mode)
+### Inserting Text (Actions that switch to insert mode)
 
 - `i` (*insert*) = Insert before cursor.
 - `a` (*after*)  = Insert after cursor.

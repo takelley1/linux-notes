@@ -1,4 +1,4 @@
-## GRAPHICS
+## Graphics
 
 ### Anisotropic Filtering
 
@@ -42,7 +42,7 @@ light beams or reflective surfaces appear to pop off the screen. Overuse can was
 unnatural.
 
 ---
-### Checkerboard rendering
+### Checkerboard Rendering
 
 Checkerboard rendering or checkerboarding is a technique that helps low-power processors render high resolution images.
 It generally involves rendering half of the pixels in each frame in a checkerboard pattern, and inferring the missing
@@ -50,7 +50,7 @@ pixels from the pixels that were rendered, information from the previous frame, 
 fuzzier images than native rendering.
 
 ---
-### Chromatic aberration
+### Chromatic Aberration
 
 Bands of false color that appear along edges that separate high contrast light and dark areas of an image. It's a lens
 flaw that photographers and film makers usually try to eliminate using expensive lenses or digital post-processing. Some

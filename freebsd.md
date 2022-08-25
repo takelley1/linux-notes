@@ -1,4 +1,4 @@
-## [FREEBSD](https://www.freebsd.org/)
+## [FreeBSD](https://www.freebsd.org/)
 
 - **See also:**
   - [FreeBSD handbook](https://docs.freebsd.org/en/books/handbook/)

@@ -1,4 +1,4 @@
-## SPLUNK
+## Splunk
 
 ### SSO w/ Keycloak
 
@@ -14,7 +14,7 @@
     URL after logout, ensure value is "443" instead of "8000" if Splunk is behind a loadbalancer that redirects from
     443.
 
-### Universal Forwarder setup
+### Universal Forwarder Setup
 
 ```
 export SPLUNK_HOME="/opt/splunkforwarder"

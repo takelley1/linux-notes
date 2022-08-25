@@ -1,4 +1,4 @@
-## [SHIBBOLETH SERVICE PROVIDER (SP)](https://shibboleth.atlassian.net/wiki/spaces/SP3/overview?homepageId=2058387896)
+## [Shibboleth Service Provider (SP)](https://shibboleth.atlassian.net/wiki/spaces/SP3/overview?homepageId=2058387896)
 
 - This guide is for configuring Shibboleth as a Service Provider (SP) with Keycloak as an Identity Provider (IdP)
 

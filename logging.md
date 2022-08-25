@@ -1,4 +1,4 @@
-## LOGGING
+## Logging
 
 - `logger test123`   = Send a test log to */var/log/mesages*.
 - `strace`           = Trace system call.

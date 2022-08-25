@@ -1,6 +1,6 @@
-## AWS
+## [AWS]("https://docs.aws.amazon.com/")
 
-### EKS
+### [EKS]("https://docs.aws.amazon.com/eks/?id=docs_gateway")
 
 - **See also:**
   - [EKS creation tutorial](https://www.bluematador.com/blog/my-first-kubernetes-cluster-a-review-of-amazon-eks)

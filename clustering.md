@@ -1,4 +1,4 @@
-## CLUSTERING
+## Clustering
 
 ### [Pacemaker](https://clusterlabs.org/pacemaker/doc/)
 

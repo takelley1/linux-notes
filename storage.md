@@ -1,4 +1,4 @@
-## STORAGE
+## Storage
 
 - **See also:**
   - [Storage 101 blog series](https://www.red-gate.com/simple-talk/homepage/storage-101-welcome-to-the-wonderful-world-of-storage/)
@@ -7,7 +7,7 @@
 
 
 ---
-## LOGICAL VOLUME MANAGEMENT (LVM)
+## Logical Volume Management (LVM)
 
 ### Examples
 
@@ -21,21 +21,21 @@ Extending */var* XFS filesystem by 127,999 extents with LVM:
 6. xfs_growfs /var                     # Grow the filesystem on the extended logical volume.
 ```
 
-### Physical volumes (PV)
+### Physical Volumes (PV)
 
 - `pvdisplay` or `pvscan`        = Show physical volumes.
 - `pvcreate /dev/sdb`            = Create a physical volume.
 - `pvremove /dev/sdb1 /dev/sdc1` = Remove physical volumes on partitions *sdb1* and *sdc1*.
 - `pvmove /dev/sdb1 /dev/sdb2`   = Copy all data from *sdb1* to *sdb2*.
 
-### Logical volumes (LV)
+### Logical Volumes (LV)
 
 - `lvdisplay` or `lvscan`            = Show logical volumes.
 - `lvcreate -l 2500 centos -n vol_1` = Create a new volume called *vol_1* with *2500* extents in vgroup *centos*.
 - `lvextend -L 1.5G /dev/mapper/LV1` = Extend volume *LV1* to *1.5 GB*.
 - `lvreduce -l -200 /dev/mapper/LV1` = Reduce volume *LV1* by *200* extents.
 
-### Volume groups (VG)
+### Volume Groups (VG)
 
 - `vgdisplay` or `vgscan`            = Show volume groups.
 - `vgcreate VG1 /dev/sdb1 /dev/sdc1` = Create a volume group called *VG1*, containing physical volumes *sdb1* and
@@ -44,7 +44,7 @@ Extending */var* XFS filesystem by 127,999 extents with LVM:
 
 
 ---
-## [COMPRESSION](https://clearlinux.org/news-blogs/linux-os-data-compression-options-comparing-behavior)
+## [Compression](https://clearlinux.org/news-blogs/linux-os-data-compression-options-comparing-behavior)
 `TODO`
 
 - **See also:**
@@ -101,7 +101,7 @@ Extending */var* XFS filesystem by 127,999 extents with LVM:
 
 
 ---
-## DISKS & MOUNTS
+## Disks & Mounts
 
 - **See also:**
   - [Fixing 3.3v Pin issue in SATA drives](https://imgur.com/a/A0JXgrQ)
@@ -134,7 +134,7 @@ Creating swap and/or a swapfile on btrfs
 7. swapon /swapfile
 ```
 
-### [Disk testing](https://calomel.org/badblocks_wipe.html)
+### [Disk Testing](https://calomel.org/badblocks_wipe.html)
 
 - `badblocks -b 4096 -s -v -w /dev/sdb` = Destructively test disk sdb for bad data blocks (useful for testing new drive).
 - `bonnie++`
@@ -142,7 +142,7 @@ Creating swap and/or a swapfile on btrfs
 
 
 ---
-## FILES & FILESYSTEMS
+## Files & Filesystems
 
 ### Metadata
 
@@ -166,7 +166,7 @@ Creating swap and/or a swapfile on btrfs
   - `d 1` (*depth*) = Recurse at a depth of 1 directory.
 
 ---
-## [SAMBA](https://wiki.samba.org/index.php/Main_Page)
+## [Samba](https://wiki.samba.org/index.php/Main_Page)
 
 - Enable debug logging:
 ```
@@ -232,9 +232,9 @@ ex: `10.0.0.10:/data  /mnt/data  nfs  defaults  0 0`
 
 
 ---
-## MISC
+## Misc
 
-### Hard & symbolic links
+### Hard & Symbolic Links
 
 - `ln /home/sourcefile.txt /var/hardlink.txt` = Create hard link to file (`ln -s` for soft/symbolic link).
 

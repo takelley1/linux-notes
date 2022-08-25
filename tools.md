@@ -1,4 +1,4 @@
-## TOOLS
+## Tools
 
 - **See also:**
   - [GNU coreutils decoded](http://maizure.org/projects/decoded-gnu-coreutils/)

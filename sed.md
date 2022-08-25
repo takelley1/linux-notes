@@ -1,7 +1,8 @@
-## [SED](https://www.gnu.org/software/sed/manual/sed.html)
+## [Sed](https://www.gnu.org/software/sed/manual/sed.html)
 
 - **See also**:
   - [Sed introduction](https://www.grymoire.com/Unix/Sed.html)
+  - `./sed_one_liners.txt`
 
 sed `-<PARAMETER> '<RESTRICTION> <FLAG1>/<PATTERN1>/<PATTERN2>/<FLAG2>' <FILE1> <FILE2>…`
 

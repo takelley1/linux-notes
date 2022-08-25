@@ -1,4 +1,6 @@
-## [REVERSE PROXY](https://en.wikipedia.org/wiki/Reverse_proxy)
+## Proxies
+
+### [Reverse Proxy](https://en.wikipedia.org/wiki/Reverse_proxy)
 
 - **See also:**
   - [Reverse proxy performance](https://www.imperva.com/learn/performance/reverse-proxy/)
@@ -17,6 +19,6 @@
 
 
 ---
-## [FORWARD PROXY](https://www.jscape.com/blog/bid/87783/forward-proxy-vs-reverse-proxy)
+### [Forward Proxy](https://www.jscape.com/blog/bid/87783/forward-proxy-vs-reverse-proxy)
 
 <img src="images/forward_proxy.jpg" width="500"/>

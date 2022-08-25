@@ -1,4 +1,4 @@
-## PACKAGE MANAGERS
+## Package Managers
 
 - **See also**:
   - [Pacman rosetta](https://wiki.archlinux.org/index.php/Pacman/Rosetta)

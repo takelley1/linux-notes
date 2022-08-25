@@ -1,4 +1,4 @@
-## [WGET](https://www.gnu.org/software/wget/manual/wget.html)
+## [Wget](https://www.gnu.org/software/wget/manual/wget.html)
 
 ```bash
 wget                            \

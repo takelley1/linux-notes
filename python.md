@@ -1,4 +1,4 @@
-## PYTHON
+## Python
 
 - **See also**
   - [Google style guide for Python](https://google.github.io/styleguide/pyguide.html)

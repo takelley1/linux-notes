@@ -1,4 +1,4 @@
-## [HAPROXY](http://www.haproxy.org/#docs)
+## [HAProxy](http://www.haproxy.org/#docs)
 
 - **See also**
   - [HAProxy concepts](https://www.digitalocean.com/community/tutorials/an-introduction-to-haproxy-and-load-balancing-concepts)

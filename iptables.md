@@ -1,7 +1,7 @@
-## IPTABLES
+## IPTables
 
 - **See also:**
-  - [iptables guide](https://phoenixnap.com/kb/iptables-tutorial-linux-firewall)
+  - [IPTables guide](https://phoenixnap.com/kb/iptables-tutorial-linux-firewall)
 
 > [NOTE: `iptables` has been deprecated in favor of `nftables`](https://wiki.debian.org/nftables)
 

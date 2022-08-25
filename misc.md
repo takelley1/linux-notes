@@ -1,4 +1,4 @@
-## MISC
+## Miscellaneous
 
 - `minute of hour | hour of day | day of month | month # | day of week` = Crontab syntax.
 
@@ -26,7 +26,7 @@
 
 
 ---
-## [MANPAGES](https://www.geeksforgeeks.org/linux-man-page-entries-different-types/)
+## [Manpages](https://www.geeksforgeeks.org/linux-man-page-entries-different-types/)
 
 - `man 1 crontab` = View the *crontab* entry in manpage section 1.
 - `man 5 crontab` = View the *crontab* entry in manpage section 5.

@@ -1,9 +1,9 @@
-## CONTAINERS
+## Containers
 
 - **See also:**
   - [CNCF landscape](https://landscape.cncf.io/)
 
-## [DOCKER](https://docs.docker.com/)
+## [Docker](https://docs.docker.com/)
 
 ### Permissions
 
@@ -39,7 +39,7 @@
 
 
 ---
-## [PODMAN](https://docs.podman.io/en/latest/#)
+## [Podman](https://docs.podman.io/en/latest/#)
 
 - **See also:**
   - [Podman networking](https://www.redhat.com/sysadmin/container-networking-podman)

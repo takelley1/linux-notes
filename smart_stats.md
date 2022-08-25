@@ -11,7 +11,7 @@
 - `smartctl -a /dev/ | grep Power_On_Hours`                 = HDD and SSD hours.
 - `nvmecontrol logpage -p 2 nvme0 | grep “Percentage used”` = NVMe percentage used.
 
-### Field names
+### Field Names
 
 - `Normalized value` = Commonly referred to as just "value". This is a most universal measurement, on the scale from 0
                        (bad) to some maximum (good) value. Maximum values are typically 100, 200 or 253. Rule of thumb

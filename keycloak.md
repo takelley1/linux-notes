@@ -1,4 +1,7 @@
-## KEYCLOAK / REDHAT IDENTITY MANAGER (IDM)
+## [Keycloak]("https://www.keycloak.org/documentation")
+
+- **See also:**
+  - [Red Hat Identity Manager (IDM) docs]("https://access.redhat.com/products/identity-management")
 
 - Configuring keycloak for CAC authentication (also called mTLS or X509 client authentication)
 <br><br>
@@ -83,4 +86,3 @@ unzip keycloak-18.0.0.zip
 ./opt/keycloak/keycloak-18.0.0/bin/kc.sh build
 - connect to db and create db
 ./opt/keycloak/keycloak-18.0.0/bin/kc.sh show-config
-

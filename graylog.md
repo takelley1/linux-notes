@@ -1,6 +1,6 @@
-## GRAYLOG
+## Graylog
 
-Change Graylog from RO to RW mode:
+Change Graylog from read-only to read-write mode:
 ```bash
 curl \
 -XPUT \

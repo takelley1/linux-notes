@@ -1,4 +1,4 @@
-## RANGER
+## Ranger
 
 - `m<KEY>`         = Bookmark path at *\<KEY\>*.
 - `` `<KEY> ``     = Jump to bookmark at *\<KEY\>*.

@@ -1,4 +1,4 @@
-## [JQ](https://stedolan.github.io/jq/manual/)
+## [jq](https://stedolan.github.io/jq/manual/)
 
 - **See also**:
   - [jq cheat sheet](https://lzone.de/cheat-sheet/jq)

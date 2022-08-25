@@ -1,4 +1,4 @@
-## BROWSERS
+## Browsers
 
 ## Firefox Debug tools / Inspector menu
 

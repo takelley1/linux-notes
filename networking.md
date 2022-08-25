@@ -1,3 +1,5 @@
+## Networking
+
 ## IP
 
 ### Interfaces
@@ -24,7 +26,7 @@
 ---
 ## PORTS
 
-### [Remote ports](https://danielmiessler.com/study/nmap/)
+### [Remote Ports](https://danielmiessler.com/study/nmap/)
 
 - `nmap -p <PORT> <IP>` or `telnet <IP> <PORT>` = Ping specific TCP port on host.
 <br><br>
@@ -42,7 +44,7 @@
 - Windows
   - `Test-NetConnection 10.0.0.15 -port 9000`
 
-### Local ports
+### Local Ports
 
 > [NOTE: `netstat` has been deprecated in favor of `ss`](https://dougvitale.wordpress.com/2011/12/21/deprecated-linux-networking-commands-and-their-replacements/#netstat)
 
@@ -63,7 +65,7 @@
 
 
 ---
-## MONITORING & TROUBLESHOOTING
+## Monitoring & Troubleshooting
 
 - `iperf` and `iperf3`
 - `iftop`
@@ -94,7 +96,7 @@
 - `tcpdump -vvt -i ens32 src 10.0.0.5 and dst port 22` = Packets coming from 10.0.0.5 to port 22.
 
 ---
-## EMAIL
+## Email
 
 - `mail -s "Test Subject" example@mail.com < /dev/null` = Send test email (using the current host has the SMTP relay).
 
@@ -113,11 +115,11 @@ mail -v                                   \
 recipient@example.com                        # This is the 'to' field of the email.
 ```
 
-### Mail filtering
+### Mail Filtering
 
 - `grep -Eo 'from=<.*>' /var/log/maillog | sort -u` = Filter sending addresses from maillog.
 
-### Postfix whitelists
+### Postfix Whitelists
 
 1. Add line to */etc/postfix/main.cf*:
    ```bash
@@ -141,7 +143,7 @@ recipient@example.com                        # This is the 'to' field of the ema
 
 
 ---
-## TCP/IP STACK
+## TCP/IP Stack
 
 - **See also:**
   - [The actual OSI model](https://computer.rip/2021-03-27-the-actual-osi-model.html)

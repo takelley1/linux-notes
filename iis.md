@@ -1,4 +1,4 @@
-## WINDOWS IIS
+## Windows IIS
 
 ### Configuring TLS/SSL
 

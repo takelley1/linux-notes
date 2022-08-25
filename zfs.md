@@ -15,7 +15,7 @@
 - `glabel status`        = Show ZFS GUID numbers mapped to /dev/ block devices.
 - `smartctl -a /dev/da1` = Get serial number for disk attached at /dev/sda1.
 
-#### Handling disk failure:
+#### Handling Disk Failure
 
 1. `zpool status -v <POOL_NAME>` = Get detailed info on pool.
 2. `glabel status` = Determine /dev/ path from the gptid given in `zpool status` output.
@@ -97,7 +97,7 @@ REFER: The amount of data accessible by the snapshot. This is the size
        the dataset was when the snapshot was created.
 ```
 
-### [Restoring data](https://www.linuxtopia.org/online_books/opensolaris_2008/ZFSADMIN/html/gbchx.html)
+### [Restoring Data](https://www.linuxtopia.org/online_books/opensolaris_2008/ZFSADMIN/html/gbchx.html)
 
 - **See also**
   - [Oracle docs: Sending and receiving ZFS data](https://docs.oracle.com/cd/E23824_01/html/821-1448/gbchx.html)
@@ -149,7 +149,7 @@ zfs send -Rv Data1/Storage@mysnapshot | zfs receive -F Data2/Storage
 | `zpool add datapool spare`       | Add spare device to datapool                        |
 | `zpool create -n geekpool`       | Do dry run on pool creation                         |
 
-### [Record size](https://jrs-s.net/2019/04/03/on-zfs-recordsize/)
+### [Record Size](https://jrs-s.net/2019/04/03/on-zfs-recordsize/)
 
 - Default is 128k.
 - Set recordsize to match the typical size of files in the dataset.
@@ -168,7 +168,7 @@ General rules of thumb (from https://klarasystems.com/articles/tuning-recordsize
   - `fdisk -l <DISK>` on Linux
   - `diskinfo -v <DISK>` on FreeBSD
 
-### [Storage hierarchy](https://jrs-s.net/2018/04/11/primer-how-data-is-stored-on-disk-with-zfs/)
+### [Storage Hierarchy](https://jrs-s.net/2018/04/11/primer-how-data-is-stored-on-disk-with-zfs/)
 
 1. zpool
    - Stripes data across one or more vdevs.
@@ -200,7 +200,7 @@ General rules of thumb (from https://klarasystems.com/articles/tuning-recordsize
    - Equal to the underlying hardware's physical sector size (usually 512B, 4K, or 8K).
    - Immutable, automatically set per-vdev by the ashift property.
 
-### [ZFS benchmarks](https://calomel.org/zfs_raid_speed_capacity.html)
+### [ZFS Benchmarks](https://calomel.org/zfs_raid_speed_capacity.html)
 ```
          ZFS Raid Speed Capacity and Performance Benchmarks
 =============================================================================

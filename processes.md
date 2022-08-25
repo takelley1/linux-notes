@@ -1,4 +1,4 @@
-## PROCESSES
+## Processes
 
 - `CTRL-z` = Suspend current foreground job.
 - `bg`     = Push most recently suspended job into background.
@@ -20,7 +20,7 @@
 | `SIGTERM` | 15 |        | Identical to `SIGINT`                           |
 | `SIGSTP`  | 20 | Ctrl-z | Ask the process to stop temporarily             |
 
-### Status codes
+### Status Codes
 
 - `D` = Uninterruptible sleep (CPU waiting for I/O to complete).
 - `S` = Interruptible sleep (waiting for event).
@@ -37,9 +37,9 @@
 
 ![performance-observation-tools](images/performance_observation_tools.png)
 
-## `top` COMMAND
+## `top` Command
 
-### Upper section
+### Upper Section
 
 - `15:39:37`          = System time.
 - `up 90 days, 15:26` = Uptime in days, hours:minutes.
@@ -60,7 +60,7 @@
   - `si` = % cpu time handling software interrupts.
   - `st` = (virtualized environments) % time OS is waiting for cpu to finish executing processes on another VM (st for steal).
 
-### Lower section
+### Lower Section
 
 - `PID`     = Process ID.
 - `USER`    = Process' 'effective' username.
@@ -94,7 +94,7 @@
 
 
 ---
-## HARDWARE
+## Hardware
 
 - `lsof -u alice` = List files currently open by processes (useful when unmounting a disk).
      - `-u alice` = Show files open by user alice.

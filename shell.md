@@ -1,4 +1,4 @@
-## SHELL
+## Shell
 
 - **See also**
   - [Google style guide](https://google.github.io/styleguide/shellguide.html)
@@ -6,7 +6,7 @@
   - [How to do things safely in Bash](https://github.com/anordal/shellharden/blob/master/how_to_do_things_safely_in_bash.md)
   - [Bash pitfalls](https://mywiki.wooledge.org/BashPitfalls)
 
-## [SHELL INITIALIZATION](https://medium.com/@abhinavkorpal/bash-profile-vs-bashrc-c52534a787d3)
+## [Shell Initialization](https://medium.com/@abhinavkorpal/bash-profile-vs-bashrc-c52534a787d3)
 
 - `~/.profile` = The place to put stuff that applies to your whole session, such as programs that you want to start when
    you log in, and environment variable definitions. */etc/profile* and scripts in */etc/profile.d/* apply to all user sessions.
@@ -20,7 +20,7 @@
 
 
 ---
-## [SHELL TYPES](https://askubuntu.com/questions/879364/differentiate-interactive-login-and-non-interactive-non-login-shell)
+## [Session Types](https://askubuntu.com/questions/879364/differentiate-interactive-login-and-non-interactive-non-login-shell)
 
 - Interactive login shell
   - Logging in remotely via, for example, ssh.
@@ -40,7 +40,7 @@
 
 
 ---
-## BASH
+## Bash
   - [Bash guide](http://mywiki.wooledge.org/BashGuide)
   - [Bash GNU manual](https://www.gnu.org/software/bash/manual/)
 
@@ -225,7 +225,7 @@ replacement="${path//*\//}" # replacement = "script.sh"
 - **See also:**
   - [Bash beginners guide](http://tldp.org/LDP/Bash-Beginners-Guide/html/sect_07_01.html)
 
-#### File-based conditions
+#### File-based Conditions
 
 | Syntax          | Meaning                                                       |
 |-----------------|---------------------------------------------------------------|
@@ -245,7 +245,7 @@ replacement="${path//*\//}" # replacement = "script.sh"
 | FILE1 -ot FILE2 | FILE1 is older than FILE2, or FILE2 exists and FILE1 doesn't. |
 | -o OPTIONNAME   | Shell option "OPTIONNAME" is enabled.                         |
 
-#### String-based conditions
+#### String-based Conditions
 
 | Syntax             | Meaning                          |
 |--------------------|----------------------------------|
@@ -254,7 +254,7 @@ replacement="${path//*\//}" # replacement = "script.sh"
 | STRING1 == STRING2 | STRING1 is equal to STRING2.     |
 | STRING1 != STRING2 | STRING1 is NOT equal to STRING2. |
 
-#### Number-based conditions
+#### Number-based Conditions
 
 | Syntax             | Meaning                                |
 |--------------------|----------------------------------------|
@@ -267,7 +267,7 @@ replacement="${path//*\//}" # replacement = "script.sh"
 
 
 ---
-## ENVIRONMENT VARIABLES
+## Environment Variables
 
 - `printenv`                     = Get values of all environment variables.
 - `export HOME=/home/newhomedir` = Set value of environment variable.
@@ -286,7 +286,7 @@ replacement="${path//*\//}" # replacement = "script.sh"
 
 
 ---
-## CONSOLE / TTY
+## Console / TTY
 
 - `dpkg-reconfigure console-setup`    = Change console font size (Debian-based distros).
 - `/etc/default/console-setup`        = Change console font size.

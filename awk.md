@@ -1,4 +1,4 @@
-## [AWK](https://www.gnu.org/software/gawk/manual/gawk.html)
+## [Awk/Gawk/Mawk](https://www.gnu.org/software/gawk/manual/gawk.html)
 
 - **See also**:
   - [AWK one-liners explained](https://catonmat.net/awk-one-liners-explained-part-one)

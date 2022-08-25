@@ -1,4 +1,4 @@
-## OPENSCAP
+## OpenSCAP
 
 Run SCAP scan:
 ```

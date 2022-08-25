@@ -1,4 +1,4 @@
-## ANSIBLE
+## Ansible
 
 - **See also**
   - [Jinja2 reference](https://jinja2docs.readthedocs.io/en/stable/)
@@ -82,7 +82,7 @@ my_host:
 - `ansible-lint ./playbook.yml`                    = Check best-practices.
 
 ---
-## WINDOWS
+## Ansible with Windows Targets
 
 ### Kerberos
 
@@ -102,7 +102,7 @@ unreachable: true
   - Or `ansible_winrm_port: 5986` on the Ansible controller to connect over HTTPS.
 
 ---
-## [MOLECULE](https://molecule.readthedocs.io/en/latest/)
+## [Molecule](https://molecule.readthedocs.io/en/latest/)
 
 - `molecule converge -- -v --diff` = Run Molecule, pass *-v* and *--diff* to Ansible.
 - `molecule login -h ubuntu-host -s main` = Login to *ubuntu-host* using the *main* scenario.

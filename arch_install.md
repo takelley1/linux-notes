@@ -1,4 +1,4 @@
-## ARCH LINUX INSTALL PROCESS <sup>[1][2][3]</sup>
+## Arch Linux Install Process <sup>[1][2][3]</sup>
 
 1. If necessary, connect to a WLAN with iwd.
 

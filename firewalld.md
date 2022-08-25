@@ -1,4 +1,4 @@
-## [FIREWALLD](https://firewalld.org/documentation/)
+## [Firewalld](https://firewalld.org/documentation/)
 
 - **See also:**
   - [Using Firewalld on CentOS 7](https://www.digitalocean.com/community/tutorials/how-to-set-up-a-firewall-using-firewalld-on-centos-7)

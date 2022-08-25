@@ -1,4 +1,4 @@
-## VIRTUALBOX
+## VirtualBox
 
 - `VBoxManage list runningvms` = List currently running VMs using headless VirtualBox.
 - Fix freezing Ubuntu system:

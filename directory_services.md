@@ -16,7 +16,7 @@ ldapsearch \
 ldapsearch -LLL -x -w CorrectHorseBatteryStaple -H ldaps://dc01.domain.example.com -D "jane.doe.sa@domain.example.com" "mail=jdoe@example.com"
 ```
 
-### SSH key authentication
+### SSH Key Authentication
 
 - For SSH-key-based LDAP authentication the below scriptlet is to be referenced in "/etc/ssh/sshd_config" at the line
   `AuthorizedKeysCommand`.

@@ -1,8 +1,8 @@
-## DATABASES
+## Databases
 
 - `export PAGER="less -XRFS"` = Don't wrap table output in the SQL shell.
 
-## [SQLITE](https://www.sqlite.org/index.html)
+## [SQLite](https://www.sqlite.org/index.html)
 
 - **See also**
   - [SQLite tutorial](https://www.sqlitetutorial.net/)
@@ -11,7 +11,7 @@
 - `select * from mytable` = Print all rows from table *mytable*
 
 ---
-## [MARIADB](https://mariadb.com/kb/en/training-tutorials/)
+## [MariaDB](https://mariadb.com/kb/en/training-tutorials/)
 
 - **See also**
   - [Troubleshooting connection issues](https://mariadb.com/kb/en/troubleshooting-connection-issues/)
@@ -46,7 +46,7 @@
 - `set password for 'alice'@'localhost' = password('CorrectHorseBatteryStaple');` = [Change password for *alice*.](https://mariadb.com/kb/en/set-password/)
 - `drop user 'alice'@'localhost';` = [Delete user *alice*.](https://mariadb.com/kb/en/drop-user/)
 
-### Galera cluster
+### MariaDB Galera cluster
 
 - **See also**:
   - [Understanding Galera](https://mariadb.com/docs/multi-node/galera-cluster/understand-mariadb-galera-cluster)
@@ -72,7 +72,7 @@ safe_to_bootstrap: 0
 - If `show status like 'wsrep_cluster_size';` shows the incorrect node number, [reboot the node that doesn't agree with the others -- don't just restart the service.](https://www.symmcom.com/docs/how-tos/databases/how-to-recover-mariadb-galera-cluster-after-partial-or-full-crash)
 
 ---
-## [POSTGRES](https://www.postgresql.org/docs/)
+## [PostgreSQL](https://www.postgresql.org/docs/)
 
 ### Shell
 

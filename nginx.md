@@ -1,4 +1,4 @@
-## NGINX
+## Nginx
 
 - **See also:**
   - [Nginx.org docs](http://nginx.org/en/docs/)

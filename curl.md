@@ -1,4 +1,4 @@
-## CURL
+## cURL("https://curl.se/")
 
 Make POST API request to a Zabbix server:
 ```bash

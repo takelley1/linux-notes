@@ -1,4 +1,4 @@
-## FIND
+## Find
 
 ### Examples
 
@@ -67,7 +67,7 @@ find ./ | xargs ls -l     # Not recommended.
 - `-L`      = Follow symbolic links.
 
 ---
-## LOCATE
+## Locate
 
 ### Examples
 
@@ -77,4 +77,4 @@ find ./ | xargs ls -l     # Not recommended.
   - `-e` (*exist*)  = Verify file’s existence before producing result since database may be old.
 
 > NOTE: locate is much faster than find, but locate searches a tabulated database instead of actively scrubbing your disk for a match.
-        This means the data locate uses may be a few hours old
+>       This means the data locate uses may be a few hours old

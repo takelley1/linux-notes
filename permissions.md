@@ -27,7 +27,7 @@
 
 
 ---
-## USERS
+## Users
 
 - `usermod -U alice`              = Unlock user account *alice* (due to kernel locking user).
 - `faillock --user alice --reset` = Unlock user account *alice* (due to *pam_faillock.so* locking user).
@@ -41,7 +41,7 @@
 
 
 ---
-## GROUPS
+## Groups
 
 - `usermod -a -G wheel,group1 alice` = Add *alice* to *wheel* and *group1* groups.
 - `usermod -G group1 alice`          = Remove *alice* from all groups except *group1*.
@@ -52,12 +52,12 @@
 
 
 ---
-## PERMISSIONS
+## Permissions
 
 - `chown -R alice:admins /documents` = Change ownership of */documents* directory recursively to *alice* and the *admins* group.
 - `chgrp wheel /home/alice` = Change group owner of the */home/alice* directory to *wheel*.
 
-### Octal permissions
+### Octal Permissions
 
 - chmod octal permissions order --> | special | user (`u`) | group (`g`) | everyone else / other (`o`) |
 <br><br>
@@ -102,7 +102,7 @@
   - **Resulting permissions will display as `rwsr-srw-`**.
 
 ---
-### Standard (non-octal) permissions
+### Standard (non-octal) Permissions
 
 - `chmod u+r file.txt`  = Add read permissions to user on file.txt
 - `chmod a-rw file.txt` = Remove read/write permissions for all on file.txt

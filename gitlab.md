@@ -10,16 +10,16 @@
     https://packages.gitlab.com/runner/gitlab-runner/packages/fedora/33/gitlab-runner-15.1.1-1.x86_64.rpm/download.rpm
   # Rename.
   mv download.rpm gitlab_runner.rpm
-  # Copy runner package to remote server
+  # Copy runner package to remote server.
   scp gitlab_runner.rpm remote_server:~/
   # SSH onto server and Install runner.
   ssh remote_server
-  yum install -y --nogpgcheck gitlab_runner.rpm
-  # Install runner as different user if needed
-  gitlab-runner uninstall
-  gitlab-runner install --user myuser --working-directory /home/myuser
-  systemctl restart gitlab-runner
+  sudo yum install -y --nogpgcheck gitlab_runner.rpm
+  # Install runner as different user if needed.
+  sudo gitlab-runner uninstall
+  sudo gitlab-runner install --user myuser --working-directory /home/myuser
+  sudo systemctl restart gitlab-runner
   # Register and configure runner.
-  gitlab-runner register
+  sudo gitlab-runner register
   # Start runner.
-  gitlab-runner start && journalctl -fu gitlab-runner
+  sudo gitlab-runner start && sudo journalctl -fu gitlab-runner

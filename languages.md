@@ -1,4 +1,4 @@
-## [PARADIGMS](https://cs.lmu.edu/~ray/notes/paradigms/)
+## [Paradigms](https://cs.lmu.edu/~ray/notes/paradigms/)
 
 - **Imperative:** Programming with an explicit sequence of commands that update state.
   - **Procedural:** Imperative programming with procedure calls.
@@ -8,7 +8,7 @@
 
 
 ---
-## FRAMEWORKS AND RUNTIMES
+## Frameworks and Runtimes
 
 ### [Node.js](https://nodejs.org/en/docs/)
 
@@ -28,7 +28,7 @@
 ![comparison-of-programming-languages](images/comparison_of_programming_languages.png)
 
 ---
-## LANGUAGES
+## Languages
 
 - **See also**
   - [Rosetta code](http://rosettacode.org/wiki/Rosetta_Code)
@@ -360,7 +360,7 @@ sub factorial
 ---
 ### PHP
 
-- Examples: Zabbix, PfSense, OPNSense
+- Examples: Zabbix, pfSense, OPNSense
 - Released:
 - Use:
 
@@ -380,10 +380,10 @@ sub factorial
 n = 23
 fact = 1
 
-for i in range(1,n+1):
+for i in range(1, n+1):
     fact = fact * i
 
-print (fact)
+print(fact)
 ```
 
 ---

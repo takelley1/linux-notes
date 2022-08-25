@@ -1,6 +1,8 @@
-## WSUS
+## PowerShell
 
-### [Troubleshooting](https://community.spiceworks.com/topic/2194028-windows-update-error-0x80244022)
+### WSUS
+
+#### [Troubleshooting](https://community.spiceworks.com/topic/2194028-windows-update-error-0x80244022)
 ```
 And for testing,
 
@@ -20,7 +22,7 @@ If you can't, check firewall settings and port settings.
 
 
 ---
-## Robocopy
+### Robocopy
 
 - **See Also**:
   - [Robocopy over network](https://klyavlin.wordpress.com/2012/09/19/robocopy-network-usernamepassword/)
@@ -29,7 +31,7 @@ If you can't, check firewall settings and port settings.
 
 
 ---
-## WinRM
+### WinRM
 
 - **See Also**:
   - [Windows setup for Ansible](https://docs.ansible.com/ansible/latest/user_guide/windows_setup.html)
@@ -38,7 +40,7 @@ If you can't, check firewall settings and port settings.
   - [Allow WinRM with GPOs](https://www.pcwdld.com/winrm-quickconfig-remotely-configure-and-enable)
   - [WinRM authentication](https://docs.microsoft.com/en-us/windows/win32/winrm/authentication-for-remote-connections)
 
-### WinRM Server
+#### WinRM Server
 
 - The default ports are 5985 for HTTP, and 5986 for HTTPS.
 
@@ -49,7 +51,7 @@ Computer Configuration > Administrative Templates > Windows Components > Windows
 HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System\LocalAccountTokenFilterPolicy
 ```
 
-#### Troubleshooting
+##### Troubleshooting
 1. Is user part of the local `Remote Management Users` group? Run `lustmgr.msc` to check.
 2. Is remote logon for this user allowed? Check the below GPO settings with `rsop.exe`:
 ```
@@ -64,11 +66,11 @@ Computer Configuration > Windows Settings > Security Settings > Local Policies >
 6. Is the Windows Defender firewall disabled? Does it allow WinRM?
 7. Does the HTTPS listener's certificate match the server's hostname?
 
-#### Query
+##### Query
 - `winrm e winrm/config/listener` = Check if running, get ports.
 - `winrm get winrm/config/service` = Show authentication settings.
 
-#### Configure
+##### Configure
 - `winrm set winrm/config/client '@{TrustedHosts="10.0.0.15"}'` = Allow *10.0.0.15* to connect to this host over WinRM.
 - `winrm set winrm/config/client '@{TrustedHosts="*"}'` = Allow any host to connect to this host over WinRM.
 <br><br>
@@ -78,7 +80,7 @@ Computer Configuration > Windows Settings > Security Settings > Local Policies >
 <br><br>
 - `winrm delete winrm/config/listener?address=*+transport=https` = [Delete HTTPS listener.](https://www.nicovs.be/?p=399)
 
-### WinRM Client
+#### WinRM Client
 
 Test the connection to the WinRM service:
 ```bat
@@ -89,7 +91,7 @@ winrm identify -r:http://<IP_OR_HOSTNAME>:5985 -auth:basic -u:<USERNAME> -p:<PAS
 
 
 ---
-## AD FS
+### AD FS
 
 Add server to AD FS farm:
 ```powershell
@@ -111,9 +113,9 @@ Add-AdfsFarmNode \
 
 
 ---
-## MISC
+### MISC
 
-### Extra features (Windows 10)
+#### Extra features (Windows 10)
 
 [Install or remove RSAT tools:](https://www.petri.com/how-to-install-the-remote-server-administration-tools-in-windows-10)
 ```powershell

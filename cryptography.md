@@ -1,4 +1,6 @@
-## DIGITAL SIGNATURES
+## Cryptography
+
+## Digital signatures
 
 - A digital signature is just an encrypted hash of a file.
 - Two keys are used, private key is used for signing, public key is used for verifying signatures.
@@ -38,7 +40,7 @@ Disable/Enable FIPS:
 2. Run `grub2-mkconfig -o /boot/grub2/grub.cfg` (for BIOS) or `grub2-mkconfig -o /boot/efi/EFI/redhat/grub.cfg` (for UEFI)
 
 ---
-## SYMMETRIC ENCRYPTION
+## Symmetric Encryption
 
 > AES, Blowfish, Twofish, RC4, 3DES, One Time Pads, TLS/SSL/HTTPS (data transfer only)
 
@@ -63,7 +65,7 @@ Disable/Enable FIPS:
 
 
 ---
-## MAC (Message Authentication Code)
+## MACs (Message Authentication Codes)
 
 > HMAC, PMAC, OMAC
 
@@ -79,7 +81,7 @@ Disable/Enable FIPS:
 
   - Faster than Digital Signatures, but doesn't provide Non-Repudiation because the symmetric key used to sign the hash is not unique to the sender.
 
-### HMAC (Keyed-Hash Message Authentication Code)
+### HMACs (Keyed-Hash Message Authentication Codes)
 
 > HMAC-SHA256, HMAC-MD5, HMAC-SHA1
 
@@ -93,7 +95,7 @@ HMAC-MD5(key="key", message="The quick brown fox jumps over the lazy dog") = 800
 
 
 ---
-## HASHING
+## Hashing
 
 > - *Unkeyed cryptographic*: MD5 (deprecated), SHA1 (deprecated), SHA2 (SHA256 & SHA512), SHA3, bcrypt
 > - *Keyed cryptographic*: HMACs, KMACs, MD6, UMACs, VMACs, BLAKE2
@@ -134,7 +136,7 @@ HMAC-MD5(key="key", message="The quick brown fox jumps over the lazy dog") = 800
 ### FIDO U2F
 `TODO`
 
-## KEY EXCHANGE
+## Key Exchange
 
 - Diffie-Hellman
   - Used to securely create a shared secret for a symmetrically-encrypted interaction. A Key-Derivation Function (KDF)
@@ -149,7 +151,7 @@ HMAC-MD5(key="key", message="The quick brown fox jumps over the lazy dog") = 800
 <img src="images/dh_exchange.png" width="600"/>
 
 
-## ATTACKS
+## Attacks
 
 - **Side-channel attack** = Attack based on a weakness in the implementation of a security system, rather than a
                             weakness in the system itself.
@@ -171,6 +173,7 @@ HMAC-MD5(key="key", message="The quick brown fox jumps over the lazy dog") = 800
 
 
 ### Breaking encryption
+
   "Big O" time complexity
 
 ![time-complexity](images/time_complexity.jpg)
