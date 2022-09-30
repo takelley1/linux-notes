@@ -71,7 +71,9 @@
 - `iftop`
 - `ifstat`
 <br><br>
-- `dig domain.com` or `nslookup domain.com` or `host domain.com` = Perform dns lookup on domain.
+- `dig domain.com` or `nslookup domain.com` or `host domain.com` = Perform DNS lookup on domain.
+<br><br>
+- `python3 -m http.server 8080` = Create a test HTTP server on port 8080.
 
 ### [ping](https://stackoverflow.com/questions/22110622/ping-response-request-timed-out-vs-destination-host-unreachable)
 
