@@ -8,3 +8,5 @@
 <br><br>
 - `terraform console` = Launch REPL console for testing expressions.
   - `join(", ", [for value in aws_vpc.main : value.id])` = Try iterating over a map to create a string of values.
+<br><br>
+- `terraform refresh` = Add output to the state without running a fully `apply`.
