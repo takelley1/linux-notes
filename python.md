@@ -125,6 +125,7 @@ for path, dirs, files in os.walk(auto_screenshots_dir):
 ### Web
 
 - [Write URL content to a file.](https://docs.python.org/3.3/library/urllib.request.html#urllib.request.urlretrieve)
+- `python3 -m http.server 8080` = Create a test HTTP server on port 8080.
 
 ### Pip
 
