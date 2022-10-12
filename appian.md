@@ -189,6 +189,7 @@ Q - Quit
 cd /home/appian/appian_poc/conf/
 vim tomcatResources.xml.poc
 ```
+```
 <Resource name="jdbc/PostgreSqlDataSource"
     factory="com.appiancorp.tomcat.datasource.EncodedPasswordDataSourceFactory"
     type="javax.sql.DataSource"
