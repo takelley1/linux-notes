@@ -10,3 +10,6 @@
   - `join(", ", [for value in aws_vpc.main : value.id])` = Try iterating over a map to create a string of values.
 <br><br>
 - `terraform refresh` = Add output to the state without running a fully `apply`.
+- `terraform refresh -target=data.terraform_remote_state.main[\"eks\"]` = Pull in external remote state before running initial plan on imported resources
+<br><br>
+`terraform state list | sed 's/"/\\"/g' | xargs -n 1 terraform state rm` = Remove all resources in the state file.
