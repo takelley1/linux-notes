@@ -13,7 +13,7 @@
   - `-noout` = Don't output encoded.
 - `openssl x509 -purpose -in servercert.pem` = View certificate uses.
 <br><br>
-- `openssl s_client -connect google.com:443` = Extract certificate from remote server.
+- `openssl s_client -showcerts -connect google.com:443` = Extract certificate chain from remote server.
 
 #### Generation
 
