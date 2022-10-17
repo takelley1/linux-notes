@@ -1,5 +1,8 @@
 ## Terraform
 
+- **See also**:
+  - [GitLab.com's internal Terraform workflows](https://gitlab.com/gitlab-com/gl-infra/readiness/-/tree/master/library/terraform-automation)
+
 ### Examples
 
 - `terraform apply -target=module.eks` = Only apply the resources in the `eks` module.
