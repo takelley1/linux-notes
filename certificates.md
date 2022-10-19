@@ -157,7 +157,13 @@ the Root CA's Public Key came with his browser.
 
 
 ---
-## [Mutual Public Key Authentication (2-way SSL Authentication)](https://www.codeproject.com/articles/326574/an-introduction-to-mutual-ssl-authentication)
+## [Mutual Public Key Authentication (2-way SSL / mTLS / Mutual TLS)](https://www.codeproject.com/articles/326574/an-introduction-to-mutual-ssl-authentication)
+
+- On the client, run `openssl s_client -showcerts -connect server.example.com:443 2>/dev/stdout | less`, look for the
+  section called `Acceptable client certificate CA names` to get a list of CAs that the client's certificate must be
+  signed by to be trusted by the server.
+  - On the client, run `openssl x509 -noout -subject -issuer < mycert.pem` and see if the `issuer` matches the list of
+    `Acceptable client certificate CA names` given by the server.
 
 - In Mutual Authentication, the Client must trust the Server, but the Server must also trust the Client.
   1. The Client requests access to a protected resource.
@@ -165,6 +171,7 @@ the Root CA's Public Key came with his browser.
   3. The Client verifies the server’s Certificate using the Server's Certificate issuer's Public Key.
   4. If successful, the Client then sends its Certificate to the Server.
   5. The Server verifies the Client’s credentials using the Client's Certificate issuer's Public Key.
+    - NOTE: The Client's Certificate must be signed by a CA that the Server trusts.
   6. If successful, the Server grants access to the protected resource requested by the Client.
 
 ![mutual-ssl-authentication](images/mutual_ssl_auth.png)
