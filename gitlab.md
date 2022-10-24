@@ -1,5 +1,13 @@
 ## GitLab
 
+### Troubleshooting
+
+- [GitLab troubleshooting Linux cheat sheet](https://docs.gitlab.com/ee/administration/troubleshooting/linux_cheat_sheet.html)
+- [`gitlab-ctl` commands](https://docs.gitlab.com/omnibus/maintenance/)
+<br><br>
+- `gitlab-ctl logs`
+- `gitlab-ctl status`
+
 ### GitLab Runner
 
 - Adding runner to an offline server:
@@ -23,3 +31,4 @@
   sudo gitlab-runner register
   # Start runner.
   sudo gitlab-runner start && sudo journalctl -fu gitlab-runner
+  ```
