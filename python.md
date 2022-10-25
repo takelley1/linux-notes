@@ -23,7 +23,34 @@
   - [pathlib - object-oriented path operations](https://docs.python.org/3/library/pathlib.html)
   - [glob - unix-style path expansion](https://docs.python.org/3/library/glob.html)
 
-### Tips
+### Web
+
+- [Write URL content to a file.](https://docs.python.org/3.3/library/urllib.request.html#urllib.request.urlretrieve)
+- `python3 -m http.server 8080` = Create a test HTTP server on port 8080.
+
+### Pip and packaging
+
+- **See also:**
+  - [Basic packaging guide](https://docs.gitlab.com/ee/user/packages/pypi_repository/index.html#create-a-package)
+
+- Disregard SSL certificates when installing pytest:
+```bash
+pip \
+  --trusted-host pypi.org \
+  --trusted-host pypi.python.org \
+  --trusted-host files.pythonhosted.org \
+  install pytest
+```
+
+- `pip install -e .` = Install package locally in "developer" mode. Code modifications will automatically update within
+                       the installed package.
+
+### Venv
+
+- `python3 -m venv my_env` = Create a virtual environment called *my_env*
+- `source my_env/bin/activate` = Activate the virtual environment called *my_env*.
+
+### Misc tips
 
 `python3 -i script.py` = Run *script.py*, then launch an interactive REPL for debugging afterwards.
 
@@ -86,7 +113,7 @@ for _ in range(10):
   print("*", end="")
 ```
 
-### File operations
+#### File operations
 
 Move files to a different directory using a glob.
 ```python
@@ -121,24 +148,3 @@ for path, dirs, files in os.walk(auto_screenshots_dir):
     if path.count(os.sep) >= 10:
         print(os.path.join(path))
 ```
-
-### Web
-
-- [Write URL content to a file.](https://docs.python.org/3.3/library/urllib.request.html#urllib.request.urlretrieve)
-- `python3 -m http.server 8080` = Create a test HTTP server on port 8080.
-
-### Pip
-
-- Disregard SSL certificates when installing pytest:
-```bash
-pip \
-  --trusted-host pypi.org \
-  --trusted-host pypi.python.org \
-  --trusted-host files.pythonhosted.org \
-  install pytest
-```
-
-### Venv
-
-- `python3 -m venv my_env` = Create a virtual environment called *my_env*
-- `source my_env/bin/activate` = Activate the virtual environment called *my_env*.
