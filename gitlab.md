@@ -10,6 +10,9 @@
 
 ### GitLab Runner
 
+- **See also:**
+  - [`.gitlab-ci.yml` reference](https://docs.gitlab.com/ee/ci/yaml/)
+
 - Adding runner to an offline server:
   - Determine the latest release [here](https://gitlab.com/gitlab-org/gitlab-runner/-/releases)
   - See official docs [here](https://docs.gitlab.com/runner/install/linux-manually.html)
