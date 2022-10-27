@@ -23,11 +23,6 @@
   - [pathlib - object-oriented path operations](https://docs.python.org/3/library/pathlib.html)
   - [glob - unix-style path expansion](https://docs.python.org/3/library/glob.html)
 
-### Web
-
-- [Write URL content to a file.](https://docs.python.org/3.3/library/urllib.request.html#urllib.request.urlretrieve)
-- `python3 -m http.server 8080` = Create a test HTTP server on port 8080.
-
 ### Pip and packaging
 
 - **See also:**
@@ -47,8 +42,17 @@ pip \
 
 ### Venv
 
-- `python3 -m venv my_env` = Create a virtual environment called *my_env*
+- `python3 -m venv my_env` = Create a virtual environment called *my_env*.
 - `source my_env/bin/activate` = Activate the virtual environment called *my_env*.
+
+### Pytest and testing
+
+- [Pytest parameter matrices](https://flowfx.de/blog/pytest-parameter-matrices/)
+
+### Web
+
+- [Write URL content to a file](https://docs.python.org/3.3/library/urllib.request.html#urllib.request.urlretrieve)
+- `python3 -m http.server 8080` = Create a test HTTP server on port 8080.
 
 ### Misc tips
 
