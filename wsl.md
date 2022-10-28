@@ -7,5 +7,5 @@
   2. Export and import the distro, then try again
   ```
   wsl --export Ubuntu ubuntu.backup
-  wsl --import Ubuntu ubunti.backup
+  wsl --import Ubuntu ubuntu.backup
   ```
