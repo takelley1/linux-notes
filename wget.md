@@ -1,5 +1,6 @@
 ## [Wget](https://www.gnu.org/software/wget/manual/wget.html)
 
+- Scrape PDF files from websites:
 ```bash
 wget                            \
   -A "*.pdf"                    \ # Only keep PDF files.
