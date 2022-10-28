@@ -1,16 +1,16 @@
 ## Logging
 
-- `logger test123`   = Send a test log to */var/log/mesages*.
-- `strace`           = Trace system call.
-  - `strace ls`   = Find out why *ls* is hanging.
+- `logger test123` = Send a test log to */var/log/messages*.
+- `strace`         = Trace system call.
+  - `strace ls`    = Find out why *ls* is hanging.
 
 ### Journald
 
-- `journalctl -xef` = Tail logs
-- `journalctl -fu httpd` = Tail logs for the *httpd* service only:
+- `journalctl -xef` = Tail logs.
+- `journalctl -fu httpd` = Tail logs for the *httpd* service only.
 - `journalctl -f --user-unit my_user_daemon` = Tail logs for *my_user_daemon*.
 <br><br>
-- `journalctl --no-full` = Don't wrap long lines
+- `journalctl --no-full` = Don't wrap long lines.
 
 ### [Rsyslog](https://www.rsyslog.com/)
 
