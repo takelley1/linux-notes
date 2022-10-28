@@ -1,4 +1,4 @@
-## [Kerberos]("https://web.mit.edu/kerberos/")
+## [Kerberos](https://web.mit.edu/kerberos/)
 
 Used to authenticate users to services over an untrusted network, without sending credentials in plaintext. This is done
 by converting user passwords into symmetric secret Keys, which are used to encrypt sensitive traffic.

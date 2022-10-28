@@ -1,4 +1,4 @@
-## Fortify SSC
+## [Fortify SSC](https://www.microfocus.com/documentation/fortify-software-security-center/)
 
 Installation
 1. Install Java OpenJDK

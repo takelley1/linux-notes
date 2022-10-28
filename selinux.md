@@ -1,4 +1,4 @@
-## SELinux
+## [SELinux](http://www.selinuxproject.org/page/Main_Page)
 
 - **See also:**
   - [SELinux Howto](https://wiki.centos.org/HowTos/SELinux)

@@ -1,7 +1,7 @@
-## [Keycloak]("https://www.keycloak.org/documentation")
+## [Keycloak](https://www.keycloak.org/documentation)
 
 - **See also:**
-  - [Red Hat Identity Manager (IDM) docs]("https://access.redhat.com/products/identity-management")
+  - [Red Hat Identity Manager (IDM) docs](https://access.redhat.com/products/identity-management)
 
 - Configuring keycloak for CAC authentication (also called mTLS or X509 client authentication)
 <br><br>

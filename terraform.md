@@ -1,4 +1,4 @@
-## Terraform
+## [Terraform](https://developer.hashicorp.com/terraform/docs)
 
 - **See also**:
   - [GitLab.com's internal Terraform workflows](https://gitlab.com/gitlab-com/gl-infra/readiness/-/tree/master/library/terraform-automation)
