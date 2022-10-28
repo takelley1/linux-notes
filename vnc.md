@@ -22,16 +22,16 @@
 
 *now we will configure the tunnel using your magic number*
 6. open the `Tunnels` menu under `SSH` in putty
-7. the `source port` field is `590[MAGIC-NUMBER]`, so if, for example, your magic number is `9`, the field would be `5909`
-   1. if your Linux admin gives you a magic number two digits long, the field would be `59[MAGIC-NUMBER]`
+7. the `source port` field is `590<MAGIC-NUMBER>`, so if, for example, your magic number is `9`, the field would be `5909`
+   1. if your Linux admin gives you a magic number two digits long, the field would be `59<MAGIC-NUMBER>`
    2. for example, if your magic number is `24`, the `source port` field would be `5924`
-8. the `destination` field is `[VNC-SERVER-IP]:590[MAGIC-NUMBER]`
+8. the `destination` field is `<VNC-SERVER-IP>:590<MAGIC-NUMBER>`
 9. at the top, make sure to turn on `Local ports accept connections from other hosts`
 10. save this profile and launch an ssh connection to the vnc server using your new profile.
 11. authenticate to the vnc server using your regular user account name and password
 
 *you're now tunneling your vnc port through ssh, now you just need to start the vnc session*
-12. launch your vnc viewer of choice and connect to `localhost:590[MAGIC-NUMBER]`
+12. launch your vnc viewer of choice and connect to `localhost:590<MAGIC-NUMBER>`
 13. if you're lucky, you'll be asked to authenticate using your vnc password and start the session.
 14. thank your linux admin for configuring things properly
 
@@ -48,9 +48,9 @@
 set their vnc password by logging into the vnc server machine and running "vncpasswd" with their user account.*
 
 1. login to the vnc server and make sure the package `tigervnc-server` is installed
-2. run `cd /etc/systemd/system` and check if other `vncserver-[USERNAME]@.service` files exist
-3. if they do, then just copy one of them and call the new file `vncserver-[NEW-USERNAME]@.service`
-4. edit the new file and replace the two instances of `[USERNAME]` with `[NEW-USERNAME]`
+2. run `cd /etc/systemd/system` and check if other `vncserver-<USERNAME>@.service` files exist
+3. if they do, then just copy one of them and call the new file `vncserver-<NEW-USERNAME>@.service`
+4. edit the new file and replace the two instances of `<USERNAME>` with `<NEW-USERNAME>`
 
 *now, the new user needs a unique port to connect to so they don't interfere with other users' sessions*
 - vnc ports run from `5900` to `6001`
@@ -58,18 +58,18 @@ set their vnc password by logging into the vnc server machine and running "vncpa
 - the first vnc user on the server uses port `5901`, the second user uses port `5902`, etc.
 - the "magic number" is just the last digit of the port number, so it's easier for the user to remember
 
-3a - if other `vncserver-[USERNAME]@.service` files do not already exist, you must copy the original service file
+3a - if other `vncserver-<USERNAME>@.service` files do not already exist, you must copy the original service file
 3b - run `cp /usr/lib/systemd/system/vncserver@.service /etc/systemd/system/vncserver@.service.bak`
 3c - cd into the `/etc/systemd/system/` directory
-3d - run `cp vncserver@.service.bak vncserver-[NEW-USERNAME]@.service`
-3e - edit `vncserver-[NEW-USERNAME]@.service` and replace the two instances of `<USER>` with `[NEW-USERNAME]`
+3d - run `cp vncserver@.service.bak vncserver-<NEW-USERNAME>@.service`
+3e - edit `vncserver-<NEW-USERNAME>@.service` and replace the two instances of `<USER>` with `<NEW-USERNAME>`
 3f - if this is the first vnc user on this server, then their magic number is `1`
 3g - jump to step 8
 
 5. to determine the correct "magic number" to give the new user, look for files with
-   the name format `/etc/systemd/system/multi-user.target.wants/vncserver-[USERNAME]@[NUMBER].service`
-6. you will see that each user in the `multi-user.target.wants directory` has a unique `[NUMBER]` assigned to them,
-   these numbers are the users' "magic numbers". The new user's magic number will simply be the highest `[NUMBER]` in
+   the name format `/etc/systemd/system/multi-user.target.wants/vncserver-<USERNAME>@<NUMBER>.service`
+6. you will see that each user in the `multi-user.target.wants directory` has a unique `<NUMBER>` assigned to them,
+   these numbers are the users' "magic numbers". The new user's magic number will simply be the highest `<NUMBER>` in
    this directory plus one.
 
 - now that you have the new user's magic number, you'll create and enable the new user's vnc service
@@ -77,9 +77,9 @@ set their vnc password by logging into the vnc server machine and running "vncpa
   to the last digit of the port number they connect to, so everything is easy to remember
 - ex: the fifth user on the vnc server will have a magic number of `5` and connect via port `5905` using virtual display #5
 
-7. run `systemctl start vncserver-[NEW-USERNAME]@:[NEW-USER-MAGIC-NUMBER].service`
+7. run `systemctl start vncserver-<NEW-USERNAME>@:<NEW-USER-MAGIC-NUMBER>.service`
 8. if the service starts without any errors, run
-   `systemctl enable vncserver-[NEW-USERNAME]@:[NEW-USER-MAGIC-NUMBER].service`
+   `systemctl enable vncserver-<NEW-USERNAME>@:<NEW-USER-MAGIC-NUMBER>.service`
 9. give the user their magic number and tell them to not break anything
 
 #### Troubleshooting
