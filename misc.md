@@ -2,7 +2,7 @@
 
 - `minute of hour | hour of day | day of month | month # | day of week` = Crontab syntax.
 
-- if `/sys/firmware/efi exists`, system is UEFI
+- If `/sys/firmware/efi exists`, system is UEFI.
 
 
 ### Shutdown
@@ -21,7 +21,7 @@
 
 - `authconfig --disablesssdauth --update` = Remove pam sssd module.
 
-#### /etc/pam.d/ syntax
+#### `/etc/pam.d/` syntax
 `TODO`
 
 
@@ -35,11 +35,11 @@
 
 | Manpage section | Category                                              |
 |-----------------|-------------------------------------------------------|
-| 1	              | shell commands and executables                        |
-| 2               |	sernel functions (system calls)                       |
-| 3               |	library functions                                     |
-| 4               |	special files (usually devices in `/dev`) and drivers |
-| 5	              | file formats and conventions (e.g. `/etc/passwd`)     |
-| 6	              | games                                                 |
-| 7	              | miscellaneous                                         |
-| 8	              | system administration commands and daemons            |
+| 1	              | Shell commands and executables                        |
+| 2               |	Sernel functions (system calls)                       |
+| 3               |	Library functions                                     |
+| 4               |	Special files (usually devices in `/dev`) and drivers |
+| 5	              | File formats and conventions (e.g. `/etc/passwd`)     |
+| 6	              | Games                                                 |
+| 7	              | Miscellaneous                                         |
+| 8	              | System administration commands and daemons            |
