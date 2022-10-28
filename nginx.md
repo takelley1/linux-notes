@@ -91,7 +91,7 @@ http {
         allow 127.0.0.1;
         deny  all;
 
-        auth_basic           "Administrator’s Area";
+        auth_basic           "Administrator's Area";
         auth_basic_user_file /etc/apache2/.htpasswd;
     }
 }
@@ -114,7 +114,7 @@ http {
             proxy_pass https://10.0.0.10:8000;
 
             # Require authentication for this path.
-            auth_basic           "Administrator’s Area";
+            auth_basic           "Administrator's Area";
             auth_basic_user_file /etc/apache2/.htpasswd;
         }
         location /some/other/path/ {

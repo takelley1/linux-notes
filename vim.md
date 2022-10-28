@@ -140,8 +140,8 @@
 > The PRIMARY and CLIPBOARD registers are managed by X11 (not vim), so data copied into these registers can be
 > [used elsewhere in the X11 session](https://vi.stackexchange.com/questions/84/how-can-i-copy-text-to-the-system-clipboard-from-vim)
 
-- `“xy`         = Copy selection to register *x*.
-- `“xp`         = Paste from register *x*.
+- `"xy`         = Copy selection to register *x*.
+- `"xp`         = Paste from register *x*.
 <br><br>
 - `P` (*paste*) = Paste before cursor.
 - `p`           = Paste after cursor.

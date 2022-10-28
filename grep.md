@@ -16,8 +16,9 @@
   - `-n` = Display line number of match.
   - `-i` = Ignore case.
 <br><br>
+- `grep -Pn "[^\x00-\x7F]" file.txt` = Show all non-ASCII characters in file.txt.
 - `grep -l '^alice' /etc/*` = Show only the filenames containing matches (*-l*) instead of the matches themselves.
-- `grep -wv '[a-d]' /*.txt` = Grep for words (*-w*) that DON’T contain the letters *a* through *d* (*-v*).
+- `grep -wv '[a-d]' /*.txt` = Grep for words (*-w*) that DON'T contain the letters *a* through *d* (*-v*).
 - `grep -C 5 '192\.168'` = Show five lines of context (*-C 5*) surrounding matched results.
 
 ### Options

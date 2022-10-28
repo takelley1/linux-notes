@@ -119,9 +119,9 @@ Add-AdfsFarmNode \
 
 [Install or remove RSAT tools:](https://www.petri.com/how-to-install-the-remote-server-administration-tools-in-windows-10)
 ```powershell
-Get-WindowsCapability -Name RSAT* -Online | Add-WindowsCapability –Online
-Add-WindowsCapability -Name Rsat.CertificateServices.Tools~~~~0.0.1.0 –Online
-Remove-WindowsCapability -Name Rsat.CertificateServices.Tools~~~~0.0.1.0 –Online
+Get-WindowsCapability -Name RSAT* -Online | Add-WindowsCapability -Online
+Add-WindowsCapability -Name Rsat.CertificateServices.Tools~~~~0.0.1.0 -Online
+Remove-WindowsCapability -Name Rsat.CertificateServices.Tools~~~~0.0.1.0 -Online
 ```
 
 - `netstat -np` = View open ports.

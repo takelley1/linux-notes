@@ -29,7 +29,7 @@
 
 ### Commands
 
-- `top -u alice` = Show user alice’s currently running processes, use O to sort by column.
+- `top -u alice` = Show user alice's currently running processes, use O to sort by column.
 - `kill -s 9 7423` or `kill -9 7423` = End process with PID 7423 by sending it a `SIGKILL` signal.
 <br><br>
 - `exec bash`        = Restart bash shell.
@@ -47,7 +47,7 @@
 - `load average: 0.00, 0.00, 0.00` = Average total system load over 1min, 5min, 15min.
 - (a value of 1 indicates one cpu core is fully occupied) (cat /proc/cpuinfo to find # of cores).
     - ex. for a single-core system -- `0.4` = Cpu at 40% capacity, `1.12` = Cpu 'overloaded' by 12% capacity.
-    - ex. For a quad-core system – `1.0` = 3 cores idle, 1 core at full capacity, or all cores at 33% load (on average).
+    - ex. For a quad-core system - `1.0` = 3 cores idle, 1 core at full capacity, or all cores at 33% load (on average).
     - ex. `5.35` = System overloaded at 135% capacity, `1.35` processes were waiting for cpu time during the specified interval (1min, 5min or 15min.
 <br><br>
 - `%cpu(s):` = Cpu time usage statistics, in % of total cpu time available.

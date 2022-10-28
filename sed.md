@@ -101,7 +101,7 @@ sed \
 
 ### Other commands and examples
 
-- `tr ‘a-z’ ‘A-Z’` (*translate*) = Find first parameter (`‘a-z’`) and replace matches with second parameter (`‘A-Z’`).
+- `tr 'a-z' 'A-Z'` (*translate*) = Find first parameter (`'a-z'`) and replace matches with second parameter (`'A-Z'`).
 <br><br>
 - `sort -rk 2`                   = Reverse (`r`) sort results by the second column (`k`) of output.
 <br><br>
@@ -110,5 +110,5 @@ Filter out only the host's primary IPv4 address:
 # Good:
 ip -4 -br a | awk '!/127\.0\.0/ {gsub(/\/[0-9]{1,2}/,""); print $3}'
 # Bad:
-ifconfig ens32 | grep "inet" | grep –v "inet6" | tr –s " " ":" | cut –f 3 –d ":"
+ifconfig ens32 | grep "inet" | grep -v "inet6" | tr -s " " ":" | cut -f 3 -d ":"
 ```

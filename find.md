@@ -15,7 +15,7 @@ perl -MFile::Path=remove_tree -n0e \
 'chomp; remove_tree($_, {verbose=>1}) if /[[:^ascii:][:cntrl:]]/'.
 ```
 
-Perform `ls –l` on found files:
+Perform `ls -l` on found files:
 ```bash
 find ./ -ls               # Best method.
 find ./ -exec ls -l {} \; # Also fine.
@@ -26,9 +26,9 @@ find ./ | xargs ls -l     # Not recommended.
   - `{}` = A "variable" that acts as a placeholder for the current result.
   - `\;` = Required terminator for `exec` commands.
 <br><br>
-- `find ./ -type f | wc –l` = Print number of files beneath current path.
+- `find ./ -type f | wc -l` = Print number of files beneath current path.
   - `-type f` = Search for files only, not directories.
-  - `wc –l`   = Count the number of lines in the ouput.
+  - `wc -l`   = Count the number of lines in the ouput.
 <br><br>
 - `find -03 -L . -type f -name "*.jpg"` =
   - `-03`     = Optimize file search order based on likelihood of finding a match.
@@ -38,7 +38,7 @@ find ./ | xargs ls -l     # Not recommended.
   - `-name`   = Search based on file name.
   - `"*.jpg"` = Use wildcard to search for all files with .jpg extension.
 <br><br>
-- `find ~ -user alice -mtime 7 -iname “.log” -delete` = Delete log files owned by alice within a certain date range.
+- `find ~ -user alice -mtime 7 -iname ".log" -delete` = Delete log files owned by alice within a certain date range.
   - `-user alice` = Files owned by user alice.
   - `~`           = Search in or beneath the current user's home directory.
   - `-mtime 7`    = Look for files modified 7 days ago.
@@ -74,7 +74,7 @@ find ./ | xargs ls -l     # Not recommended.
 - `locate -ice *.txt` = Search for all .txt files on the system.
   - `-i` (*ignore*) = Ignore case of match.
   - `-c` (*count*)  = List number of matches.
-  - `-e` (*exist*)  = Verify file’s existence before producing result since database may be old.
+  - `-e` (*exist*)  = Verify file's existence before producing result since database may be old.
 
 > NOTE: locate is much faster than find, but locate searches a tabulated database instead of actively scrubbing your disk for a match.
 >       This means the data locate uses may be a few hours old

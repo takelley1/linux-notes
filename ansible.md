@@ -42,12 +42,12 @@ ansible 192.168.1.1       \
   -a "yum update"         \ # Run ad-hoc.
   -u austin               \ # User to use when connecting to target.
   -k                      \ # Ask for user's SSH password to authenticate.
-  –b                      \ # Use become to elevate privileges
-  –K                      \ # Ask for the user's escalation password.
-  –-become-method sudo    \ # Use sudo to escalate.
+  -b                      \ # Use become to elevate privileges
+  -K                      \ # Ask for the user's escalation password.
+  --become-method sudo    \ # Use sudo to escalate.
   -f 10                     # Run 10 separate threads.
 
-ansible 192.168.1.1 -a "yum update" -u austin -kK –b –-become-user root –-become-method sudo -f 10
+ansible 192.168.1.1 -a "yum update" -u austin -kK -b --become-user root --become-method sudo -f 10
 ```
 
 Run Ad-hoc Ansible module from an interactive shell:

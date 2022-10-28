@@ -138,7 +138,7 @@ recipient@example.com                        # This is the 'to' field of the ema
 | Network   | Purpose                                                                |
 |-----------|------------------------------------------------------------------------|
 | ::1       | Localhost                                                              |
-| fc00::/7  | Unique Local Addresses (ULA) - also known as “Private” IPv6 addresses. |
+| fc00::/7  | Unique Local Addresses (ULA) - also known as "Private" IPv6 addresses. |
 | fe80::/10 | Link Local addresses, only valid inside a single broadcast domain.     |
 | 2001::/16 | Global Unique Addresses (GUA) - Routable IPv6 addresses.               |
 | ff00::0/8 | Multicast addresses                                                    |

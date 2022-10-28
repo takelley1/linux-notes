@@ -168,9 +168,9 @@ the Root CA's Public Key came with his browser.
 - In Mutual Authentication, the Client must trust the Server, but the Server must also trust the Client.
   1. The Client requests access to a protected resource.
   2. The Server presents its Certificate to the Client.
-  3. The Client verifies the server’s Certificate using the Server's Certificate issuer's Public Key.
+  3. The Client verifies the server's Certificate using the Server's Certificate issuer's Public Key.
   4. If successful, the Client then sends its Certificate to the Server.
-  5. The Server verifies the Client’s credentials using the Client's Certificate issuer's Public Key.
+  5. The Server verifies the Client's credentials using the Client's Certificate issuer's Public Key.
     - NOTE: The Client's Certificate must be signed by a CA that the Server trusts.
   6. If successful, the Server grants access to the protected resource requested by the Client.
 

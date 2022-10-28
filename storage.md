@@ -27,7 +27,7 @@
 - `fdisk /dev/sdb` = Edit the partition table of sdb.
 <br><br>
 - `mount`                                     = Show mounted volumes and their mount locations.
-- `mount –o remount,rw /dev/sda1 /mountpoint` = Remount drive with read-write permissions.
+- `mount -o remount,rw /dev/sda1 /mountpoint` = Remount drive with read-write permissions.
 
 Creating swap and/or a swapfile on btrfs
 ```bash
@@ -98,7 +98,7 @@ Creating swap and/or a swapfile on btrfs
 - `ln /home/sourcefile.txt /var/hardlink.txt` = Create hard link to file (`ln -s` for soft/symbolic link).
 
 ```
-Hard links create an additional pointer to a file’s inode and remains even if the original file from which the link
+Hard links create an additional pointer to a file's inode and remains even if the original file from which the link
 was created is deleted. Similar to copying a file but without taking up extra space on the physical storage medium.
 
 Symbolic links can be made for directories as well as files and work across partitions (unlike hard links), but

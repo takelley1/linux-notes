@@ -9,7 +9,7 @@
 - `smartctl -a /dev/ | grep UDMA_CRC_Error_Count`           = UDMA CRC errors.
 - `diskinfo -wS`                                            = HDD and SSD write latency consistency (unformatted drives only!).
 - `smartctl -a /dev/ | grep Power_On_Hours`                 = HDD and SSD hours.
-- `nvmecontrol logpage -p 2 nvme0 | grep “Percentage used”` = NVMe percentage used.
+- `nvmecontrol logpage -p 2 nvme0 | grep "Percentage used"` = NVMe percentage used.
 
 ### Field Names
 

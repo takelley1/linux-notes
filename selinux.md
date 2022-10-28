@@ -17,7 +17,7 @@ Context syntax: `user:role:type:level`
 
 ## Ports
 
-- `semanage port –a –t ssh_port_t tcp 9999` = Set ssh context to allow use of port 9999.
+- `semanage port -a -t ssh_port_t tcp 9999` = Set ssh context to allow use of port 9999.
 
 ## Config
 

@@ -11,7 +11,7 @@ rendered) appears to be non-orthogonal.
 
 Allows simulation of the soft shadows that occur in the cracks and crevices of 3D objects when indirect lighting is cast
 out onto a scene. The soft shadows that are created from ambient occlusion can help to define the separation between
-objects in a scene and add another level of realism to a render. It’s a subtle effect that makes objects and scenes look
+objects in a scene and add another level of realism to a render. It's a subtle effect that makes objects and scenes look
 less flat, more three dimensional and more realistic.
 
 ---
@@ -19,8 +19,8 @@ less flat, more three dimensional and more realistic.
 
 A texture filtering method used to smooth textures when displayed larger or smaller than they actually are.
 Most of the time, when drawing a textured shape on the screen, the texture is not displayed exactly as it is stored.
-Because of this, most pixels will end up needing to use a point on the texture that is "between" texels – assuming the
-texels are points (as opposed to, say, squares) – in the middle (or on the upper left corner, or anywhere else; it does
+Because of this, most pixels will end up needing to use a point on the texture that is "between" texels - assuming the
+texels are points (as opposed to, say, squares) - in the middle (or on the upper left corner, or anywhere else; it does
 not matter, as long as it is consistent) of their respective "cells." Bilinear filtering uses these points to perform
 bilinear interpolation between the four texels nearest to the point that the pixel represents (in the middle or upper
 left of the pixel, usually).
@@ -60,7 +60,7 @@ developers use it to give their games a film-like quality.
 ### Downsampling / Supersampling
 
 Downsampling, also known as supersampling, is an anti-aliasing technique. It involves rendering an image at a resolution
-that is higher than the screen will display. The image is then reduced to the screen’s resolution and the extra pixels
+that is higher than the screen will display. The image is then reduced to the screen's resolution and the extra pixels
 are used to smooth curved and diagonal lines. Downsampling also makes textures look sharper and clearer.
 
 ---
