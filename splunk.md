@@ -2,7 +2,9 @@
 
 ### SSO w/ Keycloak
 
-- See also: https://keycloak.discourse.group/t/using-keycloak-as-the-idp-for-spunk-via-saml/1583/3
+- **See also:**
+  - [Keycloak as IDP for Splunk](https://keycloak.discourse.group/t/using-keycloak-as-the-idp-for-spunk-via-saml/1583/3)
+<br><br>
 - Issue: Keycloak returning 'invalid requester' error
   - Solution: Disable 'client signature required' field in the Splunk client configuration within Keycloak
 - Issue: Keycloak authentication works successfully and redirects to Splunk, but Splunk returns a 'SAML response does
@@ -48,4 +50,3 @@ rpm -i ./splunkforwarder-9.0.0-6818ac46f2ec-linux-2.6-x86_64.rpm
 Files for universal forwarder:
   - Target server: `/opt/splunkforwarder/etc/system/local/outputs.conf`
   - Files to monitor: `/opt/splunkforwarder/etc/apps/search/local/inputs.conf`
-
