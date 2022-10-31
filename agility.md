@@ -9,10 +9,22 @@
 <br><br>
 - [OIDC for keycloak on digital.ai release](https://docs.digital.ai/bundle/devops-release-version-v.22.0/page/release/concept/release-oidc-with-keycloak.html)
 
+## Logs
+
+- Analytics: `C:\ProgramData\VersionOne\Analytics\setup.log`
+- DataMart: `C:\ProgramData\VersionOne\DatamartLoader\setup.log`
+- General exceptions: `C:\ProgramData\VersionOne\Exceptions`
+
 ## Upgrades
 
-1. Snapshot the Agility instance.
-2. RDP onto Agility server.
-3. [Download the latest Agility release.](https://go.versionone.com/GetLatestUltimate)
-4. [Follow the Agility upgrade guide.](https://docs.digital.ai/en-US/bundle/agility-onlinehelp/page/Content/Digital.ai_Agility/Installing_Digital.ai_Agility.htm)
-5. Test connectivity.
+1. Post notification alerting users that service may be down.
+2. Snapshot the Agility instance.
+3. RDP onto Agility server.
+4. [Download the latest Agility release.](https://go.versionone.com/GetLatestUltimate)
+5. Follow the installation guide PDF in the downloaded release archive.
+  - > NOTE: Upgrade order is `Agility`, then `DataMart`, then `Analytics`
+  - Requires:
+    - DB password
+    - DB username
+    - Integration code
+6. Test service connectivity.
