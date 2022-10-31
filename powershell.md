@@ -1,10 +1,10 @@
 ## [PowerShell](https://learn.microsoft.com/en-us/powershell/)
 
-- `netstat -np` = View open ports.
 - `repadmin /syncall /AdeP` = Force domain controllers to sync.
 
 | Unix equivalent     | PowerShell command                   |
 |---------------------|--------------------------------------|
+| `netstat -plant`    | `netstat -np`                        |
 | `tail -f file.txt`  | `get-content file.txt -Tail 1 -Wait` |
 
 - [Install or remove RSAT tools:](https://www.petri.com/how-to-install-the-remote-server-administration-tools-in-windows-10)
