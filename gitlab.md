@@ -8,11 +8,8 @@
 - `gitlab-ctl logs`
 - `gitlab-ctl status`
 
-### `.gitlab-ci.yml`
+### [`.gitlab-ci.yml`](https://docs.gitlab.com/ee/ci/yaml/)
 
-- **See also:**
-  - [`.gitlab-ci.yml` reference](https://docs.gitlab.com/ee/ci/yaml/)
-<br><br>
 - Long lines:
   - Join long lines with ` ` (a space).
     ```yaml
