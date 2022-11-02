@@ -8,10 +8,33 @@
 - `gitlab-ctl logs`
 - `gitlab-ctl status`
 
-### GitLab Runner
+### `.gitlab-ci.yml`
 
 - **See also:**
   - [`.gitlab-ci.yml` reference](https://docs.gitlab.com/ee/ci/yaml/)
+<br><br>
+- Long lines:
+  - Join long lines with ` ` (a space).
+    ```yaml
+    my_job:
+      script:
+        - apt-get -qq install
+          curl
+          git
+          unzip
+    ```
+  - Join long lines with `\n` (a new line).
+    ```yaml
+    my_job:
+      script:
+        - |
+            if ! curl -Lks --retry 5 https://icanhazip.com; then
+            echo "Unable to reach internet!"
+            exit 1
+            fi
+    ```
+
+### GitLab Runner
 
 - Adding runner to an offline server:
   - Determine the latest release [here](https://gitlab.com/gitlab-org/gitlab-runner/-/releases)
