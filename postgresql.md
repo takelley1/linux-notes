@@ -1,5 +1,8 @@
 ## [PostgreSQL](https://www.postgresql.org/docs/)
 
+- **See also:**
+  - [Postgres pager](https://github.com/okbob/pspg)
+<br><br>
 - `export PAGER="less -XRFS"` = Don't wrap table output in the SQL shell.
 
 ### Shell
