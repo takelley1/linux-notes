@@ -9,6 +9,8 @@
 
 ### [`.gitlab-ci.yml`](https://docs.gitlab.com/ee/ci/yaml/)
 
+- NOTE: `after_script:` blocks [ignore nonzero exit codes!](https://stackoverflow.com/a/72984677)
+<br><br>
 - Long lines:
   - Join long lines with ` ` (a space).
     ```yaml
