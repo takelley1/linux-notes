@@ -1,8 +1,5 @@
 ## [Grep](https://www.gnu.org/software/grep/manual/grep.html)
 
-- **See also**:
-  - [Ripgrep](https://blog.burntsushi.net/ripgrep/)
-
 ### Examples
 
 - `grep -Eho '([0-9]{1,3}\.){1,3}[0-9]{1,3}' /var/log/maillog* | sort -u` = Extract IPs.
