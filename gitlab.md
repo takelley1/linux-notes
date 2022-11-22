@@ -4,8 +4,8 @@
 
 - [GitLab troubleshooting Linux cheat sheet](https://docs.gitlab.com/ee/administration/troubleshooting/linux_cheat_sheet.html)
 - [`gitlab-ctl` commands](https://docs.gitlab.com/omnibus/maintenance/)
-  - `gitlab-ctl logs`
-  - `gitlab-ctl status`
+  - `gitlab-ctl tail` = Tail all logs at once.
+  - `gitlab-ctl status` = Show status of each service.
 
 ### [`.gitlab-ci.yml`](https://docs.gitlab.com/ee/ci/yaml/)
 
