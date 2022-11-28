@@ -21,6 +21,11 @@
 - `\set`            = System variables.
 - `\q`              = Quit.
 
+### Server
+
+- See [here](https://www.digitalocean.com/community/tutorials/how-to-install-and-use-postgresql-on-centos-8) for basic
+  server setup and how Postgres manages roles and authentication.
+
 ### pg_hba.conf
 
 <details>
