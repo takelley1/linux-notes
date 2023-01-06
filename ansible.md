@@ -84,6 +84,16 @@ my_host:
 ---
 ## Ansible with Windows Targets
 
+### [Windows OpenSSH](https://docs.ansible.com/ansible/latest/os_guide/windows_setup.html#windows-ssh-setup)
+
+- [Install OpenSSH on Windows](https://learn.microsoft.com/en-us/windows-server/administration/openssh/openssh_install_firstuse?tabs=powershell#install-openssh-for-windows)
+  ```powershell
+  Add-WindowsCapability -Online -Name OpenSSH.Server~~~~0.0.1.0
+  Start-Service sshd
+  Set-Service -Name sshd -StartupType 'Automatic'
+  netstat -a
+  ```
+
 ### Kerberos
 
 #### HTTPS transport encryption
