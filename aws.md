@@ -1,5 +1,13 @@
 ## [AWS](https://docs.aws.amazon.com/)
 
+## [EC2]
+
+### [Grow a volume](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/recognize-expanded-volume-linux.html)
+
+1. Resize the EBS volume such that `lsblk` shows the extra space.
+2. Run `sudo growpart /dev/nvme0n1 1` to grow the LVM partition.
+3. Run `sudo xfs_growfs /` to expand the filesystem into the LVM partition.
+
 ### [EKS](https://docs.aws.amazon.com/eks/?id=docs_gateway)
 
 - **See also:**
@@ -19,7 +27,7 @@
   kubectl edit configmap aws-auth -n kube-system
   ```
   ```yaml
-  
+
   apiVersion: v1
   data:
     mapRoles: |
@@ -28,7 +36,7 @@
         - system:nodes
         rolearn: arn:aws-us-gov:iam::123456789012:role/eks_gitlab_runner-eks-node-group-20220210182019868800000002
         username: system:node:{{EC2PrivateDNSName}}
-        
+
     # Add mapUsers like so:
     mapUsers: |
       - userarn: arn:aws-us-gov:iam::123456789123:user/john.doe
@@ -39,7 +47,7 @@
         username: jane.doe
         groups:
           - system:masters
-  
+
   kind: ConfigMap
   metadata:
     creationTimestamp: "2022-02-10T17:14:57Z"
