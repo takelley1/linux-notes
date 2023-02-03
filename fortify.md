@@ -1,5 +1,14 @@
 ## [Fortify SSC](https://www.microfocus.com/documentation/fortify-software-security-center/)
 
+Downloading Fortify SSC release
+  1. `sld.microfocus.com`
+  2. After logging in, select account.
+  3. Security Fortify Runtime -> Security Fortify Scanning User Subscription SW E-LTU -> {version} -> Fortify_SSC_Server_{version}.zip
+
+Downloading Fortify rulepacks
+  1. `https://support.fortify.com/admin/rulepacks.jsp`
+  2. Download Rulepacks -> Rulepacks release -> {latest} -> SCA
+
 Installation
 1. Install Java OpenJDK
 2. Extract the Fortify SSC installation archive
