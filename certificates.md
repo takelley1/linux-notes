@@ -24,7 +24,8 @@
   - `-keyout certkey.pem` = Write the private key to *csrkey.pem*.
   - `-out cert.pem` = Write the CSR to *csr.pem*.
 <br><br>
-- `cat root.pem intermediate.pem server.pem > chain.pem` = Create certificate chain.
+- `cat root.pem intermediate.pem server.pem > chain.pem` = Create certificate chain (AWS Key Management Service).
+- `cat server.pem intermediate.pem root.pem > chain.pem` = Create certificate chain (Nginx, GitLab).
 
 Generate self-signed certs
 ```
