@@ -34,8 +34,8 @@
 - `logs` = Get pod logs.
   - `kubectl logs -f -n kube-system coredns-694675dfcd-dqg69` = Tail CoreDNS pod logs in the kube-system namespace.
 - `exec` = Run command in a pod.
-  - `kubectl exec -i gitlab-runner-678dd89fd9 -- nslookup google.com` = Run an nslookup command in a gitlab runner pod.
-  - `kubectl exec -it gitlab-runner-678dd89fd9 -- /bin/bash` = Pop a shell in a gitlab runner pod.
+  - `kubectl exec -i gitlab-runner-678dd89fd9 -n gitlab -- nslookup google.com` = Run an nslookup command in a gitlab runner pod.
+  - `kubectl exec -it gitlab-runner-678dd89fd9 -n gitlab -- /bin/bash` = Pop a shell in a gitlab runner pod.
 <br><br>
 - `edit` = Open YAML editor for a resource & update it automatically.
 - `create` = *imperatively* create resources.
