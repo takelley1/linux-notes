@@ -103,6 +103,18 @@ keyUsage               = keyCertSign, cRLSign
 certtool --generate-privkey --outfile key.pem
 certtool --generate-self-signed --load-privkey key.pem --outfile cert.pem
 ```
+### DoD Cert Bundle
+
+```bash
+# Download cert bundle from https://public.cyber.mil/pki-pke/
+# Extract certs into PEM format
+openssl pkcs7 -in Certificates_PKCS7_v5.9_DoD.pem.p7b -print_certs -out DoD_CAs.pem
+# Split apart certs into separate files
+csplit -f cert- DoD_CAs.pem '/-----BEGIN CERTIFICATE-----/' '{*}'
+
+# EXAMPLE: Import certs into keycloak's Java trust store
+for i in $(seq -w 01 37); do echo TRUSTSTOREPASS|keytool -import -alias "cert-${i}" -keystore certs.jks -file "cert-${i}" -noprompt; done
+```
 
 ### Add certificate to trust store
 
