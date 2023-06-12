@@ -34,15 +34,7 @@
        keytool -list -keystore keystore.jks
        ```
   - Dod cert bundle can be downloaded here: https://public.cyber.mil/pki-pke/
-    - See the `README.txt` file in the downloaded `.zip` archive for instructions on how to extract certs, or see below:
-      ```bash
-      # Extract certs into PEM format
-      openssl pkcs7 -in Certificates_PKCS7_v5.9_DoD.pem.p7b -print_certs -out DoD_CAs.pem
-      # Split apart certs into separate files
-      csplit -f cert- DoD_CAs.pem '/-----BEGIN CERTIFICATE-----/' '{*}'
-      # Import certs into keycloak's Java trust store
-      for i in $(seq -w 01 37); do echo TRUSTSTOREPASS|keytool -import -alias "cert-${i}" -keystore certs.jks -file "cert-${i}" -noprompt; done
-      ```
+    - See the `README.txt` file in the downloaded `.zip` archive for instructions on how to extract certs.
   - Edit `/opt/keycloak/*/conf/keycloak.conf` to add configuration settings.
   - `./opt/keycloak/keycloak-18.0.0/bin/kc.sh build --health-enabled=true`
   - `./opt/keycloak/keycloak-18.0.0/bin/kc.sh show-config`
