@@ -6,6 +6,8 @@
   - [Vimdiff cheat sheet](https://gist.github.com/mattratleph/4026987)
 
 ### Tips
+- `set ff=unix` = Change a file with Windows line-endings to Unix line-endings
+<br><br>
 - `# vim:syntax=none:` = Set at beginning or end of file (as a modeline) to disable syntax highlighting for that file.
 - `syntime on`, `syntime report` = Debug syntax highlighting slowness.
 <br><br>
