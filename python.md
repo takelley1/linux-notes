@@ -36,7 +36,11 @@ pip \
   --trusted-host files.pythonhosted.org \
   install pytest
 ```
-
+- Add a third-party repo for pip to use:
+```bash
+export PIP_TRUSTED_HOST="gitlab.example.com"
+export PIP_EXTRA_INDEX_URL="http://${PACKAGES_TOKEN_NAME}:${PACKAGES_TOKEN}@gitlab.example.com/api/v4/groups/5/-/packages/pypi/simple"
+```
 - `pip install -e .` = Install package locally in "developer" mode. Code modifications will automatically update within
                        the installed package.
 
