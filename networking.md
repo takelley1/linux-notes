@@ -28,7 +28,7 @@
 
 ### [Remote Ports](https://danielmiessler.com/study/nmap/)
 
-- `nmap -p <PORT> <IP>` or `telnet <IP> <PORT>` = Ping specific TCP port on host.
+- `nmap -p <PORT> <IP>` or `telnet <IP> <PORT>` or `nc -zv <IP> <PORT>` = Ping specific TCP port on host.
 <br><br>
 - `nc -zvu <IP> <PORT>` = Ping specific UDP port on host.
   - `-z` = Zero I/O mode, show only if connection is up/down.
