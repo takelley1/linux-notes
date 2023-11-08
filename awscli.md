@@ -6,8 +6,8 @@
 ```
 msiexec /a https://awscli.amazonaws.com/AWSCLIV2.msi /qb TARGETDIR=%USERPROFILE%\AppData\Local\Microsoft\WindowsApps
 ```
-2. Open `%USERPROFILE%\AppData\Local\Microsoft\WindowsApps\Amazon\AWSCLIV2` in the explorer
-3. Copy the contents of `%USERPROFILE%\AppData\Local\Microsoft\WindowsApps\Amazon\AWSCLIV2\*` to `%USERPROFILE%\AppData\Local\Microsoft\WindowsApps\`
+2. Open `%USERPROFILE%\AppData\Local\Microsoft\WindowsApps\Amazon\AWSCLIV2` in the explorer.
+3. Copy the contents of `%USERPROFILE%\AppData\Local\Microsoft\WindowsApps\Amazon\AWSCLIV2\*` to `%USERPROFILE%\AppData\Local\Microsoft\WindowsApps\` (overwrite any files that already exist on the destination).
 4. Test out AWS CLI:
 ```
 aws --version
