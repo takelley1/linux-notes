@@ -56,6 +56,48 @@
 - `kubectl cp myscript.sh keycloak-0:/tmp/myscript.sh -n keycloak` = Copy *myscript.sh* into the *keycloak-0* pod.
 - `kubectl run curl-test --image=radial/busyboxplus:curl -i --tty --rm` = Run pod with *curl* and *nslookup* for testing.
 
+### Example deployment
+
+- For ChatGPT: `Write an example nginx deployment for kubernetes`
+<br><br>
+`nginx-deployment.yaml`
+```yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nginx-deployment
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: nginx
+  template:
+    metadata:
+      labels:
+        app: nginx
+    spec:
+      containers:
+      - name: nginx
+        image: nginx:latest
+        ports:
+        - containerPort: 80
+```
+`nginx-service.yaml`
+```yaml
+apiVersion: v1
+kind: Service
+metadata:
+  name: nginx-service
+spec:
+  selector:
+    app: nginx
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 80
+  type: NodePort
+```
+
 ### [CoreDNS](https://coredns.io/plugins/)
 
 - **See also**
