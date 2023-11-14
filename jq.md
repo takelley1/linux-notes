@@ -9,6 +9,7 @@
                                                                                *43*, then print *field[4]*. Don't include
                                                                                formatting quotes (`-r`).
 - `i3-msg -t get_workspaces | jq '.[] | select(.focused == true) | .id'` = Print the *id* field if the *focused* field
-                                                                           equals *true*.
+                                                                           equals *true*. NOTE: The value of the field may need to be
+                                                                           quoted.
 - `i3-msg -t get_outputs | jq '.[] | .name,.active'` = Print both the *name* and *active* fields.
 - `i3-msg -t get_outputs | jq '.[] | {name,active}'` = Print both the *name* and *active* fields as dictionaries.
