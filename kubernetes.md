@@ -59,9 +59,10 @@
 ### Example deployment
 
 - For ChatGPT: `Write an example nginx deployment for kubernetes`
-<br><br>
-`nginx-deployment.yaml`
+
+`nginx-deployment.yml`
 ```yaml
+---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -77,13 +78,15 @@ spec:
         app: nginx
     spec:
       containers:
-      - name: nginx
-        image: nginx:latest
-        ports:
-        - containerPort: 80
+        - name: nginx
+          image: nginx:latest
+          ports:
+            - containerPort: 80
+
 ```
-`nginx-service.yaml`
+`nginx-service.yml`
 ```yaml
+---
 apiVersion: v1
 kind: Service
 metadata:
@@ -97,6 +100,24 @@ spec:
       targetPort: 80
   type: NodePort
 ```
+- `kubectl apply -f nginx-deployment.yml`
+- `kubectl apply -f nginx-service.yml`
+- `kubectl delete -f nginx-deployment.yml`
+- `kubectl delete -f nginx-service.yml`
+
+### Services
+
+#### ClusterIP Service
+  - Used by internal-only services that communicate with each other inside the cluster.
+  - Provides a single IP to access all pods within that service from inside the cluster.
+
+#### NodePort Service
+  - Cluster IP - An internal-only IP that is only accessible INSIDE the cluster.
+  - Ports
+    - Example: `80:30432/TCP` - This service is accessible on each node's IP over port 30432. Port 30432 on the node will forward to port 80 on the pod. Nodes that don't have the service's pod(s) scheduled on them will forward any traffic on that port to the node(s) with the pod(s) scheduled on them.
+
+### Endpoints
+  - The IPs/ports of all pods belonging to a service.
 
 ### [CoreDNS](https://coredns.io/plugins/)
 
