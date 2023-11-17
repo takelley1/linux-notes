@@ -105,19 +105,40 @@ spec:
 - `kubectl delete -f nginx-deployment.yml`
 - `kubectl delete -f nginx-service.yml`
 
-### Services
+### [Service](https://kubernetes.io/docs/concepts/services-networking/service/)
+  - Abstraction layer to make pods accessible.
 
-#### ClusterIP Service
+#### [ClusterIP Service](https://kubernetes.io/docs/concepts/services-networking/service/#type-clusterip)
+  - Makes a service available to pods inside the cluster.
   - Used by internal-only services that communicate with each other inside the cluster.
   - Provides a single IP to access all pods within that service from inside the cluster.
+  ```
+  ports:
+    - protocol: TCP
+      port: 80          # The port of the SERVICE - All traffic on this port routes to the `targetPort` of each pod
+      targetPort: 3000  # The port of the POD - The service forwards traffic from `port` to `targetPort`
+  ```
 
-#### NodePort Service
-  - Cluster IP - An internal-only IP that is only accessible INSIDE the cluster.
-  - Ports
-    - Example: `80:30432/TCP` - This service is accessible on each node's IP over port 30432. Port 30432 on the node will forward to port 80 on the pod. Nodes that don't have the service's pod(s) scheduled on them will forward any traffic on that port to the node(s) with the pod(s) scheduled on them.
+#### [NodePort Service](https://kubernetes.io/docs/concepts/services-networking/service/#type-nodeport)
+  - Makes a service available outside the cluster on every node at a specific port.
+  - Nodes that don't have the service's pod(s) scheduled on them will forward any traffic on that port to the node(s) with the pod(s) scheduled on them.
+  - Useful when paired with an external load balancer that forwards traffic to the nodePort of each node.
+  - Cluster IP - An internal-only IP that is only accessible INSIDE the cluster. Used for pod-to-pod traffic.
+  - Ports (in service definition file) [StackOverflow explanation](https://stackoverflow.com/questions/49981601/difference-between-targetport-and-port-in-kubernetes-service-definition)
+    ```
+    ports:
+      - protocol: TCP
+        port: 80          # The port of the SERVICE - For NodePort services, this can be anything
+        targetPort: 3000  # The port of the POD - The service forwards traffic from `port` to `targetPort`
+        nodePort: 30432   # The port of the NODE - The node listens on this port and routes traffic to the service port
+    ```
+    ```
+    incoming traffic -> nodePort (NODE) -> port (SERVICE) -> targetPort (POD)
+    ```
+    - Example (in Lens GUI): `80:30432/TCP` - This service is accessible on each node's IP over port 30432. Port 30432 on every node will forward to port 80 on the service. Port 80 of the service will then forward traffic to the `targetPort` of the service pod(s).
 
-### Endpoints
-  - The IPs/ports of all pods belonging to a service.
+### Endpoint
+  - Lists the IPs/ports of all pods belonging to a service.
 
 ### [CoreDNS](https://coredns.io/plugins/)
 
