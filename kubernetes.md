@@ -59,51 +59,60 @@
 ### Example deployment
 
 - For ChatGPT: `Write an example nginx deployment for kubernetes`
-
-`nginx-deployment.yml`
-```yaml
----
-apiVersion: apps/v1
-kind: Deployment
-metadata:
-  name: nginx-deployment
-spec:
-  replicas: 3
-  selector:
-    matchLabels:
+- Creates a ReplicaSet of 3 identical Nginx pods:
+- `nginx-deployment.yml`
+  ```yaml
+  ---
+  apiVersion: apps/v1
+  kind: Deployment
+  metadata:
+    name: nginx-deployment
+  spec:
+    replicas: 3 # Create a ReplicaSet with 3 pods matching the template.
+    selector:
+      matchLabels:
+        app: nginx # The ReplicaSet manages all pods with this label.
+    template:
+      metadata:
+        labels:
+          app: nginx # Give all pods this label.
+      spec:
+        containers:
+          - name: nginx # All pods have a single nginx container.
+            image: nginx:latest
+            ports:
+              - containerPort: 80
+  
+  ```
+- `nginx-service.yml`
+  ```yaml
+  ---
+  apiVersion: v1
+  kind: Service
+  metadata:
+    name: nginx-service
+  spec:
+    selector:
       app: nginx
-  template:
-    metadata:
-      labels:
-        app: nginx
-    spec:
-      containers:
-        - name: nginx
-          image: nginx:latest
-          ports:
-            - containerPort: 80
-
-```
-`nginx-service.yml`
-```yaml
----
-apiVersion: v1
-kind: Service
-metadata:
-  name: nginx-service
-spec:
-  selector:
-    app: nginx
-  ports:
-    - protocol: TCP
-      port: 80
-      targetPort: 80
-  type: NodePort
-```
+    ports:
+      - protocol: TCP
+        port: 80
+        targetPort: 80
+    type: NodePort
+  ```
 - `kubectl apply -f nginx-deployment.yml`
 - `kubectl apply -f nginx-service.yml`
 - `kubectl delete -f nginx-deployment.yml`
 - `kubectl delete -f nginx-service.yml`
+
+### [Deployment](https://kubernetes.io/docs/concepts/workloads/controllers/deployment/)
+- Creates a ReplicaSet declaratively.
+
+#### [ReplicaSet](https://kubernetes.io/docs/concepts/workloads/controllers/replicaset/)
+- Maintains the desired number of identical pods. Usually created by a deployment.
+
+#### [StatefulSet](https://kubernetes.io/docs/concepts/workloads/controllers/statefulset/)
+- Alternative to ReplicaSet for deploying stateful pods.
 
 ### [Service](https://kubernetes.io/docs/concepts/services-networking/service/)
   - Abstraction layer to make pods accessible.
@@ -139,6 +148,8 @@ spec:
 
 ### Endpoint
   - Lists the IPs/ports of all pods belonging to a service.
+
+### Ingress
 
 ### [CoreDNS](https://coredns.io/plugins/)
 
