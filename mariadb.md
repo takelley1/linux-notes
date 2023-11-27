@@ -1,6 +1,7 @@
 ## [MariaDB](https://mariadb.com/kb/en/training-tutorials/)
 
 - **See also**
+  - [MySQL cheat sheet](https://devhints.io/mysql)
   - [Troubleshooting connection issues](https://mariadb.com/kb/en/troubleshooting-connection-issues/)
   - [MariaDB performance tuning](https://mariadb.com/kb/en/server-system-variables/)
     - [InnoDB Buffer Pool](https://mariadb.com/kb/en/innodb-buffer-pool/)
