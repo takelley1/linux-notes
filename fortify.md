@@ -25,6 +25,11 @@ Installation
   <% response.sendRedirect("https://fortifydomain.example.com/ssc"); %>
   ```
 
+Database
+```
+MySQL [(none)]> CREATE DATABASE fortify CHARACTER SET latin1 COLLATE latin1_general_cs;
+```
+
 SSO configuration
 - Create local users in the Fortify Web GUI with usernames matching their email address in Keycloak
 - Fortify server backend
