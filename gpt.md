@@ -49,3 +49,21 @@ vim settings.yaml
 # Run
 make run
 ```
+- Create service file and enable service:
+```
+vim /etc/systemd/system/privategpt.service
+
+[Unit]
+Description=Run PrivateGPT
+After=network.target
+[Service]
+Type=simple
+WorkingDirectory=/gpt/privateGPT
+ExecStart=make run
+Restart=always
+[Install]
+WantedBy=default.target
+
+systemctl daemon-reload
+systemctl enable privategpt.service --now
+```
