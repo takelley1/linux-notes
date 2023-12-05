@@ -1,4 +1,4 @@
-## GPT
+## ai
 
 ### [PrivateGPT](https://github.com/imartinez/privateGPT)
 
