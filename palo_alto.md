@@ -1,5 +1,8 @@
 ## Palo Alto
 
+- **See also:**
+  - [Ansible setup](https://pan.dev/ansible/docs/panos/tutorials/setup/)
+
 ### Palo Alto VM appliance on AWS
 
 - **See also:**
