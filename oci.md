@@ -17,3 +17,4 @@ Error:
 
 Resolution:
 - Remove `kms_key_id` from the resource in question.
+- This issue can be caused by a number of unspecified things. Any issue that OCI doesn't like, such as an incorrect OCID or incorrect terraform syntax.
