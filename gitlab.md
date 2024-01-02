@@ -6,6 +6,9 @@
 - [`gitlab-ctl` commands](https://docs.gitlab.com/omnibus/maintenance/)
   - `gitlab-ctl tail` = Tail all logs at once.
   - `gitlab-ctl status` = Show status of each service.
+<br><br>
+  - NOTE: Sometimes GitLab requires both a restart and a reconfigure for configuration changes to apply!
+    - `gitlab-ctl restart && gitlab-ctl reconfigure`
 
 ### [`.gitlab-ci.yml`](https://docs.gitlab.com/ee/ci/yaml/)
 
