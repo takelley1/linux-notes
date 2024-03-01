@@ -124,7 +124,7 @@ for i in $(seq -w 01 37); do echo TRUSTSTOREPASS|keytool -import -alias "cert-${
 - `echo PASSWORD|keytool -import -alias cert-01 -keystore certs.jks -file cert-01 -noprompt` = Import cert without a prompt (notice no space between password and pipe)
 
 #### FreeBSD
-`cat mycert.pem >> /etc/ssl/cert.pem`
+- `cat mycert.pem >> /etc/ssl/cert.pem`
 
 #### Debian-based Linux
 1. Add certificate name to `/etc/ca-certificates.conf`
@@ -132,7 +132,8 @@ for i in $(seq -w 01 37); do echo TRUSTSTOREPASS|keytool -import -alias "cert-${
 3. Run `update-ca-certificates`
 
 #### Arch, RHEL-based Linux
-`trust anchor mycert.pem`
+- `trust anchor mycert.pem`
+- Trust store is at `/etc/pki/tls/certs/ca-bundle.crt`
 
 ### Windows
 - **See also**
