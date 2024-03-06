@@ -34,6 +34,18 @@
 - `-` = Not supported.
 - `?` = Unkown.
 
+#### apt
+
+- Finding specific package versions
+1. Go to https://launchpad.net
+2. Click `Ubuntu package building and hosting`
+3. Search for your package
+4. Select your package (example: https://launchpad.net/ubuntu/+source/firefox)
+5. Click `View full publishing history` (example: https://launchpad.net/ubuntu/+source/firefox/+publishinghistory)
+6. Click your desired package version (example: https://launchpad.net/ubuntu/+source/firefox/120.0.1+build1-0ubuntu0.20.04.1)
+7. Under`Builds`, click your desired architecture (example: https://launchpad.net/~ubuntu-mozilla-security/+archive/ubuntu/ppa/+build/27033836)
+8. Scroll down to `Built files` to download the specific `.deb` file package you want
+
 #### pacman
 
 - Issue: `package is marginal trust`
@@ -41,7 +53,6 @@
     ```
     pacman -Sy archlinux-keyring && pacman -Syu
     ```
-<br><br>
 - Issue: `invalud or corrupted database (PGP signature)`
   - Solution:
     ```
