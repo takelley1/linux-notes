@@ -2,6 +2,11 @@
 
 - [RHEL FreeIPA configuration guide](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/8/html-single/configuring_and_managing_identity_management/index#doc-wrapper)
 
+### Commands
+
+`ipa user-find --all --raw` = Print all FreeIPA users with their raw attribute names.
+
+
 ### Troubleshooting
 
 - Problem: FreeIPA server attempted to install and failed, and you can't run the install command again
