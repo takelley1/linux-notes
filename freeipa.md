@@ -38,7 +38,7 @@
   ```
 - Edit /etc/hosts
   ```
-  10.128.1.1 ipa.example.com ipa
+  10.128.1.1  ipa.example.com ipa
   127.0.0.1   localhost localhost.localdomain localhost4 localhost4.localdomain4
   ::1         localhost6 localhost6.localdomain6
   ```
@@ -81,7 +81,7 @@
   ```
 - Edit /etc/hosts
   ```
-  10.128.1.1 ipaclient.example.com ipaclient
+  10.128.1.1  ipaclient.example.com ipaclient
   127.0.0.1   localhost localhost.localdomain localhost4 localhost4.localdomain4
   ::1         localhost6 localhost6.localdomain6
   ```
@@ -105,3 +105,13 @@
   ```
   sudo ipa-client-install -v
   ```
+- Test logging in as a domain user
+  ```
+  id admin@EXAMPLE.COM
+  su admin@EXAMPLE.COM
+  ```
+
+### Windows Client Setup (Windows Server 2022)
+- [Windows authentication in FreeIPA](https://www.freeipa.org/page/Windows_authentication_against_FreeIPA)
+- [Joining Windows systems to FreeIPA](https://www.rootusers.com/how-to-login-to-windows-with-a-freeipa-account/)
+- 
