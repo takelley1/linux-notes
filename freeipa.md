@@ -169,3 +169,85 @@
   - Test logging in as the new user over RDP.
     - Run `mstsc` on a different PC
     - Login with the domain account: `user@IPA.EXAMPLE.COM`
+
+### Shared NFS home directory configuration
+- [NFS in IdM](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/8/html-single/configuring_and_managing_identity_management/index#autofs-and-automount-in-idm_using-automount-in-idm)
+- ON NFS/FREEIPA SERVER (in this example the NFS server and the FreeIPA server are the same host)
+  - Disable firewall and SELinux
+    ```bash
+    setenforce 0
+    systemctl disable --now firewalld
+    ```
+  - Obtain a Kerberos ticket as admin
+    ```bash
+    kinit admin
+    ```
+  - Create an NFS service principal
+    ```bash
+    ipa service-add nfs/ipa.example.com
+    ```
+  - Store the service principal in the Kerberos keytab file
+    ```bash
+    ipa-getkeytab -s ipa.example.com -p nfs/ipa.example.com -k /etc/krb5.keytab
+    ```
+  - View the principals
+    ```bash
+    klist -k /etc/krb5.keytab
+    ```
+  - Run the automount utility
+    ```bash
+    ipa-client-automount --server ipa.example.com
+    ```
+  - Update /etc/exports (assumes exporting `/nfs` on the server to clients at `10.128.0.0/8`)
+    ```
+    /nfs 10.128.0.0/8(rw,sec=sys:krb5:krb5i:krb5p)
+    ```
+  - Reload the exports
+    ```bash
+    exportfs -r
+    ```
+  - Enable and start NFS server
+    ```bash
+    dnf install nfs-utils -y
+    systemctl enable --now nfs-server
+    systemctl status nfs-server
+    ```
+  - Check if rpcbind and NFS is listening on the server
+    ```bash
+    nmap localhost
+    ```
+  - Create the automount location
+    ```bash
+    ipa automountlocation-add myautomount
+    ```
+  - Create the automount map for the automount location
+    ```bash
+    ipa automountmap-add myautomount auto.devel
+    ```
+  - Update the automount map with mount information
+    ```bash
+    ipa automountkey-add myautomount auto.devel --key='*' --info='-sec=krb5p,vers=4 ipa.example.com:/nfs/&'
+    ```
+  - Update the auto.master map. This is for automounting `/devel` on the client
+    ```bash
+    ipa automountkey-add sde auto.master --key=/devel --info=auto.devel
+    ```
+- ON FREEIPA CLIENT
+  - Disable firewall and SELinux
+    ```bash
+    setenforce 0
+    systemctl disable --now firewalld
+    ```
+  - Install AutoFS
+    ```bash
+    dnf install autofs -y
+    ```
+  - Mount the configured location
+    ```bash
+    ipa-client-automount --location myautomount
+    systemctl stop autofs ; sss_cache -E ; systemctl start autofs
+    ```
+  - Check mounts
+    ```bash
+    mount | grep autofs
+    ```
