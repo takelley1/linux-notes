@@ -9,6 +9,8 @@ Links to docs on how various companies manage their infrastructure.
     - [Production architecture](https://about.gitlab.com/handbook/engineering/infrastructure/production/architecture/)
 - Google
   - [Why Google stores billions of lines of code in a single repository](https://dl.acm.org/doi/pdf/10.1145/2854146)
+- Internet Archive
+  - [Infrastructure](https://archive.org/details/jonah-edwards-presentation)
 - Microsoft
   - [The largest git repo on the planet](https://devblogs.microsoft.com/bharry/the-largest-git-repo-on-the-planet/)
 - SourceHut
