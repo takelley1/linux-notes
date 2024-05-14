@@ -172,7 +172,7 @@
 
 ### Shared NFS home directory configuration
 - [NFS in IdM](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/8/html-single/configuring_and_managing_identity_management/index#autofs-and-automount-in-idm_using-automount-in-idm)
-- ON NFS/FREEIPA SERVER (in this example the NFS server and the FreeIPA server are the same host)
+- ON NFS/FREEIPA SERVER (in this example the NFS server and the FreeIPA server are on the same host)
   - Disable firewall and SELinux
     ```bash
     setenforce 0
@@ -194,13 +194,19 @@
     ```bash
     klist -k /etc/krb5.keytab
     ```
-  - Run the automount utility
+  - Create home directories for users
     ```bash
-    ipa-client-automount --server ipa.example.com
+    mkdir -p /nfs/ipahome/admin
+    mkdir -p /nfs/ipahome/myuser
+    
+    chown root:root /nfs/
+    chown root:root /nfs/ipahome/
+    chown admin@EXAMPLE.COM:admins /nfs/ipahome/admin/
+    chown myuser@EXAMPLE.COM:developers /nfs/ipahome/myuser/
     ```
-  - Update /etc/exports (assumes exporting `/nfs` on the server to clients at `10.128.0.0/8`)
+  - Update /etc/exports (assumes exporting `/nfs/ipahome` on the server to clients at `*`)
     ```
-    /nfs 10.128.0.0/8(rw,sec=sys:krb5:krb5i:krb5p)
+    /nfs/ipahome *(rw,sec=krb5p)
     ```
   - Reload the exports
     ```bash
@@ -216,21 +222,26 @@
     ```bash
     nmap localhost
     ```
-  - Create the automount location
+  - Create the automount location (assumes the automount location is called `homedirs`)
     ```bash
-    ipa automountlocation-add myautomount
+    ipa automountlocation-add homedirs
     ```
-  - Create the automount map for the automount location
+  - Create the automount map for the automount location (assumes the automount map is called auto.ipahome)
     ```bash
-    ipa automountmap-add myautomount auto.devel
+    ipa automountmap-add homedirs auto.ipahome
     ```
   - Update the automount map with mount information
     ```bash
-    ipa automountkey-add myautomount auto.devel --key='*' --info='-sec=krb5p,vers=4 ipa.example.com:/nfs/&'
+    ipa automountkey-add homedirs auto.ipahome --key='*' --info='-sec=krb5p,vers=4 ipa.example.com:/nfs/ipahome/&'
     ```
-  - Update the auto.master map. This is for automounting `/devel` on the client
+  - Update the auto.master map. This is for automounting `/ipahome` on the client
     ```bash
-    ipa automountkey-add sde auto.master --key=/devel --info=auto.devel
+    ipa automountkey-add homedirs auto.master --key=/ipahome --info=auto.ipahome
+    ```
+- ON FREEIPA SERVER WEB GUI
+  - Update the home directory paths of users (assumes users are `admin` and `myuser`)
+    ```
+    Identity -> Users -> Active users -> select user -> Home directory -> change to /ipahome/admin or /ipahome/myuser
     ```
 - ON FREEIPA CLIENT
   - Disable firewall and SELinux
@@ -244,10 +255,18 @@
     ```
   - Mount the configured location
     ```bash
-    ipa-client-automount --location myautomount
+    ipa-client-automount --location homedirs
     systemctl stop autofs ; sss_cache -E ; systemctl start autofs
     ```
   - Check mounts
     ```bash
     mount | grep autofs
+    ```
+  - Test logging in as users
+    ```
+    su admin@EXAMPLE.COM
+    cd
+    echo "test content" > myfile.txt
+    ls -al
+    su myuser@EXAMPLE.COM
     ```
