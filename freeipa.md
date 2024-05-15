@@ -173,6 +173,13 @@
 ### Shared NFS home directory configuration
 - [NFS in IdM](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/8/html-single/configuring_and_managing_identity_management/index#autofs-and-automount-in-idm_using-automount-in-idm)
 - ON NFS/FREEIPA SERVER (in this example the NFS server and the FreeIPA server are on the same host)
+  - Cloud: configure ports
+    - Ensure the NACL for the subnet the FreeIPA server is on allows the following traffic outbound.
+      ```
+      NFS  2049  TCP & UDP
+      RPC  111   TCP & UDP
+      ```
+    - Ensure the Security Group for the FreeIPA server allows all TCP traffic outbound.
   - Disable firewall and SELinux
     ```bash
     setenforce 0
@@ -244,6 +251,9 @@
     Identity -> Users -> Active users -> select user -> Home directory -> change to /ipahome/admin or /ipahome/myuser
     ```
 - ON FREEIPA CLIENT
+  - Cloud: configure ports
+    - Ensure the NACL for the subnet the FreeIPA client is on allows all TCP traffic from the subnet the FreeIPA server is on.
+    - Ensure the Security Group for the FreeIPA client allows all TCP traffic from the FreeIPA server.
   - Disable firewall and SELinux
     ```bash
     setenforce 0
