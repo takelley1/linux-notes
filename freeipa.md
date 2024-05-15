@@ -180,11 +180,6 @@
       RPC  111   TCP & UDP
       ```
     - Ensure the Security Group for the FreeIPA server allows all TCP traffic outbound.
-  - Disable firewall and SELinux
-    ```bash
-    setenforce 0
-    systemctl disable --now firewalld
-    ```
   - Obtain a Kerberos ticket as admin
     ```bash
     kinit admin
@@ -211,13 +206,13 @@
     chown admin@EXAMPLE.COM:admins /nfs/ipahome/admin/
     chown myuser@EXAMPLE.COM:developers /nfs/ipahome/myuser/
     ```
-  - Update /etc/exports (assumes exporting `/nfs/ipahome` on the server to clients at `*`)
+  - Update `/etc/exports` (assumes exporting `/nfs/ipahome` on the server to clients at `10.128.0.0/16`)
     ```
-    /nfs/ipahome *(rw,sec=krb5p)
+    /nfs/ipahome 10.128.0.0/16(rw,sec=krb5p)
     ```
   - Reload the exports
     ```bash
-    exportfs -r
+    exportfs -rav
     ```
   - Enable and start NFS server
     ```bash
@@ -225,9 +220,10 @@
     systemctl enable --now nfs-server
     systemctl status nfs-server
     ```
-  - Check if rpcbind and NFS are listening on the server
+  - Check if rpcbind and NFS are listening on the server. Also check mounts
     ```bash
     nmap localhost
+    showmount -e localhost
     ```
   - Create the automount location (assumes the automount location is called `homedirs`)
     ```bash
@@ -254,11 +250,6 @@
   - Cloud: configure ports
     - Ensure the NACL for the subnet the FreeIPA client is on allows all TCP traffic from the subnet the FreeIPA server is on.
     - Ensure the Security Group for the FreeIPA client allows all TCP traffic from the FreeIPA server.
-  - Disable firewall and SELinux
-    ```bash
-    setenforce 0
-    systemctl disable --now firewalld
-    ```
   - Install AutoFS
     ```bash
     dnf install autofs -y
