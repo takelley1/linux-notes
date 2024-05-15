@@ -218,7 +218,7 @@
     systemctl enable --now nfs-server
     systemctl status nfs-server
     ```
-  - Check if rpcbind and NFS is listening on the server
+  - Check if rpcbind and NFS are listening on the server
     ```bash
     nmap localhost
     ```
@@ -226,15 +226,15 @@
     ```bash
     ipa automountlocation-add homedirs
     ```
-  - Create the automount map for the automount location (assumes the automount map is called auto.ipahome)
+  - Create the automount map for the automount location (assumes the automount map is called `auto.ipahome`)
     ```bash
     ipa automountmap-add homedirs auto.ipahome
     ```
-  - Update the automount map with mount information
+  - Update the `auto.ipahome` map with mount information
     ```bash
     ipa automountkey-add homedirs auto.ipahome --key='*' --info='-sec=krb5p,vers=4 ipa.example.com:/nfs/ipahome/&'
     ```
-  - Update the auto.master map. This is for automounting `/ipahome` on the client
+  - Update the `auto.master` map with the `auto.ipahome` map.
     ```bash
     ipa automountkey-add homedirs auto.master --key=/ipahome --info=auto.ipahome
     ```
@@ -263,7 +263,7 @@
     mount | grep autofs
     ```
   - Test logging in as users
-    ```
+    ```bash
     su admin@EXAMPLE.COM
     cd
     echo "test content" > myfile.txt
