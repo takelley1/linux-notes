@@ -12,6 +12,11 @@
 <br><br>
 - `ansible localhost -m debug -a 'msg={{ "mypassword" | password_hash("sha512", "mysecretsalt") }}'` = Hash a user's password for use in the *ansible.builtin.user* module.
 
+### Modules
+
+- `ansible -v localhost -m aws_s3 -a "bucket=my-bucket object=/repos/fortify/fortify.license dest=/home/akelley/fortify.license mode=get overwrite=different"` = Run local module with multiple arguments.
+- `ansible -v ipa.example.com -b -u ansible -m package -a "name=coreutils"` = Install coreutils using package module with ansible user on ipa.exmaple.com host.
+
 ### Variables
 
 - `when: result.stdout is search("already installed")` = [Test string for substring](https://docs.ansible.com/ansible/latest/user_guide/playbooks_tests.html#testing-strings)
@@ -21,7 +26,6 @@
 - `ansible localhost -m debug -a msg="{{ lookup('env','HOME') }}"` = Run ad-hoc module on *localhost* to print user's home directory.
 - `ansible localhost -m setup -kK -u foo` = Print local host's facts by connecting to it with user *foo*.
 - `ansible myserver.example.com -m setup -u ansible` = Print facts from myserver.example.com using user *ansible*.
-- `ansible -v localhost -m aws_s3 -a "bucket=my-bucket object=/repos/fortify/fortify.license dest=/home/akelley/fortify.license mode=get overwrite=different"` = Run local module with multiple arguments.
 <br><br>
 - `packages_list_new: "{{ packages_list | reject('eq', 'p7zip') | list }}"` = [Remove p7zip from packages_list.](https://docs.ansible.com/ansible/latest/user_guide/complex_data_manipulation.html#omit-elements-from-a-list)
 - `packages_list_new: "{{ packages_list + ['p7zip', 'htop'] }}"` = Add *p7zip* and *htop* to *packages_list*.
