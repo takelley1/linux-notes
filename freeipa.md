@@ -62,7 +62,7 @@
   ```
 - Install packages
   ```bash
-  sudo dnf install -y ipa-server ipa-server-dns java-1.8.0-opendk-devel
+  sudo dnf install -y ipa-server ipa-server-dns java-1.8.0-openjdk-devel
   ```
 - Setup FreeIPA as a server
   ```bash
