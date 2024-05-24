@@ -271,3 +271,22 @@
     ls -al
     su myuser@EXAMPLE.COM
     ```
+#### Troubleshooting NFS with Kerberos
+- Problem: NFS client gets a permission denied error when attempting to mount NFS share from server using krb5p authentication.
+  - Solution: Ensure the NFS service principal is in the Kerberos keytab. Run `klist -ket` and look for the NFS service. If it's not there, add it with `ipa-getkeytab -s ipa.example.com -p nfs/ipa.example.com -k /etc/krb5.keytab`
+
+### [CAC login over SSH with FreeIPA](https://gsallewell.github.io/piv-guides/windows/puttycac-install)
+
+- ON CLIENT WORKSTATION
+  - [Install PuTTy-CAC](https://github.com/NoMoreFood/putty-cac/releases)
+  - Add CAC cert (this part may not be necessary):
+    - Launch the `pageant` binary PuTTy-CAC tool (it immediately goes to the Windows taskbar)
+    - Right-click `pageant` taskbar icon -> `Add CAPI cert` -> Select your CAC card
+    - Right-click `pageant` taskbar icon -> `View Keys & Certs` -> Verify your CAC cert has been added
+  - Right click `pageant` taskbar icon -> `New Session`
+  - In left seetings pane -> `Connection` -> `SSH` -> `Certificate` -> `Set CAPI Cert...` -> Select your CAC cert. Verify the cert has been added by checking that the `Selected thumbprint` field has been populated.
+  - In right pane -> `Authorized Keys file value` -> click `Copy To Clipboard`
+- ON FREEIPA SERVER GUI
+  - `Identity` -> `Users` -> Select the user you wish to use with CAC login -> `SSH public keys` -> `Add` -> Paste in the `Authorized Keys file value` from the PuTTy Configuration
+- ON CLIENT WORKSTATION
+  - Attempt to start a PuTTy session now. You should be prompted for your CAC PIN and authenticate.
