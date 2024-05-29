@@ -1,6 +1,10 @@
-## Browsers
+## Firefox
 
-## Firefox Debug tools / Inspector menu
+### Performance
+
+Open `about:processes` in the URL bar.
+
+### Firefox Debug tools / Inspector menu
 
 1. F12 or right-click -> `Inspect`
 
