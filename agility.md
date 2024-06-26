@@ -15,6 +15,13 @@
 - DataMart: `C:\ProgramData\VersionOne\DatamartLoader\setup.log`
 - General exceptions: `C:\ProgramData\VersionOne\Exceptions`
 
+## License updates
+
+1. RDP onto Agility server.
+2. Go to `C:\inetpub\wwwroot\Agility\bin`.
+3. Replace the `.lic` file.
+4. Restarting server isn't necessary. New license will be used automatically.
+
 ## Upgrades
 
 1. Post notification alerting users that service may be down.
