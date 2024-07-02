@@ -3,6 +3,29 @@
 - **See also**
   - [Gitlab-runner releases](https://gitlab.com/gitlab-org/gitlab-runner/-/releases)
   - [Official docs](https://docs.gitlab.com/runner/install/linux-manually.html)
+ 
+### Troubleshooting
+
+- Issue: GitLab runner on Helm in EKS doesn't register
+  ```
+  Merging configuration from template file "/configmaps/config.template.toml"
+  ERROR: Verifying runner... failed  runner=7Bzg4bMt3 status=GET https://gitlab.example.com:443/api/v4/runners/verify: 401 Unauthorized
+  PANIC: Failed to verify the runner.
+  ```
+  - Solution: Ensure ALL configuration settings for the runner use HTTPS rather than HTTP
+    ```terraform
+    set {
+      name  = "gitlabUrl"
+      value = "https://gitlab.${local.domain_name}"
+    }
+    set {
+      name  = "runners.config"
+      value = <<EOT
+    [[runners]]
+    url = "https://gitlab.${local.domain_name}"
+    EOT
+    }
+    ```
 
 ### Installation
 
