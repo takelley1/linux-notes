@@ -9,7 +9,8 @@
 - Issue: GitLab runner on Helm in EKS doesn't register
   ```
   Merging configuration from template file "/configmaps/config.template.toml"
-  ERROR: Verifying runner... failed  runner=7Bzg4bMt3 status=GET https://gitlab.example.com:443/api/v4/runners/verify: 401 Unauthorized
+  ERROR: Verifying runner... failed
+  runner=7Bzg4bMt3 status=GET https://gitlab.example.com:443/api/v4/runners/verify: 401 Unauthorized
   PANIC: Failed to verify the runner.
   ```
   - Solution: Ensure ALL configuration settings for the runner use HTTPS rather than HTTP
