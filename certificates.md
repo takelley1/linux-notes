@@ -146,6 +146,8 @@ for i in $(seq -w 01 37); do echo TRUSTSTOREPASS|keytool -import -alias "cert-${
   - `certmgr.msc` = Current user certificates.
 <br><br>
 - `Control Panel -> Manage User Certificates -> Personal -> Certificates -> Open Smartcard Login Certificate -> Subject Alternate Name Field` = Get smartcard PIV (16 digit string, ending with `@mil`).
+<br><br>
+- NOTE: After obtaining a new CAC/Smart Card, open `certmgr.msc` and delete all the old CAC certificates.
 
 ---
 ## [Public Key Certificates (1-way SSL Authentication)](https://strongarm.io/blog/how-https-works/)
