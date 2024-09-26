@@ -34,3 +34,10 @@
             exit 1
             fi
     ```
+
+## Upgrades
+
+1. Snapshot GitLab server
+2. Snapshot GitLab database
+3. [View available packages with](https://unix.stackexchange.com/a/151690) `yum --showduplicates list gitlab-ee | less`
+4. Upgrade with `yum install gitlab-ee-16.11.10-ee.0.el7`
