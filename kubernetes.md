@@ -13,6 +13,11 @@
     - [Minikube - Local K8s for learning](https://minikube.sigs.k8s.io/docs/start/)
     - [K0s - Lightweight K8s](https://github.com/k0sproject/k0s)
 
+### Troubleshooting
+
+- `kubectl cp <NAMESPACE>/<POD_NAME>:<PATH_IN_POD> <LOCAL_PATH>`
+- `kubectl cp myscript.sh keycloak-0:/tmp/myscript.sh -n keycloak` = Copy *myscript.sh* into the *keycloak-0* pod.
+- `kubectl run curl-test --image=radial/busyboxplus:curl -i --tty --rm` = Run pod with *curl* and *nslookup* for testing.
 
 ### [Kubectl](https://kubernetes.io/docs/reference/kubectl/overview/)
 
@@ -49,12 +54,6 @@
   - `kubectl delete service/sonarqube-sonarqube -n sonarqube`
 <br><br>
 - `kubectl rollout undo deployment myapp-deployment` = Revert `myapp-deployment` to its previous version.
-
-### Troubleshooting
-
-- `kubectl cp <NAMESPACE>/<POD_NAME>:<PATH_IN_POD> <LOCAL_PATH>`
-- `kubectl cp myscript.sh keycloak-0:/tmp/myscript.sh -n keycloak` = Copy *myscript.sh* into the *keycloak-0* pod.
-- `kubectl run curl-test --image=radial/busyboxplus:curl -i --tty --rm` = Run pod with *curl* and *nslookup* for testing.
 
 ### Example deployment
 
