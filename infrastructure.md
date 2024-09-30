@@ -1,7 +1,9 @@
 ## Infrastructure
 
-Links to docs on how various companies manage their infrastructure.
+Links to docs on how various companies manage their infrastructure, along with other random interesting articles.
 
+- Amazon
+  - [S3](https://www.allthingsdistributed.com/2023/07/building-and-operating-a-pretty-big-storage-system.html)
 - GitHub
   - [Spokes: How GitHub stores its git repos](https://github.blog/2016-09-07-building-resilience-in-spokes/)
 - GitLab
