@@ -92,7 +92,7 @@
     name: nginx-service
   spec:
     selector:
-      app: nginx
+      app: nginx  # All pods with this label will be part of the service.
     ports:
       - protocol: TCP
         port: 80
@@ -115,12 +115,13 @@
 
 ### [Service](https://kubernetes.io/docs/concepts/services-networking/service/)
   - Abstraction layer to make pods accessible.
+  - Matches a set of pods using a label.
 
 #### [ClusterIP Service](https://kubernetes.io/docs/concepts/services-networking/service/#type-clusterip)
   - Makes a service available to pods inside the cluster.
   - Used by internal-only services that communicate with each other inside the cluster.
   - Provides a single IP to access all pods within that service from inside the cluster.
-  ```
+  ```yaml
   ports:
     - protocol: TCP
       port: 80          # The port of the SERVICE - All traffic on this port routes to the `targetPort` of each pod
@@ -133,7 +134,7 @@
   - Useful when paired with an external load balancer that forwards traffic to the nodePort of each node.
   - Cluster IP - An internal-only IP that is only accessible INSIDE the cluster. Used for pod-to-pod traffic.
   - Ports (in service definition file) [StackOverflow explanation](https://stackoverflow.com/questions/49981601/difference-between-targetport-and-port-in-kubernetes-service-definition)
-    ```
+    ```yaml
     ports:
       - protocol: TCP
         port: 80          # The port of the SERVICE - For NodePort services, this can be anything
@@ -145,10 +146,60 @@
     ```
     - Example (in Lens GUI): `80:30432/TCP` - This service is accessible on each node's IP over port 30432. Port 30432 on every node will forward to port 80 on the service. Port 80 of the service will then forward traffic to the `targetPort` of the service pod(s).
 
+#### [LoadBlanacer Service](https://kubernetes.io/docs/concepts/services-networking/service/#loadbalancer)
+  - Provisions an external cloud-managed load balancer to forward traffic to backend pods.
+  - Used with cloud providers.
+  ```yaml
+  kind: Service
+  metadata:
+    name: my-service
+  spec:
+    selector:
+      app.kubernetes.io/name: MyApp
+    ports:
+      - protocol: TCP
+        port: 80
+        targetPort: 9376
+    type: LoadBalancer
+  status:
+    loadBalancer:
+      ingress:
+        - ip: 192.0.2.127  # This is the external IP of the cloud-managed load balancer.
+  ```
+
 ### Endpoint
   - Lists the IPs/ports of all pods belonging to a service.
 
-### Ingress
+### [Ingress](https://kubernetes.io/docs/concepts/services-networking/ingress/)
+  - Acts as an HTTP/HTTPS (layer 7) load balancer in front of your services.
+  - Used with ClusterIP services (NOT NodePort or LoadBalancer).
+  - If you're already using a LoadBalancer service, an Ingress is redundant.
+  - Ideal when you have many ClusterIP services and don't want to use a LoadBalancer service for each of them.
+  ```yaml
+  apiVersion: networking.k8s.io/v1
+  kind: Ingress
+  metadata:
+    name: simple-fanout-example
+  spec:
+    rules:
+    - host: foo.bar.com  # This is the external domain that clients will connect to.
+      http:
+        paths:
+        - path: /foo  # This would handle foo.bar.com/foo and send it to service1
+          pathType: Prefix
+          backend:
+            service:
+              name: service1
+              port:
+                number: 4200
+        - path: /bar  # This would handle foo.bar.com/bar and send it to service2
+          pathType: Prefix
+          backend:
+            service:
+              name: service2
+              port:
+                number: 8080
+  ```
 
 ### [CoreDNS](https://coredns.io/plugins/)
 
