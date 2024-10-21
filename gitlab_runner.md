@@ -1,7 +1,7 @@
 ## GitLab Runner
 
 - **See also**
-  - [Gitlab-runner releases](https://gitlab.com/gitlab-org/gitlab-runner/-/releases)
+  - [Gitlab-runner releases](https://docs.gitlab.com/runner/install/bleeding-edge.html)
   - [Official docs](https://docs.gitlab.com/runner/install/linux-manually.html)
  
 ### Troubleshooting
