@@ -37,7 +37,25 @@
 
 ## Upgrades
 
-1. Snapshot GitLab server
-2. Snapshot GitLab database
-3. [View available packages with](https://unix.stackexchange.com/a/151690) `yum --showduplicates list gitlab-ee | less`
-4. Upgrade with `yum install gitlab-ee-16.11.10-ee.0.el7`
+1. [Read upgrade notes](https://docs.gitlab.com/ee/update/package/)
+1. Post notification to users
+2. Snapshot GitLab server
+3. Snapshot GitLab database
+4. Remove version lock
+   ```
+   dnf versionlock list
+   dnf versionlock delete gitlab-ee
+   ```
+5. [View available packages](https://unix.stackexchange.com/a/151690)
+   ```
+   dnf --showduplicates list gitlab-ee | less
+   ```
+6. Upgrade package
+   ```
+   dnf install gitlab-ee-16.11.10-ee.0.el7
+   ```
+7. Add version lock
+   ```
+   dnf versionlock list
+   dnf versionlock add gitlab-ee
+   ```
