@@ -30,7 +30,7 @@
 4. RDP onto Agility server.
 5. [Download the latest Agility release.](https://go.versionone.com/GetLatestUltimate)
 6. Disable Shibboleth Service Provider.
-   - Edit the file in `C:\opt\shibboleth-sp\etc\shibboleth\shibboleth2.xml` and disable Shibboleth on the RequestMapper paths.
+   - Edit the file in `C:\opt\shibboleth-sp\etc\shibboleth\shibboleth2.xml` and disable Shibboleth on the RequestMapper paths (around line #70).
    - Set `RequireSession` to `false` and then restart Shibboleth (`shibd_Default` in Windows Services):
      ```xml
      <Path name="Agility" authType="shibboleth" requireSession="false">
