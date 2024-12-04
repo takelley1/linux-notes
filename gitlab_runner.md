@@ -13,7 +13,7 @@
   runner=7Bzg4bMt3 status=GET https://gitlab.example.com:443/api/v4/runners/verify: 401 Unauthorized
   PANIC: Failed to verify the runner.
   ```
-  - Solution: Ensure ALL configuration settings for the runner use HTTPS rather than HTTP
+  - Solution: Ensure ALL configuration settings for the runner use HTTPS rather than HTTP (Terraform configuration shown below)
     ```terraform
     set {
       name  = "gitlabUrl"
