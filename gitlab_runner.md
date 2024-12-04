@@ -32,8 +32,8 @@
 
 #### Shell runner
   ```bash
-  wget \
-    https://packages.gitlab.com/runner/gitlab-runner/packages/fedora/33/gitlab-runner-15.1.1-1.x86_64.rpm/download.rpm
+  GITLAB_RUNNER_VERSION="17.1.10"
+  wget --quiet -O ./gitlab-runner_amd64.rpm "https://s3.dualstack.us-east-1.amazonaws.com/gitlab-runner-downloads/v${GITLAB_RUNNER_VERSION}/rpm/gitlab-runner_amd64.rpm"
 
   # Rename.
   mv download.rpm gitlab_runner.rpm
