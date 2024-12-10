@@ -1,5 +1,20 @@
 ## Certificates
 
+### Troubleshooting
+
+- Issue: You get one of these errors when accessing to an HTTPS URL:
+  ```
+  - From curl:
+    * SSL certificate verify result: unable to get local issuer certificate (20), continuing anyway.
+  
+  - From a GitLab runner:
+    tls: failed to verify certificate: x509: certificate signed by unknown authority
+  
+  - From OpenSSL s_client:
+    verify error:num=20:unable to get local issuer certificate
+  ```
+  - Solution: The certificate is missing the full chain. Make sure the certificate includes the server cert and all intermediate certs.
+
 ### [OpenSSL](https://www.openssl.org/docs/)
 
 - **See also**
