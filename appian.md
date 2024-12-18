@@ -1,5 +1,22 @@
 ## [Appian](https://appian.com)
 
+- Server is available at `https://{IP}:8443/suite`
+- Logs: `/usr/local/appian/logs`
+
+## Troubleshooting
+
+- Issue: Data Server hangs when starting
+  - Solution: Check `/etc/hosts`, make sure the server has the correct IP for itself
+- Issue:
+  - Web browser gives a 401 after logging into the web interface
+  - `/usr/local/appian/logs/tomcat-stdOut.log` shows:
+    ```
+    2024-12-18 16:59:03,464 [https-jsse-nio-8443-exec-8] ERROR com.appiancorp.security.cors.CorsFilter - CORS request
+    rejected; invalid request from {IP} to /auth javax.servlet.ServletException: CORS origin denied:
+    {IP}:8443 is not on the allowed list:[] or the request path does not match the allowed paths.
+    ```
+  - Solution: Access the web interface using an FQDN rather than by IP. Do this by editing your client's hosts file.
+
 ### Installation
 
 #### [Prerequisites](https://docs.appian.com/suite/help/22.3/Prerequisites.html)
