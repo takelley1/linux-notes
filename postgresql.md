@@ -10,6 +10,22 @@
 - `psql -h <HOSTNAME_OR_IP> -p <PORT> -U <USERNAME> <DATABSE_NAME>` = Remotely connect to database.
 - `sudo -u postgres psql -d zabbix` = Launch a SQL shell as user postgres and connect to *zabbix* database.
 
+- Create user with database:
+```
+# Pop shell
+sudo -u postgres psql
+# Create user
+CREATE USER username WITH PASSWORD 'password';
+# Create DB
+CREATE DATABASE dbname OWNER username;
+# Give privileges
+GRANT ALL PRIVILEGES ON DATABASE dbname TO username;
+# Quit
+\q
+# Test connection
+psql -U username -d dbname -h localhost
+```
+
 ### psql
 
 - `\l`              = List all databases.
