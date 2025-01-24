@@ -11,9 +11,9 @@ curl \
         -d \
 '{
   "Get_ConfigData": {
-    "@xmlns": "https://gcssmc-dv-int.dev.gcssmc.sde/webservices/rest/MCCONFIGDATA/get_config_data/",
+    "@xmlns": "https://example.com/webservices/rest/MCCONFIGDATA/get_config_data/",
     "RESTHeader": {
-      "xmlns": "https://gcssmc-dv-int.dev.gcssmc.sde/webservices/rest/MCCONFIGDATA/get_config_data/"
+      "xmlns": "https://example.com/webservices/rest/MCCONFIGDATA/get_config_data/"
     },
     "InputParameters": {
       "P_CONFIG_DATA_TYPE_NAME": "TASK_STATUS",
