@@ -36,7 +36,7 @@
      ```xml
      <Path name="Agility" authType="shibboleth" requireSession="false">
      ```
-   - This is done to allow a regular login page to be presented at example.domain.com/Agility so the Analytics Service can install correctly. Otherwise Shibboleth will attempt to redirect to the authentication service and prevent Analytics from installing correctly.
+   - This is done to allow a regular login page to be presented at example.domain.com/Agility so the Analytics Service can install correctly. Otherwise Shibboleth will attempt to redirect to the authentication service and prevent Analytics from installing correctly, you'll get an `Unexpected character encountered` error.
    - Also see [Shibboleth RequestMatter docs](https://shibboleth.atlassian.net/wiki/spaces/SP3/pages/2065335006/HowToRequestMap)
 8. Follow the installation guide PDF in the downloaded release archive.
    - NOTE: Upgrade order is `Agility`, then `DataMart`, then `Analytics`
