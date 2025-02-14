@@ -86,22 +86,22 @@ unzip keycloak-18.0.0.zip
   - users
     - ensure user has an attribute called `employeeNumber` with a value of their PIV, e.g. `1234567551117275@mil`
 - keycloak backend configuration:
-  ```systemd
-    # Example systemd unit for KeyCloak to authenticate users with CACs using mTLS.
-    # In our configuration, KeyCloak reads the UPN from the CAC certificate, then matches that to
-    #   the employeeName attribute of the correct user in order to match a certificate with a user.
+  ```ini
+  # Example systemd unit for KeyCloak to authenticate users with CACs using mTLS.
+  # In our configuration, KeyCloak reads the UPN from the CAC certificate, then matches that to
+  #   the employeeName attribute of the correct user in order to match a certificate with a user.
     
-    [Unit]
-    Description=Keycloak server
-    After=network.target
-    
-    [Service]
-    User=root
-    Group=root
-    ExecStart=/opt/keycloak/keycloak-26.1.0/bin/kc.sh start --https-trust-store-file=/opt/keycloak/certs/trust_store/keycloak_trust_store.jks --https-trust-store-password=supersecretpassword --https-client-auth=request --https-port=443
-    
-    [Install]
-    WantedBy=multi-user.target
+  [Unit]
+  Description=Keycloak server
+  After=network.target
+  
+  [Service]
+  User=root
+  Group=root
+  ExecStart=/opt/keycloak/keycloak-26.1.0/bin/kc.sh start --https-trust-store-file=/opt/keycloak/certs/trust_store/keycloak_trust_store.jks --https-trust-store-password=supersecretpassword --https-client-auth=request --https-port=443
+  
+  [Install]
+  WantedBy=multi-user.target
   ```
   - keycloak must have a root or intermediate CA certificate in its Java keystore that is the *same* certificate that signs the CAC certificates
      - import certs into a keystore:
@@ -125,7 +125,7 @@ unzip keycloak-18.0.0.zip
 - KeyCloak backend configuration:
   - Configure KeyCloak to run in proxy mode and to read the user's certificate from a header. The reverse proxy must populate this header with the user's certificate.
   - Make sure the certificate in the header is `base64`-encoded with NO LINE BREAKS. The entire encoded certificate must be a single line!
-    ```systemd
+    ```ini
     # Example systemd unit for KeyCloak behind an F5 reverse proxy.
     # The reverse proxy authenticates users' CACs, extracts their certificate, then attaches that
     #   certificate to the X-Forwarded-Client-Cert header and forwards the request to KeyCloak.
