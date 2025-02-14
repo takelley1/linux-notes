@@ -83,6 +83,23 @@ unzip keycloak-18.0.0.zip
   - users
     - ensure user has an attribute called `employeeNumber` with a value of their PIV, e.g. `1234567551117275@mil`
 - keycloak backend configuration:
+  ```systemd
+    # Example systemd unit for KeyCloak to authenticate users with CACs using mTLS.
+    # In our configuration, KeyCloak reads the UPN from the CAC certificate, then matches that to
+    #   the employeeName attribute of the correct user in order to match a certificate with a user.
+    
+    [Unit]
+    Description=Keycloak server
+    After=network.target
+    
+    [Service]
+    User=root
+    Group=root
+    ExecStart=/opt/keycloak/keycloak-26.1.0/bin/kc.sh start --https-trust-store-file=/opt/keycloak/certs/trust_store/keycloak_trust_store.jks --https-trust-store-password=supersecretpassword --https-client-auth=request --https-port=443
+    
+    [Install]
+    WantedBy=multi-user.target
+  ```
   - keycloak must have a root or intermediate CA certificate in its Java keystore that is the *same* certificate that signs the CAC certificates
      - import certs into a keystore:
        ```
@@ -112,6 +129,8 @@ unzip keycloak-18.0.0.zip
     # The certificate in the header is base64-encoded on a single line.
     # KeyCloak extracts the certificate in the header, then matches the user using the corresponding
     #   authentication flow (see above).
+    # In our configuration, KeyCloak reads the UPN from the decoded certificate, then matches that to
+    #   the employeeName attribute of the correct user in order to match a certificate with a user.
     
     [Unit]
     Description=Keycloak server
