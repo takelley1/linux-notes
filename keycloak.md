@@ -63,6 +63,9 @@ unzip keycloak-18.0.0.zip
 
 ### Configuring KeyCloak for CAC authentication (also called mTLS or X509 client authentication)
 
+
+<img src="images/keycloak_cac_configuration.png" width="900"/>
+
 - keycloak frontend configuration:
   - authentication tab
     - flows
@@ -96,12 +99,29 @@ unzip keycloak-18.0.0.zip
   - `./opt/keycloak/keycloak-18.0.0/bin/kc.sh build --health-enabled=true`
   - `./opt/keycloak/keycloak-18.0.0/bin/kc.sh show-config`
  
-#### Configuring KeyCloak to use CAC authentication behind a reverse proxy
+#### Configuring KeyCloak for CAC authentication behind a reverse proxy
 
 - See [this link](https://www.keycloak.org/server/reverseproxy) for KeyCloak docs on using reverse proxies.
 - KeyCloak backend configuration:
   - Configure KeyCloak to run in proxy mode and to read the user's certificate from a header. The reverse proxy must populate this header with the user's certificate.
   - Make sure the certificate in the header is `base64`-encoded with NO LINE BREAKS. The entire encoded certificate must be a single line!
-    ```
-
+    ```systemd
+    # Example systemd unit for KeyCloak behind an F5 reverse proxy.
+    # The reverse proxy authenticates users' CACs, extracts their certificate, then attaches that
+    #   certificate to the X-Forwarded-Client-Cert header and forwards the request to KeyCloak.
+    # The certificate in the header is base64-encoded on a single line.
+    # KeyCloak extracts the certificate in the header, then matches the user using the corresponding
+    #   authentication flow (see above).
+    
+    [Unit]
+    Description=Keycloak server
+    After=network.target
+    
+    [Service]
+    User=root
+    Group=root
+    ExecStart=/opt/keycloak/keycloak-26.1.0/bin/kc.sh start --proxy-headers xforwarded --spi-x509cert-lookup-provider=nginx --spi-x509cert-lookup-nginx-ssl-client-cert=X-Forwarded-Client-Cert --https-trust-store-file=/opt/keycloak/certs/trust_store/keycloak_trust_store.jks --https-trust-store-password=supersecretpassword --https-client-auth=request --https-port=443
+    
+    [Install]
+    WantedBy=multi-user.target
     ```
