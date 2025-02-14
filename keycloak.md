@@ -61,7 +61,7 @@ unzip keycloak-18.0.0.zip
       - `../bin/kcadm.sh get users -r devops --limit 1000 | awk -F: '/username/ {gsub(/,|\"/,""); print $2}' > usernames.txt`
       - `for i in $(cat usernames.txt); do ../bin/kcadm.sh add-roles --uusername "${i}" --rolename agility -r devops; echo "${i}"; done`
 
-### Configuring keycloak for CAC authentication (also called mTLS or X509 client authentication)
+### Configuring KeyCloak for CAC authentication (also called mTLS or X509 client authentication)
 
 - keycloak frontend configuration:
   - authentication tab
@@ -71,7 +71,7 @@ unzip keycloak-18.0.0.zip
           - user identity source: suject's alternate name otherName (UPN)
           - canonical DN representation enabled - off
           - enable serial number hexadecimal representation - off
-          - a regular expression to extract user identity - blank
+          - a regular expression to extract user identity - `(.*?)(?:$)`
           - user mapping method - custom attribute mapper
           - a name of user attribute - employeeNumber
           - all other toggles - off
@@ -95,3 +95,13 @@ unzip keycloak-18.0.0.zip
   - Edit `/opt/keycloak/*/conf/keycloak.conf` to add configuration settings.
   - `./opt/keycloak/keycloak-18.0.0/bin/kc.sh build --health-enabled=true`
   - `./opt/keycloak/keycloak-18.0.0/bin/kc.sh show-config`
+ 
+#### Configuring KeyCloak to use CAC authentication behind a reverse proxy
+
+- See [this link](https://www.keycloak.org/server/reverseproxy) for KeyCloak docs on using reverse proxies.
+- KeyCloak backend configuration:
+  - Configure KeyCloak to run in proxy mode and to read the user's certificate from a header. The reverse proxy must populate this header with the user's certificate.
+  - Make sure the certificate in the header is `base64`-encoded with NO LINE BREAKS. The entire encoded certificate must be a single line!
+    ```
+
+    ```
