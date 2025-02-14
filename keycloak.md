@@ -66,6 +66,9 @@ unzip keycloak-18.0.0.zip
 
 <img src="images/keycloak_cac_configuration.png" width="900"/>
 
+
+<img src="images/keycloak_cac_auth_flow.png" width="400"/>
+
 - keycloak frontend configuration:
   - authentication tab
     - flows
