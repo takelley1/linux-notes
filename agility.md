@@ -32,7 +32,7 @@
 6. [Download the latest Agility release.](https://go.versionone.com/GetLatestUltimate)
 7. Disable Shibboleth Service Provider.
    - Edit the file in `C:\opt\shibboleth-sp\etc\shibboleth\shibboleth2.xml` and disable Shibboleth on the RequestMapper paths (around line #70).
-   - Set `RequireSession` to `false` and then restart Shibboleth (`shibd_Default` in Windows Services):
+   - Set `RequireSession` to `false` and then restart Shibboleth (`shibd` in Windows Services):
      ```xml
      <Path name="Agility" authType="shibboleth" requireSession="false">
      ```
@@ -51,9 +51,11 @@
      ```xml
      <Path name="Agility" authType="shibboleth" requireSession="true">
      ```
+10. Run DataMart ETL script.
 10. Test service connectivity.
-<br><br>
-TROUBLESHOOTING
+
+### Troubleshooting
+
 - In the IIS manager, ensure Agility is running under `Application Pools` (start it if stopped)
 - Restart IIS with cmd.exe: `iisreset /restart`
-- Restart Shibboleth daemon shibd.exe from services
+- Restart Shibboleth daemon `shibd.exe` from services
