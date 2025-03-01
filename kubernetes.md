@@ -80,7 +80,7 @@
           - name: nginx # All pods have a single nginx container.
             image: nginx:latest
             ports:
-              - containerPort: 80
+              - containerPort: 80 # This doesn't change the port nginx listens on, it's just for informational purposes.
   
   ```
 - `nginx-service.yml`
@@ -92,11 +92,11 @@
     name: nginx-service
   spec:
     selector:
-      app: nginx  # All pods with this label will be part of the service.
+      app: nginx # All pods with this label will be part of the service.
     ports:
       - protocol: TCP
         port: 80
-        targetPort: 80
+        targetPort: 80 # Traffic hitting any node at its NodePort is forwarded to the the service port, then the targetPort on each pod
     type: NodePort
   ```
 - `kubectl apply -f nginx-deployment.yml`
@@ -111,7 +111,7 @@
 - Maintains the desired number of identical pods. Usually created by a deployment.
 
 #### [StatefulSet](https://kubernetes.io/docs/concepts/workloads/controllers/statefulset/)
-- Alternative to ReplicaSet for deploying stateful pods.
+- Alternative to ReplicaSet for deploying stateful pods (pods that use storage).
 
 ### [Service](https://kubernetes.io/docs/concepts/services-networking/service/)
   - Abstraction layer to make pods accessible.
@@ -131,8 +131,7 @@
 #### [NodePort Service](https://kubernetes.io/docs/concepts/services-networking/service/#type-nodeport)
   - Makes a service available outside the cluster on every node at a specific port.
   - Nodes that don't have the service's pod(s) scheduled on them will forward any traffic on that port to the node(s) with the pod(s) scheduled on them.
-  - Useful when paired with an external load balancer that forwards traffic to the nodePort of each node.
-  - Cluster IP - An internal-only IP that is only accessible INSIDE the cluster. Used for pod-to-pod traffic.
+  - Automatically provisions a ClusterIP service.
   - Ports (in service definition file) [StackOverflow explanation](https://stackoverflow.com/questions/49981601/difference-between-targetport-and-port-in-kubernetes-service-definition)
     ```yaml
     ports:
@@ -146,25 +145,28 @@
     ```
     - Example (in Lens GUI): `80:30432/TCP` - This service is accessible on each node's IP over port 30432. Port 30432 on every node will forward to port 80 on the service. Port 80 of the service will then forward traffic to the `targetPort` of the service pod(s).
 
-#### [LoadBlanacer Service](https://kubernetes.io/docs/concepts/services-networking/service/#loadbalancer)
+#### [LoadBalancer Service](https://kubernetes.io/docs/concepts/services-networking/service/#loadbalancer)
   - Provisions an external cloud-managed load balancer to forward traffic to backend pods.
   - Used with cloud providers.
+  - Automatically provisions a NodePort and a ClusterIP service.
   ```yaml
   kind: Service
   metadata:
     name: my-service
   spec:
     selector:
-      app.kubernetes.io/name: MyApp
+      app: MyApp
     ports:
       - protocol: TCP
-        port: 80
-        targetPort: 9376
+        port: 80 # The service's port on the load balancer.
+        targetPort: 9376 # Forwards traffic to this port on pods matching the selector.
     type: LoadBalancer
-  status:
-    loadBalancer:
-      ingress:
-        - ip: 192.0.2.127  # This is the external IP of the cloud-managed load balancer.
+
+#1. The request hits the external load balancer at X.X.X.X:80
+#2. The load balancer forwards it to a NodePort (automatically created) on one of your cluster nodes
+#3. Kubernetes routes the traffic to the Service
+#4. The Service sends the traffic to port 9376 on one of the pods labeled with app: MyApp
+#5: Your application running in the pod receives the request and processes it
   ```
 
 ### Endpoint
@@ -175,6 +177,7 @@
   - Used with ClusterIP services (NOT NodePort or LoadBalancer).
   - If you're already using a LoadBalancer service, an Ingress is redundant.
   - Ideal when you have many ClusterIP services and don't want to use a LoadBalancer service for each of them.
+  - Requires an IngressController like Nginx
   ```yaml
   apiVersion: networking.k8s.io/v1
   kind: Ingress
@@ -182,10 +185,10 @@
     name: simple-fanout-example
   spec:
     rules:
-    - host: foo.bar.com  # This is the external domain that clients will connect to.
+    - host: foo.bar.com # This is the external domain that clients will connect to.
       http:
         paths:
-        - path: /foo  # This would handle foo.bar.com/foo and send it to service1
+        - path: /foo # This would handle foo.bar.com/foo and send it to service1
           pathType: Prefix
           backend:
             service:
@@ -215,14 +218,14 @@ kubectl edit configmap coredns -n kube-system
 ```yaml
   Corefile: |
     .:53 {
-        log # < --- Log requests to stdout
+        log # Log requests to stdout
         errors
         health
         kubernetes cluster.local in-addr.arpa ip6.arpa {
           pods insecure
           fallthrough in-addr.arpa ip6.arpa
         }
-        forward . 10.128.0.2 # < --- Use 10.128.0.2 as upstream DNS
+        forward . 10.128.0.2 # Use 10.128.0.2 as upstream DNS
         prometheus :9153
         cache 30
         loop
