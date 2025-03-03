@@ -113,6 +113,9 @@
 #### [StatefulSet](https://kubernetes.io/docs/concepts/workloads/controllers/statefulset/)
 - Alternative to ReplicaSet for deploying stateful pods (pods that use storage).
 
+#### [DaemonSet](https://kubernetes.io/docs/concepts/workloads/controllers/daemonset/)
+- Ensures a single pod is running on all nodes of a given type. Useful for collecting node metrics.
+
 ### [Service](https://kubernetes.io/docs/concepts/services-networking/service/)
   - Abstraction layer to make pods accessible.
   - Matches a set of pods using a label.
