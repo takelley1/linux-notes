@@ -1,6 +1,13 @@
 ## [AWS](https://docs.aws.amazon.com/)
 
-## [EC2]
+## ALB (Application Load Balancer)
+
+- Issue: Hitting the public URL of a service behind an ALB returns `502 Bad Gateway`
+  - Cause: This is caused by a failing health check for all the target groups behind the ALB.
+- Issue: Service behind ALB complains of an invalid HTTP request.
+  - Cause: This is caused by the ALB using HTTP/2 and the service only supporting HTTP/1.
+
+## EC2
 
 ### [Grow a volume](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/recognize-expanded-volume-linux.html)
 
