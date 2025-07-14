@@ -26,8 +26,9 @@ l","image":"ubuntu","command":["nsenter","--target=1","--mount","--uts","--ipc",
 
 ### Secrets
 
-Create an encrypted `secrets.yml` file (similar to Ansible Vault).
-```
+- Create an encrypted `secrets.yml` file (similar to Ansible Vault).
+  - The secret is encrypted when stored in the Git repo and automatically decrypted by the cluster when applied.
+```bash
 kubectl create secret generic mcp-server-agility \
   --namespace=mcp-server-agility \
   --from-literal=AGILITY_ACCESS_TOKEN=access_token_here \
@@ -38,7 +39,7 @@ kubectl create secret generic mcp-server-agility \
   --format yaml > sealedsecret.yml
 ```
 `sealedsecret.yml`
-```
+```yaml
 ---
 apiVersion: bitnami.com/v1alpha1
 kind: SealedSecret
