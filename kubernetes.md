@@ -24,6 +24,39 @@ kubectl run debug-shell --rm -it --restart=Never --image=ubuntu --overrides='{"a
 l","image":"ubuntu","command":["nsenter","--target=1","--mount","--uts","--ipc","--net","--pid"],"securityContext":{"privileged":true},"stdin":true,"tty":true}]}}'`
 ```
 
+### Secrets
+
+Create an encrypted `secrets.yml` file (similar to Ansible Vault).
+```
+kubectl create secret generic mcp-server-agility \
+  --namespace=mcp-server-agility \
+  --from-literal=AGILITY_ACCESS_TOKEN=access_token_here \
+  --from-literal=AGILITY_API_URL=api_url_here \
+  -o json | kubeseal \
+  --controller-name=sealed-secrets-controller \
+  --controller-namespace=kube-system \
+  --format yaml > sealedsecret.yml
+```
+`sealedsecret.yml`
+```
+---
+apiVersion: bitnami.com/v1alpha1
+kind: SealedSecret
+metadata:
+  creationTimestamp: null
+  name: mcp-server-agility
+  namespace: mcp-server-agility
+spec:
+  encryptedData:
+    AGILITY_ACCESS_TOKEN: AgB1y4E/cYgSdbDvl5aMfIX/ocflPTsT1JQZrXTAqkBSK8cSDeq7i3KH899uzNZQsHDWl...
+    AGILITY_API_URL: AgAwWVvpCcaU1tPHdgAoasdDeyVENglHfdzzjKjoRzsFP+megc5pDL9NhMY4kotbwgeErzRMIB...
+  template:
+    metadata:
+      creationTimestamp: null
+      name: mcp-server-agility
+      namespace: mcp-server-agility
+    type: Opaque
+```
 
 ### [Kubectl](https://kubernetes.io/docs/reference/kubectl/overview/)
 
