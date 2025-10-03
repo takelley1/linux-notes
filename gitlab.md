@@ -37,7 +37,7 @@
 
 ## Upgrades
 
-1. [Read upgrade notes](https://docs.gitlab.com/ee/update/package/)
+1. [Read upgrade notes](https://docs.gitlab.com/ee/update/package/) and [Upgrade guide](https://docs.gitlab.com/update/upgrade/)
 1. Post notification to users
 2. Snapshot GitLab server
 3. Snapshot GitLab database
