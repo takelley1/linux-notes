@@ -247,6 +247,8 @@ spec:
               port:
                 number: 8080
   ```
+### Operator
+  - Manages the desired state of custom resources
 
 ### [CoreDNS](https://coredns.io/plugins/)
 
