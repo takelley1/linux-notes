@@ -25,41 +25,6 @@ kubectl run debug-shell --rm -it --restart=Never --image=ubuntu --overrides='{"a
 l","image":"ubuntu","command":["nsenter","--target=1","--mount","--uts","--ipc","--net","--pid"],"securityContext":{"privileged":true},"stdin":true,"tty":true}]}}'`
 ```
 
-### Secrets
-
-- Create an encrypted `secrets.yml` file (similar to Ansible Vault).
-  - The secret is encrypted when stored in the Git repo and automatically decrypted by the cluster when applied.
-```bash
-kubectl create secret generic mcp-server-agility \
-  --namespace=mcp-server-agility \
-  --from-literal=AGILITY_ACCESS_TOKEN=access_token_here \
-  --from-literal=AGILITY_API_URL=api_url_here \
-  -o json | kubeseal \
-  --controller-name=sealed-secrets-controller \
-  --controller-namespace=kube-system \
-  --format yaml > sealedsecret.yml
-```
-`sealedsecret.yml`
-```yaml
----
-apiVersion: bitnami.com/v1alpha1
-kind: SealedSecret
-metadata:
-  creationTimestamp: null
-  name: mcp-server-agility
-  namespace: mcp-server-agility
-spec:
-  encryptedData:
-    AGILITY_ACCESS_TOKEN: AgB1y4E/cYgSdbDvl5aMfIX/ocflPTsT1JQZrXTAqkBSK8cSDeq7i3KH899uzNZQsHDWl...
-    AGILITY_API_URL: AgAwWVvpCcaU1tPHdgAoasdDeyVENglHfdzzjKjoRzsFP+megc5pDL9NhMY4kotbwgeErzRMIB...
-  template:
-    metadata:
-      creationTimestamp: null
-      name: mcp-server-agility
-      namespace: mcp-server-agility
-    type: Opaque
-```
-
 ### [Kubectl](https://kubernetes.io/docs/reference/kubectl/overview/)
 
 - **See also:**
@@ -278,4 +243,146 @@ kubectl edit configmap coredns -n kube-system
         reload
         loadbalance
     }
+```
+
+### Secrets
+
+- Create an encrypted `secrets.yml` file (similar to Ansible Vault).
+  - The secret is encrypted when stored in the Git repo and automatically decrypted by the cluster when applied.
+```bash
+kubectl create secret generic mcp-server-agility \
+  --namespace=mcp-server-agility \
+  --from-literal=AGILITY_ACCESS_TOKEN=access_token_here \
+  --from-literal=AGILITY_API_URL=api_url_here \
+  -o json | kubeseal \
+  --controller-name=sealed-secrets-controller \
+  --controller-namespace=kube-system \
+  --format yaml > sealedsecret.yml
+```
+`sealedsecret.yml`
+```yaml
+---
+apiVersion: bitnami.com/v1alpha1
+kind: SealedSecret
+metadata:
+  creationTimestamp: null
+  name: mcp-server-agility
+  namespace: mcp-server-agility
+spec:
+  encryptedData:
+    AGILITY_ACCESS_TOKEN: AgB1y4E/cYgSdbDvl5aMfIX/ocflPTsT1JQZrXTAqkBSK8cSDeq7i3KH899uzNZQsHDWl...
+    AGILITY_API_URL: AgAwWVvpCcaU1tPHdgAoasdDeyVENglHfdzzjKjoRzsFP+megc5pDL9NhMY4kotbwgeErzRMIB...
+  template:
+    metadata:
+      creationTimestamp: null
+      name: mcp-server-agility
+      namespace: mcp-server-agility
+    type: Opaque
+```
+
+### Security
+
+#### Pod Security
+
+##### Pod Security Standards (PSS)
+- Predefined security profiles applied to a namespace. Prevents pods from running that fail the applied standard.
+  - Privileged — No restrictions. Full host access, all capabilities allowed. Intended for system-level components (CNI, CSI, monitoring agents).
+  - Baseline — Blocks known privilege-escalation paths but still allows typical app workloads. For example, it disallows privileged: true or hostPID, but doesn’t require runAsNonRoot.
+  - Restricted — Enforces strict hardening and best practices. Requires non-root users, drops all Linux capabilities, prohibits hostPath and host namespaces.
+
+##### Pod Security Admission (PSA)
+- Enforces the Pod Security Standards on pods before they get created.
+- Operates in enforce, audit, and warn modes.
+```bash
+kubectl label namespace dev \
+  pod-security.kubernetes.io/enforce=baseline \
+  pod-security.kubernetes.io/warn=restricted \
+  pod-security.kubernetes.io/audit=restricted
+```
+- This means: block any pod that violates the baseline rules, log or warn about violations against the stricter restricted rules.
+
+##### Pod Security Context (PSC)
+- Added to the manifest to control how a pod runs (e.g. non-root, read-only FS)
+```yaml
+spec:
+  securityContext:
+    runAsUser: 1000
+    runAsGroup: 3000
+    fsGroup: 2000
+  containers:
+  - image: myapp:latest
+    name: app
+```
+
+#### Network Security
+
+##### Network Policies
+- Namespace-scoped; only applies to Pods within the same namespace.  
+- Can reference other namespaces using `namespaceSelector` but can’t control them directly.  
+- Multiple policies can apply to one Pod; the union of all rules defines allowed traffic.  
+- Once any policy selects a Pod, all other traffic is denied by default.  
+- Requires a CNI plugin that supports NetworkPolicy (Calico, Cilium, etc.).  
+- Operates only at L3/L4 (IP, port, protocol).  
+- Make sure to allow DNS egress (UDP/TCP 53) if outbound traffic is restricted.  
+```yaml
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+# Applies this policy only to Pods in the "web" namespace
+# that have the label app=nginx.
+metadata:
+  name: web-nginx
+  namespace: web
+spec:
+  podSelector:
+    matchLabels:
+      app: nginx
+  policyTypes: ["Ingress", "Egress"]
+
+  # Ingress rules: what traffic is allowed *to* the nginx Pods.
+  # Allow ingress only from ingress controller Pods
+  ingress:
+  - from:
+    - namespaceSelector:
+        matchLabels:
+          kubernetes.io/metadata.name: ingress-nginx   # controller namespace
+      podSelector:
+        matchLabels:
+          app.kubernetes.io/name: ingress-nginx        # controller Pods
+    ports:
+    - protocol: TCP
+      port: 80
+
+  # Egress rules: what traffic is allowed *from* the nginx Pods.
+  # Egress: only DB and DNS
+  egress:
+  - to:
+    - namespaceSelector:
+        matchLabels:
+          kubernetes.io/metadata.name: data
+      podSelector:
+        matchLabels:
+          app: db
+    ports:
+    - protocol: TCP
+      port: 5432
+  - to:
+    - namespaceSelector:
+        matchLabels:
+          kubernetes.io/metadata.name: kube-system
+      podSelector:
+        matchLabels:
+          k8s-app: kube-dns
+    ports:
+    - protocol: UDP
+      port: 53
+  - to:
+    - namespaceSelector:
+        matchLabels:
+          kubernetes.io/metadata.name: kube-system
+      podSelector:
+        matchLabels:
+          k8s-app: kube-dns
+    ports:
+    - protocol: TCP
+      port: 53
 ```
