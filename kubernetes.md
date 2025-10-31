@@ -282,6 +282,128 @@ spec:
 
 ### Security
 
+Hardened deployment spec following best-practices:
+```yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: web
+  namespace: app
+  labels:
+    app: web
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: web
+  template:
+    metadata:
+      labels:
+        app: web
+      annotations:
+        # Enforces the default AppArmor profile for additional syscall restrictions.
+        container.apparmor.security.beta.kubernetes.io/app: runtime/default
+    spec:
+      # Disable automatic mounting of the ServiceAccount token since this Pod
+      # doesn’t need to talk to the Kubernetes API.
+      automountServiceAccountToken: false
+
+      # Pod-level security context — applies to all containers.
+      securityContext:
+        # Enables the default seccomp profile (recommended).
+        # Blocks unsafe syscalls and aligns with the “restricted” PSS profile.
+        seccompProfile:
+          type: RuntimeDefault
+
+        # Ensures the Pod never runs as UID 0 (root).
+        runAsNonRoot: true
+
+        # Forces all container processes to run as user 1000 and group 1000.
+        runAsUser: 1000
+        runAsGroup: 1000
+
+        # Files written to mounted volumes are owned by this group.
+        fsGroup: 2000
+
+      # Temporary writable volumes for app data — avoid writing to root FS.
+      volumes:
+      - name: tmp
+        emptyDir:
+          medium: Memory
+          sizeLimit: 64Mi
+      - name: cache
+        emptyDir: {}
+
+      containers:
+      - name: app
+        # Always pin images by digest to prevent supply-chain drift.
+        image: ghcr.io/example/web@sha256:<SHA256_STRING>
+        imagePullPolicy: IfNotPresent
+
+        # Container-level security context — overrides or adds to Pod-level.
+        securityContext:
+          # Prevents privilege escalation (e.g., via setuid binaries).
+          allowPrivilegeEscalation: false
+
+          # Makes the root filesystem read-only.
+          # Forces the app to use mounted volumes for writes.
+          readOnlyRootFilesystem: true
+
+          # Explicitly denies privileged mode.
+          privileged: false
+
+          # Drops all Linux capabilities (fine-grained kernel privileges).
+          # Start with a clean slate instead of keeping defaults like NET_RAW.
+          capabilities:
+            drop: ["ALL"]
+
+        # Mount limited writable paths only where needed.
+        volumeMounts:
+        - name: tmp
+          mountPath: /tmp
+        - name: cache
+          mountPath: /var/cache/app
+
+        # Expose HTTP port for the app.
+        ports:
+        - containerPort: 8080
+
+        # Probes for self-healing and load balancing.
+        readinessProbe:
+          httpGet:
+            path: /health/ready
+            port: 8080
+          initialDelaySeconds: 5
+          periodSeconds: 10
+          timeoutSeconds: 2
+          failureThreshold: 3
+        livenessProbe:
+          httpGet:
+            path: /health/live
+            port: 8080
+          initialDelaySeconds: 15
+          periodSeconds: 20
+          timeoutSeconds: 2
+          failureThreshold: 3
+
+        # Resource requests/limits prevent DoS and noisy-neighbor issues.
+        resources:
+          requests:
+            cpu: "100m"
+            memory: "128Mi"
+          limits:
+            cpu: "500m"
+            memory: "256Mi"
+
+        # Avoid putting secrets in environment variables when possible.
+        env:
+        - name: APP_ENV
+          value: "prod"
+
+      # Graceful shutdown period before killing Pods.
+      terminationGracePeriodSeconds: 30
+```
+
 #### Pod Security
 
 ##### Pod Security Standards (PSS)
@@ -302,7 +424,10 @@ kubectl label namespace dev \
 - This means: block any pod that violates the baseline rules, log or warn about violations against the stricter restricted rules.
 
 ##### Pod Security Context (PSC)
-- Added to the manifest to control how a pod runs (e.g. non-root, read-only FS)
+- Configures how a Pod or its containers run (e.g., non-root, read-only FS, dropped capabilities).
+- Can be defined at two levels:
+  - Pod-level — applies defaults to all containers in the Pod.
+  - Container-level — overrides Pod-level settings for that container.
 ```yaml
 spec:
   securityContext:
@@ -310,8 +435,11 @@ spec:
     runAsGroup: 3000
     fsGroup: 2000
   containers:
-  - image: myapp:latest
-    name: app
+  - name: app
+    image: myapp:latest
+    securityContext:
+      readOnlyRootFilesystem: true
+      allowPrivilegeEscalation: false
 ```
 
 #### Network Security
@@ -386,3 +514,6 @@ spec:
     - protocol: TCP
       port: 53
 ```
+
+#### API Security
+
