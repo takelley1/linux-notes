@@ -1,10 +1,14 @@
-## [Kubernetes](https://kubernetes.io/docs/home/)
+# [Kubernetes](https://kubernetes.io/docs/home/)
 
 - **See also:**
   - Tools
     - [Lens - K8s IDE](https://k8slens.dev/)
     - [Kubectl - Command-line interaction with k8s API](https://kubernetes.io/docs/reference/kubectl/overview/)
     - [Helm - K8s package manager](https://helm.sh/docs/)
+    - k9s - TUI replacement for kubectl
+    - kubescape - Scan cluster security posture
+    - popeye - Lint cluster for potential issues
+    - kubent - List deprecated APIs before upgrading the cluster
   - Installation methods
     - [Kubeadm - Official tool for cluster creation](https://kubernetes.io/docs/reference/setup-tools/kubeadm/)
     - [Kubespray - Create K8s cluster with Ansible](https://github.com/kubernetes-sigs/kubespray)
@@ -13,7 +17,7 @@
     - [Minikube - Local K8s for learning](https://minikube.sigs.k8s.io/docs/start/)
     - [K0s - Lightweight K8s](https://github.com/k0sproject/k0s)
 
-### Troubleshooting
+## Troubleshooting
 
 - `kubectl cp <NAMESPACE>/<POD_NAME>:<PATH_IN_POD> <LOCAL_PATH>`
 - `kubectl cp myscript.sh keycloak-0:/tmp/myscript.sh -n keycloak` = Copy *myscript.sh* into the *keycloak-0* pod.
@@ -25,7 +29,7 @@ kubectl run debug-shell --rm -it --restart=Never --image=ubuntu --overrides='{"a
 l","image":"ubuntu","command":["nsenter","--target=1","--mount","--uts","--ipc","--net","--pid"],"securityContext":{"privileged":true},"stdin":true,"tty":true}]}}'`
 ```
 
-### [Kubectl](https://kubernetes.io/docs/reference/kubectl/overview/)
+## [Kubectl](https://kubernetes.io/docs/reference/kubectl/overview/)
 
 - **See also:**
   - [Kubectl cheat sheet](https://kubernetes.io/docs/reference/kubectl/cheatsheet/)
@@ -61,11 +65,10 @@ l","image":"ubuntu","command":["nsenter","--target=1","--mount","--uts","--ipc",
 <br><br>
 - `kubectl rollout undo deployment myapp-deployment` = Revert `myapp-deployment` to its previous version.
 
-### Example deployment
+## Core Concepts
 
-- For ChatGPT: `Write an example nginx deployment for kubernetes`
-- Creates a ReplicaSet of 3 identical Nginx pods:
-- `nginx-deployment.yml`
+### [Deployment](https://kubernetes.io/docs/concepts/workloads/controllers/deployment/)
+- Creates a ReplicaSet declaratively.
   ```yaml
   ---
   apiVersion: apps/v1
@@ -89,7 +92,18 @@ l","image":"ubuntu","command":["nsenter","--target=1","--mount","--uts","--ipc",
               - containerPort: 80 # This doesn't change the port nginx listens on, it's just for informational purposes.
   
   ```
-- `nginx-service.yml`
+### [ReplicaSet](https://kubernetes.io/docs/concepts/workloads/controllers/replicaset/)
+- Maintains the desired number of identical pods. Usually created by a deployment.
+
+### [StatefulSet](https://kubernetes.io/docs/concepts/workloads/controllers/statefulset/)
+- Alternative to ReplicaSet for deploying stateful pods (pods that use storage).
+
+### [DaemonSet](https://kubernetes.io/docs/concepts/workloads/controllers/daemonset/)
+- Ensures a single pod is running on all nodes of a given type. Useful for collecting node metrics.
+
+### [Service](https://kubernetes.io/docs/concepts/services-networking/service/)
+  - Abstraction layer to make pods accessible.
+  - Matches a set of Pods using a label.
   ```yaml
   ---
   apiVersion: v1
@@ -105,26 +119,8 @@ l","image":"ubuntu","command":["nsenter","--target=1","--mount","--uts","--ipc",
         targetPort: 80 # Traffic hitting any node at its NodePort is forwarded to the the service port, then the targetPort on each pod
     type: NodePort
   ```
-- `kubectl apply -f nginx-deployment.yml`
-- `kubectl apply -f nginx-service.yml`
-- `kubectl delete -f nginx-deployment.yml`
-- `kubectl delete -f nginx-service.yml`
 
-### [Deployment](https://kubernetes.io/docs/concepts/workloads/controllers/deployment/)
-- Creates a ReplicaSet declaratively.
-
-#### [ReplicaSet](https://kubernetes.io/docs/concepts/workloads/controllers/replicaset/)
-- Maintains the desired number of identical pods. Usually created by a deployment.
-
-#### [StatefulSet](https://kubernetes.io/docs/concepts/workloads/controllers/statefulset/)
-- Alternative to ReplicaSet for deploying stateful pods (pods that use storage).
-
-#### [DaemonSet](https://kubernetes.io/docs/concepts/workloads/controllers/daemonset/)
-- Ensures a single pod is running on all nodes of a given type. Useful for collecting node metrics.
-
-### [Service](https://kubernetes.io/docs/concepts/services-networking/service/)
-  - Abstraction layer to make pods accessible.
-  - Matches a set of pods using a label.
+### Services
 
 #### [ClusterIP Service](https://kubernetes.io/docs/concepts/services-networking/service/#type-clusterip)
   - Makes a service available to pods inside the cluster.
@@ -178,10 +174,7 @@ l","image":"ubuntu","command":["nsenter","--target=1","--mount","--uts","--ipc",
 #5: Your application running in the pod receives the request and processes it
   ```
 
-### Endpoint
-  - Lists the IPs/ports of all pods belonging to a service.
-
-### [Ingress](https://kubernetes.io/docs/concepts/services-networking/ingress/)
+#### [Ingress](https://kubernetes.io/docs/concepts/services-networking/ingress/)
   - Acts as an HTTP/HTTPS (layer 7) load balancer in front of your services.
   - Used with ClusterIP services (NOT NodePort or LoadBalancer).
   - If you're already using a LoadBalancer service, an Ingress is redundant.
@@ -212,6 +205,13 @@ l","image":"ubuntu","command":["nsenter","--target=1","--mount","--uts","--ipc",
               port:
                 number: 8080
   ```
+
+#### Gateway API
+  - Replaces Ingress
+
+### Endpoint
+  - Lists the IPs/ports of all pods belonging to a service.
+
 ### Operator
   - Manages the desired state of custom resources
 
@@ -280,7 +280,7 @@ spec:
     type: Opaque
 ```
 
-### Security
+## Security
 
 Hardened deployment spec following best-practices:
 ```yaml
@@ -404,15 +404,15 @@ spec:
       terminationGracePeriodSeconds: 30
 ```
 
-#### Pod Security
+### Pod Security
 
-##### Pod Security Standards (PSS)
+#### Pod Security Standards (PSS)
 - Predefined security profiles applied to a namespace. Prevents pods from running that fail the applied standard.
   - Privileged — No restrictions. Full host access, all capabilities allowed. Intended for system-level components (CNI, CSI, monitoring agents).
   - Baseline — Blocks known privilege-escalation paths but still allows typical app workloads. For example, it disallows privileged: true or hostPID, but doesn’t require runAsNonRoot.
   - Restricted — Enforces strict hardening and best practices. Requires non-root users, drops all Linux capabilities, prohibits hostPath and host namespaces.
 
-##### Pod Security Admission (PSA)
+#### Pod Security Admission (PSA)
 - Enforces the Pod Security Standards on pods before they get created.
 - Operates in enforce, audit, and warn modes.
 ```bash
@@ -423,7 +423,7 @@ kubectl label namespace dev \
 ```
 - This means: block any pod that violates the baseline rules, log or warn about violations against the stricter restricted rules.
 
-##### Pod Security Context (PSC)
+#### Pod Security Context (PSC)
 - Configures how a Pod or its containers run (e.g., non-root, read-only FS, dropped capabilities).
 - Can be defined at two levels:
   - Pod-level — applies defaults to all containers in the Pod.
@@ -442,9 +442,9 @@ spec:
       allowPrivilegeEscalation: false
 ```
 
-#### Network Security
+### Network Security
 
-##### Network Policies
+#### Network Policies
 - Namespace-scoped; only applies to Pods within the same namespace.  
 - Can reference other namespaces using `namespaceSelector` but can’t control them directly.  
 - Multiple policies can apply to one Pod; the union of all rules defines allowed traffic.  
@@ -515,5 +515,15 @@ spec:
       port: 53
 ```
 
-#### API Security
+### API Security
 
+#### Kyverno
+- Extends the baseline Pod Security Admission with more flexible controls on any resource, not just Pods.
+
+## Service Meshes
+
+### Istio
+
+## Distributions
+
+### K0s
