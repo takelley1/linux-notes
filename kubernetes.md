@@ -1,6 +1,8 @@
 # [Kubernetes](https://kubernetes.io/docs/home/)
 
 - **See also:**
+  - Learning
+    - [k8s.guide](https://www.k8s.guide/)
   - Tools
     - [Lens - K8s IDE](https://k8slens.dev/)
     - [Kubectl - Command-line interaction with k8s API](https://kubernetes.io/docs/reference/kubectl/overview/)
