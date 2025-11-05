@@ -215,7 +215,8 @@ l","image":"ubuntu","command":["nsenter","--target=1","--mount","--uts","--ipc",
 
 #### Gateway API
   - Replaces Ingress.
-  - Traffic flow: Client -> External HAProxy (running outside the cluster) -> Sends traffic to a node running a NodePort Gateway Controller Service -> Decides which Service(s) to send traffic to based on its HTTPRoute rules
+  - Traffic flow: Client -> External HAProxy (running outside the cluster) -> Sends traffic to a node running a NodePort Gateway Controller Service -> Decides which Service(s) to send traffic to based on its HTTPRoute rules.
+  - Istio can also be used as a gateway controller.
 
 Example setup with HAProxy VM -> Nginx Gateway
 ```yaml
@@ -697,14 +698,3 @@ roleRef:
 - Kubernetes creates a `default` ServiceAccount in each namespace with minimal permissions.
 - All pods without a ServiceAccount specified use `default`.
 - Custom ServiceAccounts should be created per workload that needs API access, each with its own least-privilege RBAC bindings.
-
-#### Kyverno
-- Extends the baseline Pod Security Admission with more flexible controls on any resource, not just Pods.
-
-## Service Meshes
-
-### Istio
-
-## Distributions
-
-### K0s
