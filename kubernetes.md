@@ -18,6 +18,11 @@
   - Distributions
     - [Minikube - Local K8s for learning](https://minikube.sigs.k8s.io/docs/start/)
     - [K0s - Lightweight K8s](https://github.com/k0sproject/k0s)
+  - Troubleshooting
+    - DNS
+      - [k8s DNS](https://kubernetes.io/docs/concepts/services-networking/dns-pod-service/)
+      - [DNS troubleshooting on EKS](https://aws.amazon.com/premiumsupport/knowledge-center/eks-dns-failure/)
+      - [Debugging k8s DNS resolution](https://kubernetes.io/docs/tasks/administer-cluster/dns-debugging-resolution/)
 
 ## Troubleshooting
 
@@ -181,7 +186,7 @@ l","image":"ubuntu","command":["nsenter","--target=1","--mount","--uts","--ipc",
   - Used with ClusterIP services (NOT NodePort or LoadBalancer).
   - If you're already using a LoadBalancer service, an Ingress is redundant.
   - Ideal when you have many ClusterIP services and don't want to use a LoadBalancer service for each of them.
-  - Requires an IngressController like Nginx
+  - Requires an IngressController like Nginx.
   ```yaml
   apiVersion: networking.k8s.io/v1
   kind: Ingress
@@ -209,21 +214,151 @@ l","image":"ubuntu","command":["nsenter","--target=1","--mount","--uts","--ipc",
   ```
 
 #### Gateway API
-  - Replaces Ingress
+  - Replaces Ingress.
+  - Traffic flow: Client -> External HAProxy (running outside the cluster) -> Sends traffic to a node running a NodePort Gateway Controller Service -> Decides which Service(s) to send traffic to based on its HTTPRoute rules
+
+Example setup with HAProxy VM -> Nginx Gateway
+```yaml
+---
+# NGINX gateway dataplane
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nginx-gateway
+  namespace: gateway-system
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: nginx-gateway
+  template:
+    metadata:
+      labels:
+        app: nginx-gateway
+    spec:
+      containers:
+        - name: nginx
+          image: ghcr.io/nginxinc/nginx-unprivileged:1.27
+          ports:
+            - containerPort: 8443
+---
+# NodePort Service that HAProxy targets
+apiVersion: v1
+kind: Service
+metadata:
+  name: gateway-nodeport
+  namespace: gateway-system
+spec:
+  type: NodePort
+  selector:
+    app: nginx-gateway
+  ports:
+    - name: https
+      port: 443
+      targetPort: 8443
+      nodePort: 30443
+---
+# Gateway API: NGINX GatewayClass
+apiVersion: gateway.networking.k8s.io/v1
+kind: GatewayClass
+metadata:
+  name: nginx
+spec:
+  controllerName: gateway.nginx.org/nginx-gateway-controller
+---
+# Gateway instance
+apiVersion: gateway.networking.k8s.io/v1
+kind: Gateway
+metadata:
+  name: public-gw
+  namespace: gateway-system
+spec:
+  gatewayClassName: nginx
+  listeners:
+    - name: https
+      protocol: HTTPS
+      port: 443
+      tls:
+        mode: Terminate
+        certificateRefs:
+          - kind: Secret
+            name: example-tls
+```
+HAProxy config (uses TCP mode so HTTPS is terminated by Nginx):
+```
+# /etc/haproxy/haproxy.cfg
+backend be_https
+  balance roundrobin
+  option tcp-check
+  server node1 10.0.0.11:30443 check
+  server node2 10.0.0.12:30443 check
+  server node3 10.0.0.13:30443 check
+```
+Example target service with HTTP routes
+```yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: echo
+  namespace: app
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: echo
+  template:
+    metadata:
+      labels:
+        app: echo
+    spec:
+      containers:
+        - name: echo
+          image: ghcr.io/inanimate/echo-server:latest
+          ports:
+            - containerPort: 3000
+---
+apiVersion: v1
+kind: Service                 # The target service runs as a ClusterIP service
+metadata:
+  name: echo
+  namespace: app
+spec:
+  selector:
+    app: echo
+  ports:
+    - port: 80
+      targetPort: 3000
+---
+# --- HTTPRoute that binds to the Gateway and routes to the app ---
+apiVersion: gateway.networking.k8s.io/v1
+kind: HTTPRoute
+metadata:
+  name: echo-route
+  namespace: app
+spec:
+  parentRefs:
+    - name: public-gw           # Gateway name from earlier
+      namespace: gateway-system # must match gateway namespace
+  hostnames:
+    - echo.example.com          # Incoming host header to match
+  rules:
+    - matches:
+        - path:
+            type: PathPrefix
+            value: /            # Match echo.example.com/*
+      backendRefs:
+        - name: echo
+          port: 80              # Sends echo.example.com/* to the echo service on port 80 (the service port)
+```
 
 ### Endpoint
   - Lists the IPs/ports of all pods belonging to a service.
 
 ### Operator
-  - Manages the desired state of custom resources
+  - Manages the desired state of custom resources.
 
 ### [CoreDNS](https://coredns.io/plugins/)
 
-- **See also**
-  - [k8s DNS](https://kubernetes.io/docs/concepts/services-networking/dns-pod-service/)
-  - [DNS troubleshooting on EKS](https://aws.amazon.com/premiumsupport/knowledge-center/eks-dns-failure/)
-  - [Debugging k8s DNS resolution](https://kubernetes.io/docs/tasks/administer-cluster/dns-debugging-resolution/)
-<br><br>
 - Update CoreDNS to use an upstream DNS server:
 ```
 kubectl edit configmap coredns -n kube-system
@@ -450,9 +585,8 @@ spec:
 - Namespace-scoped; only applies to Pods within the same namespace.  
 - Can reference other namespaces using `namespaceSelector` but can’t control them directly.  
 - Multiple policies can apply to one Pod; the union of all rules defines allowed traffic.  
-- Once any policy selects a Pod, all other traffic is denied by default.  
-- Requires a CNI plugin that supports NetworkPolicy (Calico, Cilium, etc.).  
-- Operates only at L3/L4 (IP, port, protocol).  
+- Once any policy selects a Pod, all other traffic is denied by default.
+- If no policies select a Pod, that Pod is open.   
 - Make sure to allow DNS egress (UDP/TCP 53) if outbound traffic is restricted.  
 ```yaml
 apiVersion: networking.k8s.io/v1
@@ -518,6 +652,51 @@ spec:
 ```
 
 ### API Security
+
+#### [RBAC](https://www.k8s.guide/rbac/)
+- Controls API access per-namespace (Roles) or per-cluser (ClusterRoles)
+
+| Kind |	Purpose |
+|------|----------|
+| Role |	Grants permissions within a single namespace |
+| ClusterRole  |	Grants permissions cluster-wide |
+| RoleBinding |	Assigns a Role to a user/group in a namespace |
+| ClusterRoleBinding | 	Assigns a ClusterRole to a user/group across all namespaces |
+
+Grant read-only access in a namespace
+```yaml
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata:
+  name: pod-reader
+  namespace: dev
+rules:
+  - apiGroups: [""]
+    resources: ["pods"]
+    verbs: ["get", "list"]
+```
+
+Bind the role to alice
+```yaml
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: read-pods
+  namespace: dev
+subjects:
+  - kind: User
+    name: alice
+roleRef:
+  kind: Role
+  name: pod-reader
+  apiGroup: rbac.authorization.k8s.io
+```
+
+#### [Service Accounts](https://kubernetes.io/docs/concepts/security/service-accounts/)
+- Accounts managed by the k8s API, unlike human users.
+- Kubernetes creates a `default` ServiceAccount in each namespace with minimal permissions.
+- All pods without a ServiceAccount specified use `default`.
+- Custom ServiceAccounts should be created per workload that needs API access, each with its own least-privilege RBAC bindings.
 
 #### Kyverno
 - Extends the baseline Pod Security Admission with more flexible controls on any resource, not just Pods.
