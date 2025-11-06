@@ -23,6 +23,11 @@
       - [k8s DNS](https://kubernetes.io/docs/concepts/services-networking/dns-pod-service/)
       - [DNS troubleshooting on EKS](https://aws.amazon.com/premiumsupport/knowledge-center/eks-dns-failure/)
       - [Debugging k8s DNS resolution](https://kubernetes.io/docs/tasks/administer-cluster/dns-debugging-resolution/)
+  - Kubernetes stack
+    - GitOps: ArgoCD w/ Kustomize or Helm manifests
+    - Telemetry: OpenTelemtry
+    - Metrics: Prometheus + Grafana using kube-prometheus-stack, Loki, Tempo
+    - Storage: Ceph RGW for S3-compatible storage
 
 ## Troubleshooting
 
