@@ -2,6 +2,9 @@
 
 ### Troubleshooting
 
+- Issue: `Invalid symmetric difference expression <SHA>...HEAD` when running `git diff` during a CICD pipeline
+  - Fix: Increase the git shallow clone depth: `settings -> CI/CD -> General Pipelines -> Git shallow clone`, set it to `200`
+<br><br>
 - [GitLab troubleshooting Linux cheat sheet](https://docs.gitlab.com/ee/administration/troubleshooting/linux_cheat_sheet.html)
 - [`gitlab-ctl` commands](https://docs.gitlab.com/omnibus/maintenance/)
   - `gitlab-ctl tail` = Tail all logs at once.
