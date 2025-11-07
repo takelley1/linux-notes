@@ -25,6 +25,33 @@ spec:
               app: "?*"
 ```
 
+Require every Pod to run as non-root:
+```yaml
+apiVersion: kyverno.io/v1
+kind: ClusterPolicy
+metadata:
+  name: enforce-run-as-nonroot
+spec:
+  validationFailureAction: enforce
+  background: true
+  rules:
+  - name: check-run-as-nonroot
+    match:
+      resources:
+        kinds:
+          - Pod
+    validate:
+      message: "All containers must run as non-root."
+      pattern:
+        spec:
+          containers:
+          - securityContext:
+              runAsNonRoot: true
+          initContainers:
+          - securityContext:
+              runAsNonRoot: true
+```
+
 Example job that rests Kyverno policies against an ArgoCD w/ Kustomize infra repo in CI:
 - Also see [testing policies](https://kyverno.io/docs/testing-policies/)
 - The job runs in the app repo. It clones the infra repo and renders the ArgoCD kustomize overlay to rendered.yaml, then checks the Kyverno policy against it.
