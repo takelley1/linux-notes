@@ -657,6 +657,20 @@ spec:
       port: 53
 ```
 
+Deny all traffic in the namespace. Start with this and then add other NetworkPolicies to permit only allowed traffic:
+```yaml
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: deny-all
+  namespace: backend
+spec:
+  podSelector: {}
+  policyTypes:
+  - Ingress
+  - Egress
+```
+
 ### API Security
 
 #### [RBAC](https://www.k8s.guide/rbac/)
