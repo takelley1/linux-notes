@@ -188,10 +188,11 @@ l","image":"ubuntu","command":["nsenter","--target=1","--mount","--uts","--ipc",
 
 #### [Ingress](https://kubernetes.io/docs/concepts/services-networking/ingress/)
   - Acts as an HTTP/HTTPS (layer 7) load balancer in front of your services.
-  - Used with ClusterIP services (NOT NodePort or LoadBalancer).
-  - If you're already using a LoadBalancer service, an Ingress is redundant.
-  - Ideal when you have many ClusterIP services and don't want to use a LoadBalancer service for each of them.
-  - Requires an IngressController like Nginx.
+  - Instead of having `Client -> LoadBalancer -> Service -> Pod` for every service (which creates too many LoadBalancers), Ingresses act as a middleman: `Client -> LoadBalancer -> IngressController Service -> IngressController -> Service -> Pod`. 
+  1. Create an Ingress Controller deployment (like Nginx)
+  3. Expose the IngressController deployment with a LoadBalancer or NodePort service
+  4. Create the Ingress resource
+  5. Point DNS to the LoadBalancer's public IP
   ```yaml
   apiVersion: networking.k8s.io/v1
   kind: Ingress
@@ -199,8 +200,8 @@ l","image":"ubuntu","command":["nsenter","--target=1","--mount","--uts","--ipc",
     name: simple-fanout-example
   spec:
     rules:
-    - host: foo.bar.com # This is the external domain that clients will connect to.
-      http:
+    - host: foo.bar.com # This is the external domain that clients will connect to. 
+      http:             #   The DNS for foo.bar.com must point to the external LoadBalancer's public IP.
         paths:
         - path: /foo # This would handle foo.bar.com/foo and send it to service1
           pathType: Prefix
