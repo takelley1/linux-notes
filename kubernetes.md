@@ -186,10 +186,10 @@ l","image":"ubuntu","command":["nsenter","--target=1","--mount","--uts","--ipc",
 #5: Your application running in the pod receives the request and processes it
   ```
 
-#### [Ingress](https://kubernetes.io/docs/concepts/services-networking/ingress/)
+### [Ingress](https://kubernetes.io/docs/concepts/services-networking/ingress/)
   - Acts as an HTTP/HTTPS (layer 7) load balancer in front of your services.
   - Instead of having `Client -> LoadBalancer -> Service -> Pod` for every service (which creates too many LoadBalancers), Ingresses act as a middleman: `Client -> LoadBalancer -> IngressController Service -> IngressController -> Service -> Pod`. 
-  1. Create an Ingress Controller deployment (like Nginx)
+  1. Create an IngressController deployment (like Nginx)
   3. Expose the IngressController deployment with a LoadBalancer or NodePort service
   4. Create the Ingress resource
   5. Point DNS to the LoadBalancer's public IP
@@ -219,7 +219,7 @@ l","image":"ubuntu","command":["nsenter","--target=1","--mount","--uts","--ipc",
                 number: 8080
   ```
 
-#### Gateway API
+### Gateway API
   - Replaces Ingress.
   - Traffic flow: Client -> External HAProxy (running outside the cluster) -> Sends traffic to a node running a NodePort Gateway Controller Service -> Decides which Service(s) to send traffic to based on its HTTPRoute rules.
   - Istio can also be used as a gateway controller.
