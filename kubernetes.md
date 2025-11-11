@@ -194,6 +194,56 @@ l","image":"ubuntu","command":["nsenter","--target=1","--mount","--uts","--ipc",
   4. Create the Ingress resource
   5. Point DNS to the LoadBalancer's public IP
   ```yaml
+# IngressController deployment
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ingress-controller
+  namespace: ingress-nginx
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: ingress-nginx
+  template:
+    metadata:
+      labels:
+        app: ingress-nginx
+    spec:
+      serviceAccountName: ingress-nginx
+      containers:
+      - name: controller
+        image: k8s.gcr.io/ingress-nginx/controller:v1.10.1
+        args:
+          - /nginx-ingress-controller
+        ports:
+          - name: http
+            containerPort: 80
+          - name: https
+            containerPort: 443
+
+# LoadBalancer service to expose IngressController
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: ingress-nginx
+  namespace: ingress-nginx
+spec:
+  type: LoadBalancer
+  selector:
+    app: ingress-nginx
+  ports:
+  - name: http
+    port: 80
+    targetPort: 80
+  - name: https
+    port: 443
+    targetPort: 443
+
+# Ingress rules that the IngressController uses
+---
   apiVersion: networking.k8s.io/v1
   kind: Ingress
   metadata:
