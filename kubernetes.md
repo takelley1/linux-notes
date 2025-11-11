@@ -25,9 +25,13 @@
       - [Debugging k8s DNS resolution](https://kubernetes.io/docs/tasks/administer-cluster/dns-debugging-resolution/)
   - Kubernetes stack
     - GitOps: ArgoCD w/ Kustomize or Helm manifests
-    - Telemetry: OpenTelemtry
-    - Metrics: Prometheus + Grafana using kube-prometheus-stack, Loki, Tempo
+    - Telemetry: OpenTelemtry to standardize metrics
+    - Metrics: Prometheus + Grafana using kube-prometheus-stack
+    - Logs: Loki (simpler) or ELK/EFK stack
+    - Traces: Tempo (simpler) or Jaeger
     - Storage: Ceph RGW for S3-compatible storage
+    - Service mesh: Linkerd (simpler) or Istio
+    - Certificates: Cert-manager
 
 ## Troubleshooting
 
