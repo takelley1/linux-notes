@@ -209,6 +209,26 @@ spec:
       weight: 1
 ```
 
+### ServiceEntries
+- Used for adding a service to the mesh that's outside the k8s cluster.
+```yaml
+apiVersion: networking.istio.io/v1
+kind: ServiceEntry
+metadata:
+  name: svc-entry
+spec:
+  hosts:
+  - ext-svc.example.com
+  ports:
+  - number: 443
+    name: https
+    protocol: HTTPS
+  location: MESH_EXTERNAL
+  resolution: DNS
+```
+
+## Examples
+
 ### Enforce mTLS
 ```yaml
 apiVersion: security.istio.io/v1beta1
