@@ -604,13 +604,13 @@ spec:
 
 ### Pod Security
 
-#### Pod Security Standards (PSS)
+#### [Pod Security Standards (PSS)](https://kubernetes.io/docs/concepts/security/pod-security-standards/)
 - Predefined security profiles applied to a namespace. Prevents pods from running that fail the applied standard.
   - Privileged — No restrictions. Full host access, all capabilities allowed. Intended for system-level components (CNI, CSI, monitoring agents).
   - Baseline — Blocks known privilege-escalation paths but still allows typical app workloads. For example, it disallows privileged: true or hostPID, but doesn’t require runAsNonRoot.
   - Restricted — Enforces strict hardening and best practices. Requires non-root users, drops all Linux capabilities, prohibits hostPath and host namespaces.
 
-#### Pod Security Admission (PSA)
+#### [Pod Security Admission (PSA)](https://kubernetes.io/docs/concepts/security/pod-security-admission/)
 - Enforces the Pod Security Standards on pods before they get created.
 - Operates in enforce, audit, and warn modes.
 ```bash
@@ -642,7 +642,7 @@ spec:
 
 ### Network Security
 
-#### Network Policies
+#### [Network Policies](https://kubernetes.io/docs/concepts/services-networking/network-policies)
 - Namespace-scoped; only applies to Pods within the same namespace.  
 - Can reference other namespaces using `namespaceSelector` but can’t control them directly.  
 - Multiple policies can apply to one Pod; the union of all rules defines allowed traffic.  
@@ -667,6 +667,9 @@ spec:
   # Allow ingress only from ingress controller Pods
   ingress:
   - from:
+    # A logical AND is applied to these rules. They all must match: the namespace AND the pod selector.
+      # To use a logical OR, put a dash before the podSelector like "- podSelector".
+      # See https://kubernetes.io/docs/concepts/services-networking/network-policies/#behavior-of-to-and-from-selectors
     - namespaceSelector:
         matchLabels:
           kubernetes.io/metadata.name: ingress-nginx   # controller namespace
