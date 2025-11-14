@@ -85,6 +85,9 @@ l","image":"ubuntu","command":["nsenter","--target=1","--mount","--uts","--ipc",
 
 ### [Deployment](https://kubernetes.io/docs/concepts/workloads/controllers/deployment/)
 - Creates a ReplicaSet declaratively.
+<details>
+  <summary>Show code</summary>
+
   ```yaml
   ---
   apiVersion: apps/v1
@@ -106,13 +109,15 @@ l","image":"ubuntu","command":["nsenter","--target=1","--mount","--uts","--ipc",
             image: nginx:latest
             ports:
               - containerPort: 80 # This doesn't change the port nginx listens on, it's just for informational purposes.
-  
   ```
+</details>
+
 ### [ReplicaSet](https://kubernetes.io/docs/concepts/workloads/controllers/replicaset/)
 - Maintains the desired number of identical pods. Usually created by a deployment.
 
 ### [StatefulSet](https://kubernetes.io/docs/concepts/workloads/controllers/statefulset/)
 - Alternative to ReplicaSet for deploying stateful pods (pods that use storage).
+- Ensures restarted pods keep the same name and PVC (persistent identity).
 
 ### [DaemonSet](https://kubernetes.io/docs/concepts/workloads/controllers/daemonset/)
 - Ensures a single pod is running on all nodes of a given type. Useful for collecting node metrics.
@@ -120,6 +125,10 @@ l","image":"ubuntu","command":["nsenter","--target=1","--mount","--uts","--ipc",
 ### [Service](https://kubernetes.io/docs/concepts/services-networking/service/)
   - Abstraction layer to make pods accessible.
   - Matches a set of Pods using a label.
+
+<details>
+  <summary>Show code</summary>
+
   ```yaml
   ---
   apiVersion: v1
@@ -135,6 +144,7 @@ l","image":"ubuntu","command":["nsenter","--target=1","--mount","--uts","--ipc",
         targetPort: 80 # Traffic hitting any node at its NodePort is forwarded to the the service port, then the targetPort on each pod
     type: NodePort
   ```
+</details>
 
 ### Services
 
@@ -142,34 +152,46 @@ l","image":"ubuntu","command":["nsenter","--target=1","--mount","--uts","--ipc",
   - Makes a service available to pods inside the cluster.
   - Used by internal-only services that communicate with each other inside the cluster.
   - Provides a single IP to access all pods within that service from inside the cluster.
+
+<details>
+  <summary>Show code</summary>
+  
   ```yaml
   ports:
     - protocol: TCP
       port: 80          # The port of the SERVICE - All traffic on this port routes to the `targetPort` of each pod
       targetPort: 3000  # The port of the POD - The service forwards traffic from `port` to `targetPort`
   ```
+</details>
 
 #### [NodePort Service](https://kubernetes.io/docs/concepts/services-networking/service/#type-nodeport)
   - Makes a service available outside the cluster on every node at a specific port.
   - Nodes that don't have the service's pod(s) scheduled on them will forward any traffic on that port to the node(s) with the pod(s) scheduled on them.
   - Automatically provisions a ClusterIP service.
   - Ports (in service definition file) [StackOverflow explanation](https://stackoverflow.com/questions/49981601/difference-between-targetport-and-port-in-kubernetes-service-definition)
-    ```yaml
-    ports:
-      - protocol: TCP
-        port: 80          # The port of the SERVICE - For NodePort services, this can be anything
-        targetPort: 3000  # The port of the POD - The service forwards traffic from `port` to `targetPort`
-        nodePort: 30432   # The port of the NODE - The node listens on this port and routes traffic to the service port
-    ```
-    ```
-    incoming traffic -> nodePort (NODE) -> port (SERVICE) -> targetPort (POD)
-    ```
-    - Example (in Lens GUI): `80:30432/TCP` - This service is accessible on each node's IP over port 30432. Port 30432 on every node will forward to port 80 on the service. Port 80 of the service will then forward traffic to the `targetPort` of the service pod(s).
+
+<details>
+  <summary>Show code</summary>
+
+  ```yaml
+ports:
+  - protocol: TCP
+    port: 80          # The port of the SERVICE - For NodePort services, this can be anything
+    targetPort: 3000  # The port of the POD - The service forwards traffic from `port` to `targetPort`
+    nodePort: 30432   # The port of the NODE - The node listens on this port and routes traffic to the service port
+```
+</details>
+
+- incoming traffic -> nodePort (NODE) -> port (SERVICE) -> targetPort (POD)
+- Example (in Lens GUI): `80:30432/TCP` - This service is accessible on each node's IP over port 30432. Port 30432 on every node will forward to port 80 on the service. Port 80 of the service will then forward traffic to the `targetPort` of the service pod(s).
 
 #### [LoadBalancer Service](https://kubernetes.io/docs/concepts/services-networking/service/#loadbalancer)
   - Provisions an external cloud-managed load balancer to forward traffic to backend pods.
   - Used with cloud providers.
   - Automatically provisions a NodePort and a ClusterIP service.
+<details>
+  <summary>Show code</summary>
+
   ```yaml
   kind: Service
   metadata:
@@ -189,6 +211,7 @@ l","image":"ubuntu","command":["nsenter","--target=1","--mount","--uts","--ipc",
 #4. The Service sends the traffic to port 9376 on one of the pods labeled with app: MyApp
 #5: Your application running in the pod receives the request and processes it
   ```
+</details>
 
 ### [Ingress](https://kubernetes.io/docs/concepts/services-networking/ingress/)
   - Acts as an HTTP/HTTPS (layer 7) load balancer in front of your services.
@@ -197,6 +220,10 @@ l","image":"ubuntu","command":["nsenter","--target=1","--mount","--uts","--ipc",
   3. Expose the IngressController deployment with a LoadBalancer or NodePort service
   4. Create the Ingress resource
   5. Point DNS to the LoadBalancer's public IP
+
+<details>
+  <summary>Show code</summary>
+
   ```yaml
 # IngressController deployment
 ---
@@ -272,6 +299,7 @@ spec:
               port:
                 number: 8080
   ```
+</details>
 
 ### Gateway API
   - Replaces Ingress.
@@ -279,6 +307,9 @@ spec:
   - Istio can also be used as a gateway controller.
 
 Example setup with HAProxy VM -> Nginx Gateway
+<details>
+  <summary>Show code</summary>
+
 ```yaml
 ---
 # NGINX gateway dataplane
@@ -345,7 +376,12 @@ spec:
           - kind: Secret
             name: example-tls
 ```
+</details>
+
 HAProxy config (uses TCP mode so HTTPS is terminated by Nginx):
+<details>
+  <summary>Show code</summary>
+  
 ```
 # /etc/haproxy/haproxy.cfg
 backend be_https
@@ -355,7 +391,13 @@ backend be_https
   server node2 10.0.0.12:30443 check
   server node3 10.0.0.13:30443 check
 ```
+</details>
+
 Example target service with HTTP routes
+
+<details>
+  <summary>Show code</summary>
+
 ```yaml
 apiVersion: apps/v1
 kind: Deployment
@@ -411,6 +453,7 @@ spec:
         - name: echo
           port: 80              # Sends echo.example.com/* to the echo service on port 80 (the service port)
 ```
+</details>
 
 ### Endpoint
   - Lists the IPs/ports of all pods belonging to a service.
@@ -424,6 +467,9 @@ spec:
 ```
 kubectl edit configmap coredns -n kube-system
 ```
+<details>
+  <summary>Show code</summary>
+
 ```yaml
   Corefile: |
     .:53 {
@@ -442,45 +488,21 @@ kubectl edit configmap coredns -n kube-system
         loadbalance
     }
 ```
+</details>
 
-### Secrets
+## Pods
 
-- Create an encrypted `secrets.yml` file (similar to Ansible Vault).
-  - The secret is encrypted when stored in the Git repo and automatically decrypted by the cluster when applied.
-```bash
-kubectl create secret generic mcp-server-agility \
-  --namespace=mcp-server-agility \
-  --from-literal=AGILITY_ACCESS_TOKEN=access_token_here \
-  --from-literal=AGILITY_API_URL=api_url_here \
-  -o json | kubeseal \
-  --controller-name=sealed-secrets-controller \
-  --controller-namespace=kube-system \
-  --format yaml > sealedsecret.yml
-```
-`sealedsecret.yml`
-```yaml
----
-apiVersion: bitnami.com/v1alpha1
-kind: SealedSecret
-metadata:
-  creationTimestamp: null
-  name: mcp-server-agility
-  namespace: mcp-server-agility
-spec:
-  encryptedData:
-    AGILITY_ACCESS_TOKEN: AgB1y4E/cYgSdbDvl5aMfIX/ocflPTsT1JQZrXTAqkBSK8cSDeq7i3KH899uzNZQsHDWl...
-    AGILITY_API_URL: AgAwWVvpCcaU1tPHdgAoasdDeyVENglHfdzzjKjoRzsFP+megc5pDL9NhMY4kotbwgeErzRMIB...
-  template:
-    metadata:
-      creationTimestamp: null
-      name: mcp-server-agility
-      namespace: mcp-server-agility
-    type: Opaque
-```
+### Probes
+- ReadinessProbe: Determines whether the main process is ready to receive traffic. If it fails, the Service won't route traffic to it.
+- StartupProbe: Determines whether the Pod is still staring. The Readiness and Liveness probes are delayed until this succeeds.
+- LivenessProbe: Determines whether the main process is stuck. If it fails, the Pod is restarted.
 
 ## Security
 
 Hardened deployment spec following best-practices:
+<details>
+  <summary>Show code</summary>
+
 ```yaml
 apiVersion: apps/v1
 kind: Deployment
@@ -601,6 +623,7 @@ spec:
       # Graceful shutdown period before killing Pods.
       terminationGracePeriodSeconds: 30
 ```
+</details>
 
 ### Pod Security
 
@@ -626,6 +649,9 @@ kubectl label namespace dev \
 - Can be defined at two levels:
   - Pod-level — applies defaults to all containers in the Pod.
   - Container-level — overrides Pod-level settings for that container.
+<details>
+  <summary>Show code</summary>
+
 ```yaml
 spec:
   securityContext:
@@ -639,6 +665,51 @@ spec:
       readOnlyRootFilesystem: true
       allowPrivilegeEscalation: false
 ```
+</details>
+
+#### Secrets
+- Create an encrypted `secrets.yml` file (similar to Ansible Vault).
+  - The secret is encrypted when stored in the Git repo and automatically decrypted by the cluster when applied.
+
+<details>
+  <summary>Show code</summary>
+  
+```bash
+kubectl create secret generic mcp-server-agility \
+  --namespace=mcp-server-agility \
+  --from-literal=AGILITY_ACCESS_TOKEN=access_token_here \
+  --from-literal=AGILITY_API_URL=api_url_here \
+  -o json | kubeseal \
+  --controller-name=sealed-secrets-controller \
+  --controller-namespace=kube-system \
+  --format yaml > sealedsecret.yml
+```
+</details>
+
+`sealedsecret.yml`
+<details>
+  <summary>Show code</summary>
+
+```yaml
+---
+apiVersion: bitnami.com/v1alpha1
+kind: SealedSecret
+metadata:
+  creationTimestamp: null
+  name: mcp-server-agility
+  namespace: mcp-server-agility
+spec:
+  encryptedData:
+    AGILITY_ACCESS_TOKEN: AgB1y4E/cYgSdbDvl5aMfIX/ocflPTsT1JQZrXTAqkBSK8cSDeq7i3KH899uzNZQsHDWl...
+    AGILITY_API_URL: AgAwWVvpCcaU1tPHdgAoasdDeyVENglHfdzzjKjoRzsFP+megc5pDL9NhMY4kotbwgeErzRMIB...
+  template:
+    metadata:
+      creationTimestamp: null
+      name: mcp-server-agility
+      namespace: mcp-server-agility
+    type: Opaque
+```
+</details>
 
 ### Network Security
 
@@ -648,7 +719,11 @@ spec:
 - Multiple policies can apply to one Pod; the union of all rules defines allowed traffic.  
 - Once any policy selects a Pod, all other traffic is denied by default.
 - If no policies select a Pod, that Pod is open.   
-- Make sure to allow DNS egress (UDP/TCP 53) if outbound traffic is restricted.  
+- Make sure to allow DNS egress (UDP/TCP 53) if outbound traffic is restricted.
+
+<details>
+  <summary>Show code</summary>
+
 ```yaml
 apiVersion: networking.k8s.io/v1
 kind: NetworkPolicy
@@ -714,8 +789,13 @@ spec:
     - protocol: TCP
       port: 53
 ```
+</details>
 
-Deny all traffic in the namespace. Start with this and then add other NetworkPolicies to permit only allowed traffic:
+- Deny all traffic in the namespace. Start with this when hardening a cluster.
+- Apply this policy to each namespace (except `kube-system`), then add other policies to only permit necessary traffic.
+<details>
+  <summary>Show code</summary>
+
 ```yaml
 apiVersion: networking.k8s.io/v1
 kind: NetworkPolicy
@@ -728,6 +808,7 @@ spec:
   - Ingress
   - Egress
 ```
+</details>
 
 ### API Security
 
@@ -742,6 +823,9 @@ spec:
 | ClusterRoleBinding | 	Assigns a ClusterRole to a user/group across all namespaces |
 
 Grant read-only access in a namespace
+<details>
+  <summary>Show code</summary>
+
 ```yaml
 apiVersion: rbac.authorization.k8s.io/v1
 kind: Role
@@ -753,8 +837,12 @@ rules:
     resources: ["pods"]
     verbs: ["get", "list"]
 ```
+</details>
 
 Bind the role to alice
+<details>
+  <summary>Show code</summary>
+
 ```yaml
 apiVersion: rbac.authorization.k8s.io/v1
 kind: RoleBinding
@@ -769,6 +857,7 @@ roleRef:
   name: pod-reader
   apiGroup: rbac.authorization.k8s.io
 ```
+</details>
 
 #### [Service Accounts](https://kubernetes.io/docs/concepts/security/service-accounts/)
 - Accounts managed by the k8s API, unlike human users.
