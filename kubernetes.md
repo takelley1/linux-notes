@@ -42,29 +42,29 @@
   <summary>Deployment</summary>
 
 ```yaml
-apiVersion: apps/v1                                                # API group/version that defines the Deployment schema.
-kind: Deployment                                                   # Resource type: a Deployment manages ReplicaSets and Pods.
+apiVersion: apps/v1                                # API group/version that defines the Deployment schema.
+kind: Deployment                                   # Resource type: a Deployment manages ReplicaSets and Pods.
 metadata:
-  name: web                                                        # Name of the Deployment object.
-  namespace: app                                                   # Namespace where this Deployment will be created.
-  labels:                                                          # Arbitrary identifying metadata for grouping and selection.
-    app: web                                                       # App label used by selectors and tools.
-    app.kubernetes.io/name: web                                    # Standardized label for the component name.
-    app.kubernetes.io/part-of: my-system                           # Logical grouping for the larger system.
+  name: web                                        # Name of the Deployment object.
+  namespace: app                                   # Namespace where this Deployment will be created.
+  labels:                                          # Arbitrary identifying metadata for grouping and selection.
+    app: web                                       # App label used by selectors and tools.
+    app.kubernetes.io/name: web                    # Standardized label for the component name.
+    app.kubernetes.io/part-of: my-system           # Logical grouping for the larger system.
 spec:
-  replicas: 2                                                      # Number of desired running Pods.
-  revisionHistoryLimit: 5                                          # How many old ReplicaSets to retain for rollbacks.
-  strategy:                                                        # Update strategy when replacing Pod versions.
-    type: RollingUpdate                                            # Rolling update replaces Pods gradually.
+  replicas: 2                                      # Number of desired running Pods.
+  revisionHistoryLimit: 5                          # How many old ReplicaSets to retain for rollbacks.
+  strategy:                                        # Update strategy when replacing Pod versions.
+    type: RollingUpdate                            # Rolling update replaces Pods gradually.
     rollingUpdate:
-      maxUnavailable: 0                                            # Ensures no reduction of available Pods during updates.
-      maxSurge: 1                                                  # Allows one extra Pod above desired count during rollout.
+      maxUnavailable: 0                            # Ensures no reduction of available Pods during updates.
+      maxSurge: 1                                  # Allows one extra Pod above desired count during rollout.
   selector:
-    matchLabels:                                                   # Defines which Pods belong to this Deployment.
-      app: web                                                     # Must match template.metadata.labels.app.
-  template:                                                        # Pod template used to create Pods.
+    matchLabels:                                   # Defines which Pods belong to this Deployment.
+      app: web                                     # Must match template.metadata.labels.app.
+  template:                                        # Pod template used to create Pods.
     metadata:
-      labels:                                                      # Labels applied to each new Pod.
+      labels:                                      # Labels applied to each new Pod.
         app: web
         app.kubernetes.io/name: web
         app.kubernetes.io/part-of: my-system
@@ -76,113 +76,114 @@ spec:
       # Create a ServiceAccount with the image registry credentials.
       serviceAccountName: web-api-sa
       # Optional: If no ServiceAccount is needed:
-      # automountServiceAccountToken: false                           # Prevents auto-mounting the default service account token.
+      # automountServiceAccountToken: false                  # Prevents auto-mounting the default service account token.
 
-      securityContext:                                              # Pod-level security defaults.
+      securityContext:                                       # Pod-level security defaults.
         seccompProfile:
-          type: RuntimeDefault                                      # Uses the built-in restricted syscall profile.
-        runAsNonRoot: true                                          # Ensures no container runs as root inside the Pod.
-        runAsUser: 1000                                             # UID the containers will run as.
-        runAsGroup: 1000                                            # Primary GID the containers will run as.
-        fsGroup: 1000                                               # Group ownership applied to mounted volumes.
+          type: RuntimeDefault                               # Uses the built-in restricted syscall profile.
+        runAsNonRoot: true                                   # Ensures no container runs as root inside the Pod.
+        runAsUser: 1000                                      # UID the containers will run as.
+        runAsGroup: 1000                                     # Primary GID the containers will run as.
+        fsGroup: 1000                                        # Group ownership applied to mounted volumes.
 
-      # Optional: constrain where this runs                          # Scheduling constraints.
-      # nodeSelector:                                                # Restricts scheduling to nodes with specific labels.
-      #   node-role.kubernetes.io/worker: "true"                     # Example: only worker nodes.
-      # tolerations:                                                 # Allows scheduling onto tainted nodes.
+      # Optional: constrain where this runs                  # Scheduling constraints.
+      # nodeSelector:                                        # Restricts scheduling to nodes with specific labels.
+      #   node-role.kubernetes.io/worker: "true"             # Example: only worker nodes.
+      # tolerations:                                         # Allows scheduling onto tainted nodes.
       #   - key: "dedicated"
       #     operator: "Equal"
       #     value: "web"
       #     effect: "NoSchedule"
 
-      # Optional: spread pods across nodes/zones                    # Improves HA by distribution.
+      # Optional: spread pods across nodes/zones             # Improves HA by distribution.
       # topologySpreadConstraints:
-      #   - maxSkew: 1                                              # Maximum imbalance allowed between failure domains.
-      #     topologyKey: kubernetes.io/hostname                     # Spread across nodes.
-      #     whenUnsatisfiable: ScheduleAnyway                       # Allows deviation if required.
+      #   - maxSkew: 1                                       # Maximum imbalance allowed between failure domains.
+      #     topologyKey: kubernetes.io/hostname              # Spread across nodes.
+      #     whenUnsatisfiable: ScheduleAnyway                # Allows deviation if required.
       #     labelSelector:
       #       matchLabels:
-      #         app: web                                            # Applies constraint only to Pods with this label.
+      #         app: web                                     # Applies constraint only to Pods with this label.
 
-      volumes:                                                      # Pod-level volume definitions.
-        - name: tmp                                                 # Volume for temporary writable data.
+      volumes:                                               # Pod-level volume definitions.
+        - name: tmp                                          # Volume for temporary writable data.
           emptyDir:
-            medium: Memory                                          # Uses RAM instead of disk.
-            sizeLimit: 64Mi                                         # Max size for tmp volume.
-        - name: cache                                               # Volume for general app cache data.
-          emptyDir: {}                                              # Default emptyDir backed by node storage.
+            medium: Memory                                   # Uses RAM instead of disk.
+            sizeLimit: 64Mi                                  # Max size for tmp volume.
+        - name: cache                                        # Volume for general app cache data.
+          emptyDir: {}                                       # Default emptyDir backed by node storage.
 
       containers:
-        - name: app                                                 # Name of the container inside the Pod.
-          image: ghcr.io/example/web@sha256:<SHA256_STRING>         # Image pinned by digest for immutability.
-          imagePullPolicy: IfNotPresent                             # Pull only if missing locally.
+        - name: app                                          # Name of the container inside the Pod.
+          image: ghcr.io/example/web@sha256:<SHA256_STRING>  # Image pinned by digest for immutability.
+          imagePullPolicy: IfNotPresent                      # Pull only if missing locally.
 
-          securityContext:                                          # Container-specific security overrides.
-            allowPrivilegeEscalation: false                         # Blocks privilege escalation via syscalls.
-            readOnlyRootFilesystem: true                            # Ensures root filesystem is immutable.
-            privileged: false                                       # Prevents privileged container mode.
+          securityContext:                                   # Container-specific security overrides.
+            allowPrivilegeEscalation: false                  # Blocks privilege escalation via syscalls.
+            readOnlyRootFilesystem: true                     # Ensures root filesystem is immutable.
+            privileged: false                                # Prevents privileged container mode.
             capabilities:
-              drop: ["ALL"]                                         # Removes all Linux capabilities.
+              drop: ["ALL"]                                  # Removes all Linux capabilities.
 
-          volumeMounts:                                             # Mounts volumes into container filesystem.
+          volumeMounts:                                      # Mounts volumes into container filesystem.
             - name: tmp
-              mountPath: /tmp                                       # Writable tmp directory.
+              mountPath: /tmp                                # Writable tmp directory.
             - name: cache
-              mountPath: /var/cache/app                             # Writable cache directory.
+              mountPath: /var/cache/app                      # Writable cache directory.
+
             # Optional: ConfigMap and Secret volumes for configuration and credentials.
             # Note: RBAC policies are not needed to allow the Pod to access ConfigMaps and Secrets mounted into it.
-            - name: config                                          # Volume to expose ConfigMap data as files.
+            - name: config                          # Volume to expose ConfigMap data as files.
               configMap:
-                name: web-config                                    # Name of the ConfigMap to mount.
-            - name: secrets                                         # Volume to expose Secret data as files.
+                name: web-config                    # Name of the ConfigMap to mount.
+            - name: secrets                         # Volume to expose Secret data as files.
               secret:
-                secretName: web-secret                              # Name of the Secret to mount.
+                secretName: web-secret              # Name of the Secret to mount.
 
           ports:
-            - containerPort: 8080                                   # Port the container listens on.
-              name: http                                            # Named port for probes and services.
+            - containerPort: 8080                   # Port the container listens on.
+              name: http                            # Named port for probes and services.
 
-          readinessProbe:                                           # Determines when Pod is ready for traffic.
+          readinessProbe:                           # Determines when Pod is ready for traffic.
             httpGet:
-              path: /health/ready                                   # Readiness endpoint.
-              port: http                                            # Uses named port above.
-            initialDelaySeconds: 5                                  # Wait before first check.
-            periodSeconds: 10                                       # Probe frequency.
-            timeoutSeconds: 2                                       # Probe timeout.
-            failureThreshold: 3                                     # Failures required to mark unready.
+              path: /health/ready                   # Readiness endpoint.
+              port: http                            # Uses named port above.
+            initialDelaySeconds: 5                  # Wait before first check.
+            periodSeconds: 10                       # Probe frequency.
+            timeoutSeconds: 2                       # Probe timeout.
+            failureThreshold: 3                     # Failures required to mark unready.
 
-          livenessProbe:                                            # Detects hung or dead containers.
+          livenessProbe:                            # Detects hung or dead containers.
             httpGet:
-              path: /health/live                                    # Liveness endpoint.
+              path: /health/live                    # Liveness endpoint.
               port: http
-            initialDelaySeconds: 15                                 # Delay before first liveness probe.
-            periodSeconds: 20                                       # Probe frequency.
-            timeoutSeconds: 2                                       # Probe timeout.
-            failureThreshold: 3                                     # Failures required to trigger restart.
+            initialDelaySeconds: 15                 # Delay before first liveness probe.
+            periodSeconds: 20                       # Probe frequency.
+            timeoutSeconds: 2                       # Probe timeout.
+            failureThreshold: 3                     # Failures required to trigger restart.
 
-          # Optional if startup is slow:                            # Startup probe stabilizes slow boot.
+          # Optional if startup is slow:            # Startup probe stabilizes slow boot.
           # startupProbe:
           #   httpGet:
-          #     path: /health/ready                                 # Startup health endpoint.
+          #     path: /health/ready                 # Startup health endpoint.
           #     port: http
-          #   failureThreshold: 30                                  # How long startup may take.
-          #   periodSeconds: 2                                      # Probe frequency during startup.
+          #   failureThreshold: 30                  # How long startup may take.
+          #   periodSeconds: 2                      # Probe frequency during startup.
 
-          resources:                                                # Compute resource requests and limits.
+          resources:                                # Compute resource requests and limits.
             requests:
-              cpu: "100m"                                           # Minimum guaranteed CPU.
-              memory: "128Mi"                                       # Minimum guaranteed memory.
+              cpu: "100m"                           # Minimum guaranteed CPU.
+              memory: "128Mi"                       # Minimum guaranteed memory.
             limits:
-              cpu: "500m"                                           # Max CPU allowed.
-              memory: "256Mi"                                       # Max memory allowed.
+              cpu: "500m"                           # Max CPU allowed.
+              memory: "256Mi"                       # Max memory allowed.
 
           env:
-            - name: APP_ENV                                         # Environment variable for app config.
-              value: "prod"                                         # Sets production environment mode.
+            - name: APP_ENV                         # Environment variable for app config.
+              value: "prod"                         # Sets production environment mode.
 
-      terminationGracePeriodSeconds: 30                             # Time allowed for graceful shutdown.
+      terminationGracePeriodSeconds: 30             # Time allowed for graceful shutdown.
 
-      # Optional: add priority if you use it                        # Priority affects scheduling.
+      # Optional: add priority if you use it        # Priority affects scheduling.
       # priorityClassName: "web-critical"
 ```
 </details>
@@ -265,18 +266,18 @@ spec:
 ```yaml
 # Ensure a minimum number of Pods are up during voluntary disruptions
 
-apiVersion: policy/v1       # API version for PodDisruptionBudget.
-kind: PodDisruptionBudget   # Object type: controls voluntary disruptions.
+apiVersion: policy/v1          # API version for PodDisruptionBudget.
+kind: PodDisruptionBudget      # Object type: controls voluntary disruptions.
 metadata:
-  name: web-pdb             # Name of this PDB.
-  namespace: app            # Namespace where the PDB applies.
+  name: web-pdb                # Name of this PDB.
+  namespace: app               # Namespace where the PDB applies.
   labels:
-    app: web                # Label to match the associated Deployment/Pods.
+    app: web                   # Label to match the associated Deployment/Pods.
 spec:
-  minAvailable: 1           # Minimum number of Pods that must stay available.
+  minAvailable: 1              # Minimum number of Pods that must stay available.
   selector:
     matchLabels:
-      app: web              # Selects Pods this PDB protects (must match Pod labels).
+      app: web                 # Selects Pods this PDB protects (must match Pod labels).
 ```
 </details>
 
@@ -286,27 +287,27 @@ spec:
 ```yaml
 # Scale up the web deployment when CPU usage reaches >80% of its original CPU request.
 
-apiVersion: autoscaling/v2       # HPA v2 for richer metrics support.
-kind: HorizontalPodAutoscaler    # Object that scales a target workload.
+apiVersion: autoscaling/v2           # HPA v2 for richer metrics support.
+kind: HorizontalPodAutoscaler        # Object that scales a target workload.
 metadata:
-  name: web-hpa                  # Name of the HPA.
-  namespace: app                 # Namespace of the HPA and target workload.
+  name: web-hpa                      # Name of the HPA.
+  namespace: app                     # Namespace of the HPA and target workload.
   labels:
     app: web
 spec:
-  scaleTargetRef:                # Reference to the workload to scale.
-    apiVersion: apps/v1          # API version of the target.
-    kind: Deployment             # Kind of the target.
-    name: web                    # Name of the target Deployment.
-  minReplicas: 2                 # Lower bound of replicas the HPA can set.
-  maxReplicas: 10                # Upper bound of replicas.
-  metrics:                       # Metrics used for scaling.
-    - type: Resource             # Resource based metric.
+  scaleTargetRef:                    # Reference to the workload to scale.
+    apiVersion: apps/v1              # API version of the target.
+    kind: Deployment                 # Kind of the target.
+    name: web                        # Name of the target Deployment.
+  minReplicas: 2                     # Lower bound of replicas the HPA can set.
+  maxReplicas: 10                    # Upper bound of replicas.
+  metrics:                           # Metrics used for scaling.
+    - type: Resource                 # Resource based metric.
       resource:
-        name: cpu                # Use container CPU usage.
+        name: cpu                    # Use container CPU usage.
         target:
-          type: Utilization      # Target expressed as percentage of requested CPU.
-          averageUtilization: 80 # Aim for 80 percent average CPU utilization.
+          type: Utilization          # Target expressed as percentage of requested CPU.
+          averageUtilization: 80     # Aim for 80 percent average CPU utilization.
 ```
 </details>
 
@@ -432,7 +433,7 @@ l","image":"ubuntu","command":["nsenter","--target=1","--mount","--uts","--ipc",
 
 <details>
   <summary>Show code</summary>
-  
+
   ```yaml
   ports:
     - protocol: TCP
@@ -492,7 +493,7 @@ ports:
 
 ### [Ingress](https://kubernetes.io/docs/concepts/services-networking/ingress/)
   - Acts as an HTTP/HTTPS (layer 7) load balancer in front of your services.
-  - Instead of having `Client -> LoadBalancer -> Service -> Pod` for every service (which creates too many LoadBalancers), Ingresses act as a middleman: `Client -> LoadBalancer -> IngressController Service -> IngressController -> Service -> Pod`. 
+  - Instead of having `Client -> LoadBalancer -> Service -> Pod` for every service (which creates too many LoadBalancers), Ingresses act as a middleman: `Client -> LoadBalancer -> IngressController Service -> IngressController -> Service -> Pod`.
   1. Create an IngressController deployment (like Nginx)
   3. Expose the IngressController deployment with a LoadBalancer or NodePort service
   4. Create the Ingress resource
@@ -558,7 +559,7 @@ spec:
     name: simple-fanout-example
   spec:
     rules:
-    - host: foo.bar.com # This is the external domain that clients will connect to. 
+    - host: foo.bar.com # This is the external domain that clients will connect to.
       http:             #   The DNS for foo.bar.com must point to the external LoadBalancer's public IP.
         paths:
         - path: /foo # This would handle foo.bar.com/foo and send it to service1
@@ -658,7 +659,7 @@ spec:
 HAProxy config (uses TCP mode so HTTPS is terminated by Nginx):
 <details>
   <summary>Show code</summary>
-  
+
 ```
 # /etc/haproxy/haproxy.cfg
 backend be_https
@@ -824,7 +825,7 @@ spec:
 
 <details>
   <summary>Show code</summary>
-  
+
 ```bash
 kubectl create secret generic mcp-server-agility \
   --namespace=mcp-server-agility \
@@ -865,11 +866,11 @@ spec:
 ### Network Security
 
 #### [Network Policies](https://kubernetes.io/docs/concepts/services-networking/network-policies)
-- Namespace-scoped; only applies to Pods within the same namespace.  
-- Can reference other namespaces using `namespaceSelector` but can’t control them directly.  
-- Multiple policies can apply to one Pod; the union of all rules defines allowed traffic.  
+- Namespace-scoped; only applies to Pods within the same namespace.
+- Can reference other namespaces using `namespaceSelector` but can’t control them directly.
+- Multiple policies can apply to one Pod; the union of all rules defines allowed traffic.
 - Once any policy selects a Pod, all other traffic is denied by default.
-- If no policies select a Pod, that Pod is open.   
+- If no policies select a Pod, that Pod is open.
 - Make sure to allow DNS egress (UDP/TCP 53) if outbound traffic is restricted.
 - NetworkPolicies are stateful, so all response traffic is allowed.
 
