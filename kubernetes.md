@@ -222,22 +222,22 @@ imagePullSecrets:
 # Make sure to apply this same policy to each namespace (except kube-system)
 
 --- # Default deny for entire namespace.
-apiVersion: networking.k8s.io/v1                               # API version for NetworkPolicy.
-kind: NetworkPolicy                                            # Object that controls Pod traffic.
+apiVersion: networking.k8s.io/v1  # API version for NetworkPolicy.
+kind: NetworkPolicy               # Object that controls Pod traffic.
 metadata:
-  name: web-default-deny                                       # Name of the policy.
-  namespace: app                                               # Namespace where it applies.
+  name: web-default-deny          # Name of the policy.
+  namespace: app                  # Namespace where it applies.
   labels:
     app: web
 spec:
   podSelector:
     matchLabels:
-      app: web                                                 # Applies to Pods with this label.
+      app: web                    # Applies to Pods with this label.
   policyTypes:
-    - Ingress                                                  # Rules apply to incoming traffic.
-    - Egress                                                   # Rules apply to outgoing traffic.
-  ingress: []                                                  # No ingress allowed by default.
-  egress: []                                                   # No egress allowed by default.
+    - Ingress                     # Rules apply to incoming traffic.
+    - Egress                      # Rules apply to outgoing traffic.
+  ingress: []                     # No ingress allowed by default.
+  egress: []                      # No egress allowed by default.
 
 --- # Allow all traffic from other pods in same namespace.
 apiVersion: networking.k8s.io/v1
@@ -277,6 +277,36 @@ spec:
   selector:
     matchLabels:
       app: web              # Selects Pods this PDB protects (must match Pod labels).
+```
+</details>
+
+<details>
+  <summary>HorizontalPodAutoscaler</summary>
+
+```yaml
+# Scale up the web deployment when CPU usage reaches >80% of its original CPU request.
+
+apiVersion: autoscaling/v2       # HPA v2 for richer metrics support.
+kind: HorizontalPodAutoscaler    # Object that scales a target workload.
+metadata:
+  name: web-hpa                  # Name of the HPA.
+  namespace: app                 # Namespace of the HPA and target workload.
+  labels:
+    app: web
+spec:
+  scaleTargetRef:                # Reference to the workload to scale.
+    apiVersion: apps/v1          # API version of the target.
+    kind: Deployment             # Kind of the target.
+    name: web                    # Name of the target Deployment.
+  minReplicas: 2                 # Lower bound of replicas the HPA can set.
+  maxReplicas: 10                # Upper bound of replicas.
+  metrics:                       # Metrics used for scaling.
+    - type: Resource             # Resource based metric.
+      resource:
+        name: cpu                # Use container CPU usage.
+        target:
+          type: Utilization      # Target expressed as percentage of requested CPU.
+          averageUtilization: 80 # Aim for 80 percent average CPU utilization.
 ```
 </details>
 
