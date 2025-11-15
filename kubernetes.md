@@ -4,13 +4,15 @@
   - Learning
     - [k8s.guide](https://www.k8s.guide/)
   - Tools
-    - [Lens - K8s IDE](https://k8slens.dev/)
-    - [Kubectl - Command-line interaction with k8s API](https://kubernetes.io/docs/reference/kubectl/overview/)
-    - [Helm - K8s package manager](https://helm.sh/docs/)
+    - [FreeLens]() - K8s IDE]
+    - [kubectl](https://kubernetes.io/docs/reference/kubectl/overview/) - Command-line interaction with k8s API
+    - krew - Plugin manager for kubectl
+    - [Helm](https://helm.sh/docs/) - K8s package manager
     - k9s - TUI replacement for kubectl
     - kubescape - Scan cluster security posture
     - popeye - Lint cluster for potential issues
     - kubent - List deprecated APIs before upgrading the cluster
+    - [sonobuoy](https://github.com/vmware-tanzu/sonobuoy) - Assist cluster debugging by checking for errors and ensuring compliance
   - Installation methods
     - [Kubeadm - Official tool for cluster creation](https://kubernetes.io/docs/reference/setup-tools/kubeadm/)
     - [Kubespray - Create K8s cluster with Ansible](https://github.com/kubernetes-sigs/kubespray)
@@ -23,7 +25,7 @@
       - [k8s DNS](https://kubernetes.io/docs/concepts/services-networking/dns-pod-service/)
       - [DNS troubleshooting on EKS](https://aws.amazon.com/premiumsupport/knowledge-center/eks-dns-failure/)
       - [Debugging k8s DNS resolution](https://kubernetes.io/docs/tasks/administer-cluster/dns-debugging-resolution/)
-  - Kubernetes stack
+  - Example Kubernetes stack
     - GitOps: ArgoCD w/ Kustomize or Helm manifests
     - Telemetry: OpenTelemtry to standardize metrics
     - Metrics: Prometheus + Grafana using kube-prometheus-stack
@@ -32,6 +34,7 @@
     - Storage: Ceph RGW for S3-compatible storage
     - Service mesh: Linkerd (simpler) or Istio
     - Certificates: Cert-manager
+    - Disaster recovery: Velero
 
 ## Troubleshooting
 
