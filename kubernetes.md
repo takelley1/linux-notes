@@ -4,7 +4,7 @@
   - Learning
     - [k8s.guide](https://www.k8s.guide/)
   - Tools
-    - [FreeLens]() - K8s IDE]
+    - [FreeLens](https://freelensapp.github.io/) - K8s IDE
     - [kubectl](https://kubernetes.io/docs/reference/kubectl/overview/) - Command-line interaction with k8s API
     - krew - Plugin manager for kubectl
     - [Helm](https://helm.sh/docs/) - K8s package manager
@@ -14,12 +14,12 @@
     - kubent - List deprecated APIs before upgrading the cluster
     - [sonobuoy](https://github.com/vmware-tanzu/sonobuoy) - Assist cluster debugging by checking for errors and ensuring compliance
   - Installation methods
-    - [Kubeadm - Official tool for cluster creation](https://kubernetes.io/docs/reference/setup-tools/kubeadm/)
-    - [Kubespray - Create K8s cluster with Ansible](https://github.com/kubernetes-sigs/kubespray)
-    - [Kops - Automatic K8s cluster provisioning](https://kops.sigs.k8s.io/)
+    - [Kubeadm](https://kubernetes.io/docs/reference/setup-tools/kubeadm/) - Official tool for cluster creation
+    - [Kubespray](https://github.com/kubernetes-sigs/kubespray) - Create K8s cluster with Ansible
+    - [Kops](https://kops.sigs.k8s.io/) - Automatic K8s cluster provisioning
   - Distributions
-    - [Minikube - Local K8s for learning](https://minikube.sigs.k8s.io/docs/start/)
-    - [K0s - Lightweight K8s](https://github.com/k0sproject/k0s)
+    - [Minikube](https://minikube.sigs.k8s.io/docs/start/) - Local K8s for learning
+    - [K0s](https://github.com/k0sproject/k0s) - Lightweight K8s
   - Troubleshooting
     - DNS
       - [k8s DNS](https://kubernetes.io/docs/concepts/services-networking/dns-pod-service/)
