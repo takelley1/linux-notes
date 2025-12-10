@@ -1,5 +1,12 @@
 # Zarf
 
+## Troubleshooting
+```
+zarf tools registry catalog
+zarf tools kubectl get pods -A
+zarf tools connect registry
+```
+
 ## Inspect zarf registry outside the cluster
 ```
 kubectl get svc -A | grep zarf
