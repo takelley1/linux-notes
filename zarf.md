@@ -1,5 +1,7 @@
 # Zarf
 
+- `zarf package list` = Show installed packages and versions
+
 ## Troubleshooting
 ```
 zarf tools registry catalog
