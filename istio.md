@@ -3,6 +3,8 @@
 - Service mesh for managing service-to-service traffic, security, and observability
 - Key features: Traffic routing, mutual TLS, telemetry, policy enforcement, retries, and circuit breaking
 - Exposes service metrics beyond what `kube-prometheus-stack` would do for regular Pods
+<br><br>
+- `kubectl label namespace mynamespace istio-injection=disabled` = Disable sidecar injection for a namespace.
 
 ## Commands
 
