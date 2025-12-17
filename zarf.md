@@ -1,6 +1,7 @@
 # Zarf
 
 - `zarf package list` = Show installed packages and versions
+- `kubectl label namespace mynamespace zarf.dev/agent=ignore` = Make zarf ignore everything in the namespace
 
 ## Troubleshooting
 ```
