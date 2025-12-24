@@ -34,7 +34,7 @@
   spec:
     bucketName: mimir-alerts
     storageClassName: ceph-bucket
-  ```
     additionalConfig:
       maxObjects: "100000000"
       maxSize: "100G"
+  ```
