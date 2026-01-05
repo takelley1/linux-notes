@@ -1,5 +1,9 @@
 # Alloy
 
+- Troubleshoot prometheus blackbox exporter probe inside alloy pod:
+  - port-forward the alloy pod to localhost, then run
+  - `curl "http://localhost:12345/api/v0/component/prometheus.exporter.blackbox.default/probe?target=https://example.com&module=http_2xx&debug=true"`
+
 - Example config scraping metrics from `node-exporter` pods in a k8s cluster:
   ```hcl
   discovery.kubernetes "node_exporter_pods" {
