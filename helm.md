@@ -1,5 +1,7 @@
 ## [Helm](https://helm.sh/docs/)
 
+- `kubectl -n bigbang get hr bigbang -o yaml | less` = Inspect rendered values of a helm release.
+
 - [Helm configuration for a GitLab runner:](https://docs.gitlab.com/runner/install/kubernetes.html)
 ```bash
 # Create namespace for gitlab.
