@@ -1,5 +1,7 @@
 # [Kyverno](https://kyverno.io/docs/introduction/)
 
+- `kubectl delete pods -n kyverno --all` = Force Kyverno policies to reload by removing pods. Helps with FluxCD reconciliation.
+<br><br>
 - Extends the baseline Pod Security Admission with more flexible controls on any resource, not just Pods.
 - `kyverno apply`, `kyverno test`, `kyverno validate`  
 - Workflow: Admission request → Kyverno evaluates → allow, deny, or mutate
