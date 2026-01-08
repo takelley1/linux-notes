@@ -312,10 +312,7 @@ spec:
 </details>
 
 ## Troubleshooting
-- Issue: FluxCD issues
-- Fix:
-  - Check `kustomizations`, `helmrelease`, `helmrepo`, `clusterpolicies`, `netpol`
-<br><br>
+
 - Issue: Cannot reach a service endpoint in the cluster. Connection refused
 - Fix:
   - Check NetworkPolicies. Is any NetworkPolicy targeting the source or destination pod? If so, make sure another policy allows the traffic.
