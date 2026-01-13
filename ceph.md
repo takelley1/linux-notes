@@ -3,12 +3,12 @@
 ## Useful commands
 
 - From the `rook-ceph-tools` pod in a k8s cluster:
-  - `ceph health status` and `ceph -s` = Short summary of overall pool status.
+  - `ceph health status` or `ceph -s` = Short summary of overall pool status.
   - `ceph health detail` = More specific pool health information
   - `ceph osd tree` = Map of OSDs to hosts, showing which OSDs are up/down.
   - `ceph osd perf` = Identify slow OSDs.
   - `ceph df` = Per-pool storage usage.
-  - `ceph osd pool ls detail` = All pools ith detailed configuration.
+  - `ceph osd pool ls detail` = All pools with detailed configuration.
 
 ## Troubleshooting
 
