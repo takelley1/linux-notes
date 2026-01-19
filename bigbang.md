@@ -16,7 +16,8 @@ Task: override Grafana config to use Postgres instead of SQLite
 3. Look at the BigBang HelmRelease and find the same block so we can edit it.
     - `kubectl get hr bigbang -n bigbang -o yaml | yq '.spec.values.grafana'`
     - The `grafana` block appears to have a `values.upstream` section. So it looks like we need to add a `grafana.ini` block to `.spec.values.grafana.values.upstream`
-4. Create a postRenderer to add the block.
+
+4. Create a postRenderer to add the block, since grafana.ini exists in the values for the `grafana` sub-chart.
    ```yaml
    - op: add
      path: /spec/values/grafana/values/upstream/grafana.ini
@@ -24,6 +25,17 @@ Task: override Grafana config to use Postgres instead of SQLite
        database:
          type: postgres
          host: host.com
+   ```
+5. If the block doesn't exist, we need to create it first in our postRenderer
+  ```yaml
+   - op: add
+     path: /spec/values/grafana/values/upstream/extraSecretMounts
+     value: []
+
+   - op: add
+     path: /spec/values/grafana/values/upstream/extraSecretMounts/-
+     value:
+       name: mySecret
    ```
 5. Git commit and push, then monitor changes:
    - `flux reconcile hr grafana -n bigbang` = Force reconciliation.
