@@ -2,6 +2,17 @@
 
 ## Troubleshooting
 
+- Issue: Pod can't talk to the k8s API
+- Fix:
+  - Does the pod's ServiceAccount have a ServiceAccountToken mounted? If not, is Kyverno mutating the ServiceAccount so it doesn't get mounted?
+  - Does the pod's ServiceAccount have the correct ClusterRole and ClusterRoleBinding to access the API endpoints it needs?
+<br><br>
+- Issue: helmrepo failed to fetch helmrelease at grafana.github.io.
+- Symptoms: It resolves to the correct IP but the issue is `read tcp IP->IP read: connection reset by peer`
+- Fix:
+  - Is Istio injected into the fluxcd pod? If so, are the Istio egress-gateway NetworkPolicies blocking the outbound traffic?
+  - Describe the fluxcd pods and verify they have the `HTTPS_PROXY` env vars.
+<br><br>
 - Issue: Cannot reach a cluster service endpoint from INSIDE the cluster.
 - Symptoms: TCP connection refused
 - Fix:
