@@ -331,12 +331,6 @@ spec:
 
 ## Troubleshooting
 
-- Issue: Cannot reach a service endpoint in the cluster. Connection refused
-- Fix:
-  - Check NetworkPolicies. Is any NetworkPolicy targeting the source or destination pod? If so, make sure another policy allows the traffic.
-  - Check the host's firewalld. Is the port allowed? `firewall-cmd --list-all && firewall-cmd --add-port=PORT/tcp --permanent`
-  - Check Istio. Is Istio enforcing mTLS on the connection? Add an annotation `sidecar.istio.io/inject: "false"`
-<br><br>
 - `kubectl cp <NAMESPACE>/<POD_NAME>:<PATH_IN_POD> <LOCAL_PATH>`
 - `kubectl cp myscript.sh keycloak-0:/tmp/myscript.sh -n keycloak` = Copy *myscript.sh* into the *keycloak-0* pod.
 - `kubectl run curl-test --image=radial/busyboxplus:curl -i --tty --rm` = Run pod with *curl* and *nslookup* for testing.
