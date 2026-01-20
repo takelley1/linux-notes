@@ -1,6 +1,40 @@
 # BigBang
 
-## How to modify BigBang values
+## Troubleshooting
+
+- Issue: Cannot reach a cluster service endpoint from INSIDE the cluster.
+- Symptoms: TCP connection refused
+- Fix:
+  - Is the service up and healthy? Does it have endpoints? Are the pods healthy?
+  - Check NetworkPolicies. Is any NetworkPolicy targeting the source or destination pod? If so, make sure another policy allows the traffic.
+  - Check the host's firewalld. Is the port allowed? `firewall-cmd --list-all && firewall-cmd --add-port=PORT/tcp --permanent`
+  - Check Istio. Is Istio enforcing mTLS on the connection? Add an annotation `sidecar.istio.io/inject: "false"`
+<br><br>
+- Issue: Cannot reach a cluster service endpint from OUTSIDE the cluster.
+- Symptoms: TCP connection refused.
+- Fix:
+  - Is the service up and healthy? Does it have endpoints? Are the pods healthy?
+  - Check Istio NetworkPolicies. Delete them if needed to test. Is `istio-ingressgateway` allowing traffic in on the right port? Do other NetworkPolicies block it?
+<br><br>
+- Issue: FluxCD issues -- not reconciling, manifests not getting updated, etc.
+- Fix:
+  - Check kustomizations, helmrelease, helmrepo, clusterpolicies, netpol
+  - Run `flux get all -n bigbang | less -XRFS` to check for suspended resources
+<br><br>
+- Issue: Failed to call Kyverno's mutating webhook endpoint.
+- Fix:
+  1. Suspend the Kyverno hr `flux suspend hr kyverno -n bigbang && flux suspend hr kyverno-policies -n bigbang`
+  2. Scale down the Kyverno deployments to 0
+  3. Retry reconciling the issue Kustomization 
+  4. Wait for all other Kustomizations to reconcile
+  5. Resume the Kyverno helm releases `flux resume hr kyverno -n bigbang && flux resume hr kyverno-policies -n bigbang`
+  6. Scale back up the Kyverno deployment
+<br><br>
+- Issue: helmrelease suck in reconciliation
+- Fix:
+  - Suspend the hr, then resume it `flux suspend hr <RELEASE>`, `flux resume hr <RELEASE>`
+
+## PostRenderers
 
 Task: override Grafana config to use Postgres instead of SQLite
 
@@ -40,4 +74,4 @@ Task: override Grafana config to use Postgres instead of SQLite
 5. Git commit and push, then monitor changes:
    - `flux reconcile hr grafana -n bigbang` = Force reconciliation.
    - `kubectl describe hr grafana -n bigbang` = Monitor status and errors.
-   - `kubectl get hr bigbang -n bigbang -o yaml | yq '.spec.values.grafana.values.upstream` = See the changed helm chart values to see if they're correct.
+   - `kubectl get hr bigbang -n bigbang -o yaml | yq '.spec.values.grafana.values.upstream'` = See the changed helm chart values to see if they're correct.
