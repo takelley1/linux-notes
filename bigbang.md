@@ -2,6 +2,10 @@
 
 ## Troubleshooting
 
+- Issue: SOPS issue on kustomization: `cannot get sops data key: failed to get the data key required to decrypt the SOPS file`
+- Fix:
+  - Make sure the sops secret in the cluster contains the correct secret key. Export your local gpg key with `--armor` and compare it to what’s in the cluster.
+<br><br>
 - Issue: Pod can't talk to the k8s API
 - Fix:
   - Does the pod's ServiceAccount have a ServiceAccountToken mounted? If not, is Kyverno mutating the ServiceAccount so it doesn't get mounted?
