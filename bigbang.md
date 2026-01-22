@@ -2,11 +2,25 @@
 
 ## Troubleshooting
 
+- Issue: Alloy not scraping or forwarding metrics.
+- Fix:
+  - Port forward the alloy container.
+  - `curl http://localhost:12345/metrics | grep prometheus | grep vcenter | grep forwarded`
+  - See if the `forwarded_sampels_total` is periodically increasing.
+  - Go into grafana explore and run `count by (job) ({__name__=~”.*”, cluster=~”.+”})` — assuming you use a cluster label.
+  - See if the job shows up there.
+<br><br>
+- Issue: Need to port-forward Alloy pod and view alloy web interface, but my Linux box is CLI only.
+- Fix:
+  - Port-forward the Alloy pod to your Linux box at port 12345.
+  - From your Windows box (the SSH client) that accesses the Linux box (the SSH server), run `ssh -L 9000:127.0.0.1:12345 akelley@<LINUX_BOX_IP>`.
+  - From your Windows box, open a browser at `http://localhost:9000`.
+<br><br>
 - Issue: SOPS issue on kustomization: `cannot get sops data key: failed to get the data key required to decrypt the SOPS file`
 - Fix:
   - Make sure the sops secret in the cluster contains the correct secret key. Export your local gpg key with `--armor` and compare it to what’s in the cluster.
 <br><br>
-- Issue: Pod can't talk to the k8s API
+- Issue: Pod can't talk to the k8s API.
 - Fix:
   - Does the pod's ServiceAccount have a ServiceAccountToken mounted? If not, is Kyverno mutating the ServiceAccount so it doesn't get mounted?
   - Does the pod's ServiceAccount have the correct ClusterRole and ClusterRoleBinding to access the API endpoints it needs?
@@ -18,7 +32,7 @@
   - Describe the fluxcd pods and verify they have the `HTTPS_PROXY` env vars.
 <br><br>
 - Issue: Cannot reach a cluster service endpoint from INSIDE the cluster.
-- Symptoms: TCP connection refused
+- Symptoms: TCP connection refused.
 - Fix:
   - Is the service up and healthy? Does it have endpoints? Are the pods healthy?
   - Check NetworkPolicies. Is any NetworkPolicy targeting the source or destination pod? If so, make sure another policy allows the traffic.
@@ -33,19 +47,19 @@
 <br><br>
 - Issue: FluxCD issues -- not reconciling, manifests not getting updated, etc.
 - Fix:
-  - Check kustomizations, helmrelease, helmrepo, clusterpolicies, netpol
-  - Run `flux get all -n bigbang | less -XRFS` to check for suspended resources
+  - Check kustomizations, helmrelease, helmrepo, clusterpolicies, netpol.
+  - Run `flux get all -n bigbang | less -XRFS` to check for suspended resources.
 <br><br>
 - Issue: Failed to call Kyverno's mutating webhook endpoint.
 - Fix:
   1. Suspend the Kyverno hr `flux suspend hr kyverno -n bigbang && flux suspend hr kyverno-policies -n bigbang`
-  2. Scale down the Kyverno deployments to 0
-  3. Retry reconciling the issue Kustomization 
-  4. Wait for all other Kustomizations to reconcile
+  2. Scale down the Kyverno deployments to 0.
+  3. Retry reconciling the issue Kustomization.
+  4. Wait for all other Kustomizations to reconcile.
   5. Resume the Kyverno helm releases `flux resume hr kyverno -n bigbang && flux resume hr kyverno-policies -n bigbang`
-  6. Scale back up the Kyverno deployment
+  6. Scale back up the Kyverno deployment.
 <br><br>
-- Issue: helmrelease suck in reconciliation
+- Issue: helmrelease suck in reconciliation.
 - Fix:
   - Suspend the hr, then resume it `flux suspend hr <RELEASE>`, `flux resume hr <RELEASE>`
 
