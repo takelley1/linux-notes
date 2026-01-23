@@ -2,6 +2,30 @@
 
 ## Troubleshooting
 
+- Issue: When pushing a postrenderer in BigBang, the kustomization shows: `kustomize build failed: add operation does not apply: doc is missing path: "/spec/values/kyvernoPolicies/values/policies/disallow-auto-mount-service-account-token/exclude/any/-" missing value`
+- Fix:
+  - The postrenderer has the incorrect format.
+  - Change this:
+    ```
+    - op: add
+      path: /spec/values/kyvernoPolicies/values/policies/disallow-auto-mount-service-account-token/excldue/any/-
+      value:
+        resources:
+          namespaces:
+            - alloy-metrics-cots
+    ```
+  - To this:
+    ```
+    - op: add
+      path: /spec/values/kyvernoPolicies/values/policies/disallow-auto-mount-service-account-token
+      value:
+        exclude:
+          any:
+            - resource:
+                namespaces:
+                  - alloy-metrics-cots
+    ```
+<br><br>
 - Issue: Alloy not scraping or forwarding metrics.
 - Fix:
   - Port forward the alloy container.
