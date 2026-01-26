@@ -314,24 +314,29 @@ spec:
 ## Cluster shutdown/bootup
 
 - Shutdown
-  - Set Ceph cluster flags
-    - `kubectl -n rook-ceph exec -it deploy/rook-ceph-tools -- sh`
-    - `ceph osd set noout && ceph osd set norebalance && ceph osd set nobackfull && ceph osd set norecover`
-  - Cordon nodes
-    - `kubectl cordon <NODE>`
-  - Drain and shutdown non-Ceph worker nodes
-    - `kubectl drain <NODE> --ignore-daemonsets --delete-emptydir-data`
-  - Drain and shutdown Ceph nodes
-  - Shutdown control plane nodes
+  - On each Ceph node:
+    - Set Ceph cluster flags
+      - `kubectl -n rook-ceph exec -it deploy/rook-ceph-tools -- sh`
+      - `ceph osd set noout && ceph osd set norebalance && ceph osd set nobackfull && ceph osd set norecover`
+  - On each non-Ceph node (one at a time):
+    - Cordon node
+      - `kubectl cordon <NODE>`
+    - Drain and shutdown node
+      - `kubectl drain <NODE> --ignore-daemonsets --delete-emptydir-data`
+  - On each Ceph node (one at a time):
+    - Cordon node
+    - Drain and shutdown node
+  - On each control plane node (one at a time):
+    - Shutdown control plane nodes
 - Bootup
   - Start control plane nodes
-  - Start Ceph worker nodes
-  - Uncordon nodes
-    - `kubectl uncordon <NODE>`
-  - Unset Ceph cluster flags
-  - Wait for Ceph to become healthy again
-    - `ceph -s` and see if the "objects degrated" percentage goes down
-  - Start remaining worker nodes
+  - On each Ceph node (one at a time):
+    - Uncordon node
+      - `kubectl uncordon <NODE>`
+    - Unset Ceph cluster flags
+    - Wait for Ceph to become healthy again
+      - `ceph -s` and see if the "objects degrated" percentage goes down
+  - Start remaining worker nodes (all at once)
 
 ## Troubleshooting
 
