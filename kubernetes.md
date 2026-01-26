@@ -317,6 +317,8 @@ spec:
   - Set Ceph cluster flags
     - `kubectl -n rook-ceph exec -it deploy/rook-ceph-tools -- sh`
     - `ceph osd set noout && ceph osd set norebalance && ceph osd set nobackfull && ceph osd set norecover`
+  - Cordon nodes
+    - `kubectl cordon <NODE>`
   - Drain and shutdown non-Ceph worker nodes
     - `kubectl drain <NODE> --ignore-daemonsets --delete-emptydir-data`
   - Drain and shutdown Ceph nodes
@@ -324,6 +326,8 @@ spec:
 - Bootup
   - Start control plane nodes
   - Start Ceph worker nodes
+  - Uncordon nodes
+    - `kubectl uncordon <NODE>`
   - Unset Ceph cluster flags
   - Wait for Ceph to become healthy again
     - `ceph -s` and see if the "objects degrated" percentage goes down
