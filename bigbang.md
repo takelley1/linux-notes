@@ -2,6 +2,10 @@
 
 ## Troubleshooting
 
+- Issue: Pod isn't getting injected with Istio
+- Fix:
+  - Check the namespace labels the Pod is running in. Does it have `istio-injection: enabled`?
+<br><br>
 - Issue: When pushing a postrenderer in BigBang, the kustomization shows: `kustomize build failed: add operation does not apply: doc is missing path: "/spec/values/kyvernoPolicies/values/policies/disallow-auto-mount-service-account-token/exclude/any/-" missing value`
 - Fix:
   - The postrenderer has the incorrect format.
@@ -62,6 +66,7 @@
   - Check NetworkPolicies. Is any NetworkPolicy targeting the source or destination pod? If so, make sure another policy allows the traffic.
   - Check the host's firewalld. Is the port allowed? `firewall-cmd --list-all && firewall-cmd --add-port=PORT/tcp --permanent`
   - Check Istio. Is Istio enforcing mTLS on the connection? Add an annotation `sidecar.istio.io/inject: "false"`
+  - Check the PeerAuthentication objects. Try settings `spec.mtls.mode: PERMISSIVE`
 <br><br>
 - Issue: Cannot reach a cluster service endpint from OUTSIDE the cluster.
 - Symptoms: TCP connection refused.
