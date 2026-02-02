@@ -802,6 +802,17 @@ kubectl edit configmap coredns -n kube-system
 - StartupProbe: Determines whether the Pod is still staring. The Readiness and Liveness probes are delayed until this succeeds.
 - LivenessProbe: Determines whether the main process is stuck. If it fails, the Pod is restarted.
 
+### Scheduling and QoS Classes
+
+- [The scheduler will prioritize your workload based on how you set Limits and Requests for your Pods.](https://github.com/kubernetes/design-proposals-archive/blob/main/node/resource-qos.md)
+- Pods are **guaranteed** to receive the CPU they request.
+
+| QoS Class  | Description                          | Eviction Priority        |
+|------------|--------------------------------------|--------------------------|
+| Guaranteed | Requests = Limits for all containers | Evicted last             |
+| Burstable  | Requests < Limits                    | Evicted after BestEffort |
+| BestEffort | No requests/limits set               | Evicted first            |
+
 ## Security
 
 ### Pod Security
