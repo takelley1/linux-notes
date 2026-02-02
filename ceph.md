@@ -10,6 +10,10 @@
   - `ceph df` = Per-pool storage usage.
   - `ceph osd pool ls detail` = All pools with detailed configuration.
   - `ceph health mute BLUESTORE_SLOW_OP_ALERT` = Ignore the slow Bluestore operations alert. This will prevent the alert from putting the Ceph cluster into a HEALTH_WARN state and masking other issues or causing alert fatigue.
+<br><br>
+- Tune Ceph for use with SSDs:
+  - `ceph config set class:ssd bdev_enable_discard true`
+  - `ceph config set class:ssd bdev_async_discard_threads 1`
 
 ## Troubleshooting
 
