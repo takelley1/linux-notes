@@ -58,6 +58,7 @@
 - Fix:
   - Is Istio injected into the fluxcd pod? If so, are the Istio egress-gateway NetworkPolicies blocking the outbound traffic?
   - Describe the fluxcd pods and verify they have the `HTTPS_PROXY` env vars.
+    - If they don't exist, look at the kustomization where that config is set. You may need to add it manually with `kubectl edit ks <KUSTOMIZAION NAME>`
 <br><br>
 - Issue: Cannot reach a cluster service endpoint from INSIDE the cluster.
 - Symptoms: TCP connection refused.
