@@ -2,6 +2,10 @@
 
 ## Troubleshooting
 
+- Issue: My fluxcd kustomization keeps reverting the HTTPS_PROXY patch I added to it.
+- Fix:
+  - Add the patch back manually, then suspend the kustomization so it doesn't revert itself.
+<br><br>
 - Issue: Pod isn't getting injected with Istio
 - Fix:
   - Check the namespace labels the Pod is running in. Does it have `istio-injection: enabled`?
