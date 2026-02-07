@@ -2,6 +2,12 @@
 
 ## Troubleshooting
 
+- Issue: Fluxcd kustomization won't reconcile. Stuck in `reconciliation in progress`.
+- Fix:
+  1. Suspend the kustomization: `flux suspend ks install-addons-bigbang`
+  2. Restart fluxcd rollout: `kubectl rollout restart deployment/kustomize-controller -n flux-system`
+  3. Resume the kustomization: `flux resume ks install-addons-bigbang`
+<br><br>
 - Issue: My fluxcd kustomization keeps reverting the HTTPS_PROXY patch I added to it.
 - Fix:
   - Add the patch back manually, then suspend the kustomization so it doesn't revert itself.
