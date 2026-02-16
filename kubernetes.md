@@ -39,6 +39,64 @@
 ## Production Cookbooks
 
 <details>
+  <summary>Debug Deployment</summary>
+
+```yaml
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: debug
+  labels:
+    zarf.dev/agent: ignore
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: debug
+  namespace: debug
+  labels:
+    zarf.dev/agent: ignore
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: debug
+  template:
+    metadata:
+      labels:
+        app: debug
+    spec:
+      automountServiceAccountToken: false
+      securityContext:
+        runAsNonRoot: true
+        runAsUser: 1000
+        runAsGroup: 1000
+        fsGroup: 1000
+        seccompProfile:
+          type: RuntimeDefault
+      containers:
+        - name: busybox
+          image: busybox:1.37
+          command: ["sh", "-c", "sleep 86300"]
+          securityContext:
+            allowPrivilegeEscalation: false
+            readOnlyRootFilesystem: true
+            capabilities:
+              drop:
+                - ALL
+        - name: curl
+          image: curlimages/curl:8.18.0
+          command: ["sh", "-c", "sleep 86300"]
+          securityContext:
+            allowPrivilegeEscalation: false
+            readOnlyRootFilesystem: true
+            capabilities:
+              drop:
+                - ALL
+```
+</details>
+
+<details>
   <summary>Deployment</summary>
 
 ```yaml
