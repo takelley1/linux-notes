@@ -2,6 +2,10 @@
 
 ## Troubleshooting
 
+- Issue: istiod pods fail to be ready because `cannot list *v1.ConfigMap`
+- Fix:
+  - Ensure the istiod ServiceAccount DOES NOT HAVE `automountServiceAccountToken: false`
+<br><br>
 - Issue: Fluxcd kustomization won't reconcile. Stuck in `reconciliation in progress`.
 - Fix:
   1. Suspend the kustomization: `flux suspend ks install-addons-bigbang`
