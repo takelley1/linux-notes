@@ -3,6 +3,9 @@
 ## Troubleshooting
 
 `journalctl -fu k0scontroller` = View logs on a k0s controller node
+`k0s etcd member-list` = Get info on etcd status
+`k0s kubectl get nodes` = Run standard kubectl commands
+`k0s stop && k0s reset` = Reset k0s installation
 
 ## Kubectl
 
