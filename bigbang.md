@@ -2,6 +2,17 @@
 
 ## Troubleshooting
 
+### Installation
+
+- Issue: The `zarf-init` package fails to deploy during the installation process.
+- Fix: Run `wipefs -a -f /dev/sdb` on all infra nodes, then recreate all worker nodes and rerun the installation.
+- You can also try running the `zarf package deploy zarf-package-path.zst` manually to see more detailed debug logging.
+<br><br>
+- Issue: Failed to connect to nodes during cluster installation process.
+- Fix: Ensure all proxy vars are unset. Run `unset https_proxy http_proxy HTTPS_PROXY HTTP_PROXY`, then rerun installation in same environment.
+
+### Management
+
 - Issue: istiod pods fail to be ready because `cannot list *v1.ConfigMap`
 - Fix:
   - Ensure the istiod ServiceAccount DOES NOT HAVE `automountServiceAccountToken: false`
@@ -43,7 +54,6 @@
                 namespaces:
                   - alloy-metrics-cots
     ```
-<br><br>
 - Issue: Alloy not scraping or forwarding metrics.
 - Fix:
   - Port forward the alloy container.
