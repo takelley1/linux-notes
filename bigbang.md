@@ -94,11 +94,11 @@
   - Check Istio. Is Istio enforcing mTLS on the connection? Add an annotation `sidecar.istio.io/inject: "false"`
   - Check the PeerAuthentication objects. Try settings `spec.mtls.mode: PERMISSIVE`
 <br><br>
-- Issue: Cannot reach a cluster service endpint from OUTSIDE the cluster.
+- Issue: Cannot reach a cluster service endpoint from OUTSIDE the cluster.
 - Symptoms: TCP connection refused.
 - Fix:
   - Is the service up and healthy? Does it have endpoints? Are the pods healthy?
-  - Check Istio NetworkPolicies. Delete them if needed to test. Is `istio-ingressgateway` allowing traffic in on the right port? Do other NetworkPolicies block it?
+  - Check Istio NetworkPolicies in BOTH `istio-system` and `istio-gateway` namespaces. Delete them if needed to test. Is `istio-ingressgateway` allowing traffic in on the right port? Do other NetworkPolicies block it?
 <br><br>
 - Issue: FluxCD issues -- not reconciling, manifests not getting updated, etc.
 - Fix:
