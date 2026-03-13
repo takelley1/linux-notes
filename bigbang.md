@@ -13,6 +13,12 @@
 
 ### Management
 
+- Issue: Crossplane `UserFederation` can't update its object
+- Symptoms:
+  - `Warning  CannotUpdateManagedResource  51s   managed/ldap.keycloak.crossplane.io/v1alpha1, kind=userfederation  Operation cannot be fulfilled on userfederations.ldap.keycloak.crossplane.io "artemis-s-user-federation": the object has been modified; please apply your changes to the latest version and try again`
+- Fix:
+  - Delete the duplicated object in the KeyCloak GUI, kill the KeyCloak pods, and reconcile the Kustomization that owns the `UserFederation` object
+<br><br>
 - Issue: Crossplane KeyCloak `UserFederation` can't connect to KeyCloak: `connect: can't assign requested address`
 - Fix:
   - Restart the Crossplane pods, this is due to port exhaustion
