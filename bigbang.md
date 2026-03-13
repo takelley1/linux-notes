@@ -13,6 +13,14 @@
 
 ### Management
 
+- Issue: Crossplane KeyCloak `UserFederation` can't connect to KeyCloak: `connect: can't assign requested address`
+- Fix:
+  - Restart the Crossplane pods, this is due to port exhaustion
+<br><br>
+- Issue: Crossplane KeyCloak `GroupMapper` can't connect to KeyCloak: `tcp: connection reset`
+- Fix:
+  - Delete the KeyCloak NetworkPolicies
+<br><br>
 - Issue: istiod pods fail to be ready because `cannot list *v1.ConfigMap`
 - Fix:
   - Ensure the istiod ServiceAccount DOES NOT HAVE `automountServiceAccountToken: false`
