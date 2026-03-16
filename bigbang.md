@@ -132,7 +132,38 @@
 - Fix:
   - Suspend the hr, then resume it `flux suspend hr <RELEASE>`, `flux resume hr <RELEASE>`
 
-## PostRenderers
+## PostRenderers Ex 2
+
+Task: update grafana.ini values in Grafana BigBang configuration with SMTP config
+
+1. Look at the values the BigBang chart is currently using
+   ```bash
+   kubectl get cm hr-values-bigbang -n bigbang -o yaml | less
+   ```
+2. Find the correct key that modifies Grafana. It looks like `grafana.values.upstream.grafana.ini` is the path.
+3. Now add a PostRenderer to our BigBang Kustomization
+   ```yaml
+   patches:
+     - target:
+         kind: HelmRelease
+         name: bigbang
+       patch: |-
+         apiVersion: helm.toolkit.fluxcd.io/v2
+         kind: HelmRelease
+         metadata:
+           name: bigbang
+         spec:
+           values:
+             grafana:
+               values:
+                 upstream:
+                   grafana.ini:
+                     smtp:
+                       enabled: true
+                       host: host.example.com
+   ```
+
+## PostRenderers Ex 1
 
 Task: override Grafana config to use Postgres instead of SQLite
 
