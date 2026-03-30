@@ -12,6 +12,7 @@
     - kubescape - Scan cluster security posture
     - popeye - Lint cluster for potential issues
     - kubent - List deprecated APIs before upgrading the cluster
+    - `kubectl resource-capacity -u` = Show all node CPU/RAM usage, requests, and limits. Useful for debugging scheduling issues.
     - [sonobuoy](https://github.com/vmware-tanzu/sonobuoy) - Assist cluster debugging by checking for errors and ensuring compliance
   - Installation methods
     - [Kubeadm](https://kubernetes.io/docs/reference/setup-tools/kubeadm/) - Official tool for cluster creation
