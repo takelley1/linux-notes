@@ -5,10 +5,13 @@
 ### Installation
 
 - Issue: The `zarf-init` package fails to deploy during the installation process.
-- Symptoms: Logs of `rook-ceph-operator`: `2026-04-15 17:32 08 710646 E | ceph-block-pool-controller: failed to reconcile CephBlockPool "rook-ceph/ceph-blockpool". failed to create pool "ceph-blockpool" failed to initialize pool "ceph-blockpool" for RBD use. signal: interrupt`
+- Symptoms:
+  - Logs of Ceph OSD prepare job: `2026-04-15 21:44:12.866633 I | cephosd: skipping osd.2: "d5338065-aa99-46d9-9101-2ebc1e1b22ba" belonging to a different ceph cluster "0f388e34-2090-4653-a3ac-b71621276b53"`
+  - Logs of `rook-ceph-operator`: `2026-04-15 17:32 08 710646 E | ceph-block-pool-controller: failed to reconcile CephBlockPool "rook-ceph/ceph-blockpool". failed to create pool "ceph-blockpool" failed to initialize pool "ceph-blockpool" for RBD use. signal: interrupt`
 - Fix:
   - Run `wipefs -a -f /dev/sdb` on all infra nodes, then recreate all worker nodes and rerun the installation.
   - Also make sure the disk mode in vSphere is `dependent`. Select VM -> Edit settings -> Select disk -> Disk Mode
+  - To confirm the fix: MAKE SURE when running `lsblk -f` on the infrastruture nodes that `ceph_bluestore` is NOT PRESENT. If `ceph_bluestore` is present under `FSTYPE` before installing the cluster, it will fail.
 - You can also try running the `zarf package deploy zarf-package-path.zst` manually to see more detailed debug logging.
 <br><br>
 - Issue: Failed to connect to nodes during cluster installation process.
