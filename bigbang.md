@@ -30,6 +30,20 @@
 - Verify the fix worked:
   - `lsblk -f` shouldn't show the `ceph_bluestore` label under `FSTYPE`
   - `sudo strings -a /dev/sdb | grep -i -E 'ceph|bluestore|osd|fsid' | head -50` = This shouldn't show any ceph information on the disk
+  - If time is a concern, just scan the first 1000 MiB and last 1000 MiB:
+    ```bash
+    sudo wipefs -n /dev/sdb
+    sudo blkid -p /dev/sdb
+    sudo dd if=/dev/sdb bs=1M count=10000 2>/dev/null | strings | grep -i -E 'ceph|bluestore|osd|fsid'
+    sudo dd if=/dev/sdb bs=1M skip=$(( $(blockdev --getsz /dev/sdb) / 2048 - 10000 )) count=10000 2>/dev/null | strings | grep -i -E 'ceph|bluestore|osd|fsid'
+    ```
+  - Also verify the MBR is all zeroed
+    ```bash
+    sudo fdisk -l /dev/sdb
+    sudo wipefs -n /dev/sdb
+    sudo blkid -p /dev/sdb
+    sudo hexdump -C -n 512 /dev/sdb
+    ```
 - You can also try running the `zarf package deploy zarf-package-path.zst` manually to see more detailed debug logging.
 <br><br>
 - Issue: Failed to connect to nodes during cluster installation process.
