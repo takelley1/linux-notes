@@ -9,9 +9,27 @@
   - Logs of Ceph OSD prepare job: `2026-04-15 21:44:12.866633 I | cephosd: skipping osd.2: "d5338065-aa99-46d9-9101-2ebc1e1b22ba" belonging to a different ceph cluster "0f388e34-2090-4653-a3ac-b71621276b53"`
   - Logs of `rook-ceph-operator`: `2026-04-15 17:32 08 710646 E | ceph-block-pool-controller: failed to reconcile CephBlockPool "rook-ceph/ceph-blockpool". failed to create pool "ceph-blockpool" failed to initialize pool "ceph-blockpool" for RBD use. signal: interrupt`
 - Fix:
-  - Run `wipefs -a -f /dev/sdb` on all infra nodes, then recreate all worker nodes and rerun the installation.
+  - Run this as root to zero out the entire disk:
+    ```bash
+    DISK=/dev/sdb
+    
+    lsblk -o NAME,SIZE,MODEL,SERIAL,MOUNTPOINT "$DISK"
+    
+    sudo umount ${DISK}?* 2>/dev/null || true
+    sudo swapoff "$DISK" 2>/dev/null || true
+    sudo wipefs -a "$DISK"
+    sudo sgdisk --zap-all "$DISK"
+    sudo dd if=/dev/zero of="$DISK" bs=16M oflag=direct status=progress
+    sync
+    
+    sudo wipefs -n "$DISK"
+    sudo blkid -p "$DISK"
+    ```
+  - Also make sure the disk in vSphere is `Thick-provisioned lazy zeroed`.
   - Also make sure the disk mode in vSphere is `dependent`. Select VM -> Edit settings -> Select disk -> Disk Mode
-  - To confirm the fix: MAKE SURE when running `lsblk -f` on the infrastruture nodes that `ceph_bluestore` is NOT PRESENT. If `ceph_bluestore` is present under `FSTYPE` before installing the cluster, it will fail.
+- Verify the fix worked:
+  - `lsblk -f` shouldn't show the `ceph_bluestore` label under `FSTYPE`
+  - `sudo strings -a /dev/sdb | grep -i -E 'ceph|bluestore|osd|fsid' | head -50` = This shouldn't show any ceph information on the disk
 - You can also try running the `zarf package deploy zarf-package-path.zst` manually to see more detailed debug logging.
 <br><br>
 - Issue: Failed to connect to nodes during cluster installation process.
