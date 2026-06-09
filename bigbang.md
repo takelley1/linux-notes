@@ -51,6 +51,11 @@
 
 ### Management
 
+- Issue: KeyCloak immediately asks for a CAC certificate when navigating to `keycloak.<CLUSTER>.<DOMAIN>`
+- Fix:
+  - In the `public-ingressgateway` in the `istio-gateway` namespace, ensure the KeyCloak server has `Tls.Mode: SIMPLE`, not `Tls.Mode: OPTIONAL_MUTUAL`
+  - Run `flux suspend hr public-ingressgateway -n bigbang` to keep changes from reverting.
+<br><br>
 - Issue: Crossplane `UserFederation` can't update its object
 - Symptoms:
   - `Warning  CannotUpdateManagedResource  51s   managed/ldap.keycloak.crossplane.io/v1alpha1, kind=userfederation  Operation cannot be fulfilled on userfederations.ldap.keycloak.crossplane.io "artemis-s-user-federation": the object has been modified; please apply your changes to the latest version and try again`
