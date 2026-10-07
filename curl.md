@@ -1,5 +1,18 @@
 ## [cURL](https://curl.se/)
 
+### Troubleshooting
+
+Error:
+```
+* (5454) (IN), , Unkown (72):
+* error:0A0000C6:SSL routines::packet length too long
+curl: (35) error:0A0000C6:SSL routines::packet length too long
+```
+Solution:
+- This means you sent HTTPS to an HTTP server. Change to HTTP
+
+### Misc
+
 Make POST API request to a Zabbix server:
 ```bash
 curl -v --data \
