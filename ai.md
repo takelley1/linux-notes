@@ -1,69 +1,27 @@
 ## ai
 
-### [PrivateGPT](https://github.com/imartinez/privateGPT)
+### LLMs
 
-#### [Installation](https://docs.privategpt.dev/installation)
+- GPT 5.6 Terra (Low)
+  - More measured and disagreeable
+  - Better at troubleshooting
+  - Prefers bash for one-off scripts
+  - Follows instructions better. More aligned and careful, less willing to expose secrets.
+- Gemini 3.8 Flash (Low)
+  - More confident and excitable
+  - Better at coding and syntax correctness
+  - Prefers Python for one-off scripts
 
-On AWS
-- [Nvidia drivers](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/install-nvidia-driver.html)
-  - Use an AMI that has NVIDIA driver pre-installed (you can find them on the AWS marketplace) - [like this one](https://aws.amazon.com/marketplace/pp/prodview-64e4rx3h733ru?applicationId=AWSMPContessa) or [this one](https://aws.amazon.com/marketplace/pp/prodview-7ikjtg3um26wq)
-- Instance type: g4dn.2xlarge, 300G storage
-- Snapshot instance immediately after creation
-```bash
-# Using NVIDIA Deep Learning Base AMI 2023.09.1-676eed8d-dcf5-4784-87d7-0de463205c17
+### Useful questions to ask during implementation
 
-# System info
-Kernel: 6.2.0-1011-aws
-OS: Ubuntu 22.04.3 LTS
-Python: Python 3.10.12
-
-sudo -s
-apt update -y
-apt upgrade -y
-conda deactivate
-
-# Check for NVIDIA GPU
-lspci -v
-
-# Check NVIDIA drivers
-nvidia-smi
-apt install nvidia-cuda-toolkit -y
-nvcc --verbose
-
-# Download dependencies
-apt install python3.11 make g++ -y
-python3.11 -m pip install poetry
-
-# Clone repo and install
-mkdir /gpt
-cd /gpt
-git clone https://github.com/imartinez/privateGPT
-cd privateGPT
-python3.11 -m poetry install --with ui
-python3.11 -m poetry run python scripts/setup
-CMAKE_ARGS='-DLLAMA_CUBLAS=on' python3.11 -m poetry run pip install --force-reinstall --no-cache-dir llama-cpp-python
-
-# Edit settings.yaml and set the port number
-vim settings.yaml
-
-# Run
-make run
-```
-- Create service file and enable service:
-```
-vim /etc/systemd/system/privategpt.service
-
-[Unit]
-Description=Run PrivateGPT
-After=network.target
-[Service]
-Type=simple
-WorkingDirectory=/gpt/privateGPT
-ExecStart=make run
-Restart=always
-[Install]
-WantedBy=default.target
-
-systemctl daemon-reload
-systemctl enable privategpt.service --now
-```
+- Ask it “why” chains like a five year old. Why X, Why Z, etc.
+- Walk me through X, first high level, then descending down the layers in increasing levels of detail from a complete lay person to a subject matter expert. 10 levels of depth
+- Why did you choose this approach instead of X? What assumptions does this depend on? What failure modes should I understand?
+- Give me the causal chain, not just the fix.
+- What parts of the architecture look suspicious?
+- Give me the architecture.
+- What are the five most important invariants?
+- Show me every place persistent state exists.
+- What can destroy data?
+- What happens when the API is unavailable halfway through an operation?
+- Which parts would you redesign if this had to support 100x the workload?
