@@ -34,6 +34,21 @@ ssh-keygen -t rsa -b 4096 -o -a 100
    6. Client sends the MD5 digest to server.
    7. Server compares its MD5 digest to client's MD5 digest. If they match, the requested user is authenticated.
 
+### Port Forwarding
+
+- Issue: My dev box can't reach a particular URL, since it's on a different network I can't reach. However, a server I can SSH to can reach that URL.
+  - So I can't reach 10.0.0.47, but the box jumphost can. I need to reach a URL hosted on 10.0.0.47.
+- Solution: Port forward
+```
+ssh -L 443:10.0.0.47:443 admin@jumphost
+```
+- This means when I hit `localhost:443` on my dev box, it's as if I'm on `jumphost` is hitting `10.0.0.47:443`
+- If you require host-based routing, update your `/etc/hosts` file for `127.0.0.1` to resolve to the correct host, like this:
+```
+127.0.0.1 mission-url.example.com
+```
+- Then you can go to `mission-url.example.com:443` and it will port-forward to `jumphost` to `10.0.0.47:443`
+
 ### [Files](https://www.techrepublic.com/article/the-4-most-important-files-for-ssh-connections/)
 
 - **See also:**
