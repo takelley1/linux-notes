@@ -1114,3 +1114,83 @@ roleRef:
 - Kubernetes creates a `default` ServiceAccount in each namespace with minimal permissions.
 - All pods without a ServiceAccount specified use `default`.
 - Custom ServiceAccounts should be created per workload that needs API access, each with its own least-privilege RBAC bindings.
+
+## External Secrets
+
+## Trust Manager
+
+- Distributes trusted CA cert bundles to pods.
+- Reads certs from other namespaces and creates a bundle in the target namespace, which a pod can then mount. This allows us to easily give pods trusted CA bundles.
+
+Flow:
+1. Create a cluster-scoped Bundle CR that defines CA sources
+2. Add a label to a namespace to tell trust-manager to distribute the Bundle there
+3. Trust-manager then creates a ConfigMap in the labeled namespace
+4. A workload can then mount that ConfigMap to read the Bundle
+```
+       Source ConfigMap
+       cert-manager namespace
+               |
+               v
+        trust-manager
+               |
+       +-------+-------+
+       |       |       |
+       v       v       v
+     NS-A    NS-B    NS-C
+       |       |       |
+    ConfigMap ConfigMap ConfigMap
+      ca.crt   ca.crt   ca.crt
+```
+
+<details>
+  <summary>Show code</summary>
+
+```yaml
+# Read in a CA certificate, then create a bundle
+apiVersion: trust.cert-manager.io/v1alpha1
+kind: Bundle
+metadata:
+  name: trusted-ca-bundle
+spec:
+  sources:
+    - configMap:
+        name: internal-ca
+        key: ca.crt
+    - configMap:
+        name: external-ca
+        key: ca.crt
+
+  # Bundle is cluster-scoped
+  target:
+    configMap:
+      key: ca.crt
+    namespaceSelector:
+      matchLabels:
+        trust-bundle: enabled
+```
+```yaml
+# Label the target namespace to have trust-manager create a ConfigMap with the Bundle
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: production
+  labels:
+    trust-bundle: enabled
+```
+```yaml
+# The workload can then mount that ConfigMap with the Bundle
+volumes:
+  - name: trusted-ca
+    configMap:
+      name: trusted-ca-bundle
+
+containers:
+  - name: app
+    image: my-app:latest
+    volumeMounts:
+      - name: trusted-ca
+        mountPath: /etc/internal-ca
+        readOnly: true
+```
+</details>
