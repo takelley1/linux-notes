@@ -927,6 +927,7 @@ spec:
 #### Secrets
 - Create an encrypted `secrets.yml` file (similar to Ansible Vault).
   - The secret is encrypted when stored in the Git repo and automatically decrypted by the cluster when applied.
+- `SealedSecrets` are a CRD provided by Bitnami, encrypts secrets in-place so they can be committed to Git.
 
 <details>
   <summary>Show code</summary>
@@ -967,6 +968,42 @@ spec:
     type: Opaque
 ```
 </details>
+
+#### ExternalSecret
+
+- Reads secrets from a provider (like AWS or another namespace) and creates a secret in a target namespace.
+- In this example, reads secrets from `shared-ns` namespace, using `SecretStore`/`ClusterSecretStore` to access it.
+```
+shared-ns
+  └── Secret (source)
+        ↑
+        | reads
+        |
+ESO Controller
+        ↑
+        | uses configuration from
+        |
+app-ns
+  ├── SecretStore or ClusterSecretStore (points to shared-ns)
+  ├── ExternalSecret (references SecretStore)
+  └── Secret (created by ESO)
+```
+- Can also have `SecretStore` point to an AWS Secrets Manager store:
+```
+AWS Secrets Manager
+  └── Secret (db-password)
+        ↑
+        | reads
+        |
+ESO Controller
+        ↑
+        | uses configuration from
+        |
+app-ns
+  ├── SecretStore or ClusterSecretStore (points to AWS Secrets Manager)
+  ├── ExternalSecret (references SecretStore)
+  └── Secret (created by ESO)
+```
 
 ### Network Security
 
@@ -1122,8 +1159,6 @@ roleRef:
 - Kubernetes creates a `default` ServiceAccount in each namespace with minimal permissions.
 - All pods without a ServiceAccount specified use `default`.
 - Custom ServiceAccounts should be created per workload that needs API access, each with its own least-privilege RBAC bindings.
-
-## External Secrets
 
 ## Trust Manager
 
