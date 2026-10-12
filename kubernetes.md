@@ -872,6 +872,14 @@ kubectl edit configmap coredns -n kube-system
 | Burstable  | Requests < Limits                    | Evicted after BestEffort |
 | BestEffort | No requests/limits set               | Evicted first            |
 
+## Nodes
+
+- Cordoning
+  - Mark the node as unschedulable.
+- [Draining](https://kubernetes.io/docs/reference/kubectl/generated/kubectl_drain/)
+  - Ask the node to evict all its pods.
+  - `GracePeriod`: Number of seconds allowed for the pods on that node to shutdown cleanly before k8s forces them to evict.
+
 ## Security
 
 ### Pod Security
