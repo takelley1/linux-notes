@@ -880,6 +880,14 @@ kubectl edit configmap coredns -n kube-system
   - Ask the node to evict all its pods.
   - `GracePeriod`: Number of seconds allowed for the pods on that node to shutdown cleanly before k8s forces them to evict.
 
+## K8s Architecture
+
+- `kubelet`
+  - Non-containerized systemd service that lets the node talk to the k8s API. Receives workloads and reports node/Pod health.
+- `containerd`
+  - Non-containerized systemd service that manages containers and pulls images. Receives orders from the `kubelet` over Container Runtime Interface (CRI)
+
+
 ## Security
 
 ### Pod Security
