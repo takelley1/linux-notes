@@ -1160,7 +1160,34 @@ roleRef:
 - All pods without a ServiceAccount specified use `default`.
 - Custom ServiceAccounts should be created per workload that needs API access, each with its own least-privilege RBAC bindings.
 
-## Trust Manager
+## Cert Manager
+
+- Manages certs in k8s.
+- Used to create certs for the k8s API to trust when the k8s API calls a webhook over HTTPS. The K8s API requires trusting the endpoint it calls, so `cert-manager` gives the k8s API certs to trust.
+- This is used for sidecars that expose webhooks like `Istio` and `OpenFeature`. They use an admission webhook to attach a sidecar to a pod before it schedules, and the hook comes from the k8s API, which must trust the endpoint (`Istio` or `OpenFeature`).
+```
+cert-manager
+  ├── CA / Issuer
+  │     └── Issues TLS certificate
+  │             ↓
+  │       Webhook server (Istio/OpenFeature)
+  │
+  └── cainjector
+        └── Populates caBundle
+                ↓
+       MutatingWebhookConfiguration
+                ↓
+       Kubernetes API server
+         └── Trusts webhook certificate
+                ↓
+         Calls webhook over HTTPS
+                ↓
+         Webhook modifies Pod spec
+                ↓
+         Pod is persisted and later scheduled
+```
+
+### Trust Manager
 
 - Distributes trusted CA cert bundles to pods.
 - Reads certs from other namespaces and creates a bundle in the target namespace, which a pod can then mount. This allows us to easily give pods trusted CA bundles.
