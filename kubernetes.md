@@ -886,7 +886,8 @@ kubectl edit configmap coredns -n kube-system
   - Non-containerized systemd service that lets the node talk to the k8s API. Receives workloads and reports node/Pod health.
 - `containerd`
   - Non-containerized systemd service that manages containers and pulls images. Receives orders from the `kubelet` over Container Runtime Interface (CRI)
-
+- `kube-proxy`
+  - Daemonset on each node that handles Service to Pod routing. It does this by modifying each node's firewall rules.
 
 ## Security
 
