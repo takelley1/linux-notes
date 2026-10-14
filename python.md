@@ -23,6 +23,10 @@
   - [pathlib - object-oriented path operations](https://docs.python.org/3/library/pathlib.html)
   - [glob - unix-style path expansion](https://docs.python.org/3/library/glob.html)
 
+### Architecture
+
+- Python's GIL: Ensures only one thread at a time can execute on a given CPython interpreter. Separate Python processes each have their own GIL.
+
 ### Pip and packaging
 
 - **See also:**
