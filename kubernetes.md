@@ -888,6 +888,8 @@ kubectl edit configmap coredns -n kube-system
   - Non-containerized systemd service that manages containers and pulls images. Receives orders from the `kubelet` over Container Runtime Interface (CRI)
 - `kube-proxy`
   - Daemonset on each node that handles Service to Pod routing. It does this by modifying each node's firewall rules.
+- Container Networking Interface (CNI)
+  - Handles Pod-to-Pod networking
 
 ## Security
 
@@ -1163,7 +1165,7 @@ roleRef:
 ```
 </details>
 
-#### [Service Accounts](https://kubernetes.io/docs/concepts/security/service-accounts/)
+#### [ServiceAccounts](https://kubernetes.io/docs/concepts/security/service-accounts/)
 - Accounts managed by the k8s API, unlike human users.
 - Kubernetes creates a `default` ServiceAccount in each namespace with minimal permissions.
 - All pods without a ServiceAccount specified use `default`.
