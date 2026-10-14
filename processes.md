@@ -1,5 +1,7 @@
 ## Processes
 
+- Threads share memory, processes do not.
+<br><br>
 - `CTRL-z` = Suspend current foreground job.
 - `bg`     = Push most recently suspended job into background.
 - `fg`     = Pull most recent background job into foreground.
