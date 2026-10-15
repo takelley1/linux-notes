@@ -482,6 +482,7 @@ l","image":"ubuntu","command":["nsenter","--target=1","--mount","--uts","--ipc",
 ### [StatefulSet](https://kubernetes.io/docs/concepts/workloads/controllers/statefulset/)
 - Alternative to ReplicaSet for deploying stateful pods (pods that use storage).
 - Ensures restarted pods keep the same name and PVC (persistent identity).
+- Creates one PVC per Pod.
 
 ### [DaemonSet](https://kubernetes.io/docs/concepts/workloads/controllers/daemonset/)
 - Ensures a single pod is running on all nodes of a given type. Useful for collecting node metrics.
@@ -879,6 +880,26 @@ kubectl edit configmap coredns -n kube-system
 - [Draining](https://kubernetes.io/docs/reference/kubectl/generated/kubectl_drain/)
   - Ask the node to evict all its pods.
   - `GracePeriod`: Number of seconds allowed for the pods on that node to shutdown cleanly before k8s forces them to evict.
+
+## [Storage](https://kubernetes.io/docs/concepts/storage/)
+
+- `PV`: Persistent Volume. A unit of storage provisioned by a `StorageClass`.
+- `PVC`: Persistent Volume Claim. Represents a Pod's claim on a `PV`, specifies how much storage is requested, access, etc.
+- `StorageClass`: Defines how storage is provisioned, basically just says which CSI driver to use.
+- `CSI Driver`: Talks to the storage provider's API to actually provision the storage.
+```
+Pod
+ ↓ references
+PVC (requests 10Gi, storageClassName: rook-ceph-block)
+ ↓ references
+StorageClass (rook-ceph-block)
+ ↓ specifies CSI provisioner
+CSI Driver (Ceph RBD)
+ ↓ provisions storage
+PV (10Gi)
+ ↓ backed by
+Ceph storage
+```
 
 ## K8s Architecture
 
