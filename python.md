@@ -65,7 +65,29 @@ export PIP_EXTRA_INDEX_URL="http://${PACKAGES_TOKEN_NAME}:${PACKAGES_TOKEN}@gitl
 ### Misc tips
 
 `python3 -i script.py` = Run *script.py*, then launch an interactive REPL for debugging afterwards.
+<br><br>
+List comprehensions
+```python
+numbers = [1, 2, 3, 4]
+squares = [n * n for n in numbers]
+# squares = [1, 4, 9, 16]
 
+[n * 2 for n in [1, 2, 3]]
+# [2, 4, 6]
+
+[x * 2 for x in [1, 2, 3, 4, 5] if x > 3]
+# [8, 10]
+```
+
+Dictionary comprehensions
+```python
+numbers = [1, 2, 3]
+
+squares = {n: n * n for n in numbers}
+
+print(squares)
+# {1: 1, 2: 4, 3: 9}
+```
 [Regex search.](https://www.w3schools.com/python/python_regex.asp)
 ```python
 import re
