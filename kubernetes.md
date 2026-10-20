@@ -873,6 +873,26 @@ kubectl edit configmap coredns -n kube-system
 | Burstable  | Requests < Limits                    | Evicted after BestEffort |
 | BestEffort | No requests/limits set               | Evicted first            |
 
+## PodDisruptionBudget (PDB)
+
+- How many pods of an application k8s can disrupt at the same time.
+- Can delay evictions when you drain a node until those pods are healthy elsewhere.
+<details>
+  <summary>Show code</summary>
+
+```yaml
+apiVersion: policy/v1
+kind: PodDisruptionBudget
+metadata:
+  name: my-app-pdb
+spec:
+  minAvailable: 3
+  selector:
+    matchLabels:
+      app: my-app
+```
+</details>
+
 ## Nodes
 
 - Cordoning
