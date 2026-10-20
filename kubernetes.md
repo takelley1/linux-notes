@@ -487,6 +487,31 @@ l","image":"ubuntu","command":["nsenter","--target=1","--mount","--uts","--ipc",
 ### [DaemonSet](https://kubernetes.io/docs/concepts/workloads/controllers/daemonset/)
 - Ensures a single pod is running on all nodes of a given type. Useful for collecting node metrics.
 
+### Job
+- Runs a finite task to completion in the cluster.
+
+<details>
+  <summary>Show code</summary>
+
+  ```yaml
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: example-job
+spec:
+  completions: 3
+  parallelism: 2
+  backoffLimit: 4
+  template:
+    spec:
+      restartPolicy: Never
+      containers:
+        - name: worker
+          image: busybox
+          command: ["sh", "-c", "echo Hello; sleep 5"]
+  ```
+</details>
+
 ### [Service](https://kubernetes.io/docs/concepts/services-networking/service/)
   - Abstraction layer to make pods accessible.
   - Matches a set of Pods using a label.
