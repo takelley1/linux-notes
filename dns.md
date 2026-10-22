@@ -15,10 +15,10 @@ Recursive DNS Resolver
   |
   v
 Root DNS Server (.)
-  | "Ask the .com nameservers"
+  | "Ask the .com nameservers" (returns an NS record for the .com server)
   v
 .com Nameserver
-  | "Ask the example.com nameservers"
+  | "Ask the example.com nameservers" (returns an NS record for the example.com server)
   v
 example.com Nameserver
   | "test.dev.example.com = 192.0.2.30"
