@@ -45,3 +45,27 @@
   ```
   - `X-Forwarded-For` = Set to the original client IP by the reverse proxy, like `203.0.113.10`. Allows the backend to tie requests back to individual clients.
   - `X-Forwarded-Proto` = Set to the original client protocol by the reverse proxy, like `http` or `https`. Useful if the client is talking HTTPS to the proxy, and the proxy is talking HTTP to the backend. Can help the backend know to generate `https://` URLs when redirecting clients.
+- CORS headers (see below)
+  - `Origin` = Which site initiated the request
+  - `Access-Control-Allow-Origin` = Sent by sites to allow other sites to read its responses.
+ 
+### CORS (Cross-Origin Resource Sharing)
+
+- Browsers enforce a Same-Origin Policy to prevent JavaScript from reading HTTP responses from other sites (prevent `evil.com` from reading authenticated responses from `bank.com`). CORS relaxes this rule.
+- If `frontend.com` wants to talk to `backend.com`, then `backend.com` must respond with a CORS header for the browser to permit `frontend.com` to read the response
+  ```
+  # Frontend Javascript wants to run:
+  fetch("https://backend.com/users")
+  ```
+  ```
+  # The browser issues a request to the backend:
+  GET /users
+  Origin: https://frontend.com
+  ```
+  ```
+  # The backend responds with a CORS header allowing the frontend:
+  HTTP/1.1 200 OK
+  Access-Control-Allow-Origin: https://frontend.com
+
+  # The browser then allows the JS to read the response from backend.com
+  ```
