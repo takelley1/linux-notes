@@ -23,3 +23,10 @@
 - Misc
   - `301 Moved Permanently` = Permanent redirect to another URL. Doesn't preserve HTTP method (`308` preserves method)
   - `302 Found` = Temporary redirect. Doesn't preserve HTTP method (`307` preserves method)
+
+### Headers
+
+- Authentication
+  - `Authorization` = Sends credentials to the server, like `Bearer auHAkCiA...`. When you login to a server, it issues a token. The client sends the token in subsequent requests.
+  - `Set-Cookie` = Sent by the server to create a cookie, like `Set-Cookie: session=abc123; HttpOnly; Secure; SameSite=Lax`.
+  - `Cookie` = Arbitrary info stored by the browser and sent by the client, like `Cookie: session=abc123`. Can also be used by clients to authenticate requests.
