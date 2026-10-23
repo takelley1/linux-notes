@@ -30,3 +30,18 @@
   - `Authorization` = Sends credentials to the server, like `Bearer auHAkCiA...`. When you login to a server, it issues a token. The client sends the token in subsequent requests.
   - `Set-Cookie` = Sent by the server to create a cookie, like `Set-Cookie: session=abc123; HttpOnly; Secure; SameSite=Lax`.
   - `Cookie` = Arbitrary info stored by the browser and sent by the client, like `Cookie: session=abc123`. Can also be used by clients to authenticate requests.
+- Proxying
+  - `Host` = Set by client to identify the target hostname of the server, like `api.example.com`. Used by reverse proxies to route requests to the correct backend.
+  - `X-Forwarded-Host` = Set by reverse proxies to preserve the original `Host` requested by a client.
+  ```
+  Client
+    | Host: api.example.com
+    v
+  NGINX
+    | Host: backend.internal
+    | X-Forwarded-Host: api.example.com
+    v
+  Backend
+  ```
+  - `X-Forwarded-For` = Set to the original client IP by the reverse proxy, like `203.0.113.10`. Allows the backend to tie requests back to individual clients.
+  - `X-Forwarded-Proto` = Set to the original client protocol by the reverse proxy, like `http` or `https`. Useful if the client is talking HTTPS to the proxy, and the proxy is talking HTTP to the backend. Can help the backend know to generate `https://` URLs when redirecting clients.
