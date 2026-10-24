@@ -4,6 +4,40 @@
   - [The Git book](https://git-scm.com/book/en/v2)
   - [Git cheat sheet](https://education.github.com/git-cheat-sheet-education.pdf)
 
+
+### Rebase vs Merge
+
+- Always prefer rebase + ff over merges. This eliminates the need for merge commits.
+```
+START: both branches have new commits since they split
+
+          D---E          feature  (you are here)
+         /
+    A---B---C            develop
+
+
+1) git merge develop   (run on feature)
+   feature moves. A merge commit M joins the two histories.
+
+          D---E---M      feature
+         /       /
+    A---B---C---+        develop (unchanged)
+
+
+2) git rebase develop   (run on feature) -- "Rebase the current branch onto develop."
+   feature moves. D and E are copied after C. No merge commit.
+
+                   D'---E'    feature  (D' and E' are new commits)
+                  /
+    A---B---C----+            develop (unchanged)
+
+
+3) then, on develop:  git merge --ff-only feature
+   develop moves forward to the tip of feature. No merge commit.
+
+    A---B---C---D'---E'       develop = feature
+```
+
 ### Tips
 
 - `git fetch --all && git reset --hard origin/master` = Force pull -- force local tree to match remote tree
