@@ -9,5 +9,7 @@
 - `OPTION-COMMAND-ESC` = Open the force-quit menu to force-quit applications.
 <br><br>
 - Troubleshooting
+  - Issue: Laptop has no internet when tethering to phone.
+    - Fix: Turn on airplane mode on phone for 30s, then disable it.
   - Issue: Captive portal Wifi doesn't work, like on the airplane.
     - Fix: Remove hardcoded DNS servers.
