@@ -96,6 +96,14 @@
      API A     API B     API C
 ```
 
+### CSP (Content Security Policy)
+
+- Restricts which scripts a site is allowed to execute, enforced by the browser.
+- If `bank.com` responds with:
+  ```
+  Content-Security-Policy: script-src 'self'
+  ```
+- This means scripts on `bank.com` from `https://bank.com/app.js` can run, but not scripts on `bank.com` from `https://evil.com/malware.js`
 
 ### CORS (Cross-Origin Resource Sharing)
 
