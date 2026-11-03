@@ -27,15 +27,33 @@ START: both branches have new commits since they split
 2) git rebase develop   (run on feature) -- "Rebase the current branch onto develop."
    feature moves. D and E are copied after C. No merge commit.
 
-                   D'---E'    feature  (D' and E' are new commits)
-                  /
-    A---B---C----+            develop (unchanged)
+              D'---E'    feature  (D' and E' are new commits)
+             /
+    A---B---C           develop (unchanged)
 
 
 3) then, on develop:  git merge --ff-only feature
    develop moves forward to the tip of feature. No merge commit.
 
     A---B---C---D'---E'       develop = feature
+```
+
+## Cherry-pick
+```
+Like a rebase, but only replays specific commits
+
+
+START:
+          D---E---F    feature
+         /
+A---B---C---G---H      main
+
+
+Cherry pick only E onto main:
+
+          D---E---F        feature
+         /
+A---B---C---G---H---E'    main
 ```
 
 ### Tips
