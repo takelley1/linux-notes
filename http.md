@@ -48,7 +48,48 @@
 - CORS headers (see below)
   - `Origin` = Which site initiated the request
   - `Access-Control-Allow-Origin` = Sent by sites to allow other sites to read its responses.
- 
+
+### JWTs (JSON Web Tokens)
+
+- A signed secret containing info about the client. Can be asymmetric or symmetric.
+- Signed by the server, sent to the client. Server verifies signature to ensure it hasn't been tampered with:
+  ```
+  Server                     Client
+    |                           |
+    | Sign JWT with secret      |
+    |                           |
+    | -------- JWT -----------> |
+    |                           |
+    | <------- JWT ------------ |
+    |                           |
+    | Verify using same secret  |
+  ```
+- May contain data like:
+  ```json
+  {
+    "sub": "user123",
+    "role": "admin",
+    "exp": 1794000000
+  }
+  ```
+- Bse64-encoded payload, not encrypted, so anyone can read it. However if it's modified, the signature will be invalid.
+- Used in Oauth 2.0 / OIDC
+  - KeyCloak issues a JWT to a client, the client presents it to an API. The API verifies the JWT's signature using KeyCloak's public key.
+```
+              Keycloak
+                 |
+             Issues JWT
+                 |
+                 v
+               Client
+                 |
+        +--------+--------+
+        |        |        |
+        v        v        v
+     API A     API B     API C
+```
+
+
 ### CORS (Cross-Origin Resource Sharing)
 
 - Browsers enforce a Same-Origin Policy to prevent JavaScript from reading HTTP responses from other sites (prevent `evil.com` from reading authenticated responses from `bank.com`). CORS relaxes this rule.
