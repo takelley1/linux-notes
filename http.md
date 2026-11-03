@@ -49,6 +49,13 @@
   - `Origin` = Which site initiated the request
   - `Access-Control-Allow-Origin` = Sent by sites to allow other sites to read its responses.
 
+### HSTS (HTTP Strict Transport Security)
+
+- Forces browser to use HTTPS before it even connects to an HTTP site.
+- Safer than `HTTP -> 301 to HTTPS -> then HTTPS`, because the initial HTTP request could still be intercepted by an attacker.
+- Instead, the server responds with `Strict-Transport-Security: max-age=31536000`, which causes the browser to remember to use HTTPS for that site going forward.
+- The important part is the browser *remembers* to use HTTPS for that site. The first HTTP connection to that site, however, can still be intercepted.
+
 ### JWTs (JSON Web Tokens)
 
 - A signed secret containing info about the client. Can be asymmetric or symmetric.
@@ -72,7 +79,7 @@
     "exp": 1794000000
   }
   ```
-- Bse64-encoded payload, not encrypted, so anyone can read it. However if it's modified, the signature will be invalid.
+- Base64-encoded payload, not encrypted, so anyone can read it. However if it's modified, the signature will be invalid.
 - Used in Oauth 2.0 / OIDC
   - KeyCloak issues a JWT to a client, the client presents it to an API. The API verifies the JWT's signature using KeyCloak's public key.
 ```
