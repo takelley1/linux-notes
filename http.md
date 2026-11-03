@@ -69,3 +69,35 @@
 
   # The browser then allows the JS to read the response from backend.com
   ```
+
+### CSRF (Cross-Site Request Forgery)
+
+- CORS prevents bad sites from reading responses from good sites, but bad sites can still POST data to good sites. This is where CSRF is needed.
+```html
+<form action="https://bank.com/transfer"
+      method="POST">
+  <input name="amount" value="1000">
+  <button type="submit">Send</button>
+</form>
+```
+- The browser might use your session cookie for `bank.com` and issue an authenticated transfer.
+- CSRF tokens prevent this:
+  - You log into bank.com.
+  - The server generates a cryptographically random CSRF token associated with your session.
+  - When your browser loads the bank's transfer form, the server includes that token embedded in the HTML.
+    ```html
+    <form action="/transfer" method="POST">
+    <input type="hidden" name="csrf_token" value="x7k9p2">
+    <input name="amount">
+      <button type="submit">Transfer</button>
+    </form>
+    ```
+  - When you submit a transfer, your browser sends both your session cookie and the CSRF token.
+    ```html
+    POST /transfer HTTP/1.1
+    Host: bank.com
+    Cookie: session=abc123
+
+    amount=1000&csrf_token=x7k9p2
+    ```
+  - The server verifies the token before processing the transfer. `evil.com` can't forge the token because it can't read the HTML of `bank.com` (due to the Same-Origin Policy).
