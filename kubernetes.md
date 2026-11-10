@@ -929,7 +929,8 @@ spec:
 ## [Storage](https://kubernetes.io/docs/concepts/storage/)
 
 - `PV`: Persistent Volume. A unit of storage provisioned by a `StorageClass`.
-- `PVC`: Persistent Volume Claim. Represents a Pod's claim on a `PV`, specifies how much storage is requested, access, etc.
+- `PVC`: Persistent Volume Claim. Represents a Pod's claim on a `PV`, defines the storage requirements of the `PV`.
+- `VolumeBinding`: Matches the `PVC` with a suitable `PV`. Can be `Immediate` or `WaitForFirstConsumer` (waits until Pod is scheduled).
 - `StorageClass`: Defines how storage is provisioned, basically just says which CSI driver to use.
 - `CSI Driver`: Talks to the storage provider's API to actually provision the storage.
 ```
@@ -941,7 +942,7 @@ StorageClass (rook-ceph-block)
  ↓ specifies CSI provisioner
 CSI Driver (Ceph RBD)
  ↓ provisions storage
-PV (10Gi)
+PV (10Gi, bound by VolumeBinding to PVC)
  ↓ backed by
 Ceph storage
 ```
