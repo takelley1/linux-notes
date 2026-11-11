@@ -926,6 +926,46 @@ spec:
   - Ask the node to evict all its pods.
   - `GracePeriod`: Number of seconds allowed for the pods on that node to shutdown cleanly before k8s forces them to evict.
 
+## Networking
+
+### Cilium
+
+- CNI that handles Pod-to-Pod networking, implementing NetworkPolicies
+- Runs as a DaemonSet on each Node. 
+```
+Node A                           Node B
+┌─────────────────┐              ┌─────────────────┐
+│ Pod A           │              │ Pod B           │
+│ 10.0.1.5        │              │ 10.0.2.8        │
+└────────┬────────┘              └────────▲────────┘
+         │                                │
+    Cilium eBPF                      Cilium eBPF
+         │                                │
+         └────── Node Network ────────────┘
+```
+```
+Kubernetes Control Plane
+  ├── API Server
+  ├── Scheduler
+  └── NetworkPolicy / Service definitions
+          │
+          ▼
+Worker Node
+  ├── kubelet
+  │    └── Container Runtime (containerd)
+  │          └── CNI Plugin (Cilium)
+  │                └── Configures Pod networking
+  │
+  ├── Cilium Agent (DaemonSet)
+  │    └── Manages eBPF programs and maps
+  │
+  └── Linux Kernel
+       └── eBPF Datapath
+             ├── Packet forwarding
+             ├── Network policy enforcement
+             └── Service load balancing
+```
+
 ## [Storage](https://kubernetes.io/docs/concepts/storage/)
 
 - `PV`: Persistent Volume. A unit of storage provisioned by a `StorageClass`.
