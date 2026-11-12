@@ -137,6 +137,18 @@ contains the changes to the original data, not the data itself.
   - [How much faster is memory than flash?](https://stackoverflow.com/questions/1371400/how-much-faster-is-the-memory-usually-than-the-disk)
   - [Drive performance metrics](https://www.red-gate.com/simple-talk/databases/sql-server/database-administration-sql-server/storage-101-monitoring-storage-metrics/)
   - [Drive benchmarks - 4K IOPS at queue depth 1](https://www.harddrivebenchmark.net/iops-4kqd1.html)
+- Terminology
+  - IOPS (e.g. 4000 IOPS, 4k IOPS) = Number of individual I/O operations completed per second.
+  - Throughput (e.g. 4 Gb/s, 100 MB/s) = Total amount of data transferred per second. Throughput = IOPS x I/O size.
+  - Latency (e.g. 4 ms, 100 µs) = Time required to complete an I/O operation.
+  - I/O size (e.g. 4 KiB, 8k, 16k, 4M) = Size of the I/O operation, sometimes called block size (but block size on storage is different).
+  - Queue depth (e.g. QD1, 8, 16, QD32) = Number of outstanding I/O operations at any given time, some may be waiting.
+  - Random vs Sequential I/O = Sequential I/O is across adjacent blocks of data, random I/O isn't.
+  - Synchronous vs Asynchronous I/O
+    - Synchronous reads = Waits for the requested data to come back before doing anything else.
+    - Synchronous writes = Waits for the underlying storage platform to respond that the write has been durably committed.
+    - Asynchronous reads = Submits the read request and and continues executing other work before the data comes back.
+    - Asynchronous writes = Submits the write and proceeds before it's been fully acknowledged as durably committed.
 
 ```
 Latency Comparison Numbers (~2012)
