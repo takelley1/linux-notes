@@ -152,4 +152,63 @@ recipient@example.com                        # This is the 'to' field of the ema
   - [Understanding TCP/IP](https://www.cubrid.org/blog/understanding-tcp-ip-network-stack)
   - [How ARP works](https://www.tummy.com/articles/networking-basics-how-arp-works/)
 
+### TCP
+
+- Client sends `SYN`, server acknowledges with `SYN-ACK`.
+- Client acknowledges the server's `SYN-ACK` with an `ACK`. Connection is now established.
+- Both sides can now send and receive data at the same time, it's full-duplex.
+- Lost data is retransmitted by using `DUP ACKs`.
+
+```
+CLIENT                         SERVER
+   |                               |
+   | -------- SYN ---------------> |
+   | <------- SYN-ACK ------------ |
+   | -------- ACK ---------------> |
+   |                               |
+   |    CONNECTION ESTABLISHED     |
+   |                               |
+   | -------- DATA 1 ------------> |
+   | <------- ACK ---------------- |
+   |                               |
+   | -------- DATA 2 ---X          | Lost
+   |                               |
+   | -------- DATA 3 ------------> |
+   | <------- DUP ACK ------------ |
+   |                               |
+   | -------- RETRANSMIT 2 ------> |
+   | <------- ACK ---------------- |
+   |                               |
+   | -------- FIN ---------------> |
+   | <------- ACK ---------------- |
+   | <------- FIN ---------------- |
+   | -------- ACK ---------------> |
+   |                               |
+   |       CONNECTION CLOSED       |
+```
+
+### UDP
+
+- Extremely simple, no retransmission, no connections.
+
+```
+CLIENT                         SERVER
+   |                               |
+   | -------- DATAGRAM 1 --------> |
+   |                               |
+   | -------- DATAGRAM 2 --X       | Lost
+   |                               |
+   | -------- DATAGRAM 3 --------> |
+   |                               |
+   | -------- DATAGRAM 4 --------> |
+   |                               |
+   |            DONE               |
+   |                               |
+
+No handshake
+No built-in acknowledgments
+No automatic retransmission
+No guaranteed ordering
+```
+
 ![tcp/ip-stack](images/tcp_ip_stack.png)
