@@ -137,7 +137,27 @@ contains the changes to the original data, not the data itself.
   - [How much faster is memory than flash?](https://stackoverflow.com/questions/1371400/how-much-faster-is-the-memory-usually-than-the-disk)
   - [Drive performance metrics](https://www.red-gate.com/simple-talk/databases/sql-server/database-administration-sql-server/storage-101-monitoring-storage-metrics/)
   - [Drive benchmarks - 4K IOPS at queue depth 1](https://www.harddrivebenchmark.net/iops-4kqd1.html)
-- Terminology
+  ```
+  Latency Comparison Numbers (~2012)
+  ----------------------------------
+  L1 cache reference                           0.5 ns
+  Branch mispredict                            5   ns
+  L2 cache reference                           7   ns .................... 14x slower than L1 cache
+  Mutex lock/unlock                           25   ns
+  Main memory reference                      100   ns .................... 20x slower than L2 cache, 200x slower than L1 cache
+  Compress 1K bytes with Zippy             3,000   ns        3 us
+  Send 1K bytes over 1 Gbps network       10,000   ns       10 us
+  Read 4K randomly from SSD              150,000   ns      150 us ........ ~1GB/sec SSD
+  Read 1 MB sequentially from memory     250,000   ns      250 us
+  Round trip within same datacenter      500,000   ns      500 us
+  Read 1 MB sequentially from SSD      1,000,000   ns    1,000 us    1 ms  ~1GB/sec SSD, 4x slower than memory
+  Disk seek                           10,000,000   ns   10,000 us   10 ms
+  Read 1 MB sequentially from disk    20,000,000   ns   20,000 us   20 ms  80x slower than memory, 20x slower than SSD
+  Send packet CA->Netherlands->CA    150,000,000   ns  150,000 us  150 ms  .150 s
+  ```
+
+### Terminology
+
   - IOPS (e.g. 4000 IOPS, 4k IOPS) = Number of individual I/O operations completed per second.
   - Throughput (e.g. 4 Gb/s, 100 MB/s) = Total amount of data transferred per second. Throughput = IOPS x I/O size.
   - Latency (e.g. 4 ms, 100 µs) = Time required to complete an I/O operation.
@@ -149,25 +169,126 @@ contains the changes to the original data, not the data itself.
     - Synchronous writes = Waits for the underlying storage platform to respond that the write has been durably committed.
     - Asynchronous reads = Submits the read request and and continues executing other work before the data comes back.
     - Asynchronous writes = Submits the write and proceeds before it's been fully acknowledged as durably committed.
+  - Unbuffered/Direct vs Buffered I/O
+    - Unbuffered read = Pulls data directly from the disk instead of via the page cache in RAM.
+    ```
+    Application read()
+          |
+          v
+    VFS / Filesystem
+          |
+          v
+      Block Layer
+          |
+          v
+       SSD / HDD
+          |
+          v
+    Application Buffer
+    ```
+    - Unbuffered (Direct) write = Data written directly to physical disk.
+      - Used by databases since they manage their own caching internally.
+      - Doesn't guarantee data persistence in storage, since data may have been written directly to an SSD hardware cache.
+    ```
+                DIRECT I/O WRITE
+    +-----------------------------------+
+    |            USER SPACE             |
+    |                                   |
+    |  Application                      |
+    |  open(..., O_DIRECT)              |
+    |  write(fd, buffer, size)          |
+    +-----------------+-----------------+
+                      |
+                      | System call
+                      v
+    +-----------------------------------+
+    |           KERNEL SPACE            |
+    |                                   |
+    |  VFS / Filesystem                 |
+    |                  |                |
+    |                  | Bypass         |
+    |                  | page cache     |
+    |                  v                |
+    |  Block Layer                      |
+    |                  |                |
+    +------------------|----------------+
+                       |
+                       v
+    +-----------------------------------+
+    |             SSD / HDD             |
+    +-----------------------------------+
+    
+    Data I/O bypasses kernel page cache.
+    Filesystem processing still occurs.
+    ```
+    - Buffered read = Attempt to read from the page cache before going to the disk.
+      - Read data automatically populates the page cache in RAM for faster reads later.
+    ```
+    Application read()
+        |
+        v
+    Page Cache
+        |
+        +-- Cache hit --> Return data
+        |
+        +-- Cache miss
+                |
+                v
+           Block Layer
+                |
+                v
+            SSD / HDD
+                |
+                v
+         Populate Page Cache
+                |
+                v
+         Return to Application
+    ```
+    - Buffered write = Data written to RAM before getting flushed to the physical disk later.
+      - Used by most applications, improves performance and responsiveness.
+      - Calling `fsync()` forces the dirty RAM pages to write to the disk, though the data main remain in RAM as part of the page cache.
+        - The page cache contains "clean" RAM pages, which have been written to disk.
+    ```
+                 BUFFERED WRITE
+    +-----------------------------------+
+    |            USER SPACE             |
+    |                                   |
+    |  Application                      |
+    |  write(fd, buffer, size)          |
+    +-----------------+-----------------+
+                      |
+                      | System call
+                      v
+    +-----------------------------------+
+    |           KERNEL SPACE            |
+    |                                   |
+    |  VFS / Filesystem                 |
+    |                  |                |
+    |                  v                |
+    |  +-----------------------------+  |
+    |  |         PAGE CACHE          |  |
+    |  |                             |  |
+    |  |  Data copied into RAM       |  |
+    |  |  Pages marked dirty         |  |
+    |  +-------------+---------------+  |
+    |                |                  |
+    +----------------|------------------+
+                     |
+                     | Later: writeback
+                     v
+    +-----------------------------------+
+    |           BLOCK LAYER             |
+    +-----------------+-----------------+
+                      |
+                      v
+    +-----------------------------------+
+    |             SSD / HDD             |
+    +-----------------------------------+
+    
+    write() may return before disk writeback.
+    ```
 
-```
-Latency Comparison Numbers (~2012)
-----------------------------------
-L1 cache reference                           0.5 ns
-Branch mispredict                            5   ns
-L2 cache reference                           7   ns .................... 14x slower than L1 cache
-Mutex lock/unlock                           25   ns
-Main memory reference                      100   ns .................... 20x slower than L2 cache, 200x slower than L1 cache
-Compress 1K bytes with Zippy             3,000   ns        3 us
-Send 1K bytes over 1 Gbps network       10,000   ns       10 us
-Read 4K randomly from SSD              150,000   ns      150 us ........ ~1GB/sec SSD
-Read 1 MB sequentially from memory     250,000   ns      250 us
-Round trip within same datacenter      500,000   ns      500 us
-Read 1 MB sequentially from SSD      1,000,000   ns    1,000 us    1 ms  ~1GB/sec SSD, 4x slower than memory
-Disk seek                           10,000,000   ns   10,000 us   10 ms
-Read 1 MB sequentially from disk    20,000,000   ns   20,000 us   20 ms  80x slower than memory, 20x slower than SSD
-Send packet CA->Netherlands->CA    150,000,000   ns  150,000 us  150 ms  .150 s
-```
 
 <img src="images/raid10.png" width="300"/> <sup>[9]</sup>
 
